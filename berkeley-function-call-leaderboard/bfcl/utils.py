@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from typing import Union
 
-from bfcl.constant import VERSION_PREFIX
+from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
 
 
 def extract_test_category(input_string: Union[str, Path]) -> str:
@@ -138,13 +138,25 @@ def sort_key(entry):
 
 
 def is_function_calling_format_output(decoded_output):
-    # Ensure the output is a list of dictionaries
-    if type(decoded_output) == list:
-        for item in decoded_output:
-            if type(item) != dict:
-                return False
-        return True
-    return False
+    """
+    Ensure the output is a list of dictionaries of the form:
+    `[{func1: {param1: val1, param2: val2, ...}}, {func2: {param1: val1, param2: val2, ...}}, ...]`
+    Sometimes the model handler's `decode_ast` method will return successfully, but the output is not in the correct format, and that will mess up the downstream evaluation that expects this format.
+    This is especially the case when the model doesn't predict any function calls, and the output is an human-readable string.
+    Note: Empty list `[]` is considered the correct format in this check.
+    """
+    if type(decoded_output) != list:
+        return False
+    for item in decoded_output:
+        if type(item) != dict:
+            return False
+        # Check for `{func1: {param1: val1, param2: val2, ...}}`, should only have one key-value pair
+        if len(item) != 1:
+            return False
+        # Check for `{param1: val1, param2: val2, ...}`; the parameter-value pairs should be a dictionary
+        if type(list(item.values())[0]) != dict:
+            return False
+    return True
 
 
 def is_executable_format_output(decoded_output):
@@ -178,3 +190,33 @@ def is_empty_output(decoded_output):
     if len(decoded_output) == 1 and len(decoded_output[0]) == 0:
         return True
     return False
+
+
+def check_api_key_supplied() -> bool:
+    """
+    This function checks if the four API Keys needed for the executable categoreis are provided. If not, those categories will be skipped.
+    """
+    ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
+    for var in ENV_VARS:
+        if os.getenv(var) == "":
+            return False
+    return True
+
+
+def parse_test_category_argument(test_category_args):
+    test_name_total = set()
+    test_filename_total = set()
+
+    for test_category in test_category_args:
+        if test_category in TEST_COLLECTION_MAPPING:
+            for test_name in TEST_COLLECTION_MAPPING[test_category]:
+                test_name_total.add(test_name)
+                test_filename_total.add(TEST_FILE_MAPPING[test_name])
+        elif test_category in TEST_FILE_MAPPING:
+            test_name_total.add(test_category)
+            test_filename_total.add(TEST_FILE_MAPPING[test_category])
+        else:
+            # Invalid test category name
+            raise Exception(f"Invalid test category name provided: {test_category}")
+
+    return sorted(list(test_filename_total)), sorted(list(test_name_total))

@@ -12,7 +12,6 @@ from bfcl.constant import (
     PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
-    TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
     TEST_IDS_TO_GENERATE_PATH,
 )
@@ -20,8 +19,10 @@ from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import (
+    check_api_key_supplied,
     is_executable,
     is_multi_turn,
+    parse_test_category_argument,
     sort_key,
 )
 from tqdm import tqdm
@@ -49,6 +50,13 @@ def get_args():
     parser.add_argument("--result-dir", default=None, type=str)
     parser.add_argument("--run-ids", action="store_true", default=False)
     parser.add_argument("--allow-overwrite", "-o", action="store_true", default=False)
+    # Add the new skip_vllm argument
+    parser.add_argument(
+        "--skip-server-setup",
+        action="store_true",
+        default=False,
+        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables."
+    )
     args = parser.parse_args()
     return args
 
@@ -58,24 +66,10 @@ def build_handler(model_name, temperature):
     return handler
 
 
-def parse_test_category_argument(test_category_args):
-    test_name_total = set()
-    test_filename_total = set()
-
-    for test_category in test_category_args:
-        if test_category in TEST_COLLECTION_MAPPING:
-            for test_name in TEST_COLLECTION_MAPPING[test_category]:
-                test_name_total.add(test_name)
-                test_filename_total.add(TEST_FILE_MAPPING[test_name])
-        else:
-            test_name_total.add(test_category)
-            test_filename_total.add(TEST_FILE_MAPPING[test_category])
-
-    return sorted(list(test_name_total)), sorted(list(test_filename_total))
-
-
 def get_involved_test_entries(test_category_args, run_ids):
     all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
+    api_key_supplied = check_api_key_supplied()
+    skipped_categories = []
     if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
             test_ids_to_generate = json.load(f)
@@ -84,17 +78,38 @@ def get_involved_test_entries(test_category_args, run_ids):
                 continue
             test_file_path = TEST_FILE_MAPPING[category]
             all_test_entries_involved.extend(
-                [entry for entry in load_file(PROMPT_PATH / test_file_path) if entry["id"] in test_ids]
+                [
+                    entry
+                    for entry in load_file(PROMPT_PATH / test_file_path)
+                    if entry["id"] in test_ids
+                ]
             )
-            all_test_categories.append(category)
-            all_test_file_paths.append(test_file_path)
+            # Skip executable test category if api key is not provided in the .env file
+            if is_executable(category) and not api_key_supplied:
+                skipped_categories.append(category)
+            else:
+                all_test_categories.append(category)
+                all_test_file_paths.append(test_file_path)
 
     else:
-        all_test_categories, all_test_file_paths = parse_test_category_argument(test_category_args)
-        for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
-            all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
+        all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
+        # Make a copy here since we are removing list elemenets inside the for loop
+        for test_category, file_to_open in zip(
+            all_test_categories[:], all_test_file_paths[:]
+        ):
+            if is_executable(test_category) and not api_key_supplied:
+                all_test_categories.remove(test_category)
+                all_test_file_paths.remove(file_to_open)
+                skipped_categories.append(test_category)
+            else:
+                all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
 
-    return all_test_file_paths, all_test_categories, all_test_entries_involved
+    return (
+        all_test_file_paths,
+        all_test_categories,
+        all_test_entries_involved,
+        skipped_categories,
+    )
 
 
 def collect_test_cases(
@@ -224,6 +239,7 @@ def generate_results(args, model_name, test_cases_total):
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
+            skip_server_setup=args.skip_server_setup,
             include_input_log=args.include_input_log,
             exclude_state_log=args.exclude_state_log,
             result_dir=args.result_dir,
@@ -263,9 +279,12 @@ def main(args):
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
-    all_test_file_paths, all_test_categories, all_test_entries_involved = (
-        get_involved_test_entries(args.test_category, args.run_ids)
-    )
+    (
+        all_test_file_paths,
+        all_test_categories,
+        all_test_entries_involved,
+        skipped_categories,
+    ) = get_involved_test_entries(args.test_category, args.run_ids)
 
     print(f"Generating results for {args.model}")
     if args.run_ids:
@@ -273,7 +292,15 @@ def main(args):
     else:
         print(f"Running full test cases for categories: {all_test_categories}.")
 
+    if len(skipped_categories) > 0:
+        print("----------")
+        print(
+            f"❗️ Note: The following executable test category entries will be skipped because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories will still be generated."
+        )
+        print("----------")
+
     # Apply function credential config if any of the test categories are executable
+    # We can know for sure that any executable categories will not be included if the API Keys are not supplied.
     if any([is_executable(category) for category in all_test_categories]):
         apply_function_credential_config(input_path=PROMPT_PATH)
 
@@ -283,12 +310,6 @@ def main(args):
         args.result_dir = RESULT_PATH
 
     for model_name in args.model:
-        if (
-            os.getenv("USE_COHERE_OPTIMIZATION") == "True"
-            and "command-r-plus" in model_name
-        ):
-            model_name = model_name + "-optimized"
-
         test_cases_total = collect_test_cases(
             args,
             model_name,

@@ -2,6 +2,63 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jan 20, 2025] [#887](https://github.com/ShishirPatil/gorilla/pull/887): Add new model `speakleash/Bielik-11B-v2.3-Instruct` to the leaderboard.
+- [Jan 18, 2025] [#888](https://github.com/ShishirPatil/gorilla/pull/888): Add the following new models to the leaderboard:
+  - `NovaSky-AI/Sky-T1-32B-Preview`
+  - `Qwen/QwQ-32B-Preview`
+- [Jan 12, 2025] [#881](https://github.com/ShishirPatil/gorilla/pull/881): Fix Nova handler for consecutive user prompt issue.
+- [Jan 11, 2025] : Add new model `ZJared/Haha-7B` to the leaderboard.
+- [Jan 4, 2025] [#865](https://github.com/ShishirPatil/gorilla/pull/865): Fix a copy-paste issue in `live_parallel_multiple_9-8-0` that caused a misalignment between the question and the possible answer.
+- [Jan 3, 2025] [#864](https://github.com/ShishirPatil/gorilla/pull/864): Add support for pre-existing completion endpoints, allowing users to skip the local vLLM/SGLang server setup (using the `--skip-server-setup` flag) and point the generation pipeline to an existing OpenAI-compatible endpoint via `VLLM_ENDPOINT` and `VLLM_PORT`.
+- [Jan 3, 2025] [#859](https://github.com/ShishirPatil/gorilla/pull/859): Rename directories: `proprietary_model` -> `api_inference`, `oss_model` -> `local_inference` for better clarity.
+- [Dec 29, 2024] [#857](https://github.com/ShishirPatil/gorilla/pull/857): Add new model `DeepSeek-V3` to the leaderboard.
+- [Dec 29, 2024] [#855](https://github.com/ShishirPatil/gorilla/pull/855): Add new model `mistralai/Ministral-8B-Instruct-2410` to the leaderboard.
+- [Dec 22, 2024] [#838](https://github.com/ShishirPatil/gorilla/pull/838): Fix parameter type mismatch error in possible answers.
+  - Simple: 2 affected
+  - Multiple: 1 affected
+  - Parallel: 6 affected
+  - Parallel Multiple: 4 affected
+  - Live Simple: 4 affected
+  - Live Multiple: 26 affected
+  - Live Parallel: 2 affected
+- [Dec 22, 2024] [#843](https://github.com/ShishirPatil/gorilla/pull/843): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-exp-FC`
+  - `gemini-2.0-flash-exp`
+  - `gemini-exp-1206-FC`
+  - `gemini-exp-1206`
+- [Dec 21, 2024] [#849](https://github.com/ShishirPatil/gorilla/pull/849): Use `N/A` in score report for unevaluated categories to distinguish from categories where the model actually scored a 0
+- [Dec 21, 2024] [#848](https://github.com/ShishirPatil/gorilla/pull/848): Improves behavior for generation and evaluation pipeline. When executable categories are involved and API keys are not provided in the `.env` file, instead of throwing an error, the affected categories will now be skipped. This enhancement provides a smoother experience for first-time users.
+- [Dec 21, 2024] [#847](https://github.com/ShishirPatil/gorilla/pull/847): Add new model `watt-ai/watt-tool-8B` and `watt-ai/watt-tool-70B` to the leaderboard.
+- [Dec 20, 2024] [#842](https://github.com/ShishirPatil/gorilla/pull/842): Add the following new models to the leaderboard:
+  - `Qwen/Qwen2.5-0.5B-Instruct`
+  - `Qwen/Qwen2.5-3B-Instruct`
+  - `Qwen/Qwen2.5-14B-Instruct`
+  - `Qwen/Qwen2.5-32B-Instruct`
+- [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
+  - `o1-2024-12-17-FC`
+  - `o1-2024-12-17`
+- [Dec 16, 2024] [#837](https://github.com/ShishirPatil/gorilla/pull/837): Add the following new models to the leaderboard:
+  - `meta-llama/Llama-3.3-70B-Instruct-FC`
+  - `meta-llama/Llama-3.3-70B-Instruct`
+- [Dec 13, 2024] [#832](https://github.com/ShishirPatil/gorilla/pull/832): Add the following new models to the leaderboard:
+  - `MadeAgents/Hammer2.1-7b`
+  - `MadeAgents/Hammer2.1-3b`
+  - `MadeAgents/Hammer2.1-1.5b`
+  - `MadeAgents/Hammer2.1-0.5b`
+- [Dec 11, 2024] [#826](https://github.com/ShishirPatil/gorilla/pull/826), [#829](https://github.com/ShishirPatil/gorilla/pull/829): Fix `enum` type mismatch error in function doc for live categories.
+  - Live Simple: 7 affected
+  - Live Multiple: 176 affected
+  - Live Parallel Multiple: 3 affected
+  - Live Irrelevance: 70 affected
+- [Dec 9, 2024] [#822](https://github.com/ShishirPatil/gorilla/pull/822): Add the following new models to the leaderboard:
+  - `gpt-4o-2024-11-20`
+  - `gpt-4o-2024-11-20-FC`
+- [Dec 4, 2024] [#815](https://github.com/ShishirPatil/gorilla/pull/815): Add the following new models to the leaderboard:
+  - `nova-pro-v1.0`
+  - `nova-lite-v1.0`
+  - `nova-micro-v1.0`
+- [Dec 3, 2024] [#810](https://github.com/ShishirPatil/gorilla/pull/810): Add new model `grok-beta` to the leaderboard.
+- [Dec 2, 2024] [#809](https://github.com/ShishirPatil/gorilla/pull/809): Resolve issue in Gemini model when no model output.
 - [Dec 2, 2024] [#808](https://github.com/ShishirPatil/gorilla/pull/808): Improve latency measurement accuracy.
 - [Nov 26, 2024] [#755](https://github.com/ShishirPatil/gorilla/pull/755): Add new model `palmyra-x-004` to the leaderboard.
 - [Nov 25, 2024] [#718](https://github.com/ShishirPatil/gorilla/pull/718): Add new model `openbmb/MiniCPM3-4B-FC` to the leaderboard.
@@ -18,7 +75,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
     - Note: This cannot be used together with `--test-category`.
     - Test ids needs to be the exact same as the ones in the dataset. Example: `"simple": ["simple_10", "simple_53"]`.
   - Add `--score-dir` and `--result-dir` options for `generate` and `evaluate` commands, enabling custom paths for result and score directories relative to the project root `berkeley-function-call-leaderboard` directory.
-- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
+- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778), [#881](https://github.com/ShishirPatil/gorilla/pull/811): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
 - [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
   - `claude-3-5-haiku-20241022`
   - `claude-3-5-haiku-20241022-FC`

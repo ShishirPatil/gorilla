@@ -88,7 +88,7 @@ def models():
 def generate(
     model: List[str] = typer.Option(
         ["gorilla-openfunctions-v2"], 
-        help="A list of model names to evaluate. Use commas to separate multiple models.",
+        help="A list of model names to generate the llm response. Use commas to separate multiple models.",
         callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
@@ -113,10 +113,15 @@ def generate(
     num_threads: int = typer.Option(1, help="The number of threads to use."),
     gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
     backend: str = typer.Option("vllm", help="The backend to use for the model."),
+    skip_server_setup: bool = typer.Option(
+        False,
+        "--skip-server-setup",
+        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables.",
+    ),
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
-        help="Path to the folder where output files will be stored.",
+        help="Path to the folder where output files will be stored; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
     allow_overwrite: bool = typer.Option(
         False,
@@ -144,6 +149,7 @@ def generate(
         num_threads=num_threads,
         gpu_memory_utilization=gpu_memory_utilization,
         backend=backend,
+        skip_server_setup=skip_server_setup,
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,
@@ -216,7 +222,7 @@ def evaluate(
         callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
-        None, 
+        ["all"], 
         help="A list of test categories to run the evaluation on.",
         callback=handle_multiple_input
     ),

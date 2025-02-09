@@ -2,14 +2,21 @@ import ast
 import builtins
 import copy
 import json
-import os
+import operator
 import re
+from functools import reduce
+from typing import Callable, Optional, Type
 
 from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
-from tenacity import retry, retry_if_exception_type, wait_random_exponential
+from tenacity import (
+    retry,
+    retry_if_exception_message,
+    retry_if_exception_type,
+    wait_random_exponential,
+)
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -61,14 +68,15 @@ def convert_to_tool(functions, mapping, model_style):
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if "." in item["name"] and (
-            model_style == ModelStyle.OpenAI
-            or model_style == ModelStyle.Mistral
-            or model_style == ModelStyle.Google
-            or model_style == ModelStyle.OSSMODEL
-            or model_style == ModelStyle.Anthropic
-            or model_style == ModelStyle.COHERE
-        ):
+        if "." in item["name"] and model_style in [
+            ModelStyle.OpenAI,
+            ModelStyle.Mistral,
+            ModelStyle.Google,
+            ModelStyle.OSSMODEL,
+            ModelStyle.Anthropic,
+            ModelStyle.COHERE,
+            ModelStyle.AMAZON,
+        ]:
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
 
@@ -79,6 +87,10 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Anthropic:
             item["input_schema"] = item["parameters"]
+            del item["parameters"]
+
+        if model_style == ModelStyle.AMAZON:
+            item["inputSchema"] = {"json": item["parameters"]}
             del item["parameters"]
 
         if model_style == ModelStyle.Google:
@@ -122,97 +134,6 @@ def convert_to_tool(functions, mapping, model_style):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
 
-        if model_style == ModelStyle.COHERE:
-            if os.getenv("USE_COHERE_OPTIMIZATION") == "True":
-                if "required" not in item["parameters"]:
-                    item["parameters"]["required"] = []
-                for param_name, params in item["parameters"]["properties"].items():
-                    if "description" not in params:
-                        params["description"] = ""
-
-                    if "default" in params:
-                        params["description"] += " The default value is: " + str(
-                            params["default"]
-                        )
-                        if param_name not in item["parameters"]["required"]:
-                            item["parameters"]["required"].append(param_name)
-                        del params["default"]
-                    if "additionalProperties" in params:
-                        params["description"] += " Additional properties: " + str(
-                            params["additionalProperties"]
-                        )
-                        del params["additionalProperties"]
-                    if "items" in params:
-                        inner_type = ""
-                        if (
-                            "items" in params["items"]
-                            and "type" in params["items"]["items"]
-                        ):
-                            # 2D list
-                            inner_type = params["items"]["items"]["type"]
-                            params["type"] = f"list[list[{inner_type}]]"
-                        elif "type" in params["items"]:
-                            # 1D list
-                            inner_type = params["items"]["type"]
-                            params["type"] = f"list[{inner_type}]"
-                        if (
-                            "items" in params
-                            and "enum" in params["items"]
-                            and params["items"]["enum"]
-                        ):
-                            params["description"] += " Possible enum values: "
-                            params["description"] += ", ".join(params["items"]["enum"])
-                            params["description"] += "."
-
-                        del params["items"]
-                    if "properties" in params:
-                        params["description"] += " Dictionary properties:"
-                        for name, property_ in params["properties"].items():
-                            property_type = property_.get("type", mapping["string"])
-                            property_description = property_.get("description", "")
-                            params[
-                                "description"
-                            ] += f" {name} ({property_type}): {property_description}"
-                        del params["properties"]
-                    if "enum" in params:
-                        params["description"] += " Possible enum values: " + str(
-                            params["enum"]
-                        )
-                        del params["enum"]
-                    # add ranges to description
-                    if "percentage" not in params["description"]:
-                        params["description"] = params["description"].replace(
-                            "rate ", "rate (from 0.0 to 1.0) "
-                        )
-                    params["description"] = params["description"].replace(
-                        "percentage ", "percentage (from 0 to 100) "
-                    )
-                    params["description"] = params["description"].replace(
-                        "currency ", "currency (3 letter ISO code) "
-                    )
-            else:
-                for params in item["parameters"]["properties"].values():
-                    if "description" not in params:
-                        params["description"] = ""
-                    if "default" in params:
-                        params["description"] += " The default value is: " + str(
-                            params["default"]
-                        )
-                        del params["default"]
-                    if "additionalProperties" in params:
-                        params["description"] += " Additional properties: " + str(
-                            params["additionalProperties"]
-                        )
-                        del params["additionalProperties"]
-                    if "items" in params:
-                        params["description"] += " List Items type: " + str(params["items"])
-                        del params["items"]
-                    if "properties" in params:
-                        params["description"] += " Dictionary properties: " + str(
-                            params["properties"]
-                        )
-                        del params["properties"]
-
         # Process the return field
         if "response" in item:
             if model_style in [
@@ -220,6 +141,7 @@ def convert_to_tool(functions, mapping, model_style):
                 ModelStyle.Google,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.WRITER,
+                ModelStyle.AMAZON,
             ]:
                 item[
                     "description"
@@ -232,30 +154,17 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
-        elif model_style == ModelStyle.COHERE:
-            parameter = item["parameters"]["properties"]
-            if "required" in item["parameters"]:
-                required = item["parameters"]["required"]
-            else:
-                required = []
-            parameter_definitions = {}
-            for key, value in parameter.items():
-                value["required"] = key in required
-                parameter_definitions[key] = value
-            oai_tool.append(
-                {
-                    "name": item["name"],
-                    "description": item["description"],
-                    "parameter_definitions": parameter_definitions,
-                }
-            )
         elif model_style in [
+            ModelStyle.COHERE,
             ModelStyle.OpenAI,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
             ModelStyle.WRITER,
         ]:
             oai_tool.append({"type": "function", "function": item})
+        elif model_style == ModelStyle.AMAZON:
+            oai_tool.append({"toolSpec": item})
+
     return oai_tool
 
 
@@ -819,25 +728,61 @@ def decoded_output_to_execution_list(decoded_output):
     return execution_list
 
 
-def retry_with_backoff(error_type, min_wait=6, max_wait=120):
+def retry_with_backoff(
+    error_type: Optional[Type[Exception]] = None,
+    error_message_pattern: Optional[str] = None,
+    min_wait: int = 6,
+    max_wait: int = 120,
+    **kwargs,
+) -> Callable:
     """
-    General decorator to retry with backoff for a specific error type.
+    Decorator to retry a function with exponential backoff based on specified error types or result conditions.
 
-    :param error_type: The exception type to retry on.
-    :param min_wait: Minimum wait time for the backoff.
-    :param max_wait: Maximum wait time for the backoff.
+    Note:
+        At least one of `error_type` or `error_message_pattern` must be provided.
+        If both `error_type` and `error_message_pattern` are provided, the retry will occur if either condition is met.
+
+    Args:
+        error_type (Type[Exception], optional): The exception type to retry on.
+        error_message_pattern (str, optional):
+            A regex pattern to match against the exception message to retry on.
+            This is useful when the user wants to retry based on the exception message,
+            especially if the exception raised is too broad.
+        min_wait (int, optional): Minimum wait time in seconds for the backoff.
+        max_wait (int, optional): Maximum wait time in seconds for the backoff.
+        **kwargs: Additional keyword arguments for the `tenacity.retry` decorator, such as `stop`, `reraise`, etc.
+
+    Returns:
+        Callable: The decorated function with retry logic applied.
     """
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
+        # Collect retry conditions based on provided parameters
+        conditions = []
+        if error_type is not None:
+            conditions.append(retry_if_exception_type(error_type))
+        if error_message_pattern is not None:
+            conditions.append(retry_if_exception_message(match=error_message_pattern))
+
+        if not conditions:
+            raise ValueError("Either error_type or retry_condition must be provided.")
+
+        # Combine all conditions using logical OR
+        retry_policy = reduce(operator.or_, conditions)
+
         @retry(
             wait=wait_random_exponential(min=min_wait, max=max_wait),
-            retry=retry_if_exception_type(error_type),
+            retry=retry_policy,
             before_sleep=lambda retry_state: print(
-                f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
+                f"Attempt {retry_state.attempt_number} failed. "
+                f"Sleeping for {retry_state.next_action.sleep:.2f} seconds before retrying... "
                 f"Error: {retry_state.outcome.exception()}"
             ),
+            **kwargs,
         )
-        def wrapped(*args, **kwargs):
-            return func(*args, **kwargs)
+        def wrapped(*args, **inner_kwargs):
+            return func(*args, **inner_kwargs)
+
         return wrapped
+
     return decorator
