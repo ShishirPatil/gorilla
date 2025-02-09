@@ -63,11 +63,7 @@ jobs:
             ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
             
             ### Summary
-<<<<<<< HEAD
             - Total files checked: ${{ steps.file_count.outputs.total_files }}
-=======
-            - Total files checked: ${{ length(fromJson(env.VALIDATION_RESULTS).results) }}
->>>>>>> 08733aa11e7e9b7e16b17602b94f2666b33a294b
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### Failed Validations:' || '' }}
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && join(fromJson(env.VALIDATION_RESULTS).results.*.errors, '
             ') || '' }}
