@@ -13,6 +13,7 @@ from bfcl.model_handler.api_inference.nexus import NexusHandler
 from bfcl.model_handler.api_inference.nova import NovaHandler
 from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.together import TogetherHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
@@ -102,6 +103,15 @@ api_inference_handler_map = {
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
     "grok-beta": GrokHandler,
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo": TogetherHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-Turbo": TogetherHandler,
+    "mistralai/Mixtral-8x7B-Instruct-v0.1": TogetherHandler,
+    "mistralai/Mistral-7B-Instruct-v0.1": TogetherHandler,
+    "Qwen/Qwen2.5-7B-Instruct-Turbo": TogetherHandler,
+    "Qwen/Qwen2.5-72B-Instruct-Turbo": TogetherHandler,
+    "deepseek-ai/DeepSeek-V3": TogetherHandler,
 }
 
 # Inference through local hosting

@@ -894,7 +894,61 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/uiuc-convai/CALM-405B",
         "UIUC + Oumi"
         "Meta Llama 3 Community"
-    ]
+    ],
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo": [
+        "Llama-3.1-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": [
+        "Llama-3.1-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo": [
+        "Llama-3.1-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-3.3-70B-Instruct-Turbo": [
+        "Llama-3.1-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "mistralai/Mixtral-8x7B-Instruct-v0.1": [
+        "Open-Mixtral-8x7b (Prompt)",
+        "https://mistral.ai/news/mixtral-of-experts/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "mistralai/Mistral-7B-Instruct-v0.1": [
+        "Open-Mixtral-8x7b (Prompt)",
+        "https://mistral.ai/news/mixtral-of-experts/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "Qwen/Qwen2.5-7B-Instruct-Turbo": [
+        "Qwen2.5-7B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-72B-Instruct-Turbo": [
+        "Qwen2.5-72B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+        "Qwen",
+        "qwen",
+    ],
+    "deepseek-ai/DeepSeek-V3": [
+        "DeepSeek-V3 (FC)",
+        "https://api-docs.deepseek.com/news/news1226",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
