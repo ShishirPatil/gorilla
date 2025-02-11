@@ -39,7 +39,34 @@ def load_file(file_path: str):
     return result
 ```
 
-**DO NOT** use the HuggingFace `load_dataset` method to load the dataset as our dataset is not compatible with the HuggingFace datasets package. We will try to fix this later to provide alternative ways to access the dataset.
+If you prefer a Hugging Face Datasets–compatible format, you can use the following helper function to convert the list of dictionaries (returned by `load_file`) into a Dataset object.
+
+> Note: This process will convert the function parameters field into a JSON string due to its complex structure. You may need to parse them back into dictionaries during evaluation.
+
+```python
+from datasets import Dataset
+import copy
+import json
+
+def load_json_dataset(test_entries: List[Dict[str, Any]]):
+    data = {"id": [], "question": [], "function": []}
+    test_entries_copy = copy.deepcopy(test_entries)
+
+    for item in test_entries_copy:
+        data["id"].append(item["id"])
+        data["question"].append(item["question"])
+
+        for func in item["function"]:
+            func["parameters"]["properties"] = json.dumps(
+                func["parameters"]["properties"]
+            )
+        data["function"].append(func)
+    return Dataset.from_dict(data)
+
+# Example usage
+test_entries = load_file("path_to_your_file.json")
+ds = load_json_dataset(test_entries)
+```
 
 ## Dataset Composition
 
