@@ -39,7 +39,9 @@ def load_file(file_path: str):
     return result
 ```
 
-You can also load a Huggingface Datasets compatible version of the dataset from the list of dictionaries using the helper function below:
+If you prefer a Hugging Face Datasets–compatible format, you can use the following helper function to convert the list of dictionaries (returned by `load_file`) into a Dataset object.
+
+> Note: This process will convert the function parameters field into a JSON string due to its complex structure. You may need to parse them back into dictionaries during evaluation.
 
 ```python
 from datasets import Dataset
@@ -61,8 +63,8 @@ def load_json_dataset(test_entries: List[Dict[str, Any]]):
         data["function"].append(func)
     return Dataset.from_dict(data)
 
-
-# Load the dataset
+# Example usage
+test_entries = load_file("path_to_your_file.json")
 ds = load_json_dataset(test_entries)
 ```
 
