@@ -1,0 +1,5136 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Sign In",
+        "api_call": "http://localhost:3000/auth/sign_in",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"email\" :\"{{email}}\",\n \"password\" : \"{{password}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Installation details",
+        "api_call": "http://localhost:3000/api",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"email\" :\"john@acme.inc\",\n \"password\" : \"Password1!\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Profile",
+        "api_call": "http://localhost:3000/{{api_version}}/profile",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Profile",
+        "api_call": "http://localhost:3000/{{api_version}}/profile",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"profile\": {\n        \"availability\": \"busy\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Set active account",
+        "api_call": "http://localhost:3000/{{api_version}}/profile/set_active_account",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"profile\": {\n        \"account_id\": 1\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all AgentBots",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agent_bots",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List Canned Responses",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/canned_responses",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all Articles",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/help_center_articles",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all logs",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/audit_logs",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all logs Copy",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/help_center_articles",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List CSAT Survey Responses",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/csat_survey_responses",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update survey response",
+        "api_call": "http://localhost:3000/public/{{api_version}}/csat_survey/98c5d7f3-8873-4262-b101-d56425ff7ee1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": {\n        \"submitted_values\": {\n            \"csat_survey_response\": {\n                \"rating\": 4\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get survey response",
+        "api_call": "http://localhost:3000/public/{{api_version}}/csat_survey/98c5d7f3-8873-4262-b101-d56425ff7ee1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": {\n        \"submitted_values\": {\n            \"csat_survey_response\": {\n                \"rating\": 4,\n                \"feedback_message\": \"amazing\"\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Campaign",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/campaigns",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"test\",\n    \"message\": \"test\",\n    \"inbox_id\": 37,\n    \"sender_id\":21\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Edit Campaign",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/campaigns/{{campaign_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"title\":\"test 1\",\n    \"content\": \"test\",\n    \"inbox_id\": {{inbox_id}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List Campaigns",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/campaigns",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Show Campaign",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/campaigns/{{campaign_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete campaign",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/campaigns/{{campaign_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Inbox Campaigns",
+        "api_call": "http://localhost:3000/{{api_version}}/widget/campaigns?website_token={{website_token}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List SLAs",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/sla_policies",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create SLA",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/sla_policies",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"SLA-1\",\n    \"frt_threshold\": 1000,\n    \"rt_threshold\": 2000,\n    \"only_during_business_hours\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update SLA",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/sla_policies/1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"SLA-1\",\n    \"frt_threshold\": 21,\n    \"rt_threshold\": 2000,\n    \"only_during_business_hours\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Show SLA",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/sla_policies/1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete SLA",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/sla_policies/1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create new Portal",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"portal\": {\n        \"name\": \"RoomRental\",\n        \"slug\": \"room-rental\",\n        \"custom_domain\": \"room-rental\",\n        \"color\": \"#1f93ff\",\n        \"homepage_link\": \"room-rental\",\n        \"page_title\": \"Room Rental\",\n        \"header_text\": \"Room Rental\",\n        \"config\": {\n            \"allowed_locales\": [\n                \"en\",\n                \"es\",\n                \"it\",\n                \"fr\"\n            ]\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Portal",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"config\": {\n        \"default_locale\": \"en\",\n        \"allowed_locales\": [\n            \"en\",\n            \"es\"\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get All Portals",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Portal Details",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Articles",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/articles?page=1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Article details",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/articles/21",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create new folder",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/folders",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \n    \"name\": \"My product folder\",\n    \"account_id\": 1,\n    \"category_id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create new article",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/articles",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"content\": \"Resetting your password in Chatwoot account is easy. Just go to chatwoot.com and click Forgot password, follow the instructions.\",\n    \"description\": \"#1F93FF\",\n    \"status\": 0,\n    \"title\": \"Forgot password\",\n    \"views\": \"Forgot password\",\n    \"author_id\": 1,\n    \"category_id\": 1,\n    \"page_title\": \"Forgot password\"\n    // \"folder_id\": \"page slug\"\n    // \"associated_article_id\": 4\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Article",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/articles/28",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"Creating an account\",\n    \"content\": \"Creating an Chatwoot account is free and easy. Just go to chatwoot.com and click Sign Up, or download our mobile app and follow the instructions.\",\n    // \"status\": 1\n    // \"title\": \"Update Address\",\n    // \"views\": \"Domain Header\",\n    // \"author_id\": 2,\n    \"category_id\": 20,\n    // \"page_title\": \"Update Address\",\n    // \"folder_id\": \"page slug\"\n    // \"associated_article_id\": 1      \n    \"meta\": {\n        \"title\": \"nice\",\n        \"description\": \"sdfsdf\",\n        \"tags\": []\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get All Categories",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/categories",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \n    \"description\": \"this category would handle the agent related resolve.\",\n    \"locale\": \"en\",         \n    \"name\": \"Agent resolve\",        \n    \"position\": \"top\",\n    \"account_id\": 1,\n    \"portal_id\": \"page slug\",\n    \"slug\": \"agent-category-1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create new Category",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/categories",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \n    \"description\": \"Getting Started details\",\n    \"locale\": \"en\",         \n    \"name\": \"Getting Started\",        \n    \"position\": \"top\",\n    \"account_id\": 1,\n    \"slug\": \"getting-started\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update category",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/categories/23",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"category\": {\n        \"name\": \"category name 2\",\n        \"description\": \"category description\",\n        \"position\": 1,\n        \"locale\": \"fr\",\n        \"slug\": \"self-hosted-version-new\",\n        \"parent_category_id\": 10,\n        \"linked_category_ids\": [\n            11,\n            12\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete Portal",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Help name\",\n    \"config\": { \"allowed_locales\": [\"en\", \"es\"] }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete Category",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/categories/26",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Help name\",\n    \"config\": { \"allowed_locales\": [\"en\", \"es\"] }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete Article",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/portals/{{portal_slug}}/articles/48",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Help name\",\n    \"config\": { \"allowed_locales\": [\"en\", \"es\"] }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Webhook",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/webhooks",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"webhook\": {\n        \"url\": \"https://ngrok.com\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Automation Rule",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/automation_rules",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Notify Conversation Created and mark priority query\",\n    \"description\": \"Notify all agent about conversation created and mark priority query\",\n    \"event_name\": \"conversation_created\",\n    \"conditions\": [\n        {\n            \"attribute_key\": \"browser_language\",\n            \"filter_operator\": \"equal_to\",\n            \"values\": [\n                \"en\"\n            ],\n            \"query_operator\": \"null\"\n        }\n        {\n            \"attribute_key\": \"country_code\",\n            \"filter_operator\": \"equal_to\",\n            \"values\": [\n                \"USA\",\n                \"UK\"\n            ],\n            \"query_operator\": null\n        }\n    ],\n    \"actions\": [\n        {\n            \"action_name\": \"send_message\",\n            \"action_params\": [\n                \"Welcome to the chatwoot platform.\"\n            ]\n        }\n        {\n            \"action_name\": \"assign_team\",\n            \"action_params\": [\n                1\n            ]\n        },\n        {\n            \"action_name\": \"add_label\",\n            \"action_params\": [\n                \"support\",\n                \"priority_customer\"\n            ]\n        },\n        {\n            \"action_name\": \"assign_best_agent\",\n            \"action_params\": [\n                1\n            ]\n        },\n        {\n            \"action_name\": \"update_additional_attributes\",\n            \"action_params\": [\n                {\n                    \"intiated_at\": \"2021-12-03 17:25:26.844536 +0530\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Automation Rules",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/automation_rules",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Notify Conversation Created and mark priority query\",\n    \"description\": \"Notify all agent about conversation created and mark priority query\",\n    \"event_name\": \"conversation_created\",\n    \"conditions\": [\n        {\n            \"attribute_key\": \"browser_language\",\n            \"filter_operator\": \"equal_to\",\n            \"values\": [\n                \"en\"\n            ],\n            \"query_operator\": \"AND\"\n        },\n        {\n            \"attribute_key\": \"country_code\",\n            \"filter_operator\": \"equal_to\",\n            \"values\": [\n                \"USA\",\n                \"UK\"\n            ],\n            \"query_operator\": null\n        }\n    ],\n    \"actions\": [\n        {\n            \"action_name\": \"send_message\",\n            \"action_params\": [\n                \"Welcome to the chatwoot platform.\"\n            ]\n        },\n        {\n            \"action_name\": \"assign_team\",\n            \"action_params\": [\n                1\n            ]\n        },\n        {\n            \"action_name\": \"add_label\",\n            \"action_params\": [\n                \"support\",\n                \"priority_customer\"\n            ]\n        },\n        {\n            \"action_name\": \"assign_best_agent\",\n            \"action_params\": [\n                1\n            ]\n        },\n        {\n            \"action_name\": \"update_additional_attributes\",\n            \"action_params\": [\n                {\n                    \"intiated_at\": \"2021-12-03 17:25:26.844536 +0530\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List Custom Attributes",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/custom_attribute_definitions?attribute_model=0",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Custom Attribute",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/custom_attribute_definitions",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"attribute_display_name\": \"Plans\",\n    // text: 0, number: 1, currency: 2, percent: 3, link: 4, date: 5, list: 6, checkbox: 7\n    \"attribute_display_type\": 6,\n    \"attribute_description\": \"Subscriptions\",\n    \"attribute_key\": \"plan\",\n    // conversation_attribute: 0, contact_attribute: 1\n    \"attribute_values\": [\n        \"gold\",\n        \"silver\",\n        \"bronze\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Custom Attribute",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/custom_attribute_definitions/{{custom_attribute_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"attribute_description\":\"The contact language\",\n    \"attribute_model\":1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Show Custom Attribute",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/custom_attribute_definitions/{{custom_attribute_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete Custom Attribute",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/custom_attribute_definitions/{{custom_attribute_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all conversations",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations?assignee_type=me&status=open&sort_order=latest_first",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Conversation",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get messages",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/messages?after=189",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Attachments",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/attachments",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Conversation meta",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/meta",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Add labels to conversation",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/labels",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"labels\": [\n        \"cpanel\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Toggle conversation status",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/toggle_status",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"snoozed\",\n    \"snoozed_until\": null\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Add custom attributes",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/custom_attributes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"custom_attributes\": {\n        \"product_name\": \"iphone-13-pro\",\n        \"product_id\":2021,\n        \"product_url\":\"https://www.apple.com\",\n        \"launch_date\":\"23/02/2021\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Send Interactive Message",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/2/messages",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"content\":\"Hi\",\n\t\"message_type\": \"incoming\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Send message Attachments",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/messages",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "multipart/form-data; boundary=----WebKitFormBoundary",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "attachments[]",
+                        "type": "file",
+                        "src": "/Users/muhsink/Downloads/assets/audio.mp3"
+                    },
+                    {
+                        "key": "content",
+                        "value": "test audio",
+                        "type": "text"
+                    },
+                    {
+                        "key": "message_type",
+                        "value": "incoming",
+                        "type": "text"
+                    },
+                    {
+                        "key": "file_type",
+                        "value": "audio",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Conversation Filter",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/filter",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Toggle Typing",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/toggle_typing",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \"typing_status\": \"on\" }"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Toggle Priority",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/toggle_priority",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"priority\": \"urgent\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Conversation",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"source_id\": \"14871452-ccb0-47b9-b62a-dc922ca45fa5\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Send message",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/messages",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"content\":\"Hello {{conversation.custom_attribute.product_id}}, {{contact.custom_attribute.created_at}}\",\n\t\"message_type\": \"outgoing\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Send message retry",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/{{conversation_id}}/messages",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"content\":\"Hello {{conversation.custom_attribute.product_id}}, {{contact.custom_attribute.created_at}}\",\n\t\"message_type\": \"outgoing\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Save device details",
+        "api_call": "http://localhost:3000/{{api_version}}/notification_subscriptions",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "api_access_token",
+                    "value": "X8VfsMmLUPm4xgNjsLBTSK34",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subscription_type\": \"fcm\",\n    \"subscription_attributes\": {\n        \"deviceName\": \"Google Pixel 4a\",\n        \"devicePlatform\": \"Android\",\n        \"apiLevel\": 33,\n        \"brandName\": \"google\",\n        \"buildNumber\": \"20\",\n        \"push_token\": \"fw7RAk7ISN-7Y9oeN-dO4d:APA91bEp2anvOHQ8Ga8sgOc6MCZ1Qf0Q1e1MLGSe86vZqeOF322os17kMjQdhRuLK7O5bbyxNT5Lqo592D52bX5cbeBRWZyXE5BlMaJcwFtgiRDAGgVKL9bi7-rrNF5gfjPkFgavGKve\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all notifications",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/notifications?page=1",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete notification",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/notifications/446",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Snooze notification",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/notifications/402/snooze",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"snoozed_until\": 1738772635\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Mark notificaiton as unread",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/notifications/366/unread",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete notification subscription",
+        "api_call": "http://localhost:3000/{{api_version}}/notification_subscriptions",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "value": "{{access-token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "value": "{{client}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "value": "{{expiry}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "value": "{{token-type}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "value": "{{uid}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"push_token\":\"ffW3hRU-bUvZo8AYGGmCMr:APA91bEWnHivo789jwiICQYqO6REMfVFHhQERvZGXCOkEKXxW-1ZNgofQ-ceCLOCUhZ5cwWFpT5T9tCJ9Ol7hW5T0qBDfGIh1J64r2NzGSgzZKwyExhxOnxG-tmIyzCxtvB9S_kyXgYb\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all inboxes",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Inbox Members",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inbox_members/{{inbox_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Specific Inbox",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Inbox is installed or not",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes/{{inbox_id}}/verify_installation",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create a New Inbox",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update inbox",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes/{{inbox_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\" : \"Chatwoot\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Inbox Campaigns",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/inboxes/{{inbox_id}}/campaigns",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}/contact_inboxes",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"inbox_id\": 1,\n  \"source_id\": \"+918234234332\" \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List Notes",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}/notes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Note",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}/notes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"content\": \"Hey\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List Contacts",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Contact",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Contact Contactable Inboxes",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}/contactable_inboxes",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Contact Conversataions",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}/conversations",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Contact",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/{{contact_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "type": "text",
+                    "value": "{{api_access_token}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Moozz\",\n    \"inbox_id\": 2,\n    \"custom_attributes\": {\n       \"created_date\":\"23/12/2012\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Search",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/search?q=test",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"contact 1\",\n  \"inbox_id\": 2,\n  \"source_id\": \"+912323234\",\n  \"phone_number\": \"+912323234\",\n  \"custom_attributes\": {\n      \"hello\": \"hello\",\n      \"test\": \"test\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: import",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/contacts/import",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "import_file",
+                        "description": "The file name which contains CSV of contact",
+                        "type": "file",
+                        "src": "ogKToqucC/MOCK_DATA (1).csv"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all agents",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agents",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update an Agent",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agents/{{agent_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"availability\": \"offline\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: List all agent bots",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agent_bots",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create an Agent Bot",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agent_bots",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \n    \"name\": \"test\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update an Agent",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/agents/{{agent_id}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\n\"availability\": \"online\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Account Summary",
+        "api_call": "http://localhost:3000/{{api_version_2}}/accounts/1/reports/account_summary?since=1603823400&until=1604341800",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"since\" =>  \"1603823400\",\n  \"until\"=> \"1604341800\"\n\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Agents",
+        "api_call": "http://localhost:3000/{{api_version_2}}/accounts/1/reports/agents?since=1603823400&until=1604341800",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"since\" =>  \"1603823400\",\n  \"until\"=> \"1604341800\"\n\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Agents Copy",
+        "api_call": "http://localhost:3000/{{api_version_2}}/accounts/1/reports/agents?since=1603823400&until=1604341800",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"since\" =>  \"1603823400\",\n  \"until\"=> \"1604341800\"\n\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Reports",
+        "api_call": "http://localhost:3000/{{api_version_2}}/accounts/1/reports/account?metric=conversations_count",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get Integration Apps",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/apps",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get slack attachment",
+        "api_call": "https://files.slack.com/files-pri/T7NN675QT-F05NCK8NRFT/66.jpg",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{slack_access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create Integration Hook",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/hooks",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"app_id\": \"dialogflow\",\n    \"inbox_id\": \"1\",\n    \"settings\" : { \"project_id\": \"occulus\", \"credentials\": { \"test\": \"test\" } \n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Delete Integration Hook",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/hooks/532",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"app_id\": \"dialogflow\",\n    \"inbox_id\": \"1\",\n    \"settings\" : { \"project_id\": \"32\", \"credentials\": { \"test\": \"test\" } \n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Create CSAT",
+        "api_call": "http://localhost:3000/{{api_version}}/widget/messages/1130842?website_token=4cWzuf9i9jxN9tbnv8K9STKU&cw_conversation=eyJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaWQiOiJiY2IzNzNmYi1lNTQyLTQ2ZWQtOTA1ZC1mYTMyZWM1YWZiMTQiLCJpbmJveF9pZCI6Mzd9.-U1bKqtkzjMdMxsQbhjnrxefqJfiy7JhpRbrLV1Bq5c&locale=en",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "X-Auth-Token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaWQiOiJiY2IzNzNmYi1lNTQyLTQ2ZWQtOTA1ZC1mYTMyZWM1YWZiMTQiLCJpbmJveF9pZCI6Mzd9.-U1bKqtkzjMdMxsQbhjnrxefqJfiy7JhpRbrLV1Bq5c",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": {\n        \"submitted_values\": {\n            \"csat_survey_response\": {\n                \"rating\": 2,\n                \"feedback\": \"Amazing\"\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Update Contact",
+        "api_call": "http://localhost:3000/api/v1/widget/contact?website_token=4cWzuf9i9jxN9tbnv8K9STKU",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-Auth-Token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaWQiOiI2OWVhM2E4OC1jYmUwLTRiNGMtYTA4ZS02NzJiZmQwNjA0OWIiLCJpbmJveF9pZCI6Mzd9.rcKva2EswoVWLK44Vn4Em0t--s5YpYdJ-e4nODHHSD4",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"additional_attributes\": {\n        \"country_code\": \"IN\",\n        \"city\": \"Kochi\",\n        \"company_name\": \"Chatwoot\",\n        \"description\": \"I am sooooo coooooooollll\",\n        \"social_profiles\": {\n            \"linkedin\": \"salam\",\n            \"twitter\":\"salam\",\n            \"instagram\":\"salam\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get account details",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"email\" : \"john@acme.inc\",\n \"password\" : \"123456\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Get all participants",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/1/participants",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"content\":\"Hi\",\n\t\"message_type\": \"incoming\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: add participant",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/1/participants",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"user_ids\" : [1]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: delete participant",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/conversations/1/participants",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "access-token",
+                    "type": "text",
+                    "value": "{{access-token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "client",
+                    "type": "text",
+                    "value": "{{client}}",
+                    "disabled": true
+                },
+                {
+                    "key": "expiry",
+                    "type": "text",
+                    "value": "{{expiry}}",
+                    "disabled": true
+                },
+                {
+                    "key": "token-type",
+                    "type": "text",
+                    "value": "{{token-type}}",
+                    "disabled": true
+                },
+                {
+                    "key": "uid",
+                    "type": "text",
+                    "value": "{{uid}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "{{api_access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"user_ids\" : [1]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Completions API",
+        "api_call": "https://api.openai.com/v1/chat/completions",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{OPEN_AI_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\n            \"role\": \"system\",\n            \"content\": \"You are a helpful support agent. Please fix the spelling and grammar of the following response. Reply in the user's language.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"I'm sorry to hear that you're experiencing issues with the Facebook integration. Can you please provide more details about the problem?\"\n        }\n    ],\n    \"temperature\": 1,\n    \"top_p\":0.1\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Rephrase",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/hooks/7/process_event",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "modKyQpJtg11UM5fi6ifZ6dY"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event\": {\n        \"name\": \"rephrase\",\n        \"data\": {\n            \"content\": \"hey i help you\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Fix spelling",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/hooks/7/process_event",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "modKyQpJtg11UM5fi6ifZ6dY"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event\": {\n        \"name\": \"fix_spelling_grammar\",\n        \"data\": {\n            \"content\": \"I will come on tomarrow\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Shorten",
+        "api_call": "http://localhost:3000/{{api_version}}/accounts/1/integrations/hooks/7/process_event",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                },
+                {
+                    "key": "api_access_token",
+                    "value": "modKyQpJtg11UM5fi6ifZ6dY"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event\": {\n        \"name\": \"shorten\",\n        \"data\": {\n            \"content\": \"Looking for the right words to express your feelings on the big day? Turn to these funny, sentimental, or traditional quotes for your vows, toasts, speeches, and more. Whether you want to impart some wisdom or inject a little laughter into your bridal shower toast or best man speech, these wedding quotes will help you get there. Sprinkling in sentiments from world-renowned poets, authors, philosophers, and even beloved movie characters can help take any speech to the next level. And for the wedding couple\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chatwoot Application API v1.0: Test push",
+        "api_call": "https://fcm.googleapis.com/fcm/send",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{fcm_server_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"notification\": {\n        \"title\": \"New message\",\n        \"body\": \"Please help me on this?\",\n        \"tag\": \"bde32d05-fe6f-4fdd-a6a8-19597c38ff0f\"\n    },\n    \"data\": {\n        \"conversation_id\": \"23232323\"\n    },\n    \"priority\": \"high\",\n     \"to\": \"{{push_token}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

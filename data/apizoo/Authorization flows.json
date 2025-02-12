@@ -1,0 +1,308 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Exchange code for access token and refresh token/Code grant",
+        "api_call": "https://accounts.livechat.com/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "dal:test_tnlRmy73mg9eaFESA",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "9cbf3a968289727cb3cdfe83ab1d9836",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "test_d7MEp1YYo3",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://my-application.com",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Using the refresh token/Server-side app",
+        "api_call": "https://accounts.livechat.com/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "dal:test_gfalskcakg2347o8326",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "9cbf3a968289727cb3cdfe83ab1d9836",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "test_d7MEp1YYo3",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Using the refresh token/Web app",
+        "api_call": "https://accounts.livechat.com/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "dal:test_gfalskcakg2347o8326",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "9cbf3a968289727cb3cdfe83ab1d9836",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Revoking tokens",
+        "api_call": "https://accounts.livechat.com/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": " Bearer <access_token|refresh token>",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {}
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Validating access token",
+        "api_call": "https://accounts.livechat.com/v2/info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer <access_token>",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: New customer",
+        "api_call": "https://accounts.livechat.com/customer/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"grant_type\": \"cookie\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\",\n    \"license_id\": 2491303,\n    \"redirect_uri\": \"https://my-application.com\"\n      }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: New customer",
+        "api_call": "https://accounts.livechat.com/customer/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<access_token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"grant_type\": \"agent_token\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\",\n    \"response_type\": \"token\"\n      }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Existing customer",
+        "api_call": "https://accounts.livechat.com/customer/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<access_token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"grant_type\": \"agent_token\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\",\n    \"entity_id\": \"bf18d1a8-1afe-4a3e-4cc0-a3148f1143db\",\n    \"response_type\": \"token\"\n      }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Identity transfer: token generation/Agent",
+        "api_call": "https://accounts.livechat.com/customer/identity_transfer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<access_token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"bearer_type\": \"agent\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\",\n    \"customer_id\": \"bf18d1a8-1afe-4a3e-4cc0-a3148f1143db\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Identity transfer: token generation/Customer",
+        "api_call": "https://accounts.livechat.com/customer/identity_transfer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<access_token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"bearer_type\": \"customer\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Authorization flows: Identity transfer: token exchange",
+        "api_call": "https://accounts.livechat.com/customer/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"grant_type\": \"identity_token\",\n    \"client_id\": \"9cbf3a968289727cb3cdfe83ab1d9836\",\n    \"code\": \"dal:test_SZhSSbShcZxrv580FA\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
