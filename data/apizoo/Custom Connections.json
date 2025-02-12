@@ -1,0 +1,84 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Custom Connections: Access Token",
+        "api_call": "https://identity.xero.com/connect/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "{{scopes}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Custom Connections: Invoices",
+        "api_call": "https://api.xero.com/api.xro/2.0/Invoices/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "\t"
+    }
+]
