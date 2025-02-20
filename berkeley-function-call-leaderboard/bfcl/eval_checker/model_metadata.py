@@ -877,21 +877,21 @@ MODEL_METADATA_MAPPING = {
         "TII UAE",
         "falcon-llm-license",
     ],
-    "uiuc-convai/CALM-8B": [
-        "CALM-8B",
-        "https://huggingface.co/uiuc-convai/CALM-8B",
+    "uiuc-convai/CoALM-8B": [
+        "CoALM-8B",
+        "https://huggingface.co/uiuc-convai/CoALM-8B",
         "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
-    "uiuc-convai/CALM-70B": [
-        "CALM-70B",
-        "https://huggingface.co/uiuc-convai/CALM-70B",
+    "uiuc-convai/CoALM-70B": [
+        "CoALM-70B",
+        "https://huggingface.co/uiuc-convai/CoALM-70B",
         "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
-    "uiuc-convai/CALM-405B": [
-        "CALM-405B",
-        "https://huggingface.co/uiuc-convai/CALM-405B",
+    "uiuc-convai/CoALM-405B": [
+        "CoALM-405B",
+        "https://huggingface.co/uiuc-convai/CoALM-405B",
         "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
