@@ -172,7 +172,8 @@ local_inference_handler_map = {
     "tiiuae/Falcon3-1B-Instruct-FC": Falcon3FCHandler,
     "uiuc-convai/CoALM-8B": LlamaHandler,
     "uiuc-convai/CoALM-70B": LlamaHandler,
-    "uiuc-convai/CoALM-405B": LlamaHandler
+    "uiuc-convai/CoALM-405B": LlamaHandler,
+    "BitAgent/BitAgent-8B": LlamaHandler
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
