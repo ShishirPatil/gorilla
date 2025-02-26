@@ -898,7 +898,7 @@ MODEL_METADATA_MAPPING = {
     "BitAgent/BitAgent-8B": [
         "BitAgent-8B",
         "https://huggingface.co/BitAgent/BitAgent-8B/",
-        "BitAgent",
+        "Bittensor",
         "Apache-2.0",
     ]
 }
