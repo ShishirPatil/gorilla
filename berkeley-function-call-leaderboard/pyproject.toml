@@ -34,7 +34,10 @@ dependencies = [
     "tenacity==9.0.0",
     "writer-sdk>=1.2.0",
     "overrides",
-    "boto3"
+    "boto3",
+    "duckduckgo_search",
+    "beautifulsoup4",
+    "html2text"
 ]
 
 [project.scripts]

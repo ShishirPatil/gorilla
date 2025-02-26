@@ -19,7 +19,7 @@ from bfcl.model_handler.utils import (
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from bfcl.utils import is_multi_turn
+from bfcl.utils import is_agentic, is_multi_turn
 
 
 class ClaudeHandler(BaseHandler):
@@ -123,8 +123,8 @@ class ClaudeHandler(BaseHandler):
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
         inference_data["caching_enabled"] = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+            is_multi_turn(test_category) or is_agentic(test_category)
+        ) and "claude-3-sonnet" not in self.model_name
 
         return inference_data
 
@@ -282,8 +282,8 @@ class ClaudeHandler(BaseHandler):
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
         caching_enabled: bool = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+            is_multi_turn(test_category) or is_agentic(test_category)
+        ) and "claude-3-sonnet" not in self.model_name
 
         return {
             "message": [],

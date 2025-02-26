@@ -20,6 +20,7 @@ from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import (
     check_api_key_supplied,
+    is_agentic,
     is_executable,
     is_multi_turn,
     parse_test_category_argument,
@@ -150,7 +151,7 @@ def process_multi_turn_test_case(test_cases):
     Multi-turn test cases don't have the function doc in the prompt. We need to add them here.
     """
     for entry in test_cases:
-        if not is_multi_turn(entry["id"]):
+        if not is_multi_turn(entry["id"]) and not is_agentic(entry["id"]):
             continue
         involved_classes = entry["involved_classes"]
         entry["function"] = []
