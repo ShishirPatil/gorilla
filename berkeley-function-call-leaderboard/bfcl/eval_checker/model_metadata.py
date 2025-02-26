@@ -895,6 +895,12 @@ MODEL_METADATA_MAPPING = {
         "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
+    "BitAgent/BitAgent-8B": [
+        "BitAgent-8B",
+        "https://huggingface.co/BitAgent/BitAgent-8B/",
+        "BitAgent",
+        "Apache-2.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {

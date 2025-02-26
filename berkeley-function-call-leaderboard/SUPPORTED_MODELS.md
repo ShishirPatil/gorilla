@@ -105,6 +105,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |NovaSky-AI/Sky-T1-32B-Preview 💻| Prompt|
 |tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct 💻| Function Calling|
 |uiuc-convai/CoALM-{8B,70B,405B} 💻| Function Calling|
+|BitAgent/BitAgent-8B 💻| Prompt|
 
 ---
 
