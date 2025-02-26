@@ -63,6 +63,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to generate the dataset")
     parser.add_argument("--auto-clean-checkpoints", type=bool, default=False, help="Whether to auto clean the checkpoints after the dataset is generated")
     parser.add_argument("--qa-threshold", type=int, default=None, help="The number of Q/A samples to generate after which to stop the generation process. Defaults to None, which means generating Q/A samples for all documents")
+    parser.add_argument("--breakpoint_threshold", type=str, default="gradient", help="The method used to determine the breakpoints of the text (percentile, standard_deviation, interquartile, gradient)")
 
     args = parser.parse_args()
     return args
@@ -73,7 +74,8 @@ def get_chunks(
     doctype: DocType = "pdf", 
     chunk_size: int = 512, 
     openai_key: str | None = None,
-    model: str = None
+    model: str = None,
+    breakpoint_threshold: str = "gradient"
 ) -> list[str]:
     """
     Takes in a `data_path` and `doctype`, retrieves the document, breaks it down into chunks of size
@@ -104,7 +106,7 @@ def get_chunks(
         with tqdm(total=len(file_paths), desc="Chunking", unit="file") as pbar:
             with ThreadPoolExecutor(max_workers=2) as executor:
                 for file_path in file_paths:
-                    futures.append(executor.submit(get_doc_chunks, embeddings, file_path, doctype, chunk_size))
+                    futures.append(executor.submit(get_doc_chunks, embeddings, file_path, doctype, chunk_size, breakpoint_threshold))
                 for future in as_completed(futures):
                     doc_chunks = future.result()
                     chunks.extend(doc_chunks)
@@ -118,6 +120,9 @@ def get_doc_chunks(
     file_path: Path, 
     doctype: DocType = "pdf", 
     chunk_size: int = 512,
+    breakpoint_threshold: str = "gradient"
+
+
  ) -> list[str]:
     if doctype == "json":
         with open(file_path, 'r') as f:
@@ -141,9 +146,11 @@ def get_doc_chunks(
     num_chunks = ceil(len(text) / chunk_size)
     logger.debug(f"Splitting text into {num_chunks} chunks.")
 
-    text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
+    text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks, breakpoint_threshold_type = breakpoint_threshold) #, min_chunk_size=384
     chunks = text_splitter.create_documents([text])
     chunks = [chunk.page_content for chunk in chunks]
+    print(breakpoint_threshold)
+    chunks = [chunk for chunk in chunks if len(chunk) >= 184]
     return chunks
 
 def generate_chunk_instructions(chat_completer: ChatCompleter, chunk: Any, x=5, model: str = None) -> list[str]:

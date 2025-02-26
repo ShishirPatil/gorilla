@@ -19,6 +19,7 @@ def build_openai_client(env_prefix : str = "COMPLETION", **kwargs: Any) -> OpenA
     """
 
     kwargs = _remove_empty_values(kwargs)
+    kwargs.pop("proxies", None)
     env = read_env_config(env_prefix)
     with set_env(**env):
         if is_azure():
