@@ -55,6 +55,8 @@ api_inference_handler_map = {
     "gpt-3.5-turbo-0125-FC": OpenAIHandler,
     "claude-3-opus-20240229": ClaudeHandler,
     "claude-3-opus-20240229-FC": ClaudeHandler,
+    "claude-3-7-sonnet-20250219": ClaudeHandler,
+    "claude-3-7-sonnet-20250219-FC": ClaudeHandler,
     "claude-3-5-sonnet-20241022": ClaudeHandler,
     "claude-3-5-sonnet-20241022-FC": ClaudeHandler,
     "claude-3-5-haiku-20241022": ClaudeHandler,
