@@ -12,18 +12,19 @@ from overrides import override
 class QwenFCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
+        self.is_fc_model = True
 
     @override
     def decode_ast(self, result, language="Python"):
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
-        if type(result) != list:
+        if type(result) != list or any(type(item) != dict for item in result):
             return []
         return result
 
     @override
     def decode_execute(self, result):
-        if type(result) != list:
+        if type(result) != list or any(type(item) != dict for item in result):
             return []
         return convert_to_function_call(result)
 
@@ -161,9 +162,13 @@ class QwenFCHandler(OSSHandler):
                 "content": None,
                 "tool_calls": extracted_tool_calls,
             }
-            model_responses = [
-                {item["name"]: item["arguments"]} for item in extracted_tool_calls
-            ]
+            model_responses = []
+            for item in extracted_tool_calls:
+                # Handle the situation: ['{"name": "random_forest.train", "arguments": {"n_estimators": 100, "max_depth": 5, "data": my_data}}']
+                if type(item) == str:
+                    item = eval(item)
+                model_responses.append({item["name"]: item["arguments"]})
+
         else:
             model_responses_message_for_chat_history = {
                 "role": "assistant",
