@@ -25,6 +25,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gpt-4o-2024-11-20 | Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
+|gpt-4.5-preview-2025-02-27-FC | Function Calling|
+|gpt-4.5-preview-2025-02-27 | Prompt|
 |o1-2024-12-17-FC | Function Calling|
 |o1-2024-12-17 | Prompt|
 |o3-mini-2025-01-31-FC | Function Calling|
