@@ -2,6 +2,14 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Feb 28, 2025] [#925](https://github.com/ShishirPatil/gorilla/pull/925): Add support for the `Qwen2.5` models in Function Calling mode:
+  - `Qwen/Qwen2.5-0.5B-Instruct-FC`
+  - `Qwen/Qwen2.5-1.5B-Instruct-FC`
+  - `Qwen/Qwen2.5-3B-Instruct-FC`
+  - `Qwen/Qwen2.5-7B-Instruct-FC`
+  - `Qwen/Qwen2.5-14B-Instruct-FC`
+  - `Qwen/Qwen2.5-32B-Instruct-FC`
+  - `Qwen/Qwen2.5-72B-Instruct-FC`
 - [Feb 24, 2025] [#917](https://github.com/ShishirPatil/gorilla/pull/917): Add new model `BitAgent/BitAgent-8B` to the leaderboard.
 - [Feb 5, 2025] [#900](https://github.com/ShishirPatil/gorilla/pull/900), [#913](https://github.com/ShishirPatil/gorilla/pull/913): Add the following new models to the leaderboard:
   - `uiuc-convai/CoALM-8B`
