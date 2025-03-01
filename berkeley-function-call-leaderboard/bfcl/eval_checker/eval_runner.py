@@ -627,7 +627,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
     if score_dir is None:
         score_dir = SCORE_PATH
     else:
-        result_dir = (PROJECT_ROOT / score_dir).resolve()
+        score_dir = (PROJECT_ROOT / score_dir).resolve()
 
     if type(test_categories) is not list:
         test_categories = [test_categories]
