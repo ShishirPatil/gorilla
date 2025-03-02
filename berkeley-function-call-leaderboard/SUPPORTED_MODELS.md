@@ -10,7 +10,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
-|DeepSeek-V3 | Function Calling|
+|DeepSeek-R1 | Prompt|
+|DeepSeek-V3-FC | Function Calling|
 |claude-3-opus-20240229-FC | Function Calling |
 |claude-3-opus-20240229 | Prompt |
 |claude-3-5-sonnet-20241022-FC | Function Calling |
@@ -25,6 +26,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gpt-4o-2024-11-20 | Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
+|gpt-4.5-preview-2025-02-27-FC | Function Calling|
+|gpt-4.5-preview-2025-02-27 | Prompt|
 |o1-2024-12-17-FC | Function Calling|
 |o1-2024-12-17 | Prompt|
 |o3-mini-2025-01-31-FC | Function Calling|
