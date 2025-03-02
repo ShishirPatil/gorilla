@@ -1,5 +1,12 @@
 from bfcl.model_handler.handler_map import local_inference_handler_map
 
+# Items in the dictionary are in the format of:
+# {model_name: [
+#     model_display_name_in_leaderboard,
+#     url_to_model_page,
+#     model_creator,
+#     model_license,
+# ]}
 MODEL_METADATA_MAPPING = {
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
@@ -18,6 +25,18 @@ MODEL_METADATA_MAPPING = {
         "https://api-docs.deepseek.com/news/news1226",
         "DeepSeek",
         "DeepSeek License",
+    ],
+    "gpt-4.5-preview-2025-02-27-FC": [
+        "GPT-4.5-Preview-2025-02-27 (FC)",
+        "https://openai.com/index/introducing-gpt-4-5/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4.5-preview-2025-02-27": [
+        "GPT-4.5-Preview-2025-02-27 (Prompt)",
+        "https://openai.com/index/introducing-gpt-4-5/",
+        "OpenAI",
+        "Proprietary",
     ],
     "o1-2024-12-17-FC": [
         "o1-2024-12-17 (FC)",
@@ -44,13 +63,13 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "gpt-4o-2024-11-20": [
-        "gpt-4o-2024-11-20 (Prompt)",
+        "GPT-4o-2024-11-20 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
     ],
     "gpt-4o-2024-11-20-FC": [
-        "gpt-4o-2024-11-20 (FC)",
+        "GPT-4o-2024-11-20 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
@@ -938,6 +957,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
+    "gpt-4.5-preview-2025-02-27-FC": 75,
+    "gpt-4.5-preview-2025-02-27": 75,
     "o1-2024-12-17-FC": 15,
     "o1-2024-12-17": 15,
     "o3-mini-2025-01-31-FC": 1.1,
@@ -1011,6 +1032,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC": 3,
     "mistral-tiny-2312": 0.25,
+    "gpt-4.5-preview-2025-02-27-FC": 150,
+    "gpt-4.5-preview-2025-02-27": 150,
     "o1-2024-12-17-FC": 60,
     "o1-2024-12-17": 60,
     "o3-mini-2025-01-31-FC": 4,

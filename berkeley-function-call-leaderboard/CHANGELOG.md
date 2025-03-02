@@ -2,7 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-
+- [Feb 27, 2025] [#922](https://github.com/ShishirPatil/gorilla/pull/922): Add the following new models to the leaderboard:
+  - `gpt-4.5-preview-2025-02-27`
+  - `gpt-4.5-preview-2025-02-27-FC`
 - [Feb 26, 2025] [#901](https://github.com/ShishirPatil/gorilla/pull/901): Add new model `DeepSeek-R1` to the leaderboard.
 - [Feb 24, 2025] [#917](https://github.com/ShishirPatil/gorilla/pull/917): Add new model `BitAgent/BitAgent-8B` to the leaderboard.
 - [Feb 5, 2025] [#900](https://github.com/ShishirPatil/gorilla/pull/900), [#913](https://github.com/ShishirPatil/gorilla/pull/913): Add the following new models to the leaderboard:

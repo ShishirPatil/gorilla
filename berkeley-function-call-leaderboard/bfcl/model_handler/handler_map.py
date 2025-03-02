@@ -42,6 +42,8 @@ api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
     "DeepSeek-R1": DeepSeekAPIHandler,
     "DeepSeek-V3-FC": DeepSeekAPIHandler,
+    "gpt-4.5-preview-2025-02-27": OpenAIHandler,
+    "gpt-4.5-preview-2025-02-27-FC": OpenAIHandler,
     "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
     "o3-mini-2025-01-31-FC": OpenAIHandler,
