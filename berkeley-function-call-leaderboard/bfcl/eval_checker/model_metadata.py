@@ -14,6 +14,12 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
+    "deepseek-ai/DeepSeek-R1": [
+        "DeepSeek-R1 (Prompt) (Local)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+        "DeepSeek",
+        "MIT",
+    ],
     "DeepSeek-R1": [
         "DeepSeek-R1 (Prompt)",
         "https://api-docs.deepseek.com/news/news1226",

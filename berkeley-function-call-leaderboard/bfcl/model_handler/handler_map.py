@@ -18,6 +18,7 @@ from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
+from bfcl.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
 from bfcl.model_handler.local_inference.glaive import GlaiveHandler
 from bfcl.model_handler.local_inference.glm import GLMHandler
@@ -109,6 +110,7 @@ api_inference_handler_map = {
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "deepseek-ai/DeepSeek-R1": DeepseekReasoningHandler,  # This is the local version of DeepSeek-R1
     "google/gemma-2-2b-it": GemmaHandler,
     "google/gemma-2-9b-it": GemmaHandler,
     "google/gemma-2-27b-it": GemmaHandler,
@@ -176,7 +178,7 @@ local_inference_handler_map = {
     "uiuc-convai/CoALM-8B": LlamaHandler,
     "uiuc-convai/CoALM-70B": LlamaHandler,
     "uiuc-convai/CoALM-405B": LlamaHandler,
-    "BitAgent/BitAgent-8B": LlamaHandler
+    "BitAgent/BitAgent-8B": LlamaHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
