@@ -14,7 +14,13 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
-    "DeepSeek-V3": [
+    "DeepSeek-R1": [
+        "DeepSeek-R1 (Prompt)",
+        "https://api-docs.deepseek.com/news/news1226",
+        "DeepSeek",
+        "MIT",
+    ],
+    "DeepSeek-V3-FC": [
         "DeepSeek-V3 (FC)",
         "https://api-docs.deepseek.com/news/news1226",
         "DeepSeek",
@@ -1081,7 +1087,8 @@ OSS_LATENCY = {}
 NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
 NO_COST_MODELS += [
-    "DeepSeek-V3",
+    "DeepSeek-R1",
+    "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",
