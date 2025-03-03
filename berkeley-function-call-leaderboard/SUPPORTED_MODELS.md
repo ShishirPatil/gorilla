@@ -2,113 +2,114 @@
 
 Below is a comprehensive table of models supported for running leaderboard evaluations. Each model entry indicates whether it supports native Function Calling (FC) or requires a special prompt format to generate function calls. Models marked with `💻` are intended to be hosted locally (using vllm or sglang), while models without the `💻` icon are accessed via API calls. To quickly see all available models, you can also run the `bfcl models` command.
 
-**Note:**  
+**Note:**
 
 - **Function Calling (FC)** models directly support the function calling schema as documented by their respective providers.
 - **Prompt** models do not natively support function calling. For these, we supply a consistent system message prompting the model to produce function calls in the desired format.
 
-|Model | Type |
-|---|---|
-|gorilla-openfunctions-v2 | Function Calling|
-|DeepSeek-R1 | Prompt|
-|DeepSeek-V3-FC | Function Calling|
-|claude-3-opus-20240229-FC | Function Calling |
-|claude-3-opus-20240229 | Prompt |
-|claude-3-5-sonnet-20241022-FC | Function Calling |
-|claude-3-5-sonnet-20241022 | Prompt |
-|claude-3-5-haiku-20241022-FC | Function Calling |
-|claude-3-5-haiku-20241022 | Prompt |
-|gpt-3.5-turbo-0125-FC| Function Calling|
-|gpt-3.5-turbo-0125| Prompt|
-|gpt-4-turbo-2024-04-09-FC| Function Calling|
-|gpt-4-turbo-2024-04-09| Prompt|
-|gpt-4o-2024-11-20-FC | Function Calling|
-|gpt-4o-2024-11-20 | Prompt|
-|gpt-4o-mini-2024-07-18-FC | Function Calling|
-|gpt-4o-mini-2024-07-18 | Prompt|
-|gpt-4.5-preview-2025-02-27-FC | Function Calling|
-|gpt-4.5-preview-2025-02-27 | Prompt|
-|o1-2024-12-17-FC | Function Calling|
-|o1-2024-12-17 | Prompt|
-|o3-mini-2025-01-31-FC | Function Calling|
-|o3-mini-2025-01-31 | Prompt|
-|gemini-1.0-pro-002-FC | Function Calling|
-|gemini-1.0-pro-002 | Prompt|
-|gemini-1.5-pro-{001,002}-FC | Function Calling|
-|gemini-1.5-pro-{001,002} | Prompt|
-|gemini-1.5-flash-{001,002}-FC | Function Calling|
-|gemini-1.5-flash-{001,002} | Prompt|
-|gemini-2.0-pro-exp-02-05-FC | Function Calling|
-|gemini-2.0-pro-exp-02-05 | Prompt|
-|gemini-2.0-flash-001-FC | Function Calling|
-|gemini-2.0-flash-001 | Prompt|
-|gemini-2.0-flash-lite-preview-02-05-FC | Function Calling|
-|gemini-2.0-flash-lite-preview-02-05 | Prompt|
-|open-mixtral-{8x7b,8x22b} | Prompt|
-|open-mixtral-8x22b-FC | Function Calling|
-|open-mistral-nemo-2407 | Prompt|
-|open-mistral-nemo-2407-FC | Function Calling|
-|mistral-large-2407-FC | Function Calling|
-|mistral-large-2407 | Prompt|
-|mistral-medium-2312 | Prompt|
-|mistral-small-2402-FC | Function Calling|
-|mistral-small-2402 | Prompt|
-|mistral-tiny-2312 | Prompt|
-|nova-pro-v1.0| Function Calling|
-|nova-lite-v1.0| Function Calling|
-|nova-macro-v1.0| Function Calling|
-|command-r-plus-FC | Function Calling|
-|command-r7b-12-2024-FC | Function Calling|
-|databrick-dbrx-instruct | Prompt|
-|firefunction-{v1,v2}-FC | Function Calling|
-|yi-large-fc | Function Calling|
-|grok-beta | Function Calling|
-|nvidia/nemotron-4-340b-instruct| Prompt|
-|meetkai/functionary-{small,medium}-v3.1-FC| Function Calling|
-|Nexusflow-Raven-v2 | Function Calling|
-|palmyra-x-004 | Function Calling|
-|snowflake/arctic | Prompt|
-|palmyra-x-004 | Function Calling|
-|BitAgent/GoGoAgent | Prompt|
-|google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
-|mistralai/Ministral-8B-Instruct-2410 💻| Function Calling|
-|meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
-|meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.3-70B-Instruct 💻| Prompt|
-|meta-llama/Llama-3.3-70B-Instruct-FC 💻| Function Calling|
-|deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
-|deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
-|deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
-|Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct 💻| Prompt|
-|Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
-|Salesforce/xLAM-1b-fc-r 💻| Function Calling|
-|Salesforce/xLAM-7b-fc-r 💻| Function Calling|
-|Salesforce/xLAM-7b-r 💻| Function Calling|
-|Salesforce/xLAM-8x7b-r 💻| Function Calling|
-|Salesforce/xLAM-8x22b-r 💻| Function Calling|
-|microsoft/Phi-3.5-mini-instruct 💻| Prompt|
-|microsoft/Phi-3-medium-{4k,128k}-instruct 💻| Prompt|
-|microsoft/Phi-3-small-{8k,128k}-instruct 💻| Prompt|
-|microsoft/Phi-3-mini-{4k,128k}-instruct 💻| Prompt|
-|ibm-granite/granite-20b-functioncalling 💻| Function Calling|
-|NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
-|NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
-|NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
-|MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b} 💻| Function Calling|
-|openbmb/MiniCPM3-4B-FC 💻| Function Calling|
-|openbmb/MiniCPM3-4B 💻| Prompt|
-|THUDM/glm-4-9b-chat 💻| Function Calling|
-|Team-ACE/ToolACE-8B 💻| Function Calling|
-|watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
-|ZJared/Haha-7B 💻| Prompt|
-|speakleash/Bielik-11B-v2.3-Instruct 💻| Prompt|
-|Qwen/QwQ-32B-Preview 💻| Prompt|
-|NovaSky-AI/Sky-T1-32B-Preview 💻| Prompt|
-|tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct 💻| Function Calling|
-|uiuc-convai/CoALM-{8B,70B,405B} 💻| Function Calling|
-|BitAgent/BitAgent-8B 💻| Prompt|
+| Model                                                          | Type             |
+| -------------------------------------------------------------- | ---------------- |
+| gorilla-openfunctions-v2                                       | Function Calling |
+| DeepSeek-R1                                                    | Prompt           |
+| DeepSeek-V3-FC                                                 | Function Calling |
+| claude-3-opus-20240229-FC                                      | Function Calling |
+| claude-3-opus-20240229                                         | Prompt           |
+| claude-3-5-sonnet-20241022-FC                                  | Function Calling |
+| claude-3-5-sonnet-20241022                                     | Prompt           |
+| claude-3-5-haiku-20241022-FC                                   | Function Calling |
+| claude-3-5-haiku-20241022                                      | Prompt           |
+| gpt-3.5-turbo-0125-FC                                          | Function Calling |
+| gpt-3.5-turbo-0125                                             | Prompt           |
+| gpt-4-turbo-2024-04-09-FC                                      | Function Calling |
+| gpt-4-turbo-2024-04-09                                         | Prompt           |
+| gpt-4o-2024-11-20-FC                                           | Function Calling |
+| gpt-4o-2024-11-20                                              | Prompt           |
+| gpt-4o-mini-2024-07-18-FC                                      | Function Calling |
+| gpt-4o-mini-2024-07-18                                         | Prompt           |
+| gpt-4.5-preview-2025-02-27-FC                                  | Function Calling |
+| gpt-4.5-preview-2025-02-27                                     | Prompt           |
+| o1-2024-12-17-FC                                               | Function Calling |
+| o1-2024-12-17                                                  | Prompt           |
+| o3-mini-2025-01-31-FC                                          | Function Calling |
+| o3-mini-2025-01-31                                             | Prompt           |
+| gemini-1.0-pro-002-FC                                          | Function Calling |
+| gemini-1.0-pro-002                                             | Prompt           |
+| gemini-1.5-pro-{001,002}-FC                                    | Function Calling |
+| gemini-1.5-pro-{001,002}                                       | Prompt           |
+| gemini-1.5-flash-{001,002}-FC                                  | Function Calling |
+| gemini-1.5-flash-{001,002}                                     | Prompt           |
+| gemini-2.0-pro-exp-02-05-FC                                    | Function Calling |
+| gemini-2.0-pro-exp-02-05                                       | Prompt           |
+| gemini-2.0-flash-001-FC                                        | Function Calling |
+| gemini-2.0-flash-001                                           | Prompt           |
+| gemini-2.0-flash-lite-preview-02-05-FC                         | Function Calling |
+| gemini-2.0-flash-lite-preview-02-05                            | Prompt           |
+| open-mixtral-{8x7b,8x22b}                                      | Prompt           |
+| open-mixtral-8x22b-FC                                          | Function Calling |
+| open-mistral-nemo-2407                                         | Prompt           |
+| open-mistral-nemo-2407-FC                                      | Function Calling |
+| mistral-large-2407-FC                                          | Function Calling |
+| mistral-large-2407                                             | Prompt           |
+| mistral-medium-2312                                            | Prompt           |
+| mistral-small-2402-FC                                          | Function Calling |
+| mistral-small-2402                                             | Prompt           |
+| mistral-tiny-2312                                              | Prompt           |
+| nova-pro-v1.0                                                  | Function Calling |
+| nova-lite-v1.0                                                 | Function Calling |
+| nova-macro-v1.0                                                | Function Calling |
+| command-r-plus-FC                                              | Function Calling |
+| command-r7b-12-2024-FC                                         | Function Calling |
+| databrick-dbrx-instruct                                        | Prompt           |
+| firefunction-{v1,v2}-FC                                        | Function Calling |
+| yi-large-fc                                                    | Function Calling |
+| grok-beta                                                      | Function Calling |
+| nvidia/nemotron-4-340b-instruct                                | Prompt           |
+| meetkai/functionary-{small,medium}-v3.1-FC                     | Function Calling |
+| Nexusflow-Raven-v2                                             | Function Calling |
+| palmyra-x-004                                                  | Function Calling |
+| snowflake/arctic                                               | Prompt           |
+| palmyra-x-004                                                  | Function Calling |
+| BitAgent/GoGoAgent                                             | Prompt           |
+| google/gemma-2-{2b,9b,27b}-it 💻                               | Prompt           |
+| mistralai/Ministral-8B-Instruct-2410 💻                        | Function Calling |
+| meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻                   | Prompt           |
+| meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻                   | Function Calling |
+| meta-llama/Llama-3.1-{8B,70B}-Instruct 💻                      | Prompt           |
+| meta-llama/Llama-3.2-{1B,3B}-Instruct 💻                       | Prompt           |
+| meta-llama/Llama-3.3-70B-Instruct 💻                           | Prompt           |
+| meta-llama/Llama-3.3-70B-Instruct-FC 💻                        | Function Calling |
+| deepseek-ai/DeepSeek-V2.5 💻                                   | Function Calling |
+| deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻               | Prompt           |
+| deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻 | Function Calling |
+| Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct 💻         | Prompt           |
+| Qwen/Qwen2-{1.5B,7B}-Instruct 💻                               | Prompt           |
+| Salesforce/xLAM-1b-fc-r 💻                                     | Function Calling |
+| Salesforce/xLAM-7b-fc-r 💻                                     | Function Calling |
+| Salesforce/xLAM-7b-r 💻                                        | Function Calling |
+| Salesforce/xLAM-8x7b-r 💻                                      | Function Calling |
+| Salesforce/xLAM-8x22b-r 💻                                     | Function Calling |
+| microsoft/Phi-3.5-mini-instruct 💻                             | Prompt           |
+| microsoft/Phi-3-medium-{4k,128k}-instruct 💻                   | Prompt           |
+| microsoft/Phi-3-small-{8k,128k}-instruct 💻                    | Prompt           |
+| microsoft/Phi-3-mini-{4k,128k}-instruct 💻                     | Prompt           |
+| ibm-granite/granite-20b-functioncalling 💻                     | Function Calling |
+| NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻                  | Function Calling |
+| NousResearch/Hermes-2-Pro-Mistral-7B 💻                        | Function Calling |
+| NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻                | Function Calling |
+| MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b} 💻                      | Function Calling |
+| openbmb/MiniCPM3-4B-FC 💻                                      | Function Calling |
+| openbmb/MiniCPM3-4B 💻                                         | Prompt           |
+| THUDM/glm-4-9b-chat 💻                                         | Function Calling |
+| Team-ACE/ToolACE-8B 💻                                         | Function Calling |
+| watt-ai/watt-tool-{8B,70B} 💻                                  | Function Calling |
+| ZJared/Haha-7B 💻                                              | Prompt           |
+| speakleash/Bielik-11B-v2.3-Instruct 💻                         | Prompt           |
+| Qwen/QwQ-32B-Preview 💻                                        | Prompt           |
+| NovaSky-AI/Sky-T1-32B-Preview 💻                               | Prompt           |
+| tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct 💻                      | Function Calling |
+| uiuc-convai/CoALM-{8B,70B,405B} 💻                             | Function Calling |
+| BitAgent/BitAgent-8B 💻                                        | Prompt           |
+| ThinkAgents/ThinkAgent-1B 💻                                   | Prompt           |
 
 ---
 
