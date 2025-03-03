@@ -125,6 +125,7 @@ UNDERSCORE_TO_DOT = [
     "claude-3-sonnet-20240229-FC",
     "claude-3-5-sonnet-20240620-FC",
     "claude-3-5-sonnet-20241022-FC",
+    "claude-3-7-sonnet-20250219-FC",
     "claude-3-haiku-20240307-FC",
     "claude-3-5-haiku-20241022-FC",
     "nova-pro-v1.0",
