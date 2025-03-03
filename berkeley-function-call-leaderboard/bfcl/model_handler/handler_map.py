@@ -29,6 +29,7 @@ from bfcl.model_handler.local_inference.llama_fc import LlamaFCHandler
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
+from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
@@ -109,6 +110,8 @@ api_inference_handler_map = {
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "AymanTarig/Llama-3.2-1B-FC-v1.1-think": ThinkAgentHandler,
+
     "google/gemma-2-2b-it": GemmaHandler,
     "google/gemma-2-9b-it": GemmaHandler,
     "google/gemma-2-27b-it": GemmaHandler,
