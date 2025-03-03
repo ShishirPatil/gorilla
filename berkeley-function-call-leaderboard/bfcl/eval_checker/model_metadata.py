@@ -8,6 +8,12 @@ from bfcl.model_handler.handler_map import local_inference_handler_map
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
+     "ThinkAgents/ThinkAgent-1B": [
+        "ThinkAgent-1B",
+        "https://huggingface.co/ThinkAgents/ThinkAgent-1B",
+        "ThinkAgents",
+        "apache-2.0"
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
