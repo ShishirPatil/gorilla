@@ -29,6 +29,12 @@ from dotenv import load_dotenv
 from tqdm import tqdm
 
 
+def get_handler(model_name):
+    return HANDLER_MAP[model_name](
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
+
+
 def multi_turn_runner(
     handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
 ):
@@ -548,9 +554,8 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
         )
         record_result(state, model_name, test_category, accuracy, total_count)
         print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-        continue
 
-    if is_executable(test_category):
+    elif is_executable(test_category):
         # We only test the API with ground truth once.
         if not state["api_tested"] and api_sanity_check:
             print("---- Sanity checking API status ----")
@@ -593,41 +598,40 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
         record_result(state, model_name, test_category, accuracy, total_count)
         print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
-        continue
-
-    # Find the corresponding possible answer file
-    possible_answer_file = find_file_with_suffix(
-        POSSIBLE_ANSWER_PATH, test_category
-    )
-    possible_answer = load_file(possible_answer_file, sort_by_id=True)
-
-    if is_multi_turn(test_category):
-        accuracy, total_count = multi_turn_runner(
-            handler,
-            model_result,
-            prompt,
-            possible_answer,
-            model_name,
-            test_category,
-            score_dir,
-        )
-        record_result(state, model_name, test_category, accuracy, total_count)
-        print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-    # Single turn test
     else:
-        accuracy, total_count = ast_file_runner(
-            handler,
-            model_result,
-            prompt,
-            possible_answer,
-            language,
-            test_category,
-            model_name,
-            score_dir,
+        # Find the corresponding possible answer file
+        possible_answer_file = find_file_with_suffix(
+            POSSIBLE_ANSWER_PATH, test_category
         )
-        record_result(state, model_name, test_category, accuracy, total_count)
-        print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-return state
+        possible_answer = load_file(possible_answer_file, sort_by_id=True)
+
+        if is_multi_turn(test_category):
+            accuracy, total_count = multi_turn_runner(
+                handler,
+                model_result,
+                prompt,
+                possible_answer,
+                model_name,
+                test_category,
+                score_dir,
+            )
+            record_result(state, model_name, test_category, accuracy, total_count)
+            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+        # Single turn test
+        else:
+            accuracy, total_count = ast_file_runner(
+                handler,
+                model_result,
+                prompt,
+                possible_answer,
+                language,
+                test_category,
+                model_name,
+                score_dir,
+            )
+            record_result(state, model_name, test_category, accuracy, total_count)
+            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+    return state
 
 
 
@@ -685,12 +689,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
     print(
         f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
     )
-
-
-def get_handler(model_name):
-    return HANDLER_MAP[model_name](
-        model_name, temperature=0
-    )  # Temperature doesn't matter for evaluation
 
 
 if __name__ == "__main__":
