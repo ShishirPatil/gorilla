@@ -3,7 +3,8 @@ from copy import deepcopy
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Union
 
-from .long_context import BOOKING_RECORD_EXTENSION, CREDIT_CARD_EXTENSION
+from bfcl.eval_checker.multi_turn_eval.func_source_code.long_context import (
+    BOOKING_RECORD_EXTENSION, CREDIT_CARD_EXTENSION)
 
 DEFAULT_STATE = {
     "random_seed": 141053,
@@ -820,7 +821,7 @@ class TravelAPI:
 
     def contact_customer_support(self, booking_id: str, message: str) -> Dict[str, str]:
         """
-        Contact travel booking customer support, get immediate support on an issue with an online call. 
+        Contact travel booking customer support, get immediate support on an issue with an online call.
 
         Args:
             booking_id (str): The ID of the booking

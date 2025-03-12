@@ -2,7 +2,7 @@ import random
 from copy import deepcopy
 from typing import Dict, List, Union
 
-from .long_context import (
+from bfcl.eval_checker.multi_turn_eval.func_source_code.long_context import (
     CAR_STATUS_METADATA_EXTENSION,
     INTERMEDIARY_CITIES,
     LONG_WEATHER_EXTENSION,
@@ -434,17 +434,17 @@ class VehicleControlAPI:
         # Validate pedal position is within 0 to 1
         if not (0 <= pedalPosition <= 1):
             return {"error": "Pedal position must be between 0 and 1."}
-        
+
         # Release the brake if pedal position is zero
         if pedalPosition == 0:
             self.brakePedalStatus = "released"
             self._brakePedalForce = 0.0
             return {"brakePedalStatus": "released", "brakePedalForce": 0.0}
-        
+
         # Calculate force based on pedal position
         max_brake_force = 1000  # Max force in Newtons
         force = pedalPosition * max_brake_force
-        
+
         # Update the brake pedal status and force
         self.brakePedalStatus = "pressed"
         self._brakePedalForce = force
