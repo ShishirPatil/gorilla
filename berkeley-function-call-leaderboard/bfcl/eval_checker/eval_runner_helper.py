@@ -191,35 +191,32 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
 
     return result
 
-def record_result(state, model_name, test_category, accuracy, total_count):
-    if model_name not in state["leaderboard_table"]:
-        state["leaderboard_table"][model_name] = {}
-    state["leaderboard_table"][model_name][test_category] = {
+def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
+    if model_name not in leaderboard_table:
+        leaderboard_table[model_name] = {}
+    leaderboard_table[model_name][test_category] = {
         "accuracy": accuracy,
         "total_count": total_count,
     }
 
 
-def record_cost_latency(state, model_name, model_output_data):
+def record_cost_latency(leaderboard_table, model_name, model_output_data):
     def process_data(key, data, output_list):
-        # All entries are either a list of list (in multi-turn), or a single
-        # value (in single-turn).
+        # All entries are either a list of list (in multi-turn), or a single value (in single-turn)
         if key in data:
             if isinstance(data[key], list) and all(
                 isinstance(inner_item, list) for inner_item in data[key]
             ):
                 flattened_list = sum(data[key], [])
-                output_list.extend([item for item in flattened_list
-                                    if item != 0])
+                output_list.extend([item for item in flattened_list if item != 0])
             else:
                 if data[key] != 0:
                     output_list.append(data[key])
 
-    if model_name not in state["leaderboard_table"]:
-        state["leaderboard_table"][model_name] = {}
-        state["leaderboard_table"][model_name]["cost"] = {"input_data": [],
-                                                          "output_data": []}
-        state["leaderboard_table"][model_name]["latency"] = {"data": []}
+    if model_name not in leaderboard_table:
+        leaderboard_table[model_name] = {}
+        leaderboard_table[model_name]["cost"] = {"input_data": [], "output_data": []}
+        leaderboard_table[model_name]["latency"] = {"data": []}
 
     input_token = []
     output_token = []
@@ -229,11 +226,9 @@ def record_cost_latency(state, model_name, model_output_data):
         process_data("input_token_count", data, input_token)
         process_data("output_token_count", data, output_token)
 
-    state["leaderboard_table"][model_name]["cost"]["input_data"].extend(
-        input_token)
-    state["leaderboard_table"][model_name]["cost"]["output_data"].extend(
-        output_token)
-    state["leaderboard_table"][model_name]["latency"]["data"].extend(latency)
+    leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
+    leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)
+    leaderboard_table[model_name]["latency"]["data"].extend(latency)
 
 
 def get_cost_letency_info(model_name, cost_data, latency_data):
@@ -773,7 +768,7 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
 
 
 def update_leaderboard_table_with_local_score_file(
-    state, score_path: Path
+    leaderboard_table, score_path: Path
 ) -> None:
 
     entries = score_path.iterdir()
@@ -789,10 +784,10 @@ def update_leaderboard_table_with_local_score_file(
             metadata = load_file(model_score_json)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
             test_category = extract_test_category(model_score_json)
-            if model_name not in state["leaderboard_table"]:
-                state["leaderboard_table"][model_name] = {}
-            if test_category not in state["leaderboard_table"][model_name]:
-                state["leaderboard_table"][model_name][test_category] = {
+            if model_name not in leaderboard_table:
+                leaderboard_table[model_name] = {}
+            if test_category not in leaderboard_table[model_name]:
+                leaderboard_table[model_name][test_category] = {
                     "accuracy": accuracy,
                     "total_count": total_count,
                 }

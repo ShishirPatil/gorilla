@@ -452,8 +452,7 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check, result_dir,
-           score_dir):
+def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir):
 
     # State udpated by each eval subtask.
     state = dict(
@@ -468,12 +467,12 @@ def runner(model_names, test_categories, api_sanity_check, result_dir,
         # A dictionary to store the evaluation scores.
         # Key is model name, value is a dictionary with keys as test category
         # and values as a dictionary with accuracy and total count.
-        leaderboard_table = {},
+        leaderboard_table={},
         # Before running the executable evaluation, we need to get the expected
         # output from the ground truth. So we need a list of all the test
         # categories that we have ran the ground truth evaluation on. We only
         # get the expected output once for each test category.
-        executable_test_categories_have_run = []
+        executable_test_categories_have_run=[],
     )
 
     # Get a list of all entries in the folder
@@ -508,31 +507,49 @@ def runner(model_names, test_categories, api_sanity_check, result_dir,
 
             model_result = load_file(model_result_json, sort_by_id=True)
 
-            state = evaluate_task(test_category, api_sanity_check, result_dir,
-                                  score_dir, model_result, model_name, handler,
-                                  state)
-
+            state = evaluate_task(
+                test_category,
+                api_sanity_check,
+                result_dir,
+                score_dir,
+                model_result,
+                model_name,
+                handler,
+                state,
+            )
 
     # This function reads all the score files from local folder and updates the
     # leaderboard table. This is helpful when you only want to run the
     # evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_local_score_file(state, score_dir)
+    update_leaderboard_table_with_local_score_file(state["leaderboard_table"], score_dir)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(state["leaderboard_table"], score_dir, model_names,
-                             test_categories)
+    generate_leaderboard_csv(
+        state["leaderboard_table"], score_dir, model_names, test_categories
+    )
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
     clean_up_executable_expected_output(
-        PROMPT_PATH, state["executable_test_categories_have_run"])
+        PROMPT_PATH, state["executable_test_categories_have_run"]
+    )
 
-    display_api_status_error(state["api_status_error_rest"],
-                             state["api_status_error_executable"],
-                             display_success=False)
+    display_api_status_error(
+        state["api_status_error_rest"],
+        state["api_status_error_executable"],
+        display_success=False,
+    )
 
 
-def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
-                  model_result, model_name, handler, state):
+def evaluate_task(
+    test_category,
+    api_sanity_check,
+    result_dir,
+    score_dir,
+    model_result,
+    model_name,
+    handler,
+    state,
+):
 
     language = "Python"
     if is_java(test_category):
@@ -542,7 +559,7 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
 
     print(f"🔍 Running test: {test_category}")
 
-    record_cost_latency(state, model_name, model_result)
+    record_cost_latency(state["leaderboard_table"], model_name, model_result)
 
     # Find the corresponding test file.
     prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
@@ -552,8 +569,6 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
         accuracy, total_count = relevance_file_runner(
             handler, model_result, prompt, model_name, test_category, score_dir
         )
-        record_result(state, model_name, test_category, accuracy, total_count)
-        print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
     elif is_executable(test_category):
         # We only test the API with ground truth once.
@@ -582,11 +597,15 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
             test_category not in state["executable_test_categories_have_run"]
             and not is_rest(test_category)
         ):
-            print(f"---- Getting real-time execution result from ground truth"
-                  f" for {test_category} ----")
+            print(
+                f"---- Getting real-time execution result from ground truth"
+                f" for {test_category} ----"
+            )
             get_executable_expected_output(prompt_file)
-            print(f"---- Ground truth real-time execution result obtained for"
-                  f" {test_category} 🌟 ----")
+            print(
+                f"---- Ground truth real-time execution result obtained for"
+                f" {test_category} 🌟 ----"
+            )
             state["executable_test_categories_have_run"].append(test_category)
             # Need to re-load the prompt file after getting the expected
             # output, as the prompt file has been updated.
@@ -595,14 +614,10 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
         accuracy, total_count = executable_file_runner(
             handler, model_result, prompt, model_name, test_category, score_dir
         )
-        record_result(state, model_name, test_category, accuracy, total_count)
-        print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
     else:
         # Find the corresponding possible answer file
-        possible_answer_file = find_file_with_suffix(
-            POSSIBLE_ANSWER_PATH, test_category
-        )
+        possible_answer_file = find_file_with_suffix(POSSIBLE_ANSWER_PATH, test_category)
         possible_answer = load_file(possible_answer_file, sort_by_id=True)
 
         if is_multi_turn(test_category):
@@ -615,8 +630,7 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
                 test_category,
                 score_dir,
             )
-            record_result(state, model_name, test_category, accuracy, total_count)
-            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+
         # Single turn test
         else:
             accuracy, total_count = ast_file_runner(
@@ -629,10 +643,11 @@ def evaluate_task(test_category, api_sanity_check, result_dir, score_dir,
                 model_name,
                 score_dir,
             )
-            record_result(state, model_name, test_category, accuracy, total_count)
-            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-    return state
 
+    record_result(state, model_name, test_category, accuracy, total_count)
+    print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+
+    return state
 
 
 def main(model, test_categories, api_sanity_check, result_dir, score_dir):
