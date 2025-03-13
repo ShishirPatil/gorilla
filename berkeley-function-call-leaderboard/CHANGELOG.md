@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 13, 2025] [#696](https://github.com/ShishirPatil/gorilla/pull/696): Add the following new models to the leaderboard:
+  - `google/gemma-3-1b-it`
+  - `google/gemma-3-4b-it`
+  - `google/gemma-3-12b-it`
+  - `google/gemma-3-27b-it`
 - [Feb 27, 2025] [#922](https://github.com/ShishirPatil/gorilla/pull/922): Add the following new models to the leaderboard:
   - `gpt-4.5-preview-2025-02-27`
   - `gpt-4.5-preview-2025-02-27-FC`

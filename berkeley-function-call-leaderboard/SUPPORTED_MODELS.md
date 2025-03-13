@@ -70,7 +70,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |snowflake/arctic | Prompt|
 |palmyra-x-004 | Function Calling|
 |BitAgent/GoGoAgent | Prompt|
-|google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
+|google/gemma-3-{1b,4b,12b,27b}-it 💻| Prompt|
 |mistralai/Ministral-8B-Instruct-2410 💻| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
