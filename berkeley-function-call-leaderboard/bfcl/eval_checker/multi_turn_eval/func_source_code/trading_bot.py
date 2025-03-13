@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import datetime, time, timedelta
 from typing import Dict, List, Optional, Union
 
-from .long_context import (
+from bfcl.eval_checker.multi_turn_eval.func_source_code.long_context import (
     AUTOMOBILE_EXTENSION,
     MA_5_EXTENSION,
     MA_20_EXTENSION,
@@ -563,7 +563,7 @@ class TradingBot:
             watch_list.extend(WATCH_LIST_EXTENSION)
             return watch_list
         return {"watchlist": self.watch_list}
-    
+
     def get_order_history(self) -> Dict[str, List[Dict[str, Union[str, int, float]]]]:
         """
         Get the stock order ID history.
