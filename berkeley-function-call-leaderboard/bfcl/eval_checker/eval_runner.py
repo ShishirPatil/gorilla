@@ -13,11 +13,6 @@ from bfcl.constant import (
 )
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
-from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
-from bfcl.eval_checker.executable_eval.executable_checker import (
-    executable_checker_non_rest,
-    executable_checker_rest,
-)
 from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_checker,
     multi_turn_irrelevance_checker,
@@ -346,27 +341,15 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir):
+def runner(model_names, test_categories, result_dir, score_dir):
 
     # State udpated by each eval subtask.
     state = dict(
         # Flags to indicate if the API has been tested.
-        # We should always test the API with ground truth first before running
-        # the executable tests. Sometimes the API may not be working as expected
-        # and we want to catch that before running the evaluation to ensure the
-        # results are accurate.
-        api_tested=False,
-        api_status_error_rest=None,
-        api_status_error_executable=None,
         # A dictionary to store the evaluation scores.
         # Key is model name, value is a dictionary with keys as test category
         # and values as a dictionary with accuracy and total count.
         leaderboard_table={},
-        # Before running the executable evaluation, we need to get the expected
-        # output from the ground truth. So we need a list of all the test
-        # categories that we have ran the ground truth evaluation on. We only
-        # get the expected output once for each test category.
-        executable_test_categories_have_run=[],
     )
 
     # Get a list of all entries in the folder
@@ -402,7 +385,6 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
             state = evaluate_task(
                 test_category,
-                api_sanity_check,
                 result_dir,
                 score_dir,
                 model_result,
@@ -420,22 +402,9 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
         state["leaderboard_table"], score_dir, model_names, test_categories
     )
 
-    # Clean up the executable expected output files
-    # They should be re-generated the next time the evaluation is run
-    clean_up_executable_expected_output(
-        PROMPT_PATH, state["executable_test_categories_have_run"]
-    )
-
-    display_api_status_error(
-        state["api_status_error_rest"],
-        state["api_status_error_executable"],
-        display_success=False,
-    )
-
 
 def evaluate_task(
     test_category,
-    api_sanity_check,
     result_dir,
     score_dir,
     model_result,
@@ -514,19 +483,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     _, all_test_categories = parse_test_category_argument(test_categories)
 
-    api_key_supplied = check_api_key_supplied()
-    skipped_categories = []
-
-    for test_category in all_test_categories[:]:
-        # Skip executable test category evaluation if api key is not provided in the .env file
-        if is_executable(test_category) and not api_key_supplied:
-            # We can still run the REST category, since the API keys are baked in the model response. So as long as the model response is generated, we can evaluate.
-            if is_rest(test_category):
-                continue
-            else:
-                all_test_categories.remove(test_category)
-                skipped_categories.append(test_category)
-
     model_names = None
     if model:
         model_names = []
@@ -538,13 +494,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     # Driver function to run the evaluation for all categories involved.
     runner(model_names, all_test_categories, api_sanity_check, result_dir, score_dir)
-
-    if len(skipped_categories) > 0:
-        print("----------")
-        print(
-            f"❗️ Note: The following executable test category are not evaluated because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories are evaluated."
-        )
-        print("----------")
 
     print(
         f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
@@ -569,13 +518,6 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
-        "-c",
-        "--api-sanity-check",
-        action="store_true",
-        default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified
-        help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
-    )
-    parser.add_argument(
         "--result-dir",
         default=None,
         type=str,
@@ -594,7 +536,6 @@ if __name__ == "__main__":
     main(
         args.model,
         args.test_category,
-        args.api_sanity_check,
         args.result_dir,
         args.score_dir,
     )

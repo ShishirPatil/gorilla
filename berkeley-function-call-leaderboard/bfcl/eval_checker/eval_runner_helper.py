@@ -12,7 +12,6 @@ from bfcl.utils import (
     extract_test_category,
     load_file,
 )
-from tqdm import tqdm
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
