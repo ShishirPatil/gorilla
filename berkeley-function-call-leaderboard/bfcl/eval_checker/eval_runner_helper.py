@@ -105,7 +105,6 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 
 def get_cost_letency_info(model_name, cost_data, latency_data):
-    # TODO: Update the cost and latency calculation since some models cannot be evaluated using v100 and also there are more entries.
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
@@ -122,18 +121,6 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         ) / 1000
         cost = round(cost, 2)
 
-    # TODO: Have a formal way to calculate the cost and latency for OSS models
-    # Currently, all OSS models will have no cost.
-    # if model_name in OSS_LATENCY:
-    #     mean_latency, std_latency, percentile_95_latency = (
-    #         OSS_LATENCY[model_name] / 1700,
-    #         "N/A",
-    #         "N/A",
-    #     )
-    #     mean_latency = round(mean_latency, 2)
-    #     cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
-    #     cost = round(cost, 2)
-
     if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
@@ -141,10 +128,6 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         mean_latency = round(mean_latency, 2)
         std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
-
-        # if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-        #     cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
-        #     cost = round(cost, 2)
 
     if model_name in NO_COST_MODELS:
         cost = "N/A"
@@ -219,13 +202,8 @@ def generate_leaderboard_csv(
         python_multiple_ast_non_live = get_category_score(value, "multiple")
         python_parallel_ast_non_live = get_category_score(value, "parallel")
         python_parallel_multiple_ast_non_live = get_category_score(value, "parallel_multiple")
-        python_simple_exec_non_live = get_category_score(value, "exec_simple")
-        python_multiple_exec_non_live = get_category_score(value, "exec_multiple")
-        python_parallel_exec_non_live = get_category_score(value, "exec_parallel")
-        python_parallel_multiple_exec_non_live = get_category_score(value, "exec_parallel_multiple")
         java_simple_ast_non_live = get_category_score(value, "java")
         javascript_simple_ast_non_live = get_category_score(value, "javascript")
-        rest_simple_exec_non_live = get_category_score(value, "rest")
         irrelevance_non_live = get_category_score(value, "irrelevance")
 
         simple_ast_non_live = calculate_unweighted_accuracy(
@@ -238,12 +216,6 @@ def generate_leaderboard_csv(
         multiple_ast_non_live = python_multiple_ast_non_live
         parallel_ast_non_live = python_parallel_ast_non_live
         parallel_multiple_ast_non_live = python_parallel_multiple_ast_non_live
-        simple_exec_non_live = calculate_unweighted_accuracy(
-            [python_simple_exec_non_live, rest_simple_exec_non_live]
-        )
-        multiple_exec_non_live = python_multiple_exec_non_live
-        parallel_exec_non_live = python_parallel_exec_non_live
-        parallel_multiple_exec_non_live = python_parallel_multiple_exec_non_live
 
         summary_ast_non_live = calculate_unweighted_accuracy(
             [
@@ -253,24 +225,12 @@ def generate_leaderboard_csv(
                 parallel_multiple_ast_non_live,
             ]
         )
-        summary_exec_non_live = calculate_unweighted_accuracy(
-            [
-                simple_exec_non_live,
-                multiple_exec_non_live,
-                parallel_exec_non_live,
-                parallel_multiple_exec_non_live,
-            ]
-        )
         overall_accuracy_non_live = calculate_unweighted_accuracy(
             [
                 simple_ast_non_live,
                 multiple_ast_non_live,
                 parallel_ast_non_live,
                 parallel_multiple_ast_non_live,
-                simple_exec_non_live,
-                multiple_exec_non_live,
-                parallel_exec_non_live,
-                parallel_multiple_exec_non_live,
                 irrelevance_non_live,
             ],
             display_na_if_category_missing=False,
@@ -282,7 +242,6 @@ def generate_leaderboard_csv(
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 overall_accuracy_non_live["display_accuracy"],
                 summary_ast_non_live["display_accuracy"],
-                summary_exec_non_live["display_accuracy"],
                 simple_ast_non_live["display_accuracy"],
                 python_simple_ast_non_live["display_accuracy"],
                 java_simple_ast_non_live["display_accuracy"],
@@ -290,12 +249,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live["display_accuracy"],
                 parallel_ast_non_live["display_accuracy"],
                 parallel_multiple_ast_non_live["display_accuracy"],
-                simple_exec_non_live["display_accuracy"],
-                python_simple_exec_non_live["display_accuracy"],
-                rest_simple_exec_non_live["display_accuracy"],
-                multiple_exec_non_live["display_accuracy"],
-                parallel_exec_non_live["display_accuracy"],
-                parallel_multiple_exec_non_live["display_accuracy"],
                 irrelevance_non_live["display_accuracy"],
             ]
         )
@@ -403,11 +356,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live["display_accuracy"],
                 parallel_ast_non_live["display_accuracy"],
                 parallel_multiple_ast_non_live["display_accuracy"],
-                summary_exec_non_live["display_accuracy"],
-                simple_exec_non_live["display_accuracy"],
-                multiple_exec_non_live["display_accuracy"],
-                parallel_exec_non_live["display_accuracy"],
-                parallel_multiple_exec_non_live["display_accuracy"],
                 overall_accuracy_live["display_accuracy"],
                 python_simple_ast_live["display_accuracy"],
                 python_multiple_ast_live["display_accuracy"],

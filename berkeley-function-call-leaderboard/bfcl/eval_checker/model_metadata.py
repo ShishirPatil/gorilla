@@ -1078,10 +1078,6 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "grok-beta": 15,
 }
 
-# The latency of the open-source models are hardcoded here.
-# Because we do batching when generating the data, so the latency is not accurate from the result data.
-# This is the latency for the whole batch of data, when using 8 V100 GPUs.
-OSS_LATENCY = {}
 
 # All OSS models will have no cost shown on the leaderboard.
 NO_COST_MODELS = list(local_inference_handler_map.keys())
