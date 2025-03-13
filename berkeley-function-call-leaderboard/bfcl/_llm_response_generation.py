@@ -1,11 +1,9 @@
 import argparse
 import json
-import os
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 
-from bfcl._apply_function_credential_config import apply_function_credential_config
 from bfcl.constant import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
     MULTI_TURN_FUNC_DOC_PATH,
@@ -298,11 +296,6 @@ def main(args):
             f"❗️ Note: The following executable test category entries will be skipped because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories will still be generated."
         )
         print("----------")
-
-    # Apply function credential config if any of the test categories are executable
-    # We can know for sure that any executable categories will not be included if the API Keys are not supplied.
-    if any([is_executable(category) for category in all_test_categories]):
-        apply_function_credential_config(input_path=PROMPT_PATH)
 
     if args.result_dir is not None:
         args.result_dir = PROJECT_ROOT / args.result_dir
