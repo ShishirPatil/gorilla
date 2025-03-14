@@ -5,7 +5,7 @@ from typing import List
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
-from bfcl.constant import (
+from bfcl.constants import (
     DOTENV_PATH,
     PROJECT_ROOT,
     RESULT_PATH,

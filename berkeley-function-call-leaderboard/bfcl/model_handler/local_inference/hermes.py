@@ -1,7 +1,7 @@
 import inspect
 import json
 
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.function_calling_constants import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (

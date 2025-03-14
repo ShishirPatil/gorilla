@@ -115,7 +115,7 @@ Regardless of mode or model type, you should implement the following methods to 
 
    If the model is API-based but free, add it to the `NO_COST_MODELS` list.
 
-3. **Update `model_handler/constant.py`:**  
+3. **Update `model_handler/function_calling_constants.py`:**  
    If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
 
 4. **Update `SUPPORTED_MODELS.md`:**  
