@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 
 from bfcl._apply_function_credential_config import apply_function_credential_config
-from bfcl.constant import (
+from bfcl.constants import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
     MULTI_TURN_FUNC_DOC_PATH,
     PROJECT_ROOT,

@@ -1,7 +1,7 @@
 from keyword import kwlist
 
 from bfcl._llm_response_generation import parse_test_category_argument
-from bfcl.constant import PROMPT_PATH
+from bfcl.constants import PROMPT_PATH
 from bfcl.utils import is_java, is_js, load_file
 
 """

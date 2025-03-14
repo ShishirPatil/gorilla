@@ -6,8 +6,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from bfcl._apply_function_credential_config import apply_function_credential_config
-from bfcl.constant import PROMPT_PATH, TEST_FILE_MAPPING
-from bfcl.eval_checker.constant import *
+from bfcl.constants import PROMPT_PATH, TEST_FILE_MAPPING
+from bfcl.eval_checker.eval_constants import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
 from bfcl.utils import (

@@ -1,4 +1,4 @@
-from bfcl.model_handler.constant import (
+from bfcl.model_handler.function_calling_constants import (
     UNDERSCORE_TO_DOT,
     JAVA_TYPE_CONVERSION,
     JS_TYPE_CONVERSION,
