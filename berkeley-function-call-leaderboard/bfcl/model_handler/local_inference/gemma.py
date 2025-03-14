@@ -1,7 +1,6 @@
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
@@ -16,12 +15,20 @@ class GemmaHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         """
         "bos_token": "<bos>",
-        "chat_template": "{{ bos_token }}{% if messages[0]['role'] == 'system' %}{{ raise_exception('System role not supported') }}{% endif %}{% for message in messages %}{% if (message['role'] == 'user') != (loop.index0 % 2 == 0) %}{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}{% endif %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + '\n' + message['content'] | trim + '<end_of_turn>\n' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model\n'}}{% endif %}",
+        "chat_template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
         """
         formatted_prompt = "<bos>"
 
+        if messages[0]["role"] == "system":
+            first_user_prefix = messages[0]["content"].strip() + "\n\n"
+            messages = messages[1:]
+        else:
+            first_user_prefix = ""
+
+        is_first = True
         for message in messages:
-            formatted_prompt += f"<start_of_turn>{message['role']}\n{message['content'].strip()}<end_of_turn>\n"
+            formatted_prompt += f"<start_of_turn>{message['role']}\n{first_user_prefix if is_first else ''}{message['content'].strip()}<end_of_turn>\n"
+            is_first = False
 
         formatted_prompt += f"<start_of_turn>model\n"
 
@@ -39,9 +46,6 @@ class GemmaHandler(OSSHandler):
         )
 
         for round_idx in range(len(test_entry["question"])):
-            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                test_entry["question"][round_idx]
-            )
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(
                 test_entry["question"][round_idx]
             )
