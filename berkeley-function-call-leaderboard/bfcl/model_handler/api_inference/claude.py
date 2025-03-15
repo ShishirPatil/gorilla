@@ -103,7 +103,7 @@ class ClaudeHandler(BaseHandler):
         return self.generate_with_backoff(
             model=self.model_name.strip("-FC"),
             max_tokens=(
-                8192 if "claude-3-5" in self.model_name else 4096
+                4096 if "claude-3-opus-20240229" in self.model_name else 8192
             ),  # 3.5 Sonnet has a higher max token limit
             tools=inference_data["tools"],
             messages=messages,
@@ -251,7 +251,7 @@ class ClaudeHandler(BaseHandler):
 
         return self.generate_with_backoff(
             model=self.model_name,
-            max_tokens=(8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096),
+            max_tokens=(4096 if "claude-3-opus-20240229" in self.model_name else 8192),
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
