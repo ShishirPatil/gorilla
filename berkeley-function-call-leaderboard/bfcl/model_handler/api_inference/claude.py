@@ -73,7 +73,7 @@ class ClaudeHandler(BaseHandler):
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
-        api_response = self.client.beta.prompt_caching.messages.create(**kwargs)
+        api_response = self.client.messages.create(**kwargs)
         end_time = time.time()
 
         return api_response, end_time - start_time
@@ -103,7 +103,7 @@ class ClaudeHandler(BaseHandler):
         return self.generate_with_backoff(
             model=self.model_name.strip("-FC"),
             max_tokens=(
-                8192 if "claude-3-5" in self.model_name else 4096
+                4096 if "claude-3-opus-20240229" in self.model_name else 8192
             ),  # 3.5 Sonnet has a higher max token limit
             tools=inference_data["tools"],
             messages=messages,
@@ -122,9 +122,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        inference_data["caching_enabled"] = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+        inference_data["caching_enabled"] = is_multi_turn(test_category)
 
         return inference_data
 
@@ -251,7 +249,7 @@ class ClaudeHandler(BaseHandler):
 
         return self.generate_with_backoff(
             model=self.model_name,
-            max_tokens=(8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096),
+            max_tokens=(4096 if "claude-3-opus-20240229" in self.model_name else 8192),
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
@@ -281,9 +279,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        caching_enabled: bool = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+        caching_enabled: bool = is_multi_turn(test_category)
 
         return {
             "message": [],

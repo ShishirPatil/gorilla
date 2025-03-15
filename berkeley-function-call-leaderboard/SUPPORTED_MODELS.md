@@ -14,6 +14,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |DeepSeek-V3-FC | Function Calling|
 |claude-3-opus-20240229-FC | Function Calling |
 |claude-3-opus-20240229 | Prompt |
+|claude-3-7-sonnet-20250219-FC | Function Calling |
+|claude-3-7-sonnet-20250219 | Prompt |
 |claude-3-5-sonnet-20241022-FC | Function Calling |
 |claude-3-5-sonnet-20241022 | Prompt |
 |claude-3-5-haiku-20241022-FC | Function Calling |
