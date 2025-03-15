@@ -392,6 +392,12 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
+    "gemini-2.0-flash-thinking-exp-01-21": [
+        "Gemini-2.0-Flash-Thinking-Exp-01-21 (Prompt)",
+        "https://deepmind.google/technologies/gemini/flash-thinking/",
+        "Google",
+        "Proprietary",
+    ],
     "gpt-4-0613-FC": [
         "GPT-4-0613 (FC)",
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
@@ -973,6 +979,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-2.0-flash-001": 0.15,
     "gemini-2.0-pro-exp-02-05": 0,
     "gemini-2.0-pro-exp-02-05-FC": 0,
+    "gemini-2.0-flash-thinking-exp-01-21": 0,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r7b-12-2024-FC": 0.0375,
@@ -1038,6 +1045,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-2.0-flash-001": 0.6,
     "gemini-2.0-pro-exp-02-05": 0,
     "gemini-2.0-pro-exp-02-05-FC": 0,
+    "gemini-2.0-flash-thinking-exp-01-21": 0,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r7b-12-2024-FC": 0.15,

@@ -86,6 +86,7 @@ api_inference_handler_map = {
     "gemini-2.0-flash-001": GeminiHandler,
     "gemini-2.0-pro-exp-02-05-FC": GeminiHandler,
     "gemini-2.0-pro-exp-02-05": GeminiHandler,
+    "gemini-2.0-flash-thinking-exp-01-21": GeminiHandler,
     "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,

@@ -32,6 +32,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |o1-2024-12-17 | Prompt|
 |o3-mini-2025-01-31-FC | Function Calling|
 |o3-mini-2025-01-31 | Prompt|
+|gemini-2.0-flash-thinking-exp-01-21 | Prompt|
 |gemini-2.0-pro-exp-02-05-FC | Function Calling|
 |gemini-2.0-pro-exp-02-05 | Prompt|
 |gemini-2.0-flash-001-FC | Function Calling|
