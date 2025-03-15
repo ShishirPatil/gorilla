@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-lite-001-FC`
+  - `gemini-2.0-flash-lite-001`
+  - `gemini-2.0-flash-thinking-exp-01-21`
 - [Feb 28, 2025] [#925](https://github.com/ShishirPatil/gorilla/pull/925): Add support for the `Qwen2.5` models in Function Calling mode:
   - `Qwen/Qwen2.5-0.5B-Instruct-FC`
   - `Qwen/Qwen2.5-1.5B-Instruct-FC`
