@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 2, 2025] [#923](https://github.com/ShishirPatil/gorilla/pull/923): Add the following new models to the leaderboard:
+  - `claude-3-7-sonnet-20250219`
+  - `claude-3-7-sonnet-20250219-FC`
 - [Feb 28, 2025] [#925](https://github.com/ShishirPatil/gorilla/pull/925): Add support for the `Qwen2.5` models in Function Calling mode:
   - `Qwen/Qwen2.5-0.5B-Instruct-FC`
   - `Qwen/Qwen2.5-1.5B-Instruct-FC`
