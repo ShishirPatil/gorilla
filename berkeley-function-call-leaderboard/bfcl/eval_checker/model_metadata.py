@@ -14,6 +14,12 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
+    "deepseek-ai/DeepSeek-R1": [
+        "DeepSeek-R1 (Prompt) (Local)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+        "DeepSeek",
+        "MIT",
+    ],
     "DeepSeek-R1": [
         "DeepSeek-R1 (Prompt)",
         "https://api-docs.deepseek.com/news/news1226",
@@ -776,9 +782,21 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct-FC": [
+        "Qwen2.5-0.5B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-0.5B-Instruct": [
         "Qwen2.5-0.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-1.5B-Instruct-FC": [
+        "Qwen2.5-1.5B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
     ],
@@ -788,15 +806,33 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-3B-Instruct-FC": [
+        "Qwen2.5-3B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
+    ],
     "Qwen/Qwen2.5-3B-Instruct": [
         "Qwen2.5-3B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
         "Qwen",
         "qwen",
     ],
+    "Qwen/Qwen2.5-7B-Instruct-FC": [
+        "Qwen2.5-7B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-14B-Instruct-FC": [
+        "Qwen2.5-14B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
         "Qwen",
         "apache-2.0",
     ],
@@ -806,11 +842,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-32B-Instruct-FC": [
+        "Qwen2.5-32B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-32B-Instruct": [
         "Qwen2.5-32B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-72B-Instruct-FC": [
+        "Qwen2.5-72B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
