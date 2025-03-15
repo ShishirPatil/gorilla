@@ -28,9 +28,11 @@ from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# A dictionary to store the evaluation scores.
-# Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
-LEADERBOARD_TABLE = {}
+
+def get_handler(model_name):
+    return HANDLER_MAP[model_name](
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
 
 
 def multi_turn_runner(
@@ -452,17 +454,26 @@ def ast_file_runner(
 #### Main runner function ####
 def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir):
 
-    # A flag to indicate if the API has been tested.
-    # We should always test the API with ground truth first before running the executable tests.
-    # Sometimes the API may not be working as expected and we want to catch that before running the evaluation to ensure the results are accurate.
-    API_TESTED = False
-    API_STATUS_ERROR_REST = None
-    API_STATUS_ERROR_EXECUTABLE = None
-
-    # Before running the executable evaluation, we need to get the expected output from the ground truth.
-    # So we need a list of all the test categories that we have ran the ground truth evaluation on.
-    # We only get the expected output once for each test category.
-    EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
+    # State udpated by each eval subtask.
+    state = dict(
+        # Flags to indicate if the API has been tested.
+        # We should always test the API with ground truth first before running
+        # the executable tests. Sometimes the API may not be working as expected
+        # and we want to catch that before running the evaluation to ensure the
+        # results are accurate.
+        api_tested=False,
+        api_status_error_rest=None,
+        api_status_error_executable=None,
+        # A dictionary to store the evaluation scores.
+        # Key is model name, value is a dictionary with keys as test category
+        # and values as a dictionary with accuracy and total count.
+        leaderboard_table={},
+        # Before running the executable evaluation, we need to get the expected
+        # output from the ground truth. So we need a list of all the test
+        # categories that we have ran the ground truth evaluation on. We only
+        # get the expected output once for each test category.
+        executable_test_categories_have_run=[],
+    )
 
     # Get a list of all entries in the folder
     entries = result_dir.iterdir()
@@ -489,133 +500,154 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
             handler = get_handler(model_name_escaped)
 
-            # We don't evaluate chatable and SQL models in our current leaderboard
+            # We don't evaluate chatable and SQL models in our current
+            # leaderboard.
             if is_chatable(test_category) or is_sql(test_category):
                 continue
 
-            language = "Python"
-            if is_java(test_category):
-                language = "Java"
-            if is_js(test_category):
-                language = "JavaScript"
-
-            print(f"🔍 Running test: {test_category}")
-
             model_result = load_file(model_result_json, sort_by_id=True)
-            record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
-            # Find the corresponding test file
-            prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
-            prompt = load_file(prompt_file, sort_by_id=True)
-
-            if is_relevance_or_irrelevance(test_category):
-                accuracy, total_count = relevance_file_runner(
-                    handler, model_result, prompt, model_name, test_category, score_dir
-                )
-                record_result(
-                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
-                )
-                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-                continue
-
-            if is_executable(test_category):
-                # We only test the API with ground truth once
-                if not API_TESTED and api_sanity_check:
-                    print("---- Sanity checking API status ----")
-                    try:
-                        api_status_sanity_check_rest()
-                    except BadAPIStatusError as e:
-                        API_STATUS_ERROR_REST = e
-
-                    try:
-                        api_status_sanity_check_executable()
-                    except BadAPIStatusError as e:
-                        API_STATUS_ERROR_EXECUTABLE = e
-
-                    display_api_status_error(
-                        API_STATUS_ERROR_REST,
-                        API_STATUS_ERROR_EXECUTABLE,
-                        display_success=True,
-                    )
-                    print("Continuing evaluation...")
-
-                    API_TESTED = True
-
-                if (
-                    test_category not in EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
-                    and not is_rest(test_category)
-                ):
-                    print(
-                        f"---- Getting real-time execution result from ground truth for {test_category} ----"
-                    )
-                    get_executable_expected_output(prompt_file)
-                    print(
-                        f"---- Ground truth real-time execution result obtained for {test_category} 🌟 ----"
-                    )
-                    EXECUTABLE_TEST_CATEGORIES_HAVE_RUN.append(test_category)
-                    # Need to re-load the prompt file after getting the expected output, as the prompt file has been updated
-                    prompt = load_file(prompt_file, sort_by_id=True)
-
-                accuracy, total_count = executable_file_runner(
-                    handler, model_result, prompt, model_name, test_category, score_dir
-                )
-                record_result(
-                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
-                )
-                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-
-                continue
-
-            # Find the corresponding possible answer file
-            possible_answer_file = find_file_with_suffix(
-                POSSIBLE_ANSWER_PATH, test_category
+            state = evaluate_task(
+                test_category,
+                api_sanity_check,
+                result_dir,
+                score_dir,
+                model_result,
+                model_name,
+                handler,
+                state,
             )
-            possible_answer = load_file(possible_answer_file, sort_by_id=True)
 
-            if is_multi_turn(test_category):
-                accuracy, total_count = multi_turn_runner(
-                    handler,
-                    model_result,
-                    prompt,
-                    possible_answer,
-                    model_name,
-                    test_category,
-                    score_dir,
-                )
-                record_result(
-                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
-                )
-                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-            # Single turn test
-            else:
-                accuracy, total_count = ast_file_runner(
-                    handler,
-                    model_result,
-                    prompt,
-                    possible_answer,
-                    language,
-                    test_category,
-                    model_name,
-                    score_dir,
-                )
-                record_result(
-                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
-                )
-                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-
-    # This function reads all the score files from local folder and updates the leaderboard table.
-    # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_local_score_file(LEADERBOARD_TABLE, score_dir)
+    # This function reads all the score files from local folder and updates the
+    # leaderboard table. This is helpful when you only want to run the
+    # evaluation for a subset of models and test categories.
+    update_leaderboard_table_with_local_score_file(state["leaderboard_table"], score_dir)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, score_dir, model_names, test_categories)
+    generate_leaderboard_csv(
+        state["leaderboard_table"], score_dir, model_names, test_categories
+    )
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
-    clean_up_executable_expected_output(PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN)
+    clean_up_executable_expected_output(
+        PROMPT_PATH, state["executable_test_categories_have_run"]
+    )
 
     display_api_status_error(
-        API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False
+        state["api_status_error_rest"],
+        state["api_status_error_executable"],
+        display_success=False,
     )
+
+
+def evaluate_task(
+    test_category,
+    api_sanity_check,
+    result_dir,
+    score_dir,
+    model_result,
+    model_name,
+    handler,
+    state,
+):
+
+    language = "Python"
+    if is_java(test_category):
+        language = "Java"
+    if is_js(test_category):
+        language = "JavaScript"
+
+    print(f"🔍 Running test: {test_category}")
+
+    record_cost_latency(state["leaderboard_table"], model_name, model_result)
+
+    # Find the corresponding test file.
+    prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
+    prompt = load_file(prompt_file, sort_by_id=True)
+
+    if is_relevance_or_irrelevance(test_category):
+        accuracy, total_count = relevance_file_runner(
+            handler, model_result, prompt, model_name, test_category, score_dir
+        )
+
+    elif is_executable(test_category):
+        # We only test the API with ground truth once.
+        if not state["api_tested"] and api_sanity_check:
+            print("---- Sanity checking API status ----")
+            try:
+                api_status_sanity_check_rest()
+            except BadAPIStatusError as e:
+                state["api_status_error_rest"] = e
+
+            try:
+                api_status_sanity_check_executable()
+            except BadAPIStatusError as e:
+                state["api_status_error_executable"] = e
+
+            display_api_status_error(
+                state["api_status_error_rest"],
+                state["api_status_error_executable"],
+                display_success=True,
+            )
+            print("Continuing evaluation...")
+
+            state["api_tested"] = True
+
+        if (
+            test_category not in state["executable_test_categories_have_run"]
+            and not is_rest(test_category)
+        ):
+            print(
+                f"---- Getting real-time execution result from ground truth"
+                f" for {test_category} ----"
+            )
+            get_executable_expected_output(prompt_file)
+            print(
+                f"---- Ground truth real-time execution result obtained for"
+                f" {test_category} 🌟 ----"
+            )
+            state["executable_test_categories_have_run"].append(test_category)
+            # Need to re-load the prompt file after getting the expected
+            # output, as the prompt file has been updated.
+            prompt = load_file(prompt_file, sort_by_id=True)
+
+        accuracy, total_count = executable_file_runner(
+            handler, model_result, prompt, model_name, test_category, score_dir
+        )
+
+    else:
+        # Find the corresponding possible answer file
+        possible_answer_file = find_file_with_suffix(POSSIBLE_ANSWER_PATH, test_category)
+        possible_answer = load_file(possible_answer_file, sort_by_id=True)
+
+        if is_multi_turn(test_category):
+            accuracy, total_count = multi_turn_runner(
+                handler,
+                model_result,
+                prompt,
+                possible_answer,
+                model_name,
+                test_category,
+                score_dir,
+            )
+
+        # Single turn test
+        else:
+            accuracy, total_count = ast_file_runner(
+                handler,
+                model_result,
+                prompt,
+                possible_answer,
+                language,
+                test_category,
+                model_name,
+                score_dir,
+            )
+
+    record_result(state, model_name, test_category, accuracy, total_count)
+    print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+
+    return state
 
 
 def main(model, test_categories, api_sanity_check, result_dir, score_dir):
@@ -627,7 +659,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
     if score_dir is None:
         score_dir = SCORE_PATH
     else:
-        result_dir = (PROJECT_ROOT / score_dir).resolve()
+        score_dir = (PROJECT_ROOT / score_dir).resolve()
 
     if type(test_categories) is not list:
         test_categories = [test_categories]
@@ -672,12 +704,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
     print(
         f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
     )
-
-
-def get_handler(model_name):
-    return HANDLER_MAP[model_name](
-        model_name, temperature=0
-    )  # Temperature doesn't matter for evaluation
 
 
 if __name__ == "__main__":

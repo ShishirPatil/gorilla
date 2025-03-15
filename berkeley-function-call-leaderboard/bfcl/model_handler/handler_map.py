@@ -18,6 +18,7 @@ from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
+from bfcl.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
 from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
 from bfcl.model_handler.local_inference.glaive import GlaiveHandler
@@ -41,7 +42,10 @@ from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
-    "DeepSeek-V3": DeepSeekAPIHandler,
+    "DeepSeek-R1": DeepSeekAPIHandler,
+    "DeepSeek-V3-FC": DeepSeekAPIHandler,
+    "gpt-4.5-preview-2025-02-27": OpenAIHandler,
+    "gpt-4.5-preview-2025-02-27-FC": OpenAIHandler,
     "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
     "o3-mini-2025-01-31-FC": OpenAIHandler,
@@ -107,6 +111,7 @@ api_inference_handler_map = {
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "deepseek-ai/DeepSeek-R1": DeepseekReasoningHandler,  # This is the local version of DeepSeek-R1
     "google/gemma-2-2b-it": GemmaHandler,
     "google/gemma-2-9b-it": GemmaHandler,
     "google/gemma-2-27b-it": GemmaHandler,

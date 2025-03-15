@@ -5,7 +5,7 @@ import json
 import operator
 import re
 from functools import reduce
-from typing import Callable, Optional, Type
+from typing import Callable, List, Optional, Type, Union
 
 from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
@@ -736,7 +736,7 @@ def decoded_output_to_execution_list(decoded_output):
 
 
 def retry_with_backoff(
-    error_type: Optional[Type[Exception]] = None,
+    error_type: Optional[Union[Type[Exception], List[Type[Exception]]]] = None,
     error_message_pattern: Optional[str] = None,
     min_wait: int = 6,
     max_wait: int = 120,
@@ -750,7 +750,7 @@ def retry_with_backoff(
         If both `error_type` and `error_message_pattern` are provided, the retry will occur if either condition is met.
 
     Args:
-        error_type (Type[Exception], optional): The exception type to retry on.
+        error_type ([Union[Type[Exception], List[Type[Exception]]]], optional): The exception type to retry on. Supports one exception, or a list of exceptions.
         error_message_pattern (str, optional):
             A regex pattern to match against the exception message to retry on.
             This is useful when the user wants to retry based on the exception message,
@@ -767,7 +767,11 @@ def retry_with_backoff(
         # Collect retry conditions based on provided parameters
         conditions = []
         if error_type is not None:
-            conditions.append(retry_if_exception_type(error_type))
+            if isinstance(error_type, list):
+                for et in error_type:
+                    conditions.append(retry_if_exception_type(et))
+            else:
+                conditions.append(retry_if_exception_type(error_type))
         if error_message_pattern is not None:
             conditions.append(retry_if_exception_message(match=error_message_pattern))
 

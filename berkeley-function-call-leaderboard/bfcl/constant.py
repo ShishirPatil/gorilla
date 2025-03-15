@@ -14,6 +14,7 @@ TEST_IDS_TO_GENERATE_PATH = "../test_case_ids_to_generate.json"
 VERSION_PREFIX = "BFCL_v3"
 
 # These are in the PROMPT_PATH
+# Commented out ones are not used in the current version of benchmarking
 TEST_FILE_MAPPING = {
     "exec_simple": f"{VERSION_PREFIX}_exec_simple.json",
     "exec_parallel": f"{VERSION_PREFIX}_exec_parallel.json",
@@ -27,8 +28,9 @@ TEST_FILE_MAPPING = {
     "java": f"{VERSION_PREFIX}_java.json",
     "javascript": f"{VERSION_PREFIX}_javascript.json",
     "rest": f"{VERSION_PREFIX}_rest.json",
-    "sql": f"{VERSION_PREFIX}_sql.json",
-    "chatable": f"{VERSION_PREFIX}_chatable.json",
+    # "sql": f"{VERSION_PREFIX}_sql.json",
+    # "chatable": f"{VERSION_PREFIX}_chatable.json",
+
     # Live Datasets
     "live_simple": f"{VERSION_PREFIX}_live_simple.json",
     "live_multiple": f"{VERSION_PREFIX}_live_multiple.json",
@@ -36,12 +38,13 @@ TEST_FILE_MAPPING = {
     "live_parallel_multiple": f"{VERSION_PREFIX}_live_parallel_multiple.json",
     "live_irrelevance": f"{VERSION_PREFIX}_live_irrelevance.json",
     "live_relevance": f"{VERSION_PREFIX}_live_relevance.json",
+
     # Multi-turn Datasets
     "multi_turn_base": f"{VERSION_PREFIX}_multi_turn_base.json",
     "multi_turn_miss_func": f"{VERSION_PREFIX}_multi_turn_miss_func.json",
     "multi_turn_miss_param": f"{VERSION_PREFIX}_multi_turn_miss_param.json",
     "multi_turn_long_context": f"{VERSION_PREFIX}_multi_turn_long_context.json",
-    "multi_turn_composite": f"{VERSION_PREFIX}_multi_turn_composite.json",
+    # "multi_turn_composite": f"{VERSION_PREFIX}_multi_turn_composite.json",
 }
 
 TEST_COLLECTION_MAPPING = {
