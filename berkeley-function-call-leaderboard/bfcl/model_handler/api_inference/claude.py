@@ -73,7 +73,7 @@ class ClaudeHandler(BaseHandler):
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
-        api_response = self.client.beta.prompt_caching.messages.create(**kwargs)
+        api_response = self.client.messages.create(**kwargs)
         end_time = time.time()
 
         return api_response, end_time - start_time
@@ -122,9 +122,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        inference_data["caching_enabled"] = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+        inference_data["caching_enabled"] = is_multi_turn(test_category)
 
         return inference_data
 
@@ -281,9 +279,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        caching_enabled: bool = (
-            is_multi_turn(test_category) and "claude-3-sonnet" not in self.model_name
-        )
+        caching_enabled: bool = is_multi_turn(test_category)
 
         return {
             "message": [],
