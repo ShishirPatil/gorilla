@@ -2,6 +2,12 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 16, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
+  - `rest`
+  - `exec_simple`
+  - `exec_parallel`
+  - `exec_multiple`
+  - `exec_parallel_multiple`
 - [Mar 13, 2025] [#941](https://github.com/ShishirPatil/gorilla/pull/941): Add new model `Team-ACE/ToolACE-2-8B` to the leaderboard.
 - [Mar 2, 2025] [#923](https://github.com/ShishirPatil/gorilla/pull/923): Add the following new models to the leaderboard:
   - `claude-3-7-sonnet-20250219`
