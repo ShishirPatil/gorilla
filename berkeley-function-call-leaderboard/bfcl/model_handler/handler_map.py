@@ -18,6 +18,8 @@ from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
+from bfcl.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
+from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
 from bfcl.model_handler.local_inference.glaive import GlaiveHandler
 from bfcl.model_handler.local_inference.glm import GLMHandler
@@ -32,8 +34,8 @@ from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
+from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
-from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
@@ -58,6 +60,8 @@ api_inference_handler_map = {
     "gpt-3.5-turbo-0125-FC": OpenAIHandler,
     "claude-3-opus-20240229": ClaudeHandler,
     "claude-3-opus-20240229-FC": ClaudeHandler,
+    "claude-3-7-sonnet-20250219": ClaudeHandler,
+    "claude-3-7-sonnet-20250219-FC": ClaudeHandler,
     "claude-3-5-sonnet-20241022": ClaudeHandler,
     "claude-3-5-sonnet-20241022-FC": ClaudeHandler,
     "claude-3-5-haiku-20241022": ClaudeHandler,
@@ -109,6 +113,7 @@ api_inference_handler_map = {
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "deepseek-ai/DeepSeek-R1": DeepseekReasoningHandler,  # This is the local version of DeepSeek-R1
     "google/gemma-2-2b-it": GemmaHandler,
     "google/gemma-2-9b-it": GemmaHandler,
     "google/gemma-2-27b-it": GemmaHandler,
@@ -148,12 +153,19 @@ local_inference_handler_map = {
     "THUDM/glm-4-9b-chat": GLMHandler,
     "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-0.5B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-0.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-1.5B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-3B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-3B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-7B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-14B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-14B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-32B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-32B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-72B-Instruct-FC": QwenFCHandler,
     "Qwen/Qwen2.5-72B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "Team-ACE/ToolACE-2-8B": LlamaHandler,
@@ -177,7 +189,7 @@ local_inference_handler_map = {
     "uiuc-convai/CoALM-8B": LlamaHandler,
     "uiuc-convai/CoALM-70B": LlamaHandler,
     "uiuc-convai/CoALM-405B": LlamaHandler,
-    "BitAgent/BitAgent-8B": LlamaHandler
+    "BitAgent/BitAgent-8B": LlamaHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
