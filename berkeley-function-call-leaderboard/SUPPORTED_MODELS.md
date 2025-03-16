@@ -14,6 +14,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |DeepSeek-V3-FC | Function Calling|
 |claude-3-opus-20240229-FC | Function Calling |
 |claude-3-opus-20240229 | Prompt |
+|claude-3-7-sonnet-20250219-FC | Function Calling |
+|claude-3-7-sonnet-20250219 | Prompt |
 |claude-3-5-sonnet-20241022-FC | Function Calling |
 |claude-3-5-sonnet-20241022 | Prompt |
 |claude-3-5-haiku-20241022-FC | Function Calling |
@@ -70,6 +72,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |snowflake/arctic | Prompt|
 |palmyra-x-004 | Function Calling|
 |BitAgent/GoGoAgent | Prompt|
+|deepseek-ai/DeepSeek-R1 💻| Prompt|
 |google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
 |mistralai/Ministral-8B-Instruct-2410 💻| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
@@ -82,6 +85,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
 |deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
 |Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct 💻| Prompt|
+|Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC 💻| Function Calling|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
@@ -101,6 +105,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |openbmb/MiniCPM3-4B 💻| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
+|Team-ACE/ToolACE-2-8B 💻| Function Calling|
 |watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
 |ZJared/Haha-7B 💻| Prompt|
 |speakleash/Bielik-11B-v2.3-Instruct 💻| Prompt|
