@@ -16,10 +16,11 @@ VERSION_PREFIX = "BFCL_v3"
 # These are in the PROMPT_PATH
 # Commented out ones are not used in the current version of benchmarking
 TEST_FILE_MAPPING = {
-    "exec_simple": f"{VERSION_PREFIX}_exec_simple.json",
-    "exec_parallel": f"{VERSION_PREFIX}_exec_parallel.json",
-    "exec_multiple": f"{VERSION_PREFIX}_exec_multiple.json",
-    "exec_parallel_multiple": f"{VERSION_PREFIX}_exec_parallel_multiple.json",
+    # V1 Non-Live Datasets
+    # "exec_simple": f"{VERSION_PREFIX}_exec_simple.json",
+    # "exec_parallel": f"{VERSION_PREFIX}_exec_parallel.json",
+    # "exec_multiple": f"{VERSION_PREFIX}_exec_multiple.json",
+    # "exec_parallel_multiple": f"{VERSION_PREFIX}_exec_parallel_multiple.json",
     "simple": f"{VERSION_PREFIX}_simple.json",
     "irrelevance": f"{VERSION_PREFIX}_irrelevance.json",
     "parallel": f"{VERSION_PREFIX}_parallel.json",
@@ -27,11 +28,11 @@ TEST_FILE_MAPPING = {
     "parallel_multiple": f"{VERSION_PREFIX}_parallel_multiple.json",
     "java": f"{VERSION_PREFIX}_java.json",
     "javascript": f"{VERSION_PREFIX}_javascript.json",
-    "rest": f"{VERSION_PREFIX}_rest.json",
+    # "rest": f"{VERSION_PREFIX}_rest.json",
     # "sql": f"{VERSION_PREFIX}_sql.json",
     # "chatable": f"{VERSION_PREFIX}_chatable.json",
 
-    # Live Datasets
+    # V2 Live Datasets
     "live_simple": f"{VERSION_PREFIX}_live_simple.json",
     "live_multiple": f"{VERSION_PREFIX}_live_multiple.json",
     "live_parallel": f"{VERSION_PREFIX}_live_parallel.json",
@@ -39,7 +40,7 @@ TEST_FILE_MAPPING = {
     "live_irrelevance": f"{VERSION_PREFIX}_live_irrelevance.json",
     "live_relevance": f"{VERSION_PREFIX}_live_relevance.json",
 
-    # Multi-turn Datasets
+    # V3 Multi-turn Datasets
     "multi_turn_base": f"{VERSION_PREFIX}_multi_turn_base.json",
     "multi_turn_miss_func": f"{VERSION_PREFIX}_multi_turn_miss_func.json",
     "multi_turn_miss_param": f"{VERSION_PREFIX}_multi_turn_miss_param.json",
@@ -49,10 +50,6 @@ TEST_FILE_MAPPING = {
 
 TEST_COLLECTION_MAPPING = {
     "all": [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
         "simple",
         "irrelevance",
         "parallel",
@@ -60,7 +57,6 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple",
         "java",
         "javascript",
-        "rest",
         "live_simple",
         "live_multiple",
         "live_parallel",
@@ -79,10 +75,6 @@ TEST_COLLECTION_MAPPING = {
         "multi_turn_long_context",
     ],
     "single_turn": [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
         "simple",
         "irrelevance",
         "parallel",
@@ -90,7 +82,6 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple",
         "java",
         "javascript",
-        "rest",
         "live_simple",
         "live_multiple",
         "live_parallel",
@@ -107,10 +98,6 @@ TEST_COLLECTION_MAPPING = {
         "live_relevance",
     ],
     "non_live": [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
         "simple",
         "irrelevance",
         "parallel",
@@ -118,54 +105,12 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple",
         "java",
         "javascript",
-        "rest",
-    ],
-    # TODO: Update this mapping
-    "ast": [
-        "simple",
-        "irrelevance",
-        "parallel",
-        "multiple",
-        "parallel_multiple",
-        "java",
-        "javascript",
-        "live_simple",
-        "live_multiple",
-        "live_parallel",
-        "live_parallel_multiple",
-        "live_irrelevance",
-        "live_relevance",
-    ],
-    "executable": [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
-        "rest",
     ],
     "non_python": [
         "java",
         "javascript",
     ],
     "python": [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
-        "simple",
-        "irrelevance",
-        "parallel",
-        "multiple",
-        "parallel_multiple",
-        "rest",
-        "live_simple",
-        "live_multiple",
-        "live_parallel",
-        "live_parallel_multiple",
-        "live_irrelevance",
-        "live_relevance",
-    ],
-    "python_ast": [
         "simple",
         "irrelevance",
         "parallel",

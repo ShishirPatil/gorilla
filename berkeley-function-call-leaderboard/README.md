@@ -9,7 +9,6 @@
     - [Basic Installation](#basic-installation)
     - [Extra Dependencies for Self-Hosted Models](#extra-dependencies-for-self-hosted-models)
     - [Setting up Environment Variables](#setting-up-environment-variables)
-    - [API Keys for Executable Test Categories](#api-keys-for-executable-test-categories)
   - [Running Evaluations](#running-evaluations)
     - [Generating LLM Responses](#generating-llm-responses)
       - [Selecting Models and Test Categories](#selecting-models-and-test-categories)
@@ -19,7 +18,6 @@
         - [For Pre-existing OpenAI-compatible Endpoints](#for-pre-existing-openai-compatible-endpoints)
       - [(Alternate) Script Execution for Generation](#alternate-script-execution-for-generation)
     - [Evaluating Generated Responses](#evaluating-generated-responses)
-      - [(Optional) API Sanity Check](#optional-api-sanity-check)
       - [Output Structure](#output-structure)
       - [(Optional) WandB Evaluation Logging](#optional-wandb-evaluation-logging)
       - [(Alternate) Script Execution for Evaluation](#alternate-script-execution-for-evaluation)
@@ -93,27 +91,6 @@ cp .env.example .env
 
 If you are running any proprietary models, make sure the model API keys are included in your `.env` file. Models like GPT, Claude, Mistral, Gemini, Nova, will require them.
 
-### API Keys for Executable Test Categories
-
-If you want to run executable test categories, you must provide API keys. Add the keys to your `.env` file, so that the placeholder values used in questions/params/answers can be replaced with real data.
-There are 4 API keys to include:
-
-1. RAPID-API Key: <https://rapidapi.com/hub>
-
-   - Yahoo Finance: <https://rapidapi.com/sparior/api/yahoo-finance15>
-   - Real Time Amazon Data : <https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-amazon-data>
-   - Urban Dictionary: <https://rapidapi.com/community/api/urban-dictionary>
-   - Covid 19: <https://rapidapi.com/api-sports/api/covid-193>
-   - Time zone by Location: <https://rapidapi.com/BertoldVdb/api/timezone-by-location>
-
-   All the Rapid APIs we use have free tier usage. You need to **subscribe** to those API providers in order to have the executable test environment setup but it will be _free of charge_!
-
-2. Exchange Rate API: <https://www.exchangerate-api.com>
-3. OMDB API: <http://www.omdbapi.com/apikey.aspx>
-4. Geocode API: <https://geocode.maps.co/>
-
-The evaluation script will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys you provided in the `.env` file.
-
 ---
 
 ## Running Evaluations
@@ -128,7 +105,7 @@ The evaluation script will automatically search for dataset files in the default
 You can provide multiple models or test categories by separating them with commas. For example:
 
 ```bash
-bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category parallel,multiple,exec_simple
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category simple,parallel,multiple,multi_turn
 ```
 
 #### Output and Logging
@@ -198,12 +175,6 @@ If in the previous step you stored the model responses in a custom directory, yo
 
 > Note: For unevaluated test categories, they will be marked as `N/A` in the evaluation result csv files.
 > For summary columns (e.g., `Overall Acc`, `Non_Live Overall Acc`, `Live Overall Acc`, and `Multi Turn Overall Acc`), the score reported will treat all unevaluated categories as 0 during calculation.
-
-> For executable categories, if the API Keys are not provided, the evaluation process will skip those categories and treat them as if they were not evaluated.
-
-#### (Optional) API Sanity Check
-
-If any of your test categories involve executable tests (e.g., category name contains `exec` or `rest`), you can set the `--api-sanity-check` flag (or `-c` for short) to have the evaluation process perform a sanity check on all REST API endpoints involved. If any of them are not behaving as expected, you will be alerted in the console; the evaluation process will continue regardless.
 
 #### Output Structure
 
