@@ -6,13 +6,15 @@ from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 
 from bfcl._apply_function_credential_config import apply_function_credential_config
-from bfcl.constants.test_config import (
+from bfcl.constants.category_mapping import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
+    TEST_FILE_MAPPING,
+)
+from bfcl.constants.eval_config import (
     MULTI_TURN_FUNC_DOC_PATH,
     PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
-    TEST_FILE_MAPPING,
     TEST_IDS_TO_GENERATE_PATH,
 )
 from bfcl.eval_checker.eval_runner_helper import load_file

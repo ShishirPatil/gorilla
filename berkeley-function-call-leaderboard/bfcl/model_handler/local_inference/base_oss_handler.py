@@ -5,7 +5,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
-from bfcl.constants.test_config import (
+from bfcl.constants.eval_config import (
     RESULT_PATH,
     VLLM_PORT,
 )

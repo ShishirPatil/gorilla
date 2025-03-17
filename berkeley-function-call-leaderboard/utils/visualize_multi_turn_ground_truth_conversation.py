@@ -2,7 +2,7 @@ import json
 from copy import deepcopy
 
 from bfcl._llm_response_generation import parse_test_category_argument
-from bfcl.constants.test_config import POSSIBLE_ANSWER_PATH, PROMPT_PATH, UTILS_PATH
+from bfcl.constants.eval_config import POSSIBLE_ANSWER_PATH, PROMPT_PATH, UTILS_PATH
 from bfcl.eval_checker.eval_runner_helper import load_file, write_list_of_dicts_to_file
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     STATELESS_CLASSES,

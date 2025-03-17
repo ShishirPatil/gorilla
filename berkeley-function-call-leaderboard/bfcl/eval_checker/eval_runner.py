@@ -1,15 +1,17 @@
 import argparse
 
-from bfcl.constants.test_config import (
+from bfcl.constants.category_mapping import (
+    TEST_COLLECTION_MAPPING,
+    TEST_FILE_MAPPING,
+    VERSION_PREFIX,
+)
+from bfcl.constants.eval_config import (
     DOTENV_PATH,
     POSSIBLE_ANSWER_PATH,
     PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
     SCORE_PATH,
-    TEST_COLLECTION_MAPPING,
-    TEST_FILE_MAPPING,
-    VERSION_PREFIX,
 )
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
