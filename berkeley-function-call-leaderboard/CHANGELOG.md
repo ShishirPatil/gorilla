@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-lite-001-FC`
+  - `gemini-2.0-flash-lite-001`
+  - `gemini-2.0-flash-thinking-exp-01-21`
 - [Mar 13, 2025] [#941](https://github.com/ShishirPatil/gorilla/pull/941): Add new model `Team-ACE/ToolACE-2-8B` to the leaderboard.
 - [Mar 2, 2025] [#923](https://github.com/ShishirPatil/gorilla/pull/923): Add the following new models to the leaderboard:
   - `claude-3-7-sonnet-20250219`
