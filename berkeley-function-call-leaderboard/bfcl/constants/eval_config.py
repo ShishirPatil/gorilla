@@ -89,7 +89,7 @@ RED_FONT = "\033[91m"
 RESET = "\033[0m"
 
 # Construct the full path for other modules to use
-script_dir = Path(__file__).parent.parent
+script_dir = Path(__file__).parent
 PROJECT_ROOT = (script_dir / PROJECT_ROOT).resolve()
 
 REST_API_GROUND_TRUTH_FILE_PATH = (PROJECT_ROOT / REST_API_GROUND_TRUTH_FILE_PATH).resolve()

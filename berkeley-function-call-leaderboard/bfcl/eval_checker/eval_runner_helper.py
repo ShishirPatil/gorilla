@@ -9,7 +9,6 @@ from bfcl._apply_function_credential_config import apply_function_credential_con
 from bfcl.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
-from bfcl.constants.eval_config import PROMPT_PATH
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
 from bfcl.utils import (
