@@ -10,7 +10,7 @@ from bfcl.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
-from bfcl.eval_checker.model_metadata import *
+from bfcl.constants.model_metadata import *
 from bfcl.utils import (
     extract_test_category,
     find_file_with_suffix,

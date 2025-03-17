@@ -100,8 +100,8 @@ Regardless of mode or model type, you should implement the following methods to 
 1. **Update `model_handler/handler_map.py`:**  
    Add your new model’s handler class and associate it with the model’s name.
 
-2. **Update `model_handler/model_metadata.py`:**  
-   In `bfcl/eval_checker/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
+2. **Update `constants/model_metadata.py`:**  
+   In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
 
    - Model display name (as shown in the leaderboard)
    - URL to the model’s documentation or homepage
