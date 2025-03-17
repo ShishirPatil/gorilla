@@ -3,7 +3,7 @@ import time
 
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl.model_handler.local_inference.constant import VLLM_PORT
+from bfcl.constants.eval_config import VLLM_PORT
 from openai import OpenAI
 from overrides import override
 

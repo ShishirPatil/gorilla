@@ -1,18 +1,3 @@
-from pathlib import Path
-
-REAL_TIME_MATCH_ALLOWED_DIFFERENCE = 0.2
-
-# These two files are for the API status sanity check
-REST_API_GROUND_TRUTH_FILE_PATH = (
-    "./executable_eval/data/api_status_check_ground_truth_REST.json"
-)
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
-    "./executable_eval/data/api_status_check_ground_truth_executable.json"
-)
-
-# This is the ground truth file for the `rest` test category
-REST_EVAL_GROUND_TRUTH_PATH = "./executable_eval/data/rest-eval-response_v5.jsonl"
-
 COLUMNS_NON_LIVE = [
     "Rank",
     "Model",
@@ -34,7 +19,6 @@ COLUMNS_NON_LIVE = [
     "Parallel Multiple Exec",
     "Irrelevance Detection",
 ]
-
 
 COLUMNS_LIVE = [
     "Rank",
@@ -95,17 +79,3 @@ COLUMNS_OVERALL = [
     "Organization",
     "License",
 ]
-
-
-# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
-# Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
-V100_x8_PRICE_PER_HOUR = 22.032
-
-RED_FONT = "\033[91m"
-RESET = "\033[0m"
-
-# Construct the full path for other modules to use
-script_dir = Path(__file__).parent
-REST_API_GROUND_TRUTH_FILE_PATH = (script_dir / REST_API_GROUND_TRUTH_FILE_PATH).resolve()
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (script_dir / EXECTUABLE_API_GROUND_TRUTH_FILE_PATH).resolve()
-REST_EVAL_GROUND_TRUTH_PATH = (script_dir / REST_EVAL_GROUND_TRUTH_PATH).resolve()

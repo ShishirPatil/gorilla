@@ -6,7 +6,7 @@ from typing import Any
 
 import cohere
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
