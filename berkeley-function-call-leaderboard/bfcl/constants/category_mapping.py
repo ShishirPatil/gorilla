@@ -1,19 +1,7 @@
-from pathlib import Path
-
-# NOTE: These paths are relative to the `bfcl` directory where this script is located.
-RESULT_PATH = "../result/"
-PROMPT_PATH = "../data/"
-MULTI_TURN_FUNC_DOC_PATH = "../data/multi_turn_func_doc/"
-POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
-SCORE_PATH = "../score/"
-DOTENV_PATH = "../.env"
-UTILS_PATH = "../utils/"
-PROJECT_ROOT = "../"
-TEST_IDS_TO_GENERATE_PATH = "../test_case_ids_to_generate.json"
-
 VERSION_PREFIX = "BFCL_v3"
 
 # These are in the PROMPT_PATH
+# Commented out ones are not used in the current version of benchmarking
 TEST_FILE_MAPPING = {
     "exec_simple": f"{VERSION_PREFIX}_exec_simple.json",
     "exec_parallel": f"{VERSION_PREFIX}_exec_parallel.json",
@@ -27,8 +15,9 @@ TEST_FILE_MAPPING = {
     "java": f"{VERSION_PREFIX}_java.json",
     "javascript": f"{VERSION_PREFIX}_javascript.json",
     "rest": f"{VERSION_PREFIX}_rest.json",
-    "sql": f"{VERSION_PREFIX}_sql.json",
-    "chatable": f"{VERSION_PREFIX}_chatable.json",
+    # "sql": f"{VERSION_PREFIX}_sql.json",
+    # "chatable": f"{VERSION_PREFIX}_chatable.json",
+
     # Live Datasets
     "live_simple": f"{VERSION_PREFIX}_live_simple.json",
     "live_multiple": f"{VERSION_PREFIX}_live_multiple.json",
@@ -36,12 +25,13 @@ TEST_FILE_MAPPING = {
     "live_parallel_multiple": f"{VERSION_PREFIX}_live_parallel_multiple.json",
     "live_irrelevance": f"{VERSION_PREFIX}_live_irrelevance.json",
     "live_relevance": f"{VERSION_PREFIX}_live_relevance.json",
+
     # Multi-turn Datasets
     "multi_turn_base": f"{VERSION_PREFIX}_multi_turn_base.json",
     "multi_turn_miss_func": f"{VERSION_PREFIX}_multi_turn_miss_func.json",
     "multi_turn_miss_param": f"{VERSION_PREFIX}_multi_turn_miss_param.json",
     "multi_turn_long_context": f"{VERSION_PREFIX}_multi_turn_long_context.json",
-    "multi_turn_composite": f"{VERSION_PREFIX}_multi_turn_composite.json",
+    # "multi_turn_composite": f"{VERSION_PREFIX}_multi_turn_composite.json",
 }
 
 TEST_COLLECTION_MAPPING = {
@@ -187,19 +177,3 @@ MULTI_TURN_FUNC_DOC_FILE_MAPPING = {
     "TravelAPI": "travel_booking.json",
     "VehicleControlAPI": "vehicle_control.json",
 }
-
-
-# Construct the full path to use by other scripts
-script_dir = Path(__file__).parent
-RESULT_PATH = (script_dir / RESULT_PATH).resolve()
-PROMPT_PATH = (script_dir / PROMPT_PATH).resolve()
-MULTI_TURN_FUNC_DOC_PATH = (script_dir / MULTI_TURN_FUNC_DOC_PATH).resolve()
-POSSIBLE_ANSWER_PATH = (script_dir / POSSIBLE_ANSWER_PATH).resolve()
-SCORE_PATH = (script_dir / SCORE_PATH).resolve()
-DOTENV_PATH = (script_dir / DOTENV_PATH).resolve()
-UTILS_PATH = (script_dir / UTILS_PATH).resolve()
-PROJECT_ROOT = (script_dir / PROJECT_ROOT).resolve()
-TEST_IDS_TO_GENERATE_PATH = (script_dir / TEST_IDS_TO_GENERATE_PATH).resolve()
-
-RESULT_PATH.mkdir(parents=True, exist_ok=True)
-SCORE_PATH.mkdir(parents=True, exist_ok=True)
