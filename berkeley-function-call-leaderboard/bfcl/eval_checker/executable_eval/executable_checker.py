@@ -3,7 +3,7 @@ import time
 from functools import lru_cache
 
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
-from bfcl.eval_checker.constant import (
+from bfcl.constants.eval_config import (
     REAL_TIME_MATCH_ALLOWED_DIFFERENCE,
     REST_EVAL_GROUND_TRUTH_PATH,
 )

@@ -1,5 +1,5 @@
-from bfcl.model_handler.constant import (
-    UNDERSCORE_TO_DOT,
+from bfcl.constants.eval_config import UNDERSCORE_TO_DOT
+from bfcl.constants.type_mappings import (
     JAVA_TYPE_CONVERSION,
     JS_TYPE_CONVERSION,
 )
