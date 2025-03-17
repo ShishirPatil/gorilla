@@ -34,18 +34,13 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |o1-2024-12-17 | Prompt|
 |o3-mini-2025-01-31-FC | Function Calling|
 |o3-mini-2025-01-31 | Prompt|
-|gemini-1.0-pro-002-FC | Function Calling|
-|gemini-1.0-pro-002 | Prompt|
-|gemini-1.5-pro-{001,002}-FC | Function Calling|
-|gemini-1.5-pro-{001,002} | Prompt|
-|gemini-1.5-flash-{001,002}-FC | Function Calling|
-|gemini-1.5-flash-{001,002} | Prompt|
+|gemini-2.0-flash-thinking-exp-01-21 | Prompt|
 |gemini-2.0-pro-exp-02-05-FC | Function Calling|
 |gemini-2.0-pro-exp-02-05 | Prompt|
 |gemini-2.0-flash-001-FC | Function Calling|
 |gemini-2.0-flash-001 | Prompt|
-|gemini-2.0-flash-lite-preview-02-05-FC | Function Calling|
-|gemini-2.0-flash-lite-preview-02-05 | Prompt|
+|gemini-2.0-flash-lite-001-FC | Function Calling|
+|gemini-2.0-flash-lite-001 | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|
