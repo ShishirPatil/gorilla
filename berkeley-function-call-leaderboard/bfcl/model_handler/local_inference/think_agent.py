@@ -117,21 +117,22 @@ class ThinkAgentHandler(OSSHandler):
         # We first format the function signature and then add the messages
         tools = self._convert_functions_format(function)
 
-        formatted_prompt = f"""<|begin_of_text|><|begin_of_text|><|begin_of_text|><|start_header_id|>system<|end_header_id|>
+        formatted_prompt = f"""<|start_header_id|>system<|end_header_id|>
 Cutting Knowledge Date: December 2023
 Today Date: 07 Dec 2024
-
-<|eot_id|><|start_header_id|>user<|end_header_id|>
-
+<|eot_id|>
+"""
+        if tools:
+            formatted_prompt += f"""<|start_header_id|>user<|end_header_id|>
 Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.
-
-Respond in the format {{"name": function name, "parameters": dictionary of argument name and its value}}.Do not use variables.
+Respond in the format {{"name": function name, "parameters": dictionary of argument name and its value}}. Do not use variables.
 
 {tools}
-"""
+<|eot_id|>"""
         
         for message in messages:
-            formatted_prompt += f"{message['content']}<|eot_id|>\n"
+            formatted_prompt += f"<|start_header_id|>{message['role']}<|end_header_id|>\n"
+            formatted_prompt += f"{message['content'].strip()}<|eot_id|>\n"
 
         formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>\n"
         return formatted_prompt
