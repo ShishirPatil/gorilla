@@ -1,6 +1,6 @@
 import argparse
 
-from bfcl.constant import (
+from bfcl.constants.test_config import (
     DOTENV_PATH,
     POSSIBLE_ANSWER_PATH,
     PROJECT_ROOT,

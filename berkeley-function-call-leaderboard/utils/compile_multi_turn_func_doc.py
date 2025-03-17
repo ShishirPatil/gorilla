@@ -3,7 +3,7 @@ import inspect
 import json
 
 from _compile_helper import function_to_json
-from bfcl.constant import MULTI_TURN_FUNC_DOC_PATH
+from bfcl.constants.test_config import MULTI_TURN_FUNC_DOC_PATH
 
 CLASS_FILE_PATH_MAPPING = {
     "GorillaFileSystem": "bfcl.eval_checker.multi_turn_eval.func_source_code.gorilla_file_system",

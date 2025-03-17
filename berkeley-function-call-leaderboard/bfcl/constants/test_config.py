@@ -193,7 +193,7 @@ MULTI_TURN_FUNC_DOC_FILE_MAPPING = {
 
 
 # Construct the full path to use by other scripts
-script_dir = Path(__file__).parent
+script_dir = Path(__file__).parent.parent
 RESULT_PATH = (script_dir / RESULT_PATH).resolve()
 PROMPT_PATH = (script_dir / PROMPT_PATH).resolve()
 MULTI_TURN_FUNC_DOC_PATH = (script_dir / MULTI_TURN_FUNC_DOC_PATH).resolve()
@@ -206,3 +206,5 @@ TEST_IDS_TO_GENERATE_PATH = (script_dir / TEST_IDS_TO_GENERATE_PATH).resolve()
 
 RESULT_PATH.mkdir(parents=True, exist_ok=True)
 SCORE_PATH.mkdir(parents=True, exist_ok=True)
+
+VLLM_PORT = 1053
