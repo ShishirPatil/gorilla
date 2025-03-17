@@ -100,6 +100,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |openbmb/MiniCPM3-4B 💻| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
+|Team-ACE/ToolACE-2-8B 💻| Function Calling|
 |watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
 |ZJared/Haha-7B 💻| Prompt|
 |speakleash/Bielik-11B-v2.3-Instruct 💻| Prompt|

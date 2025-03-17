@@ -5,12 +5,12 @@ from typing import List
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
-from bfcl.constant import (
+from bfcl.constants.category_mapping import TEST_COLLECTION_MAPPING
+from bfcl.constants.eval_config import (
     DOTENV_PATH,
     PROJECT_ROOT,
     RESULT_PATH,
     SCORE_PATH,
-    TEST_COLLECTION_MAPPING,
 )
 from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
