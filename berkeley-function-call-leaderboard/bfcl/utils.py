@@ -4,12 +4,12 @@ import re
 from pathlib import Path
 from typing import Union
 
-from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
+from bfcl.constants.category_mapping import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
 
 
 def extract_test_category(input_string: Union[str, Path]) -> str:
     input_string = str(input_string)
-    pattern = rf".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.json"
+    pattern = rf".*{VERSION_PREFIX}_(\w+?)(?:_unused)?(?:_score|_result)?\.json"
     match = re.search(pattern, input_string)
 
     # Check if there's a match and extract the captured group

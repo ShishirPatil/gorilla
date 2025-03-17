@@ -2,6 +2,23 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-lite-001-FC`
+  - `gemini-2.0-flash-lite-001`
+  - `gemini-2.0-flash-thinking-exp-01-21`
+- [Mar 13, 2025] [#941](https://github.com/ShishirPatil/gorilla/pull/941): Add new model `Team-ACE/ToolACE-2-8B` to the leaderboard.
+- [Mar 2, 2025] [#923](https://github.com/ShishirPatil/gorilla/pull/923): Add the following new models to the leaderboard:
+  - `claude-3-7-sonnet-20250219`
+  - `claude-3-7-sonnet-20250219-FC`
+- [Feb 28, 2025] [#925](https://github.com/ShishirPatil/gorilla/pull/925): Add support for the `Qwen2.5` models in Function Calling mode:
+  - `Qwen/Qwen2.5-0.5B-Instruct-FC`
+  - `Qwen/Qwen2.5-1.5B-Instruct-FC`
+  - `Qwen/Qwen2.5-3B-Instruct-FC`
+  - `Qwen/Qwen2.5-7B-Instruct-FC`
+  - `Qwen/Qwen2.5-14B-Instruct-FC`
+  - `Qwen/Qwen2.5-32B-Instruct-FC`
+  - `Qwen/Qwen2.5-72B-Instruct-FC`
+- [Feb 28, 2025] [#926](https://github.com/ShishirPatil/gorilla/pull/926): Add support for local inference for `deepseek-ai/DeepSeek-R1`
 - [Feb 27, 2025] [#922](https://github.com/ShishirPatil/gorilla/pull/922): Add the following new models to the leaderboard:
   - `gpt-4.5-preview-2025-02-27`
   - `gpt-4.5-preview-2025-02-27-FC`
