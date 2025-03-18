@@ -1,6 +1,8 @@
 import json
+
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
+
 
 class ThinkAgentHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -13,7 +15,7 @@ class ThinkAgentHandler(OSSHandler):
                 "description": functions["description"],
                 "parameters": {
                     k: v for k, v in functions["parameters"].get("properties", {}).items()
-                }
+                },
             }
         elif isinstance(functions, list):
             return [self._convert_functions_format(f) for f in functions]
@@ -21,9 +23,9 @@ class ThinkAgentHandler(OSSHandler):
             return functions
 
     def _extract_json_from_text(self, text):
-    # Split the text at the closing </think> tag and take the part after it
-        split_text = text.split('</think>', 1)
-        
+        # Split the text at the closing </think> tag and take the part after it
+        split_text = text.split("</think>", 1)
+
         # If the split was successful (there was a </think> tag), process the second part
         if len(split_text) > 1:
             # Strip whitespace from the remaining text to isolate the JSON
@@ -31,7 +33,7 @@ class ThinkAgentHandler(OSSHandler):
         else:
             # Return empty string if no </think> tag found (or handle differently if needed)
             json_str = "[]"
-        
+
         return json_str
 
     @override
@@ -100,12 +102,12 @@ Respond in the format {{"name": function name, "parameters": dictionary of argum
 
         formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>\n"
         return formatted_prompt
-    
+
     @override
     def decode_ast(self, result, language="Python"):
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
-        result = result.replace("'", '"') # replace single quotes with double quotes
+        result = result.replace("'", '"')  # replace single quotes with double quotes
         result = self._extract_json_from_text(result)
         result = json.loads(result)
 
@@ -116,12 +118,12 @@ Respond in the format {{"name": function name, "parameters": dictionary of argum
             func_calls.append({function_name: arguments})
 
         return func_calls
-    
+
     @override
     def decode_execute(self, result):
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
-        result = result.replace("'", '"') # replace single quotes with double quotes
+        result = result.replace("'", '"')  # replace single quotes with double quotes
         result = self._extract_json_from_text(result)
         result = json.loads(result)
 
