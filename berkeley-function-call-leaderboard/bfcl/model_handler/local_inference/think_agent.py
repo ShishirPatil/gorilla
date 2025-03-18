@@ -122,7 +122,6 @@ class ThinkAgentHandler(OSSHandler):
         formatted_prompt = f"""<|start_header_id|>system<|end_header_id|>
 Cutting Knowledge Date: December 2023
 Today Date: 07 Dec 2024
-<|eot_id|>
 """
         if tools:
             formatted_prompt += f"""<|start_header_id|>user<|end_header_id|>
