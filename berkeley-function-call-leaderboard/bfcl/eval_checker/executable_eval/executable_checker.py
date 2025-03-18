@@ -211,7 +211,7 @@ def executable_checker_simple(
 
     try:
         exec(
-            "from data.executable_file.python_function import *" + "\nresult=" + function_call,
+            "from bfcl.eval_checker.executable_eval.executable_python_function import *" + "\nresult=" + function_call,
             exec_dict,
         )
         exec_output = exec_dict["result"]
