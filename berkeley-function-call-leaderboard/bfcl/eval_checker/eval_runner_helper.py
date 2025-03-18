@@ -123,7 +123,7 @@ def get_executable_expected_output(prompt_file_path):
         ground_truth = item["ground_truth"]
         for i in range(len(ground_truth)):
             exec(
-                "from bfcl.eval_checker.executable_eval.executable_python_function import *"
+                "from bfcl.eval_checker.executable_eval.func_source_code.executable_python_function import *"
                 + "\nresult="
                 + ground_truth[i],
                 exec_dict,
