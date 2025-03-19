@@ -39,6 +39,7 @@ class ThinkAgentHandler(OSSHandler):
 
     @override
     def _format_prompt(self, messages, function):
+        # Think agent is doing the tools_in_user_message approach
         """
         {{- bos_token }}
         {%- if custom_tools is defined %}
@@ -120,21 +121,35 @@ class ThinkAgentHandler(OSSHandler):
         # We first format the function signature and then add the messages
         tools = self._convert_functions_format(function)
 
-        formatted_prompt = f"""<|begin_of_text|><|begin_of_text|><|begin_of_text|><|start_header_id|>system<|end_header_id|>
-Cutting Knowledge Date: December 2023
-Today Date: 07 Dec 2024
+        formatted_prompt = "<|begin_of_text|>"
 
-<|eot_id|><|start_header_id|>user<|end_header_id|>
-Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.
-Respond in the format {{"name": function name, "parameters": dictionary of argument name and its value}}.Do not use variables.
+        system_message = ""
+        remaining_messages = messages
+        if messages[0]["role"] == "system":
+            system_message = messages[0]["content"].strip()
+            remaining_messages = messages[1:]
 
-{tools}
-"""
+        formatted_prompt += "<|start_header_id|>system<|end_header_id|>"
+        formatted_prompt += "Cutting Knowledge Date: December 2023"
+        formatted_prompt += "Today Date: 07 Dec 2024"
+        formatted_prompt += system_message + "<|eot_id|>"
 
-        for message in messages:
-            formatted_prompt += f"{message['content']}<|eot_id|>\n"
+        if len(remaining_messages) > 0:
+            formatted_prompt += "<|start_header_id|>user<|end_header_id|>"
+            formatted_prompt += "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt."
+            formatted_prompt += 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.'
+            formatted_prompt += "Do not use variables."
+            for tool in tools:
+                formatted_prompt += json.dumps(tool, indent=4)
+            formatted_prompt += remaining_messages[0]["content"].strip()
+            formatted_prompt += "<|eot_id|>"
+            remaining_messages = remaining_messages[1:]
 
-        formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>\n"
+        for message in remaining_messages:
+            formatted_prompt += f"<|start_header_id|>{message['role']}<|end_header_id|>{message['content'].strip()}<|eot_id|>"
+
+        formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>"
+
         return formatted_prompt
 
     @override
