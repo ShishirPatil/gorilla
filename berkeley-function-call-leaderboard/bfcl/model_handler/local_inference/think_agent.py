@@ -1,6 +1,7 @@
 import json
 
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
+from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
@@ -40,48 +41,81 @@ class ThinkAgentHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         """
         {{- bos_token }}
-{%- if custom_tools is defined %}
-    {%- set tools = custom_tools %}
-{%- endif %}
-{%- if not tools_in_user_message is defined %}
-    {%- set tools_in_user_message = true %}
-{%- endif %}
-{%- if not date_string is defined %}
-    {%- if strftime_now is defined %}
-        {%- set date_string = strftime_now("%d %b %Y") %}
-    {%- else %}
-        {%- set date_string = "07 Dec 2024" %}
-    {%- endif %}
-{%- endif %}
-{%- if not tools is defined %}
-    {%- set tools = none %}
-{%- endif %}
-{#- Extract system message #}
-{%- if messages[0]['role'] == 'system' %}
-    {%- set system_message = messages[0]['content']|trim %}
-    {%- set messages = messages[1:] %}
-{%- else %}
-    {%- set system_message = "" %}
-{%- endif %}
-{#- System message #}
-{{- system_message + "<|eot_id|>" }}
-
-{%- for message in messages %}
-    {%- if not (message.role == 'tool' or 'tool_calls' in message) %}
-        {{- message['content'] | trim + "<|eot_id|>" }}
-    {%- elif 'tool_calls' in message %}
-        {%- if not message.tool_calls|length == 1 %}
-            {{- raise_exception("This model only supports single tool-calls at once!") }}
+        {%- if custom_tools is defined %}
+            {%- set tools = custom_tools %}
         {%- endif %}
-        {%- set tool_call = message.tool_calls[0].function %}
-        {{- '{"name": "' + tool_call.name + '", "parameters": ' + tool_call.arguments | tojson + "}" + "<|eot_id|>" }}
-    {%- endif %}
-{%- endfor %}
-
-{#- Ensure assistant can generate a response when needed -#}
-{%- if add_generation_prompt %}
-    {{- "<|start_header_id|>assistant<|end_header_id|><|eot_id|>" }}
-{%- endif %}
+        {%- if not tools_in_user_message is defined %}
+            {%- set tools_in_user_message = true %}
+        {%- endif %}
+        {%- if not date_string is defined %}
+            {%- if strftime_now is defined %}
+                {%- set date_string = strftime_now("%d %b %Y") %}
+            {%- else %}
+                {%- set date_string = "07 Dec 2024" %}
+            {%- endif %}
+        {%- endif %}
+        {%- if not tools is defined %}
+            {%- set tools = none %}
+        {%- endif %}
+        {#- Extract system message #}
+        {%- if messages[0]['role'] == 'system' %}
+            {%- set system_message = messages[0]['content']|trim %}
+            {%- set messages = messages[1:] %}
+        {%- else %}
+            {%- set system_message = "" %}
+        {%- endif %}
+        {#- System message #}
+        {{- "<|start_header_id|>system<|end_header_id|>" }}
+        {{- "Cutting Knowledge Date: December 2023" }}
+        {{- "Today Date: " + date_string + "" }}
+        {%- if tools is not none and not tools_in_user_message %}
+            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.
+        " }}
+            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.' }}
+            {{- "Do not use variables." }}
+            {%- for t in tools %}
+                {{- {"name": t.name, "description": t.description, "parameters": t.parameters.properties} | tojson(indent=4) }}
+                {{- "" }}
+            {%- endfor %}
+        {%- endif %}
+        {{- system_message }}
+        {{- "<|eot_id|>" }}
+        {%- if tools_in_user_message and not tools is none %}
+            {%- if messages | length != 0 %}
+                {%- set first_user_message = messages[0]['content']|trim %}
+                {%- set messages = messages[1:] %}
+            {%- else %}
+                {{- raise_exception("Cannot put tools in the first user message when there's no first user message!") }}
+        {%- endif %}
+            {{- '<|start_header_id|>user<|end_header_id|>' -}}
+            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt." }}
+            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.' }}
+            {{- "Do not use variables." }}
+            {%- for t in tools %}
+                {{- {"name": t.name, "description": t.description, "parameters": t.parameters.properties} | tojson(indent=4) }}
+                {{- "" }}
+            {%- endfor %}
+            {{- first_user_message + "<|eot_id|>"}}
+        {%- endif %}
+        {%- for message in messages %}
+            {%- if not (message.role == 'tool' or 'tool_calls' in message) %}
+                {{- '<|start_header_id|>' + message['role'] + '<|end_header_id|>' + message['content'] | trim + '<|eot_id|>' }}
+            {%- elif 'tool_calls' in message %}
+                {%- if not message.tool_calls|length == 1 %}
+                    {{- raise_exception("This model only supports single tool-calls at once!") }}
+                {%- endif %}
+                {%- set tool_call = message.tool_calls[0].function %}
+                {{- '<|start_header_id|>assistant<|end_header_id|>' -}}
+                {{- '{"name": "' + tool_call.name + '", ' }}
+                {{- '"parameters": ' }}
+                {{- tool_call.arguments | tojson }}
+                {{- "}" }}
+                {{- "<|eot_id|>" }}
+            {%- endif %}
+        {%- endfor %}
+        {%- if add_generation_prompt %}
+            {{- '<|start_header_id|>assistant<|end_header_id|>' }}
+        {%- endif %}
         """
         # We first format the function signature and then add the messages
         tools = self._convert_functions_format(function)
@@ -96,7 +130,7 @@ Respond in the format {{"name": function name, "parameters": dictionary of argum
 
 {tools}
 """
-        
+
         for message in messages:
             formatted_prompt += f"{message['content']}<|eot_id|>\n"
 
@@ -141,3 +175,14 @@ Respond in the format {{"name": function name, "parameters": dictionary of argum
                     f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
                 )
         return execution_list
+
+    @override
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        # Think agent doesn't need the default format instructions
+
+        return {"message": [], "function": functions}
