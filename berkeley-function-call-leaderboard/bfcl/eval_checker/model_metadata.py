@@ -452,30 +452,30 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek",
         "DeepSeek License",
     ],
-    "google/gemma-7b-it": [
-        "Gemma-7b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-1b-it": [
+        "Gemma-3-1b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-2b-it": [
-        "Gemma-2-2b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-4b-it": [
+        "Gemma-3-4b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-9b-it": [
-        "Gemma-2-9b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-12b-it": [
+        "Gemma-3-12b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-27b-it": [
-        "Gemma-2-27b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-27b-it": [
+        "Gemma-3-27b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
-    ],
+    ],  
     "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
