@@ -190,14 +190,3 @@ class ThinkAgentHandler(OSSHandler):
                     f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
                 )
         return execution_list
-
-    @override
-    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
-        functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
-        # Think agent doesn't need the default format instructions
-
-        return {"message": [], "function": functions}
