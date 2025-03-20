@@ -1080,6 +1080,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
 OSS_LATENCY = {}
 
 # The following models will also have no cost, even though they are queries through the API.
+# All OSS models will have no cost shown on the leaderboard by default, so they don't need to be included here.
 NO_COST_API_BASED_MODELS = [
     "DeepSeek-R1",
     "DeepSeek-V3-FC",

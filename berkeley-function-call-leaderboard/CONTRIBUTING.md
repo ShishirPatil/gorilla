@@ -97,10 +97,10 @@ Regardless of mode or model type, you should implement the following methods to 
 
 ## Updating the Handler Map and Model Metadata
 
-1. **Update `model_handler/handler_map.py`:**  
+1. **Update `bfcl/model_handler/handler_map.py`:**  
    Add your new model’s handler class and associate it with the model’s name.
 
-2. **Update `constants/model_metadata.py`:**  
+2. **Update `bfcl/constants/model_metadata.py`:**  
    In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
 
    - Model display name (as shown in the leaderboard)
@@ -115,7 +115,7 @@ Regardless of mode or model type, you should implement the following methods to 
 
    If the model is API-based but free, add it to the `NO_COST_API_BASED_MODELS` list.
 
-3. **Update `constants/eval_config.py`:**  
+3. **Update `bfcl/constants/eval_config.py`:**  
    If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
 
 4. **Update `SUPPORTED_MODELS.md`:**  
