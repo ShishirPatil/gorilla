@@ -1,5 +1,3 @@
-from bfcl.model_handler.handler_map import local_inference_handler_map
-
 # Items in the dictionary are in the format of:
 # {model_name: [
 #     model_display_name_in_leaderboard,
@@ -1081,10 +1079,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
 # This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {}
 
-# All OSS models will have no cost shown on the leaderboard.
-NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
-NO_COST_MODELS += [
+# All OSS models will have no cost shown on the leaderboard by default, so they don't need to be included here.
+NO_COST_API_BASED_MODELS = [
     "DeepSeek-R1",
     "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",
