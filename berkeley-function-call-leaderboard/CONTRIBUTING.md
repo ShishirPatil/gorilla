@@ -100,8 +100,8 @@ Regardless of mode or model type, you should implement the following methods to 
 1. **Update `model_handler/handler_map.py`:**  
    Add your new model’s handler class and associate it with the model’s name.
 
-2. **Update `model_handler/model_metadata.py`:**  
-   In `bfcl/eval_checker/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
+2. **Update `constants/model_metadata.py`:**  
+   In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
 
    - Model display name (as shown in the leaderboard)
    - URL to the model’s documentation or homepage
@@ -113,9 +113,9 @@ Regardless of mode or model type, you should implement the following methods to 
    - `INPUT_PRICE_PER_MILLION_TOKEN`
    - `OUTPUT_PRICE_PER_MILLION_TOKEN`
 
-   If the model is API-based but free, add it to the `NO_COST_MODELS` list.
+   If the model is API-based but free, add it to the `NO_COST_API_BASED_MODELS` list.
 
-3. **Update `model_handler/constant.py`:**  
+3. **Update `constants/eval_config.py`:**  
    If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
 
 4. **Update `SUPPORTED_MODELS.md`:**  
