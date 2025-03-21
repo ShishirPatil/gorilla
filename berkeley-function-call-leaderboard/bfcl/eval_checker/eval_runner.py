@@ -563,9 +563,10 @@ def evaluate_task(
 
     record_cost_latency(state["leaderboard_table"], model_name, model_result)
 
-    # Find the corresponding test file.
+    # Find the corresponding test and possibile answer files.
     prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
     prompt = load_file(prompt_file, sort_by_id=True)
+    possible_answer_file = find_file_with_suffix(POSSIBLE_ANSWER_PATH, test_category)
 
     if is_relevance_or_irrelevance(test_category):
         accuracy, total_count = relevance_file_runner(
@@ -603,7 +604,7 @@ def evaluate_task(
                 f"---- Getting real-time execution result from ground truth"
                 f" for {test_category} ----"
             )
-            get_executable_expected_output(prompt_file)
+            get_executable_expected_output(prompt_file, possible_answer_file)
             print(
                 f"---- Ground truth real-time execution result obtained for"
                 f" {test_category} 🌟 ----"

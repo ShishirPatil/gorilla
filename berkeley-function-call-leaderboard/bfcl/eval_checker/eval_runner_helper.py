@@ -114,23 +114,29 @@ def display_api_status_error(rest_error, executable_error, display_success=False
     print(f"{RED_FONT}{'-' * 100}\n{RESET}")
 
 
-def get_executable_expected_output(prompt_file_path):
+def get_executable_expected_output(prompt_file_path, possible_answer_file_path):
     # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
     prompt_content = load_file(prompt_file_path)
+    possible_answers = load_file(possible_answer_file_path)
     exec_dict = {}
-    for item in tqdm(prompt_content, desc="Getting Executable Expected Output"):
+    
+    for i in tqdm(range(len(prompt_content)), desc="Getting Executable Expected Output"):
         execution_result = []
-        ground_truth = item["ground_truth"]
-        for i in range(len(ground_truth)):
+
+        # Fetch ground truth from possible_answer_file_path.
+        ground_truth = possible_answers[i]["ground_truth"]  
+        
+        for j in range(len(ground_truth)):
             exec(
                 "from bfcl.eval_checker.executable_eval.data.executable_python_function import *"
                 + "\nresult="
-                + ground_truth[i],
+                + ground_truth[j],
                 exec_dict,
             )
             execution_result.append(exec_dict["result"])
-        item["execution_result"] = execution_result
-
+        
+        prompt_content[i]["execution_result"] = execution_result
+    
     write_list_of_dicts_to_file(prompt_file_path, prompt_content)
 
 
