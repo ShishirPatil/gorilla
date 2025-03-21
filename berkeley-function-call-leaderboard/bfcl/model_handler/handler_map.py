@@ -31,6 +31,7 @@ from bfcl.model_handler.local_inference.llama_fc import LlamaFCHandler
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
+from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
@@ -183,6 +184,7 @@ local_inference_handler_map = {
     "uiuc-convai/CoALM-70B": LlamaHandler,
     "uiuc-convai/CoALM-405B": LlamaHandler,
     "BitAgent/BitAgent-8B": LlamaHandler,
+    "ThinkAgents/ThinkAgent-1B": ThinkAgentHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
