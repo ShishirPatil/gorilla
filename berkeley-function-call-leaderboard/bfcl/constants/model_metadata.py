@@ -1,5 +1,3 @@
-from bfcl.model_handler.handler_map import local_inference_handler_map
-
 # Items in the dictionary are in the format of:
 # {model_name: [
 #     model_display_name_in_leaderboard,
@@ -590,6 +588,12 @@ MODEL_METADATA_MAPPING = {
         "Cohere",
         "cc-by-nc-4.0",
     ],
+    "command-a-03-2025-FC": [
+        "Command A (FC)",
+        "https://cohere.com/blog/command-a",
+        "Cohere",
+        "CC-BY-NC 4.0 License (w/ Acceptable Use Addendum)",
+    ],
     "snowflake/arctic": [
         "Snowflake/snowflake-arctic-instruct (Prompt)",
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
@@ -1009,6 +1013,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r7b-12-2024-FC": 0.0375,
+    "command-a-03-2025-FC": 2.5,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
     "grok-beta": 5,
@@ -1077,6 +1082,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r7b-12-2024-FC": 0.15,
+    "command-a-03-2025-FC": 10,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
     "grok-beta": 15,
@@ -1087,10 +1093,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
 # This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {}
 
-# All OSS models will have no cost shown on the leaderboard.
-NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
-NO_COST_MODELS += [
+# All OSS models will have no cost shown on the leaderboard by default, so they don't need to be included here.
+NO_COST_API_BASED_MODELS = [
     "DeepSeek-R1",
     "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",

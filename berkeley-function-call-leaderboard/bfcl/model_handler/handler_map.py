@@ -95,6 +95,7 @@ api_inference_handler_map = {
     "databricks-dbrx-instruct": DatabricksHandler,
     "command-r-plus-FC": CohereHandler,
     "command-r7b-12-2024-FC": CohereHandler,
+    "command-a-03-2025-FC": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "BitAgent/GoGoAgent": GoGoAgentHandler,
