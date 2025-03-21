@@ -18,15 +18,15 @@ UTILS_PATH = "./utils/"
 TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
 # These two files are for the API status sanity check
 REST_API_GROUND_TRUTH_FILE_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/api_status_check_ground_truth_REST.json"
+    "./data/sanity_check/api_status_check_ground_truth_rest.json"
 )
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/api_status_check_ground_truth_executable.json"
+    "./data/sanity_check/api_status_check_ground_truth_executable.json"
 )
 
 # This is the ground truth file for the `rest` test category
 REST_EVAL_GROUND_TRUTH_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/rest-eval-response_v5.jsonl"
+    "./data/possible_answer/BFCL_v3_rest.json"
 )
 
 

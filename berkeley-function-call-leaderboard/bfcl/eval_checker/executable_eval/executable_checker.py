@@ -8,16 +8,11 @@ from bfcl.constants.eval_config import (
     REST_EVAL_GROUND_TRUTH_PATH,
 )
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
-
-# Load the ground truth data for the `rest` test category
-@lru_cache(maxsize=1)  # cache the result, effectively loading data once
-def load_eval_ground_truth():
-    with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
-        return f.readlines()
+from bfcl.utils import load_file
 
 #### Main function ####
 def executable_checker_rest(func_call, idx):
-    EVAL_GROUND_TRUTH = load_eval_ground_truth()
+    eval_ground_truth_file = load_file(REST_EVAL_GROUND_TRUTH_PATH)
     
     if "https://geocode.maps.co" in func_call:
         time.sleep(2)
@@ -35,11 +30,11 @@ def executable_checker_rest(func_call, idx):
     try:
         if response.status_code == 200:
 
-            eval_GT_json = json.loads(EVAL_GROUND_TRUTH[idx])
+            eval_groud_truth_json = json.loads(eval_ground_truth_file[idx]["ground_truth"])
             try:
-                if isinstance(eval_GT_json, dict):
+                if isinstance(eval_groud_truth_json, dict):
                     if isinstance(response.json(), dict):
-                        if set(eval_GT_json.keys()) == set(response.json().keys()):
+                        if set(eval_groud_truth_json.keys()) == set(response.json().keys()):
                             return {"valid": True, "error": [], "error_type": ""}
                         return {
                             "valid": False,
@@ -54,9 +49,9 @@ def executable_checker_rest(func_call, idx):
                         "error_type": "executable_checker_rest:wrong_type",
                     }
 
-                elif isinstance(eval_GT_json, list):
+                elif isinstance(eval_groud_truth_json, list):
                     if isinstance(response.json(), list):
-                        if len(eval_GT_json) != len(response.json()):
+                        if len(eval_groud_truth_json) != len(response.json()):
                             return {
                                 "valid": False,
                                 "error": [f"Response list length inconsistency."],
@@ -64,8 +59,8 @@ def executable_checker_rest(func_call, idx):
                             }
 
                         else:
-                            for i in range(len(eval_GT_json)):
-                                if set(eval_GT_json[i].keys()) != set(
+                            for i in range(len(eval_groud_truth_json)):
+                                if set(eval_groud_truth_json[i].keys()) != set(
                                     response.json()[i].keys()
                                 ):
                                     return {
@@ -211,7 +206,7 @@ def executable_checker_simple(
 
     try:
         exec(
-            "from bfcl.eval_checker.executable_eval.data.executable_python_function import *" + "\nresult=" + function_call,
+            "from bfcl.eval_checker.executable_eval.executable_python_function import *" + "\nresult=" + function_call,
             exec_dict,
         )
         exec_output = exec_dict["result"]

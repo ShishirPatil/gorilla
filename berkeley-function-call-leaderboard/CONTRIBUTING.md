@@ -18,6 +18,7 @@ The repository is organized as follows:
 ```plaintext
 berkeley-function-call-leaderboard/
 ├── bfcl/
+|   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
 │   │   ├── executable_eval/      # Evaluation by execution
