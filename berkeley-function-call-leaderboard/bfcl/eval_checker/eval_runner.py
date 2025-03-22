@@ -563,7 +563,7 @@ def evaluate_task(
 
     record_cost_latency(state["leaderboard_table"], model_name, model_result)
 
-    # Find the corresponding test and possibile answer files.
+    # Find the corresponding test file.
     prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
     prompt = load_file(prompt_file, sort_by_id=True)
 
