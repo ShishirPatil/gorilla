@@ -24,12 +24,6 @@ EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
     "./data/sanity_check/api_status_check_ground_truth_executable.json"
 )
 
-# This is the ground truth file for the `rest` test category
-REST_EVAL_GROUND_TRUTH_PATH = (
-    "./data/possible_answer/BFCL_v3_rest.json"
-)
-
-
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
     "DeepSeek-V3-FC",
@@ -91,7 +85,6 @@ REST_API_GROUND_TRUTH_FILE_PATH = (PROJECT_ROOT / REST_API_GROUND_TRUTH_FILE_PAT
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
     PROJECT_ROOT / EXECTUABLE_API_GROUND_TRUTH_FILE_PATH
 ).resolve()
-REST_EVAL_GROUND_TRUTH_PATH = (PROJECT_ROOT / REST_EVAL_GROUND_TRUTH_PATH).resolve()
 
 RESULT_PATH = (PROJECT_ROOT / RESULT_PATH).resolve()
 PROMPT_PATH = (PROJECT_ROOT / PROMPT_PATH).resolve()
