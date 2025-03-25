@@ -323,11 +323,6 @@ def main(args):
         )
         print("----------")
 
-    # Apply function credential config if any of the test categories are executable
-    # We can know for sure that any executable categories will not be included if the API Keys are not supplied.
-    if any([is_executable(category) for category in all_test_categories]):
-        apply_function_credential_config(input_path=PROMPT_PATH)
-
     if args.result_dir is not None:
         args.result_dir = PROJECT_ROOT / args.result_dir
     else:
