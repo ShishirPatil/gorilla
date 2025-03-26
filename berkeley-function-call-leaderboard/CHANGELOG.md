@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 26, 2025] [#963](https://github.com/ShishirPatil/gorilla/pull/963): Fix wrong date in `live_simple_205-116-13`.
 - [Mar 25, 2025] [#962](https://github.com/ShishirPatil/gorilla/pull/962): Fix ambiguous user query in `exec_parallel_10`.
 - [Mar 20, 2025] [#951](https://github.com/ShishirPatil/gorilla/pull/951): Add new model `command-a-03-2025-FC` to the leaderboard.
 - [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
