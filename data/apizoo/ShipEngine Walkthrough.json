@@ -1,0 +1,695 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List your carriers",
+        "api_call": "https://api.shipengine.com/v1/carriers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request returns a list of all the carrier accounts that you have connected to ShipEngine"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Get a specific carrier",
+        "api_call": "https://api.shipengine.com/v1/carriers/se-123456",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "You can get all the information about a specific carrier if you already know its `carrier_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List a carrier's options",
+        "api_call": "https://api.shipengine.com/v1/carriers/se-123456/options",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Many carriers support \"advanced options\", such as the ability to ship alcohol, bill to the receiving party, request money on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List a carrier's services",
+        "api_call": "https://api.shipengine.com/v1/carriers/se-123456/services",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Each carrier supports many different services, such as ground, air, 3-day, overnight, etc.  In ShipEngine, each of these services"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List a carrier's packaging",
+        "api_call": "https://api.shipengine.com/v1/carriers/se-123456/packages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Most carriers have several different types of packaging, and which type you use can affect the cost of shipping a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Add funds to a carrier",
+        "api_call": "https://api.shipengine.com/v1/carriers/se-123456/add_funds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"amount\": 100,\n\t\"currency\": \"usd\"\n}"
+            }
+        },
+        "functionality": "You can check your balance for a particular carrier by calling List Carriers endpoint. For any carrier account where `requires_funded_amount`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Get rate estimates (minimal)",
+        "api_call": "https://api.shipengine.com/v1/rates/estimate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"carrier_ids\": [\n\t\t\"{{stamps_com}}\",\n\t\t\"{{fedex}}\",\n\t\t\"{{ups}}\"\n\t],\n\t\"from_country_code\": \"US\",\n\t\"from_postal_code\": \"78756\",\n\t\"to_country_code\": \"US\",\n\t\"to_postal_code\": \"91521\",\n\t\"weight\": {\n\t\t\"value\": 17,\n\t\t\"unit\": \"pound\"\n\t}\n}"
+            }
+        },
+        "functionality": "This request shows you how to get rate estimates when you don't know the full delivery address yet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Get rate estimates (detailed)",
+        "api_call": "https://api.shipengine.com/v1/rates/estimate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"carrier_ids\": [\n\t\t\"{{stamps_com}}\",\n\t\t\"{{fedex}}\",\n\t\t\"{{ups}}\"\n\t],\n\t\"from_country_code\": \"US\",\n\t\"from_postal_code\": \"78756\",\n\t\"from_city_locality\": \"Austin\",\n\t\"from_state_province\": \"TX\",\n\t\"to_country_code\": \"US\",\n\t\"to_postal_code\": \"91521\",\n\t\"to_city_locality\": \"Burbank\",\n\t\"to_state_province\": \"CA\",\n\t\"weight\": {\n\t\t\"value\": 17,\n\t\t\"unit\": \"pound\"\n\t},\n\t\"dimensions\": {\n\t\t\"length\": 36,\n\t\t\"width\": 12,\n\t\t\"height\": 24,\n\t\t\"unit\": \"inch\"\n\t}\n}"
+            }
+        },
+        "functionality": "The accuracy of rate estimates depends on how much information you provide. This request shows youall the fields that you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Compare rates",
+        "api_call": "https://api.shipengine.com/v1/rates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"rate_options\": {\n\t\t\"carrier_ids\": [\n\t\t\t\"{{stamps_com}}\",\n\t\t\t\"{{fedex}}\",\n\t\t\t\"{{ups}}\"\n\t\t],\n\t\t\"service_codes\": [\n\t\t\t\"usps_priority_mail\",\n\t\t\t\"fedex_ground\",\n\t\t\t\"ups_ground\"\n\t\t]\n\t},\n\t\"shipment\": {\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "To compare rates across multiple carriers, provide the shipment details and the list of carriers that you want rates for."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create a shipment",
+        "api_call": "https://api.shipengine.com/v1/shipments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"shipments\": [{\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}]\n}"
+            }
+        },
+        "functionality": "You can store shipment details in ShipEngine and then use the `shipment_id` to easily get rates, create labels, and track"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Compare rates for a shipment",
+        "api_call": "https://api.shipengine.com/v1/rates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"rate_options\": {\n\t\t\"carrier_ids\": [\n\t\t\t\"{{stamps_com}}\",\n\t\t\t\"{{fedex}}\",\n\t\t\t\"{{ups}}\"\n\t\t],\n\t\t\"service_codes\": [\n\t\t\t\"usps_priority_mail\",\n\t\t\t\"fedex_ground\",\n\t\t\t\"ups_ground\"\n\t\t]\n\t},\n\t\"shipment_id\": \"{{shipment_id}}\"\n}"
+            }
+        },
+        "functionality": "If you've already created a shipment in ShipEngine, then you can easily compare rates using the `shipment_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Get previously-quoted rates for a shipment",
+        "api_call": "https://api.shipengine.com/v1/shipments/se-123456/rates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "ShipEngine keeps a record of all quoted rates for a shipment.  This request shows you how to retrieve those"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create a label from scratch",
+        "api_call": "https://api.shipengine.com/v1/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"shipment\": {\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "This request shows how to create a label by specifying all the information in a single request.  It's the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create a label from a rate",
+        "api_call": "https://api.shipengine.com/v1/labels/rates/se-123456",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "If you've previously gotten a rate quote from ShipEngine, then you can create a label from that rate quote without"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create a label from a shipment",
+        "api_call": "https://api.shipengine.com/v1/labels/shipment/se-123456",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "If you've previously created a shipment on ShipEngine, then you can create a label from that shipment without having to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create a return label",
+        "api_call": "https://api.shipengine.com/v1/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"is_return_label\": true,\n\t\"rma_number\": \"123456789\",\n\t\"shipment\": {\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "Return labels are created just like outgoing labels, but with an additional `is_return_label` flag. You can also optionally specify an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Create & download a label",
+        "api_call": "https://api.shipengine.com/v1/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"label_format\": \"png\",\n\t\"label_layout\": \"4x6\",\n\t\"label_download_type\": \"inline\",\n\t\"shipment\": {\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "By default, whenever you create a label in ShipEngine we'll give you several URLs to download the label in various"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Label messages (reference fields)",
+        "api_call": "https://api.shipengine.com/v1/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"shipment\": {\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\t\"city_locality\": \"San Jose\",\n\t\t\t\"state_province\": \"CA\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t},\n\t\t\t\t\"label_messages\": {\n\t\t\t\t\t\"reference1\": \"AAAAAAAAAAAAAAA\",\n\t\t\t\t\t\"reference2\": \"BBBBBBBBBBBBBBB\",\n\t\t\t\t\t\"reference3\": \"CCCCCCCCCCCCCCC\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "Label messages can be used for a number of reasons; but, primarily are used for reference numbers or internal tracking"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Void a label",
+        "api_call": "https://api.shipengine.com/v1/labels/se-123456/void",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "Some carriers (like USPS) charge for labels even if the package is never actually mailed. So if you decide not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List your labels",
+        "api_call": "https://api.shipengine.com/v1/labels?page=1&page_size=10&sort_by=created_at&sort_dir=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request shows how to list labels that match certain criteria, such as the carrier, service, date, warehouse, status, etc."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (valid)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\"city_locality\": \"San Jose\",\n\t\t\"state_province\": \"CA\",\n\t\t\"postal_code\": \"95128\",\n\t\t\"country_code\": \"US\"\n\t}\n]"
+            }
+        },
+        "functionality": "ShipEngine supports address validation for nearly every country on Earth, including the United States, Canada, Great Britain, Australia, Germany, France,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (incomplete)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n\t\t\"address_line1\": \"525 Winchester\",\n\t\t\"postal_code\": \"95128\",\n\t\t\"country_code\": \"US\"\n\t}\n]"
+            }
+        },
+        "functionality": "This request demonstrates ShipEngine's ability to validate and fill-in an incomplete address. For most addresses, a `postal_code` is sufficient to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (corrected)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\"city_locality\": \"Austin\",\n\t\t\"state_province\": \"Texas\",\n\t\t\"postal_code\": \"95128\",\n\t\t\"country_code\": \"US\"\n\t}\n]"
+            }
+        },
+        "functionality": "This request demonstrates ShipEngine's ability to automatically correct some addresses. In this case, the `city_locality` and `state_province` do not match"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (unverified)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n\t\t\"address_line1\": \"525 S Winchester Blvd\",\n\t\t\"city_locality\": \"San Jose\",\n\t\t\"state_province\": \"CA\",\n\t\t\"postal_code\": \"95128\",\n\t\t\"country_code\": \"USA\"\n\t}\n]"
+            }
+        },
+        "functionality": "This request shows how ShipEngine responds when an address cannot be verified. The `status` field is `unverified`, and the `messages`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (warning)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n      \"address_line1\": \"Studio Tour Drive, Leavesden WD25 7LR, UK\",\n      \"country_code\": \"GB\"\n\t}\n]"
+            }
+        },
+        "functionality": "This request shows how ShipEngine responds when an address can be verified, but there are warnings such as major corrections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate an address (invalid)",
+        "api_call": "https://api.shipengine.com/v1/addresses/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n\t{\n\t\t\"address_line1\": \"Winchester Blvd\",\n\t\t\"city_locality\": \"San Jose\",\n\t\t\"state_province\": \"CA\",\n\t\t\"postal_code\": \"78756\",\n\t\t\"country_code\": \"US\"\n\t}\n]"
+            }
+        },
+        "functionality": "This request shows how ShipEngine responds when an address is invalid. The `status` field is `error`, and the `messages` array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate when creating a shipment",
+        "api_call": "https://api.shipengine.com/v1/shipments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"shipments\": [{\n\t\t\"validate_address\": \"validate_and_clean\",\n\t\t\"service_code\": \"usps_priority_mail\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 Winchester\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}]\n}"
+            }
+        },
+        "functionality": "You can validate the address at the same time as creating a shipment in ShipEngine by setting the `validate_address` field"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Validate when getting rates",
+        "api_call": "https://api.shipengine.com/v1/rates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"rate_options\": {\n\t\t\"carrier_ids\": [\n\t\t\t\"{{stamps_com}}\",\n\t\t\t\"{{fedex}}\",\n\t\t\t\"{{ups}}\"\n\t\t],\n\t\t\"service_codes\": [\n\t\t\t\"usps_priority_mail\",\n\t\t\t\"fedex_ground\",\n\t\t\t\"ups_ground\"\n\t\t]\n\t},\n\t\"shipment\": {\n\t\t\"validate_address\": \"validate_and_clean\",\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t},\n\t\t\"ship_to\": {\n\t\t\t\"name\": \"Amanda Miller\",\n\t\t\t\"address_line1\": \"525 Winchester\",\n\t\t\t\"postal_code\": \"95128\",\n\t\t\t\"country_code\": \"US\"\n\t\t},\n\t\t\"packages\": [\n\t\t\t{\n\t\t\t\t\"weight\": {\n\t\t\t\t\t\"value\": 17,\n\t\t\t\t\t\"unit\": \"pound\"\n\t\t\t\t},\n\t\t\t\t\"dimensions\": {\n\t\t\t\t\t\"length\": 36,\n\t\t\t\t\t\"width\": 12,\n\t\t\t\t\t\"height\": 24,\n\t\t\t\t\t\"unit\": \"inch\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+            }
+        },
+        "functionality": "You can choose to validate the address as part of the rate request, which will help ensure that you get"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Parse an Address",
+        "api_call": "https://api.shipengine.com/v1/addresses/recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"text\": \"I need to send a package to my friend Amanda Miller\u2019s house at 525 Winchester Blvd in San Jose (that's california, obviously). The zip code there is 95128.\"\n}"
+            }
+        },
+        "functionality": "This request shows how to pass unstructured text to ShipEngine that contains address information. ShipEngine will recognize any address-related parts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Confidence scores",
+        "api_call": "https://api.shipengine.com/v1/addresses/recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"text\": \"I need to send a package to my friend Amanda. Her last name is Miller, btw. Her office address is 525 Winchester Blvd. That's in California for sure. Pretty sure it's San Jose, but I'm only like 90% sure about that. Pretty sure the zip code is something like 95128, or maybe 90210.\"\n}"
+            }
+        },
+        "functionality": "ShipEngine's Parse Address API returns confidence scores for each entity that it recognizes, as well as for the address as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Already-known fields",
+        "api_call": "https://api.shipengine.com/v1/addresses/recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"text\": \"I need to send a package to my friend Amanda Miller\u2019s house at 525 Winchester Blvd in San Jose (that's california, obviously). The zip code there is 95128.\",\n\t\"address\": {\n\t\t\"country_code\": \"US\"\n\t}\n}"
+            }
+        },
+        "functionality": "If you already know some parts of the address, you can provide them to ShipEngine, and we'll use those values."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Parse shipment information",
+        "api_call": "https://api.shipengine.com/v1/shipments/recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"text\": \"I need to ship a 17lb package that\u2019s 36x12x24in. It\u2019s going to Amanda Miller\u2019s house at 525 Winchester Blvd in San Jose California. The zip code is 95128. It's really valuable, so insure it for $400 and require an adult signature please.\"\n}"
+            }
+        },
+        "functionality": "ShipEngine can parse more than just addresses. If you think the text may contain other shipment information, like package weight,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Parse shipment info w/ known fields",
+        "api_call": "https://api.shipengine.com/v1/shipments/recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"text\": \"I need to ship a 17lb package that\u2019s 36x12x24in. It\u2019s going to Amanda Miller\u2019s house at 525 Winchester Blvd in San Jose California. The zip code is 95128. It's really valuable, so insure it for $400 and require an adult signature please.\",\n\t\"shipment\": {\n\t\t\"ship_from\": {\n\t\t\t\"name\": \"John Doe\",\n\t\t\t\"company_name\": \"Example Corp.\",\n\t\t\t\"address_line1\": \"4009 Marathon Blvd\",\n\t\t\t\"city_locality\": \"Austin\",\n\t\t\t\"state_province\": \"TX\",\n\t\t\t\"postal_code\": \"78756\",\n\t\t\t\"country_code\": \"US\",\n\t\t\t\"phone\": \"512-555-5555\"\n\t\t}\n\t}\n}"
+            }
+        },
+        "functionality": "If you already know some parts of the shipment, you can provide them to ShipEngine, and we'll use those values."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Track a package",
+        "api_call": "https://api.shipengine.com/v1/tracking?carrier_code=ups&tracking_number=1Z6Y21Y60300230257",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request demonstrates how to get tracking information for a package. The `carrier_code` and `tracking_number` are provided via query parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Track using a label ID",
+        "api_call": "https://api.shipengine.com/v1/labels/se-123456/track",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "If you created the shipping label using ShipEngine, then tracking a package is even easier. No need to specify the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Setup a tracking webhook",
+        "api_call": "https://api.shipengine.com/v1/environment/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"event\": \"track\",\n\t\"url\": \"https://your-domain-here.com/some/path\"\n}"
+            }
+        },
+        "functionality": "To subscribe to real-time tracking updates from ShipEngine, the first step is to setup a webhook.  This is a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: List your webhooks",
+        "api_call": "https://api.shipengine.com/v1/environment/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request lists all of the webhooks that you've setup, either via the API or the ShipEngine web dashboard."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Subscribe to tracking updates for a package",
+        "api_call": "https://api.shipengine.com/v1/tracking/start?carrier_code=stamps_com&tracking_number=1Z6Y21Y60300230257",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Once you've setup a tracking webhook, you can start subscribing to tracking updates for packages.  Your webhook will be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ShipEngine Walkthrough: Unsubscribe from tracking updates",
+        "api_call": "https://api.shipengine.com/v1/tracking/stop?carrier_code=stamps_com&tracking_number=1Z6Y21Y60300230257",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "This request shows how to stop receiving tracking updates for a package.\n\n> **Note:** ShipEngine automatically unsubscribes from tracking updates once"
+    }
+]

@@ -1,0 +1,2437 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List contracts and groups",
+        "api_call": "https://{{host}}/appsec/v1/contracts-groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List available hostnames for a new configuration",
+        "api_call": "https://{{host}}/appsec/v1/contracts/{{contractId}}/groups/{{groupId}}/selectable-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List configurations",
+        "api_call": "https://{{host}}/appsec/v1/configs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{configurationName}}\",\n    \"description\": \"{{configurationDescription}}\",\n    \"contractId\": \"{{contractId}}\",\n    \"groupId\": {{groupId}},\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Rename a security configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{configurationName}}\",\n    \"description\": \"{{configurationDescription}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List configuration versions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Clone a configuration version",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"createFromVersion\": {{versionNumber}},\n    \"ruleUpdate\": false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get configuration version details",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a configuration version",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the version notes",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/version-notes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update the version notes",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/version-notes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"notes\": \"{{versionNotes}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Export a configuration version",
+        "api_call": "https://{{host}}/appsec/v1/export/configs/{{configId}}/versions/{{versionNumber}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the HTTP header log settings for a configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/logging",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify HTTP header log settings for a configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/logging",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "// For more information on the JSON to modify the HTTP Header Log settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get prefetch requests",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify prefetch requests",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putprefetchrequestsforaconfiguration",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putprefetchrequestsforaconfiguration"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get Pragma settings for a configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/pragma-header",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify Pragma settings for a configuration",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/advanced-settings/prefetch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the hostname coverage match targets",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/hostname-coverage/match-targets?hostname={{hostnameToCheck}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get Hostname Coverage",
+        "api_call": "https://{{host}}/appsec/v1/hostname-coverage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List hostname overlaps",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/hostname-coverage/overlapping?hostname={{hostnameToCheck}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List selectable hostnames",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selectable-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List selected hostnames",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify selected hostnames",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"hostnameList\": [\n        {\n            \"hostname\": \"{{hostnameToAdd}}\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List evaluation hostnames | WAP ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames/eval-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify evaluation hostnames | WAP ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/selected-hostnames/eval-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Protect evaluation hostnames | WAP ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/protect-eval-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"hostnames\": [\n        {{hostnamesToAdd}}\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List security policies",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Clone or create a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"createFromSecurityPolicy\": \"\",\n    \"policyName\": \"{{policyName}}\",\n    \"policyPrefix\": \"{{policyPrefix}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"policyName\": \"{{policyName}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"policyName\": \"{{policyName}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get protections",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/protections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify protections",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/protections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"applyApiConstraints\": true/false,\n    \"applyApplicationLayerControls\": true/false,\n    \"applyNetworkLayerControls\": true/false,\n    \"applyRateControls\": true/false,\n    \"applySlowPostControls\": true/false,\n    \"applyReputationControls\": true/false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get HTTP header log settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/logging",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify HTTP header log settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/appsec/v1/configs/{{configId}}/versions/{versionNumber}/security-policies/{policyId}/advanced-settings/logging",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "// For more information on the JSON to modify the HTTP Header Log settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration"
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderlogging"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get Pragma settings for a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/pragma-header",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify Pragma settings for a security policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/advanced-settings/pragma-header",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "// For more information on the JSON to modify these settings, visit:\n// https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderconfiguration",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderpolicy"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List match targets",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a match target",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  }\n}"
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#postmatchtargets"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify match target order",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/sequence",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"website\",\n    \"targetSequence\": [\n        {\n            \"targetId\": {{targetId}},\n            \"sequence\": 1\n        },\n        {\n            \"targetId\": {{targetId2}},\n            \"sequence\": 2\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putsequence"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a match target",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}?includeChildObjectName=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a match target",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"website\",\n  \"configId\": {{configId}},\n  \"configVersion\": 1,\n  \"defaultFile\": \"NO_MATCH\",\n  \"effectiveSecurityControls\": {\n    \"applyApplicationLayerControls\": true,\n    \"applyNetworkLayerControls\": true,\n    \"applyRateControls\": true,\n    \"applySlowPostControls\": true\n  },\n  \"filePaths\": [\n    \"/*\"\n  ],\n  \"hostnames\": [\n    \"{{hostnameToAdd}}\"\n  ],\n  \"isNegativeFileExtensionMatch\": false,\n  \"isNegativePathMatch\": true,\n  \"securityPolicy\": {\n    \"policyId\": \"{{policyId}}\"\n  },\n  \"sequence\": 1,\n  \"targetId\": {{targetId}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a match target",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/match-targets/{{targetId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List custom deny actions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny?search=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a custom deny action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#postcustomdeny"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a custom deny action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}//custom-deny/{{customDenyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a custom deny action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny/{{customDenyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putcustomdenyaction"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a custom deny action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/custom-deny/{{customDenyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putcustomdenyaction"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List failover hostnames",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/failover-hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the IP/Geo Firewall settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/ip-geo-firewall",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update the IP Geo Firewall settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/ip-geo-firewall",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit:\nhttps://developer.akamai.com/api/cloud_security/application_security/v1.html#putipgeofirewall"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the bypass network lists settings | WAP ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/bypass-network-lists",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the bypass network lists settings | WAP ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/bypass-network-lists",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"networkLists\": [\n        {{networkLists}}\n    ]\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List rate policies",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a rate policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"matchType\": \"path\",\n    \"type\": \"WAF\",\n    \"name\": \"Test_Paths 2\",\n    \"description\": \"AFW Test Extensions\",\n    \"averageThreshold\": 5,\n    \"burstThreshold\": 10,\n    \"clientIdentifier\": \"ip\",\n    \"useXForwardForHeaders\": true,\n    \"requestType\": \"ClientRequest\",\n    \"sameActionOnIpv6\": false,\n    \"path\": {\n        \"positiveMatch\": true,\n        \"values\": [\n            \"/login/\",\n            \"/path/\"\n        ]\n    },\n    \"pathMatchType\": \"Custom\",\n    \"pathUriPositiveMatch\": true,\n    \"fileExtensions\": {\n        \"positiveMatch\": false,\n        \"values\": [\n            \"3g2\",\n            \"3gp\",\n            \"aif\",\n            \"aiff\",\n            \"au\",\n            \"avi\",\n            \"bin\",\n            \"bmp\",\n            \"cab\"\n        ]\n    },\n    \"hostnames\": [\n        \"www.ludin.org\"\n    ],\n    \"additionalMatchOptions\": [\n        {\n            \"positiveMatch\": true,\n            \"type\": \"IpAddressCondition\",\n            \"values\": [\n                \"198.129.76.39\"\n            ]\n        },\n        {\n            \"positiveMatch\": true,\n            \"type\": \"RequestMethodCondition\",\n            \"values\": [\n                \"GET\"\n            ]\n        }\n    ],\n    \"queryParameters\": [\n        {\n            \"name\": \"productId\",\n            \"values\": [\n                \"BUB_12\",\n                \"SUSH_11\"\n            ],\n            \"positiveMatch\": true,\n            \"valueInRange\": false\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "For more information on the JSON to modify these settings, visit: https://developer.akamai.com/api/cloud_security/application_security/v1.html#postratepolicies"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a rate policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a rate policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": 2234,\n    \"matchType\": \"path\",\n    \"type\": \"WAF\",\n    \"name\": \"Test_Paths 2\",\n    \"description\": \"AFW Test Extensions\",\n    \"averageThreshold\": 5,\n    \"burstThreshold\": 10,\n    \"clientIdentifier\": \"ip\",\n    \"useXForwardForHeaders\": true,\n    \"requestType\": \"ClientRequest\",\n    \"sameActionOnIpv6\": false,\n    \"path\": {\n        \"positiveMatch\": true,\n        \"values\": [\n            \"/login/\",\n            \"/path/\"\n        ]\n    },\n    \"pathMatchType\": \"Custom\",\n    \"pathUriPositiveMatch\": true,\n    \"fileExtensions\": {\n        \"positiveMatch\": false,\n        \"values\": [\n            \"3g2\",\n            \"3gp\",\n            \"aif\",\n            \"aiff\",\n            \"au\",\n            \"avi\",\n            \"bin\",\n            \"bmp\",\n            \"cab\"\n        ]\n    },\n    \"hostnames\": [\n        \"www.ludin.org\"\n    ],\n    \"additionalMatchOptions\": [\n        {\n            \"positiveMatch\": true,\n            \"type\": \"IpAddressCondition\",\n            \"values\": [\n                \"198.129.76.40\"\n            ]\n        },\n        {\n            \"positiveMatch\": true,\n            \"type\": \"RequestMethodCondition\",\n            \"values\": [\n                \"GET\"\n            ]\n        }\n    ],\n    \"queryParameters\": [\n        {\n            \"name\": \"productId\",\n            \"values\": [\n                \"BUB_12\",\n                \"SUSH_11\"\n            ],\n            \"positiveMatch\": true,\n            \"valueInRange\": false\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a rate policy",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/rate-policies/{{ratePolicyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List rate policy actions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rate-policies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a rate policy action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rate-policies/{{ratePolicyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ipv4Action\": \"{{ruleAction}}\",\n    \"ipv6Action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get Slow POST protection settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/slow-post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify slow POST protection settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/slow-post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#getratepolicyactions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the current mode",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/mode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the rule-set mode",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/mode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"mode\": \"{{ruleSetMode}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List attack groups",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get an attack group",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the action for an attack group",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the exceptions of an attack group",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}/condition-exception",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the exceptions of an attack group",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/attack-groups/{{attackGroupId}}/condition-exception",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"exception\": {\n        \"specificHeaderCookieParamXmlOrJsonNames\": [\n            {\n                \"selector\": \"REQUEST_HEADERS_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"header2\",\n                    \"header1\"\n                ],\n                \"selector\": \"REQUEST_HEADERS\",\n                \"wildcard\": false\n            },\n            {\n                \"selector\": \"REQUEST_COOKIES_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"cookie1\",\n                    \"cookie2\"\n                ],\n                \"selector\": \"REQUEST_COOKIES\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"ARGS_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"param-name\"\n                ],\n                \"selector\": \"ARGS\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"JSON_NAMES\",\n                \"wildcard\": true\n            },\n            {\n                \"names\": [\n                    \"json1\"\n                ],\n                \"selector\": \"JSON_PAIRS\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_PROTOCOL\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_METHOD\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_URI\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"QUERY_STRING\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_FILENAME\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_PATH_SEGMENT\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQUEST_BODY\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"REQBODY_PROCESSOR_ERROR\",\n                \"wildcard\": true\n            },\n            {\n                \"selector\": \"FILES_NAMES\",\n                \"wildcard\": true\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List rules | KRS ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Upgrade KRS ruleset | KRS ONLY",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"upgrade\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the action for a rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the action for a rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the conditions and exceptions of a rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}}/rules/{{ruleId}}}/condition-exception",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the conditions and exceptions of a rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/{{ruleId}}/conditions-exceptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get upgrade details",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/rules/upgrade-details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Set evaluation mode",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"eval\": \"START\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List evaluation rules",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the action of an evaluation rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the action of an evaluation rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the conditions and exceptions for an evaluation rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}/conditions-exceptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the conditions and exceptions for an evaluation rule | NOT WORKING",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/eval-rules/{{ruleId}}/conditions-exceptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#putevalconditionsexceptions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the penalty box",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/penalty-box",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the penalty box",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/penalty-box",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\",\n    \"penaltyBoxProtection\": false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List custom rules",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a custom rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a custom rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a custom rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a custom rule",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/custom-rules/{{customRuleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List custom rule actions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/custom-rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a custom rule action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/custom-rules/{{customRuleId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List API request constraints and actions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the request constraint action for all API",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify an API request constraint\u2019s action",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-request-constraints/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List API Endpoints",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/api-endpoints",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List reputation profiles",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles/{{reputationProfileId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/reputation-profiles/{{reputationProfileId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the reputation analysis settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-analysis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update the reputation analysis settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-analysis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"forwardToHTTPHeader\": false,\n    \"forwardSharedIPToHTTPHeaderAndSIEM\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List reputation profile actions",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the action for a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles/{{reputationProfileId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify the action for a reputation profile",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/security-policies/{{policyId}}/reputation-profiles/{{reputationProfileId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"{{ruleAction}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the SIEM settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/siem",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Modify SIEM settings",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/versions/{{versionNumber}}/siem",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "https://developer.akamai.com/api/cloud_security/application_security/v1.html#putsiemsettings"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get the SIEM versions",
+        "api_call": "https://{{host}}/appsec/v1/siem-definitions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List subscribers",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/notification/subscription/AAG_TUNING_REC",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Subscribe or unsubscribe to recommendation emails",
+        "api_call": "https://{{host}}/appsec/v1/configs/{{configId}}/notification/subscription/AAG_TUNING_REC",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"subscribe\",\n    \"emails\": [\n        \"{{email}}\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List Akamai Events",
+        "api_call": "https://{{host}}/event-viewer-api/v1/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Activate a configuration version",
+        "api_call": "https://{{host}}/appsec/v1/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"ACTIVATE\",\n    \"network\": \"{{network}}\",\n    \"note\": \"{{notes}}\",\n    \"notificationEmails\": [\n        \"{{email}}\"\n    ],\n    \"activationConfigs\": [\n        {\n            \"configId\": {{configId}},\n            \"configVersion\": {{versionNumber}}\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get an activation request status",
+        "api_call": "https://{{host}}/appsec/v1/activations/status/{{statusId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get activation status",
+        "api_call": "https://{{host}}/appsec/v1/activations/{{activationId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List network lists",
+        "api_call": "https://{{host}}/network-list/v2/network-lists",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create a new network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"list\": [{{networkListIPs}}]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update a network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Delete a network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Append elements to a network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/append",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"list\": [\n        \"{{ip_cidrToAdd}}\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Add an element",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/elements?element={{elementId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Remove an element",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/elements?element={{elementId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"type\": \"IP\",\n    \"description\": \"{{networkListDescription}}\",\n    \"syncPoint\": {{syncPoint}},\n    \"list\": [{{networkListIPs}}]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Activate a network list",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/environments/{{environment}}/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"comments\": \"{{activationComments}}\",\n    \"notificationRecipients\": [\n        \"{{activationEmail}}\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get activation status",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/environments/{{environment}}/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get an activation\u2019s snapshot",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/sync-points/{{syncPoint}}/history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update network list details",
+        "api_call": "https://{{host}}/network-list/v2/network-lists/{{networkListId}}/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{networkListName}}\",\n    \"description\": \"{{networkListDescription}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Subscribe to network lists",
+        "api_call": "https://{{host}}/network-list/v2/notifications/subscribe",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"recipients\": [\n        \"{{subscribeEmail}}\"\n    ],\n    \"uniqueIds\": [\n        \"{{networkListId}}\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Unsubscribe to network lists",
+        "api_call": "https://{{host}}/network-list/v2/notifications/unsubscribe",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"recipients\": [\n        \"{{subscribeEmail}}\"\n    ],\n    \"uniqueIds\": [\n        \"{{networkListId}}\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List maps",
+        "api_call": "https://{{host}}/siteshield/v1/maps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all Site Shield maps that belong to your account.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Get a map",
+        "api_call": "https://{{host}}/siteshield/v1/maps/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns information about the specified map, such as the map name, firewall addresses, and when the map was last updated.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Acknowledge the map",
+        "api_call": "https://{{host}}/siteshield/v1/maps/:id/acknowledge",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Acknowledges the proposed firewall update for the specified map. When necessary, the Site Shield Management application issues an update to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List Products",
+        "api_call": "https://{{host}}/papi/v1/products?contractId={{contractId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create CP Code",
+        "api_call": "https://{{host}}/papi/v1/cpcodes?contractId={{contractId}}&groupId={{groupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"productId\": \"{{productId}}\",\n    \"cpcodeName\": \"{{cpCodeName}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: List CP Codes",
+        "api_call": "https://{{host}}/papi/v1/cpcodes?groupId={{groupId}}&contractId={{contractId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create Edge Hostname for AMD",
+        "api_call": "https://{{host}}/papi/v1/edgehostnames?contractId={{contractId}}&groupId={{groupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "true",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"productId\": \"{{productId}}\",\n    \"domainPrefix\": \"{{propertyHostname}}\",\n    \"domainSuffix\": \"edgesuite.net\",\n    \"secureNetwork\": \"STANDARD_TLS\",\n    \"ipVersionBehavior\": \"IPV6_COMPLIANCE\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Create Delivery Config",
+        "api_call": "https://{{host}}/papi/v1/properties?contractId={{contractId}}&groupId={{groupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "true",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"contractId\": \"{{contractId}}\",\n    \"groupId\": \"{{groupId}}\",\n    \"productId\": \"{{productId}}\",\n    \"propertyName\": \"{{propertyHostname}}\",\n    \"propertyVersion\": 1,\n    \"ruleFormat\": \"latest\"\n} "
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update the hostnames",
+        "api_call": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/hostnames?validateHostnames=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "PAPI-Use-Prefixes",
+                    "type": "text",
+                    "value": "true"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"cnameType\": \"EDGE_HOSTNAME\",\n        \"cnameFrom\": \"{{propertyHostname}}\",\n        \"cnameTo\": \"{{edgeHostname}}\"\n    }\n]"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Update the Config Rules",
+        "api_call": "https://{{host}}/papi/v1/properties/{{propertyId}}/versions/{{propertyVersion}}/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "PAPI-Use-Prefixes",
+                    "type": "text",
+                    "value": "true"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Application Security API: Activate the Config",
+        "api_call": "https://{{host}}/papi/v1/properties/{{propertyId}}/activations?contractId={{contractId}}&groupId={{groupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "edgegrid",
+                "edgegrid": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientToken",
+                        "value": "{{client_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "baseURL",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "PAPI-Use-Prefixes",
+                    "type": "text",
+                    "value": "true"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"propertyVersion\": {{propertyVersion}},\n    \"network\": \"{{network}}\",\n    \"note\": \"{{notes}}\",\n    \"useFastFallback\": false,\n    \"notifyEmails\": [\n        \"{{email}}\"\n    ],\n    \"acknowledgeWarnings\": [\n\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

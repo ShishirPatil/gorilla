@@ -1,0 +1,1823 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve space broadcast",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID/broadcasts/:BROADCAST_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of a broadcast of a specific space."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a space broadcast",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID/broadcasts/:BROADCAST_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a single broadcast of a specific space. Broadcasts can only be deleted when `idle`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Start a space broadcast",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID/broadcasts/:BROADCAST_ID/start",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Starts broadcasting a space to the associated destination. Broadcasts can only be started when the space is `active` (when there"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Stop a space broadcast",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID/broadcasts/:BROADCAST_ID/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Stops broadcasting a space, causing the destination live stream to become idle. This API also automatically calls `complete` on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a space broadcast",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID/broadcasts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"live_stream_id\": \"GQ9025mPqzyjOy3kKQW006qKTqmULW9vFO\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new broadcast. Broadcasts are used to create composited versions of your space, which can be broadcast to live"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a space",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of a space that has previously been created. Supply the unique space ID that was returned from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a space",
+        "api_call": "https://api.mux.com/video/v1/spaces/:SPACE_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a space. Spaces can only be deleted when `idle`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a space",
+        "api_call": "https://api.mux.com/video/v1/spaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"server\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new space. Spaces are used to build [real-time video applications.](https://mux.com/real-time-video)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List spaces",
+        "api_call": "https://api.mux.com/video/v1/spaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all spaces in the current environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a Transcription Vocabulary",
+        "api_call": "https://api.mux.com/video/v1/transcription-vocabularies/:TRANSCRIPTION_VOCABULARY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of a Transcription Vocabulary that has previously been created. Supply the unique Transcription Vocabulary ID and Mux"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a Transcription Vocabulary",
+        "api_call": "https://api.mux.com/video/v1/transcription-vocabularies/:TRANSCRIPTION_VOCABULARY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a Transcription Vocabulary. The Transcription Vocabulary's ID will be disassociated from any live streams using it. Transcription Vocabularies can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update a Transcription Vocabulary",
+        "api_call": "https://api.mux.com/video/v1/transcription-vocabularies/:TRANSCRIPTION_VOCABULARY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Mux API Vocabulary - Updated\",\n  \"phrases\": [\n    \"Mux\",\n    \"Live Stream\",\n    \"RTMP\",\n    \"Stream Key\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the details of a previously-created Transcription Vocabulary. Updates to Transcription Vocabularies are allowed while associated live streams are active."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a Transcription Vocabulary",
+        "api_call": "https://api.mux.com/video/v1/transcription-vocabularies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Mux API Vocabulary\",\n  \"phrases\": [\n    \"Mux\",\n    \"Live Stream\",\n    \"Playback ID\",\n    \"video encoding\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new Transcription Vocabulary."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Transcription Vocabularies",
+        "api_call": "https://api.mux.com/video/v1/transcription-vocabularies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all Transcription Vocabularies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a single Web Input's info"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a Web Input and all its data"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Launch a Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID/launch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Launches the browsers instance, loads the URL specified, and then starts streaming to the specified Live Stream."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Shut down a Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID/shutdown",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Ends streaming to the specified Live Stream, and then shuts down the Web Input browser instance."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Reload a Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID/reload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Reloads the page that a Web Input is displaying.\n\nNote: Using this when the Web Input is streaming will display the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update Web Input URL",
+        "api_call": "https://api.mux.com/video/v1/web-inputs/:WEB_INPUT_ID/url",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://example.com/hello-there.html\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Changes the URL that a Web Input loads when it launches.\n\nNote: This can only be called when the Web Input"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a new Web Input",
+        "api_call": "https://api.mux.com/video/v1/web-inputs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://example.com/hello.html\",\n  \"live_stream_id\": \"ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new Web Input"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Web Inputs",
+        "api_call": "https://api.mux.com/video/v1/web-inputs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List Web Inputs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a playback ID",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/playback-ids/:PLAYBACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves information about the specified playback ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a playback ID",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/playback-ids/:PLAYBACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a playback ID",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/playback-ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"policy\": \"public\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a playback ID that can be used to stream the asset to a viewer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete an asset track",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/tracks/:TRACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes a text track from an asset. Audio and video tracks on assets cannot be removed."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Generate track subtitles",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/tracks/:TRACK_ID/generate-subtitles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"generated_subtitles\": [\n    {\n      \"language_code\": \"en\",\n      \"name\": \"English (generated)\",\n      \"passthrough\": \"English (generated)\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates subtitles (captions) for a given audio track. This API can be used for up to 7 days after an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create an asset track",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/tracks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://example.com/myVideo_en.srt\",\n  \"type\": \"text\",\n  \"text_type\": \"subtitles\",\n  \"language_code\": \"en-US\",\n  \"name\": \"English\",\n  \"closed_captions\": true,\n  \"passthrough\": \"English\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds an asset track (for example, subtitles, or an alternate audio track) to an asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve an asset",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of an asset that has previously been created. Supply the unique asset ID that was returned from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete an asset",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a video asset and all its data."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update an asset",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"passthrough\": \"Example\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve asset input info",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/input-info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of the input objects that were used to create the asset along with any settings that were"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update MP4 support",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/mp4-support",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"mp4_support\": \"standard\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Allows you to add or remove mp4 support for assets that were created without it. Currently there are two values"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update master access",
+        "api_call": "https://api.mux.com/video/v1/assets/:ASSET_ID/master-access",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"master_access\": \"temporary\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Allows you to add temporary access to the master (highest-quality) version of the asset in MP4 format. A URL will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create an asset",
+        "api_call": "https://api.mux.com/video/v1/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"input\": [\n    {\n      \"url\": \"https://muxed.s3.amazonaws.com/leds.mp4\"\n    }\n  ],\n  \"playback_policy\": [\n    \"public\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new Mux Video asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List assets",
+        "api_call": "https://api.mux.com/video/v1/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all Mux assets."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a live stream playback ID",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/playback-ids/:PLAYBACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches information about a live stream's playback ID, through which a viewer can watch the streamed content from this live"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a live stream playback ID",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/playback-ids/:PLAYBACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a live stream playback ID",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/playback-ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"policy\": \"signed\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new playback ID for this live stream, through which a viewer can watch the streamed content of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a live stream simulcast target",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/simulcast-targets/:SIMULCAST_TARGET_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete the simulcast target using the simulcast target ID returned when creating the simulcast target. Simulcast Target can only be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a live stream simulcast target",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/simulcast-targets/:SIMULCAST_TARGET_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of the simulcast target created for the parent live stream. Supply the unique live stream ID and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a live stream simulcast target",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/simulcast-targets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"rtmp://live.example.com/app\",\n  \"stream_key\": \"abcdefgh\",\n  \"passthrough\": \"Example\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a simulcast target for the parent live stream. Simulcast target can only be created when the parent live stream"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of a live stream that has previously been created. Supply the unique live stream ID that was"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a live stream from the current environment. If the live stream is currently active and being streamed to, ingest"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"latency_mode\": \"standard\",\n  \"reconnect_window\": 30,\n  \"max_continuous_duration\": 1200\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the parameters of a previously-created live stream. This currently supports a subset of variables. Supply the live stream ID"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Reset a live stream's stream key",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/reset-stream-key",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Reset a live stream key if you want to immediately stop the current stream key from working and create a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Signal a live stream is finished",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/complete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "(Optional) End the live stream recording immediately instead of waiting for the reconnect_window. `EXT-X-ENDLIST` tag is added to the HLS"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Disable a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Disables a live stream, making it reject incoming RTMP streams until re-enabled. The API also ends the live stream recording"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Enable a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/enable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Enables a live stream, allowing it to accept an incoming RTMP stream."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update a live stream's embedded subtitles",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/embedded-subtitles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"embedded_subtitles\": [\n    {\n      \"passthrough\": \"Example\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Configures a live stream to receive embedded closed captions.\nThe resulting Asset's subtitle text track will have `closed_captions: true` set.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update a live stream's generated subtitles",
+        "api_call": "https://api.mux.com/video/v1/live-streams/:LIVE_STREAM_ID/generated-subtitles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"generated_subtitles\": [\n    {\n      \"name\": \"English CC (ASR)\",\n      \"language_code\": \"en\",\n      \"passthrough\": \"Example\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a live stream's automatic-speech-recognition-generated subtitle configuration.\nAutomatic speech recognition subtitles can be removed by sending an empty array in the\nrequest"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a live stream",
+        "api_call": "https://api.mux.com/video/v1/live-streams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"playback_policy\": [\n    \"public\"\n  ],\n  \"new_asset_settings\": {\n    \"playback_policy\": [\n      \"public\"\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List live streams",
+        "api_call": "https://api.mux.com/video/v1/live-streams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the live streams that currently exist in the current environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a URL signing key",
+        "api_call": "https://api.mux.com/video/v1/signing-keys/:SIGNING_KEY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This route is now deprecated, please use the `Signing Keys` API. Retrieves the details of a URL signing key that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a URL signing key",
+        "api_call": "https://api.mux.com/video/v1/signing-keys/:SIGNING_KEY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This route is now deprecated, please use the `Signing Keys` API. Deletes an existing signing key. Use with caution, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a URL signing key",
+        "api_call": "https://api.mux.com/video/v1/signing-keys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This route is now deprecated, please use the `Signing Keys` API. Creates a new signing key pair. When creating a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List URL signing keys",
+        "api_call": "https://api.mux.com/video/v1/signing-keys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This route is now deprecated, please use the `Signing Keys` API. Returns a list of URL signing keys.\n\nNote: Any new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a single direct upload's info",
+        "api_call": "https://api.mux.com/video/v1/uploads/:UPLOAD_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches information about a single direct upload in the current environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Cancel a direct upload",
+        "api_call": "https://api.mux.com/video/v1/uploads/:UPLOAD_ID/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancels a direct upload and marks it as cancelled. If a pending upload finishes after this\nrequest, no asset will be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a new direct upload URL",
+        "api_call": "https://api.mux.com/video/v1/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"cors_origin\": \"https://example.com/\",\n  \"new_asset_settings\": {\n    \"playback_policy\": [\n      \"public\"\n    ],\n    \"mp4_support\": \"standard\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new direct upload, through which video content can be uploaded for ingest to Mux."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List direct uploads",
+        "api_call": "https://api.mux.com/video/v1/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists direct uploads in the current environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a Playback Restriction",
+        "api_call": "https://api.mux.com/video/v1/playback-restrictions/:PLAYBACK_RESTRICTION_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a single Playback Restriction."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a Playback Restriction",
+        "api_call": "https://api.mux.com/video/v1/playback-restrictions/:PLAYBACK_RESTRICTION_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a Playback Restriction associated with the unique identifier."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Update the Referrer Playback Restriction",
+        "api_call": "https://api.mux.com/video/v1/playback-restrictions/:PLAYBACK_RESTRICTION_ID/referrer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"allowed_domains\": [\n    \"*.example.com\"\n  ],\n  \"allow_no_referrer\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Allows you to modify the list of domains or change how Mux validates playback requests without the `Referer` HTTP header."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a Playback Restriction",
+        "api_call": "https://api.mux.com/video/v1/playback-restrictions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"referrer\": {\n    \"allowed_domains\": [\n      \"*.example.com\"\n    ],\n    \"allow_no_referrer\": true\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new Playback Restriction."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Playback Restrictions",
+        "api_call": "https://api.mux.com/video/v1/playback-restrictions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all Playback Restrictions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve an asset or live stream ID",
+        "api_call": "https://api.mux.com/video/v1/playback-ids/:PLAYBACK_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the Identifier of the Asset or Live Stream associated with the Playback ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Usage",
+        "api_call": "https://api.mux.com/video/v1/delivery-usage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of delivery usage records and their associated Asset IDs or Live Stream IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Video Views",
+        "api_call": "https://api.mux.com/data/v1/video-views",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of video views which match the filters and have a `view_end` within the specified timeframe."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get a Video View",
+        "api_call": "https://api.mux.com/data/v1/video-views/:VIDEO_VIEW_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the details of a video view."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Filters",
+        "api_call": "https://api.mux.com/data/v1/filters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The API has been replaced by the list-dimensions API call.\n\nLists all the filters broken out into basic and advanced.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Lists values for a specific filter",
+        "api_call": "https://api.mux.com/data/v1/filters/:FILTER_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The API has been replaced by the list-dimension-values API call.\n\nLists the values for a filter along with a total count"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Dimensions",
+        "api_call": "https://api.mux.com/data/v1/dimensions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all available dimensions.\n\nNote: This API replaces the list-filters API call.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Lists the values for a specific dimension",
+        "api_call": "https://api.mux.com/data/v1/dimensions/:DIMENSION_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the values for a dimension along with a total count of related views.\n\nNote: This API replaces the list-filter-values API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List property video view export links",
+        "api_call": "https://api.mux.com/data/v1/exports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The API has been replaced by the list-exports-views API call.\n\nLists the available video view exports along with URLs to retrieve"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List available property view exports",
+        "api_call": "https://api.mux.com/data/v1/exports/views",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the available video view exports along with URLs to retrieve them."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List breakdown values",
+        "api_call": "https://api.mux.com/data/v1/metrics/:METRIC_ID/breakdown",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List the breakdown values for a specific metric."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Overall values",
+        "api_call": "https://api.mux.com/data/v1/metrics/:METRIC_ID/overall",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Insights",
+        "api_call": "https://api.mux.com/data/v1/metrics/:METRIC_ID/insights",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of insights for a metric. These are the worst performing values across all breakdowns sorted by how"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get metric timeseries data",
+        "api_call": "https://api.mux.com/data/v1/metrics/:METRIC_ID/timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns timeseries data for a specific metric.\n\nEach interval represented in the data array contains an array with the following values:\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List all metric values",
+        "api_call": "https://api.mux.com/data/v1/metrics/comparison",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all of the values across every breakdown for a specific metric."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Monitoring Breakdown",
+        "api_call": "https://api.mux.com/data/v1/monitoring/metrics/:MONITORING_METRIC_ID/breakdown",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Monitoring Breakdown Timeseries",
+        "api_call": "https://api.mux.com/data/v1/monitoring/metrics/:MONITORING_METRIC_ID/breakdown-timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets timeseries of breakdown information for a specific dimension and metric. Each datapoint in the response represents 5 seconds worth"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Monitoring Timeseries",
+        "api_call": "https://api.mux.com/data/v1/monitoring/metrics/:MONITORING_METRIC_ID/timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets Time series information for a specific metric along with the number of concurrent viewers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Monitoring Metrics",
+        "api_call": "https://api.mux.com/data/v1/monitoring/metrics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists available monitoring metrics."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Monitoring Histogram Timeseries",
+        "api_call": "https://api.mux.com/data/v1/monitoring/metrics/:MONITORING_HISTOGRAM_METRIC_ID/histogram-timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets histogram timeseries information for a specific metric."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Monitoring Dimensions",
+        "api_call": "https://api.mux.com/data/v1/monitoring/dimensions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists available monitoring dimensions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Real-Time Breakdown",
+        "api_call": "https://api.mux.com/data/v1/realtime/metrics/:REALTIME_METRIC_ID/breakdown",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Real-Time Timeseries",
+        "api_call": "https://api.mux.com/data/v1/realtime/metrics/:REALTIME_METRIC_ID/timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets Time series information for a specific metric along with the number of concurrent viewers. This API is now deprecated,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Real-Time Metrics",
+        "api_call": "https://api.mux.com/data/v1/realtime/metrics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists available real-time metrics. This API is now deprecated, please use the `List Monitoring Metrics` API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get Real-Time Histogram Timeseries",
+        "api_call": "https://api.mux.com/data/v1/realtime/metrics/:REALTIME_HISTOGRAM_METRIC_ID/histogram-timeseries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets histogram timeseries information for a specific metric. This API is now deprecated, please use the `Get Monitoring Histogram Timeseries`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Real-Time Dimensions",
+        "api_call": "https://api.mux.com/data/v1/realtime/dimensions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists available real-time dimensions. This API is now deprecated, please use the `List Monitoring Dimensions` API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Get an Incident",
+        "api_call": "https://api.mux.com/data/v1/incidents/:INCIDENT_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the details of an incident."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Related Incidents",
+        "api_call": "https://api.mux.com/data/v1/incidents/:INCIDENT_ID/related",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all the incidents that seem related to a specific incident."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Incidents",
+        "api_call": "https://api.mux.com/data/v1/incidents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of incidents."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List Errors",
+        "api_call": "https://api.mux.com/data/v1/errors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of errors."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Retrieve a signing key",
+        "api_call": "https://api.mux.com/system/v1/signing-keys/:SIGNING_KEY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of a signing key that has previously\nbeen created. Supply the unique signing key ID that was returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Delete a signing key",
+        "api_call": "https://api.mux.com/system/v1/signing-keys/:SIGNING_KEY_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no JWTs can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: Create a signing key",
+        "api_call": "https://api.mux.com/system/v1/signing-keys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mux API: List signing keys",
+        "api_call": "https://api.mux.com/system/v1/signing-keys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of signing keys."
+    }
+]

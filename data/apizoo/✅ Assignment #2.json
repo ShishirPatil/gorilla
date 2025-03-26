@@ -1,0 +1,39 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "\u2705 Assignment #2: Verify your work",
+        "api_call": "https://api.getpostman.com/collections/:collectionId?apikey=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "X-API-Key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{postman_api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "It's time to check your work.\n\n1. **Get the collection ID:** Select the collection \"Assignment #2\" in the sidebar. Then in"
+    }
+]
