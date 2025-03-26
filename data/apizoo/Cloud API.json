@@ -1,0 +1,1783 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Test Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"hello_world\",\n        \"language\": {\n            \"code\": \"en_US\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Step 3: Subscribe to your WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "To make sure you receive notifications for your account you need to subscribe your app to your WABA.\n\n#### Response\n\nIf your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Step 4: Get Phone Number ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/phone_numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To send messages, you need to register the phone number you want to use. This is the business phone number"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Step 5: Register Phone Number",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/register",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"pin\": \"6-digit-pin\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "With your phone number\u2019s ID in hand, you can register it. In the registration API call, you perform two actions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Step 7: Send a Test Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"16315555555\",\n    \"text\": {\n        \"body\": \"hello world!\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "After you have enabled the customer service window, you can send a test message to the consumer number you used"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Migrate Account",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/register",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"pin\": \"6-digit-pin\",\n    \"backup\": {\n        \"data\": \"backup_data\",\n        \"password\": \"password\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To migrate your account, make a **POST** call to the **`/{{Phone-Number-ID}}/register`** endpoint and include the parameters listed below. \n\nYour request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get India-based business compliance info",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/business_compliance_info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Add India-based business compliance info",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/business_compliance_info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"entity_name\": \"<ENTITY_NAME>\",\n    \"entity_type\": \"<ENTITY_TYPE>\",\n    \"is_registered\": <IS_REGISTERED>,\n    \"grievance_officer_details\": {\n        \"name\": \"<GRIEVANCE_OFFER_NAME>\",\n        \"email\": \"<GRIEVANCE_OFFER_EMAIL>\",\n        \"landline_number\": \"<GRIEVANCE_OFFER_LANDLINE_NUMBER>\",\n        \"mobile_number\": \"<GRIEVANCE_OFFER_MOBILE_NUMBER>\"\n    },\n    \"customer_care_details\": {\n        \"email\": \"<CUSTOMER_CARE_EMAIL>\",\n        \"landline_number\": \"<CUSTOMER_CARE_LANDLINE_NUMBER>\",\n        \"mobile_number\": \"<CUSTOMER_CARE_MOBILE_NUMBER>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Resumable Upload - Create an Upload Session",
+        "api_call": "https://graph.facebook.com/{{Version}}/app/uploads/?file_length=<YOUR_FILE_LENGTH>&file_type=image/jpeg&file_name=myprofile.jpg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "OAuth {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "The Resumable Upload series of requests allow you to upload Profile Pictures to Meta so you can receive a handle"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Resumable Upload - Upload File Data",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Upload-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "image/jpeg",
+                    "type": "text"
+                },
+                {
+                    "key": "file_offset",
+                    "value": "0",
+                    "description": "Specifies the offset to start the upload. The offset value should always be `0`.",
+                    "type": "text"
+                },
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "OAuth {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "/Users/Sample.jpg"
+                }
+            }
+        },
+        "functionality": "To upload a profile picture to your business profile, make a **POST** call to the named endpoint {{Version}}/{{Upload-ID}}, where **Upload-ID**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Resumable Upload - Query File Upload Status",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Upload-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-cache",
+                    "type": "text"
+                },
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "OAuth {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "You can query the status of an upload session by making a **GET** call to an endpoint that is named"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get Business Profile",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/whatsapp_business_profile",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To get information about a business profile, make a **GET** call to the **`/{{Phone-Number-ID}}/whatsapp_business_profile`** endpoint. Within the **`whatsapp_business_profile`** request, you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Update Business Profile",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/whatsapp_business_profile",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"address\": \"<business-address>\",\n    \"description\": \"<business-description>\",\n    \"vertical\": \"<business-industry>\",\n    \"about\": \"<profile-about-text>\",\n    \"email\": \"<business-email>\",\n    \"websites\": [\n        \"<https://website-1>\",\n        \"<https://website-2>\"\n    ],\n    \"profile_picture_handle\": \"<IMAGE_HANDLE_ID>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update the business profile information such as the business description, email or address. To update your profile, make a **POST**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Register Phone",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/register",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"pin\": \"<your-6-digit-pin>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To register your phone, make a **POST** call to **`/{{Phone-Number-ID}}/register`**. You need to include the following parameters.\n\n## Request Parameters\n\n| Name"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Deregister Phone",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/deregister",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "To deregister your phone, make a **POST** call to **`{{Phone-Number-ID}}/deregister`**. **Deregister Phone** removes a previously registered phone. You can always"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Upload Image",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/media",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "messaging_product",
+                        "value": "whatsapp",
+                        "type": "text"
+                    },
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "src": "/Users/Sample.jpg"
+                    }
+                ]
+            }
+        },
+        "functionality": "This request uploads an image as .jpeg. The parameters are specified as **form-data** in the request **body**."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Upload Sticker",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/media",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "messaging_product",
+                        "value": "whatsapp",
+                        "type": "text"
+                    },
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "src": "/Users/sticker.webp"
+                    }
+                ]
+            }
+        },
+        "functionality": "This request uploads a sticker as .webp. The parameters are specified as **form-data** in the request **body**."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Retrieve Media URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Media-ID}}?phone_number_id=<PHONE_NUMBER_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To retrieve your media\u2019s URL, make a **GET** call to **`/{{Media-ID}}`**. Use the returned URL to download the media file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Delete Media",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Media-ID}}/?phone_number_id=<PHONE_NUMBER_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "To delete media, make a **DELETE** call to the ID of the media you want to delete.\n\n## Prerequisites\n- [User Access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Download Media",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Media-URL}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "When you retrieve a media URL through the **GET** Media endpoint, you must use a User Access Token to download"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Text Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",    \n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"text\",\n    \"text\": {\n        \"preview_url\": false,\n        \"body\": \"text-message-content\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a text message, make a **POST** call to **`/{{{Phone-Number-ID}}/messages`** and attach a message object with `type = \"text\"`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Text Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"text\",\n    \"text\": {\n        \"preview_url\": false,\n        \"body\": \"<TEXT_MSG_CONTENT>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply-to text message, make a **POST** call to **`/{{{Phone-Number-ID}}/messages`** and use the **`context.message_id`** field. \n\nContext field is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Text Message with Preview URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"text\": {\n        \"preview_url\": true,\n        \"body\": \"Please visit https://youtu.be/hpltvTEiRrY to inspire your day!\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply with Reaction Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"reaction\",\n    \"reaction\": {\n        \"message_id\": \"<WAM_ID>\",\n        \"emoji\": \"<EMOJI>\"\n    }\n}"
+            }
+        },
+        "functionality": "To send reaction messages, make a **POST** call to `/PHONE_NUMBER_ID/messages` and attach a message object with `type = reaction`. Then,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Image Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"image\",\n    \"image\": {\n        \"id\": \"<IMAGE_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply to an image message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Image Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"image\",\n    \"image\": {\n        \"id\": \"<IMAGE_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply-to image message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type ="
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Image Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"image\",\n    \"image\": {\n        \"link\": \"http(s)://image-url\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `image`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Image Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"image\",\n    \"image\": {\n        \"link\": \"http(s)://image-url\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send an image link as a reply to message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Audio Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"audio\",\n    \"audio\": {\n        \"id\": \"<AUDIO_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `audio`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Audio Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"audio\",\n    \"audio\": {\n        \"id\": \"<AUDIO_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media object with type = `audio`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Audio Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"audio\",\n    \"audio\": {\n        \"link\": \"http(s)://audio-url\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `audio`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Audio Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"audio\",\n    \"audio\": {\n        \"link\": \"http(s)://audio-url\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send an audio link as a reply to message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Document Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"document\",\n    \"document\": {\n        \"id\": \"<DOCUMENT_OBJECT_ID>\",\n        \"caption\": \"<DOCUMENT_CAPTION_TO_SEND>\",\n        \"filename\": \"<DOCUMENT_FILENAME>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `document`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Document Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"document\",\n    \"document\": {\n        \"id\": \"<DOCUMENT_OBJECT_ID>\",\n        \"caption\": \"<DOCUMENT_CAPTION_TO_SEND>\",\n        \"filename\": \"<DOCUMENT_FILENAME>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply to document message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media object with type"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Document Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"document\",\n    \"document\": {\n        \"link\": \"<http(s)://document-url>\",\n        \"caption\": \"<DOCUMENT_CAPTION_TEXT>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `document`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Document Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"document\",\n    \"document\": {\n        \"link\": \"<http(s)://document-url>\",\n        \"caption\": \"<DOCUMENT_CAPTION_TEXT>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a document link as a reply to message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Sticker Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"sticker\",\n    \"sticker\": {\n        \"id\": \"<MEDIA_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `sticker`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Sticker Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"sticker\",\n    \"sticker\": {\n        \"id\": \"<MEDIA_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply to sticker message, make a **POST** call to **/{{Phone-Number-ID}}/messages** and attach a media object with type"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Sticker Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"sticker\",\n    \"sticker\": {\n        \"link\": \"<http(s)://sticker-url>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `sticker`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Sticker Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"sticker\",\n    \"sticker\": {\n        \"link\": \"<http(s)://sticker-url>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a sticker link as a reply to message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Video Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"video\",\n    \"video\": {\n        \"caption\": \"<VIDEO_CAPTION_TEXT>\",\n        \"id\": \"<VIDEO_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `video`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Video Message by ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"video\",\n    \"video\": {\n        \"caption\": \"<VIDEO_CAPTION_TEXT>\",\n        \"id\": \"<VIDEO_OBJECT_ID>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a reply to video message, make a **POST** call to **/{{Phone-Number-ID}}/messages** and attach a media object with type"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Video Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"video\",\n    \"video\": {\n        \"link\": \"<http(s)://video-url>\",\n        \"caption\": \"<VIDEO_CAPTION_TEXT>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a media message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `video`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Video Message by URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>\"\n    },\n    \"type\": \"video\",\n    \"video\": {\n        \"link\": \"<http(s)://video-url>\",\n        \"caption\": \"<VIDEO_CAPTION_TEXT>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send a video link as a reply to message, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a media"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Contact Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"contacts\",\n    \"contacts\": [\n        {\n            \"addresses\": [\n                {\n                    \"street\": \"<ADDRESS_STREET>\",\n                    \"city\": \"<ADDRESS_CITY>\",\n                    \"state\": \"<ADDRESS_STATE>\",\n                    \"zip\": \"<ADDRESS_ZIP>\",\n                    \"country\": \"<ADDRESS_COUNTRY>\",\n                    \"country_code\": \"<ADDRESS_COUNTRY_CODE>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ],\n            \"birthday\": \"<CONTACT_BIRTHDAY>\",\n            \"emails\": [\n                {\n                    \"email\": \"<CONTACT_EMAIL>\",\n                    \"type\": \"<WORK|HOME>\"\n                }\n            ],\n            \"name\": {\n                \"formatted_name\": \"<CONTACT_FORMATTED_NAME>\",\n                \"first_name\": \"<CONTACT_FIRST_NAME>\",\n                \"last_name\": \"<CONTACT_LAST_NAME>\",\n                \"middle_name\": \"<CONTACT_MIDDLE_NAME>\",\n                \"suffix\": \"<CONTACT_SUFFIX>\",\n                \"prefix\": \"<CONTACT_PREFIX>\"\n            },\n            \"org\": {\n                \"company\": \"<CONTACT_ORG_COMPANY>\",\n                \"department\": \"<CONTACT_ORG_DEPARTMENT>\",\n                \"title\": \"<CONTACT_ORG_TITLE>\"\n            },\n            \"phones\": [\n                {\n                    \"phone\": \"<CONTACT_PHONE>\",\n                    \"wa_id\": \"<CONTACT_WA_ID>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ],\n            \"urls\": [\n                {\n                    \"url\": \"<CONTACT_URL>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send contact messages, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type: **`contact`**. Then, add"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Contact Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"contacts\",\n    \"contacts\": [\n        {\n            \"addresses\": [\n                {\n                    \"street\": \"<ADDRESS_STREET>\",\n                    \"city\": \"<ADDRESS_CITY>\",\n                    \"state\": \"<ADDRESS_STATE>\",\n                    \"zip\": \"<ADDRESS_ZIP>\",\n                    \"country\": \"<ADDRESS_COUNTRY>\",\n                    \"country_code\": \"<ADDRESS_COUNTRY_CODE>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ],\n            \"birthday\": \"<CONTACT_BIRTHDAY>\",\n            \"emails\": [\n                {\n                    \"email\": \"<CONTACT_EMAIL>\",\n                    \"type\": \"<WORK|HOME>\"\n                }\n            ],\n            \"name\": {\n                \"formatted_name\": \"<CONTACT_FORMATTED_NAME>\",\n                \"first_name\": \"<CONTACT_FIRST_NAME>\",\n                \"last_name\": \"<CONTACT_LAST_NAME>\",\n                \"middle_name\": \"<CONTACT_MIDDLE_NAME>\",\n                \"suffix\": \"<CONTACT_SUFFIX>\",\n                \"prefix\": \"<CONTACT_PREFIX>\"\n            },\n            \"org\": {\n                \"company\": \"<CONTACT_ORG_COMPANY>\",\n                \"department\": \"<CONTACT_ORG_DEPARTMENT>\",\n                \"title\": \"<CONTACT_ORG_TITLE>\"\n            },\n            \"phones\": [\n                {\n                    \"phone\": \"<CONTACT_PHONE>\",\n                    \"wa_id\": \"<CONTACT_WA_ID>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ],\n            \"urls\": [\n                {\n                    \"url\": \"<CONTACT_URL>\",\n                    \"type\": \"<HOME|WORK>\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send contact messages, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type: **`contact`**. Then, add"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Location Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"location\",\n    \"location\": {\n        \"latitude\": \"<LOCATION_LATITUDE>\",\n        \"longitude\": \"<LOCATION_LONGITUDE>\",\n        \"name\": \"<LOCATION_NAME>\",\n        \"address\": \"<LOCATION_ADDRESS>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send location messages, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `location`. Then,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to Location Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"location\",\n    \"location\": {\n        \"latitude\": \"<LOCATION_LATITUDE>\",\n        \"longitude\": \"<LOCATION_LONGITUDE>\",\n        \"name\": \"<LOCATION_NAME>\",\n        \"address\": \"<LOCATION_ADDRESS>\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To send location messages, make a **POST** call to **`/{{Phone-Number-ID}}/messages`** and attach a message object with type = `location`. Then,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Message Template Text",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"template-name\",\n        \"language\": {\n            \"code\": \"language-and-locale-code\"\n        },\n        \"components\": [\n            {\n                \"type\": \"body\",\n                \"parameters\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"text-string\"\n                    },\n                    {\n                        \"type\": \"currency\",\n                        \"currency\": {\n                            \"fallback_value\": \"$100.99\",\n                            \"code\": \"USD\",\n                            \"amount_1000\": 100990\n                        }\n                    },\n                    {\n                        \"type\": \"date_time\",\n                        \"date_time\": {\n                            \"fallback_value\": \"February 25, 1977\",\n                            \"day_of_week\": 5,\n                            \"year\": 1977,\n                            \"month\": 2,\n                            \"day_of_month\": 25,\n                            \"hour\": 15,\n                            \"minute\": 33,\n                            \"calendar\": \"GREGORIAN\"\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You need to create a message template before you can send one. See [Create Template Using the WhatsApp Manager](https://developers.facebook.com/docs/whatsapp/message-templates/creation#step-1--create-template-using-the-whatsapp-manager) for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Message Template Media",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"template-name\",\n        \"language\": {\n            \"code\": \"language-and-locale-code\"\n        },\n        \"components\": [\n            {\n                \"type\": \"header\",\n                \"parameters\": [\n                    {\n                        \"type\": \"image\",\n                        \"image\": {\n                            \"link\": \"http(s)://the-image-url\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"type\": \"body\",\n                \"parameters\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"text-string\"\n                    },\n                    {\n                        \"type\": \"currency\",\n                        \"currency\": {\n                            \"fallback_value\": \"$100.99\",\n                            \"code\": \"USD\",\n                            \"amount_1000\": 100990\n                        }\n                    },\n                    {\n                        \"type\": \"date_time\",\n                        \"date_time\": {\n                            \"fallback_value\": \"February 25, 1977\",\n                            \"day_of_week\": 5,\n                            \"year\": 1977,\n                            \"month\": 2,\n                            \"day_of_month\": 25,\n                            \"hour\": 15,\n                            \"minute\": 33,\n                            \"calendar\": \"GREGORIAN\"\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Media message templates allow you to send media content as a header component beyond text template with parameters in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Message Template Interactive",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"template-name\",\n        \"language\": {\n            \"code\": \"language-and-locale-code\"\n        },\n        \"components\": [\n            {\n                \"type\": \"header\",\n                \"parameters\": [\n                    {\n                        \"type\": \"image\",\n                        \"image\": {\n                            \"link\": \"http(s)://the-image-url\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"type\": \"body\",\n                \"parameters\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"text-string\"\n                    },\n                    {\n                        \"type\": \"currency\",\n                        \"currency\": {\n                            \"fallback_value\": \"$100.99\",\n                            \"code\": \"USD\",\n                            \"amount_1000\": 100990\n                        }\n                    },\n                    {\n                        \"type\": \"date_time\",\n                        \"date_time\": {\n                            \"fallback_value\": \"February 25, 1977\",\n                            \"day_of_week\": 5,\n                            \"year\": 1977,\n                            \"month\": 2,\n                            \"day_of_month\": 25,\n                            \"hour\": 15,\n                            \"minute\": 33,\n                            \"calendar\": \"GREGORIAN\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"type\": \"button\",\n                \"sub_type\": \"quick_reply\",\n                \"index\": \"0\",\n                \"parameters\": [\n                    {\n                        \"type\": \"payload\",\n                        \"payload\": \"aGlzIHRoaXMgaXMgY29v\"\n                    }\n                ]\n            },\n            {\n                \"type\": \"button\",\n                \"sub_type\": \"quick_reply\",\n                \"index\": \"1\",\n                \"parameters\": [\n                    {\n                        \"type\": \"payload\",\n                        \"payload\": \"9rwnB8RbYmPF5t2Mn09x4h\"\n                    }\n                ]\n            }\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Before sending a message template, you need to create one. See [Create Template Using the WhatsApp Manager](https://developers.facebook.com/docs/whatsapp/message-templates/creation) for more information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send List Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"list\",\n        \"header\": {\n            \"type\": \"text\",\n            \"text\": \"<HEADER_TEXT>\"\n        },\n        \"body\": {\n            \"text\": \"<BODY_TEXT>\"\n        },\n        \"footer\": {\n            \"text\": \"<FOOTER_TEXT>\"\n        },\n        \"action\": {\n            \"button\": \"<BUTTON_TEXT>\",\n            \"sections\": [\n                {\n                    \"title\": \"<LIST_SECTION_1_TITLE>\",\n                    \"rows\": [\n                        {\n                            \"id\": \"<LIST_SECTION_1_ROW_1_ID>\",\n                            \"title\": \"<SECTION_1_ROW_1_TITLE>\",\n                            \"description\": \"<SECTION_1_ROW_1_DESC>\"\n                        },\n                        {\n                            \"id\": \"<LIST_SECTION_1_ROW_2_ID>\",\n                            \"title\": \"<SECTION_1_ROW_2_TITLE>\",\n                            \"description\": \"<SECTION_1_ROW_2_DESC>\"\n                        }\n                    ]\n                },\n                {\n                    \"title\": \"<LIST_SECTION_2_TITLE>\",\n                    \"rows\": [\n                        {\n                            \"id\": \"<LIST_SECTION_2_ROW_1_ID>\",\n                            \"title\": \"<SECTION_2_ROW_1_TITLE>\",\n                            \"description\": \"<SECTION_2_ROW_1_DESC>\"\n                        },\n                        {\n                            \"id\": \"<LIST_SECTION_2_ROW_2_ID>\",\n                            \"title\": \"<SECTION_2_ROW_2_TITLE>\",\n                            \"description\": \"<SECTION_2_ROW_2_DESC>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send a list message, make a **POST** call to `/messages` and attach a message object with **`type`** = `interactive`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply to List Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"context\": {\n        \"message_id\": \"<MSGID_OF_PREV_MSG>\"\n    },\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"list\",\n        \"header\": {\n            \"type\": \"text\",\n            \"text\": \"<HEADER_TEXT>\"\n        },\n        \"body\": {\n            \"text\": \"<BODY_TEXT>\"\n        },\n        \"footer\": {\n            \"text\": \"<FOOTER_TEXT>\"\n        },\n        \"action\": {\n            \"button\": \"<BUTTON_TEXT>\",\n            \"sections\": [\n                {\n                    \"title\": \"<LIST_SECTION_1_TITLE>\",\n                    \"rows\": [\n                        {\n                            \"id\": \"<LIST_SECTION_1_ROW_1_ID>\",\n                            \"title\": \"<SECTION_1_ROW_1_TITLE>\",\n                            \"description\": \"<SECTION_1_ROW_1_DESC>\"\n                        },\n                        {\n                            \"id\": \"<LIST_SECTION_1_ROW_2_ID>\",\n                            \"title\": \"<SECTION_1_ROW_2_TITLE>\",\n                            \"description\": \"<SECTION_1_ROW_2_DESC>\"\n                        }\n                    ]\n                },\n                {\n                    \"title\": \"<LIST_SECTION_2_TITLE>\",\n                    \"rows\": [\n                        {\n                            \"id\": \"<LIST_SECTION_2_ROW_1_ID>\",\n                            \"title\": \"<SECTION_2_ROW_1_TITLE>\",\n                            \"description\": \"<SECTION_2_ROW_1_DESC>\"\n                        },\n                        {\n                            \"id\": \"<LIST_SECTION_2_ROW_2_ID>\",\n                            \"title\": \"<SECTION_2_ROW_2_TITLE>\",\n                            \"description\": \"<SECTION_2_ROW_2_DESC>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send a list message, make a **POST** call to `/messages` and attach a message object with **`type`** = `interactive`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Reply Button",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"button\",\n        \"body\": {\n            \"text\": \"<BUTTON_TEXT>\"\n        },\n        \"action\": {\n            \"buttons\": [\n                {\n                    \"type\": \"reply\",\n                    \"reply\": {\n                        \"id\": \"<UNIQUE_BUTTON_ID_1>\",\n                        \"title\": \"<BUTTON_TITLE_1>\"\n                    }\n                },\n                {\n                    \"type\": \"reply\",\n                    \"reply\": {\n                        \"id\": \"<UNIQUE_BUTTON_ID_2>\",\n                        \"title\": \"<BUTTON_TITLE_2>\"\n                    }\n                }\n            ]\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send interactive messages, make a **POST** call to `/PHONE_NUMBER_ID/messages`(see [Get Phone Number](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/phone-numbers)) and attach a message object with **`type`**\\=`interactive`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Mark Message As Read",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"status\": \"read\",\n    \"message_id\": \"<INCOMING_MSG_ID>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Single Product Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"product\",\n        \"body\": {\n            \"text\": \"<OPTIONAL_BODY_TEXT>\"\n        },\n        \"footer\": {\n            \"text\": \"<OPTIONAL_FOOTER_TEXT>\"\n        },\n        \"action\": {\n            \"catalog_id\": \"367025965434465\",\n            \"product_retailer_id\": \"<ID_TEST_ITEM_1>\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send a single product message, make a **POST** call to the **`/{{Version}}/phone_number/messages`** endpoint.\n\nThis request uses an **`interactive`** object and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Multi-Product Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"product_list\",\n        \"header\": {\n            \"type\": \"<HEADER_TYPE>\",\n            \"text\": \"<YOUR_TEXT_HEADER_CONTENT>\"\n        },\n        \"body\": {\n            \"text\": \"<YOUR_TEXT_BODY_CONTENT>\"\n        },\n        \"footer\": {\n            \"text\": \"<YOUR_TEXT_FOOTER_CONTENT>\"\n        },\n        \"action\": {\n            \"catalog_id\": \"146265584024623\",\n            \"sections\": [\n                {\n                    \"title\": \"<SECTION1_TITLE>\",\n                    \"product_items\": [\n                        {\n                            \"product_retailer_id\": \"<YOUR_PRODUCT1_SKU_IN_CATALOG>\"\n                        },\n                        {\n                            \"product_retailer_id\": \"<YOUR_SECOND_PRODUCT1_SKU_IN_CATALOG>\"\n                        }\n                    ]\n                },\n                {\n                    \"title\": \"<SECTION2_TITLE>\",\n                    \"product_items\": [\n                        {\n                            \"product_retailer_id\": \"<YOUR_PRODUCT2_SKU_IN_CATALOG>\"\n                        },\n                        {\n                            \"product_retailer_id\": \"<YOUR_SECOND_PRODUCT2_SKU_IN_CATALOG>\"\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send a multi-product message, make a **POST** call to the **`/{{Version}}/phone_number/messages`** endpoint.\n\nThis request uses an **`interactive`** object and parameter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Catalog Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"catalog_message\",\n        \"body\": {\n            \"text\": \"Hello! Thanks for your interest. Ordering is easy. Just visit our catalog and add items to purchase.\"\n        },\n        \"action\": {\n            \"name\": \"catalog_message\",\n            \"parameters\": {\n                \"thumbnail_product_retailer_id\": \"2lc20305pt\"\n            }\n        },\n        \"footer\": {\n            \"text\": \"Best grocery deals on WhatsApp!\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "To send a single product message, make a **POST** call to the **`/{{Version}}/phone_number/messages`** endpoint.\n\nThis request uses an **`interactive`** object and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Catalog Template Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"intro_catalog_offer\",\n        \"language\": {\n            \"code\": \"en_US\"\n        },\n        \"components\": [\n            {\n                \"type\": \"body\",\n                \"parameters\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"100\"\n                    },\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"400\"\n                    },\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"3\"\n                    }\n                ]\n            },\n            {\n                \"type\": \"button\",\n                \"sub_type\": \"CATALOG\",\n                \"index\": 0,\n                \"parameters\": [\n                    {\n                        \"type\": \"action\",\n                        \"action\": {\n                            \"thumbnail_product_retailer_id\": \"2lc20305pt\"\n                        }\n                    }\n                ]\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "To send a single product message, make a **POST** call to the **`/{{Version}}/phone_number/messages`** endpoint.\n\nThis request uses an **`interactive`** object and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get Phone Numbers",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/phone_numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API returns all phone numbers in a WhatsApp Business Account specified by the **`{{WABA-ID}}`** value. Get the **`id`** value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get Phone Number By ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "When you query all the phone numbers for a WhatsApp Business Account, each phone number has an **`id`**. You can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get Display Name Status (Beta)",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}?fields=name_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Include **`fields=name_status`** as a query string parameter to get the status of a display name associated with a specific phone"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Request Verification Code",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/request_code",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"code_method\": \"SMS\",\n    \"locale\": \"en_US\"\n}"
+            }
+        },
+        "functionality": "You need to verify the phone number you want to use to send messages to your customers. Phone numbers must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Verify Code",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/verify_code",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"code\": \"<your-requested-code>\"\n}"
+            }
+        },
+        "functionality": "After you received a SMS or Voice request code from [**`Request Verification Code`**](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/phone-numbers#verify), you need to verify the code that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Set Two-Step Verification Code",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"pin\": \"<6-digit-pin>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You can use this endpoint to change two-step verification code associated with your account. \nAfter you change the verification code,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get Shared WABA ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/debug_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get List of Shared WABAs",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/client_whatsapp_business_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Subscribe to a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Subscribe an app to a WhatsApp Business Account. For more information about subscribing to a WhatsApp Business Account, see [Subscribe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Get All Subscriptions for a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To get a list of apps subscribed to Webhooks for a WABA, send a **GET** request to the **`subscribed_apps`** endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Unsubscribe from a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To unsubscribe your app from webhooks for a WhatsApp Business Account, send a **DELETE** request to the `/subscribed_apps/` endpoint on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Override Callback URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"override_callback_uri\": \"<ALTERNATE_WEBHOOK_ENDPOINT_URL>\",\n  \"verify_token\": \"<ALTERNATE_WEBOOK_ENDPOINT_VERIFICATION_TOKEN>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "If you want to subscribe to Webhooks for multiple WhatsApp Business Accounts but want messages field Webhooks notifications to be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Order Details Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-WA-ID}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"order_details\",\n        \"order_details\": {\n            \"header\": {\n                \"type\": \"image\",\n                \"image\": {\n                    \"link\": \"http(s)://the-url\",\n                    \"provider\": {\n                        \"name\": \"provider-name\"\n                    }\n                }\n            },\n            \"body\": {\n                \"text\": \"your-text-body-content\"\n            },\n            \"footer\": {\n                \"text\": \"your-text-footer-content\"\n            },\n            \"action\": {\n                \"reference_id\": \"unique-reference-id\",\n                \"type\": \"digital-goods\",\n                \"payment_type\": \"p2m-lite:stripe\",\n                \"payment_configuration\": \"my-payment-config-name\",\n                \"currency\": \"SGD\",\n                \"total_amount\": {\n                    \"value\": 1000,\n                    \"offset\": 100\n                },\n                \"order\": {\n                    \"status\": \"pending\",\n                    \"items\": [\n                        {\n                            \"retailer_id\": \"1234567\",\n                            \"name\": \"bread\",\n                            \"amount\": {\n                                \"value\": 10000,\n                                \"offset\": 100\n                            },\n                            \"sale_amount\": {\n                                \"value\": 100,\n                                \"offset\": 100\n                            },\n                            \"quantity\": 1\n                        }\n                    ],\n                    \"subtotal\": {\n                        \"value\": 20000,\n                        \"offset\": 100\n                    },\n                    \"tax\": {\n                        \"value\": 1000,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\"\n                    },                    \n                    \"shipping\": {\n                        \"value\": 1000,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\"\n                    },\n                    \"discount\": {\n                        \"value\": 1000,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\",\n                        \"discount_program_name\": \"optional_text\"\n                    },\n                    \"catalog_id\": \"optional-catalog_id\",\n                    \"expiration\": {\n                        \"timestamp\": \"utc_timestamp_in_seconds\",\n                        \"description\": \"cancellation-explanation\"\n                    }\n                }\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Guide: [Payments API - SG](https://developers.facebook.com/docs/whatsapp/cloud-api/payments-api/payments-sg)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Order Status Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-WA-ID}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"order_status\",\n        \"body\": {\n            \"text\": \"your-text-body-content\"\n        },\n        \"action\": {\n            \"name\": \"review_order\",\n            \"parameters\": {\n                \"reference_id\": \"unique-reference-id-from-order-details-msg\",\n                \"order\": {\n                    \"status\": \"processing\",\n                    \"description\": \"optional-text\"\n                }\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Guide: [Payments API - SG](https://developers.facebook.com/docs/whatsapp/cloud-api/payments-api/payments-sg)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Order Details Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-WA-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"order_details\",\n        \"header\": {\n            \"type\": \"image\",\n            \"image\": {\n                \"link\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Home_made_sour_dough_bread.jpg/640px-Home_made_sour_dough_bread.jpg\"\n            }\n        },\n        \"body\": {\n            \"text\": \"your-text-body-content\"\n        },\n        \"footer\": {\n            \"text\": \"your-text-footer-content\"\n        },\n        \"action\": {\n            \"name\": \"review_and_pay\",\n            \"parameters\": {\n                \"reference_id\": \"unique-reference-id\",\n                \"type\": \"digital-goods\",\n                \"payment_type\": \"upi\",\n                \"payment_configuration\": \"my-payment-config-name\",\n                \"currency\": \"INR\",\n                \"total_amount\": {\n                    \"value\": 1100,\n                    \"offset\": 100\n                },\n                \"order\": {\n                    \"status\": \"pending\",\n                    \"items\": [\n                        {\n                            \"retailer_id\": \"1234567\",\n                            \"name\": \"bread\",\n                            \"amount\": {\n                                \"value\": 1500,\n                                \"offset\": 100\n                            },\n                            \"sale_amount\": {\n                                \"value\": 1000,\n                                \"offset\": 100\n                            },\n                            \"quantity\": 1\n                        }\n                    ],\n                    \"subtotal\": {\n                        \"value\": 1000,\n                        \"offset\": 100\n                    },\n                    \"tax\": {\n                        \"value\": 100,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\"\n                    },\n                    \"shipping\": {\n                        \"value\": 100,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\"\n                    },\n                    \"discount\": {\n                        \"value\": 100,\n                        \"offset\": 100,\n                        \"description\": \"optional_text\",\n                        \"discount_program_name\": \"optional_text\"\n                    }\n                }\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "**These APIs are in beta. Please reach out to Meta Business Engineering teams with your WABA ID to gain access.**\n\nGuide:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Order Status Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{Recipient-WA-Phone-Number}}\",\n    \"type\": \"interactive\",\n    \"interactive\": {\n        \"type\": \"order_status\",\n        \"body\": {\n            \"text\": \"your-text-body-content\"\n        },\n        \"action\": {\n            \"name\": \"review_order\",\n            \"parameters\": {\n                \"reference_id\": \"unique-reference-id\",\n                \"order\": {\n                    \"status\": \"processing\",\n                    \"description\": \"optional-text\"\n                }\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "**These APIs are in beta. Please reach out to Meta Business Engineering teams with your WABA ID to gain access.**\n\nGuide:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Sample Text Message",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-WA-ID}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"hello_world\",\n        \"language\": {\n            \"code\": \"en_US\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You need to create a message template before you can send one. See [Create Template Using the WhatsApp Manager](https://developers.facebook.com/docs/whatsapp/message-templates/creation#step-1--create-template-using-the-whatsapp-manager) for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Sample Shipping Confirmation Template",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n       \"name\": \"sample_shipping_confirmation\",\n       \"language\": {\n           \"code\": \"en_US\",\n           \"policy\": \"deterministic\"\n       },\n       \"components\": [\n         {\n           \"type\": \"body\",\n           \"parameters\": [\n               {\n                   \"type\": \"text\",\n                   \"text\": \"2\"\n               }\n           ]\n         }\n       ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Send Sample Issue Resolution Template",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Phone-Number-ID}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"messaging_product\": \"whatsapp\",\n   \"to\": \"{{Recipient-Phone-Number}}\",\n   \"type\": \"template\",\n   \"template\": {\n       \"name\": \"sample_issue_resolution\",\n       \"language\": {\n           \"code\": \"en_US\",\n           \"policy\": \"deterministic\"\n       },\n       \"components\": [\n           {\n               \"type\": \"body\",\n               \"parameters\": [\n                   {\n                       \"type\": \"text\",\n                       \"text\": \"*Mr. Jones*\"\n                   }\n               ]\n           },\n           {\n               \"type\": \"button\",\n               \"sub_type\": \"quick_reply\",\n               \"index\": 0,\n               \"parameters\": [\n                   {\n                       \"type\": \"text\",\n                       \"text\": \"Yes\"\n                   }\n               ]\n           },\n           {\n               \"type\": \"button\",\n               \"sub_type\": \"quick_reply\",\n               \"index\": 1,\n               \"parameters\": [\n                   {\n                       \"type\": \"text\",\n                       \"text\": \"No\"\n                   }\n               ]\n           }\n       ]\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Received Message with Reaction",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "VIEW",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"object\": \"whatsapp_business_account\",\n    \"entry\": [\n        {\n            \"id\": \"8856996819413533\",\n            \"changes\": [\n                {\n                    \"value\": {\n                        \"messaging_product\": \"whatsapp\",\n                        \"metadata\": {\n                            \"display_phone_number\": \"<PHONE_NUMBER>\",\n                            \"phone_number_id\": \"27681414235104944\"\n                        },\n                        \"contacts\": [\n                            {\n                                \"profile\": {\n                                    \"name\": \"<CONTACT_NAME>\"\n                                },\n                                \"wa_id\": \"<WA_ID>\"\n                            }\n                        ],\n                        \"messages\": [\n                            {\n                                \"from\": \"sender_wa_id\",\n                                \"id\": \"message_id\",\n                                \"timestamp\": \"message_timestamp\",\n                                \"type\": \"reaction\",\n                                \"reaction\": {\n                                    \"emoji\": \"<emoji>\",\n                                    \"messsage_id\": \"<WAMID>\"\n                                }\n                            }\n                        ]\n                    },\n                    \"field\": \"messages\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "If the message being reacted to is more than 30 days old the reaction message webhook will not be delivered."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Received Media Message with Image",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "VIEW",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"object\": \"whatsapp_business_account\",\n    \"entry\": [\n        {\n            \"id\": \"8856996819413533\",\n            \"changes\": [\n                {\n                    \"value\": {\n                        \"messaging_product\": \"whatsapp\",\n                        \"metadata\": {\n                            \"display_phone_number\": \"16505553333\",\n                            \"phone_number_id\": \"<PHONE_NUMBER_ID>\"\n                        },\n                        \"contacts\": [\n                            {\n                                \"profile\": {\n                                    \"name\": \"<CONTACT_NAME>\"\n                                },\n                                \"wa_id\": \"<WA_ID>\"\n                            }\n                        ],\n                        \"messages\": [\n                            {\n                                \"from\": \"<FROM_PHONE_NUMBER>\",\n                                \"id\": \"wamid.id\",\n                                \"timestamp\": \"<TIMESTAMP>\",\n                                \"type\": \"image\",\n                                \"image\": {\n                                    \"caption\": \"This is a caption\",\n                                    \"mime_type\": \"image/jpeg\",\n                                    \"sha256\": \"81d3bd8a8db4868c9520ed47186e8b7c5789e61ff79f7f834be6950b808a90d3\",\n                                    \"id\": \"2754859441498128\"\n                                }\n                            }\n                        ]\n                    },\n                    \"field\": \"messages\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "When a message with media is received, the WhatsApp Business API downloads the media. A notification is sent to your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Status: Transaction Status - Order Details Message",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "VIEW",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"object\": \"whatsapp_business_account\",\n    \"entry\": [\n        {\n            \"id\": \"WHATSAPP_BUSINESS_ACCOUNT_ID\",\n            \"changes\": [\n                {\n                    \"value\": {\n                        \"messaging_product\": \"whatsapp\",\n                        \"metadata\": {\n                            \"display_phone_number\": \"PHONE_NUMBER\",\n                            \"phone_number_id\": \"PHONE_NUMBER_ID\"\n                        },\n                        \"statuses\": [\n                            {\n                                \"id\": \"wamid.ID\",\n                                \"from\": \"PHONE_NUMBER\",\n                                \"type\": \"payment\",\n                                \"status\": \"<captured | failed | pending>\",\n                                \"payment\": {\n                                    \"reference_id\": \"reference-id-from-order-details-msg\"\n                                },\n                                \"timestamp\": \"notification_timestamp\"\n                            }\n                        ]\n                    },\n                    \"field\": \"messages\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The following notification is received when a business sends a message which opens a service [conversation](https://developers.facebook.com/docs/whatsapp/pricing#conversations):"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloud API: Sample Error Response",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "VIEW",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"error\": {\n    \"message\": \"(#131006) Resource not found\", // error description\n    \"type\": \"OAuthException\",\n    \"code\": 131006, // please refer to the Error Codes section\n    \"error_data\": {\n        \"messaging_product\": \"whatsapp\", \n        \"details\": \"unknown contact\" // detailed error message to help with debugging\n    },\n    \"error_subcode\": 2494007,\n    \"fbtrace_id\": \"Az8or2yhqkZfEZ-_4Qn_Bam\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Error Message Fields\n\n| Field         | Description   |\n| ------------- |"
+    }
+]

@@ -1,0 +1,108 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter OAuth 1.0a flow test: Step 1 - get oauth_token",
+        "api_call": "https://api.twitter.com/oauth/request_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter OAuth 1.0a flow test: Step 2 - go to browser",
+        "api_call": "https://api.twitter.com/oauth/authorize?oauth_token=from-Step-1&oauth_token_secret=from-Step-1&oauth_callback_confirmed=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter OAuth 1.0a flow test: Step 3 - get access_token",
+        "api_call": "https://api.twitter.com/oauth/access_token?oauth_token=frome-Step2&oauth_verifier=frome-Step2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
