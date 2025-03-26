@@ -1,8 +1,15 @@
 from keyword import kwlist
+import matplotlib.pyplot as plt
+import numpy as np
 
 from bfcl._llm_response_generation import parse_test_category_argument
 from bfcl.constants.eval_config import PROMPT_PATH
 from bfcl.utils import is_java, is_js, load_file
+
+from mappings import *
+
+import logging
+import os
 
 """
 This script checks for the correct format of the function description for test category in Python.
@@ -114,94 +121,84 @@ If present:
 
 """
 
-TYPE_MAP = {
-    "int": int,
-    "float": float,
-    "bool": bool,
-    "str": str,
-    "list": list,
-    "dict": dict,
-    "tuple": tuple,
-    "boolean": bool,
-    "Boolean": bool,
-    "string": str,
-    "integer": int,
-    "number": float,
-    "array": list,
-    "object": dict,
-    "String": str,
-}
-
-
-AVAILABLE_TYPES = [
-    "boolean",
-    "array",
-    "string",
-    "integer",
-    "float",
-    "tuple",
-    "any",
-    "dict",
-]  # python
-
 entry_id_with_problem = set()
 test_categories_total, test_filename_total = parse_test_category_argument(["single_turn"])
 
-
 def format_checker(func_description: dict):
+    """
+    Function checker for a function description.
+    Return format
+    (valid: bool, message: str, error_type: int, param: None or List)
+    """
     if type(func_description) != dict:
-        return False, "Function description must be a dictionary."
+        return False, "Function description must be a dictionary.", 1, None
 
     if "name" not in func_description:
         return (
             False,
             "Function description must contain a field 'name' with the function name.",
+            2, 
+            None
         )
 
     if "description" not in func_description:
         return (
             False,
             "Function description must contain a field 'description' with the function description.",
+            3,
+            None
         )
 
     if "parameters" not in func_description:
         return (
             False,
             "Function description must contain a field 'parameters' with the function parameters information.",
+            4,
+            None
         )
 
     if len(func_description.keys()) != 3:
         return (
             False,
             "Function description must only contain 'name', 'description', and 'parameters' fields. Any other fields should be removed.",
+            5,
+            None
         )
 
     parameters = func_description["parameters"]
     if type(parameters) != dict:
-        return False, "Function 'parameters' field must be a dictionary."
+        return False, "Function 'parameters' field must be a dictionary.", 6, None
 
     if "type" not in parameters:
         return (
             False,
             "Function 'parameters' field must contain a field 'type' with the value 'dict'.",
+            7,
+            None
         )
 
     if "properties" not in parameters:
         return (
             False,
             "Function 'parameters' field must contain a field 'properties' with the function parameters.",
+            8,
+            None
         )
 
     if "required" not in parameters:
         return (
             False,
             "Function 'parameters' field must contain a field 'required' that is a list of required parameters.",
+            9,
+            None
         )
 
     if len(parameters.keys()) != 3:
         return (
             False,
             "Function 'parameters' field must only contain 'type', 'properties', and 'required' fields. Any other fields should be removed.",
+            10,
+            None
         )
 
     properties = parameters["properties"]
@@ -209,28 +206,34 @@ def format_checker(func_description: dict):
         return (
             False,
             "The 'properties' field must be a dictionary. Each key in the dictionary should be a parameter name, and the value should be a dictionary describing the parameter (with the 'type' and 'description' fields).",
+            11,
+            None
         )
 
-    valid, message = param_checker(properties)
+    valid, message, error_type, param = param_checker(properties)
     if not valid:
-        return False, message
+        return valid, message, error_type, param
 
     all_param = list(properties.keys())
 
     # Check for default and optional parameters
     required = parameters["required"]
     if type(required) != list:
-        return False, "The 'required' field must be a list of required parameters."
+        return False, "The 'required' field must be a list of required parameters.", 12, None
     for param_name in required:
         if param_name not in all_param:
             return (
                 False,
                 f"The parameter '{param_name}' in the 'required' field is not present in the 'properties' field.",
+                13,
+                [param_name]
             )
         if "default" in properties[param_name]:
             return (
                 False,
                 f"The parameter '{param_name}' is a required parameter and should not have a 'default' field.",
+                14,
+                [param_name]
             )
 
     for param_name in all_param:
@@ -239,21 +242,26 @@ def format_checker(func_description: dict):
                 return (
                     False,
                     f"The parameter '{param_name}' is an optional parameter and should have a 'default' field with the default value in the correct type.",
+                    15,
+                    [param_name]
                 )
 
-    return True, "Function description is correctly formatted.✅"
-
+    return True, "Function description is correctly formatted.✅", 0, None
 
 def param_checker(properties: dict):
     if type(properties) != dict:
         return (
             False,
             "The 'properties' field must be a dictionary. Each key in the dictionary should be a parameter name, and the value should be a dictionary describing the parameter (with the 'type' and 'description' fields).",
+            16,
+            None
         )
     if type(properties) != dict:
         return (
             False,
             "The 'properties' field must be a dictionary. Each key in the dictionary should be a parameter name, and the value should be a dictionary describing the parameter (with the 'type' and 'description' fields).",
+            17,
+            None
         )
 
     all_param = []
@@ -263,53 +271,69 @@ def param_checker(properties: dict):
             return (
                 False,
                 f"The parameter name '{param_name}' is a Python keyword and should not be used as a parameter name.",
+                18,
+                [param_name]
             )
 
         if type(param_details) != dict:
             return (
                 False,
                 f"In parameter 'properties', the value for each parameter must be a dictionary describing the parameter (with the 'type' and 'description' fields). The parameter '{param_name}' is not a dictionary.",
+                19,
+                [param_name]
             )
 
         if "type" not in param_details:
             return (
                 False,
                 f"The parameter '{param_name}' should contain a field 'type' with the parameter type. Allowed types are: {AVAILABLE_TYPES}. No other types are allowed.",
+                20,
+                [param_name]
             )
 
         if "description" not in param_details:
             return (
                 False,
                 f"The parameter '{param_name}' should contain a field 'description' with a description of the parameter.",
+                21,
+                [param_name]
             )
 
         if param_name in all_param:
             return (
                 False,
                 f"The parameter '{param_name}' is repeated. Each parameter should only appear once.",
+                22,
+                [param_name]
             )
 
         if param_details["type"] not in AVAILABLE_TYPES:
             return (
                 False,
                 f"The parameter '{param_name}' has an invalid type '{param_details['type']}'. Allowed types are: {AVAILABLE_TYPES}. No other types are allowed.",
+                23,
+                [param_name, param_details['type']]
             )
 
         if param_details["type"] == "dict":
             if "properties" in param_details:
                 dict_properties = param_details["properties"]
-                valid, message = param_checker(dict_properties)
+                valid, message, error_type, param = param_checker(dict_properties)
 
                 if not valid:
                     return (
                         False,
                         f"Problem in the inner nested field for the parameter '{param_name}': {message} Note that the outer parameter is of type 'dict', and so the 'properties' field is a inner nested dictionary with the sub-parameters details. Be careful with the structure and where the issue is.",
+                        24,
+                        [param_name]
                     )
 
                 if "items" in param_details:
                     return (
                         False,
                         f"The parameter '{param_name}' is of type 'dict' and should not contain a field 'items'.",
+                        25,
+                        [param_name]
                     )
 
             elif "additionalProperties" in param_details:
@@ -320,12 +344,16 @@ def param_checker(properties: dict):
                     return (
                         False,
                         f"The 'additionalProperties' field for parameter '{param_name}' must be a dictionary with a 'type' field that describes the type of the key-value pairs in it.",
+                        26,
+                        [param_name]
                     )
 
             else:
                 return (
                     False,
                     f"The parameter '{param_name}' is of type 'dict' and should contain either 'properties' or 'additionalProperties' field to specify the sub-parameters details.",
+                    27,
+                    [param_name]
                 )
 
         elif param_details["type"] == "array" or param_details["type"] == "tuple":
@@ -333,6 +361,8 @@ def param_checker(properties: dict):
                 return (
                     False,
                     f"The parameter '{param_name}' is of type 'array' and should contain a field 'items' with the description of the items in the array.",
+                    28,
+                    [param_name]
                 )
 
             list_properties = param_details["items"]
@@ -340,36 +370,48 @@ def param_checker(properties: dict):
                 return (
                     False,
                     f"Since the parameter '{param_name}' is of type 'array', the 'items' field for the parameter '{param_name}' should be a dictionary with only one key 'type' that describes the type of the items in the {param_details['type']}.",
+                    29,
+                    [param_name]
                 )
 
             if "type" not in list_properties:
                 return (
                     False,
                     f"The 'items' field for the parameter '{param_name}' should be a dictionary that must contain a key 'type' that describes the type of the items in the array.",
+                    30,
+                    [param_name]
                 )
 
             if list_properties["type"] not in AVAILABLE_TYPES:
                 return (
                     False,
                     f"The 'items' field for the parameter '{param_name}' has an invalid 'type' value '{list_properties['type']}'. Allowed types are: {AVAILABLE_TYPES}. No other types are allowed.",
+                    31,
+                    [param_name, list_properties['type']]
                 )
 
             if "properties" in param_details:
                 return (
                     False,
                     f"The parameter '{param_name}' is of type 'array' and should not contain a field 'properties'.",
+                    32,
+                    [param_name]
                 )
         else:
             if "items" in param_details:
                 return (
                     False,
                     f"The parameter '{param_name}' is not of type 'array' and should not contain a field 'items'.",
+                    33,
+                    [param_name]
                 )
 
             if "properties" in param_details:
                 return (
                     False,
                     f"The parameter '{param_name}' is not of type 'dict' and should not contain a field 'properties'.",
+                    34,
+                    [param_name]
                 )
 
         if "enum" in param_details:
@@ -377,13 +419,17 @@ def param_checker(properties: dict):
                 return (
                     False,
                     f"The 'enum' field for the parameter '{param_name}' must be a list of allowed values for the parameter.",
+                    35,
+                    [param_name]
                 )
 
             for enum_value in param_details["enum"]:
-                if type(enum_value) != TYPE_MAP[param_details["type"]]:
+                if type(enum_value) != type(None) and type(enum_value) != TYPE_MAP[param_details["type"]]:
                     return (
                         False,
                         f"The enum value {repr(enum_value)} is not of type {param_details['type']}. Expected {TYPE_MAP[param_details['type']]}, got {type(enum_value)}.",
+                        36,
+                        [enum_value, param_details['type'], TYPE_MAP[param_details['type']], type(enum_value)]
                     )
 
         if "default" in param_details:
@@ -395,29 +441,56 @@ def param_checker(properties: dict):
                 return (
                     False,
                     f"The default value {repr(param_details['default'])} for the parameter '{param_name}' is not of type {param_details['type']}. Expected {TYPE_MAP[param_details['type']]}, got {type(param_details['default'])}.",
+                    37,
+                    [repr(param_details['default']), param_name, param_details['type'], TYPE_MAP[param_details['type']], type(param_details['default'])]
                 )
-
         all_param.append(param_name)
 
-    return True, "Parameter is correctly formatted."
+    return True, "Parameter is correctly formatted.", 0, None
 
+def save_error_type(error_type, param):
+    with open(f'log/error_type_{error_type}_entries.txt', 'a') as f:
+        if param is None:
+            f.write(f"{test_entry['id']}\n")
+        else:
+            f.write(f"{test_entry['id']},/ {',/ '.join(map(str, param))}\n")
+            
+def clean_log_files():
+    if os.path.exists('log/format_check_log.txt'):
+        os.remove('log/format_check_log.txt')
+    for error_type in range(1, 39):
+        if os.path.exists(f'log/error_type_{error_type}_entries.txt'):
+            os.remove(f'log/error_type_{error_type}_entries.txt')
+            
+clean_log_files()
+logging.basicConfig(filename='log/format_check_log.txt', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+error_types = []
 for test_category, file_path in zip(test_categories_total, test_filename_total):
     # We only care about Python test cases; Java and JavaScript test cases have different rules
     if is_java(test_category) or is_js(test_category):
         continue
+    file_path = "BFCL_v3_" + file_path + ".json"
     dataset_data = load_file(PROMPT_PATH / file_path)
     for test_entry in dataset_data:
         for function in test_entry["function"]:
-            valid, message = format_checker(function)
+            valid, message, error_type, param = format_checker(function)
             if not valid:
-                print("--------------------")
-                print(f"Entry ID: {test_entry['id']}")
-                print(f"Function: {function['name']}")
-                print(f"Error: {message}")
-                entry_id_with_problem.add(test_entry["id"])
+                logging.info("--------------------")
+                logging.info(f"Entry ID: {test_entry['id']}")
+                logging.info(f"Function: {function['name']}")
+                logging.info(f"Error: {message}")
+                error_types.append(error_type)
+                save_error_type(error_type, param)
+                
+print(f"There are {len(error_types)} errors")
 
+error_type_counts = plt.hist(error_types, bins=np.arange(1, 39), align='left', rwidth=0.5)[0]
 
-print("--------------------")
-print(f"The following {len(entry_id_with_problem)} entries have problems:")
-print(entry_id_with_problem)
+top_error_types = sorted(zip(error_type_counts, range(1, 39)), reverse=True)
+print("Error Types with Counts:")
+for count, error_type in top_error_types:
+    if count > 0:   
+        print(f"Error id: {error_type} --- {ERROR_MESSAGES[error_type]}")
+        print(f"Count: {count}")
+        print("-"*90)
