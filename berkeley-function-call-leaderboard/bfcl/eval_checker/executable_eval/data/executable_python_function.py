@@ -8,7 +8,7 @@ import time
 ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
 api_key = {}
 for var in ENV_VARS:
-    if os.getenv(var) == "":
+    if not os.getenv(var):
         raise NoAPIKeyError()
 
     api_key[var.replace("_", "-")] = os.getenv(var)
@@ -862,7 +862,7 @@ def get_movie_rating(movie_name):
     Args:
         movie_name (str): The name of the movie.
     """
-    url = "http://www.omdbapi.com/"
+    url = "https://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
     return response.json()["Rated"]
@@ -874,7 +874,7 @@ def get_movie_director(movie_name):
     Args:
         movie_name (str): The name of the movie.
     """
-    url = "http://www.omdbapi.com/"
+    url = "https://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
     return response.json()["Director"]
