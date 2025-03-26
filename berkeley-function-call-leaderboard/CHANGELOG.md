@@ -2,6 +2,8 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Mar 25, 2025] [#962](https://github.com/ShishirPatil/gorilla/pull/962): Fix ambiguous user query in `exec_parallel_10`.
+- [Mar 20, 2025] [#951](https://github.com/ShishirPatil/gorilla/pull/951): Add new model `command-a-03-2025-FC` to the leaderboard.
 - [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
   - `gemini-2.0-flash-lite-001-FC`
   - `gemini-2.0-flash-lite-001`
