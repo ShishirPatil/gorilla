@@ -198,7 +198,7 @@ def check_api_key_supplied() -> bool:
     """
     ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
     for var in ENV_VARS:
-        if os.getenv(var) is None:
+        if not os.getenv(var):
             return False
     return True
 
