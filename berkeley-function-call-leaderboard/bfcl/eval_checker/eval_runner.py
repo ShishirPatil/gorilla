@@ -531,7 +531,7 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
-     clean_up_executable_expected_output(
+    clean_up_executable_expected_output(
         PROMPT_PATH, state["executable_test_categories_have_run"]
     )
 
