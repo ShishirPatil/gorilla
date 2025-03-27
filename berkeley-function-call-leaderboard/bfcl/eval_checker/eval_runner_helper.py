@@ -139,6 +139,7 @@ def get_executable_expected_output(prompt_file_path, possible_answer_file_path):
             execution_result.append(exec_dict["result"])
 
         item["execution_result"] = execution_result
+        item["execution_result_type"] = answer["execution_result_type"]
 
     write_list_of_dicts_to_file(prompt_file_path, prompt_content)
 
@@ -149,6 +150,7 @@ def clean_up_executable_expected_output(prompt_path, categories):
         prompt_content = load_file(prompt_file)
         for item in prompt_content:
             del item["execution_result"]
+            del item["execution_result_type"]
         write_list_of_dicts_to_file(prompt_file, prompt_content)
 
 
