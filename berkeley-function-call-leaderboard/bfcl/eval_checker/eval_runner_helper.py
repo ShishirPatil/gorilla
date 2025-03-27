@@ -123,11 +123,9 @@ def get_executable_expected_output(prompt_file_path, possible_answer_file_path):
 
     exec_dict = {}
 
-    for item, answer in tqdm(zip(prompt_content, possible_answers), desc="Getting Executable Expected Output"):
+    for item, answer in tqdm(list(zip(prompt_content, possible_answers)), desc="Getting Executable Expected Output"):
         execution_result = []
-
-        # Fetch ground truth from possible_answer_file_path.
-        ground_truth = answer["ground_truth"]  
+        ground_truth = answer["ground_truth"]
 
         for i in range(len(ground_truth)):
             exec(
