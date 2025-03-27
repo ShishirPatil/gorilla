@@ -1,0 +1,100 @@
+{"id":"exec_simple_0","ground_truth":["calc_binomial_probability(n=20, k=5, p=0.6)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_1","ground_truth":["calc_binomial_probability(n=30, k=15, p=0.5)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_2","ground_truth":["calculate_cosine_similarity(vectorA=[0.5, 0.7, 0.2, 0.9, 0.1], vectorB=[0.4, 0.6, 0.3, 0.8, 0.2])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_3","ground_truth":["calculate_cosine_similarity(vectorA=[0.3, 0.8, 0.1, 0.6, 0.2], vectorB=[0.5, 0.7, 0.4, 0.9, 0.3])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_4","ground_truth":["calculate_density(mass=50.0, volume=10.0)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_5","ground_truth":["calculate_density(mass=120.0, volume=30.0)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_6","ground_truth":["calculate_displacement(initial_velocity=15.0, acceleration=9.8, time=10)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_7","ground_truth":["calculate_displacement(initial_velocity=25.0, acceleration=15.0, time=8)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_8","ground_truth":["calculate_electrostatic_potential_energy(charge=5.0, voltage=10.0)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_9","ground_truth":["calculate_electrostatic_potential_energy(charge=7.8, voltage=15.2)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_10","ground_truth":["calculate_final_velocity(initial_velocity=0, acceleration=9.8, time=12)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_11","ground_truth":["calculate_final_velocity(initial_velocity=0, acceleration=9.8, time=7)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_12","ground_truth":["calculate_future_value(present_value=5000, interest_rate=0.05, periods=10)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_13","ground_truth":["calculate_future_value(present_value=8000, interest_rate=0.04, periods=15)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_14","ground_truth":["calculate_mean(numbers=[22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_15","ground_truth":["calculate_mean(numbers=[15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_16","ground_truth":["calculate_permutations(n=26, k=5)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_17","ground_truth":["calculate_permutations(n=30, k=7)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_18","ground_truth":["calculate_standard_deviation(numbers=[1000,2000,3000,4000,5000,7000,9000,15000,20000,30000])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_19","ground_truth":["calculate_standard_deviation(numbers=[30,20,25,12,59,23,64,21,67,12,23,43])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_20","ground_truth":["calculate_triangle_area(base=500, height=300)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_21","ground_truth":["calculate_triangle_area(base=700, height=450)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_22","ground_truth":["convert_currency(amount=5000, from_currency='EUR', to_currency='JPY')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_23","ground_truth":["convert_currency(amount=3000, from_currency='USD', to_currency='GBP')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_24","ground_truth":["estimate_derivative(function='lambda x: 3*x**2 + 2*x + 1', x=5)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_25","ground_truth":["estimate_derivative(function='lambda x: 4*x**3 + 3*x**2 + 2*x + 1', x=7)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_26","ground_truth":["find_term_on_urban_dictionary(term=\"lit\")"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_27","ground_truth":["find_term_on_urban_dictionary(term=\"flex\")"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_28","ground_truth":["geometry_area_circle(radius=15)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_29","ground_truth":["geometry_area_circle(radius=20)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_30","ground_truth":["get_active_covid_case_by_country(country='Brazil')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_31","ground_truth":["get_active_covid_case_by_country(country='Spain')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_32","ground_truth":["get_company_name_by_stock_name(stock_name='AAPL')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_33","ground_truth":["get_company_name_by_stock_name(stock_name='GOOGL')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_34","ground_truth":["get_coordinate_by_ip_address(ip_address='192.168.1.1')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_35","ground_truth":["get_coordinate_by_ip_address(ip_address='172.16.254.1')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_36","ground_truth":["get_coordinates_from_city(city_name='Paris')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_37","ground_truth":["get_coordinates_from_city(city_name='Cairo')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_38","ground_truth":["get_covid_death_by_country(country='Brazil')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_39","ground_truth":["get_covid_death_by_country(country='India')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_40","ground_truth":["get_distance(pointA=(45.76, 4.85), pointB=(48.85, 2.35))"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_41","ground_truth":["get_distance(pointA=(32.71, -117.16), pointB=(34.05, -118.25))"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_42","ground_truth":["get_fibonacci_sequence(n=20)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_43","ground_truth":["get_fibonacci_sequence(n=50)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_44","ground_truth":["get_price_by_amazon_ASIN(ASIN='B08PPDJWC8')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_45","ground_truth":["get_price_by_amazon_ASIN(ASIN='B08PPDJWC8')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_46","ground_truth":["get_prime_factors(number=4567)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_47","ground_truth":["get_prime_factors(number=7891)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_48","ground_truth":["get_product_name_by_amazon_ASIN(ASIN='B08BHXG144')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_49","ground_truth":["get_product_name_by_amazon_ASIN(ASIN='B07ZPKBL9V')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_50","ground_truth":["get_rating_by_amazon_ASIN(ASIN='B08BHXG144')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_51","ground_truth":["get_rating_by_amazon_ASIN(ASIN='B07ZPKBL9V')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_52","ground_truth":["get_stock_history(stock_name='AAPL', interval='1mo', diffandsplits='true')"],"execution_result_type":["structural_match"]}
+{"id":"exec_simple_53","ground_truth":["get_stock_history(stock_name='MSFT', interval='1wk', diffandsplits='true')"],"execution_result_type":["structural_match"]}
+{"id":"exec_simple_54","ground_truth":["get_stock_price_by_stock_name(stock_name='AAPL')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_55","ground_truth":["get_stock_price_by_stock_name(stock_name='MSFT')"],"execution_result_type":["real_time_match"]}
+{"id":"exec_simple_56","ground_truth":["get_time_zone_by_coord(long='123.45', lat='-67.89')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_57","ground_truth":["get_time_zone_by_coord(long='-80.75', lat='35.22')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_58","ground_truth":["get_weather_data(coordinates=[90.00, 0.00])"],"execution_result_type":["structural_match"]}
+{"id":"exec_simple_59","ground_truth":["get_weather_data(coordinates=[25.00, 13.00])"],"execution_result_type":["structural_match"]}
+{"id":"exec_simple_60","ground_truth":["get_zipcode_by_ip_address(ip_address=\"192.168.1.1\")"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_61","ground_truth":["get_zipcode_by_ip_address(ip_address='172.16.254.1')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_62","ground_truth":["mat_mul(matA=[[1, 2], [3, 4]], matB=[[5, 6], [7, 8]])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_63","ground_truth":["mat_mul(matA=[[2, 3], [4, 5]], matB=[[6, 7], [8, 9]])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_64","ground_truth":["math_factorial(n=7)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_65","ground_truth":["math_factorial(n=12)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_66","ground_truth":["math_gcd(a=450, b=300)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_67","ground_truth":["math_gcd(a=360, b=240)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_68","ground_truth":["math_lcm(a=24, b=18)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_69","ground_truth":["math_lcm(a=45, b=35)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_70","ground_truth":["mortgage_calculator(loan_amount=350000, interest_rate=0.035, loan_period=30)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_71","ground_truth":["mortgage_calculator(loan_amount=500000, interest_rate=0.045, loan_period=25)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_72","ground_truth":["quadratic_roots(a=3, b=7, c=-10)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_73","ground_truth":["quadratic_roots(a=5, b=-8, c=2)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_74","ground_truth":["retrieve_city_based_on_zipcode(zipcode='90210')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_75","ground_truth":["retrieve_city_based_on_zipcode(zipcode='10001')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_76","ground_truth":["retrieve_holiday_by_year(year='2010', country='FR')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_77","ground_truth":["retrieve_holiday_by_year(year='2005', country='DE')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_78","ground_truth":["sort_array(array=[34, 2, 56, 7, 9, 12], reverse=True)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_79","ground_truth":["sort_array(array=[1, 2, 2, 7, 7, 10], reverse=False)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_80","ground_truth":["add_binary_numbers(a='0011',b='1100')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_81","ground_truth":["add_binary_numbers(a='10011',b='1100')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_82","ground_truth":["linear_regression(x=[1,2,3],y=[4,5,6],point=10)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_83","ground_truth":["linear_regression(x=[1,2,-3],y=[4,-5,6],point=10)"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_84","ground_truth":["maxPoints(points=[[1,1],[2,2],[3,4],[5,5]])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_85","ground_truth":["maxPoints(points=[[1,1],[2,3],[4,6],[5,5]])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_86","ground_truth":["calculate_investment_value(initial_investment=10000,annual_contribution=1000,years=5,annual_return=0.05,inflation_rate=[0.01,0.02,0.03,0.04,0.04])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_87","ground_truth":["calculate_investment_value(initial_investment=1000000,annual_contribution=1000,years=3,annual_return=0.1,inflation_rate=[0.01,0.04,0.04])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_88","ground_truth":["calculate_nutritional_needs(weight=100,height=170,age=30,gender='male',activity_level=1,goal='lose')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_89","ground_truth":["calculate_nutritional_needs(weight=59,height=170,age=80,gender='female',activity_level=4,goal='lose')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_90","ground_truth":["book_room(room_type='deluxe',price=1000,check_in_date='08-11-2024',check_out_date='08-15-2024',customer_id='123')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_91","ground_truth":["book_room(room_type='king',price=10000,check_in_date='12-11-2023',check_out_date='08-15-2024',customer_id='123')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_92","ground_truth":["order_food(item=['burger','ice cream'], quantity=[10,7], price=[5,2])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_93","ground_truth":["order_food(item=['dumplings','rice bowl'], quantity=[101,20], price=[0.1,10])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_94","ground_truth":["get_movie_director(movie_name='Avatar')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_95","ground_truth":["get_movie_director(movie_name='Pulp Fiction')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_96","ground_truth":["get_movie_rating(movie_name='Avatar')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_97","ground_truth":["get_movie_rating(movie_name='Pulp Fiction')"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_98","ground_truth":["polygon_area(vertices=[[1,2],[3,4],[1,3]])"],"execution_result_type":["exact_match"]}
+{"id":"exec_simple_99","ground_truth":["polygon_area(vertices=[[1,2],[3,4],[1,4],[3,7]])"],"execution_result_type":["exact_match"]}
