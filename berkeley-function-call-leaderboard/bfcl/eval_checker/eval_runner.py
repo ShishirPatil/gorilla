@@ -603,7 +603,9 @@ def evaluate_task(
                 f"---- Getting real-time execution result from ground truth"
                 f" for {test_category} ----"
             )
-            get_executable_expected_output(prompt_file)
+            
+            possible_answer_file = find_file_with_suffix(POSSIBLE_ANSWER_PATH, test_category)
+            get_executable_expected_output(prompt_file, possible_answer_file)
             print(
                 f"---- Ground truth real-time execution result obtained for"
                 f" {test_category} 🌟 ----"
