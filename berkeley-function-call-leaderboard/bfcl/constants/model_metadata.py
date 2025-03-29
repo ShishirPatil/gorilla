@@ -690,6 +690,24 @@ MODEL_METADATA_MAPPING = {
         "Microsoft",
         "MIT",
     ],
+    "microsoft/phi-4": [
+        "Phi-4 (Prompt)",
+        "https://huggingface.co/microsoft/phi-4",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-4-mini-instruct": [
+        "Phi-4-mini-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-4-mini-instruct-FC": [
+        "Phi-4-mini-instruct (Function Calling)",
+        "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ],
     "microsoft/Phi-3-small-8k-instruct": [
         "Phi-3-small-8k-instruct (Prompt)",
         "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
