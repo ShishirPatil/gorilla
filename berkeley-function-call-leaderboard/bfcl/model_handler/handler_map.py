@@ -32,6 +32,7 @@ from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
+from bfcl.model_handler.local_inference.phi_fc import PhiFCHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
@@ -133,6 +134,9 @@ local_inference_handler_map = {
     "microsoft/Phi-3-medium-4k-instruct": PhiHandler,
     "microsoft/Phi-3-medium-128k-instruct": PhiHandler,
     "microsoft/Phi-3.5-mini-instruct": PhiHandler,
+    "microsoft/Phi-4-mini-instruct": PhiHandler,
+    "microsoft/Phi-4-mini-instruct-FC": PhiFCHandler,
+    "microsoft/phi-4": PhiHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": HermesHandler,
