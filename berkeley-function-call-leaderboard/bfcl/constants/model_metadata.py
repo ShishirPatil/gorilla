@@ -6,6 +6,12 @@
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
+    "FuncFlow-7B": [
+        "FuncFlow (Prompt)",
+        "https://www.mininglamp.com/",
+        "Mininglamp",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
