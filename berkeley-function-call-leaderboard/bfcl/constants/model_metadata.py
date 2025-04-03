@@ -6,6 +6,12 @@
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
+    "xiaoming-7b": [
+        "xiaoming-7b (Prompt)",
+        "https://www.mininglamp.com/",
+        "Mininglamp",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
