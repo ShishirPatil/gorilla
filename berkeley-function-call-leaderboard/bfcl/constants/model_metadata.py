@@ -624,33 +624,33 @@ MODEL_METADATA_MAPPING = {
         "01.AI",
         "Proprietary",
     ],
-    "Salesforce/xLAM-1b-fc-r": [
-        "xLAM-1b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+    "Salesforce/Llama-xLAM-2-70b-fc-r": [
+        "xLAM-2-70b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-70b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-fc-r": [
-        "xLAM-7b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
+    "Salesforce/Llama-xLAM-2-8b-fc-r": [
+        "xLAM-8b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-r": [
-        "xLAM-7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-r",
+    "Salesforce/xLAM-2-32b-fc-r": [
+        "xLAM-2-32b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-32b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x7b-r": [
-        "xLAM-8x7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x7b-r",
+    "Salesforce/xLAM-2-3b-fc-r": [
+        "xLAM-2-3b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-3b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x22b-r": [
-        "xLAM-8x22b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x22b-r",
+    "Salesforce/xLAM-2-1b-fc-r": [
+        "xLAM-2-1b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-1b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
