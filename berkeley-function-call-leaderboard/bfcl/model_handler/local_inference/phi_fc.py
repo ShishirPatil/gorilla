@@ -12,10 +12,11 @@ from overrides import override
 class PhiFCHandler(OSSHandler):
     """
     This class implements a function-calling handler for the Microsoft Phi series of models.
-    
+
     Specifically, this handler currently supports the following models:
     - microsoft/Phi-4-mini-instruct
     """
+
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         # Strip the -FC suffix when initializing the actual model
@@ -23,7 +24,7 @@ class PhiFCHandler(OSSHandler):
             self.model_name_huggingface = model_name[:-3]
         else:
             self.model_name_huggingface = model_name
-            
+
         # Store the original model name for reference
         self.original_model_name = model_name
         self.is_fc_model = True
@@ -31,6 +32,8 @@ class PhiFCHandler(OSSHandler):
     @override
     def _format_prompt(self, messages, function):
         """
+        "bos_token": "<|endoftext|>",
+        "chat_template":
         {% for message in messages %}
           {% if message['role'] == 'system' and 'tools' in message and message['tools'] is not none %}
             {{ '<|' + message['role'] + '|>' + message['content'] + '<|tool|>' + message['tools'] + '<|/tool|>' + '<|end|>' }}
@@ -47,16 +50,16 @@ class PhiFCHandler(OSSHandler):
 
         # Here's Microsoft's documentation on how the Phi-4-mini-instruct model expects tools to be provided to it:
         # Tool-enabled function-calling format
-        # 
+        #
         # # Tools
         # This format is used when the user wants the model to provide function calls based on the given tools.
         # The user should provide the available tools in the system prompt, wrapped by <|tool|> and <|/tool|> tokens.
         # The tools should be specified in JSON format, using a JSON dump structure. Example:
-        # 
+        #
         # <|system|>You are a helpful assistant with some tools.<|tool|>[{"name": "get_weather_updates", "description": "Fetches weather updates for a given city using the RapidAPI Weather API.", "parameters": {"city": {"description": "The name of the city for which to retrieve weather information.", "type": "str", "default": "London"}}}]<|/tool|><|end|><|user|>What is the weather like in Paris today?<|end|><|assistant|>
-        # 
+        #
 
-        # sanity check 
+        # sanity check
         system_messages = [msg for msg in messages if msg["role"] == "system"]
         assert 0 <= len(system_messages) <= 1
 
@@ -74,21 +77,25 @@ class PhiFCHandler(OSSHandler):
             tool_contents += "\n"
 
         # format the rest of the prompt
-        formatted_prompt = f"<|system|>{system_message}<|tool|>{tool_contents}<|/tool|><|end|>"
+        formatted_prompt = (
+            f"<|system|>{system_message}<|tool|>{tool_contents}<|/tool|><|end|>"
+        )
         for msg in messages:
             role = msg["role"]
             content = msg["content"]
             formatted_prompt += f"<|{role}|>{content}<|end|>"
-        
+
         # provide the generation prompt token
         formatted_prompt += "<|assistant|>"
         return formatted_prompt
 
     @override
     def decode_ast(self, result, language="Python"):
-        if not isinstance(result, list) or any(not isinstance(item, dict) for item in result):
+        if not isinstance(result, list) or any(
+            not isinstance(item, dict) for item in result
+        ):
             return []
-        
+
         return result
 
     @override
@@ -97,14 +104,13 @@ class PhiFCHandler(OSSHandler):
             return []
         return convert_to_function_call(result)
 
-
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         """
         Formats a sample from the dataset into a format usable by the testing suite.
 
         Args:
-            test_entry (dict): Sample from the 
+            test_entry (dict): Sample from the
         """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -137,9 +143,11 @@ class PhiFCHandler(OSSHandler):
             model_responses_message_for_chat_history = {
                 "role": "assistant",
                 "content": None,
-                "tool_calls": extracted_tool_calls
+                "tool_calls": extracted_tool_calls,
             }
-            model_responses = [{item["name"]: item["arguments"]} for item in extracted_tool_calls]
+            model_responses = [
+                {item["name"]: item["arguments"]} for item in extracted_tool_calls
+            ]
         else:
             model_responses_message_for_chat_history = {
                 "role": "assistant",
@@ -192,7 +200,6 @@ class PhiFCHandler(OSSHandler):
             if isinstance(fc, list):
                 extracted_tool_calls.extend(fc)
         return extracted_tool_calls
-                        
 
     @staticmethod
     def _extract_tool_calls(input_string: str) -> list[any]:
@@ -201,7 +208,7 @@ class PhiFCHandler(OSSHandler):
 
         Args:
             input_string (str): The model response
-            
+
         Returns:
             (list) The matched objects that we were able to parse out
         """
@@ -215,7 +222,7 @@ class PhiFCHandler(OSSHandler):
                 match = json.loads(match)
             except json.JSONDecodeError:
                 pass
-            
+
             result.append(match)
 
         return result
