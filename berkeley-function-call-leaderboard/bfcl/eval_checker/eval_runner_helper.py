@@ -129,7 +129,7 @@ def get_executable_expected_output(prompt_file_path, possible_answer_file_path):
 
         for i in range(len(ground_truth)):
             exec(
-                "from bfcl.eval_checker.executable_eval.data.executable_python_function import *"
+                "from bfcl.eval_checker.executable_eval.executable_python_function import *"
                 + "\nresult="
                 + ground_truth[i],
                 exec_dict,
