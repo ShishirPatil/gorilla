@@ -1,0 +1,64 @@
+name: BFCL Data Format Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'berkeley-function-call-leaderboard/data/**/*.json'
+
+jobs:
+  check-data-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Run format validation
+        id: validate
+        run: python berkeley-function-call-leaderboard/scripts/validate_data_format.py
+
+      - name: Process validation results
+        id: process_results
+        if: always()
+        run: |
+          if [ -f validation_results.json ]; then
+            # Escape the content and store it as a single line
+            content=$(cat validation_results.json | jq -c .)
+            echo "results=${content}" >> $GITHUB_OUTPUT
+          else
+            echo "results={\"all_success\":false,\"results\":[]}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## BFCL Data Format Check Results
+            
+            ${{ fromJson(steps.process_results.outputs.results).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
+            
+            ${{ !fromJson(steps.process_results.outputs.results).all_success && '### Failed Validations:' || '' }}
+            ${{ join(fromJson(steps.process_results.outputs.results).results, '\n') }}
+            
+            ${{ !fromJson(steps.process_results.outputs.results).all_success && '### How to fix:
+            1. Review the errors above for each failed file
+            2. Ensure all data entries follow the required format for their respective types
+            3. Update the files and push the changes' || '' }}
+
+      - name: Fail if validation failed
+        if: fromJson(steps.process_results.outputs.results).all_success != true
+        run: exit 1
