@@ -1,0 +1,746 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Fraud API v2",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/v2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"config\": {\n    \"ip\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v1\"\n    },\n    \"email\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v2\"\n    },\n    \"phone\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v1\"\n    },\n    \"ip_api\": true,\n    \"email_api\": true,\n    \"phone_api\": true,\n    \"device_fingerprinting\": false,\n    \"ignore_velocity_rules\": false,\n    \"response_fields\": \"id,state,fraud_score,ip_details,email_details,phone_details,bin_details,version,applied_rules,device_details,calculation_time,seon_id\"\n  },\n\t    \"ip\": \"1.1.1.1\",\n        \"action_type\": \"\",\n        \"transaction_id\": \"\",\n        \"affiliate_id\": \"\",\n        \"affiliate_name\": \"\",\n        \"order_memo\": \"\",\n        \"email\": \"example@example.com\",\n        \"email_domain\": \"\",\n        \"password_hash\": \"\",\n        \"user_fullname\": \"\",\n        \"user_name\": \"\",\n        \"user_id\": \"\",\n        \"user_dob\": \"\",\n        \"user_category\": \"\",\n        \"user_account_status\": \"\",\n        \"user_created\": \"\",\n        \"user_country\": \"\",\n        \"user_city\": \"\",\n        \"user_region\": \"\",\n        \"user_zip\": \"\",\n        \"user_street\": \"\",\n        \"user_street2\": \"\",\n        \"device_id\": \"\",\n        \"session\": \"\",\n        \"payment_mode\": \"\",\n        \"card_fullname\": \"\",\n        \"card_bin\": \"\",\n        \"card_hash\": \"\",\n        \"card_last\": \"\",\n        \"card_expire\": \"\",\n        \"avs_result\": \"\",\n        \"cvv_result\": \"\",\n        \"receiver_fullname\": \"\",\n        \"receiver_bank_account\": \"\",\n        \"sca_method\": \"\",\n        \"user_bank_account\": \"\",\n        \"user_bank_name\": \"\",\n        \"user_balance\": \"\",\n        \"user_verification_level\": \"\",\n        \"status_3d\": \"\",\n        \"regulation\": \"\",\n        \"payment_provider\": \"\",\n        \"phone_number\": 36301234567,\n        \"transaction_type\": \"\",\n        \"transaction_amount\": \"\",\n        \"transaction_currency\": \"\",\n        \"brand_id\": \"\",\n        \"items\": [{\n        \t\"item_id\": \"\",\n        \t\"item_quantity\": \"\",\n        \t\"item_name\": \"\",\n        \t\"item_price\": \"\",\n        \t\"item_store\": \"\",\n        \t\"item_store_country\": \"\",\n        \t\"item_category\": \"\",\n        \t\"item_url\": \"\",\n        \t\"item_custom_fields\": {}\n         }, {\n          \"item_id\": \"\",\n        \t\"item_quantity\": \"\",\n        \t\"item_name\": \"\",\n        \t\"item_price\": \"\",\n        \t\"item_store\": \"\",\n        \t\"item_store_country\": \"\",\n        \t\"item_category\": \"\",\n        \t\"item_url\": \"\",\n        \t\"item_custom_fields\": {}\n\t}],\n        \"shipping_country\": \"\",\n        \"shipping_city\": \"\",\n        \"shipping_region\": \"\",\n        \"shipping_zip\": \"\",\n        \"shipping_street\": \"\",\n        \"shipping_street2\": \"\",\n        \"shipping_phone\": \"\",\n        \"shipping_fullname\": \"\",\n        \"shipping_method\": \"\",\n        \"billing_country\": \"\",\n        \"billing_city\": \"\",\n        \"billing_region\": \"\",\n        \"billing_zip\": \"\",\n        \"billing_street\": \"\",\n        \"billing_street2\": \"\",\n        \"billing_phone\": \"\",\n        \"discount_code\": \"\",\n        \"bonus_campaign_id\": \"\",\n        \"gift\": \"\",\n        \"gift_message\": \"\",\n        \"merchant_id\": \"\",\n        \"merchant_created_at\": \"\",\n        \"merchant_country\": \"\",\n        \"merchant_category\": \"\",\n        \"details_url\": \"\",\n        \"custom_fields\": { \n            \"is_intangible_item\": true,\n            \"is_pay_on_delivery\": true,\n            \"departure_airport\": \"BUD\",\n            \"days_to_board\": 1,\n            \"arrival_airport\": \"MXP\"\n\t}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Fraud API v2 with AML",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/v2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"config\": {\n        \"ip\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v1\"\n        },\n        \"aml\":{\n            \"version\":\"v1\",\n            \"monitoring_required\":false,\n             \"monitoring_schedule\": \"MONTHLY\",\n            \"fuzzy_enabled\":false,\n            \"fuzzy_config\":{\n                \"phonetic_search_enabled\":true,\n                \"edit_distance_enabled\":false,\n                \"scoring\":{\n                    \"result_limit\":10,\n                    \"score_threshold\":0.585\n                }\n            },\n            \"timeout\": 2000,\n            \"sources\":{\n                \"sanction_enabled\": true,\n                \"pep_enabled\": true,\n                \"watchlist_enabled\": true,\n                \"crimelist_enabled\": true\n            }\n        },\n        \"email\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v2\"\n        },\n        \"phone\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v1\"\n        },\n        \"ip_api\": false,\n        \"aml_api\": true,\n        \"email_api\": false,\n        \"phone_api\": false,\n        \"device_fingerprinting\": false,\n        \"response_fields\": \"id,state,fraud_score,ip_details,email_details,phone_details,bin_details,version,applied_rules,device_details,calculation_time,seon_id,aml_details\"\n    },\n    \"ip\": \"\",\n    \"action_type\": \"withdrawal\",\n    \"transaction_id\": \"\",\n    \"affiliate_id\": \"\",\n    \"email\": \"\",\n    \"email_domain\": \"\",\n    \"password_hash\": \"\",\n    \"user_fullname\": \"Example Name\",\n    \"user_firstname\": \"Example\",\n    \"user_middlename\": \"\",\n    \"user_lastname\": \"Name\",\n    \"user_dob\": \"1990-01-01\",\n    \"user_pob\": \"Budapest\",\n    \"user_photoid_number\": \"56789\",\n    \"user_id\": \"123456\",\n    \"user_name\": \"\",\n    \"user_category\": \"\",\n    \"user_account_status\": \"\",\n    \"user_created\": \"\",\n    \"user_country\": \"\",\n    \"user_city\": \"\",\n    \"user_region\": \"\",\n    \"user_zip\": \"\",\n    \"user_street\": \"\",\n    \"user_street2\": \"\",\n    \"session\": \"\",\n    \"payment_mode\": \"\",\n    \"card_fullname\": \"\",\n    \"card_bin\": \"\",\n    \"card_hash\": \"\",\n    \"card_last\": \"\",\n    \"card_expire\": \"\",\n    \"avs_result\": \"\",\n    \"cvv_result\": \"\",\n    \"sca_method\": \"\",\n    \"user_bank_account\": \"\",\n    \"user_bank_name\": \"\",\n    \"user_balance\": \"\",\n    \"user_verification_level\": \"\",\n    \"status_3d\": \"\",\n    \"regulation\": \"\",\n    \"payment_provider\": \"\",\n    \"phone_number\": \"\",\n    \"transaction_type\": \"\",\n    \"transaction_amount\": \"\",\n    \"transaction_currency\": \"\",\n    \"merchant_id\": \"\",\n    \"details_url\": \"\",\n    \"custom_fields\": { \n        \"is_intangible_item\": \"\",\n        \"is_pay_on_delivery\": \"\",\n        \"departure_airport\": \"\",\n        \"days_to_board\": null,\n        \"arrival_airport\": \"\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Email API v2",
+        "api_call": "https://api.seon.io/SeonRestService/email-api/v2/example@example.com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: IP API v1",
+        "api_call": "https://api.seon.io/SeonRestService/ip-api/v1/1.1.1.1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Phone API v1",
+        "api_call": "https://api.seon.io/SeonRestService/phone-api/v1/36301234567",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: AML API v1",
+        "api_call": "https://api.seon.io/SeonRestService/aml-api/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"config\": {\n    \"monitoring_required\": false,\n    \"monitoring_schedule\": \"ON_CHANGE\",\n    \"sources\": {\n      \"sanction_enabled\": true,\n      \"pep_enabled\": true,\n      \"watchlist_enabled\": true,\n      \"crimelist_enabled\": true\n    },\n    \"fuzzy_enabled\": false,\n    \"fuzzy_config\": {\n      \"phonetic_search_enabled\": false,\n      \"edit_distance_enabled\": true\n    }\n  },\n  \"user_fullname\": \"Example Name\",\n  \"user_firstname\": \"Example\",\n  \"user_middlename\": \"\",\n  \"user_lastname\": \"Name\",\n  \"user_dob\": \"1990-01-01\",\n  \"user_pob\": \"Budapest\",\n  \"user_photoid_number\": \"56789\",\n  \"user_id\": \"123456\",\n  \"user_country\": \"HU\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Erase API",
+        "api_call": "https://api.seon.io/SeonRestService/erase-api/v1?dry_run=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n        \"user_ids\": [\"userid-001\",\"userid-002\"],\n        \"emails\": [\"example001@example.com\",\"example002@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Label API",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/label/v1/[id]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"label\": \"fraud\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Label API - multiple",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/label/v1/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n        \"transactions\": [{\n                \"transaction_id\": \"id1\",\n                \"label\": \"label1\"\n            },\n            {\n                \"transaction_id\": \"id2\",\n                \"label\": \"label2\"\n            }\n        ]\n    }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Self-Exclusion API",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/exclude/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"user_ids\": [\"id1\",\"id2\"],\n    \"emails\": [\"example1@example.com\", \"example2@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Self-Exclusion API",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/exclude/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"user_ids\": [\"id1\",\"id2\"],\n    \"emails\": [\"example1@example.com\", \"example2@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Lists API",
+        "api_call": "https://api.seon.io/SeonRestService/fraud-api/state-field/v1/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data_field\": \"ip\",\n    \"value\": \"1.1.1.1\",\n    \"state\": \"blacklist\",\n    \"comment\": \"This is a fake IP\",\n    \"expire_day\": 3\n }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Fraud API v2",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/v2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"config\": {\n    \"ip\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v1\"\n    },\n    \"email\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v2\"\n    },\n    \"phone\": {\n      \"include\": \"flags,history,id\",\n      \"timeout\": 2000,\n      \"version\": \"v1\"\n    },\n    \"ip_api\": true,\n    \"email_api\": true,\n    \"phone_api\": true,\n    \"device_fingerprinting\": false,\n    \"ignore_velocity_rules\": false,\n    \"response_fields\": \"id,state,fraud_score,ip_details,email_details,phone_details,bin_details,version,applied_rules,device_details,calculation_time,seon_id\"\n  },\n\t    \"ip\": \"1.1.1.1\",\n        \"action_type\": \"\",\n        \"transaction_id\": \"\",\n        \"affiliate_id\": \"\",\n        \"affiliate_name\": \"\",\n        \"order_memo\": \"\",\n        \"email\": \"example@example.com\",\n        \"email_domain\": \"\",\n        \"password_hash\": \"\",\n        \"user_fullname\": \"\",\n        \"user_name\": \"\",\n        \"user_id\": \"\",\n        \"user_dob\": \"\",\n        \"user_category\": \"\",\n        \"user_account_status\": \"\",\n        \"user_created\": \"\",\n        \"user_country\": \"\",\n        \"user_city\": \"\",\n        \"user_region\": \"\",\n        \"user_zip\": \"\",\n        \"user_street\": \"\",\n        \"user_street2\": \"\",\n        \"device_id\": \"\",\n        \"session\": \"\",\n        \"payment_mode\": \"\",\n        \"card_fullname\": \"\",\n        \"card_bin\": \"\",\n        \"card_hash\": \"\",\n        \"card_last\": \"\",\n        \"card_expire\": \"\",\n        \"avs_result\": \"\",\n        \"cvv_result\": \"\",\n        \"receiver_fullname\": \"\",\n        \"receiver_bank_account\": \"\",\n        \"sca_method\": \"\",\n        \"user_bank_account\": \"\",\n        \"user_bank_name\": \"\",\n        \"user_balance\": \"\",\n        \"user_verification_level\": \"\",\n        \"status_3d\": \"\",\n        \"regulation\": \"\",\n        \"payment_provider\": \"\",\n        \"phone_number\": 36301234567,\n        \"transaction_type\": \"\",\n        \"transaction_amount\": \"\",\n        \"transaction_currency\": \"\",\n        \"brand_id\": \"\",\n        \"items\": [{\n        \t\"item_id\": \"\",\n        \t\"item_quantity\": \"\",\n        \t\"item_name\": \"\",\n        \t\"item_price\": \"\",\n        \t\"item_store\": \"\",\n        \t\"item_store_country\": \"\",\n        \t\"item_category\": \"\",\n        \t\"item_url\": \"\",\n        \t\"item_custom_fields\": {}\n         }, {\n          \"item_id\": \"\",\n        \t\"item_quantity\": \"\",\n        \t\"item_name\": \"\",\n        \t\"item_price\": \"\",\n        \t\"item_store\": \"\",\n        \t\"item_store_country\": \"\",\n        \t\"item_category\": \"\",\n        \t\"item_url\": \"\",\n        \t\"item_custom_fields\": {}\n\t}],\n        \"shipping_country\": \"\",\n        \"shipping_city\": \"\",\n        \"shipping_region\": \"\",\n        \"shipping_zip\": \"\",\n        \"shipping_street\": \"\",\n        \"shipping_street2\": \"\",\n        \"shipping_phone\": \"\",\n        \"shipping_fullname\": \"\",\n        \"shipping_method\": \"\",\n        \"billing_country\": \"\",\n        \"billing_city\": \"\",\n        \"billing_region\": \"\",\n        \"billing_zip\": \"\",\n        \"billing_street\": \"\",\n        \"billing_street2\": \"\",\n        \"billing_phone\": \"\",\n        \"discount_code\": \"\",\n        \"bonus_campaign_id\": \"\",\n        \"gift\": \"\",\n        \"gift_message\": \"\",\n        \"merchant_id\": \"\",\n        \"merchant_created_at\": \"\",\n        \"merchant_country\": \"\",\n        \"merchant_category\": \"\",\n        \"details_url\": \"\",\n        \"custom_fields\": { \n            \"is_intangible_item\": true,\n            \"is_pay_on_delivery\": true,\n            \"departure_airport\": \"BUD\",\n            \"days_to_board\": 1,\n            \"arrival_airport\": \"MXP\"\n\t}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Fraud API v2 with AML",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/v2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"config\": {\n        \"ip\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v1\"\n        },\n        \"aml\":{\n            \"version\":\"v1\",\n            \"monitoring_required\":false,\n             \"monitoring_schedule\": \"MONTHLY\",\n            \"fuzzy_enabled\":false,\n            \"fuzzy_config\":{\n                \"phonetic_search_enabled\":true,\n                \"edit_distance_enabled\":false,\n                \"scoring\":{\n                    \"result_limit\":10,\n                    \"score_threshold\":0.585\n                }\n            },\n            \"timeout\": 2000,\n            \"sources\":{\n                \"sanction_enabled\": true,\n                \"pep_enabled\": true,\n                \"watchlist_enabled\": true,\n                \"crimelist_enabled\": true\n            }\n        },\n        \"email\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v2\"\n        },\n        \"phone\": {\n            \"include\": \"flags,history,id\",\n            \"version\": \"v1\"\n        },\n        \"ip_api\": false,\n        \"aml_api\": true,\n        \"email_api\": false,\n        \"phone_api\": false,\n        \"device_fingerprinting\": false,\n        \"response_fields\": \"id,state,fraud_score,ip_details,email_details,phone_details,bin_details,version,applied_rules,device_details,calculation_time,seon_id,aml_details\"\n    },\n    \"ip\": \"\",\n    \"action_type\": \"withdrawal\",\n    \"transaction_id\": \"\",\n    \"affiliate_id\": \"\",\n    \"email\": \"\",\n    \"email_domain\": \"\",\n    \"password_hash\": \"\",\n    \"user_fullname\": \"Example Name\",\n    \"user_firstname\": \"Example\",\n    \"user_middlename\": \"\",\n    \"user_lastname\": \"Name\",\n    \"user_dob\": \"1990-01-01\",\n    \"user_pob\": \"Budapest\",\n    \"user_photoid_number\": \"56789\",\n    \"user_id\": \"123456\",\n    \"user_name\": \"\",\n    \"user_category\": \"\",\n    \"user_account_status\": \"\",\n    \"user_created\": \"\",\n    \"user_country\": \"\",\n    \"user_city\": \"\",\n    \"user_region\": \"\",\n    \"user_zip\": \"\",\n    \"user_street\": \"\",\n    \"user_street2\": \"\",\n    \"session\": \"\",\n    \"payment_mode\": \"\",\n    \"card_fullname\": \"\",\n    \"card_bin\": \"\",\n    \"card_hash\": \"\",\n    \"card_last\": \"\",\n    \"card_expire\": \"\",\n    \"avs_result\": \"\",\n    \"cvv_result\": \"\",\n    \"sca_method\": \"\",\n    \"user_bank_account\": \"\",\n    \"user_bank_name\": \"\",\n    \"user_balance\": \"\",\n    \"user_verification_level\": \"\",\n    \"status_3d\": \"\",\n    \"regulation\": \"\",\n    \"payment_provider\": \"\",\n    \"phone_number\": \"\",\n    \"transaction_type\": \"\",\n    \"transaction_amount\": \"\",\n    \"transaction_currency\": \"\",\n    \"merchant_id\": \"\",\n    \"details_url\": \"\",\n    \"custom_fields\": { \n        \"is_intangible_item\": \"\",\n        \"is_pay_on_delivery\": \"\",\n        \"departure_airport\": \"\",\n        \"days_to_board\": null,\n        \"arrival_airport\": \"\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Email API v2",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/email-api/v2/example@example.com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: IP API v1",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/ip-api/v1/1.1.1.1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Phone API v1",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/phone-api/v1/36301234567",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: AML API v1",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/aml-api/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"config\": {\n    \"monitoring_required\": false,\n    \"monitoring_schedule\": \"ON_CHANGE\",\n    \"sources\": {\n      \"sanction_enabled\": true,\n      \"pep_enabled\": true,\n      \"watchlist_enabled\": true,\n      \"crimelist_enabled\": true\n    },\n    \"fuzzy_enabled\": false,\n    \"fuzzy_config\": {\n      \"phonetic_search_enabled\": false,\n      \"edit_distance_enabled\": true\n    }\n  },\n  \"user_fullname\": \"Example Name\",\n  \"user_firstname\": \"Example\",\n  \"user_middlename\": \"\",\n  \"user_lastname\": \"Name\",\n  \"user_dob\": \"1990-01-01\",\n  \"user_pob\": \"Budapest\",\n  \"user_photoid_number\": \"56789\",\n  \"user_id\": \"123456\",\n  \"user_country\": \"HU\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Erase API",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/erase-api/v1?dry_run=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n        \"user_ids\": [\"userid-001\",\"userid-002\"],\n        \"emails\": [\"example001@example.com\",\"example002@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Label API",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/label/v1/[id]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"label\": \"fraud\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Label API - multiple",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/label/v1/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n        \"transactions\": [{\n                \"transaction_id\": \"id1\",\n                \"label\": \"label1\"\n            },\n            {\n                \"transaction_id\": \"id2\",\n                \"label\": \"label2\"\n            }\n        ]\n    }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Self-Exclusion API",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/exclude/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"user_ids\": [\"id1\",\"id2\"],\n    \"emails\": [\"example1@example.com\", \"example2@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Self-Exclusion API",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/exclude/v1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"user_ids\": [\"id1\",\"id2\"],\n    \"emails\": [\"example1@example.com\", \"example2@example.com\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SEON - All API requests: Lists API",
+        "api_call": "https://api.us-east-1-main.seon.io/SeonRestService/fraud-api/state-field/v1/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-API-KEY",
+                    "value": "[license_key]"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data_field\": \"ip\",\n    \"value\": \"1.1.1.1\",\n    \"state\": \"blacklist\",\n    \"comment\": \"This is a fake IP\",\n    \"expire_day\": 3\n }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

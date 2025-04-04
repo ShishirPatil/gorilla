@@ -1,0 +1,434 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single city and its population data",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population/cities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"city\": \"lagos\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get a single city and its population data"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Filter cities and population data",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population/cities/filter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"limit\": 10,\n\t\"order\": \"asc\",\n\t\"orderBy\": \"name\",\n\t\"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Filter cities and population data by (country, order, limit)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get cities and their population data",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population/cities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get cities and their population data"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Filter countries population data",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population/filter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"year\": 2000,\n\t\"limit\": 10,\n\t\"lt\": 651348588,\n\t\"gt\": 6513485,\n\t\"orderBy\": \"name\",\n\t\"order\": \"dsc\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "allowed queries { year: Number, limit: Number, gt: Number, lt: Number, order: String, orderBy: String }"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and population data",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get single country and population data"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get all countries and respective population",
+        "api_call": "{{devURL}}{{baseEndpoint}}/population",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all countries and respective population"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries by position range",
+        "api_call": "{{devURL}}{{baseEndpoint}}/positions/range",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"type\": \"long\",\n\t\"min\": 1,\n\t\"max\": 40\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get countries by position range"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and its positions",
+        "api_call": "{{devURL}}{{baseEndpoint}}/positions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get single country and its positions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries and their positions",
+        "api_call": "{{devURL}}{{baseEndpoint}}/positions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get all countries with their longitude and latitude"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and flag URL",
+        "api_call": "{{devURL}}{{baseEndpoint}}/flag/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"iso2\": \"NG\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get single country with flag image"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and unicode flag",
+        "api_call": "{{devURL}}{{baseEndpoint}}/flag/unicode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"iso2\": \"NG\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "get a single country with its flag in unicode format"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries and unicode flags",
+        "api_call": "{{devURL}}{{baseEndpoint}}/flag/unicode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get all countries with their flag in unicode format"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Countries and flag URL",
+        "api_call": "{{devURL}}{{baseEndpoint}}/flag/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get all countries with their flag images url"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries and their currencies",
+        "api_call": "{{devURL}}{{baseEndpoint}}/currency",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all countries and their currencies"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and its currency",
+        "api_call": "{{devURL}}{{baseEndpoint}}/currency",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get currencies of a single country"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries and their capital",
+        "api_call": "{{devURL}}{{baseEndpoint}}/capital",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get countries and their capital"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get a single country and capital",
+        "api_call": "{{devURL}}{{baseEndpoint}}/capital",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get a specific country and its capital"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get cities of a specified country",
+        "api_call": "{{devURL}}{{baseEndpoint}}/cities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get all cities in a specified country"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get all countries and their cities",
+        "api_call": "{{devURL}}{{baseEndpoint}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get all countries and thier respective cities"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get cities in a state",
+        "api_call": "{{devURL}}{{baseEndpoint}}/state/cities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"Nigeria\",\n    \"state\": \"Lagos\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get countries and ISO2&3 Codes",
+        "api_call": "{{devURL}}{{baseEndpoint}}/iso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get all countries with their ISO2&3 Codes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get Single Country and ISO2&3 Codes",
+        "api_call": "{{devURL}}{{baseEndpoint}}/iso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"Nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "get single country with its ISO2&3 Code"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get cities and dial codes",
+        "api_call": "{{devURL}}{{baseEndpoint}}/codes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all countries, country code and dial codes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country dial codes",
+        "api_call": "{{devURL}}{{baseEndpoint}}/codes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"Nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get single country dial codes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get only specified countries information",
+        "api_call": "{{devURL}}{{baseEndpoint}}/info?returns=currency,flag,unicodeFlag,dialCode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get only specified countries information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get all countries and their states",
+        "api_call": "{{devURL}}{{baseEndpoint}}/states",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "get every country and their respective states "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Countries & Cities API: Get single country and its states",
+        "api_call": "{{devURL}}{{baseEndpoint}}/states",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"Nigeria\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "get a country and its states"
+    }
+]
