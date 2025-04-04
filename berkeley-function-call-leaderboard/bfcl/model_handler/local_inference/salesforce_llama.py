@@ -40,7 +40,7 @@ class SalesforceLlamaHandler(OSSHandler):
                 else:
                     formatted_prompt += message["content"]
                 formatted_prompt += "<|eot_id|>"
-            elif "tool_calls" in message:
+            elif "tool_calls" in message and message["tool_calls"]:
                 formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n"
                 tool_calls = []
                 for tool_call in message["tool_calls"]:

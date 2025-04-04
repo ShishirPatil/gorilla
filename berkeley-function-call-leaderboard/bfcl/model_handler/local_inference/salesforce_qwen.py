@@ -40,7 +40,7 @@ class SalesforceQwenHandler(OSSHandler):
                 else:
                     formatted_prompt += message["content"]
                 formatted_prompt += "<|im_end|>"
-            elif "tool_calls" in message:
+            elif "tool_calls" in message and message["tool_calls"]:
                 formatted_prompt += "<|im_start|>assistant\n"
                 tool_calls = []
                 for tool_call in message["tool_calls"]:
