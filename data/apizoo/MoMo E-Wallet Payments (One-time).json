@@ -1,0 +1,82 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "MoMo E-Wallet Payments (One-time): Create",
+        "api_call": "{{paygate}}/v2/gateway/api/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"partnerCode\": \"{{partnerCode}}\",\n    \"partnerName\": \"Test\",\n    \"storeId\": \"{{partnerCode}}\",\n    \"requestType\": \"{{requestType}}\",\n    \"ipnUrl\": \"{{notifyUrl}}\",\n    \"redirectUrl\": \"{{returnUrl}}\",\n    \"orderId\": \"{{orderId}}\",\n    \"amount\": \"{{amount}}\",\n    \"lang\": \"{{lang}}\",\n    \"autoCapture\": {{autoCapture}},\n    \"orderInfo\": \"{{orderInfo}}\",\n    \"requestId\": \"{{requestId}}\",\n    \"extraData\": \"{{extraData}}\",\n    \"signature\": \"{{signature}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MoMo E-Wallet Payments (One-time): Confirm Transaction",
+        "api_call": "{{paygate}}/v2/gateway/api/confirm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"partnerCode\": \"{{partnerCode}}\",\n  \"orderId\": \"{{orderId}}\",\n  \"requestId\": \"{{requestId}}\",\n  \"requestType\": \"{{requestType}}\",\n  \"amount\": \"{{amount}}\",\n  \"lang\":  \"vi\",\n  \"description\":  \"{{description}}\",\n  \"signature\": \"{{signature}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MoMo E-Wallet Payments (One-time): Refund",
+        "api_call": "{{paygate}}/v2/gateway/api/refund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"partnerCode\": \"{{partnerCode}}\",\n  \"orderId\": \"{{orderId}}\",\n  \"requestId\": \"{{requestId}}\",\n  \"amount\": \"{{amount}}\",\n  \"transId\":  \"{{transId}}\",\n  \"lang\":  \"{{lang}}\",\n  \"description\":  \"{{description}}\",\n  \"signature\": \"{{signature}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MoMo E-Wallet Payments (One-time): Query Transaction",
+        "api_call": "{{paygate}}/v2/gateway/api/query",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"partnerCode\": \"{{partnerCode}}\",\n    \"requestId\": \"{{requestId}}\",\n    \"orderId\": \"{{orderId}}\",\n    \"lang\":  \"{{lang}}\",\n    \"signature\": \"{{signature}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
