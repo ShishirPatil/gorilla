@@ -1,0 +1,4830 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users set Owner",
+        "api_call": "https://slack.com/api/admin.users.setOwner",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "Id of the user to promote to owner."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set an existing guest, regular user, or admin user to be a workspace owner."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users session reset",
+        "api_call": "https://slack.com/api/admin.users.session.reset",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to wipe sessions for"
+                    },
+                    {
+                        "key": "mobile_only",
+                        "value": "<boolean>",
+                        "description": "Only expire mobile sessions (default: false)"
+                    },
+                    {
+                        "key": "web_only",
+                        "value": "<boolean>",
+                        "description": "Only expire web sessions (default: false)"
+                    }
+                ]
+            }
+        },
+        "functionality": "Wipes all valid sessions on all devices for a given user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin apps approve",
+        "api_call": "https://slack.com/api/admin.apps.approve",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.apps:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "app_id",
+                        "value": "<string>",
+                        "description": "The id of the app to approve."
+                    },
+                    {
+                        "key": "request_id",
+                        "value": "<string>",
+                        "description": "The id of the request to approve."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>"
+                    }
+                ]
+            }
+        },
+        "functionality": "Approve an app for installation on a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin apps approved list",
+        "api_call": "https://slack.com/api/admin.apps.approved.list?token=<string>&limit=<integer>&cursor=<string>&team_id=<string>&enterprise_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List approved apps for an org or workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin apps requests list",
+        "api_call": "https://slack.com/api/admin.apps.requests.list?token=<string>&limit=<integer>&cursor=<string>&team_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List app requests for a team/workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin apps restricted list",
+        "api_call": "https://slack.com/api/admin.apps.restricted.list?token=<string>&limit=<integer>&cursor=<string>&team_id=<string>&enterprise_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List restricted apps for an org or workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations archive",
+        "api_call": "https://slack.com/api/admin.conversations.archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to archive."
+                    }
+                ]
+            }
+        },
+        "functionality": "Archive a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin apps restrict",
+        "api_call": "https://slack.com/api/admin.apps.restrict",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.apps:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "app_id",
+                        "value": "<string>",
+                        "description": "The id of the app to restrict."
+                    },
+                    {
+                        "key": "request_id",
+                        "value": "<string>",
+                        "description": "The id of the request to restrict."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>"
+                    }
+                ]
+            }
+        },
+        "functionality": "Restrict an app for installation on a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations convert To Private",
+        "api_call": "https://slack.com/api/admin.conversations.convertToPrivate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to convert to private."
+                    }
+                ]
+            }
+        },
+        "functionality": "Convert a public channel to a private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations create",
+        "api_call": "https://slack.com/api/admin.conversations.create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "Name of the public or private channel to create."
+                    },
+                    {
+                        "key": "is_private",
+                        "value": "<boolean>",
+                        "description": "When `true`, creates a private channel instead of a public channel"
+                    },
+                    {
+                        "key": "description",
+                        "value": "<string>",
+                        "description": "Description of the public or private channel to create."
+                    },
+                    {
+                        "key": "org_wide",
+                        "value": "<boolean>",
+                        "description": "When `true`, the channel will be available org-wide. Note: if the channel is not `org_wide=true`, you must specify a `team_id` for this channel"
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The workspace to create the channel in. Note: this argument is required unless you set `org_wide=true`."
+                    }
+                ]
+            }
+        },
+        "functionality": "Create a public or private channel-based conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations delete",
+        "api_call": "https://slack.com/api/admin.conversations.delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to delete."
+                    }
+                ]
+            }
+        },
+        "functionality": "Delete a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations disconnect Shared",
+        "api_call": "https://slack.com/api/admin.conversations.disconnectShared",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to be disconnected from some workspaces."
+                    },
+                    {
+                        "key": "leaving_team_ids",
+                        "value": "<string>",
+                        "description": "The team to be removed from the channel. Currently only a single team id can be specified."
+                    }
+                ]
+            }
+        },
+        "functionality": "Disconnect a connected channel from one or more workspaces."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations ekm list Original Connected Channel Info",
+        "api_call": "https://slack.com/api/admin.conversations.ekm.listOriginalConnectedChannelInfo?token=<string>&channel_ids=<string>&team_ids=<string>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all disconnected channels\u2014i.e., channels that were once connected to other workspaces and then disconnected\u2014and the corresponding original channel IDs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations get Teams",
+        "api_call": "https://slack.com/api/admin.conversations.getTeams?channel_id=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Get all the workspaces a given public or private channel is connected to within this Enterprise org."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations get Conversation Prefs",
+        "api_call": "https://slack.com/api/admin.conversations.getConversationPrefs?channel_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Get conversation preferences for a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations rename",
+        "api_call": "https://slack.com/api/admin.conversations.rename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to rename."
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>"
+                    }
+                ]
+            }
+        },
+        "functionality": "Rename a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations invite",
+        "api_call": "https://slack.com/api/admin.conversations.invite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "user_ids",
+                        "value": "<string>",
+                        "description": "The users to invite."
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel that the users will be invited to."
+                    }
+                ]
+            }
+        },
+        "functionality": "Invite a user to a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations restrict Access remove Group",
+        "api_call": "https://slack.com/api/admin.conversations.restrictAccess.removeGroup",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.conversations:write`"
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization."
+                    },
+                    {
+                        "key": "group_id",
+                        "value": "<string>",
+                        "description": "The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org) ID to remove from the private channel."
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to remove the linked group from."
+                    }
+                ]
+            }
+        },
+        "functionality": "Remove a linked IDP group linked from a private channel"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations restrict Access list Groups",
+        "api_call": "https://slack.com/api/admin.conversations.restrictAccess.listGroups?token=<string>&channel_id=<string>&team_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all IDP Groups linked to a channel"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations restrict Access add Group",
+        "api_call": "https://slack.com/api/admin.conversations.restrictAccess.addGroup",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.conversations:write`"
+                    },
+                    {
+                        "key": "group_id",
+                        "value": "<string>",
+                        "description": "The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org) ID to be an allowlist for the private channel."
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to link this group to."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization."
+                    }
+                ]
+            }
+        },
+        "functionality": "Add an allowlist of IDP groups for accessing a channel"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations search",
+        "api_call": "https://slack.com/api/admin.conversations.search?team_ids=<string>&query=<string>&limit=<integer>&cursor=<string>&search_channel_types=<string>&sort=<string>&sort_dir=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Search for public or private channels in an Enterprise organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations set Conversation Prefs",
+        "api_call": "https://slack.com/api/admin.conversations.setConversationPrefs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to set the prefs for"
+                    },
+                    {
+                        "key": "prefs",
+                        "value": "<string>",
+                        "description": "The prefs for this channel in a stringified JSON format."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the posting permissions for a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations set Teams",
+        "api_call": "https://slack.com/api/admin.conversations.setTeams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The encoded `channel_id` to add or remove to workspaces."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The workspace to which the channel belongs. Omit this argument if the channel is a cross-workspace shared channel."
+                    },
+                    {
+                        "key": "target_team_ids",
+                        "value": "<string>",
+                        "description": "A comma-separated list of workspaces to which the channel should be shared. Not required if the channel is being shared org-wide."
+                    },
+                    {
+                        "key": "org_channel",
+                        "value": "<boolean>",
+                        "description": "True if channel has to be converted to an org channel"
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the workspaces in an Enterprise grid org that connect to a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin emoji add",
+        "api_call": "https://slack.com/api/admin.emoji.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required, although they may be included."
+                    },
+                    {
+                        "key": "url",
+                        "value": "<string>",
+                        "description": "The URL of a file to use as an image for the emoji. Square images under 128KB and with transparent backgrounds work best."
+                    }
+                ]
+            }
+        },
+        "functionality": "Add an emoji."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin emoji add Alias",
+        "api_call": "https://slack.com/api/admin.emoji.addAlias",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "The name of the emoji to be aliased. Colons (`:myemoji:`) around the value are not required, although they may be included."
+                    },
+                    {
+                        "key": "alias_for",
+                        "value": "<string>",
+                        "description": "The alias of the emoji."
+                    }
+                ]
+            }
+        },
+        "functionality": "Add an emoji alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin emoji list",
+        "api_call": "https://slack.com/api/admin.emoji.list?token=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List emoji for an Enterprise Grid organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin conversations unarchive",
+        "api_call": "https://slack.com/api/admin.conversations.unarchive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "<string>",
+                        "description": "The channel to unarchive."
+                    }
+                ]
+            }
+        },
+        "functionality": "Unarchive a public or private channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin emoji rename",
+        "api_call": "https://slack.com/api/admin.emoji.rename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "The name of the emoji to be renamed. Colons (`:myemoji:`) around the value are not required, although they may be included."
+                    },
+                    {
+                        "key": "new_name",
+                        "value": "<string>",
+                        "description": "The new name of the emoji."
+                    }
+                ]
+            }
+        },
+        "functionality": "Rename an emoji."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin emoji remove",
+        "api_call": "https://slack.com/api/admin.emoji.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required, although they may be included."
+                    }
+                ]
+            }
+        },
+        "functionality": "Remove an emoji across an Enterprise Grid organization"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin invite Requests approve",
+        "api_call": "https://slack.com/api/admin.inviteRequests.approve",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.invites:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "invite_request_id",
+                        "value": "<string>",
+                        "description": "ID of the request to invite."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace where the invite request was made."
+                    }
+                ]
+            }
+        },
+        "functionality": "Approve a workspace invite request."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin invite Requests approved list",
+        "api_call": "https://slack.com/api/admin.inviteRequests.approved.list?team_id=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.invites:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List all approved workspace invite requests."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin invite Requests deny",
+        "api_call": "https://slack.com/api/admin.inviteRequests.deny",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.invites:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "invite_request_id",
+                        "value": "<string>",
+                        "description": "ID of the request to invite."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace where the invite request was made."
+                    }
+                ]
+            }
+        },
+        "functionality": "Deny a workspace invite request."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin invite Requests denied list",
+        "api_call": "https://slack.com/api/admin.inviteRequests.denied.list?team_id=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.invites:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List all denied workspace invite requests."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin invite Requests list",
+        "api_call": "https://slack.com/api/admin.inviteRequests.list?team_id=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.invites:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List all pending workspace invite requests."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams admins list",
+        "api_call": "https://slack.com/api/admin.teams.admins.list?token=<string>&limit=<integer>&cursor=<string>&team_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all of the admins on a given workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams create",
+        "api_call": "https://slack.com/api/admin.teams.create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_domain",
+                        "value": "<string>",
+                        "description": "Team domain (for example, slacksoftballteam)."
+                    },
+                    {
+                        "key": "team_name",
+                        "value": "<string>",
+                        "description": "Team name (for example, Slack Softball Team)."
+                    },
+                    {
+                        "key": "team_description",
+                        "value": "<string>",
+                        "description": "Description for the team."
+                    },
+                    {
+                        "key": "team_discoverability",
+                        "value": "<string>",
+                        "description": "Who can join the team. A team's discoverability can be `open`, `closed`, `invite_only`, or `unlisted`."
+                    }
+                ]
+            }
+        },
+        "functionality": "Create an Enterprise team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams list",
+        "api_call": "https://slack.com/api/admin.teams.list?limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List all teams on an Enterprise organization"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams owners list",
+        "api_call": "https://slack.com/api/admin.teams.owners.list?token=<string>&team_id=<string>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all of the owners on a given workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings info",
+        "api_call": "https://slack.com/api/admin.teams.settings.info?team_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Fetch information about settings in a workspace"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings set Description",
+        "api_call": "https://slack.com/api/admin.teams.settings.setDescription",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace to set the description for."
+                    },
+                    {
+                        "key": "description",
+                        "value": "<string>",
+                        "description": "The new description for the workspace."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the description of a given workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings set Discoverability",
+        "api_call": "https://slack.com/api/admin.teams.settings.setDiscoverability",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID of the workspace to set discoverability on."
+                    },
+                    {
+                        "key": "discoverability",
+                        "value": "<string>",
+                        "description": "This workspace's discovery setting. It must be set to one of `open`, `invite_only`, `closed`, or `unlisted`."
+                    }
+                ]
+            }
+        },
+        "functionality": "An API method that allows admins to set the discoverability of a given workspace"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings set Icon",
+        "api_call": "https://slack.com/api/admin.teams.settings.setIcon",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "image_url",
+                        "value": "<string>",
+                        "description": "Image URL for the icon"
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace to set the icon for."
+                    }
+                ]
+            }
+        },
+        "functionality": "Sets the icon of a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings set Name",
+        "api_call": "https://slack.com/api/admin.teams.settings.setName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace to set the name for."
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "The new name of the workspace."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the name of a given workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin teams settings set Default Channels",
+        "api_call": "https://slack.com/api/admin.teams.settings.setDefaultChannels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `admin.teams:write`"
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID for the workspace to set the default channel for."
+                    },
+                    {
+                        "key": "channel_ids",
+                        "value": "<string>",
+                        "description": "An array of channel IDs."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the default channels of a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin usergroups add Channels",
+        "api_call": "https://slack.com/api/admin.usergroups.addChannels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup_id",
+                        "value": "<string>",
+                        "description": "ID of the IDP group to add default channels for."
+                    },
+                    {
+                        "key": "channel_ids",
+                        "value": "<string>",
+                        "description": "Comma separated string of channel IDs."
+                    },
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The workspace to add default channels in."
+                    }
+                ]
+            }
+        },
+        "functionality": "Add one or more default channels to an IDP group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin usergroups list Channels",
+        "api_call": "https://slack.com/api/admin.usergroups.listChannels?usergroup_id=<string>&team_id=<string>&include_num_members=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.usergroups:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List the channels linked to an org-level IDP group (user group)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin usergroups add Teams",
+        "api_call": "https://slack.com/api/admin.usergroups.addTeams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.teams:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup_id",
+                        "value": "<string>",
+                        "description": "An encoded usergroup (IDP Group) ID."
+                    },
+                    {
+                        "key": "team_ids",
+                        "value": "<string>",
+                        "description": "A comma separated list of encoded team (workspace) IDs. Each workspace *MUST* belong to the organization associated with the token."
+                    },
+                    {
+                        "key": "auto_provision",
+                        "value": "<boolean>",
+                        "description": "When `true`, this method automatically creates new workspace accounts for the IDP group members."
+                    }
+                ]
+            }
+        },
+        "functionality": "Associate one or more default workspaces with an organization-wide IDP group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users invite",
+        "api_call": "https://slack.com/api/admin.users.invite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "email",
+                        "value": "<string>",
+                        "description": "The email address of the person to invite."
+                    },
+                    {
+                        "key": "channel_ids",
+                        "value": "<string>",
+                        "description": "A comma-separated list of `channel_id`s for this user to join. At least one channel is required."
+                    },
+                    {
+                        "key": "custom_message",
+                        "value": "<string>",
+                        "description": "An optional message to send to the user in the invite email."
+                    },
+                    {
+                        "key": "real_name",
+                        "value": "<string>",
+                        "description": "Full name of the user."
+                    },
+                    {
+                        "key": "resend",
+                        "value": "<boolean>",
+                        "description": "Allow this invite to be resent in the future if a user has not signed up yet. (default: false)"
+                    },
+                    {
+                        "key": "is_restricted",
+                        "value": "<boolean>",
+                        "description": "Is this user a multi-channel guest user? (default: false)"
+                    },
+                    {
+                        "key": "is_ultra_restricted",
+                        "value": "<boolean>",
+                        "description": "Is this user a single channel guest user? (default: false)"
+                    },
+                    {
+                        "key": "guest_expiration_ts",
+                        "value": "<string>",
+                        "description": "Timestamp when guest account should be disabled. Only include this timestamp if you are inviting a guest user and you want their account to expire on a certain date."
+                    }
+                ]
+            }
+        },
+        "functionality": "Invite a user to a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin usergroups remove Channels",
+        "api_call": "https://slack.com/api/admin.usergroups.removeChannels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup_id",
+                        "value": "<string>",
+                        "description": "ID of the IDP Group"
+                    },
+                    {
+                        "key": "channel_ids",
+                        "value": "<string>",
+                        "description": "Comma-separated string of channel IDs"
+                    }
+                ]
+            }
+        },
+        "functionality": "Remove one or more default channels from an org-level IDP group (user group)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users list",
+        "api_call": "https://slack.com/api/admin.users.list?team_id=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "List users on a workspace"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users session invalidate",
+        "api_call": "https://slack.com/api/admin.users.session.invalidate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "ID of the team that the session belongs to"
+                    },
+                    {
+                        "key": "session_id",
+                        "value": "<integer>"
+                    }
+                ]
+            }
+        },
+        "functionality": "Invalidate a single session for a user by session_id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users assign",
+        "api_call": "https://slack.com/api/admin.users.assign",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to add to the workspace."
+                    },
+                    {
+                        "key": "is_restricted",
+                        "value": "<boolean>",
+                        "description": "True if user should be added to the workspace as a guest."
+                    },
+                    {
+                        "key": "is_ultra_restricted",
+                        "value": "<boolean>",
+                        "description": "True if user should be added to the workspace as a single-channel guest."
+                    },
+                    {
+                        "key": "channel_ids",
+                        "value": "<string>",
+                        "description": "Comma separated values of channel IDs to add user in the new workspace."
+                    }
+                ]
+            }
+        },
+        "functionality": "Add an Enterprise user to a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users remove",
+        "api_call": "https://slack.com/api/admin.users.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to remove."
+                    }
+                ]
+            }
+        },
+        "functionality": "Remove a user from a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users set Regular",
+        "api_call": "https://slack.com/api/admin.users.setRegular",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to designate as a regular user."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set an existing guest user, admin user, or owner to be a regular user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users set Admin",
+        "api_call": "https://slack.com/api/admin.users.setAdmin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to designate as an admin."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set an existing guest, regular user, or owner to be an admin user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: admin users set Expiration",
+        "api_call": "https://slack.com/api/admin.users.setExpiration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `admin.users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "team_id",
+                        "value": "<string>",
+                        "description": "The ID (`T1234`) of the workspace."
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "<string>",
+                        "description": "The ID of the user to set an expiration for."
+                    },
+                    {
+                        "key": "expiration_ts",
+                        "value": "<integer>",
+                        "description": "Timestamp when guest account should be disabled."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set an expiration for a guest user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: api test",
+        "api_call": "https://slack.com/api/api.test",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Checks API calling code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions info",
+        "api_call": "https://slack.com/api/apps.permissions.info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns list of permissions this app has on a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps event authorizations list",
+        "api_call": "https://slack.com/api/apps.event.authorizations.list?event_context=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `authorizations:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions request",
+        "api_call": "https://slack.com/api/apps.permissions.request?scopes=<string>&trigger_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Allows an app to request additional scopes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions resources list",
+        "api_call": "https://slack.com/api/apps.permissions.resources.list?cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns list of resource grants this app has on a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions scopes list",
+        "api_call": "https://slack.com/api/apps.permissions.scopes.list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns list of scopes this app has on a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps uninstall",
+        "api_call": "https://slack.com/api/apps.uninstall?client_id=<string>&client_secret=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Uninstalls your app from a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions users list",
+        "api_call": "https://slack.com/api/apps.permissions.users.list?cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns list of user grants and corresponding scopes this app has on a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: apps permissions users request",
+        "api_call": "https://slack.com/api/apps.permissions.users.request?scopes=<string>&trigger_id=<string>&user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Enables an app to trigger a permissions modal to grant an app access to a user access scope."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: bots info",
+        "api_call": "https://slack.com/api/bots.info?bot=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a bot user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: auth revoke",
+        "api_call": "https://slack.com/api/auth.revoke?test=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Revokes a token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: auth test",
+        "api_call": "https://slack.com/api/auth.test",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Checks authentication & identity."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls add",
+        "api_call": "https://slack.com/api/calls.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "external_unique_id",
+                        "value": "<string>",
+                        "description": "An ID supplied by the 3rd-party Call provider. It must be unique across all Calls from that service."
+                    },
+                    {
+                        "key": "join_url",
+                        "value": "<string>",
+                        "description": "The URL required for a client to join the Call."
+                    },
+                    {
+                        "key": "external_display_id",
+                        "value": "<string>",
+                        "description": "An optional, human-readable ID supplied by the 3rd-party Call provider. If supplied, this ID will be displayed in the Call object."
+                    },
+                    {
+                        "key": "desktop_app_join_url",
+                        "value": "<string>",
+                        "description": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL."
+                    },
+                    {
+                        "key": "date_start",
+                        "value": "<integer>",
+                        "description": "Call start time in UTC UNIX timestamp format"
+                    },
+                    {
+                        "key": "title",
+                        "value": "<string>",
+                        "description": "The name of the Call."
+                    },
+                    {
+                        "key": "created_by",
+                        "value": "<string>",
+                        "description": "The valid Slack user ID of the user who created this Call. When this method is called with a user token, the `created_by` field is optional and defaults to the authed user of the token. Otherwise, the field is required."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/calls#users)."
+                    }
+                ]
+            }
+        },
+        "functionality": "Registers a new Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls end",
+        "api_call": "https://slack.com/api/calls.end",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "id",
+                        "value": "<string>",
+                        "description": "`id` returned when registering the call using the [`calls.add`](/methods/calls.add) method."
+                    },
+                    {
+                        "key": "duration",
+                        "value": "<integer>",
+                        "description": "Call duration in seconds"
+                    }
+                ]
+            }
+        },
+        "functionality": "Ends a Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls participants add",
+        "api_call": "https://slack.com/api/calls.participants.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "id",
+                        "value": "<string>",
+                        "description": "`id` returned by the [`calls.add`](/methods/calls.add) method."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/calls#users)."
+                    }
+                ]
+            }
+        },
+        "functionality": "Registers new participants added to a Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls participants remove",
+        "api_call": "https://slack.com/api/calls.participants.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "id",
+                        "value": "<string>",
+                        "description": "`id` returned by the [`calls.add`](/methods/calls.add) method."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/calls#users)."
+                    }
+                ]
+            }
+        },
+        "functionality": "Registers participants removed from a Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls info",
+        "api_call": "https://slack.com/api/calls.info?id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:read`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Returns information about a Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: calls update",
+        "api_call": "https://slack.com/api/calls.update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `calls:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "id",
+                        "value": "<string>",
+                        "description": "`id` returned by the [`calls.add`](/methods/calls.add) method."
+                    },
+                    {
+                        "key": "title",
+                        "value": "<string>",
+                        "description": "The name of the Call."
+                    },
+                    {
+                        "key": "join_url",
+                        "value": "<string>",
+                        "description": "The URL required for a client to join the Call."
+                    },
+                    {
+                        "key": "desktop_app_join_url",
+                        "value": "<string>",
+                        "description": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL."
+                    }
+                ]
+            }
+        },
+        "functionality": "Updates information about a Call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat delete",
+        "api_call": "https://slack.com/api/chat.delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "ts",
+                        "value": "<number>",
+                        "description": "Timestamp of the message to be deleted."
+                    },
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel containing the message to be deleted."
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<boolean>",
+                        "description": "Pass true to delete the message as the authed user with `chat:write:user` scope. [Bot users](/bot-users) in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope."
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes a message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat delete Scheduled Message",
+        "api_call": "https://slack.com/api/chat.deleteScheduledMessage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "The channel the scheduled_message is posting to"
+                    },
+                    {
+                        "key": "scheduled_message_id",
+                        "value": "<string>",
+                        "description": "`scheduled_message_id` returned from call to chat.scheduleMessage"
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<boolean>",
+                        "description": "Pass true to delete the message as the authed user with `chat:write:user` scope. [Bot users](/bot-users) in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope."
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes a pending scheduled message from the queue."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat get Permalink",
+        "api_call": "https://slack.com/api/chat.getPermalink?channel=C2U86NC6M&message_ts=1612288689.000200",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve a permalink URL for a specific extant message"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat post Ephemeral",
+        "api_call": "https://slack.com/api/chat.postEphemeral",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name."
+                    },
+                    {
+                        "key": "user",
+                        "value": "<string>",
+                        "description": "`id` of the user who will receive the ephemeral message. The user should be in the channel specified by the `channel` argument."
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<boolean>",
+                        "description": "Pass true to post the message as the authed user. Defaults to true if the chat:write:bot scope is not included. Otherwise, defaults to false."
+                    },
+                    {
+                        "key": "attachments",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+                    },
+                    {
+                        "key": "blocks",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+                    },
+                    {
+                        "key": "icon_emoji",
+                        "value": "<string>",
+                        "description": "Emoji to use as the icon for this message. Overrides `icon_url`. Must be used in conjunction with `as_user` set to `false`, otherwise ignored. See [authorship](#authorship) below."
+                    },
+                    {
+                        "key": "icon_url",
+                        "value": "<string>",
+                        "description": "URL to an image to use as the icon for this message. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below."
+                    },
+                    {
+                        "key": "link_names",
+                        "value": "<boolean>",
+                        "description": "Find and link channel names and usernames."
+                    },
+                    {
+                        "key": "parse",
+                        "value": "<string>",
+                        "description": "Change how messages are treated. Defaults to `none`. See [below](#formatting)."
+                    },
+                    {
+                        "key": "text",
+                        "value": "<string>",
+                        "description": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail."
+                    },
+                    {
+                        "key": "thread_ts",
+                        "value": "<string>",
+                        "description": "Provide another message's `ts` value to post this message in a thread. Avoid using a reply's `ts` value; use its parent's value instead. Ephemeral messages in threads are only shown if there is already an active thread."
+                    },
+                    {
+                        "key": "username",
+                        "value": "<string>",
+                        "description": "Set your bot's user name. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below."
+                    }
+                ]
+            }
+        },
+        "functionality": "Sends an ephemeral message to a user in a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat post Message",
+        "api_call": "https://slack.com/api/chat.postMessage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "{{bot_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details."
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<string>",
+                        "description": "Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See [authorship](#authorship) below.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "attachments",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "blocks",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured blocks, presented as a URL-encoded string.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "icon_emoji",
+                        "value": "<string>",
+                        "description": "Emoji to use as the icon for this message. Overrides `icon_url`. Must be used in conjunction with `as_user` set to `false`, otherwise ignored. See [authorship](#authorship) below.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "icon_url",
+                        "value": "<string>",
+                        "description": "URL to an image to use as the icon for this message. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "link_names",
+                        "value": "<boolean>",
+                        "description": "Find and link channel names and usernames.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "mrkdwn",
+                        "value": "<boolean>",
+                        "description": "Disable Slack markup parsing by setting to `false`. Enabled by default.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "parse",
+                        "value": "<string>",
+                        "description": "Change how messages are treated. Defaults to `none`. See [below](#formatting).",
+                        "disabled": true
+                    },
+                    {
+                        "key": "reply_broadcast",
+                        "value": "<boolean>",
+                        "description": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "text",
+                        "value": "test",
+                        "description": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail."
+                    },
+                    {
+                        "key": "thread_ts",
+                        "value": "<string>",
+                        "description": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "unfurl_links",
+                        "value": "<boolean>",
+                        "description": "Pass true to enable unfurling of primarily text-based content.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "unfurl_media",
+                        "value": "<boolean>",
+                        "description": "Pass false to disable unfurling of media content.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "username",
+                        "value": "<string>",
+                        "description": "Set your bot's user name. Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Sends a message to a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat me Message",
+        "api_call": "https://slack.com/api/chat.meMessage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name."
+                    },
+                    {
+                        "key": "text",
+                        "value": "<string>",
+                        "description": "Text of the message to send."
+                    }
+                ]
+            }
+        },
+        "functionality": "Share a me message into a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat schedule Message",
+        "api_call": "https://slack.com/api/chat.scheduleMessage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel, private group, or DM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details."
+                    },
+                    {
+                        "key": "text",
+                        "value": "<string>",
+                        "description": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail."
+                    },
+                    {
+                        "key": "post_at",
+                        "value": "<string>",
+                        "description": "Unix EPOCH timestamp of time in future to send the message."
+                    },
+                    {
+                        "key": "parse",
+                        "value": "<string>",
+                        "description": "Change how messages are treated. Defaults to `none`. See [chat.postMessage](chat.postMessage#formatting)."
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<boolean>",
+                        "description": "Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See [chat.postMessage](chat.postMessage#authorship)."
+                    },
+                    {
+                        "key": "link_names",
+                        "value": "<boolean>",
+                        "description": "Find and link channel names and usernames."
+                    },
+                    {
+                        "key": "attachments",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+                    },
+                    {
+                        "key": "blocks",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+                    },
+                    {
+                        "key": "unfurl_links",
+                        "value": "<boolean>",
+                        "description": "Pass true to enable unfurling of primarily text-based content."
+                    },
+                    {
+                        "key": "unfurl_media",
+                        "value": "<boolean>",
+                        "description": "Pass false to disable unfurling of media content."
+                    },
+                    {
+                        "key": "thread_ts",
+                        "value": "<number>",
+                        "description": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead."
+                    },
+                    {
+                        "key": "reply_broadcast",
+                        "value": "<boolean>",
+                        "description": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`."
+                    }
+                ]
+            }
+        },
+        "functionality": "Schedules a message to be sent to a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat scheduled Messages list",
+        "api_call": "https://slack.com/api/chat.scheduledMessages.list?channel=<string>&latest=<number>&oldest=<number>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Returns a list of scheduled messages."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat unfurl",
+        "api_call": "https://slack.com/api/chat.unfurl",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `links:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel ID of the message"
+                    },
+                    {
+                        "key": "ts",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to add unfurl behavior to."
+                    },
+                    {
+                        "key": "unfurls",
+                        "value": "<string>",
+                        "description": "URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl blocks or message attachments."
+                    },
+                    {
+                        "key": "user_auth_message",
+                        "value": "<string>",
+                        "description": "Provide a simply-formatted string to send as an ephemeral message to the user as invitation to authenticate further and enable full unfurling behavior"
+                    },
+                    {
+                        "key": "user_auth_required",
+                        "value": "<boolean>",
+                        "description": "Set to `true` or `1` to indicate the user must install your Slack app to trigger unfurls for this domain"
+                    },
+                    {
+                        "key": "user_auth_url",
+                        "value": "<string>",
+                        "description": "Send users to this custom URL where they will complete authentication in your app to fully trigger unfurling. Value should be properly URL-encoded."
+                    }
+                ]
+            }
+        },
+        "functionality": "Provide custom unfurl behavior for user-posted URLs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: chat update",
+        "api_call": "https://slack.com/api/chat.update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `chat:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel containing the message to be updated."
+                    },
+                    {
+                        "key": "ts",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to be updated."
+                    },
+                    {
+                        "key": "as_user",
+                        "value": "<string>",
+                        "description": "Pass true to update the message as the authed user. [Bot users](/bot-users) in this context are considered authed users."
+                    },
+                    {
+                        "key": "attachments",
+                        "value": "<string>",
+                        "description": "A JSON-based array of structured attachments, presented as a URL-encoded string. This field is required when not presenting `text`. If you don't include this field, the message's previous `attachments` will be retained. To remove previous `attachments`, include an empty array for this field."
+                    },
+                    {
+                        "key": "blocks",
+                        "value": "<string>",
+                        "description": "A JSON-based array of [structured blocks](/block-kit/building), presented as a URL-encoded string. If you don't include this field, the message's previous `blocks` will be retained. To remove previous `blocks`, include an empty array for this field."
+                    },
+                    {
+                        "key": "link_names",
+                        "value": "<string>",
+                        "description": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`."
+                    },
+                    {
+                        "key": "parse",
+                        "value": "<string>",
+                        "description": "Change how messages are treated. Defaults to `client`, unlike `chat.postMessage`. Accepts either `none` or `full`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `client`."
+                    },
+                    {
+                        "key": "text",
+                        "value": "<string>",
+                        "description": "New text for the message, using the [default formatting rules](/reference/surfaces/formatting). It's not required when presenting `blocks` or `attachments`."
+                    }
+                ]
+            }
+        },
+        "functionality": "Updates a message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations info",
+        "api_call": "https://slack.com/api/conversations.info?channel=<string>&include_locale=<boolean>&include_num_members=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve information about a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations archive",
+        "api_call": "https://slack.com/api/conversations.archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "ID of conversation to archive"
+                    }
+                ]
+            }
+        },
+        "functionality": "Archives a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations close",
+        "api_call": "https://slack.com/api/conversations.close",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Conversation to close."
+                    }
+                ]
+            }
+        },
+        "functionality": "Closes a direct message or multi-person direct message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations create",
+        "api_call": "https://slack.com/api/conversations.create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "Name of the public or private channel to create"
+                    },
+                    {
+                        "key": "is_private",
+                        "value": "<boolean>",
+                        "description": "Create a private channel instead of a public one"
+                    }
+                ]
+            }
+        },
+        "functionality": "Initiates a public or private channel-based conversation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations invite",
+        "api_call": "https://slack.com/api/conversations.invite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "The ID of the public or private channel to invite user(s) to."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "A comma separated list of user IDs. Up to 1000 users may be listed."
+                    }
+                ]
+            }
+        },
+        "functionality": "Invites users to a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations join",
+        "api_call": "https://slack.com/api/conversations.join",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `channels:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "ID of conversation to join"
+                    }
+                ]
+            }
+        },
+        "functionality": "Joins an existing conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations history",
+        "api_call": "https://slack.com/api/conversations.history?channel=<string>&latest=<number>&oldest=<number>&inclusive=<boolean>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Fetches a conversation's history of messages and events."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations open",
+        "api_call": "https://slack.com/api/conversations.open",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Resume a conversation by supplying an `im` or `mpim`'s ID. Or provide the `users` field instead."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "Comma separated lists of users. If only one user is included, this creates a 1:1 DM.  The ordering of the users is preserved whenever a multi-person direct message is returned. Supply a `channel` when not supplying `users`."
+                    },
+                    {
+                        "key": "return_im",
+                        "value": "<boolean>",
+                        "description": "Boolean, indicates you want the full IM channel definition in the response."
+                    }
+                ]
+            }
+        },
+        "functionality": "Opens or resumes a direct message or multi-person direct message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations kick",
+        "api_call": "https://slack.com/api/conversations.kick",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "ID of conversation to remove user from."
+                    },
+                    {
+                        "key": "user",
+                        "value": "<string>",
+                        "description": "User ID to be removed."
+                    }
+                ]
+            }
+        },
+        "functionality": "Removes a user from a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations leave",
+        "api_call": "https://slack.com/api/conversations.leave",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Conversation to leave"
+                    }
+                ]
+            }
+        },
+        "functionality": "Leaves a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations list",
+        "api_call": "https://slack.com/api/conversations.list?exclude_archived=<boolean>&types=<string>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists all channels in a Slack team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations mark",
+        "api_call": "https://slack.com/api/conversations.mark",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel or conversation to set the read cursor for."
+                    },
+                    {
+                        "key": "ts",
+                        "value": "<number>",
+                        "description": "Unique identifier of message you want marked as most recently seen in this conversation."
+                    }
+                ]
+            }
+        },
+        "functionality": "Sets the read cursor in a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations set Topic",
+        "api_call": "https://slack.com/api/conversations.setTopic",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Conversation to set the topic of"
+                    },
+                    {
+                        "key": "topic",
+                        "value": "<string>",
+                        "description": "The new topic string. Does not support formatting or linkification."
+                    }
+                ]
+            }
+        },
+        "functionality": "Sets the topic for a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations unarchive",
+        "api_call": "https://slack.com/api/conversations.unarchive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "ID of conversation to unarchive"
+                    }
+                ]
+            }
+        },
+        "functionality": "Reverses conversation archival."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dialog open",
+        "api_call": "https://slack.com/api/dialog.open?dialog=<string>&trigger_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Open a dialog with a user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations members",
+        "api_call": "https://slack.com/api/conversations.members?channel=<string>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve members of a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations rename",
+        "api_call": "https://slack.com/api/conversations.rename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "ID of conversation to rename"
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "New name for conversation."
+                    }
+                ]
+            }
+        },
+        "functionality": "Renames a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations replies",
+        "api_call": "https://slack.com/api/conversations.replies?channel=<string>&ts=<number>&latest=<number>&oldest=<number>&inclusive=<boolean>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve a thread of messages posted to a conversation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: conversations set Purpose",
+        "api_call": "https://slack.com/api/conversations.setPurpose",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `conversations:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Conversation to set the purpose of"
+                    },
+                    {
+                        "key": "purpose",
+                        "value": "<string>",
+                        "description": "A new, specialer purpose"
+                    }
+                ]
+            }
+        },
+        "functionality": "Sets the purpose for a conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dnd end Dnd",
+        "api_call": "https://slack.com/api/dnd.endDnd",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `dnd:write`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Ends the current user's Do Not Disturb session immediately."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dnd end Snooze",
+        "api_call": "https://slack.com/api/dnd.endSnooze",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `dnd:write`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Ends the current user's snooze mode immediately."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dnd info",
+        "api_call": "https://slack.com/api/dnd.info?user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a user's current Do Not Disturb status."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dnd set Snooze",
+        "api_call": "https://slack.com/api/dnd.setSnooze",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `dnd:write`"
+                    },
+                    {
+                        "key": "num_minutes",
+                        "value": "<string>",
+                        "description": "Number of minutes, from now, to snooze until."
+                    }
+                ]
+            }
+        },
+        "functionality": "Turns on Do Not Disturb mode for the current user, or changes its duration."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: dnd team Info",
+        "api_call": "https://slack.com/api/dnd.teamInfo?users=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the Do Not Disturb status for up to 50 users on a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: emoji list",
+        "api_call": "https://slack.com/api/emoji.list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists custom emoji for a team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files delete",
+        "api_call": "https://slack.com/api/files.delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `files:write:user`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "ID of file to delete."
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes a file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files comments delete",
+        "api_call": "https://slack.com/api/files.comments.delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `files:write:user`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to delete a comment from."
+                    },
+                    {
+                        "key": "id",
+                        "value": "<string>",
+                        "description": "The comment to delete."
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes an existing comment on a file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files list",
+        "api_call": "https://slack.com/api/files.list?user=<string>&channel=<string>&ts_from=<number>&ts_to=<number>&types=<string>&count=<string>&page=<string>&show_files_hidden_by_limit=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List for a team, in a channel, or from a user with applied filters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote update",
+        "api_call": "https://slack.com/api/files.remote.update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `remote_files:write`"
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "Specify a file by providing its ID."
+                    },
+                    {
+                        "key": "external_id",
+                        "value": "<string>",
+                        "description": "Creator defined GUID for the file."
+                    },
+                    {
+                        "key": "title",
+                        "value": "<string>",
+                        "description": "Title of the file being shared."
+                    },
+                    {
+                        "key": "filetype",
+                        "value": "<string>",
+                        "description": "type of file"
+                    },
+                    {
+                        "key": "external_url",
+                        "value": "<string>",
+                        "description": "URL of the remote file."
+                    },
+                    {
+                        "key": "preview_image",
+                        "value": "<string>",
+                        "description": "Preview of the document via `multipart/form-data`."
+                    },
+                    {
+                        "key": "indexable_file_contents",
+                        "value": "<string>",
+                        "description": "File containing contents that can be used to improve searchability for the remote file."
+                    }
+                ]
+            }
+        },
+        "functionality": "Updates an existing remote file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files info",
+        "api_call": "https://slack.com/api/files.info?file=<string>&count=<string>&page=<string>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files upload",
+        "api_call": "https://slack.com/api/files.upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `files:write:user`"
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`."
+                    },
+                    {
+                        "key": "content",
+                        "value": "<string>",
+                        "description": "File contents via a POST variable. If omitting this parameter, you must provide a `file`."
+                    },
+                    {
+                        "key": "filetype",
+                        "value": "<string>",
+                        "description": "A [file type](/types/file#file_types) identifier."
+                    },
+                    {
+                        "key": "filename",
+                        "value": "<string>",
+                        "description": "Filename of file."
+                    },
+                    {
+                        "key": "title",
+                        "value": "<string>",
+                        "description": "Title of file."
+                    },
+                    {
+                        "key": "initial_comment",
+                        "value": "<string>",
+                        "description": "The message text introducing the file in specified `channels`."
+                    },
+                    {
+                        "key": "channels",
+                        "value": "<string>",
+                        "description": "Comma-separated list of channel names or IDs where the file will be shared."
+                    },
+                    {
+                        "key": "thread_ts",
+                        "value": "<number>",
+                        "description": "Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead."
+                    }
+                ]
+            }
+        },
+        "functionality": "Uploads or creates a file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote add",
+        "api_call": "https://slack.com/api/files.remote.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `remote_files:write`"
+                    },
+                    {
+                        "key": "external_id",
+                        "value": "<string>",
+                        "description": "Creator defined GUID for the file."
+                    },
+                    {
+                        "key": "title",
+                        "value": "<string>",
+                        "description": "Title of the file being shared."
+                    },
+                    {
+                        "key": "filetype",
+                        "value": "<string>",
+                        "description": "type of file"
+                    },
+                    {
+                        "key": "external_url",
+                        "value": "<string>",
+                        "description": "URL of the remote file."
+                    },
+                    {
+                        "key": "preview_image",
+                        "value": "<string>",
+                        "description": "Preview of the document via `multipart/form-data`."
+                    },
+                    {
+                        "key": "indexable_file_contents",
+                        "value": "<string>",
+                        "description": "A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file."
+                    }
+                ]
+            }
+        },
+        "functionality": "Adds a file from a remote service"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote info",
+        "api_call": "https://slack.com/api/files.remote.info?file=<string>&external_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve information about a remote file added to Slack"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: migration exchange",
+        "api_call": "https://slack.com/api/migration.exchange?users=<string>&team_id=<string>&to_old=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "For Enterprise Grid workspaces, map local user IDs to global user IDs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote list",
+        "api_call": "https://slack.com/api/files.remote.list?channel=<string>&ts_from=<number>&ts_to=<number>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve information about a remote file added to Slack"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote remove",
+        "api_call": "https://slack.com/api/files.remote.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `remote_files:write`"
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "Specify a file by providing its ID."
+                    },
+                    {
+                        "key": "external_id",
+                        "value": "<string>",
+                        "description": "Creator defined GUID for the file."
+                    }
+                ]
+            }
+        },
+        "functionality": "Remove a remote file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files remote share",
+        "api_call": "https://slack.com/api/files.remote.share?file=<string>&external_id=<string>&channels=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Share a remote file into a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files revoke Public URL",
+        "api_call": "https://slack.com/api/files.revokePublicURL",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `files:write:user`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to revoke"
+                    }
+                ]
+            }
+        },
+        "functionality": "Revokes public/external sharing access for a file"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: files shared Public URL",
+        "api_call": "https://slack.com/api/files.sharedPublicURL",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `files:write:user`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to share"
+                    }
+                ]
+            }
+        },
+        "functionality": "Enables a file for public/external sharing."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: pins list",
+        "api_call": "https://slack.com/api/pins.list?channel=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists items pinned to a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reactions list",
+        "api_call": "https://slack.com/api/reactions.list?user=<string>&full=<boolean>&count=<integer>&page=<integer>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists reactions made by a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: oauth token",
+        "api_call": "https://slack.com/api/oauth.token?client_id=<string>&client_secret=<string>&code=<string>&redirect_uri=<string>&single_channel=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Exchanges a temporary OAuth verifier code for a workspace token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reactions add",
+        "api_call": "https://slack.com/api/reactions.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `reactions:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel where the message to add reaction to was posted."
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "Reaction (emoji) name."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to add reaction to."
+                    }
+                ]
+            }
+        },
+        "functionality": "Adds a reaction to an item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reactions remove",
+        "api_call": "https://slack.com/api/reactions.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `reactions:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "Reaction (emoji) name."
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to remove reaction from."
+                    },
+                    {
+                        "key": "file_comment",
+                        "value": "<string>",
+                        "description": "File comment to remove reaction from."
+                    },
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel where the message to remove reaction from was posted."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to remove reaction from."
+                    }
+                ]
+            }
+        },
+        "functionality": "Removes a reaction from an item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: oauth v2 access",
+        "api_call": "https://slack.com/api/oauth.v2.access?client_id=<string>&client_secret=<string>&code=<string>&redirect_uri=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Exchanges a temporary OAuth verifier code for an access token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: pins add",
+        "api_call": "https://slack.com/api/pins.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `pins:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel to pin the item in."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to pin."
+                    }
+                ]
+            }
+        },
+        "functionality": "Pins an item to a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: oauth access",
+        "api_call": "https://slack.com/api/oauth.access?client_id=<string>&client_secret=<string>&code=<string>&redirect_uri=<string>&single_channel=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Exchanges a temporary OAuth verifier code for an access token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reactions get",
+        "api_call": "https://slack.com/api/reactions.get?channel=<string>&file=<string>&file_comment=<string>&full=<boolean>&timestamp=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets reactions for an item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: pins remove",
+        "api_call": "https://slack.com/api/pins.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `pins:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel where the item is pinned to."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to un-pin."
+                    }
+                ]
+            }
+        },
+        "functionality": "Un-pins an item from a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reminders complete",
+        "api_call": "https://slack.com/api/reminders.complete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `reminders:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "reminder",
+                        "value": "<string>",
+                        "description": "The ID of the reminder to be marked as complete"
+                    }
+                ]
+            }
+        },
+        "functionality": "Marks a reminder as complete."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reminders add",
+        "api_call": "https://slack.com/api/reminders.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `reminders:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "text",
+                        "value": "<string>",
+                        "description": "The content of the reminder"
+                    },
+                    {
+                        "key": "time",
+                        "value": "<string>",
+                        "description": "When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. \"in 15 minutes,\" or \"every Thursday\")"
+                    },
+                    {
+                        "key": "user",
+                        "value": "<string>",
+                        "description": "The user who will receive the reminder. If no user is specified, the reminder will go to user who created it."
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a reminder."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reminders delete",
+        "api_call": "https://slack.com/api/reminders.delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Authentication token. Requires scope: `reminders:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "reminder",
+                        "value": "<string>",
+                        "description": "The ID of the reminder"
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes a reminder."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reminders info",
+        "api_call": "https://slack.com/api/reminders.info?reminder=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a reminder."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: reminders list",
+        "api_call": "https://slack.com/api/reminders.list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists all reminders created by or for a given user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: rtm connect",
+        "api_call": "https://slack.com/api/rtm.connect?batch_presence_aware=<boolean>&presence_sub=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Starts a Real Time Messaging session."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: search messages",
+        "api_call": "https://slack.com/api/search.messages?count=<integer>&highlight=<boolean>&page=<integer>&query=<string>&sort=<string>&sort_dir=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Searches for messages matching a query."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: stars add",
+        "api_call": "https://slack.com/api/stars.add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `stars:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel to add star to, or channel where the message to add star to was posted (used with `timestamp`)."
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to add star to."
+                    },
+                    {
+                        "key": "file_comment",
+                        "value": "<string>",
+                        "description": "File comment to add star to."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to add star to."
+                    }
+                ]
+            }
+        },
+        "functionality": "Adds a star to an item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: stars list",
+        "api_call": "https://slack.com/api/stars.list?count=<string>&page=<string>&cursor=<string>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists stars for a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: stars remove",
+        "api_call": "https://slack.com/api/stars.remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `stars:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel",
+                        "value": "<string>",
+                        "description": "Channel to remove star from, or channel where the message to remove star from was posted (used with `timestamp`)."
+                    },
+                    {
+                        "key": "file",
+                        "value": "<string>",
+                        "description": "File to remove star from."
+                    },
+                    {
+                        "key": "file_comment",
+                        "value": "<string>",
+                        "description": "File comment to remove star from."
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "<string>",
+                        "description": "Timestamp of the message to remove star from."
+                    }
+                ]
+            }
+        },
+        "functionality": "Removes a star from an item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: team access Logs",
+        "api_call": "https://slack.com/api/team.accessLogs?before=<string>&count=<string>&page=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the access logs for the current team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: team billable Info",
+        "api_call": "https://slack.com/api/team.billableInfo?user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets billable users information for the current team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: team info",
+        "api_call": "https://slack.com/api/team.info?team=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about the current team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups enable",
+        "api_call": "https://slack.com/api/usergroups.enable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup",
+                        "value": "<string>",
+                        "description": "The encoded ID of the User Group to enable."
+                    },
+                    {
+                        "key": "include_count",
+                        "value": "<boolean>",
+                        "description": "Include the number of users in the User Group."
+                    }
+                ]
+            }
+        },
+        "functionality": "Enable a User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: team integration Logs",
+        "api_call": "https://slack.com/api/team.integrationLogs?app_id=<string>&change_type=<string>&count=<string>&page=<string>&service_id=<string>&user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the integration logs for the current team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: team profile get",
+        "api_call": "https://slack.com/api/team.profile.get?visibility=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve a team's profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups create",
+        "api_call": "https://slack.com/api/usergroups.create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "A name for the User Group. Must be unique among User Groups."
+                    },
+                    {
+                        "key": "channels",
+                        "value": "<string>",
+                        "description": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+                    },
+                    {
+                        "key": "description",
+                        "value": "<string>",
+                        "description": "A short description of the User Group."
+                    },
+                    {
+                        "key": "handle",
+                        "value": "<string>",
+                        "description": "A mention handle. Must be unique among channels, users and User Groups."
+                    },
+                    {
+                        "key": "include_count",
+                        "value": "<boolean>",
+                        "description": "Include the number of users in each User Group."
+                    }
+                ]
+            }
+        },
+        "functionality": "Create a User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups disable",
+        "api_call": "https://slack.com/api/usergroups.disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup",
+                        "value": "<string>",
+                        "description": "The encoded ID of the User Group to disable."
+                    },
+                    {
+                        "key": "include_count",
+                        "value": "<boolean>",
+                        "description": "Include the number of users in the User Group."
+                    }
+                ]
+            }
+        },
+        "functionality": "Disable an existing User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups list",
+        "api_call": "https://slack.com/api/usergroups.list?include_users=<boolean>&include_count=<boolean>&include_disabled=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all User Groups for a team"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups users list",
+        "api_call": "https://slack.com/api/usergroups.users.list?include_disabled=<boolean>&usergroup=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all users in a User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups update",
+        "api_call": "https://slack.com/api/usergroups.update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup",
+                        "value": "<string>",
+                        "description": "The encoded ID of the User Group to update."
+                    },
+                    {
+                        "key": "handle",
+                        "value": "<string>",
+                        "description": "A mention handle. Must be unique among channels, users and User Groups."
+                    },
+                    {
+                        "key": "description",
+                        "value": "<string>",
+                        "description": "A short description of the User Group."
+                    },
+                    {
+                        "key": "channels",
+                        "value": "<string>",
+                        "description": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+                    },
+                    {
+                        "key": "include_count",
+                        "value": "<boolean>",
+                        "description": "Include the number of users in the User Group."
+                    },
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "A name for the User Group. Must be unique among User Groups."
+                    }
+                ]
+            }
+        },
+        "functionality": "Update an existing User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: usergroups users update",
+        "api_call": "https://slack.com/api/usergroups.users.update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `usergroups:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "usergroup",
+                        "value": "<string>",
+                        "description": "The encoded ID of the User Group to update."
+                    },
+                    {
+                        "key": "users",
+                        "value": "<string>",
+                        "description": "A comma separated string of encoded user IDs that represent the entire list of users for the User Group."
+                    },
+                    {
+                        "key": "include_count",
+                        "value": "<boolean>",
+                        "description": "Include the number of users in the User Group."
+                    }
+                ]
+            }
+        },
+        "functionality": "Update the list of users for a User Group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users delete Photo",
+        "api_call": "https://slack.com/api/users.deletePhoto",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `users.profile:write`"
+                    }
+                ]
+            }
+        },
+        "functionality": "Delete the user profile photo"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users get Presence",
+        "api_call": "https://slack.com/api/users.getPresence?user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets user presence information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users conversations",
+        "api_call": "https://slack.com/api/users.conversations?user=<string>&types=<string>&exclude_archived=<boolean>&limit=<integer>&cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List conversations the calling user may access."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users info",
+        "api_call": "https://slack.com/api/users.info?include_locale=<boolean>&user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: views open",
+        "api_call": "https://slack.com/api/views.open?trigger_id=<string>&view=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Open a view for a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users identity",
+        "api_call": "https://slack.com/api/users.identity",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a user's identity."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users list",
+        "api_call": "https://slack.com/api/users.list?limit=<integer>&cursor=<string>&include_locale=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists all users in a Slack team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users lookup By Email",
+        "api_call": "https://slack.com/api/users.lookupByEmail?email=jroche@slack-corp.com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find a user with an email address."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users profile set",
+        "api_call": "https://slack.com/api/users.profile.set",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `users.profile:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "<string>",
+                        "description": "Name of a single key to set. Usable only if `profile` is not passed."
+                    },
+                    {
+                        "key": "profile",
+                        "value": "<string>",
+                        "description": "Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters."
+                    },
+                    {
+                        "key": "user",
+                        "value": "<string>",
+                        "description": "ID of user to change. This argument may only be specified by team admins on paid teams."
+                    },
+                    {
+                        "key": "value",
+                        "value": "<string>",
+                        "description": "Value to set a single key to. Usable only if `profile` is not passed."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the profile information for a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users profile get",
+        "api_call": "https://slack.com/api/users.profile.get?include_labels=<boolean>&user=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a user's profile information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users set Active",
+        "api_call": "https://slack.com/api/users.setActive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Marked a user as active. Deprecated and non-functional."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users set Photo",
+        "api_call": "https://slack.com/api/users.setPhoto",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "<string>",
+                        "description": "Authentication token. Requires scope: `users.profile:write`"
+                    },
+                    {
+                        "key": "crop_w",
+                        "value": "<string>",
+                        "description": "Width/height of crop box (always square)"
+                    },
+                    {
+                        "key": "crop_x",
+                        "value": "<string>",
+                        "description": "X coordinate of top-left corner of crop box"
+                    },
+                    {
+                        "key": "crop_y",
+                        "value": "<string>",
+                        "description": "Y coordinate of top-left corner of crop box"
+                    },
+                    {
+                        "key": "image",
+                        "value": "<string>",
+                        "description": "File contents via `multipart/form-data`."
+                    }
+                ]
+            }
+        },
+        "functionality": "Set the user profile photo"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: users set Presence",
+        "api_call": "https://slack.com/api/users.setPresence",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `users:write`",
+                    "key": "token",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "presence",
+                        "value": "<string>",
+                        "description": "Either `auto` or `away`"
+                    }
+                ]
+            }
+        },
+        "functionality": "Manually sets user presence."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: views publish",
+        "api_call": "https://slack.com/api/views.publish?user_id=<string>&view=<string>&hash=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Publish a static view for a User."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: views push",
+        "api_call": "https://slack.com/api/views.push?trigger_id=<string>&view=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Push a view onto the stack of a root view."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: views update",
+        "api_call": "https://slack.com/api/views.update?view_id=<string>&external_id=<string>&view=<string>&hash=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `none`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Update an existing view."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: workflows step Completed",
+        "api_call": "https://slack.com/api/workflows.stepCompleted?workflow_step_execute_id=<string>&outputs=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `workflow.steps:execute`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Indicate that an app's step in a workflow completed execution."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: workflows step Failed",
+        "api_call": "https://slack.com/api/workflows.stepFailed?workflow_step_execute_id=<string>&error=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `workflow.steps:execute`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Indicate that an app's step in a workflow failed to execute."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Slack Web API: workflows update Step",
+        "api_call": "https://slack.com/api/workflows.updateStep?workflow_step_edit_id=<string>&inputs=<string>&outputs=<string>&step_name=<string>&step_image_url=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Authentication token. Requires scope: `workflow.steps:execute`",
+                    "key": "token",
+                    "value": "<string>"
+                }
+            ]
+        },
+        "functionality": "Update the configuration for a workflow extension step."
+    }
+]
