@@ -499,6 +499,21 @@ class TravelAPI:
         if "balance" not in self.credit_card_list[card_id]:
             return {"booking_status": False, "error": "Balance not found"}
         
+        all_airports = self.list_all_airports()
+        if travel_from not in all_airports:
+            return {"booking_status": False, "error": f"Invalid departure airport code: {travel_from}"}
+        if travel_to not in all_airports:
+            return {"booking_status": False, "error": f"Invalid destination airport code: {travel_to}"}
+
+        try:
+            datetime.strptime(travel_date, "%Y-%m-%d")
+        except ValueError:
+            return {"booking_status": False, "error": "Invalid date format. Use YYYY-MM-DD."}
+
+        valid_classes = {"economy", "business", "first"}
+        if travel_class not in valid_classes:
+            return {"booking_status": False, "error": f"Invalid travel class. Must be one of {valid_classes}"}
+
         try:
             flight_cost_response = self.get_flight_cost(
                 travel_from=travel_from,
