@@ -2,7 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Apr 6, 2025] [#973](https://github.com/ShishirPatil/gorilla/pull/973): Add the following new models to the leaderboard:
+- [Apr 6, 2025] [#974](https://github.com/ShishirPatil/gorilla/pull/974): Add the following new models to the leaderboard:
   - `gemini-2.5-pro-exp-03-25-FC`
   - `gemini-2.5-pro-exp-03-25`
 - [Mar 26, 2025] [#963](https://github.com/ShishirPatil/gorilla/pull/963): Fix wrong date in `live_simple_205-116-13`.
