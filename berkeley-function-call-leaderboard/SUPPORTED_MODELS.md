@@ -43,13 +43,13 @@ For model names containing `{...}`, multiple versions are available. For example
 | Falcon3-{1B,3B,7B,10B}-Instruct                | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-{v1,v2}                           | Function Calling | Fireworks AI   | firefunction-{v1,v2}-FC                                     |
 | Functionary-{Small,Medium}-v3.1                | Function Calling | MeetKai        | meetkai/functionary-{small,medium}-v3.1-FC                  |
+| Gemini-2.5-Pro-Exp-03-25                       | Function Calling | Google         | gemini-2.5-pro-exp-03-25-FC                                 |
+| Gemini-2.5-Pro-Exp-03-25                       | Prompt           | Google         | gemini-2.5-pro-exp-03-25                                    |
 | Gemini-2.0-Flash-001                           | Function Calling | Google         | gemini-2.0-flash-001-FC                                     |
 | Gemini-2.0-Flash-001                           | Prompt           | Google         | gemini-2.0-flash-001                                        |
 | Gemini-2.0-Flash-Lite-001                      | Function Calling | Google         | gemini-2.0-flash-lite-001-FC                                |
 | Gemini-2.0-Flash-Lite-001                      | Prompt           | Google         | gemini-2.0-flash-lite-001                                   |
 | Gemini-2.0-Flash-Thinking-Exp-01-21            | Prompt           | Google         | gemini-2.0-flash-thinking-exp-01-21                         |
-| Gemini-2.0-Pro-Exp-02-05                       | Function Calling | Google         | gemini-2.0-pro-exp-02-05-FC                                 |
-| Gemini-2.0-Pro-Exp-02-05                       | Prompt           | Google         | gemini-2.0-pro-exp-02-05                                    |
 | Gemma-3-{1b,4b,12b,27b}-it                     | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
