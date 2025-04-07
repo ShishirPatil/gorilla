@@ -16,7 +16,7 @@ from bfcl.model_handler.utils import (
 from openai import OpenAI, RateLimitError
 
 
-class FuncFlowHandler(BaseHandler):
+class MiningHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
