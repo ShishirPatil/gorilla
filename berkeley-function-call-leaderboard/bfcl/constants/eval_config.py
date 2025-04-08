@@ -18,17 +18,11 @@ UTILS_PATH = "./utils/"
 TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
 # These two files are for the API status sanity check
 REST_API_GROUND_TRUTH_FILE_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/api_status_check_ground_truth_REST.json"
+    "./data/sanity_check/api_status_check_ground_truth_rest.json"
 )
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/api_status_check_ground_truth_executable.json"
+    "./data/sanity_check/api_status_check_ground_truth_executable.json"
 )
-
-# This is the ground truth file for the `rest` test category
-REST_EVAL_GROUND_TRUTH_PATH = (
-    "./bfcl/eval_checker/executable_eval/data/rest-eval-response_v5.jsonl"
-)
-
 
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
@@ -56,9 +50,9 @@ UNDERSCORE_TO_DOT = [
     "mistral-large-2407-FC",
     "mistral-small-2402-FC",
     "mistral-small-2402-FC",
+    "gemini-2.5-pro-exp-03-25-FC",
     "gemini-2.0-flash-lite-001-FC",
     "gemini-2.0-flash-001-FC",
-    "gemini-2.0-pro-exp-02-05-FC",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-small-v3.2-FC",
     "meetkai/functionary-medium-v3.1-FC",
@@ -92,7 +86,6 @@ REST_API_GROUND_TRUTH_FILE_PATH = (PROJECT_ROOT / REST_API_GROUND_TRUTH_FILE_PAT
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
     PROJECT_ROOT / EXECTUABLE_API_GROUND_TRUTH_FILE_PATH
 ).resolve()
-REST_EVAL_GROUND_TRUTH_PATH = (PROJECT_ROOT / REST_EVAL_GROUND_TRUTH_PATH).resolve()
 
 RESULT_PATH = (PROJECT_ROOT / RESULT_PATH).resolve()
 PROMPT_PATH = (PROJECT_ROOT / PROMPT_PATH).resolve()
