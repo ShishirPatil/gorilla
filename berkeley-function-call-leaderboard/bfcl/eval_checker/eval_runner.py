@@ -468,7 +468,7 @@ def evaluate_task(
     return state
 
 
-def main(model, test_categories, api_sanity_check, result_dir, score_dir):
+def main(model, test_categories, result_dir, score_dir):
     if result_dir is None:
         result_dir = RESULT_PATH
     else:
@@ -494,7 +494,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
             model_names.append(model_name.replace("/", "_"))
 
     # Driver function to run the evaluation for all categories involved.
-    runner(model_names, all_test_categories, api_sanity_check, result_dir, score_dir)
+    runner(model_names, all_test_categories, result_dir, score_dir)
 
     print(
         f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
