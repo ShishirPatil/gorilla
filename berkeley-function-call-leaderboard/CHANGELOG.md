@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 8, 2025] [#865](https://github.com/ShishirPatil/gorilla/pull/865): Fix typo in `multi_turn_base_166` ground truth.
 - [Apr 6, 2025] [#974](https://github.com/ShishirPatil/gorilla/pull/974): Add the following new models to the leaderboard:
   - `gemini-2.5-pro-exp-03-25-FC`
   - `gemini-2.5-pro-exp-03-25`
