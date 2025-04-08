@@ -5,18 +5,12 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
 from bfcl.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
 from bfcl.constants.model_metadata import *
-from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.model_handler.handler_map import local_inference_handler_map
-from bfcl.utils import (
-    extract_test_category,
-    find_file_with_suffix,
-    load_file,
-)
+from bfcl.utils import extract_test_category, find_file_with_suffix, load_file
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
