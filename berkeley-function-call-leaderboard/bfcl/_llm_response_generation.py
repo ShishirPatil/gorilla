@@ -4,7 +4,6 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 
-
 from bfcl.constants.category_mapping import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
     TEST_FILE_MAPPING,
@@ -20,7 +19,6 @@ from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import (
-    is_executable,
     is_multi_turn,
     parse_test_category_argument,
     sort_key,
