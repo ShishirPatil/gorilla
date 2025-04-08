@@ -37,8 +37,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | DeepSeek-Coder-V2{-Lite-Instruct}              | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} |
 | DeepSeek-R1                                    | Prompt           | DeepSeek       | DeepSeek-R1                                                 |
 | DeepSeek-R1                                    | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
-| DeepSeek-V2.5                                  | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-V2.5                                   |
 | DeepSeek-V2-{Chat-0628,Lite-Chat}              | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat}               |
+| DeepSeek-V2.5                                  | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-V2.5                                   |
 | DeepSeek-V3                                    | Function Calling | DeepSeek       | DeepSeek-V3-FC                                              |
 | Falcon3-{1B,3B,7B,10B}-Instruct                | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-{v1,v2}                           | Function Calling | Fireworks AI   | firefunction-{v1,v2}-FC                                     |
@@ -48,8 +48,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Gemini-2.0-Flash-Lite-001                      | Function Calling | Google         | gemini-2.0-flash-lite-001-FC                                |
 | Gemini-2.0-Flash-Lite-001                      | Prompt           | Google         | gemini-2.0-flash-lite-001                                   |
 | Gemini-2.0-Flash-Thinking-Exp-01-21            | Prompt           | Google         | gemini-2.0-flash-thinking-exp-01-21                         |
-| Gemini-2.0-Pro-Exp-02-05                       | Function Calling | Google         | gemini-2.0-pro-exp-02-05-FC                                 |
-| Gemini-2.0-Pro-Exp-02-05                       | Prompt           | Google         | gemini-2.0-pro-exp-02-05                                    |
+| Gemini-2.5-Pro-Exp-03-25                       | Function Calling | Google         | gemini-2.5-pro-exp-03-25-FC                                 |
+| Gemini-2.5-Pro-Exp-03-25                       | Prompt           | Google         | gemini-2.5-pro-exp-03-25                                    |
 | Gemma-3-{1b,4b,12b,27b}-it                     | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
@@ -94,8 +94,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | o3-mini-2025-01-31                             | Prompt           | OpenAI         | o3-mini-2025-01-31                                          |
 | Open-Mistral-Nemo-2407                         | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
-| Open-Mixtral-8x22b                             | Function Calling | Mistral AI     | open-mixtral-8x22b-FC                                       |
 | Open-Mixtral-{8x7b,8x22b}                      | Prompt           | Mistral AI     | open-mixtral-{8x7b,8x22b}                                   |
+| Open-Mixtral-8x22b                             | Function Calling | Mistral AI     | open-mixtral-8x22b-FC                                       |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
 | Phi-3-medium-{4k,128k}-instruct                | Prompt           | Self-hosted 💻 | microsoft/Phi-3-medium-{4k,128k}-instruct                   |
 | Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
@@ -107,8 +107,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | QwQ-32B-Preview                                | Prompt           | Self-hosted 💻 | Qwen/QwQ-32B-Preview                                        |
 | Sky-T1-32B-Preview                             | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
-| ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
+| ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
 | xLAM-1b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-1b-fc-r                                     |
 | xLAM-7b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-7b-fc-r                                     |
