@@ -10,7 +10,7 @@ from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
 from bfcl.constants.model_metadata import *
 from bfcl.model_handler.handler_map import local_inference_handler_map
-from bfcl.utils import extract_test_category, find_file_with_suffix, load_file
+from bfcl.utils import extract_test_category, load_file
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):

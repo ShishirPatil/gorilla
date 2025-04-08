@@ -2,12 +2,15 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Apr 3, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
+- [Apr 9, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
   - `rest`
   - `exec_simple`
   - `exec_parallel`
   - `exec_multiple`
   - `exec_parallel_multiple`
+- [Apr 6, 2025] [#974](https://github.com/ShishirPatil/gorilla/pull/974): Add the following new models to the leaderboard:
+  - `gemini-2.5-pro-exp-03-25-FC`
+  - `gemini-2.5-pro-exp-03-25`
 - [Mar 26, 2025] [#963](https://github.com/ShishirPatil/gorilla/pull/963): Fix wrong date in `live_simple_205-116-13`.
 - [Mar 25, 2025] [#962](https://github.com/ShishirPatil/gorilla/pull/962): Fix ambiguous user query in `exec_parallel_10`.
 - [Mar 20, 2025] [#951](https://github.com/ShishirPatil/gorilla/pull/951): Add new model `command-a-03-2025-FC` to the leaderboard.
