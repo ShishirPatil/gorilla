@@ -15,11 +15,6 @@ from bfcl.constants.eval_config import (
 )
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
-from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
-from bfcl.eval_checker.executable_eval.executable_checker import (
-    executable_checker_non_rest,
-    executable_checker_rest,
-)
 from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_checker,
     multi_turn_irrelevance_checker,
@@ -153,112 +148,6 @@ def multi_turn_runner(
             result.append(temp)
         else:
             correct_count += 1
-
-    accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
-    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
-    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
-
-    return accuracy, len(model_result)
-
-
-def executable_file_runner(
-    handler, model_result, prompt, model_name, test_category, score_dir
-):
-    assert len(model_result) == len(prompt)
-
-    result = []
-    correct_count = 0
-    for i in tqdm(range(len(model_result)), desc="Running tests"):
-        index: str = model_result[i]["id"]
-        raw_result = model_result[i]["result"]
-        try:
-            decoded_result = handler.decode_execute(raw_result)
-        except Exception as e:
-            result.append(
-                {
-                    "id": index,
-                    "model_name": model_name,
-                    "test_category": test_category,
-                    "valid": False,
-                    "error": [f"Failed to decode executable. {str(e)}"],
-                    "error_type": "executable_decoder:decoder_failed",
-                    "prompt": prompt[i],
-                    "model_result_raw": raw_result,
-                }
-            )
-            continue
-
-        if "rest" in test_category:
-            # REST is always single-functioned. Therefore we take the first one and pass it to the REST checker.
-            if not is_rest_format_output(decoded_result):
-                result.append(
-                    {
-                        "id": index,
-                        "model_name": model_name,
-                        "test_category": test_category,
-                        "valid": False,
-                        "error": [
-                            "Did not output in the specified format. Note: the model_result is wrapped in a string to ensure json serializability."
-                        ],
-                        "error_type": "executable_decoder:rest_wrong_output_format",
-                        "prompt": prompt[i],
-                        "model_result_raw": str(raw_result),
-                        "model_result_decoded": str(decoded_result),
-                    }
-                )
-                continue
-
-            checker_result = executable_checker_rest(decoded_result[0], i)
-
-        else:
-            if not is_executable_format_output(decoded_result):
-                result.append(
-                    {
-                        "id": index,
-                        "model_name": model_name,
-                        "test_category": test_category,
-                        "valid": False,
-                        "error": [
-                            "Did not output in the specified format. Note: the model_result is wrapped in a string to ensure json serializability."
-                        ],
-                        "error_type": "executable_decoder:wrong_output_format",
-                        "prompt": prompt[i],
-                        "model_result_raw": str(raw_result),
-                        "model_result_decoded": str(decoded_result),
-                    }
-                )
-                continue
-
-            prompt_item = prompt[i]
-            checker_result = executable_checker_non_rest(
-                decoded_result, prompt_item, test_category
-            )
-
-        if checker_result["valid"]:
-            correct_count += 1
-        else:
-            temp = {}
-            temp["id"] = index
-            temp["model_name"] = model_name
-            temp["test_category"] = test_category
-            temp["valid"] = checker_result["valid"]
-            temp["error"] = checker_result["error"]
-            temp["error_type"] = checker_result["error_type"]
-            temp["prompt"] = prompt[i]
-            temp["model_result_raw"] = raw_result
-            temp["model_result_decoded"] = decoded_result
-            if "model_executed_output" in checker_result:
-                temp["model_executed_output"] = checker_result["model_executed_output"]
-            result.append(temp)
 
     accuracy = correct_count / len(model_result)
     result.insert(
@@ -454,27 +343,14 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir):
+def runner(model_names, test_categories, result_dir, score_dir):
 
     # State udpated by each eval subtask.
     state = dict(
-        # Flags to indicate if the API has been tested.
-        # We should always test the API with ground truth first before running
-        # the executable tests. Sometimes the API may not be working as expected
-        # and we want to catch that before running the evaluation to ensure the
-        # results are accurate.
-        api_tested=False,
-        api_status_error_rest=None,
-        api_status_error_executable=None,
         # A dictionary to store the evaluation scores.
         # Key is model name, value is a dictionary with keys as test category
         # and values as a dictionary with accuracy and total count.
         leaderboard_table={},
-        # Before running the executable evaluation, we need to get the expected
-        # output from the ground truth. So we need a list of all the test
-        # categories that we have ran the ground truth evaluation on. We only
-        # get the expected output once for each test category.
-        executable_test_categories_have_run=[],
     )
 
     # Get a list of all entries in the folder
@@ -502,16 +378,14 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
             handler = get_handler(model_name_escaped)
 
-            # We don't evaluate chatable and SQL models in our current
-            # leaderboard.
-            if is_chatable(test_category) or is_sql(test_category):
+            # We don't evaluate the following categories in the current iteration of the benchmark
+            if is_chatable(test_category) or is_sql(test_category) or is_executable(test_category):
                 continue
 
             model_result = load_file(model_result_json, sort_by_id=True)
 
             state = evaluate_task(
                 test_category,
-                api_sanity_check,
                 result_dir,
                 score_dir,
                 model_result,
@@ -529,22 +403,9 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
         state["leaderboard_table"], score_dir, model_names, test_categories
     )
 
-    # Clean up the executable expected output files
-    # They should be re-generated the next time the evaluation is run
-    clean_up_executable_expected_output(
-        PROMPT_PATH, state["executable_test_categories_have_run"]
-    )
-
-    display_api_status_error(
-        state["api_status_error_rest"],
-        state["api_status_error_executable"],
-        display_success=False,
-    )
-
 
 def evaluate_task(
     test_category,
-    api_sanity_check,
     result_dir,
     score_dir,
     model_result,
@@ -569,53 +430,6 @@ def evaluate_task(
 
     if is_relevance_or_irrelevance(test_category):
         accuracy, total_count = relevance_file_runner(
-            handler, model_result, prompt, model_name, test_category, score_dir
-        )
-
-    elif is_executable(test_category):
-        # We only test the API with ground truth once.
-        if not state["api_tested"] and api_sanity_check:
-            print("---- Sanity checking API status ----")
-            try:
-                api_status_sanity_check_rest()
-            except BadAPIStatusError as e:
-                state["api_status_error_rest"] = e
-
-            try:
-                api_status_sanity_check_executable()
-            except BadAPIStatusError as e:
-                state["api_status_error_executable"] = e
-
-            display_api_status_error(
-                state["api_status_error_rest"],
-                state["api_status_error_executable"],
-                display_success=True,
-            )
-            print("Continuing evaluation...")
-
-            state["api_tested"] = True
-
-        if (
-            test_category not in state["executable_test_categories_have_run"]
-            and not is_rest(test_category)
-        ):
-            print(
-                f"---- Getting real-time execution result from ground truth"
-                f" for {test_category} ----"
-            )
-            
-            possible_answer_file = find_file_with_suffix(POSSIBLE_ANSWER_PATH, test_category)
-            get_executable_expected_output(prompt_file, possible_answer_file)
-            print(
-                f"---- Ground truth real-time execution result obtained for"
-                f" {test_category} 🌟 ----"
-            )
-            state["executable_test_categories_have_run"].append(test_category)
-            # Need to re-load the prompt file after getting the expected
-            # output, as the prompt file has been updated.
-            prompt = load_file(prompt_file, sort_by_id=True)
-
-        accuracy, total_count = executable_file_runner(
             handler, model_result, prompt, model_name, test_category, score_dir
         )
 
@@ -670,19 +484,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     _, all_test_categories = parse_test_category_argument(test_categories)
 
-    api_key_supplied = check_api_key_supplied()
-    skipped_categories = []
-
-    for test_category in all_test_categories[:]:
-        # Skip executable test category evaluation if api key is not provided in the .env file
-        if is_executable(test_category) and not api_key_supplied:
-            # We can still run the REST category, since the API keys are baked in the model response. So as long as the model response is generated, we can evaluate.
-            if is_rest(test_category):
-                continue
-            else:
-                all_test_categories.remove(test_category)
-                skipped_categories.append(test_category)
-
     model_names = None
     if model:
         model_names = []
@@ -694,13 +495,6 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     # Driver function to run the evaluation for all categories involved.
     runner(model_names, all_test_categories, api_sanity_check, result_dir, score_dir)
-
-    if len(skipped_categories) > 0:
-        print("----------")
-        print(
-            f"❗️ Note: The following executable test category are not evaluated because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories are evaluated."
-        )
-        print("----------")
 
     print(
         f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
@@ -725,13 +519,6 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
-        "-c",
-        "--api-sanity-check",
-        action="store_true",
-        default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified
-        help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
-    )
-    parser.add_argument(
         "--result-dir",
         default=None,
         type=str,
@@ -750,7 +537,6 @@ if __name__ == "__main__":
     main(
         args.model,
         args.test_category,
-        args.api_sanity_check,
         args.result_dir,
         args.score_dir,
     )
