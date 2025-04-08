@@ -116,6 +116,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-8x22b-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x22b-r                                     |
 | xLAM-8x7b-r                                    | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x7b-r                                      |
 | yi-large                                       | Function Calling | 01.AI          | yi-large-fc                                                 |
+| xiaoming-14B                                   | Prompt | Mininglamp       | xiaoming-14B                                                |
 
 ---
 

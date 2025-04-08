@@ -1105,4 +1105,5 @@ NO_COST_API_BASED_MODELS = [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "xiaoming-14B",
 ]
