@@ -20,7 +20,7 @@ class MiningHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
-        self.client = OpenAI(api_key=os.getenv("MINING_API_KEY"),base_url=os.getenv("MINING_API_BASE"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv("OPENAI_API_BASE"))
 
     def decode_ast(self, result, language="Python"):
         if "FC" in self.model_name or self.is_fc_model:

@@ -6,8 +6,8 @@
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
-    "xiaoming-7b": [
-        "xiaoming-7b (Prompt)",
+    "xiaoming-14B": [
+        "xiaoming-14B (Prompt)",
         "https://www.mininglamp.com/",
         "Mininglamp",
         "Proprietary",
