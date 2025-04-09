@@ -1,8 +1,9 @@
 import json
+
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
-import random
+
 
 class SalesforceQwenHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -26,7 +27,7 @@ class SalesforceQwenHandler(OSSHandler):
         formatted_prompt += "If no tool is suitable, state that explicitly. If the user's input lacks required parameters, ask for clarification. "
         formatted_prompt += "Do not interpret or respond until tool results are returned. Once they are available, process them or make additional calls if needed. "
         formatted_prompt += "For tasks that don't require tools, such as casual conversation or general advice, respond directly in plain text. The available tools are:\n\n"
-        
+
         for func in function:
             formatted_prompt += json.dumps(func, indent=4) + "\n\n"
         formatted_prompt += "<|im_end|>"
@@ -44,17 +45,20 @@ class SalesforceQwenHandler(OSSHandler):
                 formatted_prompt += "<|im_start|>assistant\n"
                 tool_calls = []
                 for tool_call in message["tool_calls"]:
-                    tool_calls.append({
-                        "name": tool_call["function"]["name"],
-                        "arguments": json.loads(tool_call["function"]["arguments"])
-                    })
+                    tool_calls.append(
+                        {
+                            "name": tool_call["function"]["name"],
+                            "arguments": json.loads(tool_call["function"]["arguments"]),
+                        }
+                    )
                 formatted_prompt += json.dumps(tool_calls) + "<|im_end|>"
             else:
-                formatted_prompt += f"<|im_start|>{message['role']}\n{message['content'].strip()}<|im_end|>"
+                formatted_prompt += (
+                    f"<|im_start|>{message['role']}\n{message['content'].strip()}<|im_end|>"
+                )
 
         formatted_prompt += "<|im_start|>assistant\n"
         return formatted_prompt
-    
 
     @override
     def decode_ast(self, result, language="Python"):
