@@ -1,7 +1,8 @@
 import csv
 from datetime import datetime
+import os
 from types import SimpleNamespace
-from typing import List
+from typing import List, Optional
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
@@ -118,6 +119,11 @@ def generate(
         "--skip-server-setup",
         help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables.",
     ),
+    local_model_path: Optional[str] = typer.Option(
+        None,
+        "--local-model-path",
+        help="Path to a local model folder (with config/tokenizer/weights) for fully offline inference.",
+    ),
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
@@ -139,6 +145,19 @@ def generate(
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
 
+    # Early validation if server is skipped but local model path is required
+    if skip_server_setup:
+        if local_model_path is None:
+            raise ValueError("skip_server_setup=True but no local_model_path was provided.")
+        if not os.path.isdir(local_model_path):
+            raise FileNotFoundError(f"local_model_path '{local_model_path}' does not exist or is not a directory.")
+
+        # Check for required model files
+        required_files = ["config.json", "tokenizer_config.json"]
+        for fname in required_files:
+            if not os.path.exists(os.path.join(local_model_path, fname)):
+                raise FileNotFoundError(f"Required file '{fname}' not found in local_model_path '{local_model_path}'.")
+
     args = SimpleNamespace(
         model=model,
         test_category=test_category,
@@ -150,6 +169,7 @@ def generate(
         gpu_memory_utilization=gpu_memory_utilization,
         backend=backend,
         skip_server_setup=skip_server_setup,
+        local_model_path=local_model_path,
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,

@@ -3,6 +3,7 @@ import threading
 import time
 import os
 from concurrent.futures import ThreadPoolExecutor
+from typing import Optional
 
 import requests
 from bfcl.constants.eval_config import (
@@ -23,11 +24,15 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
+    def __init__(self, model_name, temperature, dtype="float16") -> None: # edited for testing purpose, will revert later
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
+
+        # Set later in batch_inference based on local_model_path or model_name
+        self.model_load_path = None
+
         # Read from env vars with fallbacks
         self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
         self.vllm_port = os.getenv("VLLM_PORT", VLLM_PORT)
@@ -63,6 +68,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         gpu_memory_utilization: float,
         backend: str,
         skip_server_setup: bool,
+        local_model_path: Optional[str],
         include_input_log: bool,
         exclude_state_log: bool,
         update_mode: bool,
@@ -73,13 +79,24 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         """
         from transformers import AutoConfig, AutoTokenizer
 
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name_huggingface, trust_remote_code=True
-        )
+        # Determine the model source
+        if local_model_path is not None:
+            self.model_load_path = local_model_path
+            load_kwargs = {
+                "pretrained_model_name_or_path": self.model_load_path,
+                "local_files_only": True,
+                "trust_remote_code": True,
+            }
+        else:
+            self.model_load_path = self.model_name_huggingface
+            load_kwargs = {
+                "pretrained_model_name_or_path": self.model_load_path,
+                "trust_remote_code": True,
+            }
 
-        config = AutoConfig.from_pretrained(
-            self.model_name_huggingface, trust_remote_code=True
-        )
+        self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+        config = AutoConfig.from_pretrained(**load_kwargs)
+
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
         elif self.tokenizer.model_max_length is not None:
@@ -97,7 +114,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     [
                         "vllm",
                         "serve",
-                        str(self.model_name_huggingface),
+                        str(self.model_load_path),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
@@ -120,7 +137,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                         "-m",
                         "sglang.launch_server",
                         "--model-path",
-                        str(self.model_name_huggingface),
+                        str(self.model_load_path),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
