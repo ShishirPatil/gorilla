@@ -15,6 +15,7 @@ from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
+from bfcl.model_handler.api_inference.novita import NovitaHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
@@ -101,6 +102,12 @@ api_inference_handler_map = {
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
     "grok-beta": GrokHandler,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": NovitaHandler,
+    "meta-llama/llama-4-scout-17b-16e-instruct": NovitaHandler,
+    "deepseek/deepseek-v3-0324-FC": NovitaHandler,
+    "deepseek/deepseek-v3-0324": NovitaHandler,
+    "qwen/qwq-32b-FC": NovitaHandler,
+    "qwen/qwq-32b": NovitaHandler,
 }
 
 # Inference through local hosting

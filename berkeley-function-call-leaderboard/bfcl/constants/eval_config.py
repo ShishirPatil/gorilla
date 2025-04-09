@@ -69,6 +69,8 @@ UNDERSCORE_TO_DOT = [
     "yi-large-fc",
     "openbmb/MiniCPM3-4B-FC",
     "grok-beta",
+    "deepseek/deepseek-v3-0324-FC",
+    "qwen/qwq-32b-FC",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price

@@ -116,6 +116,12 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-8x22b-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x22b-r                                     |
 | xLAM-8x7b-r                                    | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x7b-r                                      |
 | yi-large                                       | Function Calling | 01.AI          | yi-large-fc                                                 |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8           |
+| Llama-4-Scout-17B-16E-Instruct                 | Prompt           | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct                   |
+| DeepSeek-V3-0324                               | Function Calling | Novita AI      | deepseek/deepseek-v3-0324-FC                                |
+| DeepSeek-V3-0324                               | Prompt           | Novita AI      | deepseek/deepseek-v3-0324                                   |
+| Qwen/QwQ-32B                                   | Function Calling | Novita AI      | qwen/qwq-32b-FC                                             |
+| Qwen/QwQ-32B                                   | Prompt           | Novita AI      | qwen/qwq-32b                                                |
 
 ---
 
