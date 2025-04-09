@@ -12,10 +12,10 @@ class SalesforceQwenHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         formatted_prompt = ""
 
-        system_message = "You are a helpful assistant that can use tools."
+        system_message = "You are a helpful assistant that can use tools. You are developed by Salesforce xLAM team."
         remaining_messages = messages
         if messages[0]["role"] == "system":
-            # system_message = messages[0]["content"].strip()
+            system_message = messages[0]["content"].strip()
             remaining_messages = messages[1:]
 
         # Format system message with tool instructions
@@ -100,4 +100,5 @@ class SalesforceQwenHandler(OSSHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
         functions = func_doc_language_specific_pre_processing(functions, test_category)
+        # override the default bfcl system prompt, xLAM uses its own system prompt
         return {"message": [], "function": functions}
