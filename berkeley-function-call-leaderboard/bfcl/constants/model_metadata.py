@@ -954,18 +954,6 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 4 Community",
     ],
-    "deepseek/deepseek-v3-0324-FC": [
-        "DeepSeek-V3-0324 (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
-        "DeepSeek",
-        "MIT",
-    ],
-    "deepseek/deepseek-v3-0324": [
-        "DeepSeek-V3-0324 (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
-        "DeepSeek",
-        "MIT",
-    ],
     "qwen/qwq-32b-FC": [
         "Qwen/QwQ-32B (FC)",
         "https://huggingface.co/Qwen/QwQ-32B",
@@ -1049,8 +1037,6 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "grok-beta": 5,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": 0.2,
     "meta-llama/llama-4-scout-17b-16e-instruct": 0.1,
-    "deepseek/deepseek-v3-0324-FC": 0.39,
-    "deepseek/deepseek-v3-0324": 0.39,
     "qwen/qwq-32b-FC": 0.18,
     "qwen/qwq-32b": 0.18,
 }
@@ -1124,8 +1110,6 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "grok-beta": 15,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": 0.85,
     "meta-llama/llama-4-scout-17b-16e-instruct": 0.5,
-    "deepseek/deepseek-v3-0324-FC": 1.3,
-    "deepseek/deepseek-v3-0324": 1.3,
     "qwen/qwq-32b-FC": 0.2,
     "qwen/qwq-32b": 0.2,
 }

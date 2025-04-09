@@ -104,8 +104,6 @@ api_inference_handler_map = {
     "grok-beta": GrokHandler,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": NovitaHandler,
     "meta-llama/llama-4-scout-17b-16e-instruct": NovitaHandler,
-    "deepseek/deepseek-v3-0324-FC": NovitaHandler,
-    "deepseek/deepseek-v3-0324": NovitaHandler,
     "qwen/qwq-32b-FC": NovitaHandler,
     "qwen/qwq-32b": NovitaHandler,
 }
