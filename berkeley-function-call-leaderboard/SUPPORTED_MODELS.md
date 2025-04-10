@@ -110,11 +110,11 @@ For model names containing `{...}`, multiple versions are available. For example
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
 | ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
-| xLAM-1b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-1b-fc-r                                     |
-| xLAM-7b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-7b-fc-r                                     |
-| xLAM-7b-r                                      | Function Calling | Self-hosted 💻 | Salesforce/xLAM-7b-r                                        |
-| xLAM-8x22b-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x22b-r                                     |
-| xLAM-8x7b-r                                    | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x7b-r                                      |
+| xLAM-2-70b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
+| xLAM-2-32b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-32b-fc-r                                  |
+| xLAM-2-8b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
+| xLAM-2-3b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
+| xLAM-2-1b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-1b-fc-r                                   |
 | yi-large                                       | Function Calling | 01.AI          | yi-large-fc                                                 |
 | Llama-4-Maverick-17B-128E-Instruct-FP8         | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8           |
 | Llama-4-Scout-17B-16E-Instruct                 | Prompt           | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct                   |

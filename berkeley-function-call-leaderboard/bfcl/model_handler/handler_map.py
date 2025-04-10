@@ -36,7 +36,8 @@ from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
-from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
+from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
+from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
@@ -125,11 +126,11 @@ local_inference_handler_map = {
     "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaFCHandler,
     "meta-llama/Llama-3.3-70B-Instruct": LlamaHandler,
-    "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "Salesforce/Llama-xLAM-2-70b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/Llama-xLAM-2-8b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
     "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
     "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
     "microsoft/Phi-3-mini-128k-instruct": PhiHandler,

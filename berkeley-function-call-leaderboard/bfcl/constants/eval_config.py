@@ -2,8 +2,6 @@ from pathlib import Path
 
 VLLM_PORT = 1053
 
-REAL_TIME_MATCH_ALLOWED_DIFFERENCE = 0.2
-
 # The root directory of the project, relative to the current file location
 PROJECT_ROOT = "../../"
 
@@ -16,13 +14,7 @@ SCORE_PATH = "./score/"
 DOTENV_PATH = "./.env"
 UTILS_PATH = "./utils/"
 TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
-# These two files are for the API status sanity check
-REST_API_GROUND_TRUTH_FILE_PATH = (
-    "./data/sanity_check/api_status_check_ground_truth_rest.json"
-)
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
-    "./data/sanity_check/api_status_check_ground_truth_executable.json"
-)
+
 
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
@@ -72,21 +64,12 @@ UNDERSCORE_TO_DOT = [
     "qwen/qwq-32b-FC",
 ]
 
-# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
-# Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
-V100_x8_PRICE_PER_HOUR = 22.032
-
 RED_FONT = "\033[91m"
 RESET = "\033[0m"
 
 # Construct the full path for other modules to use
 script_dir = Path(__file__).parent
 PROJECT_ROOT = (script_dir / PROJECT_ROOT).resolve()
-
-REST_API_GROUND_TRUTH_FILE_PATH = (PROJECT_ROOT / REST_API_GROUND_TRUTH_FILE_PATH).resolve()
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
-    PROJECT_ROOT / EXECTUABLE_API_GROUND_TRUTH_FILE_PATH
-).resolve()
 
 RESULT_PATH = (PROJECT_ROOT / RESULT_PATH).resolve()
 PROMPT_PATH = (PROJECT_ROOT / PROMPT_PATH).resolve()
