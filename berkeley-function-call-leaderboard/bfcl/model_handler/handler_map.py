@@ -35,7 +35,8 @@ from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
-from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
+from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
+from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl.model_handler.api_inference.mining import MiningHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
@@ -88,8 +89,8 @@ api_inference_handler_map = {
     "gemini-2.0-flash-lite-001": GeminiHandler,
     "gemini-2.0-flash-001-FC": GeminiHandler,
     "gemini-2.0-flash-001": GeminiHandler,
-    "gemini-2.0-pro-exp-02-05-FC": GeminiHandler,
-    "gemini-2.0-pro-exp-02-05": GeminiHandler,
+    "gemini-2.5-pro-exp-03-25-FC": GeminiHandler,
+    "gemini-2.5-pro-exp-03-25": GeminiHandler,
     "gemini-2.0-flash-thinking-exp-01-21": GeminiHandler,
     "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
@@ -122,11 +123,11 @@ local_inference_handler_map = {
     "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaFCHandler,
     "meta-llama/Llama-3.3-70B-Instruct": LlamaHandler,
-    "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "Salesforce/Llama-xLAM-2-70b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/Llama-xLAM-2-8b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
     "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
     "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
     "microsoft/Phi-3-mini-128k-instruct": PhiHandler,
@@ -210,6 +211,8 @@ outdated_model_handler_map = {
     # "claude-3-5-sonnet-20240620-FC": ClaudeHandler,
     # "claude-3-haiku-20240307": ClaudeHandler,
     # "claude-3-haiku-20240307-FC": ClaudeHandler,
+    # "gemini-2.0-pro-exp-02-05-FC": GeminiHandler,
+    # "gemini-2.0-pro-exp-02-05": GeminiHandler,
     # "gemini-1.5-pro-002": GeminiHandler,
     # "gemini-1.5-pro-002-FC": GeminiHandler,
     # "gemini-1.5-pro-001": GeminiHandler,
