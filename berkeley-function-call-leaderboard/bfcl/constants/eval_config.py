@@ -61,7 +61,7 @@ UNDERSCORE_TO_DOT = [
     "yi-large-fc",
     "openbmb/MiniCPM3-4B-FC",
     "grok-beta",
-    "qwen/qwq-32b-FC",
+    "qwen/qwq-32b-FC-novita",
 ]
 
 RED_FONT = "\033[91m"
