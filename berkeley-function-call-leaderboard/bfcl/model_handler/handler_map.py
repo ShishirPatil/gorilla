@@ -27,7 +27,7 @@ from bfcl.model_handler.local_inference.granite import GraniteHandler
 from bfcl.model_handler.local_inference.hammer import HammerHandler
 from bfcl.model_handler.local_inference.hermes import HermesHandler
 from bfcl.model_handler.local_inference.llama import LlamaHandler
-from bfcl.model_handler.local_inference.llama_fc import LlamaFCHandler
+from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
@@ -111,16 +111,17 @@ local_inference_handler_map = {
     "google/gemma-3-4b-it": GemmaHandler,
     "google/gemma-3-12b-it": GemmaHandler,
     "google/gemma-3-27b-it": GemmaHandler,
-    "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
-    "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Meta-Llama-3-8B-Instruct-FC": LlamaHandler,
+    "meta-llama/Meta-Llama-3-70B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaHandler_3_1,
     "meta-llama/Llama-3.1-8B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaHandler_3_1,
     "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaFCHandler,
-    "meta-llama/Llama-3.3-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-1B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.2-3B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": LlamaHandler,
     "Salesforce/Llama-xLAM-2-70b-fc-r": SalesforceLlamaHandler,
     "Salesforce/Llama-xLAM-2-8b-fc-r": SalesforceLlamaHandler,
     "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
