@@ -11,11 +11,11 @@ from bfcl.model_handler.api_inference.grok import GrokHandler
 from bfcl.model_handler.api_inference.mistral import MistralHandler
 from bfcl.model_handler.api_inference.nexus import NexusHandler
 from bfcl.model_handler.api_inference.nova import NovaHandler
+from bfcl.model_handler.api_inference.novita import NovitaHandler
 from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
-from bfcl.model_handler.api_inference.novita import NovitaHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
@@ -103,10 +103,6 @@ api_inference_handler_map = {
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
     "grok-beta": GrokHandler,
-    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": NovitaHandler,
-    "meta-llama/llama-4-scout-17b-16e-instruct": NovitaHandler,
-    "qwen/qwq-32b-FC": NovitaHandler,
-    "qwen/qwq-32b": NovitaHandler,
 }
 
 # Inference through local hosting
@@ -191,6 +187,15 @@ local_inference_handler_map = {
     "BitAgent/BitAgent-8B": LlamaHandler,
 }
 
+# Inference through third-party inference platforms for open-source models
+third_party_inference_handler_map = {
+    # Novita AI
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": NovitaHandler,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": NovitaHandler,
+    "qwen/qwq-32b-FC-novita": NovitaHandler,
+    "qwen/qwq-32b-novita": NovitaHandler,
+}
+
 # Deprecated/outdated models, no longer on the leaderboard
 outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
@@ -235,4 +240,4 @@ outdated_model_handler_map = {
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
 
-HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map}
+HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
