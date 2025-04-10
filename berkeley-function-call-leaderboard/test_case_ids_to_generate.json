@@ -1,8 +1,4 @@
 {
-    "exec_simple": [],
-    "exec_parallel": [],
-    "exec_multiple": [],
-    "exec_parallel_multiple": [],
     "simple": [],
     "irrelevance": [],
     "parallel": [],
@@ -10,7 +6,6 @@
     "parallel_multiple": [],
     "java": [],
     "javascript": [],
-    "rest": [],
     "live_simple": [],
     "live_multiple": [],
     "live_parallel": [],

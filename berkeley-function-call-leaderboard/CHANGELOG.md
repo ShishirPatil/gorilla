@@ -2,6 +2,12 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 9, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
+  - `rest`
+  - `exec_simple`
+  - `exec_parallel`
+  - `exec_multiple`
+  - `exec_parallel_multiple`
 - [Apr 9, 2025] [#972](https://github.com/ShishirPatil/gorilla/pull/972): Add the following new models to the leaderboard:
   - `Salesforce/Llama-xLAM-2-70b-fc-r`
   - `Salesforce/Llama-xLAM-2-8b-fc-r`

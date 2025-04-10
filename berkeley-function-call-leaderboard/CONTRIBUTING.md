@@ -21,7 +21,6 @@ berkeley-function-call-leaderboard/
 |   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
-│   │   ├── executable_eval/      # Evaluation by execution
 │   │   ├── multi_turn_eval/      # Multi-turn evaluation
 │   ├── model_handler/            # All model-specific handlers
 │   │   ├── local_inference/            # Handlers for locally-hosted models
