@@ -32,7 +32,7 @@ class ThinkAgentHandler(OSSHandler):
             # Strip whitespace from the remaining text to isolate the JSON
             json_str = split_text[1].strip()
         else:
-            # Return empty string if no </think> tag found (or handle differently if needed)
+            # Return empty string if no </think> tag found
             json_str = "[]"
 
         return json_str
@@ -115,18 +115,17 @@ class ThinkAgentHandler(OSSHandler):
         if messages[0]["role"] == "system":
             remaining_messages = messages[1:]
 
-        formatted_prompt += "<|start_header_id|>system<|end_header_id|>\n"
-        formatted_prompt += "Cutting Knowledge Date: December 2023\n"
-        formatted_prompt += "Today Date: 07 Dec 2024\n"
+        formatted_prompt += "<|start_header_id|>system<|end_header_id|>"
+        formatted_prompt += "Cutting Knowledge Date: December 2023"
+        formatted_prompt += "Today Date: 07 Dec 2024"
         formatted_prompt += "<|eot_id|>"
 
         if len(remaining_messages) > 0:
             formatted_prompt += "<|start_header_id|>user<|end_header_id|>"
             formatted_prompt += "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt."
             formatted_prompt += 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.'
-            formatted_prompt += "Do not use variables.\n"
+            formatted_prompt += "Do not use variables."
             formatted_prompt += f"{tools}"
-            formatted_prompt += "\n"
             formatted_prompt += remaining_messages[0]["content"].strip()
             formatted_prompt += "<|eot_id|>"
 
