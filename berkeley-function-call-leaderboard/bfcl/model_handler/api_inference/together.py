@@ -26,14 +26,14 @@ class TogetherHandler(OpenAIHandler):
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=self.model_name,
+                model=self.model_name.replace('-FC', ''),
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=self.model_name,
+                model=self.model_name.replace('-FC', ''),
                 temperature=self.temperature,
             )
         end_time = time.time()
