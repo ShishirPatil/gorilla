@@ -191,7 +191,9 @@ local_inference_handler_map = {
 third_party_inference_handler_map = {
     # Novita AI
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": NovitaHandler,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": NovitaHandler,
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": NovitaHandler,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": NovitaHandler,
     "qwen/qwq-32b-FC-novita": NovitaHandler,
     "qwen/qwq-32b-novita": NovitaHandler,
 }

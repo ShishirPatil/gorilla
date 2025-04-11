@@ -948,8 +948,20 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 4 Community",
     ],
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": [
         "Llama-4-Scout-17B-16E-Instruct (Prompt) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": [
+        "Llama-4-Scout-17B-16E-Instruct (FC) (Novita)",
         "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
         "Meta",
         "Meta Llama 4 Community",
@@ -1036,7 +1048,9 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "palmyra-x-004": 5,
     "grok-beta": 5,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.2,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.2,
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.1,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.1,
     "qwen/qwq-32b-FC-novita": 0.18,
     "qwen/qwq-32b-novita": 0.18,
 }
@@ -1109,7 +1123,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "palmyra-x-004": 12,
     "grok-beta": 15,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.85,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.85,
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.5,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.5,
     "qwen/qwq-32b-FC-novita": 0.2,
     "qwen/qwq-32b-novita": 0.2,
 }
