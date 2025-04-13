@@ -739,15 +739,11 @@ function addToTable(dataArray) {
                     td.className = "nonliveast-sub-cell";
                 } else if (cellIndex >= 14 && cellIndex <= 17) {
                     // class for specific columns
-                    td.className = "nonliveexec-sub-cell";
+                    td.className = "liveast-sub-cell";
                 } else if (cellIndex >= 19 && cellIndex <= 22) {
                     // class for specific columns
-                    td.className = "liveast-sub-cell";
-                } else if (cellIndex >= 24 && cellIndex <= 27) {
-                    // class for specific columns
                     td.className = "multiturn-sub-cell";
-                }
-
+                } 
                 tr.appendChild(td);
             }
 
