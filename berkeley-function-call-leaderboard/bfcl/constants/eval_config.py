@@ -62,6 +62,8 @@ UNDERSCORE_TO_DOT = [
     "openbmb/MiniCPM3-4B-FC",
     "grok-beta",
     "qwen/qwq-32b-FC-novita",
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita",
 ]
 
 RED_FONT = "\033[91m"
