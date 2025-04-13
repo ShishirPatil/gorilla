@@ -36,7 +36,7 @@
                     { "content": "SD", "class": "column-header latency-sub-header" },
                     { "content": "P95", "class": "column-header latency-sub-header" },
 
-                    { "content": "AST Summary", "class": "column-header nonliveast-sub-header stay" },
+                    { "content": "Overall Acc", "class": "column-header nonliveast-sub-header stay" },
                     { "content": "Simple", "class": "column-header nonliveast-sub-header" },
                     { "content": "Multiple", "class": "column-header nonliveast-sub-header" },
                     { "content": "Parallel", "class": "column-header nonliveast-sub-header" },
