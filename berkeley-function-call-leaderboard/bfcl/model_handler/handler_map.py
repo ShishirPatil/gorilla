@@ -129,8 +129,6 @@ local_inference_handler_map = {
     "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
     "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
     "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
-    "Salesforce/Llama-xLAM-2-70b-fc-r": SalesforceLlamaHandler,
-    "Salesforce/Llama-xLAM-2-8b-fc-r": SalesforceLlamaHandler,
     "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
     "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
     "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
