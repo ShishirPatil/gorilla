@@ -77,6 +77,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Llama-3.2-{1B,3B}-Instruct                     | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct                       |
 | Llama-3.3-70B-Instruct                         | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct                           |
 | Llama-3.3-70B-Instruct                         | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct-FC                        |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita    |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Function Calling | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita |
+| Llama-4-Scout-17B-16E-Instruct                 | Prompt           | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct-novita            |
+| Llama-4-Scout-17B-16E-Instruct                 | Function Calling | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct-FC-novita         |
 | MiniCPM3-4B                                    | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                                 | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
 | Ministral-8B-Instruct-2410                     | Function Calling | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
@@ -101,6 +105,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
 | Phi-3-small-{8k,128k}-instruct                 | Prompt           | Self-hosted 💻 | microsoft/Phi-3-small-{8k,128k}-instruct                    |
 | Phi-3.5-mini-instruct                          | Prompt           | Self-hosted 💻 | microsoft/Phi-3.5-mini-instruct                             |
+| Qwen/QwQ-32B                                   | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
+| Qwen/QwQ-32B                                   | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
 | Qwen2-{1.5B,7B}-Instruct                       | Prompt           | Self-hosted 💻 | Qwen/Qwen2-{1.5B,7B}-Instruct                               |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
