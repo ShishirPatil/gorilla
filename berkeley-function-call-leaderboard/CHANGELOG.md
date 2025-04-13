@@ -6,6 +6,9 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
   - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
   - `Qwen/QwQ-32B` (Prompt & FC),
+- [Apr 13, 2025] [#981](https://github.com/ShishirPatil/gorilla/pull/981): Add the following new models to the leaderboard:
+  - `meta-llama/Llama-4-Scout-17B-16E-Instruct-FC`
+  - `meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC`
 - [Apr 9, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
   - `rest`
   - `exec_simple`

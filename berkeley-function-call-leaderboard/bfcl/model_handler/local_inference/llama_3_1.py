@@ -5,7 +5,15 @@ from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
-class LlamaFCHandler(OSSHandler):
+class LlamaHandler_3_1(OSSHandler):
+    """
+    Handler for Llama 3.1 series models in function calling mode.
+    Per their model card, function calling is handled in the same way as
+    the Hugging Face chat template suggests.
+    https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/#json-based-tool-calling
+    
+    For all other Llama models, see the LlamaHandler class.
+    """
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
