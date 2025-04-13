@@ -785,9 +785,9 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.5-Sonnet-20241022 (FC)",
+    "Claude-3.7-Sonnet-20250219 (FC)",
     "GPT-4o-2024-11-20 (FC)",
-    "Gemini-1.5-Pro-002 (FC)",
+    "Gemini-2.5-Pro-Exp-03-25 (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
