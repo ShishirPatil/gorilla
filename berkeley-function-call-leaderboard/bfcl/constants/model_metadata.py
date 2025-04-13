@@ -522,14 +522,14 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
-    "meta-llama/Meta-Llama-3-8B-Instruct": [
-        "Meta-Llama-3-8B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-8B-Instruct-FC": [
+        "Meta-Llama-3-8B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3-70B-Instruct": [
-        "Meta-Llama-3-70B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-70B-Instruct-FC": [
+        "Meta-Llama-3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -546,14 +546,14 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-1B-Instruct": [
-        "Llama-3.2-1B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-1B-Instruct-FC": [
+        "Llama-3.2-1B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-3B-Instruct": [
-        "Llama-3.2-3B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-3B-Instruct-FC": [
+        "Llama-3.2-3B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -570,17 +570,23 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.3-70B-Instruct": [
-        "Llama-3.3-70B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
     "meta-llama/Llama-3.3-70B-Instruct-FC": [
         "Llama-3.3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": [
+        "Llama-4-Scout-17B-16E-Instruct (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
     ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC)",
