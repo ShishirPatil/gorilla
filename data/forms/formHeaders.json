@@ -6,7 +6,7 @@
                 "columns": [
                     { "content": "", "class": "sticky-top-column", "colspan": 3 },
                     { "content": "", "class": "latency-top-header", "colspan": 4 },
-                    { "content": "Single Turn", "class": "nonliveast-top-header nonliveexec-top-header liveast-top-header", "colspan": 15 },
+                    { "content": "Single Turn", "class": "nonliveast-top-header nonliveexec-top-header liveast-top-header", "colspan": 10 },
                     { "content": "Multi Turn", "class": "multiturn-top-header", "colspan": 5 },
                     { "content": "Hallucination Measurement", "class": "", "colspan": 2 },
                     { "content": "", "class": "", "colspan": 2 }
@@ -18,7 +18,6 @@
                     { "content": "", "class": "", "colspan": 1 },
                     { "content": "Latency (s)", "id":"latency", "class": "latency-header", "colspan": 3, "canExpand": true },
                     { "content": "Non-live (AST)", "id":"nonliveast", "class": "nonliveast-header", "colspan": 5, "canExpand": true },
-                    { "content": "Non-live (Exec)", "id":"nonliveexec", "class": "nonliveexec-header", "colspan": 5, "canExpand": true },
                     { "content": "Live (AST)", "id":"liveast", "class": "liveast-header", "colspan": 5, "canExpand": true },
                     { "content": "Multi turn", "id":"multiturn", "class": "multiturn-header", "colspan": 5, "canExpand": true },
                     { "content": "", "class": "", "colspan": 2 },
@@ -42,12 +41,6 @@
                     { "content": "Multiple", "class": "column-header nonliveast-sub-header" },
                     { "content": "Parallel", "class": "column-header nonliveast-sub-header" },
                     { "content": "Multiple Parallel", "class": "column-header nonliveast-sub-header" },
-
-                    { "content": "Exec Summary", "class": "column-header nonliveexec-sub-header stay" },
-                    { "content": "Simple", "class": "column-header nonliveexec-sub-header" },
-                    { "content": "Multiple", "class": "column-header nonliveexec-sub-header" },
-                    { "content": "Parallel", "class": "column-header nonliveexec-sub-header" },
-                    { "content": "Multiple Parallel", "class": "column-header nonliveexec-sub-header" },
 
                     { "content": "Overall Acc", "class": "column-header liveast-sub-header stay" },
                     { "content": "Simple", "class": "column-header liveast-sub-header" },
