@@ -739,15 +739,11 @@ function addToTable(dataArray) {
                     td.className = "nonliveast-sub-cell";
                 } else if (cellIndex >= 14 && cellIndex <= 17) {
                     // class for specific columns
-                    td.className = "nonliveexec-sub-cell";
+                    td.className = "liveast-sub-cell";
                 } else if (cellIndex >= 19 && cellIndex <= 22) {
                     // class for specific columns
-                    td.className = "liveast-sub-cell";
-                } else if (cellIndex >= 24 && cellIndex <= 27) {
-                    // class for specific columns
                     td.className = "multiturn-sub-cell";
-                }
-
+                } 
                 tr.appendChild(td);
             }
 
@@ -785,9 +781,9 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.5-Sonnet-20241022 (FC)",
+    "Claude-3.7-Sonnet-20250219 (FC)",
     "GPT-4o-2024-11-20 (FC)",
-    "Gemini-1.5-Pro-002 (FC)",
+    "Gemini-2.5-Pro-Exp-03-25 (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
@@ -955,8 +951,7 @@ function generateChart(csvData) {
                 csvData[i][8],
                 csvData[i][13],
                 csvData[i][18],
-                csvData[i][23],
-                csvData[i][29],
+                csvData[i][24],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -973,7 +968,6 @@ function generateChart(csvData) {
         labels: [
             "Overall Accuracy",
             "Non-live AST Summary",
-            "Non-live Exec Summary",
             "Live Summary",
             "Multi Turn Summary",
             "Hallucination Measurement",
