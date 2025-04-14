@@ -11,4 +11,4 @@ class GrokHandler(OpenAIHandler):
             base_url="https://api.x.ai/v1",
             api_key=os.getenv("GROK_API_KEY"),
         )
-        self.is_fc_model = True
+        self.is_fc_model = "FC" in self.model_name
