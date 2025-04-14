@@ -333,6 +333,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
                 extra_body=extra_body,
+                timeout=72000,  # Avoid timeout errors
             )
         else:
             api_response = self.client.completions.create(
@@ -340,6 +341,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
+                timeout=72000,  # Avoid timeout errors
             )
         end_time = time.time()
 

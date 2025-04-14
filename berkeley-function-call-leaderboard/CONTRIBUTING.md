@@ -21,13 +21,14 @@ berkeley-function-call-leaderboard/
 |   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
-│   │   ├── executable_eval/      # Evaluation by execution
 │   │   ├── multi_turn_eval/      # Multi-turn evaluation
 │   ├── model_handler/            # All model-specific handlers
 │   │   ├── local_inference/            # Handlers for locally-hosted models
-│   │   │   ├── base_oss_handler.py   # Base handler for OSS models
-│   │   │   ├── llama_fc.py           # Example: LLaMA (FC mode)
-│   │   │   ├── deepseek_coder.py     # Example: DeepSeek Coder
+│   │   │   ├── base_oss_handler.py       # Base handler for OSS models
+│   │   │   ├── gemma.py                  # Example: Gemma models
+│   │   │   ├── qwen.py                   # Example: Qwen models (Prompt mode)
+│   │   │   ├── qwen_fc.py                # Example: Qwen models (FC mode)
+│   │   │   ├── deepseek_reasoning.py     # Example: DeepSeek reasoning models (with reasoning trace)
 │   │   │   ├── ...
 │   │   ├── api_inference/    # Handlers for API-based models
 │   │   │   ├── openai.py             # Example: OpenAI models
@@ -64,7 +65,7 @@ We support models in two modes:
 
 For API-based models (such as OpenAI GPT), both FC and Prompting modes can be defined in the same handler. Methods related to FC mode end with `_FC`, while Prompting mode methods end with `_prompting`.
 
-For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `llama_fc.py` for FC mode and `llama.py` for Prompting mode).
+For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `qwen_fc.py` for FC mode and `qwen.py` for Prompting mode).
 
 ## Creating Your Model Handler
 

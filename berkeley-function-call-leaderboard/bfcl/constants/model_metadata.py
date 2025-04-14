@@ -516,14 +516,14 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
-    "meta-llama/Meta-Llama-3-8B-Instruct": [
-        "Meta-Llama-3-8B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-8B-Instruct-FC": [
+        "Meta-Llama-3-8B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3-70B-Instruct": [
-        "Meta-Llama-3-70B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-70B-Instruct-FC": [
+        "Meta-Llama-3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -540,14 +540,14 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-1B-Instruct": [
-        "Llama-3.2-1B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-1B-Instruct-FC": [
+        "Llama-3.2-1B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-3B-Instruct": [
-        "Llama-3.2-3B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-3B-Instruct-FC": [
+        "Llama-3.2-3B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -564,17 +564,23 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.3-70B-Instruct": [
-        "Llama-3.3-70B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
     "meta-llama/Llama-3.3-70B-Instruct-FC": [
         "Llama-3.3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": [
+        "Llama-4-Scout-17B-16E-Instruct (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
     ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC)",
@@ -624,33 +630,33 @@ MODEL_METADATA_MAPPING = {
         "01.AI",
         "Proprietary",
     ],
-    "Salesforce/xLAM-1b-fc-r": [
-        "xLAM-1b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+    "Salesforce/Llama-xLAM-2-70b-fc-r": [
+        "xLAM-2-70b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-70b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-fc-r": [
-        "xLAM-7b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
+    "Salesforce/Llama-xLAM-2-8b-fc-r": [
+        "xLAM-8b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-r": [
-        "xLAM-7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-r",
+    "Salesforce/xLAM-2-32b-fc-r": [
+        "xLAM-2-32b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-32b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x7b-r": [
-        "xLAM-8x7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x7b-r",
+    "Salesforce/xLAM-2-3b-fc-r": [
+        "xLAM-2-3b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-3b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x22b-r": [
-        "xLAM-8x22b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x22b-r",
+    "Salesforce/xLAM-2-1b-fc-r": [
+        "xLAM-2-1b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-1b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
@@ -941,6 +947,42 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/BitAgent/BitAgent-8B/",
         "Bittensor",
         "Apache-2.0",
+    ],
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (Prompt) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": [
+        "Llama-4-Scout-17B-16E-Instruct (Prompt) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": [
+        "Llama-4-Scout-17B-16E-Instruct (FC) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "qwen/qwq-32b-FC-novita": [
+        "Qwen/QwQ-32B (FC) (Novita)",
+        "https://huggingface.co/Qwen/QwQ-32B",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "qwen/qwq-32b-novita": [
+        "Qwen/QwQ-32B (Prompt) (Novita)",
+        "https://huggingface.co/Qwen/QwQ-32B",
+        "Qwen",
+        "apache-2.0",
     ]
 }
 
@@ -1011,6 +1053,12 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
     "grok-beta": 5,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.2,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.2,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.1,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.1,
+    "qwen/qwq-32b-FC-novita": 0.18,
+    "qwen/qwq-32b-novita": 0.18,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -1080,6 +1128,12 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
     "grok-beta": 15,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.85,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.85,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.5,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.5,
+    "qwen/qwq-32b-FC-novita": 0.2,
+    "qwen/qwq-32b-novita": 0.2,
 }
 
 # The latency of the open-source models are hardcoded here.

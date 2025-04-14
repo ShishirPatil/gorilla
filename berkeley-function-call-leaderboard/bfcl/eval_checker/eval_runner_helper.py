@@ -5,151 +5,12 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from bfcl._apply_function_credential_config import apply_function_credential_config
 from bfcl.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
 from bfcl.constants.model_metadata import *
-from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.model_handler.handler_map import local_inference_handler_map
-from bfcl.utils import (
-    extract_test_category,
-    find_file_with_suffix,
-    load_file,
-    write_list_of_dicts_to_file,
-)
-from tqdm import tqdm
-
-
-def api_status_sanity_check_rest():
-
-    # We only need to import the executable_checker_rest in this function. So a local import is used.
-    from bfcl.eval_checker.executable_eval.executable_checker import (
-        executable_checker_rest,
-    )
-
-    ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
-
-    # Use the ground truth data to make sure the API is working correctly
-    apply_function_credential_config(input_path=REST_API_GROUND_TRUTH_FILE_PATH)
-
-    ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
-    write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
-
-    correct_count = 0
-    errors = []
-    for idx, data in tqdm(
-        enumerate(ground_truth_replaced),
-        total=len(ground_truth_replaced),
-        desc="API Status Test (REST)",
-    ):
-        status = executable_checker_rest(data["ground_truth"], idx)
-        if status["valid"]:
-            correct_count += 1
-        else:
-            errors.append((data, status))
-
-    if correct_count != len(ground_truth_replaced):
-        raise BadAPIStatusError(
-            errors,
-            f"{len(ground_truth_replaced) - correct_count} / {len(ground_truth_replaced)}",
-        )
-
-
-def api_status_sanity_check_executable():
-    from bfcl.eval_checker.executable_eval.executable_checker import (
-        executable_checker_simple,
-    )
-
-    ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
-    correct_count = 0
-    errors = []
-    for data in tqdm(
-        ground_truth, total=len(ground_truth), desc="API Status Test (Non-REST)"
-    ):
-        status = executable_checker_simple(
-            data["ground_truth"][0],
-            data["execution_result"][0],
-            data["execution_result_type"][0],
-            True,
-        )
-        if status["valid"]:
-            correct_count += 1
-        else:
-            errors.append((data, status))
-
-    if correct_count != len(ground_truth):
-        raise BadAPIStatusError(
-            errors, f"{len(ground_truth) - correct_count} / {len(ground_truth)}"
-        )
-
-
-def display_api_status_error(rest_error, executable_error, display_success=False):
-    if not rest_error and not executable_error:
-        if display_success:
-            print("🟢 All API Status Test Passed!")
-        return None
-
-    print(
-        f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n"
-    )
-
-    if rest_error:
-        print(
-            f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n"
-        )
-        print(f"{rest_error.error_rate} APIs affected:\n")
-        for data, status in rest_error.errors:
-            print(f"  - Test Case: {data['ground_truth']}")
-            print(f"    Error Type: {status['error_type']}\n")
-
-    if executable_error:
-        print(
-            f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n"
-        )
-        print(f"{executable_error.error_rate} APIs affected:\n")
-        for data, status in executable_error.errors:
-            print(f"  - Test Case: {data['ground_truth'][0]}")
-            print(f"    Error Type: {status['error_type']}\n")
-
-    print(f"{RED_FONT}{'-' * 100}\n{RESET}")
-
-
-def get_executable_expected_output(prompt_file_path, possible_answer_file_path):
-    # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
-    prompt_content = load_file(prompt_file_path)
-    possible_answers = load_file(possible_answer_file_path)
-    assert len(prompt_content) == len(possible_answers)
-
-    exec_dict = {}
-
-    for item, answer in tqdm(list(zip(prompt_content, possible_answers)), desc="Getting Executable Expected Output"):
-        execution_result = []
-        ground_truth = answer["ground_truth"]
-
-        for i in range(len(ground_truth)):
-            exec(
-                "from bfcl.eval_checker.executable_eval.executable_python_function import *"
-                + "\nresult="
-                + ground_truth[i],
-                exec_dict,
-            )
-            execution_result.append(exec_dict["result"])
-
-        item["execution_result"] = execution_result
-        item["execution_result_type"] = answer["execution_result_type"]
-
-    write_list_of_dicts_to_file(prompt_file_path, prompt_content)
-
-
-def clean_up_executable_expected_output(prompt_path, categories):
-    for category in categories:
-        prompt_file = find_file_with_suffix(prompt_path, category)
-        prompt_content = load_file(prompt_file)
-        for item in prompt_content:
-            del item["execution_result"]
-            del item["execution_result_type"]
-        write_list_of_dicts_to_file(prompt_file, prompt_content)
+from bfcl.utils import extract_test_category, load_file
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
@@ -201,6 +62,7 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
 
     return result
 
+
 def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
@@ -242,7 +104,6 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 
 def get_cost_letency_info(model_name, cost_data, latency_data):
-    # TODO: Update the cost and latency calculation since some models cannot be evaluated using v100 and also there are more entries.
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
@@ -259,18 +120,6 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         ) / 1000
         cost = round(cost, 2)
 
-    # TODO: Have a formal way to calculate the cost and latency for OSS models
-    # Currently, all OSS models will have no cost.
-    # if model_name in OSS_LATENCY:
-    #     mean_latency, std_latency, percentile_95_latency = (
-    #         OSS_LATENCY[model_name] / 1700,
-    #         "N/A",
-    #         "N/A",
-    #     )
-    #     mean_latency = round(mean_latency, 2)
-    #     cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
-    #     cost = round(cost, 2)
-
     if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
@@ -278,10 +127,6 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         mean_latency = round(mean_latency, 2)
         std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
-
-        # if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-        #     cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
-        #     cost = round(cost, 2)
 
     # All OSS models will have no cost shown on the leaderboard.
     no_cost_model = list(local_inference_handler_map.keys()) + NO_COST_API_BASED_MODELS
@@ -358,13 +203,8 @@ def generate_leaderboard_csv(
         python_multiple_ast_non_live = get_category_score(value, "multiple")
         python_parallel_ast_non_live = get_category_score(value, "parallel")
         python_parallel_multiple_ast_non_live = get_category_score(value, "parallel_multiple")
-        python_simple_exec_non_live = get_category_score(value, "exec_simple")
-        python_multiple_exec_non_live = get_category_score(value, "exec_multiple")
-        python_parallel_exec_non_live = get_category_score(value, "exec_parallel")
-        python_parallel_multiple_exec_non_live = get_category_score(value, "exec_parallel_multiple")
         java_simple_ast_non_live = get_category_score(value, "java")
         javascript_simple_ast_non_live = get_category_score(value, "javascript")
-        rest_simple_exec_non_live = get_category_score(value, "rest")
         irrelevance_non_live = get_category_score(value, "irrelevance")
 
         simple_ast_non_live = calculate_unweighted_accuracy(
@@ -377,12 +217,6 @@ def generate_leaderboard_csv(
         multiple_ast_non_live = python_multiple_ast_non_live
         parallel_ast_non_live = python_parallel_ast_non_live
         parallel_multiple_ast_non_live = python_parallel_multiple_ast_non_live
-        simple_exec_non_live = calculate_unweighted_accuracy(
-            [python_simple_exec_non_live, rest_simple_exec_non_live]
-        )
-        multiple_exec_non_live = python_multiple_exec_non_live
-        parallel_exec_non_live = python_parallel_exec_non_live
-        parallel_multiple_exec_non_live = python_parallel_multiple_exec_non_live
 
         summary_ast_non_live = calculate_unweighted_accuracy(
             [
@@ -392,24 +226,12 @@ def generate_leaderboard_csv(
                 parallel_multiple_ast_non_live,
             ]
         )
-        summary_exec_non_live = calculate_unweighted_accuracy(
-            [
-                simple_exec_non_live,
-                multiple_exec_non_live,
-                parallel_exec_non_live,
-                parallel_multiple_exec_non_live,
-            ]
-        )
         overall_accuracy_non_live = calculate_unweighted_accuracy(
             [
                 simple_ast_non_live,
                 multiple_ast_non_live,
                 parallel_ast_non_live,
                 parallel_multiple_ast_non_live,
-                simple_exec_non_live,
-                multiple_exec_non_live,
-                parallel_exec_non_live,
-                parallel_multiple_exec_non_live,
                 irrelevance_non_live,
             ],
             display_na_if_category_missing=False,
@@ -421,7 +243,6 @@ def generate_leaderboard_csv(
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 overall_accuracy_non_live["display_accuracy"],
                 summary_ast_non_live["display_accuracy"],
-                summary_exec_non_live["display_accuracy"],
                 simple_ast_non_live["display_accuracy"],
                 python_simple_ast_non_live["display_accuracy"],
                 java_simple_ast_non_live["display_accuracy"],
@@ -429,12 +250,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live["display_accuracy"],
                 parallel_ast_non_live["display_accuracy"],
                 parallel_multiple_ast_non_live["display_accuracy"],
-                simple_exec_non_live["display_accuracy"],
-                python_simple_exec_non_live["display_accuracy"],
-                rest_simple_exec_non_live["display_accuracy"],
-                multiple_exec_non_live["display_accuracy"],
-                parallel_exec_non_live["display_accuracy"],
-                parallel_multiple_exec_non_live["display_accuracy"],
                 irrelevance_non_live["display_accuracy"],
             ]
         )
@@ -542,11 +357,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live["display_accuracy"],
                 parallel_ast_non_live["display_accuracy"],
                 parallel_multiple_ast_non_live["display_accuracy"],
-                summary_exec_non_live["display_accuracy"],
-                simple_exec_non_live["display_accuracy"],
-                multiple_exec_non_live["display_accuracy"],
-                parallel_exec_non_live["display_accuracy"],
-                parallel_multiple_exec_non_live["display_accuracy"],
                 overall_accuracy_live["display_accuracy"],
                 python_simple_ast_live["display_accuracy"],
                 python_multiple_ast_live["display_accuracy"],
@@ -658,125 +468,6 @@ def generate_leaderboard_csv(
         # Log artifact
         wandb.log_artifact(bfcl_artifact)
         wandb.finish()
-
-
-# NOT USED
-def check_model_category_status(score_path):
-    result_path = score_path.replace("score", "result")
-
-    leaderboard_categories = [
-        "exec_simple",
-        "exec_parallel",
-        "exec_multiple",
-        "exec_parallel_multiple",
-        "simple",
-        "irrelevance",
-        "parallel",
-        "multiple",
-        "parallel_multiple",
-        "java",
-        "javascript",
-        "rest",
-        "live_simple",
-        "live_multiple",
-        "live_parallel",
-        "live_parallel_multiple",
-        "live_irrelevance",
-        "live_relevance",
-    ]
-
-    category_status = {}
-
-    # Check for all models in MODEL_METADATA_MAPPING
-    for model_name in MODEL_METADATA_MAPPING.keys():
-        category_status[model_name] = {
-            category: {"generated": False, "evaluated": False}
-            for category in leaderboard_categories
-        }
-
-        # Check result folder
-        result_subdir = os.path.join(result_path, model_name)
-        if os.path.exists(result_subdir):
-            for result_file in os.listdir(result_subdir):
-                if result_file.endswith(".json"):
-                    test_category = extract_test_category(result_file)
-                    if test_category in category_status[model_name]:
-                        category_status[model_name][test_category]["generated"] = True
-
-        # Check score folder
-        score_subdir = os.path.join(score_path, model_name)
-        if os.path.exists(score_subdir):
-            for score_file in os.listdir(score_subdir):
-                test_category = extract_test_category(score_file)
-                if test_category in category_status[model_name]:
-                    category_status[model_name][test_category]["evaluated"] = True
-
-    return category_status
-
-
-# NOT USED
-def check_all_category_present(category_status, eval_models=None, eval_categories=None):
-    found_issues = False
-    first_time = True
-    commands = []
-
-    for model_name, categories in category_status.items():
-        if eval_models and model_name not in eval_models:
-            continue
-
-        not_generated = [
-            cat
-            for cat, status in categories.items()
-            if not status["generated"] and (not eval_categories or cat in eval_categories)
-        ]
-        not_evaluated = [
-            cat
-            for cat, status in categories.items()
-            if not status["evaluated"] and (not eval_categories or cat in eval_categories)
-        ]
-
-        if not_generated or not_evaluated:
-            found_issues = True
-            if first_time:
-                print(
-                    f"We are checking models: {eval_models} and categories: {eval_categories}"
-                )
-                print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
-                first_time = False
-
-            print(f"{RED_FONT}Model: {model_name}{RESET}")
-            if not_generated:
-                print(f"\n  Missing results for {len(not_generated)} categories:")
-                for cat in not_generated:
-                    print(f"    - {cat}")
-                commands.append("cd ..")
-                commands.append(
-                    f"python openfunctions_evaluation.py --model {model_name} --test-category {' '.join(not_generated)}"
-                )
-
-            if not_evaluated:
-                print(f"\n  Unevaluated results for {len(not_evaluated)} categories:")
-                for cat in not_evaluated:
-                    print(f"    - {cat}")
-
-            all_categories = set(not_generated + not_evaluated)
-            if all_categories:
-                commands.append("cd eval_checker")
-                commands.append(
-                    f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
-                )
-
-    if found_issues:
-        print(f"\n{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
-        print(
-            "To address these issues, run the following commands from the current directory:"
-        )
-        print("\n" + " && \\\n".join(commands))
-        print(f"\n{RED_FONT}{'=' * 100}{RESET}\n")
-    else:
-        print("🎉 All categories are present and evaluated for all models!\n")
-
-    return found_issues
 
 
 def update_leaderboard_table_with_local_score_file(

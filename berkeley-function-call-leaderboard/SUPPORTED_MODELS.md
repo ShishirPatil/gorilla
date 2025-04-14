@@ -71,12 +71,17 @@ For model names containing `{...}`, multiple versions are available. For example
 | Hermes-2-Pro-Llama-3-{8B,70B}                  | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Llama-3-{8B,70B}                  |
 | Hermes-2-Pro-Mistral-7B                        | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Mistral-7B                        |
 | Hermes-2-Theta-Llama-3-{8B,70B}                | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Theta-Llama-3-{8B,70B}                |
-| Llama-3-{8B,70B}-Instruct                      | Prompt           | Self-hosted 💻 | meta-llama/Meta-Llama-3-{8B,70B}-Instruct                   |
+| Llama-3-{8B,70B}-Instruct                      | Function Calling | Self-hosted 💻 | meta-llama/Meta-Llama-3-{8B,70B}-Instruct-FC                |
 | Llama-3.1-{8B,70B}-Instruct                    | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                    | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
-| Llama-3.2-{1B,3B}-Instruct                     | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct                       |
-| Llama-3.3-70B-Instruct                         | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct                           |
+| Llama-3.2-{1B,3B}-Instruct                     | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |
 | Llama-3.3-70B-Instruct                         | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct-FC                        |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita    |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Function Calling | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita |
+| Llama-4-Maverick-17B-128E-Instruct-FP8         | Function Calling | Self-hosted 💻 | meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC        |
+| Llama-4-Scout-17B-16E-Instruct                 | Prompt           | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct-novita            |
+| Llama-4-Scout-17B-16E-Instruct                 | Function Calling | Novita AI      | meta-llama/llama-4-scout-17b-16e-instruct-FC-novita         |
+| Llama-4-Scout-17B-16E-Instruct                 | Function Calling | Self-hosted 💻 | meta-llama/Llama-4-Scout-17B-16E-Instruct-FC                |
 | MiniCPM3-4B                                    | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                                 | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
 | Ministral-8B-Instruct-2410                     | Function Calling | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
@@ -104,17 +109,19 @@ For model names containing `{...}`, multiple versions are available. For example
 | Qwen2-{1.5B,7B}-Instruct                       | Prompt           | Self-hosted 💻 | Qwen/Qwen2-{1.5B,7B}-Instruct                               |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
+| QwQ-32B                                        | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
+| QwQ-32B                                        | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
 | QwQ-32B-Preview                                | Prompt           | Self-hosted 💻 | Qwen/QwQ-32B-Preview                                        |
 | Sky-T1-32B-Preview                             | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
 | ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
-| xLAM-1b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-1b-fc-r                                     |
-| xLAM-7b-fc-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-7b-fc-r                                     |
-| xLAM-7b-r                                      | Function Calling | Self-hosted 💻 | Salesforce/xLAM-7b-r                                        |
-| xLAM-8x22b-r                                   | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x22b-r                                     |
-| xLAM-8x7b-r                                    | Function Calling | Self-hosted 💻 | Salesforce/xLAM-8x7b-r                                      |
+| xLAM-2-1b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-1b-fc-r                                   |
+| xLAM-2-32b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-32b-fc-r                                  |
+| xLAM-2-3b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
+| xLAM-2-70b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
+| xLAM-2-8b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
 | yi-large                                       | Function Calling | 01.AI          | yi-large-fc                                                 |
 
 ---

@@ -11,6 +11,7 @@ from bfcl.model_handler.api_inference.grok import GrokHandler
 from bfcl.model_handler.api_inference.mistral import MistralHandler
 from bfcl.model_handler.api_inference.nexus import NexusHandler
 from bfcl.model_handler.api_inference.nova import NovaHandler
+from bfcl.model_handler.api_inference.novita import NovitaHandler
 from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
@@ -27,7 +28,7 @@ from bfcl.model_handler.local_inference.granite import GraniteHandler
 from bfcl.model_handler.local_inference.hammer import HammerHandler
 from bfcl.model_handler.local_inference.hermes import HermesHandler
 from bfcl.model_handler.local_inference.llama import LlamaHandler
-from bfcl.model_handler.local_inference.llama_fc import LlamaFCHandler
+from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
@@ -35,7 +36,8 @@ from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
-from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
+from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
+from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
@@ -110,21 +112,22 @@ local_inference_handler_map = {
     "google/gemma-3-4b-it": GemmaHandler,
     "google/gemma-3-12b-it": GemmaHandler,
     "google/gemma-3-27b-it": GemmaHandler,
-    "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
-    "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Meta-Llama-3-8B-Instruct-FC": LlamaHandler,
+    "meta-llama/Meta-Llama-3-70B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaHandler_3_1,
     "meta-llama/Llama-3.1-8B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaHandler_3_1,
     "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
-    "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaFCHandler,
-    "meta-llama/Llama-3.3-70B-Instruct": LlamaHandler,
-    "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
-    "Salesforce/xLAM-7b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "meta-llama/Llama-3.2-1B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.2-3B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": LlamaHandler,
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": LlamaHandler,
+    "Salesforce/Llama-xLAM-2-70b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/Llama-xLAM-2-8b-fc-r": SalesforceLlamaHandler,
+    "Salesforce/xLAM-2-32b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
+    "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
     "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
     "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
     "microsoft/Phi-3-mini-128k-instruct": PhiHandler,
@@ -185,6 +188,17 @@ local_inference_handler_map = {
     "BitAgent/BitAgent-8B": LlamaHandler,
 }
 
+# Inference through third-party inference platforms for open-source models
+third_party_inference_handler_map = {
+    # Novita AI
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": NovitaHandler,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": NovitaHandler,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": NovitaHandler,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": NovitaHandler,
+    "qwen/qwq-32b-FC-novita": NovitaHandler,
+    "qwen/qwq-32b-novita": NovitaHandler,
+}
+
 # Deprecated/outdated models, no longer on the leaderboard
 outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
@@ -229,4 +243,4 @@ outdated_model_handler_map = {
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
 
-HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map}
+HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
