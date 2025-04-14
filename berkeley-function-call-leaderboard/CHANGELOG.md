@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985):  Add support fully offline model inference via th `--local-model-path` flag. Users are now allowed to bypass Hugging Face downloads by directly pointing to a local directory containing model weights, tokenizer, and config files.
 - [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
   - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
