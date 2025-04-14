@@ -24,14 +24,14 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="float16") -> None: # edited for testing purpose, will revert later
+    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
 
         # Set later in batch_inference based on local_model_path or model_name
-        self.model_load_path = None
+        self.model_path_or_id = None
 
         # Read from env vars with fallbacks
         self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
@@ -81,16 +81,16 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         # Determine the model source
         if local_model_path is not None:
-            self.model_load_path = local_model_path
+            self.model_path_or_id = local_model_path
             load_kwargs = {
-                "pretrained_model_name_or_path": self.model_load_path,
+                "pretrained_model_name_or_path": self.model_path_or_id,
                 "local_files_only": True,
                 "trust_remote_code": True,
             }
         else:
-            self.model_load_path = self.model_name_huggingface
+            self.model_path_or_id = self.model_name_huggingface
             load_kwargs = {
-                "pretrained_model_name_or_path": self.model_load_path,
+                "pretrained_model_name_or_path": self.model_path_or_id,
                 "trust_remote_code": True,
             }
 
@@ -112,9 +112,11 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             if backend == "vllm":
                 process = subprocess.Popen(
                     [
-                        "vllm",
-                        "serve",
-                        str(self.model_load_path),
+                        "python",
+                        "-m",
+                        "vllm.entrypoints.openai.api_server",
+                        "--model",
+                        str(self.model_path_or_id),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
@@ -137,7 +139,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                         "-m",
                         "sglang.launch_server",
                         "--model-path",
-                        str(self.model_load_path),
+                        str(self.model_path_or_id),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
@@ -328,7 +330,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         start_time = time.time()
         if len(extra_body) > 0:
             api_response = self.client.completions.create(
-                model=self.model_name_huggingface,
+                model=self.model_path_or_id,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
@@ -337,7 +339,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             )
         else:
             api_response = self.client.completions.create(
-                model=self.model_name_huggingface,
+                model=self.model_path_or_id,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,

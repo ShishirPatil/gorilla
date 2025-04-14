@@ -145,13 +145,10 @@ def generate(
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
 
-    # Early validation if server is skipped but local model path is required
-    if skip_server_setup:
-        if local_model_path is None:
-            raise ValueError("skip_server_setup=True but no local_model_path was provided.")
+    # Early validation for local model path
+    if local_model_path is not None:
         if not os.path.isdir(local_model_path):
             raise FileNotFoundError(f"local_model_path '{local_model_path}' does not exist or is not a directory.")
-
         # Check for required model files
         required_files = ["config.json", "tokenizer_config.json"]
         for fname in required_files:
