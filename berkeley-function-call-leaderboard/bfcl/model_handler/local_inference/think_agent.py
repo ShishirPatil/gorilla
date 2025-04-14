@@ -125,6 +125,7 @@ class ThinkAgentHandler(OSSHandler):
             formatted_prompt += "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt."
             formatted_prompt += 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.'
             formatted_prompt += "Do not use variables."
+            formatted_prompt += "Available tools:"
             formatted_prompt += f"{tools}"
             formatted_prompt += remaining_messages[0]["content"].strip()
             formatted_prompt += "<|eot_id|>"
