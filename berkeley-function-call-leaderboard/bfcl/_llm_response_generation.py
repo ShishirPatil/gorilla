@@ -55,6 +55,13 @@ def get_args():
         default=False,
         help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables."
     )
+    # Optional local model path
+    parser.add_argument(
+        "--local-model-path",
+        type=str,
+        default=None,
+        help="Path to a local model folder (with config/tokenizer/weights) for fully offline inference.",
+    )
     args = parser.parse_args()
     return args
 
