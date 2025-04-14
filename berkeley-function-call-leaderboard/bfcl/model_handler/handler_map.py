@@ -245,6 +245,4 @@ outdated_model_handler_map = {
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
 
-
 HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
-
