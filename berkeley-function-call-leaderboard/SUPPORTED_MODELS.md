@@ -85,11 +85,11 @@ For model names containing `{...}`, multiple versions are available. For example
 | MiniCPM3-4B                                    | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                                 | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
 | Ministral-8B-Instruct-2410                     | Function Calling | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
-| mistral-large-2407                             | Function Calling | Mistral AI     | mistral-large-2407-FC                                       |
-| mistral-large-2407                             | Prompt           | Mistral AI     | mistral-large-2407                                          |
+| mistral-large-2411                             | Function Calling | Mistral AI     | mistral-large-2411-FC                                       |
+| mistral-large-2411                             | Prompt           | Mistral AI     | mistral-large-2411                                          |
 | Mistral-Medium-2312                            | Prompt           | Mistral AI     | mistral-medium-2312                                         |
-| Mistral-small-2402                             | Function Calling | Mistral AI     | mistral-small-2402-FC                                       |
-| Mistral-Small-2402                             | Prompt           | Mistral AI     | mistral-small-2402                                          |
+| Mistral-small-2503                             | Function Calling | Mistral AI     | mistral-small-2503-FC                                       |
+| Mistral-Small-2503                             | Prompt           | Mistral AI     | mistral-small-2503                                          |
 | Mistral-tiny-2312                              | Prompt           | Mistral AI     | mistral-tiny-2312                                           |
 | Nemotron-4-340b-instruct                       | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                             | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
