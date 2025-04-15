@@ -145,16 +145,6 @@ def generate(
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
 
-    # Early validation for local model path
-    if local_model_path is not None:
-        if not os.path.isdir(local_model_path):
-            raise FileNotFoundError(f"local_model_path '{local_model_path}' does not exist or is not a directory.")
-        # Check for required model files
-        required_files = ["config.json", "tokenizer_config.json"]
-        for fname in required_files:
-            if not os.path.exists(os.path.join(local_model_path, fname)):
-                raise FileNotFoundError(f"Required file '{fname}' not found in local_model_path '{local_model_path}'.")
-
     args = SimpleNamespace(
         model=model,
         test_category=test_category,
