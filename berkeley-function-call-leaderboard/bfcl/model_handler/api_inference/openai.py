@@ -241,5 +241,5 @@ class OpenAIHandler(BaseHandler):
             # Reasoning content should not be included in the chat history
             response_data["model_responses_message_for_chat_history"] = {
                 "role": "assistant",
-                "content": response_data["model_responses"],
+                "content": str(response_data["model_responses"]),
             }

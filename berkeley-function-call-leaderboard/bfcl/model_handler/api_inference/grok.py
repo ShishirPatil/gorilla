@@ -17,3 +17,8 @@ class GrokHandler(OpenAIHandler):
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available(api_response, response_data)
         return response_data
+
+    def _parse_query_response_FC(self, api_response: any) -> dict:
+        response_data = super()._parse_query_response_FC(api_response)
+        self._add_reasoning_content_if_available(api_response, response_data)
+        return response_data
