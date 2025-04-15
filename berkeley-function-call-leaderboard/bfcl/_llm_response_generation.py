@@ -1,5 +1,7 @@
 import argparse
 import json
+import os
+import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
@@ -62,7 +64,20 @@ def get_args():
         default=None,
         help="Path to a local model folder (with config/tokenizer/weights) for fully offline inference.",
     )
+
     args = parser.parse_args()
+
+    # Validation logic for --local-model-path
+    if args.local_model_path is not None:
+        if not os.path.isdir(args.local_model_path):
+            print(f"Error: local_model_path '{args.local_model_path}' does not exist or is not a directory.", file=sys.stderr)
+            sys.exit(1)
+        required_files = ["config.json", "tokenizer_config.json"]
+        for fname in required_files:
+            if not os.path.exists(os.path.join(args.local_model_path, fname)):
+                print(f"Error: Required file '{fname}' not found in local_model_path '{args.local_model_path}'.", file=sys.stderr)
+                sys.exit(1)
+
     return args
 
 
