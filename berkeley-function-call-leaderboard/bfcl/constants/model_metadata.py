@@ -888,7 +888,7 @@ MODEL_METADATA_MAPPING = {
         "xAI",
         "Proprietary",
     ],
-    "grok-3-mini-beta-FC": [
+    "grok-3-mini-beta": [
         "Grok-3-mini-beta (Prompt)",
         "https://docs.x.ai/docs/models",
         "xAI",

@@ -45,6 +45,8 @@ UNDERSCORE_TO_DOT = [
     "gemini-2.5-pro-exp-03-25-FC",
     "gemini-2.0-flash-lite-001-FC",
     "gemini-2.0-flash-001-FC",
+    "grok-3-beta-FC",
+    "grok-3-mini-beta-FC",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-small-v3.2-FC",
     "meetkai/functionary-medium-v3.1-FC",

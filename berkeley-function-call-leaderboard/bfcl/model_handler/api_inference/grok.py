@@ -12,3 +12,8 @@ class GrokHandler(OpenAIHandler):
             api_key=os.getenv("GROK_API_KEY"),
         )
         self.is_fc_model = "FC" in self.model_name
+    
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+        response_data = super()._parse_query_response_prompting(api_response)
+        self._add_reasoning_content_if_available(api_response, response_data)
+        return response_data
