@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 14, 2025] [#987](https://github.com/ShishirPatil/gorilla/pull/987): Add the following new models to the leaderboard:
+ - grok-3-beta
+ - grok-3-beta-FC
+ - grok-3-mini-beta
+ - grok-3-mini-beta-FC
 - [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
   - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
