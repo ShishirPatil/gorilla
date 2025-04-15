@@ -112,10 +112,8 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             if backend == "vllm":
                 process = subprocess.Popen(
                     [
-                        "python",
-                        "-m",
-                        "vllm.entrypoints.openai.api_server",
-                        "--model",
+                        "vllm",
+                        "serve",
                         str(self.model_path_or_id),
                         "--port",
                         str(self.vllm_port),
