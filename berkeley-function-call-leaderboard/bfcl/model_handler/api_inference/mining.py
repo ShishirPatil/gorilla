@@ -103,6 +103,8 @@ Here are the available tools:
 Use the following pydantic model json schema for each tool call you will make: 
 {"title": "FunctionCalls", "type": "array", "properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"]}
 
+At each turn, you should try your best to complete the tasks requested by the user within the current turn. Continue to output functions to call until you have fulfilled the user's request to the best of your ability. Once you have no more functions to call, the system will consider the current turn complete and proceed to the next turn or task.
+
 # Output Format
 If you find suitable function, for each function call return a json object with function name and arguments within <tool_calls></tool_calls> XML tags as follows:
 <think>
