@@ -1063,22 +1063,34 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "mistralai/Mixtral-8x7B-Instruct-v0.1-FC-together": [
-        "Open-Mixtral-8x7b (Prompt)",
+        "Open-Mixtral-8x7b (FC)",
         "https://mistral.ai/news/mixtral-of-experts/",
         "Mistral AI",
         "Proprietary",
     ],
     "mistralai/Mistral-7B-Instruct-v0.1-together": [
-        "Open-Mixtral-8x7b (Prompt)",
+        "Open-Mixtral-7b (Prompt)",
         "https://mistral.ai/news/mixtral-of-experts/",
         "Mistral AI",
         "Proprietary",
     ],
     "mistralai/Mistral-7B-Instruct-v0.1-FC-together": [
-        "Open-Mixtral-8x7b (Prompt)",
+        "Open-Mixtral-7b (FC)",
         "https://mistral.ai/news/mixtral-of-experts/",
         "Mistral AI",
         "Proprietary",
+    ],
+    "mistralai/Mistral-Small-24B-Instruct-2501-together": [
+        "Mistral Small 3 (2501) (Prompt)",
+        "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501",
+        "Mistral AI",
+        "apache-2.0",
+    ],
+    "mistralai/Mistral-Small-24B-Instruct-2501-FC-together": [
+        "Mistral Small 3 (2501) (FC)",
+        "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501",
+        "Mistral AI",
+        "apache-2.0",
     ],
     "Qwen/Qwen2.5-7B-Instruct-Turbo-together": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -1087,7 +1099,7 @@ MODEL_METADATA_MAPPING = {
         "apache-2.0",
     ],
     "Qwen/Qwen2.5-7B-Instruct-Turbo-FC-together": [
-        "Qwen2.5-7B-Instruct (Prompt)",
+        "Qwen2.5-7B-Instruct (FC)",
         "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
         "Qwen",
         "apache-2.0",
@@ -1099,13 +1111,13 @@ MODEL_METADATA_MAPPING = {
         "qwen",
     ],
     "Qwen/Qwen2.5-72B-Instruct-Turbo-FC-together": [
-        "Qwen2.5-72B-Instruct (Prompt)",
+        "Qwen2.5-72B-Instruct (FC)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
         "qwen",
     ],
     "deepseek-ai/DeepSeek-V3-together": [
-        "DeepSeek-V3 (FC)",
+        "DeepSeek-V3 (Prompt)",
         "https://api-docs.deepseek.com/news/news1226",
         "DeepSeek",
         "DeepSeek License",

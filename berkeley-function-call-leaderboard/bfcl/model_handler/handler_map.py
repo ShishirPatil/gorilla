@@ -214,6 +214,8 @@ third_party_inference_handler_map = {
     "mistralai/Mixtral-8x7B-Instruct-v0.1-FC-together": TogetherHandler,
     "mistralai/Mistral-7B-Instruct-v0.1-together": TogetherHandler,
     "mistralai/Mistral-7B-Instruct-v0.1-FC-together": TogetherHandler,
+    "mistralai/Mistral-Small-24B-Instruct-2501-together": TogetherHandler,
+    "mistralai/Mistral-Small-24B-Instruct-2501-FC-together": TogetherHandler,
     "Qwen/Qwen2.5-7B-Instruct-Turbo-together": TogetherHandler,
     "Qwen/Qwen2.5-7B-Instruct-Turbo-FC-together": TogetherHandler,
     "Qwen/Qwen2.5-72B-Instruct-Turbo-together": TogetherHandler,
