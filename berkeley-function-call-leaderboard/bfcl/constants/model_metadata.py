@@ -1021,13 +1021,13 @@ MODEL_METADATA_MAPPING = {
         "Meta Llama 3 Community",
     ],
     "meta-llama/Llama-3.3-70B-Instruct-Turbo-together": [
-        "Llama-3.1-8B-Instruct (Prompt)",
+        "Llama-3.3-70B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
     "meta-llama/Llama-3.3-70B-Instruct-Turbo-FC-together": [
-        "Llama-3.1-8B-Instruct (FC)",
+        "Llama-3.3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
