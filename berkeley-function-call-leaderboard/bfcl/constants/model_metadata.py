@@ -1,5 +1,10 @@
-from bfcl.model_handler.handler_map import local_inference_handler_map
-
+# Items in the dictionary are in the format of:
+# {model_name: [
+#     model_display_name_in_leaderboard,
+#     url_to_model_page,
+#     model_creator,
+#     model_license,
+# ]}
 MODEL_METADATA_MAPPING = {
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
@@ -7,11 +12,35 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
-    "DeepSeek-V3": [
+    "deepseek-ai/DeepSeek-R1": [
+        "DeepSeek-R1 (Prompt) (Local)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+        "DeepSeek",
+        "MIT",
+    ],
+    "DeepSeek-R1": [
+        "DeepSeek-R1 (Prompt)",
+        "https://api-docs.deepseek.com/news/news1226",
+        "DeepSeek",
+        "MIT",
+    ],
+    "DeepSeek-V3-FC": [
         "DeepSeek-V3 (FC)",
         "https://api-docs.deepseek.com/news/news1226",
         "DeepSeek",
         "DeepSeek License",
+    ],
+    "gpt-4.5-preview-2025-02-27-FC": [
+        "GPT-4.5-Preview-2025-02-27 (FC)",
+        "https://openai.com/index/introducing-gpt-4-5/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4.5-preview-2025-02-27": [
+        "GPT-4.5-Preview-2025-02-27 (Prompt)",
+        "https://openai.com/index/introducing-gpt-4-5/",
+        "OpenAI",
+        "Proprietary",
     ],
     "o1-2024-12-17-FC": [
         "o1-2024-12-17 (FC)",
@@ -38,13 +67,13 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "gpt-4o-2024-11-20": [
-        "gpt-4o-2024-11-20 (Prompt)",
+        "GPT-4o-2024-11-20 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
     ],
     "gpt-4o-2024-11-20-FC": [
-        "gpt-4o-2024-11-20 (FC)",
+        "GPT-4o-2024-11-20 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
@@ -199,6 +228,18 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
+    "claude-3-7-sonnet-20250219-FC": [
+        "Claude-3.7-Sonnet-20250219 (FC)",
+        "https://www.anthropic.com/news/claude-3-7-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-7-sonnet-20250219": [
+        "Claude-3.7-Sonnet-20250219 (Prompt)",
+        "https://www.anthropic.com/news/claude-3-7-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
     "claude-3-5-haiku-20241022-FC": [
         "claude-3.5-haiku-20241022 (FC)",
         "https://www.anthropic.com/news/3-5-models-and-computer-use",
@@ -325,14 +366,26 @@ MODEL_METADATA_MAPPING = {
         "Fireworks",
         "Apache 2.0",
     ],
-    "gemini-2.0-flash-lite-preview-02-05-FC": [
-        "Gemini-2.0-Flash-Lite-Preview-02-05 (FC)",
+    "gemini-2.5-pro-exp-03-25-FC": [
+        "Gemini-2.5-Pro-Exp-03-25 (FC)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.5-pro-exp-03-25": [
+        "Gemini-2.5-Pro-Exp-03-25 (Prompt)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.0-flash-lite-001-FC": [
+        "Gemini-2.0-Flash-Lite-001 (FC)",
         "https://deepmind.google/technologies/gemini/flash-lite/",
         "Google",
         "Proprietary",
     ],
-    "gemini-2.0-flash-lite-preview-02-05": [
-        "Gemini-2.0-Flash-Lite-Preview-02-05 (Prompt)",
+    "gemini-2.0-flash-lite-001": [
+        "Gemini-2.0-Flash-Lite-001 (Prompt)",
         "https://deepmind.google/technologies/gemini/flash-lite/",
         "Google",
         "Proprietary",
@@ -349,75 +402,9 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
-    "gemini-2.0-pro-exp-02-05-FC": [
-        "Gemini-2.0-Pro-Exp-02-05 (FC)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-2.0-pro-exp-02-05": [
-        "Gemini-2.0-Pro-Exp-02-05 (Prompt)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-pro-002": [
-        "Gemini-1.5-Pro-002 (Prompt)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-pro-002-FC": [
-        "Gemini-1.5-Pro-002 (FC)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-pro-001": [
-        "Gemini-1.5-Pro-001 (Prompt)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-pro-001-FC": [
-        "Gemini-1.5-Pro-001 (FC)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-flash-002": [
-        "Gemini-1.5-Flash-002 (Prompt)",
-        "https://deepmind.google/technologies/gemini/flash/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-flash-002-FC": [
-        "Gemini-1.5-Flash-002 (FC)",
-        "https://deepmind.google/technologies/gemini/flash/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-flash-001": [
-        "Gemini-1.5-Flash-001 (Prompt)",
-        "https://deepmind.google/technologies/gemini/flash/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.5-flash-001-FC": [
-        "Gemini-1.5-Flash-001 (FC)",
-        "https://deepmind.google/technologies/gemini/flash/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.0-pro-002": [
-        "Gemini-1.0-Pro-002 (Prompt)",
-        "https://deepmind.google/technologies/gemini/pro/",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.0-pro-002-FC": [
-        "Gemini-1.0-Pro-002 (FC)",
-        "https://deepmind.google/technologies/gemini/pro/",
+    "gemini-2.0-flash-thinking-exp-01-21": [
+        "Gemini-2.0-Flash-Thinking-Exp-01-21 (Prompt)",
+        "https://deepmind.google/technologies/gemini/flash-thinking/",
         "Google",
         "Proprietary",
     ],
@@ -463,30 +450,30 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek",
         "DeepSeek License",
     ],
-    "google/gemma-7b-it": [
-        "Gemma-7b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-1b-it": [
+        "Gemma-3-1b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-2b-it": [
-        "Gemma-2-2b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-4b-it": [
+        "Gemma-3-4b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-9b-it": [
-        "Gemma-2-9b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-12b-it": [
+        "Gemma-3-12b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "google/gemma-2-27b-it": [
-        "Gemma-2-27b-it (Prompt)",
-        "https://blog.google/technology/developers/gemma-open-models/",
+    "google/gemma-3-27b-it": [
+        "Gemma-3-27b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-3/",
         "Google",
         "gemma-terms-of-use",
-    ],
+    ],  
     "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
@@ -529,14 +516,14 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
-    "meta-llama/Meta-Llama-3-8B-Instruct": [
-        "Meta-Llama-3-8B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-8B-Instruct-FC": [
+        "Meta-Llama-3-8B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3-70B-Instruct": [
-        "Meta-Llama-3-70B-Instruct (Prompt)",
+    "meta-llama/Meta-Llama-3-70B-Instruct-FC": [
+        "Meta-Llama-3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -553,14 +540,14 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-1B-Instruct": [
-        "Llama-3.2-1B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-1B-Instruct-FC": [
+        "Llama-3.2-1B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.2-3B-Instruct": [
-        "Llama-3.2-3B-Instruct (Prompt)",
+    "meta-llama/Llama-3.2-3B-Instruct-FC": [
+        "Llama-3.2-3B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -577,17 +564,23 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Llama-3.3-70B-Instruct": [
-        "Llama-3.3-70B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
     "meta-llama/Llama-3.3-70B-Instruct-FC": [
         "Llama-3.3-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "Meta",
+        "Meta Llama 4 Community",
+    ],
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": [
+        "Llama-4-Scout-17B-16E-Instruct (FC)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
     ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC)",
@@ -600,6 +593,12 @@ MODEL_METADATA_MAPPING = {
         "https://cohere.com/blog/command-r7b",
         "Cohere",
         "cc-by-nc-4.0",
+    ],
+    "command-a-03-2025-FC": [
+        "Command A (FC)",
+        "https://cohere.com/blog/command-a",
+        "Cohere",
+        "CC-BY-NC 4.0 License (w/ Acceptable Use Addendum)",
     ],
     "snowflake/arctic": [
         "Snowflake/snowflake-arctic-instruct (Prompt)",
@@ -631,33 +630,33 @@ MODEL_METADATA_MAPPING = {
         "01.AI",
         "Proprietary",
     ],
-    "Salesforce/xLAM-1b-fc-r": [
-        "xLAM-1b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+    "Salesforce/Llama-xLAM-2-70b-fc-r": [
+        "xLAM-2-70b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-70b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-fc-r": [
-        "xLAM-7b-fc-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
+    "Salesforce/Llama-xLAM-2-8b-fc-r": [
+        "xLAM-8b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-7b-r": [
-        "xLAM-7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-7b-r",
+    "Salesforce/xLAM-2-32b-fc-r": [
+        "xLAM-2-32b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-32b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x7b-r": [
-        "xLAM-8x7b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x7b-r",
+    "Salesforce/xLAM-2-3b-fc-r": [
+        "xLAM-2-3b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-3b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "Salesforce/xLAM-8x22b-r": [
-        "xLAM-8x22b-r (FC)",
-        "https://huggingface.co/Salesforce/xLAM-8x22b-r",
+    "Salesforce/xLAM-2-1b-fc-r": [
+        "xLAM-2-1b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-2-1b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
     ],
@@ -739,9 +738,21 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct-FC": [
+        "Qwen2.5-0.5B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-0.5B-Instruct": [
         "Qwen2.5-0.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-1.5B-Instruct-FC": [
+        "Qwen2.5-1.5B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
     ],
@@ -751,15 +762,33 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-3B-Instruct-FC": [
+        "Qwen2.5-3B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
+    ],
     "Qwen/Qwen2.5-3B-Instruct": [
         "Qwen2.5-3B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
         "Qwen",
         "qwen",
     ],
+    "Qwen/Qwen2.5-7B-Instruct-FC": [
+        "Qwen2.5-7B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-14B-Instruct-FC": [
+        "Qwen2.5-14B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
         "Qwen",
         "apache-2.0",
     ],
@@ -769,11 +798,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-32B-Instruct-FC": [
+        "Qwen2.5-32B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-32B-Instruct": [
         "Qwen2.5-32B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-72B-Instruct-FC": [
+        "Qwen2.5-72B-Instruct (FC)",
+        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
@@ -784,6 +825,12 @@ MODEL_METADATA_MAPPING = {
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",
+        "Huawei Noah & USTC",
+        "Apache-2.0",
+    ],
+    "Team-ACE/ToolACE-2-8B": [
+        "ToolACE-2-8B (FC)",
+        "https://huggingface.co/Team-ACE/ToolACE-2-8B",
         "Huawei Noah & USTC",
         "Apache-2.0",
     ],
@@ -877,156 +924,66 @@ MODEL_METADATA_MAPPING = {
         "TII UAE",
         "falcon-llm-license",
     ],
-    "uiuc-convai/CALM-8B": [
-        "CALM-8B",
-        "https://huggingface.co/uiuc-convai/CALM-8B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
-    ],
-    "uiuc-convai/CALM-70B": [
-        "CALM-8B",
-        "https://huggingface.co/uiuc-convai/CALM-70B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
-    ],
-    "uiuc-convai/CALM-405B": [
-        "CALM-8B",
-        "https://huggingface.co/uiuc-convai/CALM-405B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
-    ],
-    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
+    "uiuc-convai/CoALM-8B": [
+        "CoALM-8B",
+        "https://huggingface.co/uiuc-convai/CoALM-8B",
+        "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-FC": [
-        "Llama-3.1-8B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
+    "uiuc-convai/CoALM-70B": [
+        "CoALM-70B",
+        "https://huggingface.co/uiuc-convai/CoALM-70B",
+        "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
+    "uiuc-convai/CoALM-405B": [
+        "CoALM-405B",
+        "https://huggingface.co/uiuc-convai/CoALM-405B",
+        "UIUC + Oumi",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo-FC": [
-        "Llama-3.1-8B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
+    "BitAgent/BitAgent-8B": [
+        "BitAgent-8B",
+        "https://huggingface.co/BitAgent/BitAgent-8B/",
+        "Bittensor",
+        "Apache-2.0",
     ],
-    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo-FC": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Llama-3.3-70B-Instruct-Turbo": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Llama-3.3-70B-Instruct-Turbo-FC": [
-        "Llama-3.1-8B-Instruct (Prompt)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Llama-4-Scout-17B-16E-Instruct": [
-        "Llama 4 Scout (17Bx16E)",
-        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
-        "Meta",
-        "Meta Llama 4 Community",
-    ],
-    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": [
-        "Llama 4 Scout (17Bx16E)",
-        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
-        "Meta",
-        "Meta Llama 4 Community",
-    ],
-    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8": [
-        "Llama 4 Maverick (17Bx128E)",
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (Prompt) (Novita)",
         "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         "Meta",
         "Meta Llama 4 Community",
     ],
-    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": [
-        "Llama 4 Maverick (17Bx128E)",
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": [
+        "Llama-4-Maverick-17B-128E-Instruct-FP8 (FC) (Novita)",
         "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         "Meta",
         "Meta Llama 4 Community",
     ],
-    "mistralai/Mixtral-8x7B-Instruct-v0.1": [
-        "Open-Mixtral-8x7b (Prompt)",
-        "https://mistral.ai/news/mixtral-of-experts/",
-        "Mistral AI",
-        "Proprietary",
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": [
+        "Llama-4-Scout-17B-16E-Instruct (Prompt) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
     ],
-    "mistralai/Mixtral-8x7B-Instruct-v0.1-FC": [
-        "Open-Mixtral-8x7b (Prompt)",
-        "https://mistral.ai/news/mixtral-of-experts/",
-        "Mistral AI",
-        "Proprietary",
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": [
+        "Llama-4-Scout-17B-16E-Instruct (FC) (Novita)",
+        "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "Meta",
+        "Meta Llama 4 Community",
     ],
-    "mistralai/Mistral-7B-Instruct-v0.1": [
-        "Open-Mixtral-8x7b (Prompt)",
-        "https://mistral.ai/news/mixtral-of-experts/",
-        "Mistral AI",
-        "Proprietary",
-    ],
-    "mistralai/Mistral-7B-Instruct-v0.1-FC": [
-        "Open-Mixtral-8x7b (Prompt)",
-        "https://mistral.ai/news/mixtral-of-experts/",
-        "Mistral AI",
-        "Proprietary",
-    ],
-    "Qwen/Qwen2.5-7B-Instruct-Turbo": [
-        "Qwen2.5-7B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+    "qwen/qwq-32b-FC-novita": [
+        "Qwen/QwQ-32B (FC) (Novita)",
+        "https://huggingface.co/Qwen/QwQ-32B",
         "Qwen",
         "apache-2.0",
     ],
-    "Qwen/Qwen2.5-7B-Instruct-Turbo-FC": [
-        "Qwen2.5-7B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+    "qwen/qwq-32b-novita": [
+        "Qwen/QwQ-32B (Prompt) (Novita)",
+        "https://huggingface.co/Qwen/QwQ-32B",
         "Qwen",
         "apache-2.0",
-    ],
-    "Qwen/Qwen2.5-72B-Instruct-Turbo": [
-        "Qwen2.5-72B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
-        "Qwen",
-        "qwen",
-    ],
-    "Qwen/Qwen2.5-72B-Instruct-Turbo-FC": [
-        "Qwen2.5-72B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
-        "Qwen",
-        "qwen",
-    ],
-    "deepseek-ai/DeepSeek-V3": [
-        "DeepSeek-V3 (FC)",
-        "https://api-docs.deepseek.com/news/news1226",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-V3-FC": [
-        "DeepSeek-V3 (FC)",
-        "https://api-docs.deepseek.com/news/news1226",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -1038,6 +995,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-sonnet-20240620": 3,
     "claude-3-5-sonnet-20241022-FC": 3,
     "claude-3-5-sonnet-20241022": 3,
+    "claude-3-7-sonnet-20250219-FC": 3,
+    "claude-3-7-sonnet-20250219": 3,
     "claude-3-haiku-20240307-FC": 0.25,
     "claude-3-haiku-20240307": 0.25,
     "claude-3-5-haiku-20241022-FC": 1,
@@ -1058,6 +1017,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
+    "gpt-4.5-preview-2025-02-27-FC": 75,
+    "gpt-4.5-preview-2025-02-27": 75,
     "o1-2024-12-17-FC": 15,
     "o1-2024-12-17": 15,
     "o3-mini-2025-01-31-FC": 1.1,
@@ -1078,28 +1039,26 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 0.5,
     "gpt-3.5-turbo-0125-FC": 0.5,
-    "gemini-2.0-flash-lite-preview-02-05": 0.075,
-    "gemini-2.0-flash-lite-preview-02-05-FC": 0.075,
+    "gemini-2.5-pro-exp-03-25": 0,
+    "gemini-2.5-pro-exp-03-25-FC": 0,
+    "gemini-2.0-flash-lite-001": 0.075,
+    "gemini-2.0-flash-lite-001-FC": 0.075,
     "gemini-2.0-flash-001-FC": 0.15,
     "gemini-2.0-flash-001": 0.15,
-    "gemini-2.0-pro-exp-02-05": 0,
-    "gemini-2.0-pro-exp-02-05-FC": 0,
-    "gemini-1.5-pro-002": 1.25,
-    "gemini-1.5-pro-002-FC": 1.25,
-    "gemini-1.5-pro-001": 1.25,
-    "gemini-1.5-pro-001-FC": 1.25,
-    "gemini-1.5-flash-002": 0.075,
-    "gemini-1.5-flash-002-FC": 0.075,
-    "gemini-1.5-flash-001": 0.075,
-    "gemini-1.5-flash-001-FC": 0.075,
-    "gemini-1.0-pro-002": 0.5,
-    "gemini-1.0-pro-002-FC": 0.5,
+    "gemini-2.0-flash-thinking-exp-01-21": 0,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r7b-12-2024-FC": 0.0375,
+    "command-a-03-2025-FC": 2.5,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
     "grok-beta": 5,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.2,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.2,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.1,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.1,
+    "qwen/qwq-32b-FC-novita": 0.18,
+    "qwen/qwq-32b-novita": 0.18,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -1111,6 +1070,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-sonnet-20240620": 15,
     "claude-3-5-sonnet-20241022-FC": 15,
     "claude-3-5-sonnet-20241022": 15,
+    "claude-3-7-sonnet-20250219-FC": 15,
+    "claude-3-7-sonnet-20250219": 15,
     "claude-3-haiku-20240307-FC": 1.25,
     "claude-3-haiku-20240307": 1.25,
     "claude-3-5-haiku-20241022-FC": 5,
@@ -1131,6 +1092,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC": 3,
     "mistral-tiny-2312": 0.25,
+    "gpt-4.5-preview-2025-02-27-FC": 150,
+    "gpt-4.5-preview-2025-02-27": 150,
     "o1-2024-12-17-FC": 60,
     "o1-2024-12-17": 60,
     "o3-mini-2025-01-31-FC": 4,
@@ -1151,28 +1114,26 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 60,
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
-    "gemini-2.0-flash-lite-preview-02-05": 0.3,
-    "gemini-2.0-flash-lite-preview-02-05-FC": 0.3,
+    "gemini-2.5-pro-exp-03-25": 0,
+    "gemini-2.5-pro-exp-03-25-FC": 0,
+    "gemini-2.0-flash-lite-001": 0.3,
+    "gemini-2.0-flash-lite-001-FC": 0.3,
     "gemini-2.0-flash-001-FC": 0.6,
     "gemini-2.0-flash-001": 0.6,
-    "gemini-2.0-pro-exp-02-05": 0,
-    "gemini-2.0-pro-exp-02-05-FC": 0,
-    "gemini-1.5-pro-002": 5,
-    "gemini-1.5-pro-002-FC": 5,
-    "gemini-1.5-pro-001": 5,
-    "gemini-1.5-pro-001-FC": 5,
-    "gemini-1.5-flash-002": 0.30,
-    "gemini-1.5-flash-002-FC": 0.30,
-    "gemini-1.5-flash-001": 0.30,
-    "gemini-1.5-flash-001-FC": 0.30,
-    "gemini-1.0-pro-002": 1.5,
-    "gemini-1.0-pro-002-FC": 1.5,
+    "gemini-2.0-flash-thinking-exp-01-21": 0,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r7b-12-2024-FC": 0.15,
+    "command-a-03-2025-FC": 10,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
     "grok-beta": 15,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.85,
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.85,
+    "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.5,
+    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": 0.5,
+    "qwen/qwq-32b-FC-novita": 0.2,
+    "qwen/qwq-32b-novita": 0.2,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -1180,11 +1141,11 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
 # This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {}
 
-# All OSS models will have no cost shown on the leaderboard.
-NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
-NO_COST_MODELS += [
-    "DeepSeek-V3",
+# All OSS models will have no cost shown on the leaderboard by default, so they don't need to be included here.
+NO_COST_API_BASED_MODELS = [
+    "DeepSeek-R1",
+    "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",

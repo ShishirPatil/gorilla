@@ -15,3 +15,4 @@ class ModelStyle(Enum):
     OSSMODEL = "ossmodel"
     COHERE = "cohere"
     WRITER = "writer"
+    NOVITA_AI = "novita_ai"

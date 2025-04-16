@@ -2,16 +2,17 @@ import json
 import time
 from copy import deepcopy
 
-from bfcl.constant import RESULT_PATH, VERSION_PREFIX
+from bfcl.constants.category_mapping import VERSION_PREFIX
+from bfcl.constants.default_prompts import (
+    DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
+    DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
+    MAXIMUM_STEP_LIMIT,
+)
+from bfcl.constants.eval_config import RESULT_PATH
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     STATELESS_CLASSES,
     execute_multi_turn_func_call,
     is_empty_execute_response,
-)
-from bfcl.model_handler.constant import (
-    DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
-    DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
-    MAXIMUM_STEP_LIMIT,
 )
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import load_file, make_json_serializable, sort_key
@@ -39,7 +40,9 @@ class BaseHandler:
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_input_log, exclude_state_log)
+                return self.inference_multi_turn_FC(
+                    test_entry, include_input_log, exclude_state_log
+                )
             else:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
@@ -49,9 +52,7 @@ class BaseHandler:
                     test_entry, include_input_log, exclude_state_log
                 )
             else:
-                return self.inference_single_turn_prompting(
-                    test_entry, include_input_log
-                )
+                return self.inference_single_turn_prompting(test_entry, include_input_log)
 
     @final
     def inference_multi_turn_FC(
@@ -94,7 +95,8 @@ class BaseHandler:
             for class_name, class_instance in involved_instances.items():
                 if class_name in STATELESS_CLASSES:
                     continue
-                class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                # Avoid modification in future turns
+                class_instance = deepcopy(class_instance)
                 state_log.append(
                     {
                         "role": "state_info",
@@ -140,7 +142,9 @@ class BaseHandler:
                 )
 
             current_turn_response = []
-            current_turn_inference_log: list[dict] = {"begin_of_turn_query": current_turn_message}
+            current_turn_inference_log: list[dict] = {
+                "begin_of_turn_query": current_turn_message
+            }
             current_turn_input_token_count: list[float] = []
             current_turn_output_token_count: list[float] = []
             current_turn_latency: list[float] = []
@@ -270,7 +274,8 @@ class BaseHandler:
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
                         continue
-                    class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                    # Avoid modification in future turns
+                    class_instance = deepcopy(class_instance)
                     state_log.append(
                         {
                             "role": "state_info",
@@ -312,12 +317,12 @@ class BaseHandler:
         total_input_token_count: list[list[float]] = []
         total_output_token_count: list[list[float]] = []
         total_latency: list[list[float]] = []
-        all_model_response: list[list] = (
-            []
-        )  # The model response that will be used for later evaluation
-        all_inference_log: list[list[dict]] = (
-            []
-        )  # The debugging log for human to understand
+        # The model response that will be used for later evaluation
+        all_model_response: list[list] = []
+        # Only for reasoning models, reasoning content will be stored as part of metadata and in inference log
+        all_reasoning_content: list[list] = []
+        # The debugging log for human to understand
+        all_inference_log: list[list[dict]] = []
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
@@ -337,7 +342,8 @@ class BaseHandler:
             for class_name, class_instance in involved_instances.items():
                 if class_name in STATELESS_CLASSES:
                     continue
-                class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                # Avoid modification in future turns
+                class_instance = deepcopy(class_instance)
                 state_log.append(
                     {
                         "role": "state_info",
@@ -380,7 +386,10 @@ class BaseHandler:
                 )
 
             current_turn_response = []
-            current_turn_inference_log: list[dict] = {"begin_of_turn_query": current_turn_message}
+            current_turn_reasoning_content = []
+            current_turn_inference_log: list[dict] = {
+                "begin_of_turn_query": current_turn_message
+            }
             current_turn_input_token_count: list[float] = []
             current_turn_output_token_count: list[float] = []
             current_turn_latency: list[float] = []
@@ -422,9 +431,17 @@ class BaseHandler:
                 current_turn_latency.append(query_latency)
 
                 current_turn_response.append(model_responses)
-                current_step_inference_log.append(
-                    {"role": "assistant", "content": model_responses}
-                )
+                reasoning_content = model_response_data.get("reasoning_content", "")
+                current_turn_reasoning_content.append(reasoning_content)
+
+                log_entry = {
+                    "role": "assistant",
+                    "content": model_responses,
+                }
+                if reasoning_content:
+                    log_entry["reasoning_content"] = reasoning_content
+
+                current_step_inference_log.append(log_entry)
 
                 # Try decoding the model response
                 try:
@@ -500,6 +517,7 @@ class BaseHandler:
 
             # Add to the total list
             all_model_response.append(current_turn_response)
+            all_reasoning_content.append(current_turn_reasoning_content)
             all_inference_log.append(current_turn_inference_log)
             total_input_token_count.append(current_turn_input_token_count)
             total_output_token_count.append(current_turn_output_token_count)
@@ -510,7 +528,8 @@ class BaseHandler:
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
                         continue
-                    class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                    # Avoid modification in future turns
+                    class_instance = deepcopy(class_instance)
                     state_log.append(
                         {
                             "role": "state_info",
@@ -533,6 +552,12 @@ class BaseHandler:
             "latency": total_latency,
             "inference_log": all_inference_log,
         }
+        # We only include reasoning content if it exists and is not empty
+        if not all(
+            all(content == "" for content in single_turn_reasoning_content)
+            for single_turn_reasoning_content in all_reasoning_content
+        ):
+            metadata["reasoning_content"] = all_reasoning_content
 
         return all_model_response, metadata
 
@@ -594,6 +619,9 @@ class BaseHandler:
         metadata["output_token_count"] = model_response_data["output_token"]
         metadata["latency"] = query_latency
 
+        if "reasoning_content" in model_response_data:
+            metadata["reasoning_content"] = model_response_data["reasoning_content"]
+
         return model_response_data["model_responses"], metadata
 
     def decode_ast(self, result, language="Python"):
@@ -633,7 +661,9 @@ class BaseHandler:
                 # Load existing entries from the file
                 existing_entries = {}
                 if file_path.exists():
-                    existing_entries = {entry["id"]: entry for entry in load_file(file_path)}
+                    existing_entries = {
+                        entry["id"]: entry for entry in load_file(file_path)
+                    }
 
                 # Update existing entries with new data
                 for entry in entries:

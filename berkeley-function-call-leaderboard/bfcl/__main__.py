@@ -5,12 +5,12 @@ from typing import List
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
-from bfcl.constant import (
+from bfcl.constants.category_mapping import TEST_COLLECTION_MAPPING
+from bfcl.constants.eval_config import (
     DOTENV_PATH,
     PROJECT_ROOT,
     RESULT_PATH,
     SCORE_PATH,
-    TEST_COLLECTION_MAPPING,
 )
 from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
@@ -226,12 +226,6 @@ def evaluate(
         help="A list of test categories to run the evaluation on.",
         callback=handle_multiple_input
     ),
-    api_sanity_check: bool = typer.Option(
-        False,
-        "--api-sanity-check",
-        "-c",
-        help="Perform the REST API status sanity check before running the evaluation.",
-    ),
     result_dir: str = typer.Option(
         None,
         "--result-dir",
@@ -248,7 +242,7 @@ def evaluate(
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    evaluation_main(model, test_category, api_sanity_check, result_dir, score_dir)
+    evaluation_main(model, test_category, result_dir, score_dir)
 
 
 @cli.command()

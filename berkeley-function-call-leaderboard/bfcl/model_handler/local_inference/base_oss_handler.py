@@ -5,10 +5,12 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
-from bfcl.constant import RESULT_PATH
+from bfcl.constants.eval_config import (
+    RESULT_PATH,
+    VLLM_PORT,
+)
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.local_inference.constant import VLLM_PORT
 from bfcl.model_handler.utils import (
     default_decode_ast_prompting,
     default_decode_execute_prompting,
@@ -314,6 +316,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
                 extra_body=extra_body,
+                timeout=72000,  # Avoid timeout errors
             )
         else:
             api_response = self.client.completions.create(
@@ -321,6 +324,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
+                timeout=72000,  # Avoid timeout errors
             )
         end_time = time.time()
 

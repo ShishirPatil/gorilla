@@ -18,15 +18,17 @@ The repository is organized as follows:
 ```plaintext
 berkeley-function-call-leaderboard/
 ├── bfcl/
+|   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
-│   │   ├── executable_eval/      # Evaluation by execution
 │   │   ├── multi_turn_eval/      # Multi-turn evaluation
 │   ├── model_handler/            # All model-specific handlers
 │   │   ├── local_inference/            # Handlers for locally-hosted models
-│   │   │   ├── base_oss_handler.py   # Base handler for OSS models
-│   │   │   ├── llama_fc.py           # Example: LLaMA (FC mode)
-│   │   │   ├── deepseek_coder.py     # Example: DeepSeek Coder
+│   │   │   ├── base_oss_handler.py       # Base handler for OSS models
+│   │   │   ├── gemma.py                  # Example: Gemma models
+│   │   │   ├── qwen.py                   # Example: Qwen models (Prompt mode)
+│   │   │   ├── qwen_fc.py                # Example: Qwen models (FC mode)
+│   │   │   ├── deepseek_reasoning.py     # Example: DeepSeek reasoning models (with reasoning trace)
 │   │   │   ├── ...
 │   │   ├── api_inference/    # Handlers for API-based models
 │   │   │   ├── openai.py             # Example: OpenAI models
@@ -63,7 +65,7 @@ We support models in two modes:
 
 For API-based models (such as OpenAI GPT), both FC and Prompting modes can be defined in the same handler. Methods related to FC mode end with `_FC`, while Prompting mode methods end with `_prompting`.
 
-For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `llama_fc.py` for FC mode and `llama.py` for Prompting mode).
+For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `qwen_fc.py` for FC mode and `qwen.py` for Prompting mode).
 
 ## Creating Your Model Handler
 
@@ -97,11 +99,11 @@ Regardless of mode or model type, you should implement the following methods to 
 
 ## Updating the Handler Map and Model Metadata
 
-1. **Update `model_handler/handler_map.py`:**  
+1. **Update `bfcl/model_handler/handler_map.py`:**  
    Add your new model’s handler class and associate it with the model’s name.
 
-2. **Update `model_handler/model_metadata.py`:**  
-   In `bfcl/eval_checker/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
+2. **Update `bfcl/constants/model_metadata.py`:**  
+   In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
 
    - Model display name (as shown in the leaderboard)
    - URL to the model’s documentation or homepage
@@ -113,9 +115,9 @@ Regardless of mode or model type, you should implement the following methods to 
    - `INPUT_PRICE_PER_MILLION_TOKEN`
    - `OUTPUT_PRICE_PER_MILLION_TOKEN`
 
-   If the model is API-based but free, add it to the `NO_COST_MODELS` list.
+   If the model is API-based but free, add it to the `NO_COST_API_BASED_MODELS` list.
 
-3. **Update `model_handler/constant.py`:**  
+3. **Update `bfcl/constants/eval_config.py`:**  
    If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
 
 4. **Update `SUPPORTED_MODELS.md`:**  

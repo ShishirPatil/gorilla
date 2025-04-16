@@ -2,8 +2,8 @@ import os
 import time
 
 import vertexai
+from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
@@ -15,7 +15,7 @@ from bfcl.model_handler.utils import (
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from google.api_core.exceptions import ResourceExhausted
+from google.api_core.exceptions import ResourceExhausted, TooManyRequests
 from vertexai.generative_models import (
     Content,
     FunctionDeclaration,
@@ -72,7 +72,7 @@ class GeminiHandler(BaseHandler):
                     )
             return func_call_list
 
-    @retry_with_backoff(error_type=ResourceExhausted)
+    @retry_with_backoff(error_type=[ResourceExhausted, TooManyRequests])
     def generate_with_backoff(self, client, **kwargs):
         start_time = time.time()
         api_response = client.generate_content(**kwargs)
