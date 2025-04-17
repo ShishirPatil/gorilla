@@ -1,7 +1,8 @@
 import csv
 from datetime import datetime
+import os
 from types import SimpleNamespace
-from typing import List
+from typing import List, Optional
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
@@ -118,6 +119,11 @@ def generate(
         "--skip-server-setup",
         help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables.",
     ),
+    local_model_path: Optional[str] = typer.Option(
+        None,
+        "--local-model-path",
+        help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
+    ),
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
@@ -150,6 +156,7 @@ def generate(
         gpu_memory_utilization=gpu_memory_utilization,
         backend=backend,
         skip_server_setup=skip_server_setup,
+        local_model_path=local_model_path,
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,
