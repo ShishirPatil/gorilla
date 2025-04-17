@@ -27,8 +27,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
 
-        # Set later in batch_inference based on local_model_path or model_name
-        self.model_path_or_id = None
+        # Might be overridden in batch_inference method if local_model_path is provided
+        # Used to indicate where the tokenizer and config should be loaded from
+        self.model_path_or_id = self.model_name_huggingface
+
         # Read from env vars with fallbacks
         self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
         self.vllm_port = os.getenv("VLLM_PORT", VLLM_PORT)
@@ -97,7 +99,6 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 "trust_remote_code": True,
             }
         else:
-            self.model_path_or_id = self.model_name_huggingface
             load_kwargs = {
                 "pretrained_model_name_or_path": self.model_path_or_id,
                 "trust_remote_code": True,
