@@ -127,11 +127,18 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 #### For Locally-hosted OSS Models
 
 ```bash
-bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm|sglang} --num-gpus 1 --gpu-memory-utilization 0.9
+bfcl generate \
+  --model MODEL_NAME \
+  --test-category TEST_CATEGORY \
+  --backend {vllm|sglang} \
+  --num-gpus 1 \
+  --gpu-memory-utilization 0.9 \
+  --local-model-path /path/to/local/model   # ← optional
 ```
 
 - Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
+- `--local-model-path` (optional): Point this flag at a directory that already contains the model’s files (`config.json`, tokenizer, weights, etc.). Use it only when you’ve pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
 
 ##### For Pre-existing OpenAI-compatible Endpoints
 
