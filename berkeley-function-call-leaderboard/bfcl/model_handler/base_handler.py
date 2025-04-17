@@ -79,7 +79,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         all_reasoning_content: list[list] = []
-
+        # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
         if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
@@ -201,6 +201,7 @@ class BaseHandler:
 
                 current_step_inference_log.append(log_entry)
 
+                # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
                     current_step_inference_log.append(

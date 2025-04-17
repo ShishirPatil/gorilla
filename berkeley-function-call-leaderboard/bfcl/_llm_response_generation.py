@@ -18,11 +18,7 @@ from bfcl.constants.eval_config import (
 from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.utils import (
-    is_multi_turn,
-    parse_test_category_argument,
-    sort_key,
-)
+from bfcl.utils import is_multi_turn, parse_test_category_argument, sort_key
 from tqdm import tqdm
 
 RETRY_LIMIT = 3
@@ -55,7 +51,15 @@ def get_args():
         default=False,
         help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables."
     )
+    # Optional local model path
+    parser.add_argument(
+        "--local-model-path",
+        type=str,
+        default=None,
+        help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
+    )
     args = parser.parse_args()
+
     return args
 
 
@@ -226,6 +230,7 @@ def generate_results(args, model_name, test_cases_total):
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
             skip_server_setup=args.skip_server_setup,
+            local_model_path=args.local_model_path,
             include_input_log=args.include_input_log,
             exclude_state_log=args.exclude_state_log,
             result_dir=args.result_dir,
