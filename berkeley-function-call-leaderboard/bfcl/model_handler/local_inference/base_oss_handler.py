@@ -1,15 +1,12 @@
+import os
 import subprocess
 import threading
 import time
-import os
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 import requests
-from bfcl.constants.eval_config import (
-    RESULT_PATH,
-    VLLM_PORT,
-)
+from bfcl.constants.eval_config import RESULT_PATH, VLLM_PORT
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
@@ -32,7 +29,6 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         # Set later in batch_inference based on local_model_path or model_name
         self.model_path_or_id = None
-
         # Read from env vars with fallbacks
         self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
         self.vllm_port = os.getenv("VLLM_PORT", VLLM_PORT)
@@ -81,6 +77,19 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         # Determine the model source
         if local_model_path is not None:
+            # Validate the local_model_path
+            if not os.path.isdir(local_model_path):
+                raise ValueError(
+                    f"local_model_path '{local_model_path}' does not exist or is not a directory."
+                )
+
+            required_files = ["config.json", "tokenizer_config.json"]
+            for file_name in required_files:
+                if not os.path.exists(os.path.join(local_model_path, file_name)):
+                    raise ValueError(
+                        f"Required file '{file_name}' not found in local_model_path '{local_model_path}'."
+                    )
+
             self.model_path_or_id = local_model_path
             load_kwargs = {
                 "pretrained_model_name_or_path": self.model_path_or_id,

@@ -122,7 +122,7 @@ def generate(
     local_model_path: Optional[str] = typer.Option(
         None,
         "--local-model-path",
-        help="Path to a local model folder (with config/tokenizer/weights) for fully offline inference.",
+        help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     ),
     result_dir: str = typer.Option(
         RESULT_PATH,

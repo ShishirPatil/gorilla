@@ -1,7 +1,5 @@
 import argparse
 import json
-import os
-import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
@@ -20,11 +18,7 @@ from bfcl.constants.eval_config import (
 from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.utils import (
-    is_multi_turn,
-    parse_test_category_argument,
-    sort_key,
-)
+from bfcl.utils import is_multi_turn, parse_test_category_argument, sort_key
 from tqdm import tqdm
 
 RETRY_LIMIT = 3
@@ -62,7 +56,7 @@ def get_args():
         "--local-model-path",
         type=str,
         default=None,
-        help="Path to a local model folder (with config/tokenizer/weights) for fully offline inference.",
+        help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     )
     args = parser.parse_args()
 
@@ -270,17 +264,6 @@ def generate_results(args, model_name, test_cases_total):
 
 
 def main(args):
-
-    # Validation logic for --local-model-path
-    if args.local_model_path is not None:
-        if not os.path.isdir(args.local_model_path):
-            print(f"Error: local_model_path '{args.local_model_path}' does not exist or is not a directory.", file=sys.stderr)
-            sys.exit(1)
-        required_files = ["config.json", "tokenizer_config.json"]
-        for fname in required_files:
-            if not os.path.exists(os.path.join(args.local_model_path, fname)):
-                print(f"Error: Required file '{fname}' not found in local_model_path '{args.local_model_path}'.", file=sys.stderr)
-                sys.exit(1)
 
     if type(args.model) is not list:
         args.model = [args.model]
