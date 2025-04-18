@@ -40,8 +40,7 @@ class MiningHandler(OpenAIHandler):
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
-        kwargs.pop("temperature", None)  # None 确保 key 不存在时不会报错
-        api_response = self.client.chat.completions.create(top_p=1,temperature=0,**kwargs)
+        api_response = self.client.chat.completions.create(**kwargs)
         end_time = time.time()
 
         return api_response, end_time - start_time
