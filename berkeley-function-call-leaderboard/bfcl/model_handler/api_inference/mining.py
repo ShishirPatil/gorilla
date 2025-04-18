@@ -15,7 +15,10 @@ class MiningHandler(OpenAIHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv("OPENAI_API_BASE"))
+        self.client = OpenAI(
+            base_url="http://algo-dm-generation.mlamp.cn:8188/",
+            api_key=os.getenv("Mining_API_KEY"),
+        )
 
     def decode_ast(self, result, language="Python"):
         decoded_output = []
