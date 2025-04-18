@@ -637,7 +637,7 @@ MODEL_METADATA_MAPPING = {
         "cc-by-nc-4.0",
     ],
     "Salesforce/Llama-xLAM-2-8b-fc-r": [
-        "xLAM-8b-fc-r (FC)",
+        "xLAM-2-8b-fc-r (FC)",
         "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
