@@ -985,7 +985,7 @@ MODEL_METADATA_MAPPING = {
         "apache-2.0",
     ],
     "ThinkAgents/ThinkAgent-1B": [
-        "ThinkAgent-1B",
+        "ThinkAgent-1B (FC)",
         "https://huggingface.co/ThinkAgents/ThinkAgent-1B",
         "ThinkAgents",
         "apache-2.0"
