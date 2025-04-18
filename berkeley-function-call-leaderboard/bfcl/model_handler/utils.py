@@ -152,6 +152,7 @@ def convert_to_tool(functions, mapping, model_style):
                 ModelStyle.WRITER,
                 ModelStyle.AMAZON,
                 ModelStyle.NOVITA_AI,
+                ModelStyle.TOGETHER_AI,
             ]:
                 item[
                     "description"
@@ -171,6 +172,7 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.FIREWORK_AI,
             ModelStyle.WRITER,
             ModelStyle.NOVITA_AI,
+            ModelStyle.TOGETHER_AI,
         ]:
             oai_tool.append({"type": "function", "function": item})
         elif model_style == ModelStyle.AMAZON:

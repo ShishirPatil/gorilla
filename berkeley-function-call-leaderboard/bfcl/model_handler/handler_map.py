@@ -14,6 +14,7 @@ from bfcl.model_handler.api_inference.nova import NovaHandler
 from bfcl.model_handler.api_inference.novita import NovitaHandler
 from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.together import TogetherHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
@@ -197,6 +198,30 @@ third_party_inference_handler_map = {
     "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": NovitaHandler,
     "qwen/qwq-32b-FC-novita": NovitaHandler,
     "qwen/qwq-32b-novita": NovitaHandler,
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-together": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-FC-together": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo-together": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo-FC-together": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo-together": TogetherHandler,
+    "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo-FC-together": TogetherHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-Turbo-together": TogetherHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-Turbo-FC-together": TogetherHandler,
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-together": TogetherHandler,
+    "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC-together": TogetherHandler,
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-together": TogetherHandler,
+    "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC-together": TogetherHandler,
+    "mistralai/Mixtral-8x7B-Instruct-v0.1-together": TogetherHandler,
+    "mistralai/Mixtral-8x7B-Instruct-v0.1-FC-together": TogetherHandler,
+    "mistralai/Mistral-7B-Instruct-v0.1-together": TogetherHandler,
+    "mistralai/Mistral-7B-Instruct-v0.1-FC-together": TogetherHandler,
+    "mistralai/Mistral-Small-24B-Instruct-2501-together": TogetherHandler,
+    "mistralai/Mistral-Small-24B-Instruct-2501-FC-together": TogetherHandler,
+    "Qwen/Qwen2.5-7B-Instruct-Turbo-together": TogetherHandler,
+    "Qwen/Qwen2.5-7B-Instruct-Turbo-FC-together": TogetherHandler,
+    "Qwen/Qwen2.5-72B-Instruct-Turbo-together": TogetherHandler,
+    "Qwen/Qwen2.5-72B-Instruct-Turbo-FC-together": TogetherHandler,
+    "deepseek-ai/DeepSeek-V3-together": TogetherHandler,
+    "deepseek-ai/DeepSeek-V3-FC-together": TogetherHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
