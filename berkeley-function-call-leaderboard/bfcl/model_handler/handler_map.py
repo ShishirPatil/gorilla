@@ -39,11 +39,13 @@ from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
+from bfcl.model_handler.api_inference.mining import MiningHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
 api_inference_handler_map = {
+    "xiaoming-14B": MiningHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
     "DeepSeek-R1": DeepSeekAPIHandler,
     "DeepSeek-V3-FC": DeepSeekAPIHandler,
