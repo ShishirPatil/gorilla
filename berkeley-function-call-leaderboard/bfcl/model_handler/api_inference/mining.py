@@ -73,7 +73,6 @@ class MiningHandler(OpenAIHandler):
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         match = re.search(r'<tool_calls>\n(.*?)\n</tool_calls>', api_response.choices[0].message.content, re.DOTALL)
         tool_calls = api_response.choices[0].message.content
-        # 如果匹配不到则输出原始内容
         if match:
            tool_calls =  match.group(1).strip()
         try:
