@@ -989,7 +989,13 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Qwen/QwQ-32B",
         "Qwen",
         "apache-2.0",
-    ]
+    ],
+    "ThinkAgents/ThinkAgent-1B": [
+        "ThinkAgent-1B (FC)",
+        "https://huggingface.co/ThinkAgents/ThinkAgent-1B",
+        "ThinkAgents",
+        "apache-2.0"
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
