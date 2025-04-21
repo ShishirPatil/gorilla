@@ -17,7 +17,7 @@ class MiningHandler(OpenAIHandler):
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
             base_url="http://algo-dm-generation.mlamp.cn:8188/v1",
-            api_key=os.getenv("Mining_API_KEY"),
+            api_key=os.getenv("MINING_API_KEY"),
         )
 
     def decode_ast(self, result, language="Python"):
