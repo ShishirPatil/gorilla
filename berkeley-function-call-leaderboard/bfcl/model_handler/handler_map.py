@@ -103,7 +103,10 @@ api_inference_handler_map = {
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
-    "grok-beta": GrokHandler,
+    "grok-3-beta-FC": GrokHandler,
+    "grok-3-beta": GrokHandler,
+    "grok-3-mini-beta-FC": GrokHandler,
+    "grok-3-mini-beta": GrokHandler,
 }
 
 # Inference through local hosting
@@ -243,6 +246,7 @@ outdated_model_handler_map = {
     # "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     # "google/gemma-7b-it": GemmaHandler,
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
+    # "grok-beta": GrokHandler,
 }
 
 HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
