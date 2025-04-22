@@ -97,8 +97,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | o3-mini-2025-01-31                             | Prompt           | OpenAI         | o3-mini-2025-01-31                                          |
 | Open-Mistral-Nemo-2407                         | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
-| Open-Mixtral-{8x7b,8x22b}                      | Prompt           | Mistral AI     | open-mixtral-{8x7b,8x22b}                                   |
-| Open-Mixtral-8x22b                             | Function Calling | Mistral AI     | open-mixtral-8x22b-FC                                       |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
 | Phi-3-medium-{4k,128k}-instruct                | Prompt           | Self-hosted 💻 | microsoft/Phi-3-medium-{4k,128k}-instruct                   |
 | Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
