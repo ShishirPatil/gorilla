@@ -65,7 +65,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | GPT-4o-mini-2024-07-18                         | Function Calling | OpenAI         | gpt-4o-mini-2024-07-18-FC                                   |
 | GPT-4o-mini-2024-07-18                         | Prompt           | OpenAI         | gpt-4o-mini-2024-07-18                                      |
 | Granite-20b-FunctionCalling                    | Function Calling | Self-hosted 💻 | ibm-granite/granite-20b-functioncalling                     |
-| Grok-beta                                      | Function Calling | xAI            | grok-beta                                                   |
+| Grok-3-beta                                    | Function Calling | xAI            | grok-3-beta-FC                                              |
+| Grok-3-beta                                    | Prompt           | xAI            | grok-3-beta                                                 |
+| Grok-3-mini-beta                               | Function Calling | xAI            | grok-3-mini-beta-FC                                         |
+| Grok-3-mini-beta                               | Prompt           | xAI            | grok-3-mini-beta                                            |
 | Haha-7B                                        | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}                    | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
 | Hermes-2-Pro-Llama-3-{8B,70B}                  | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Llama-3-{8B,70B}                  |
@@ -110,6 +113,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | QwQ-32B-Preview                                | Prompt           | Self-hosted 💻 | Qwen/QwQ-32B-Preview                                        |
 | Sky-T1-32B-Preview                             | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
+| ThinkAgent-1B                                  | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
 | ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |

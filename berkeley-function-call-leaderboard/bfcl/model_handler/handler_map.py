@@ -32,6 +32,7 @@ from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
+from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
@@ -98,7 +99,10 @@ api_inference_handler_map = {
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
-    "grok-beta": GrokHandler,
+    "grok-3-beta-FC": GrokHandler,
+    "grok-3-beta": GrokHandler,
+    "grok-3-mini-beta-FC": GrokHandler,
+    "grok-3-mini-beta": GrokHandler,
 }
 
 # Inference through local hosting
@@ -182,6 +186,7 @@ local_inference_handler_map = {
     "uiuc-convai/CoALM-70B": LlamaHandler,
     "uiuc-convai/CoALM-405B": LlamaHandler,
     "BitAgent/BitAgent-8B": LlamaHandler,
+    "ThinkAgents/ThinkAgent-1B": ThinkAgentHandler,
 }
 
 # Inference through third-party inference platforms for open-source models
@@ -233,10 +238,19 @@ outdated_model_handler_map = {
     # "gemini-1.0-pro-001": GeminiHandler,
     # "gemini-1.0-pro-001-FC": GeminiHandler,
     # "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
+    # "open-mixtral-8x22b": MistralHandler,
+    # "open-mixtral-8x22b-FC": MistralHandler,
+    # "open-mixtral-8x7b": MistralHandler,
+    # "mistral-large-2407": MistralHandler,
+    # "mistral-large-2407-FC": MistralHandler,
+    # "mistral-medium-2312": MistralHandler,
+    # "mistral-small-2402": MistralHandler,
+    # "mistral-small-2402-FC": MistralHandler,
     # "mistral-tiny-2312": MistralHandler,
     # "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     # "google/gemma-7b-it": GemmaHandler,
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
+    # "grok-beta": GrokHandler,
 }
 
 HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}

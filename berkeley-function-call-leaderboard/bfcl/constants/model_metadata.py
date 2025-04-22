@@ -607,7 +607,7 @@ MODEL_METADATA_MAPPING = {
         "cc-by-nc-4.0",
     ],
     "Salesforce/Llama-xLAM-2-8b-fc-r": [
-        "xLAM-8b-fc-r (FC)",
+        "xLAM-2-8b-fc-r (FC)",
         "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
@@ -840,9 +840,27 @@ MODEL_METADATA_MAPPING = {
         "Writer",
         "Proprietary",
     ],
-    "grok-beta": [
-        "Grok-beta (FC)",
-        "https://x.ai/",
+    "grok-3-beta-FC": [
+        "Grok-3-beta (FC)",
+        "https://docs.x.ai/docs/models",
+        "xAI",
+        "Proprietary",
+    ],
+    "grok-3-beta": [
+        "Grok-3-beta (Prompt)",
+        "https://docs.x.ai/docs/models",
+        "xAI",
+        "Proprietary",
+    ],
+    "grok-3-mini-beta-FC": [
+        "Grok-3-mini-beta (FC)",
+        "https://docs.x.ai/docs/models",
+        "xAI",
+        "Proprietary",
+    ],
+    "grok-3-mini-beta": [
+        "Grok-3-mini-beta (Prompt)",
+        "https://docs.x.ai/docs/models",
         "xAI",
         "Proprietary",
     ],
@@ -953,7 +971,13 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Qwen/QwQ-32B",
         "Qwen",
         "apache-2.0",
-    ]
+    ],
+    "ThinkAgents/ThinkAgent-1B": [
+        "ThinkAgent-1B (FC)",
+        "https://huggingface.co/ThinkAgents/ThinkAgent-1B",
+        "ThinkAgents",
+        "apache-2.0"
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -1017,7 +1041,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-a-03-2025-FC": 2.5,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
-    "grok-beta": 5,
+    "grok-3-beta": 3,
+    "grok-3-beta-FC": 3,
+    "grok-3-mini-beta": 0.3,
+    "grok-3-mini-beta-FC": 0.3,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.2,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.2,
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.1,
@@ -1087,7 +1114,10 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-a-03-2025-FC": 10,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
-    "grok-beta": 15,
+    "grok-3-beta": 15,
+    "grok-3-beta-FC": 15,
+    "grok-3-mini-beta": 0.5,
+    "grok-3-mini-beta-FC": 0.5,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": 0.85,
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": 0.85,
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": 0.5,

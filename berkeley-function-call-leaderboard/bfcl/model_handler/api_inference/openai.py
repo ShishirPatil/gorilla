@@ -232,3 +232,19 @@ class OpenAIHandler(BaseHandler):
         )
 
         return inference_data
+
+    # Adds reasoning content to response_data if present in the response.
+    # OpenAI models don't show reasoning content in the api response,
+    # but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
+    # So this method is included here to avoid code duplication.
+    def _add_reasoning_content_if_available(
+        self, api_response: any, response_data: dict
+    ) -> None:
+        message = api_response.choices[0].message
+        if hasattr(message, "reasoning_content"):
+            response_data["reasoning_content"] = message.reasoning_content
+            # Reasoning content should not be included in the chat history
+            response_data["model_responses_message_for_chat_history"] = {
+                "role": "assistant",
+                "content": str(response_data["model_responses"]),
+            }
