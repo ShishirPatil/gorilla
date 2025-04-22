@@ -637,7 +637,7 @@ MODEL_METADATA_MAPPING = {
         "cc-by-nc-4.0",
     ],
     "Salesforce/Llama-xLAM-2-8b-fc-r": [
-        "xLAM-8b-fc-r (FC)",
+        "xLAM-2-8b-fc-r (FC)",
         "https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
@@ -1001,7 +1001,13 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Qwen/QwQ-32B",
         "Qwen",
         "apache-2.0",
-    ]
+    ],
+    "ThinkAgents/ThinkAgent-1B": [
+        "ThinkAgent-1B (FC)",
+        "https://huggingface.co/ThinkAgents/ThinkAgent-1B",
+        "ThinkAgents",
+        "apache-2.0"
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
