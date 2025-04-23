@@ -816,6 +816,12 @@ MODEL_METADATA_MAPPING = {
         "ThinkAgents",
         "apache-2.0"
     ],
+    "xiaoming-14B": [
+        "xiaoming-14B (Prompt)",
+        "https://www.mininglamp.com/",
+        "Mininglamp",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -972,4 +978,5 @@ NO_COST_API_BASED_MODELS = [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "xiaoming-14B",
 ]
