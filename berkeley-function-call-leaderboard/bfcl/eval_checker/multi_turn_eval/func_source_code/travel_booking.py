@@ -34,6 +34,7 @@ class TravelAPI:
         self.user_last_name: Optional[str]
         self.budget_limit: Optional[float]
         self._api_description = "This tool belongs to the travel system, which allows users to book flights, manage credit cards, and view budget information."
+        self._flight_cost_lookup: Dict[str, Dict[str, float]] = {}
 
     def _load_scenario(
         self,
@@ -106,6 +107,12 @@ class TravelAPI:
         for booking_id, booking_info in BOOKING_RECORD_EXTENSION.items():
             if booking_id not in self.booking_record:
                 self.booking_record[booking_id] = booking_info
+
+    def _cache_flight_cost_entry(self, travel_from, travel_to, cost, travel_class, travel_date):
+        key = f"{travel_from}|{travel_to}|{travel_class}|{travel_date}"
+        self._flight_cost_lookup[key] = {
+            "cost": cost
+        }
 
     def authenticate_travel(
         self,
@@ -416,23 +423,19 @@ class TravelAPI:
 
         travel_cost_list = []
         if self.long_context:
-            for k, v in base_costs.items():
-                travel_cost = float(v * factor * travel_date_multiplier)
-                travel_cost_list.append(
-                    "From: "
-                    + k[0]
-                    + " To: "
-                    + k[1]
-                    + " Cost: "
-                    + str(travel_cost)
-                    + " USD. This is a domestica flight with a travel class of "
-                    + travel_class
-                    + " and a travel date of "
-                    + travel_date
-                    + "."
-                )
-            return {"travel_cost_list": travel_cost_list}
-        return {"travel_cost_list": [travel_cost]}
+            self._flight_cost_lookup = {}  # reset cache
+            for (frm, to), base in base_costs.items():
+                cost = float(base * factor * travel_date_multiplier)
+                self._cache_flight_cost_entry(frm, to, cost, travel_class, travel_date)
+                travel_cost_list.append(cost)
+        else:
+            cost = float(base_costs[travel_pair] * factor * travel_date_multiplier)
+            travel_cost_list = [cost]
+            self._flight_cost_lookup = {
+                f"{travel_from}|{travel_to}|{travel_class}|{travel_date}": {"cost": cost}
+            }
+
+        return {"travel_cost_list": travel_cost_list}
 
     def get_credit_card_balance(
         self, access_token: str, card_id: str
@@ -515,28 +518,17 @@ class TravelAPI:
             return {"booking_status": False, "error": f"Invalid travel class. Must be one of {valid_classes}"}
 
         try:
-            flight_cost_response = self.get_flight_cost(
+            self.get_flight_cost(
                 travel_from=travel_from,
                 travel_to=travel_to,
                 travel_date=travel_date,
                 travel_class=travel_class
             )
-            if self.long_context:
-                cost_entry = None
-                for entry in flight_cost_response["travel_cost_list"]:
-                    if (f"From: {travel_from} To: {travel_to}" in entry and
-                        f"travel class of {travel_class}" in entry and
-                        f"travel date of {travel_date}" in entry):
-                        cost_parts = entry.split("Cost: ")
-                        if len(cost_parts) > 1:
-                            cost_str = cost_parts[1].split(" USD")[0]
-                            travel_cost = float(cost_str)
-                            cost_entry = entry
-                            break
-                if cost_entry is None:
-                    return {"booking_status": False, "error": "No available route for the given parameters"}
-            else:
-                travel_cost = flight_cost_response["travel_cost_list"][0]
+            key = f"{travel_from}|{travel_to}|{travel_class}|{travel_date}"
+            travel_cost_entry = self._flight_cost_lookup.get(key)
+            if travel_cost_entry is None:
+                return {"booking_status": False, "error": "No available route for the given parameters"}
+            travel_cost = travel_cost_entry["cost"]
         except ValueError as e:
             return {"booking_status": False, "error": str(e)}
 
