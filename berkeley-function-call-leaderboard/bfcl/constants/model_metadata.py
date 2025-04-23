@@ -612,18 +612,6 @@ MODEL_METADATA_MAPPING = {
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "Qwen/Qwen2-1.5B-Instruct": [
-        "Qwen2-1.5B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2-1.5B-Instruct",
-        "Qwen",
-        "apache-2.0",
-    ],
-    "Qwen/Qwen2-7B-Instruct": [
-        "Qwen2-7B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2-7B-Instruct",
-        "Qwen",
-        "apache-2.0",
-    ],
     "Qwen/Qwen2.5-0.5B-Instruct-FC": [
         "Qwen2.5-0.5B-Instruct (FC)",
         "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
