@@ -40,24 +40,7 @@ class MiningHandler(OpenAIHandler):
                 too_call_format.append(f"{name}({args_str})")
         return too_call_format
 
-    @retry_with_backoff(error_type=RateLimitError)
-    def generate_with_backoff(self, **kwargs):
-        start_time = time.time()
-        api_response = self.client.chat.completions.create(**kwargs)
-        end_time = time.time()
-
-        return api_response, end_time - start_time
-        
     #### Prompting methods ####
-
-    def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-        return self.generate_with_backoff(
-            messages=inference_data["message"],
-            model=self.model_name,
-            temperature=self.temperature,
-        )
-
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
