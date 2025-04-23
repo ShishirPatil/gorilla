@@ -88,12 +88,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | MiniCPM3-4B                                    | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                                 | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
 | Ministral-8B-Instruct-2410                     | Function Calling | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
-| mistral-large-2407                             | Function Calling | Mistral AI     | mistral-large-2407-FC                                       |
-| mistral-large-2407                             | Prompt           | Mistral AI     | mistral-large-2407                                          |
-| Mistral-Medium-2312                            | Prompt           | Mistral AI     | mistral-medium-2312                                         |
-| Mistral-small-2402                             | Function Calling | Mistral AI     | mistral-small-2402-FC                                       |
-| Mistral-Small-2402                             | Prompt           | Mistral AI     | mistral-small-2402                                          |
-| Mistral-tiny-2312                              | Prompt           | Mistral AI     | mistral-tiny-2312                                           |
+| mistral-large-2411                             | Function Calling | Mistral AI     | mistral-large-2411-FC                                       |
+| mistral-large-2411                             | Prompt           | Mistral AI     | mistral-large-2411                                          |
+| Mistral-small-2503                             | Function Calling | Mistral AI     | mistral-small-2503-FC                                       |
+| Mistral-Small-2503                             | Prompt           | Mistral AI     | mistral-small-2503                                          |
 | Nemotron-4-340b-instruct                       | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                             | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
 | o1-2024-12-17                                  | Function Calling | OpenAI         | o1-2024-12-17-FC                                            |
@@ -102,8 +100,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | o3-mini-2025-01-31                             | Prompt           | OpenAI         | o3-mini-2025-01-31                                          |
 | Open-Mistral-Nemo-2407                         | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
-| Open-Mixtral-{8x7b,8x22b}                      | Prompt           | Mistral AI     | open-mixtral-{8x7b,8x22b}                                   |
-| Open-Mixtral-8x22b                             | Function Calling | Mistral AI     | open-mixtral-8x22b-FC                                       |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
 | Phi-3-medium-{4k,128k}-instruct                | Prompt           | Self-hosted 💻 | microsoft/Phi-3-medium-{4k,128k}-instruct                   |
 | Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
