@@ -6,6 +6,12 @@
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
+    "xiaoming-14B": [
+        "xiaoming-14B (Prompt)",
+        "https://www.mininglamp.com/",
+        "Mininglamp",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
@@ -1143,4 +1149,5 @@ NO_COST_API_BASED_MODELS = [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "xiaoming-14B",
 ]
