@@ -70,7 +70,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Hermes-2-Pro-Llama-3-{8B,70B}                  | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Llama-3-{8B,70B}                  |
 | Hermes-2-Pro-Mistral-7B                        | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Mistral-7B                        |
 | Hermes-2-Theta-Llama-3-{8B,70B}                | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Theta-Llama-3-{8B,70B}                |
-| Llama-3-{8B,70B}-Instruct                      | Function Calling | Self-hosted 💻 | meta-llama/Meta-Llama-3-{8B,70B}-Instruct-FC                |
 | Llama-3.1-{8B,70B}-Instruct                    | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                    | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
 | Llama-3.2-{1B,3B}-Instruct                     | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |

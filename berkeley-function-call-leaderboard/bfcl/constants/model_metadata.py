@@ -486,18 +486,6 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
-    "meta-llama/Meta-Llama-3-8B-Instruct-FC": [
-        "Meta-Llama-3-8B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Meta-Llama-3-70B-Instruct-FC": [
-        "Meta-Llama-3-70B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
     "meta-llama/Llama-3.1-8B-Instruct": [
         "Llama-3.1-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
