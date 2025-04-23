@@ -390,36 +390,6 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai/DeepSeek-V2.5": [
-        "DeepSeek-V2.5 (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
-        "DeepSeek-Coder-V2 (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
-        "DeepSeek-Coder-V2-Lite-Instruct (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-V2-Chat-0628": [
-        "DeepSeek-V2 (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-V2-Lite-Chat": [
-        "DeepSeek-V2-Lite (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
     "google/gemma-3-1b-it": [
         "Gemma-3-1b-it (Prompt)",
         "https://blog.google/technology/developers/gemma-3/",
