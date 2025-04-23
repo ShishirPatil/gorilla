@@ -100,10 +100,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Open-Mixtral-{8x7b,8x22b}                      | Prompt           | Mistral AI     | open-mixtral-{8x7b,8x22b}                                   |
 | Open-Mixtral-8x22b                             | Function Calling | Mistral AI     | open-mixtral-8x22b-FC                                       |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
-| Phi-3-medium-{4k,128k}-instruct                | Prompt           | Self-hosted 💻 | microsoft/Phi-3-medium-{4k,128k}-instruct                   |
-| Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
-| Phi-3-small-{8k,128k}-instruct                 | Prompt           | Self-hosted 💻 | microsoft/Phi-3-small-{8k,128k}-instruct                    |
-| Phi-3.5-mini-instruct                          | Prompt           | Self-hosted 💻 | microsoft/Phi-3.5-mini-instruct                             |
 | Qwen2-{1.5B,7B}-Instruct                       | Prompt           | Self-hosted 💻 | Qwen/Qwen2-{1.5B,7B}-Instruct                               |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
