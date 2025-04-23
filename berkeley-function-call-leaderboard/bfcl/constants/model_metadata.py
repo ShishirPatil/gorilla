@@ -456,36 +456,6 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
-    "NousResearch/Hermes-2-Pro-Llama-3-8B": [
-        "Hermes-2-Pro-Llama-3-8B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Pro-Llama-3-70B": [
-        "Hermes-2-Pro-Llama-3-70B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Pro-Mistral-7B": [
-        "Hermes-2-Pro-Mistral-7B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Theta-Llama-3-8B": [
-        "Hermes-2-Theta-Llama-3-8B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Theta-Llama-3-70B": [
-        "Hermes-2-Theta-Llama-3-70B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B",
-        "NousResearch",
-        "apache-2.0",
-    ],
     "meta-llama/Llama-3.1-8B-Instruct": [
         "Llama-3.1-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",

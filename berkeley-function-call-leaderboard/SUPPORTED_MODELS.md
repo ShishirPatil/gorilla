@@ -67,9 +67,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-3-mini-beta                               | Prompt           | xAI            | grok-3-mini-beta                                            |
 | Haha-7B                                        | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}                    | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
-| Hermes-2-Pro-Llama-3-{8B,70B}                  | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Llama-3-{8B,70B}                  |
-| Hermes-2-Pro-Mistral-7B                        | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Mistral-7B                        |
-| Hermes-2-Theta-Llama-3-{8B,70B}                | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Theta-Llama-3-{8B,70B}                |
 | Llama-3.1-{8B,70B}-Instruct                    | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                    | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
 | Llama-3.2-{1B,3B}-Instruct                     | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |
