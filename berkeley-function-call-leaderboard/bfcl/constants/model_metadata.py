@@ -696,12 +696,6 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "qwen",
     ],
-    "Team-ACE/ToolACE-8B": [
-        "ToolACE-8B (FC)",
-        "https://huggingface.co/Team-ACE/ToolACE-8B",
-        "Huawei Noah & USTC",
-        "Apache-2.0",
-    ],
     "Team-ACE/ToolACE-2-8B": [
         "ToolACE-2-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-2-8B",

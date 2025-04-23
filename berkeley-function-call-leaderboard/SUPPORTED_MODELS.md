@@ -106,7 +106,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ThinkAgent-1B                                  | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
-| ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
 | xLAM-2-1b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-1b-fc-r                                   |
 | xLAM-2-32b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-32b-fc-r                                  |
