@@ -24,8 +24,6 @@ UNDERSCORE_TO_DOT = [
     "o3-mini-2025-01-31-FC",
     "gpt-4o-2024-11-20-FC",
     "gpt-4o-mini-2024-07-18-FC",
-    "gpt-4-turbo-2024-04-09-FC",
-    "gpt-3.5-turbo-0125-FC",
     "claude-3-opus-20240229-FC",
     "claude-3-sonnet-20240229-FC",
     "claude-3-5-sonnet-20240620-FC",

@@ -54,10 +54,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
 | Gorilla-OpenFunctions-v2                       | Function Calling | Gorilla LLM    | gorilla-openfunctions-v2                                    |
-| GPT-3.5-Turbo-0125                             | Function Calling | OpenAI         | gpt-3.5-turbo-0125-FC                                       |
-| GPT-3.5-Turbo-0125                             | Prompt           | OpenAI         | gpt-3.5-turbo-0125                                          |
-| GPT-4-turbo-2024-04-09                         | Function Calling | OpenAI         | gpt-4-turbo-2024-04-09-FC                                   |
-| GPT-4-turbo-2024-04-09                         | Prompt           | OpenAI         | gpt-4-turbo-2024-04-09                                      |
 | GPT-4.5-Preview-2025-02-27                     | Function Calling | OpenAI         | gpt-4.5-preview-2025-02-27-FC                               |
 | GPT-4.5-Preview-2025-02-27                     | Prompt           | OpenAI         | gpt-4.5-preview-2025-02-27                                  |
 | GPT-4o-2024-11-20                              | Function Calling | OpenAI         | gpt-4o-2024-11-20-FC                                        |
