@@ -76,14 +76,10 @@ api_inference_handler_map = {
     "nova-micro-v1.0": NovaHandler,
     "open-mistral-nemo-2407": MistralHandler,
     "open-mistral-nemo-2407-FC": MistralHandler,
-    "open-mixtral-8x22b": MistralHandler,
-    "open-mixtral-8x22b-FC": MistralHandler,
-    "open-mixtral-8x7b": MistralHandler,
-    "mistral-large-2407": MistralHandler,
-    "mistral-large-2407-FC": MistralHandler,
-    "mistral-medium-2312": MistralHandler,
-    "mistral-small-2402": MistralHandler,
-    "mistral-small-2402-FC": MistralHandler,
+    "mistral-large-2411": MistralHandler,
+    "mistral-large-2411-FC": MistralHandler,
+    "mistral-small-2503": MistralHandler,
+    "mistral-small-2503-FC": MistralHandler,
     "firefunction-v1-FC": FireworksHandler,
     "firefunction-v2-FC": FireworksHandler,
     "Nexusflow-Raven-v2": NexusHandler,
@@ -105,7 +101,10 @@ api_inference_handler_map = {
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
-    "grok-beta": GrokHandler,
+    "grok-3-beta-FC": GrokHandler,
+    "grok-3-beta": GrokHandler,
+    "grok-3-mini-beta-FC": GrokHandler,
+    "grok-3-mini-beta": GrokHandler,
 }
 
 # Inference through local hosting
@@ -241,10 +240,19 @@ outdated_model_handler_map = {
     # "gemini-1.0-pro-001": GeminiHandler,
     # "gemini-1.0-pro-001-FC": GeminiHandler,
     # "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
+    # "open-mixtral-8x22b": MistralHandler,
+    # "open-mixtral-8x22b-FC": MistralHandler,
+    # "open-mixtral-8x7b": MistralHandler,
+    # "mistral-large-2407": MistralHandler,
+    # "mistral-large-2407-FC": MistralHandler,
+    # "mistral-medium-2312": MistralHandler,
+    # "mistral-small-2402": MistralHandler,
+    # "mistral-small-2402-FC": MistralHandler,
     # "mistral-tiny-2312": MistralHandler,
     # "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     # "google/gemma-7b-it": GemmaHandler,
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
+    # "grok-beta": GrokHandler,
 }
 
 HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
