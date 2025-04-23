@@ -34,14 +34,11 @@ For model names containing `{...}`, multiple versions are available. For example
 | Command R7B                                    | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
 | Command-R-Plus                                 | Function Calling | Cohere         | command-r-plus-FC                                           |
 | DBRX-Instruct                                  | Prompt           | Databricks     | databricks-dbrx-instruct                                    |
-| DeepSeek-Coder-V2{-Lite-Instruct}              | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} |
 | DeepSeek-R1                                    | Prompt           | DeepSeek       | DeepSeek-R1                                                 |
 | DeepSeek-R1                                    | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
-| DeepSeek-V2-{Chat-0628,Lite-Chat}              | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat}               |
-| DeepSeek-V2.5                                  | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-V2.5                                   |
 | DeepSeek-V3                                    | Function Calling | DeepSeek       | DeepSeek-V3-FC                                              |
 | Falcon3-{1B,3B,7B,10B}-Instruct                | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
-| FireFunction-{v1,v2}                           | Function Calling | Fireworks AI   | firefunction-{v1,v2}-FC                                     |
+| FireFunction-v2                                | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
 | Functionary-{Small,Medium}-v3.1                | Function Calling | MeetKai        | meetkai/functionary-{small,medium}-v3.1-FC                  |
 | Gemini-2.0-Flash-001                           | Function Calling | Google         | gemini-2.0-flash-001-FC                                     |
 | Gemini-2.0-Flash-001                           | Prompt           | Google         | gemini-2.0-flash-001                                        |
@@ -54,10 +51,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
 | Gorilla-OpenFunctions-v2                       | Function Calling | Gorilla LLM    | gorilla-openfunctions-v2                                    |
-| GPT-3.5-Turbo-0125                             | Function Calling | OpenAI         | gpt-3.5-turbo-0125-FC                                       |
-| GPT-3.5-Turbo-0125                             | Prompt           | OpenAI         | gpt-3.5-turbo-0125                                          |
-| GPT-4-turbo-2024-04-09                         | Function Calling | OpenAI         | gpt-4-turbo-2024-04-09-FC                                   |
-| GPT-4-turbo-2024-04-09                         | Prompt           | OpenAI         | gpt-4-turbo-2024-04-09                                      |
 | GPT-4.5-Preview-2025-02-27                     | Function Calling | OpenAI         | gpt-4.5-preview-2025-02-27-FC                               |
 | GPT-4.5-Preview-2025-02-27                     | Prompt           | OpenAI         | gpt-4.5-preview-2025-02-27                                  |
 | GPT-4o-2024-11-20                              | Function Calling | OpenAI         | gpt-4o-2024-11-20-FC                                        |
@@ -71,10 +64,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-3-mini-beta                               | Prompt           | xAI            | grok-3-mini-beta                                            |
 | Haha-7B                                        | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}                    | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
-| Hermes-2-Pro-Llama-3-{8B,70B}                  | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Llama-3-{8B,70B}                  |
-| Hermes-2-Pro-Mistral-7B                        | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Pro-Mistral-7B                        |
-| Hermes-2-Theta-Llama-3-{8B,70B}                | Function Calling | Self-hosted 💻 | NousResearch/Hermes-2-Theta-Llama-3-{8B,70B}                |
-| Llama-3-{8B,70B}-Instruct                      | Function Calling | Self-hosted 💻 | meta-llama/Meta-Llama-3-{8B,70B}-Instruct-FC                |
 | Llama-3.1-{8B,70B}-Instruct                    | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                    | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
 | Llama-3.2-{1B,3B}-Instruct                     | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |
@@ -101,11 +90,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Open-Mistral-Nemo-2407                         | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
-| Phi-3-medium-{4k,128k}-instruct                | Prompt           | Self-hosted 💻 | microsoft/Phi-3-medium-{4k,128k}-instruct                   |
-| Phi-3-mini-{4k,128k}-instruct                  | Prompt           | Self-hosted 💻 | microsoft/Phi-3-mini-{4k,128k}-instruct                     |
-| Phi-3-small-{8k,128k}-instruct                 | Prompt           | Self-hosted 💻 | microsoft/Phi-3-small-{8k,128k}-instruct                    |
-| Phi-3.5-mini-instruct                          | Prompt           | Self-hosted 💻 | microsoft/Phi-3.5-mini-instruct                             |
-| Qwen2-{1.5B,7B}-Instruct                       | Prompt           | Self-hosted 💻 | Qwen/Qwen2-{1.5B,7B}-Instruct                               |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
 | QwQ-32B                                        | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
@@ -115,7 +99,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ThinkAgent-1B                                  | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
 | ToolACE-2-8B                                   | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
-| ToolACE-8B                                     | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-8B                                         |
 | watt-tool-{8B,70B}                             | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
 | xLAM-2-1b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-1b-fc-r                                   |
 | xLAM-2-32b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-32b-fc-r                                  |

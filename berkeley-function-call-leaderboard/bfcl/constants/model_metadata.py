@@ -6,12 +6,6 @@
 #     model_license,
 # ]}
 MODEL_METADATA_MAPPING = {
-    "xiaoming-14B": [
-        "xiaoming-14B (Prompt)",
-        "https://www.mininglamp.com/",
-        "Mininglamp",
-        "Proprietary",
-    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
@@ -128,18 +122,6 @@ MODEL_METADATA_MAPPING = {
     ],
     "gpt-4-0125-preview": [
         "GPT-4-0125-Preview (Prompt)",
-        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
-        "OpenAI",
-        "Proprietary",
-    ],
-    "gpt-4-turbo-2024-04-09-FC": [
-        "GPT-4-turbo-2024-04-09 (FC)",
-        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
-        "OpenAI",
-        "Proprietary",
-    ],
-    "gpt-4-turbo-2024-04-09": [
-        "GPT-4-turbo-2024-04-09 (Prompt)",
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
         "OpenAI",
         "Proprietary",
@@ -276,18 +258,6 @@ MODEL_METADATA_MAPPING = {
         "Amazon",
         "Proprietary",
     ],
-    "gpt-3.5-turbo-0125-FC": [
-        "GPT-3.5-Turbo-0125 (FC)",
-        "https://platform.openai.com/docs/models/gpt-3-5-turbo",
-        "OpenAI",
-        "Proprietary",
-    ],
-    "gpt-3.5-turbo-0125": [
-        "GPT-3.5-Turbo-0125 (Prompt)",
-        "https://platform.openai.com/docs/models/gpt-3-5-turbo",
-        "OpenAI",
-        "Proprietary",
-    ],
     "meetkai/functionary-small-v3.1-FC": [
         "Functionary-Small-v3.1 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v3.1",
@@ -328,12 +298,6 @@ MODEL_METADATA_MAPPING = {
         "Nexusflow-Raven-v2 (FC)",
         "https://huggingface.co/Nexusflow/NexusRaven-V2-13B",
         "Nexusflow",
-        "Apache 2.0",
-    ],
-    "firefunction-v1-FC": [
-        "FireFunction-v1 (FC)",
-        "https://huggingface.co/fireworks-ai/firefunction-v1",
-        "Fireworks",
         "Apache 2.0",
     ],
     "firefunction-v2-FC": [
@@ -396,36 +360,6 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai/DeepSeek-V2.5": [
-        "DeepSeek-V2.5 (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
-        "DeepSeek-Coder-V2 (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
-        "DeepSeek-Coder-V2-Lite-Instruct (FC)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-V2-Chat-0628": [
-        "DeepSeek-V2 (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
-    "deepseek-ai/DeepSeek-V2-Lite-Chat": [
-        "DeepSeek-V2-Lite (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
-        "DeepSeek",
-        "DeepSeek License",
-    ],
     "google/gemma-3-1b-it": [
         "Gemma-3-1b-it (Prompt)",
         "https://blog.google/technology/developers/gemma-3/",
@@ -461,48 +395,6 @@ MODEL_METADATA_MAPPING = {
         "https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm",
         "Databricks",
         "Databricks Open Model",
-    ],
-    "NousResearch/Hermes-2-Pro-Llama-3-8B": [
-        "Hermes-2-Pro-Llama-3-8B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Pro-Llama-3-70B": [
-        "Hermes-2-Pro-Llama-3-70B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Pro-Mistral-7B": [
-        "Hermes-2-Pro-Mistral-7B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Theta-Llama-3-8B": [
-        "Hermes-2-Theta-Llama-3-8B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "NousResearch/Hermes-2-Theta-Llama-3-70B": [
-        "Hermes-2-Theta-Llama-3-70B (FC)",
-        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B",
-        "NousResearch",
-        "apache-2.0",
-    ],
-    "meta-llama/Meta-Llama-3-8B-Instruct-FC": [
-        "Meta-Llama-3-8B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Meta-Llama-3-70B-Instruct-FC": [
-        "Meta-Llama-3-70B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
     ],
     "meta-llama/Llama-3.1-8B-Instruct": [
         "Llama-3.1-8B-Instruct (Prompt)",
@@ -660,60 +552,6 @@ MODEL_METADATA_MAPPING = {
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "microsoft/Phi-3-mini-4k-instruct": [
-        "Phi-3-mini-4k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-mini-128k-instruct": [
-        "Phi-3-mini-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-small-8k-instruct": [
-        "Phi-3-small-8k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-small-128k-instruct": [
-        "Phi-3-small-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-small-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-medium-4k-instruct": [
-        "Phi-3-medium-4k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-medium-128k-instruct": [
-        "Phi-3-medium-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3.5-mini-instruct": [
-        "Phi-3.5-mini-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "Qwen/Qwen2-1.5B-Instruct": [
-        "Qwen2-1.5B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2-1.5B-Instruct",
-        "Qwen",
-        "apache-2.0",
-    ],
-    "Qwen/Qwen2-7B-Instruct": [
-        "Qwen2-7B-Instruct (Prompt)",
-        "https://huggingface.co/Qwen/Qwen2-7B-Instruct",
-        "Qwen",
-        "apache-2.0",
-    ],
     "Qwen/Qwen2.5-0.5B-Instruct-FC": [
         "Qwen2.5-0.5B-Instruct (FC)",
         "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
@@ -797,12 +635,6 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
         "qwen",
-    ],
-    "Team-ACE/ToolACE-8B": [
-        "ToolACE-8B (FC)",
-        "https://huggingface.co/Team-ACE/ToolACE-8B",
-        "Huawei Noah & USTC",
-        "Apache-2.0",
     ],
     "Team-ACE/ToolACE-2-8B": [
         "ToolACE-2-8B (FC)",
@@ -984,6 +816,12 @@ MODEL_METADATA_MAPPING = {
         "ThinkAgents",
         "apache-2.0"
     ],
+    "xiaoming-14B": [
+        "xiaoming-14B (Prompt)",
+        "https://www.mininglamp.com/",
+        "Mininglamp",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -1028,12 +866,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
     "gpt-4-0125-preview-FC": 10,
-    "gpt-4-turbo-2024-04-09-FC": 10,
-    "gpt-4-turbo-2024-04-09": 10,
     "gpt-4-0613": 30,
     "gpt-4-0613-FC": 30,
-    "gpt-3.5-turbo-0125": 0.5,
-    "gpt-3.5-turbo-0125-FC": 0.5,
     "gemini-2.5-pro-exp-03-25": 0,
     "gemini-2.5-pro-exp-03-25-FC": 0,
     "gemini-2.0-flash-lite-001": 0.075,
@@ -1097,16 +931,12 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4o-2024-11-20": 10,
     "gpt-4o-mini-2024-07-18": 0.6,
     "gpt-4o-mini-2024-07-18-FC": 0.6,
-    "gpt-4-turbo-2024-04-09-FC": 30,
-    "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
     "gpt-4-1106-preview-FC": 30,
     "gpt-4-0125-preview-FC": 30,
     "gpt-4-0125-preview": 30,
     "gpt-4-0613": 60,
     "gpt-4-0613-FC": 60,
-    "gpt-3.5-turbo-0125": 1.5,
-    "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-2.5-pro-exp-03-25": 0,
     "gemini-2.5-pro-exp-03-25-FC": 0,
     "gemini-2.0-flash-lite-001": 0.3,
@@ -1143,7 +973,6 @@ NO_COST_API_BASED_MODELS = [
     "DeepSeek-R1",
     "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",
-    "firefunction-v1-FC",
     "firefunction-v2-FC",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-medium-v3.1-FC",
