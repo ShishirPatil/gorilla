@@ -41,7 +41,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | DeepSeek-V2.5                                  | Function Calling | Self-hosted 💻 | deepseek-ai/DeepSeek-V2.5                                   |
 | DeepSeek-V3                                    | Function Calling | DeepSeek       | DeepSeek-V3-FC                                              |
 | Falcon3-{1B,3B,7B,10B}-Instruct                | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
-| FireFunction-{v1,v2}                           | Function Calling | Fireworks AI   | firefunction-{v1,v2}-FC                                     |
+| FireFunction-v2                                | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
 | Functionary-{Small,Medium}-v3.1                | Function Calling | MeetKai        | meetkai/functionary-{small,medium}-v3.1-FC                  |
 | Gemini-2.0-Flash-001                           | Function Calling | Google         | gemini-2.0-flash-001-FC                                     |
 | Gemini-2.0-Flash-001                           | Prompt           | Google         | gemini-2.0-flash-001                                        |

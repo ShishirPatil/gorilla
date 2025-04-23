@@ -330,12 +330,6 @@ MODEL_METADATA_MAPPING = {
         "Nexusflow",
         "Apache 2.0",
     ],
-    "firefunction-v1-FC": [
-        "FireFunction-v1 (FC)",
-        "https://huggingface.co/fireworks-ai/firefunction-v1",
-        "Fireworks",
-        "Apache 2.0",
-    ],
     "firefunction-v2-FC": [
         "FireFunction-v2 (FC)",
         "https://huggingface.co/fireworks-ai/firefunction-v2",
@@ -1145,7 +1139,6 @@ NO_COST_API_BASED_MODELS = [
     "DeepSeek-R1",
     "DeepSeek-V3-FC",
     "Nexusflow-Raven-v2",
-    "firefunction-v1-FC",
     "firefunction-v2-FC",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-medium-v3.1-FC",
