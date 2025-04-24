@@ -1,10 +1,4 @@
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import (
-    combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
-    func_doc_language_specific_pre_processing,
-    system_prompt_pre_processing_chat_model,
-)
 from overrides import override
 
 
@@ -13,49 +7,42 @@ class PhiHandler(OSSHandler):
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
-        if "Phi-3-small" in self.model_name:
-            # Phi-3-small
-            """
-            "bos_token": "<|endoftext|>",
-            "chat_template": "{{ bos_token }}{% for message in messages %}{{'<|' + message['role'] + '|>' + '\n' + message['content'] + '<|end|>\n' }}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>\n' }}{% else %}{{ eos_token }}{% endif %}",
-            "eos_token": "<|endoftext|>",
-            """
-            formatted_prompt = "<|endoftext|>"
-        else:
-            # Phi-3.5-mini, Phi-3-medium, Phi-3-mini
-            """
-            "bos_token": "<s>",
-            "chat_template": "{% for message in messages %}{% if message['role'] == 'system' and message['content'] %}{{'<|system|>\n' + message['content'] + '<|end|>\n'}}{% elif message['role'] == 'user' %}{{'<|user|>\n' + message['content'] + '<|end|>\n'}}{% elif message['role'] == 'assistant' %}{{'<|assistant|>\n' + message['content'] + '<|end|>\n'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>\n' }}{% else %}{{ eos_token }}{% endif %}",
-            """
-            formatted_prompt = ""
-
-        for message in messages:
-            formatted_prompt += f"<|{message['role']}|>\n{message['content']}<|end|>\n"
-
-        formatted_prompt += f"<|assistant|>\n"
-
-        return formatted_prompt
+    def decode_ast(self, result, language="Python"):
+        result = result.strip()
+        if result.startswith("```json"):
+            result = result[len("```json") :]
+        if result.startswith("```python"):
+            result = result[len("```python") :]
+        return super().decode_ast(result, language)
 
     @override
-    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
-        functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+    def decode_execute(self, result):
+        if result.startswith("```json"):
+            result = result[len("```json") :]
+        if result.startswith("```python"):
+            result = result[len("```python") :]
+        return super().decode_execute(result)
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
+    @override
+    def _format_prompt(self, messages, function):
+        formatted_prompt = ""
 
-        test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
-        )
+        if "Phi-4-mini" in self.model_name:
+            # Phi-4-mini
+            """
+            "chat_template": "{% for message in messages %}{% if message['role'] == 'system' and 'tools' in message and message['tools'] is not none %}{{ '<|' + message['role'] + '|>' + message['content'] + '<|tool|>' + message['tools'] + '<|/tool|>' + '<|end|>' }}{% else %}{{ '<|' + message['role'] + '|>' + message['content'] + '<|end|>' }}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>' }}{% else %}{{ eos_token }}{% endif %}"
+            """
+            for message in messages:
+                formatted_prompt += f"<|{message['role']}|>{message['content']}<|end|>"
+            formatted_prompt += "<|assistant|>"
 
-        if "Phi-3-small" in self.model_name:
-            # Phi-3-small doesn't allow system role
-            for round_idx in range(len(test_entry["question"])):
-                test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                    test_entry["question"][round_idx]
-                )
-                test_entry["question"][round_idx] = combine_consecutive_user_prompts(
-                    test_entry["question"][round_idx]
-                )
+        else:
+            # Phi-4
+            """
+            "chat_template": "{% for message in messages %}{% if (message['role'] == 'system') %}{{'<|im_start|>system<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'user') %}{{'<|im_start|>user<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'assistant') %}{{'<|im_start|>assistant<|im_sep|>' + message['content'] + '<|im_end|>'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant<|im_sep|>' }}{% endif %}"
+            """
+            for message in messages:
+                formatted_prompt += f"<|im_start|>{message['role']}<|im_sep|>{message['content']}<|im_end|>\n"
+            formatted_prompt += "<|im_start|>assistant<|im_sep|>"
 
-        return {"message": [], "function": functions}
+        return formatted_prompt
