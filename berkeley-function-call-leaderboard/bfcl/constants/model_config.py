@@ -8,6 +8,7 @@ from bfcl.model_handler.api_inference.gemini import GeminiHandler
 from bfcl.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl.model_handler.api_inference.grok import GrokHandler
+from bfcl.model_handler.api_inference.mining import MiningHandler
 from bfcl.model_handler.api_inference.mistral import MistralHandler
 from bfcl.model_handler.api_inference.nexus import NexusHandler
 from bfcl.model_handler.api_inference.nova import NovaHandler
@@ -34,6 +35,7 @@ from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
+from bfcl.model_handler.local_inference.phi_fc import PhiFCHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
