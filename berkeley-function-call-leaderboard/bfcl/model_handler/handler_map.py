@@ -125,6 +125,7 @@ local_inference_handler_map = {
     "Salesforce/xLAM-2-3b-fc-r": SalesforceQwenHandler,
     "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
     "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
+    "microsoft/phi-4": PhiHandler,
     "microsoft/Phi-4-mini-instruct": PhiHandler,
     "microsoft/Phi-4-mini-instruct-FC": PhiFCHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
