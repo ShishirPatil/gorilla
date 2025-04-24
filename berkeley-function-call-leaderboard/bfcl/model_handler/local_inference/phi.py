@@ -34,16 +34,29 @@ class PhiHandler(OSSHandler):
 
     @override
     def _format_prompt(self, messages, function):
-        '''
-        Phi-4 chat template:
-        "bos_token": "<|endoftext|>"
-        "chat_template": "{% for message in messages %}{% if (message['role'] == 'system') %}{{'<|im_start|>system<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'user') %}{{'<|im_start|>user<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'assistant') %}{{'<|im_start|>assistant<|im_sep|>' + message['content'] + '<|im_end|>'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant<|im_sep|>' }}{% endif %}"
-        "eos_token": "<|im_end|>"
-        '''
         formatted_prompt = ""
-        for message in messages:
-            formatted_prompt += f"<|im_start|>{message['role']}<|im_sep|>\n{message['content']}<|im_end|>\n"
-        formatted_prompt += "<|im_start|>assistant<|im_sep|>\n"
+
+        if "phi-4" in self.model_name:
+            # phi-4
+            '''
+            "bos_token": "<|endoftext|>"
+            "chat_template": "{% for message in messages %}{% if (message['role'] == 'system') %}{{'<|im_start|>system<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'user') %}{{'<|im_start|>user<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'assistant') %}{{'<|im_start|>assistant<|im_sep|>' + message['content'] + '<|im_end|>'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant<|im_sep|>' }}{% endif %}"
+            "eos_token": "<|im_end|>"
+            '''
+            for message in messages:
+                formatted_prompt += f"<|im_start|>{message['role']}<|im_sep|>\n{message['content']}<|im_end|>\n"
+            formatted_prompt += "<|im_start|>assistant<|im_sep|>\n"
+        elif "Phi-4-mini" in self.model_name:
+            # Phi-4-mini
+            '''
+            "bos_token": "<|endoftext|>"
+            "chat_template": "{% for message in messages %}{% if message['role'] == 'system' and 'tools' in message and message['tools'] is not none %}{{ '<|' + message['role'] + '|>' + message['content'] + '<|tool|>' + message['tools'] + '<|/tool|>' + '<|end|>' }}{% else %}{{ '<|' + message['role'] + '|>' + message['content'] + '<|end|>' }}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>' }}{% else %}{{ eos_token }}{% endif %}"
+            "eos_token": "<|endoftext|>"
+            '''
+            for message in messages:
+                formatted_prompt += f"<|{message['role']}|>{message['content']}<|end|>"
+            formatted_prompt += "<|assistant|>"
+
         return formatted_prompt
 
     @override
