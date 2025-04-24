@@ -1,4 +1,3 @@
-from model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.api_inference.claude import ClaudeHandler
 from bfcl.model_handler.api_inference.cohere import CohereHandler
 from bfcl.model_handler.api_inference.databricks import DatabricksHandler
