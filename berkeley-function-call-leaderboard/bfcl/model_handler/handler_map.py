@@ -34,6 +34,7 @@ from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
+from bfcl.model_handler.local_inference.phi_fc import PhiFCHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
@@ -125,6 +126,8 @@ local_inference_handler_map = {
     "Salesforce/xLAM-2-1b-fc-r": SalesforceQwenHandler,
     "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
     "microsoft/phi-4": PhiHandler,
+    "microsoft/Phi-4-mini-instruct": PhiHandler,
+    "microsoft/Phi-4-mini-instruct-FC": PhiFCHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     "MadeAgents/Hammer2.1-7b": HammerHandler,
     "MadeAgents/Hammer2.1-3b": HammerHandler,
