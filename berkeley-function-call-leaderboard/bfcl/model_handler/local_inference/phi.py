@@ -35,12 +35,10 @@ class PhiHandler(OSSHandler):
     @override
     def _format_prompt(self, messages, function):
         '''
-        Phi-4 input format:
-        <|im_start|>system<|im_sep|>
-        You are a medieval knight and must provide explanations to modern people.<|im_end|>
-        <|im_start|>user<|im_sep|>
-        How should I explain the Internet?<|im_end|>
-        <|im_start|>assistant<|im_sep|>
+        Phi-4 chat template:
+        "bos_token": "<|endoftext|>"
+        "chat_template": "{% for message in messages %}{% if (message['role'] == 'system') %}{{'<|im_start|>system<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'user') %}{{'<|im_start|>user<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'assistant') %}{{'<|im_start|>assistant<|im_sep|>' + message['content'] + '<|im_end|>'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant<|im_sep|>' }}{% endif %}"
+        "eos_token": "<|im_end|>"
         '''
         formatted_prompt = ""
         for message in messages:
