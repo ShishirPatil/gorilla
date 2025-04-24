@@ -1,9 +1,4 @@
-import re
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import (
-    ast_parse,
-    convert_to_function_call,
-)
 from overrides import override
 
 
@@ -22,13 +17,11 @@ class PhiHandler(OSSHandler):
 
     @override
     def decode_execute(self, result):
-        funcs = re.findall(r"\[[^\[\]]+\]", result)
-        decoded_funcs = []
-        for func in funcs:
-            decode_output = ast_parse(func, language="Python")
-            decoded_funcs.extend(decode_output)
-
-        return convert_to_function_call(decoded_funcs)
+        if result.startswith("```json"):
+            result = result[len("```json") :]
+        if result.startswith("```python"):
+            result = result[len("```python") :]
+        return super().decode_execute(result)
 
     @override
     def _format_prompt(self, messages, function):
@@ -43,7 +36,7 @@ class PhiHandler(OSSHandler):
                 formatted_prompt += f"<|{message['role']}|>{message['content']}<|end|>"
             formatted_prompt += "<|assistant|>"
 
-        elif "Phi-4" in self.model_name:
+        else:
             # Phi-4
             """
             "chat_template": "{% for message in messages %}{% if (message['role'] == 'system') %}{{'<|im_start|>system<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'user') %}{{'<|im_start|>user<|im_sep|>' + message['content'] + '<|im_end|>'}}{% elif (message['role'] == 'assistant') %}{{'<|im_start|>assistant<|im_sep|>' + message['content'] + '<|im_end|>'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant<|im_sep|>' }}{% endif %}"
