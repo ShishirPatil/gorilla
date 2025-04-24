@@ -14,7 +14,6 @@ SCORE_PATH = "./score/"
 DOTENV_PATH = "./.env"
 UTILS_PATH = "./utils/"
 TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
-PROMPT_SENSITIVITY_IDS_TO_GENERATE_PATH = "./prompt_sensitivity_ids_to_generate.json"
 
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
