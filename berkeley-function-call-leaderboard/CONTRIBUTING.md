@@ -7,7 +7,7 @@ We welcome your contributions to the Leaderboard! This guide provides step-by-st
   - [Where to Begin](#where-to-begin)
   - [Function Calling (FC) vs. Prompt Models](#function-calling-fc-vs-prompt-models)
   - [Creating Your Model Handler](#creating-your-model-handler)
-  - [Updating the Handler Map and Model Metadata](#updating-the-handler-map-and-model-metadata)
+  - [Updating the Model Config](#updating-the-model-config)
   - [Submitting Your Pull Request](#submitting-your-pull-request)
   - [Join Our Community](#join-our-community)
 
@@ -36,7 +36,6 @@ berkeley-function-call-leaderboard/
 │   │   │   ├── ...
 │   │   ├── parser/                # Parsing utilities for Java/JavaScript
 │   │   ├── base_handler.py        # Base handler blueprint
-│   │   ├── handler_map.py         # Maps model names to handler classes
 ├── data/                         # Datasets
 ├── result/                       # Model responses
 ├── score/                        # Evaluation results
@@ -97,35 +96,37 @@ Regardless of mode or model type, you should implement the following methods to 
    ["func1(param1=val1, param2=val2)", "func2(param1=val1)"]
    ```
 
-## Updating the Handler Map and Model Metadata
+## Updating the Model Config
 
-1. **Update `bfcl/model_handler/handler_map.py`:**  
-   Add your new model’s handler class and associate it with the model’s name.
+1. **Update `bfcl/constants/model_config.py`:**
+   In `bfcl/constants/model_config.py`, add entries in `MODEL_CONFIG_MAPPING` to include:
 
-2. **Update `bfcl/constants/model_metadata.py`:**  
-   In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
-
+   - Model name
    - Model display name (as shown in the leaderboard)
    - URL to the model’s documentation or homepage
-   - License details
    - Company name
+   - License details
+   - Your new model handler class
+   
+   If your model is API-based and has usage costs, set the following accordingly, the numbers indicate the input/output price per million tokens (otherwise, set to `None`):
 
-   If your model is API-based and has usage costs, update the following accordingly:
+   - `input_price`
+   - `output_price`
 
-   - `INPUT_PRICE_PER_MILLION_TOKEN`
-   - `OUTPUT_PRICE_PER_MILLION_TOKEN`
+   If your model has native support for function/tool calling, set the following to `True`:
 
-   If the model is API-based but free, add it to the `NO_COST_API_BASED_MODELS` list.
+   - `is_fc_model`
 
-3. **Update `bfcl/constants/eval_config.py`:**  
-   If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
+   If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), set the following to `True`:
 
-4. **Update `SUPPORTED_MODELS.md`:**  
+   - `underscore_to_dot`
+
+2. **Update `SUPPORTED_MODELS.md`:**  
    Add your model to the list of supported models. Include the model name and type (FC or Prompt) in the table.
 
 ## Submitting Your Pull Request
 
-- Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler and the necessary updates to the metadata.
+- Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler and the necessary updates to the model config.
 - Ensure that the model you add is publicly accessible, either open-source or behind a publicly available API. While you may require authentication, billing, registration, or tokens, the general public should ultimately be able to access the endpoint.
   - If your model is not publicly accessible, we would still welcome your contribution, but we unfortunately cannot include it in the public-facing leaderboard.
 
