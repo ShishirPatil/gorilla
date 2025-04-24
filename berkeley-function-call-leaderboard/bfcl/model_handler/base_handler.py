@@ -78,6 +78,7 @@ class BaseHandler:
         )  # The debugging log for human to understand
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
+        all_reasoning_content: list[list] = []
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
         if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
@@ -148,6 +149,7 @@ class BaseHandler:
             current_turn_input_token_count: list[float] = []
             current_turn_output_token_count: list[float] = []
             current_turn_latency: list[float] = []
+            current_turn_reasoning_content = []
 
             count = 0
             while True:
@@ -186,9 +188,18 @@ class BaseHandler:
                 current_turn_latency.append(query_latency)
 
                 current_turn_response.append(model_responses)
-                current_step_inference_log.append(
-                    {"role": "assistant", "content": model_responses}
-                )
+
+                reasoning_content = model_response_data.get("reasoning_content", "")
+                current_turn_reasoning_content.append(reasoning_content)
+
+                log_entry = {
+                    "role": "assistant",
+                    "content": model_responses,
+                }
+                if reasoning_content:
+                    log_entry["reasoning_content"] = reasoning_content
+
+                current_step_inference_log.append(log_entry)
 
                 # Try decoding the model response
                 try:
@@ -265,6 +276,7 @@ class BaseHandler:
             # Add to the total list
             all_model_response.append(current_turn_response)
             all_inference_log.append(current_turn_inference_log)
+            all_reasoning_content.append(current_turn_reasoning_content)
             total_input_token_count.append(current_turn_input_token_count)
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
@@ -298,6 +310,12 @@ class BaseHandler:
             "latency": total_latency,
             "inference_log": all_inference_log,
         }
+
+        if not all(
+            all(content == "" for content in single_turn_reasoning_content)
+            for single_turn_reasoning_content in all_reasoning_content
+        ):
+            metadata["reasoning_content"] = all_reasoning_content
 
         return all_model_response, metadata
 
@@ -589,6 +607,9 @@ class BaseHandler:
         metadata["input_token_count"] = model_response_data["input_token"]
         metadata["output_token_count"] = model_response_data["output_token"]
         metadata["latency"] = query_latency
+
+        if "reasoning_content" in model_response_data:
+            metadata["reasoning_content"] = model_response_data["reasoning_content"]
 
         return model_response_data["model_responses"], metadata
 
