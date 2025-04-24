@@ -654,45 +654,9 @@ MODEL_METADATA_MAPPING = {
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "microsoft/Phi-3-mini-4k-instruct": [
-        "Phi-3-mini-4k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-mini-128k-instruct": [
-        "Phi-3-mini-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-small-8k-instruct": [
-        "Phi-3-small-8k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-small-128k-instruct": [
-        "Phi-3-small-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-small-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-medium-4k-instruct": [
-        "Phi-3-medium-4k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3-medium-128k-instruct": [
-        "Phi-3-medium-128k-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
-        "Microsoft",
-        "MIT",
-    ],
-    "microsoft/Phi-3.5-mini-instruct": [
+    "microsoft/Phi-4": [
         "Phi-3.5-mini-instruct (Prompt)",
-        "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+        "https://huggingface.co/microsoft/Phi-4",
         "Microsoft",
         "MIT",
     ],

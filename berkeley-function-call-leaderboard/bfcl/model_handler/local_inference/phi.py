@@ -1,7 +1,8 @@
+import re
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
-    combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
+    ast_parse,
+    convert_to_function_call,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
@@ -13,28 +14,38 @@ class PhiHandler(OSSHandler):
         super().__init__(model_name, temperature)
 
     @override
+    def decode_ast(self, result, language="Python"):
+        result = result.strip()
+        if result.startswith("```json"):
+            result = result[len("```json"):]
+        if result.startswith("```python"):
+            result = result[len("```python"):]
+        return super().decode_ast(result, language)
+    
+    @override
+    def decode_execute(self, result):
+        funcs = re.findall(r"\[[^\[\]]+\]", result)
+        decoded_funcs = []
+        for func in funcs:
+            decode_output = ast_parse(func, language="Python")
+            decoded_funcs.extend(decode_output)
+
+        return convert_to_function_call(decoded_funcs)
+
+    @override
     def _format_prompt(self, messages, function):
-        if "Phi-3-small" in self.model_name:
-            # Phi-3-small
-            """
-            "bos_token": "<|endoftext|>",
-            "chat_template": "{{ bos_token }}{% for message in messages %}{{'<|' + message['role'] + '|>' + '\n' + message['content'] + '<|end|>\n' }}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>\n' }}{% else %}{{ eos_token }}{% endif %}",
-            "eos_token": "<|endoftext|>",
-            """
-            formatted_prompt = "<|endoftext|>"
-        else:
-            # Phi-3.5-mini, Phi-3-medium, Phi-3-mini
-            """
-            "bos_token": "<s>",
-            "chat_template": "{% for message in messages %}{% if message['role'] == 'system' and message['content'] %}{{'<|system|>\n' + message['content'] + '<|end|>\n'}}{% elif message['role'] == 'user' %}{{'<|user|>\n' + message['content'] + '<|end|>\n'}}{% elif message['role'] == 'assistant' %}{{'<|assistant|>\n' + message['content'] + '<|end|>\n'}}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>\n' }}{% else %}{{ eos_token }}{% endif %}",
-            """
-            formatted_prompt = ""
-
+        '''
+        Phi-4 input format:
+        <|im_start|>system<|im_sep|>
+        You are a medieval knight and must provide explanations to modern people.<|im_end|>
+        <|im_start|>user<|im_sep|>
+        How should I explain the Internet?<|im_end|>
+        <|im_start|>assistant<|im_sep|>
+        '''
+        formatted_prompt = ""
         for message in messages:
-            formatted_prompt += f"<|{message['role']}|>\n{message['content']}<|end|>\n"
-
-        formatted_prompt += f"<|assistant|>\n"
-
+            formatted_prompt += f"<|im_start|>{message['role']}<|im_sep|>\n{message['content']}<|im_end|>\n"
+        formatted_prompt += "<|im_start|>assistant<|im_sep|>\n"
         return formatted_prompt
 
     @override
@@ -47,15 +58,5 @@ class PhiHandler(OSSHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
-
-        if "Phi-3-small" in self.model_name:
-            # Phi-3-small doesn't allow system role
-            for round_idx in range(len(test_entry["question"])):
-                test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                    test_entry["question"][round_idx]
-                )
-                test_entry["question"][round_idx] = combine_consecutive_user_prompts(
-                    test_entry["question"][round_idx]
-                )
 
         return {"message": [], "function": functions}
