@@ -33,7 +33,7 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool, prompt_variation_id: int = 0):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
@@ -52,7 +52,7 @@ class BaseHandler:
                     test_entry, include_input_log, exclude_state_log
                 )
             else:
-                return self.inference_single_turn_prompting(test_entry, include_input_log, prompt_variation_id)
+                return self.inference_single_turn_prompting(test_entry, include_input_log)
 
     @final
     def inference_multi_turn_FC(
@@ -615,9 +615,9 @@ class BaseHandler:
 
     @final
     def inference_single_turn_prompting(
-        self, test_entry: dict, include_input_log: bool, prompt_variation_id: int = 0,
+        self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
-        inference_data: dict = self._pre_query_processing_prompting(test_entry, prompt_variation_id)
+        inference_data: dict = self._pre_query_processing_prompting(test_entry)
         inference_data = self.add_first_turn_message_prompting(
             inference_data, test_entry["question"][0]
         )
