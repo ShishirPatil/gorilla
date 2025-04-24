@@ -91,7 +91,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
 | phi-4                                          | Prompt           | Self-hosted 💻 | microsoft/phi-4                                             |
-| Qwen2-{1.5B,7B}-Instruct                       | Prompt           | Self-hosted 💻 | Qwen/Qwen2-{1.5B,7B}-Instruct                               |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
 | QwQ-32B                                        | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
