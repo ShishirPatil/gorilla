@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 23, 2025] [#967](https://github.com/ShishirPatil/gorilla/pull/967): Add the following new models to the leaderboard:
+  - `microsoft/Phi-4-mini-instruct`
+  - `microsoft/Phi-4-mini-instruct-FC`
 - [Apr 22, 2025] [#997](https://github.com/ShishirPatil/gorilla/pull/997): Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
 - [Apr 14, 2025] [#987](https://github.com/ShishirPatil/gorilla/pull/987): Add the following new models to the leaderboard:
   - `grok-3-beta`
