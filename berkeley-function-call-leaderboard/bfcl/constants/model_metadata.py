@@ -552,6 +552,18 @@ MODEL_METADATA_MAPPING = {
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
+    "microsoft/Phi-4-mini-instruct": [
+        "Phi-4-mini-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-4-mini-instruct-FC": [
+        "Phi-4-mini-instruct (FC)",
+        "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ],
     "Qwen/Qwen2.5-0.5B-Instruct-FC": [
         "Qwen2.5-0.5B-Instruct (FC)",
         "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
