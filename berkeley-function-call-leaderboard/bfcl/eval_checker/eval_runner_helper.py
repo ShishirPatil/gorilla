@@ -8,8 +8,7 @@ import pandas as pd
 from bfcl.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl.constants.column_headers import *
 from bfcl.constants.eval_config import *
-from bfcl.constants.model_metadata import *
-from bfcl.model_handler.handler_map import local_inference_handler_map
+from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.utils import extract_test_category, load_file
 
 
@@ -107,7 +106,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
-        model_name in INPUT_PRICE_PER_MILLION_TOKEN
+        MODEL_CONFIG_MAPPING[model_name].input_price is not None
         and len(cost_data["input_data"]) > 0
         and len(cost_data["output_data"]) > 0
     ):
@@ -115,8 +114,8 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         mean_input_token = statistics.mean(cost_data["input_data"])
         mean_output_token = statistics.mean(cost_data["output_data"])
         cost = (
-            mean_input_token * INPUT_PRICE_PER_MILLION_TOKEN[model_name]
-            + mean_output_token * OUTPUT_PRICE_PER_MILLION_TOKEN[model_name]
+            mean_input_token * MODEL_CONFIG_MAPPING[model_name].input_price
+            + mean_output_token * MODEL_CONFIG_MAPPING[model_name].output_price
         ) / 1000
         cost = round(cost, 2)
 
@@ -129,7 +128,11 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         percentile_95_latency = round(percentile_95_latency, 2)
 
     # All OSS models will have no cost shown on the leaderboard.
-    no_cost_model = list(local_inference_handler_map.keys()) + NO_COST_API_BASED_MODELS
+    no_cost_model = [
+        model_name
+        for model_name in MODEL_CONFIG_MAPPING.keys()
+        if MODEL_CONFIG_MAPPING[model_name].input_price is None
+    ]
     if model_name in no_cost_model:
         cost = "N/A"
 
@@ -240,7 +243,7 @@ def generate_leaderboard_csv(
         data_non_live.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
                 overall_accuracy_non_live["display_accuracy"],
                 summary_ast_non_live["display_accuracy"],
                 simple_ast_non_live["display_accuracy"],
@@ -285,7 +288,7 @@ def generate_leaderboard_csv(
         data_live.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
                 overall_accuracy_live["display_accuracy"],
                 summary_ast_live["display_accuracy"],
                 python_simple_ast_live["display_accuracy"],
@@ -315,7 +318,7 @@ def generate_leaderboard_csv(
         data_multi_turn.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
                 overall_accuracy_multi_turn["display_accuracy"],
                 multi_turn_base["display_accuracy"],
                 multi_turn_miss_func["display_accuracy"],
@@ -346,8 +349,8 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 total_overall_accuracy["display_accuracy"],
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
-                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_url,
                 cost,
                 latency_mean,
                 latency_std,
@@ -369,8 +372,8 @@ def generate_leaderboard_csv(
                 multi_turn_long_context["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
-                MODEL_METADATA_MAPPING[model_name_escaped][2],
-                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_organization,
+                MODEL_CONFIG_MAPPING[model_name_escaped].model_license,
             ]
         )
 

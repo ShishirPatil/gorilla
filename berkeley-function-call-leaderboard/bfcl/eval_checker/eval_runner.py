@@ -20,14 +20,14 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_irrelevance_checker,
 )
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
-from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
 
 def get_handler(model_name):
-    return HANDLER_MAP[model_name](
+    return MODEL_CONFIG_MAPPING[model_name].model_handler(
         model_name, temperature=0
     )  # Temperature doesn't matter for evaluation
 
