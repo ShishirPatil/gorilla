@@ -2,6 +2,14 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
+  - `gpt-4.1-2025-04-14-FC`
+  - `gpt-4.1-2025-04-14`
+  - `gpt-4.1-mini-2025-04-14-FC`
+  - `gpt-4.1-mini-2025-04-14`
+  - `gpt-4.1-nano-2025-04-14-FC`
+  - `gpt-4.1-nano-2025-04-14`
+- [Apr 23, 2025] [#1000](https://github.com/ShishirPatil/gorilla/pull/1000): Add new model `microsoft/phi-4` to the leaderboard.
 - [Apr 23, 2025] [#967](https://github.com/ShishirPatil/gorilla/pull/967): Add the following new models to the leaderboard:
   - `microsoft/Phi-4-mini-instruct`
   - `microsoft/Phi-4-mini-instruct-FC`

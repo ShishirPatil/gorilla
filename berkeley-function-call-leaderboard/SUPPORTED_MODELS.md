@@ -51,6 +51,12 @@ For model names containing `{...}`, multiple versions are available. For example
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
 | Gorilla-OpenFunctions-v2                       | Function Calling | Gorilla LLM    | gorilla-openfunctions-v2                                    |
+| GPT-4.1-2025-04-14                             | Function Calling | OpenAI         | gpt-4.1-2025-04-14-FC                                       |
+| GPT-4.1-2025-04-14                             | Prompt           | OpenAI         | gpt-4.1-2025-04-14                                          |
+| GPT-4.1-mini-2025-04-14                        | Function Calling | OpenAI         | gpt-4.1-mini-2025-04-14-FC                                  |
+| GPT-4.1-mini-2025-04-14                        | Prompt           | OpenAI         | gpt-4.1-mini-2025-04-14                                     |
+| GPT-4.1-nano-2025-04-14                        | Function Calling | OpenAI         | gpt-4.1-nano-2025-04-14-FC                                  |
+| GPT-4.1-nano-2025-04-14                        | Prompt           | OpenAI         | gpt-4.1-nano-2025-04-14                                     |
 | GPT-4.5-Preview-2025-02-27                     | Function Calling | OpenAI         | gpt-4.5-preview-2025-02-27-FC                               |
 | GPT-4.5-Preview-2025-02-27                     | Prompt           | OpenAI         | gpt-4.5-preview-2025-02-27                                  |
 | GPT-4o-2024-11-20                              | Function Calling | OpenAI         | gpt-4o-2024-11-20-FC                                        |
@@ -90,6 +96,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Open-Mistral-Nemo-2407                         | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                         | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
 | palmyra-x-004                                  | Function Calling | Writer         | palmyra-x-004                                               |
+| phi-4                                          | Prompt           | Self-hosted 💻 | microsoft/phi-4                                             |
 | Phi-4-mini-instruct                            | Prompt           | Self-hosted 💻 | microsoft/Phi-4-mini-instruct                               |
 | Phi-4-mini-instruct                            | Function Calling | Self-hosted 💻 | microsoft/Phi-4-mini-instruct-FC                            |
 | Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
