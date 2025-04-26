@@ -281,7 +281,7 @@ def main(args):
             raise ValueError(
                         f"Unknown model_name '{model_name}'.\n"
                         "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
-                        "• For running local models, please refer to `README.md`."
+                        "• For new models, please refer to `README.md`."
                     )
     print(f"Generating results for {args.model}")
     if args.run_ids:
