@@ -104,9 +104,10 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 def get_cost_letency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
+    model_config = MODEL_CONFIG_MAPPING[model_name]
 
     if (
-        MODEL_CONFIG_MAPPING[model_name].input_price is not None
+        model_config.input_price is not None
         and len(cost_data["input_data"]) > 0
         and len(cost_data["output_data"]) > 0
     ):
@@ -114,8 +115,8 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         mean_input_token = statistics.mean(cost_data["input_data"])
         mean_output_token = statistics.mean(cost_data["output_data"])
         cost = (
-            mean_input_token * MODEL_CONFIG_MAPPING[model_name].input_price
-            + mean_output_token * MODEL_CONFIG_MAPPING[model_name].output_price
+            mean_input_token * model_config.input_price
+            + mean_output_token * model_config.output_price
         ) / 1000
         cost = round(cost, 2)
 
@@ -127,13 +128,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
 
-    # All OSS models will have no cost shown on the leaderboard.
-    no_cost_model = [
-        model_name
-        for model_name in MODEL_CONFIG_MAPPING.keys()
-        if MODEL_CONFIG_MAPPING[model_name].input_price is None
-    ]
-    if model_name in no_cost_model:
+    if model_config.input_price is None or model_config.output_price is None:
         cost = "N/A"
 
     return cost, mean_latency, std_latency, percentile_95_latency
@@ -194,6 +189,7 @@ def generate_leaderboard_csv(
     data_combined = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
+        model_config = MODEL_CONFIG_MAPPING[model_name_escaped]
 
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
@@ -243,7 +239,7 @@ def generate_leaderboard_csv(
         data_non_live.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
+                model_config.display_name,
                 overall_accuracy_non_live["display_accuracy"],
                 summary_ast_non_live["display_accuracy"],
                 simple_ast_non_live["display_accuracy"],
@@ -288,7 +284,7 @@ def generate_leaderboard_csv(
         data_live.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
+                model_config.display_name,
                 overall_accuracy_live["display_accuracy"],
                 summary_ast_live["display_accuracy"],
                 python_simple_ast_live["display_accuracy"],
@@ -318,7 +314,7 @@ def generate_leaderboard_csv(
         data_multi_turn.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
+                model_config.display_name,
                 overall_accuracy_multi_turn["display_accuracy"],
                 multi_turn_base["display_accuracy"],
                 multi_turn_miss_func["display_accuracy"],
@@ -349,8 +345,8 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 total_overall_accuracy["display_accuracy"],
-                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
-                MODEL_CONFIG_MAPPING[model_name_escaped].url,
+                model_config.display_name,
+                model_config.url,
                 cost,
                 latency_mean,
                 latency_std,
@@ -372,8 +368,8 @@ def generate_leaderboard_csv(
                 multi_turn_long_context["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
-                MODEL_CONFIG_MAPPING[model_name_escaped].org,
-                MODEL_CONFIG_MAPPING[model_name_escaped].license,
+                model_config.org,
+                model_config.license,
             ]
         )
 
