@@ -7,7 +7,7 @@ We welcome your contributions to the Leaderboard! This guide provides step-by-st
   - [Where to Begin](#where-to-begin)
   - [Function Calling (FC) vs. Prompt Models](#function-calling-fc-vs-prompt-models)
   - [Creating Your Model Handler](#creating-your-model-handler)
-  - [Updating the Model Config](#updating-the-model-config)
+  - [Updating Model Config Mapping](#updating-model-config-mapping)
   - [Submitting Your Pull Request](#submitting-your-pull-request)
   - [Join Our Community](#join-our-community)
 
@@ -96,32 +96,40 @@ Regardless of mode or model type, you should implement the following methods to 
    ["func1(param1=val1, param2=val2)", "func2(param1=val1)"]
    ```
 
-## Updating the Model Config
+## Updating Model Config Mapping
 
-1. **Update `bfcl/constants/model_config.py`:**
-   In `bfcl/constants/model_config.py`, add entries in `MODEL_CONFIG_MAPPING` to include:
+1. **Add a new entry in `bfcl/constants/model_config.py`**
 
-   - Model name
-   - Model display name (as shown in the leaderboard)
-   - URL to the model’s documentation or homepage
-   - Company name
-   - License details
-   - Your new model handler class
-   
-   If your model is API-based and has usage costs, set the following accordingly, the numbers indicate the input/output price per million tokens (otherwise, set to `None`):
+   Populate every field in the `ModelConfig` dataclass:
 
-   - `input_price`
-   - `output_price`
+   | Field               | What to put in it                                                                 |
+   | ------------------- | --------------------------------------------------------------------------------- |
+   | **`model_name`**    | Model name as used in the API or on Hugging Face.                                 |
+   | **`display_name`**  | Model name as it should appear on the leaderboard.                                |
+   | **`url`**           | Link to the model’s documentation, homepage, or repo.                             |
+   | **`org`**           | Company or organization that developed the model.                                 |
+   | **`license`**       | License under which the model is released. `Proprietary` if it’s not open-source. |
+   | **`model_handler`** | Name of the handler class (e.g., `OpenAIHandler`, `GeminiHandler`).               |
 
-   If your model has native support for function/tool calling, set the following to `True`:
+2. **(Optional) Add pricing**
 
-   - `is_fc_model`
+   If the model is billed by token usage, specify prices _per million tokens_:
 
-   If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), set the following to `True`:
+   ```python
+   input_price  = 0.50   # USD per 1M input tokens
+   output_price = 1.00   # USD per 1M output tokens
+   ```
 
-   - `underscore_to_dot`
+   For free/open-source models, set both to `None`.
 
-2. **Update `SUPPORTED_MODELS.md`:**  
+3. **Set behavior flags**
+
+   | Flag                    | When to set it to `True`                                                                                                      |
+   | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+   | **`is_fc_model`**       | The handler invokes the model in its _function-calling_ mode instead of prompt-based mode.                                    |
+   | **`underscore_to_dot`** | Your FC model rejects dots (`.`) in function names; set this so the dots will auto-converts to underscores during evaluation. |
+
+4. **Update `SUPPORTED_MODELS.md`:**  
    Add your model to the list of supported models. Include the model name and type (FC or Prompt) in the table.
 
 ## Submitting Your Pull Request

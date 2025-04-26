@@ -53,7 +53,7 @@ class ModelConfig:
 
     Attributes:
         model_name (str): [Not Used] Name of the model as used in the API or on Hugging Face.
-        display_name (str): Name displayed on the leaderboard.
+        display_name (str): Model name as it should appear on the leaderboard.
         url (str): Reference URL for the model or hosting service.
         org (str): Organization providing the model.
         license (str): License under which the model is released.
