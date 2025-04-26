@@ -84,7 +84,8 @@ class ModelConfig:
     underscore_to_dot: bool = False
 
 
-MODEL_CONFIG_MAPPING = {
+# Inference through API calls
+api_inference_model_map = {
     "gorilla-openfunctions-v2": ModelConfig(
         model_name="gorilla-openfunctions-v2",
         display_name="Gorilla-OpenFunctions-v2 (FC)",
@@ -805,6 +806,11 @@ MODEL_CONFIG_MAPPING = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+}
+
+
+# Inference through local hosting
+local_inference_model_map = {
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
@@ -1537,6 +1543,11 @@ MODEL_CONFIG_MAPPING = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+}
+
+# Inference through third-party inference platforms for open-source models
+third_party_inference_model_map = {
+    # Novita AI
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": ModelConfig(
         model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",
         display_name="Llama-4-Maverick-17B-128E-Instruct-FP8 (Prompt) (Novita)",
@@ -1609,4 +1620,11 @@ MODEL_CONFIG_MAPPING = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+}
+
+
+MODEL_CONFIG_MAPPING = {
+    **api_inference_model_map,
+    **local_inference_model_map,
+    **third_party_inference_model_map,
 }
