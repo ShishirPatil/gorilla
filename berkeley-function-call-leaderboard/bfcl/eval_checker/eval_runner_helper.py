@@ -243,7 +243,7 @@ def generate_leaderboard_csv(
         data_non_live.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
+                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
                 overall_accuracy_non_live["display_accuracy"],
                 summary_ast_non_live["display_accuracy"],
                 simple_ast_non_live["display_accuracy"],
@@ -288,7 +288,7 @@ def generate_leaderboard_csv(
         data_live.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
+                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
                 overall_accuracy_live["display_accuracy"],
                 summary_ast_live["display_accuracy"],
                 python_simple_ast_live["display_accuracy"],
@@ -318,7 +318,7 @@ def generate_leaderboard_csv(
         data_multi_turn.append(
             [
                 "N/A",
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
+                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
                 overall_accuracy_multi_turn["display_accuracy"],
                 multi_turn_base["display_accuracy"],
                 multi_turn_miss_func["display_accuracy"],
@@ -349,8 +349,8 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 total_overall_accuracy["display_accuracy"],
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_display_name,
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_url,
+                MODEL_CONFIG_MAPPING[model_name_escaped].display_name,
+                MODEL_CONFIG_MAPPING[model_name_escaped].url,
                 cost,
                 latency_mean,
                 latency_std,
@@ -372,8 +372,8 @@ def generate_leaderboard_csv(
                 multi_turn_long_context["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_organization,
-                MODEL_CONFIG_MAPPING[model_name_escaped].model_license,
+                MODEL_CONFIG_MAPPING[model_name_escaped].org,
+                MODEL_CONFIG_MAPPING[model_name_escaped].license,
             ]
         )
 
