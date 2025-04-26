@@ -69,11 +69,13 @@ For locally hosted models, choose one of the following backends, ensuring you ha
 If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
 
 **Using `vllm`:**
+
 ```bash
 pip install -e .[oss_eval_vllm]
 ```
 
 **Using `sglang`:**
+
 ```bash
 pip install -e .[oss_eval_sglang]
 ```
@@ -139,6 +141,45 @@ bfcl generate \
 - Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 - `--local-model-path` (optional): Point this flag at a directory that already contains the model’s files (`config.json`, tokenizer, weights, etc.). Use it only when you’ve pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
+
+Example: 如何使用本地的模型（以Hugginface下载到本地的的qwen为例）
+
+LocalQwenPath为本地Qwen路径，例如为‘/mnt/to/local/qwen
+
+1.修改berkeley-function-call-leaderboard\bfcl\model_handler\handler_map.py中添加
+
+```
+# Inference through local hosting
+local_inference_handler_map = {
+	...
+   "LocalQwenPath": QwenHandler,  # Add your Model path and Handler
+```
+
+2.修改berkeley-function-call-leaderboard\bfcl\constants\model_metadata.py
+
+```
+MODEL_METADATA_MAPPING = {
+	...
+    "LocalQwenPath": [   # Add your Model
+        "LocalQwen",
+        "LocalQwenPath",
+        "Your Information",
+        "Apache 2.0",
+    ],
+```
+
+3.运行
+
+```
+bfcl generate \
+  --model LocalQwenPath \
+  --test-category all \
+  --backend vllm \
+  --num-gpus 1 \
+  --gpu-memory-utilization 0.9
+```
+
+
 
 ##### For Pre-existing OpenAI-compatible Endpoints
 
