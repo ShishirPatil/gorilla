@@ -129,8 +129,10 @@ Regardless of mode or model type, you should implement the following methods to 
    | **`is_fc_model`**       | The handler invokes the model in its _function-calling_ mode instead of prompt-based mode.                                    |
    | **`underscore_to_dot`** | Your FC model rejects dots (`.`) in function names; set this so the dots will auto-converts to underscores during evaluation. |
 
-4. **Update `SUPPORTED_MODELS.md`:**  
-   Add your model to the list of supported models. Include the model name and type (FC or Prompt) in the table.
+4. **Update Supported Models**
+
+   1. Add your model to the list of supported models in `SUPPORTED_MODELS.md`. Include the model name and type (FC or Prompt) in the table.
+   2. Add a new entry in `bfcl/constants/supported_models.py` as well.
 
 ## Submitting Your Pull Request
 

@@ -46,6 +46,14 @@ from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHan
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 
 
+# -----------------------------------------------------------------------------
+# A mapping of model identifiers to their respective model configurations.
+# Each key corresponds to the model id passed to the `--model` argument
+# in both generation and evaluation commands.
+# Make sure to update the `supported_models.py` file as well when updating this map.
+# -----------------------------------------------------------------------------
+
+
 @dataclass
 class ModelConfig:
     """
