@@ -278,8 +278,11 @@ def main(args):
 
     for model_name in args.model:
         if model_name not in HANDLER_MAP:
-            raise ValueError(f"Unknown model name '{model_name}'. Please refer to the supported models listed in `SUPPORTED_MODELS.md`.")
-
+            raise ValueError(
+                        f"Unknown model_name '{model_name}'.\n"
+                        "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
+                        "• For running local models, please refer to `README.md`."
+                    )
     print(f"Generating results for {args.model}")
     if args.run_ids:
         print("Running specific test cases. Ignoring `--test-category` argument.")
