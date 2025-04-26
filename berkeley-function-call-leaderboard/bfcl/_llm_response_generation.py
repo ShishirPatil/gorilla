@@ -16,7 +16,7 @@ from bfcl.constants.eval_config import (
     TEST_IDS_TO_GENERATE_PATH,
 )
 from bfcl.eval_checker.eval_runner_helper import load_file
-from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import is_multi_turn, parse_test_category_argument, sort_key
 from tqdm import tqdm
@@ -64,7 +64,7 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = HANDLER_MAP[model_name](model_name, temperature)
+    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
     return handler
 
 

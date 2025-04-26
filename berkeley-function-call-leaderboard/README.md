@@ -224,7 +224,7 @@ We welcome contributions! To add a new model:
 
 1. Review `bfcl/model_handler/base_handler.py` and/or `bfcl/model_handler/local_inference/base_oss_handler.py` (if your model is hosted locally).
 2. Implement a new handler class for your model.
-3. Update `bfcl/model_handler/handler_map.py` and `bfcl/constants/model_metadata.py`.
+3. Update `bfcl/constants/model_config.py`.
 4. Submit a Pull Request.
 
 For detailed steps, please see the [Contributing Guide](./CONTRIBUTING.md).

@@ -16,49 +16,6 @@ UTILS_PATH = "./utils/"
 TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
 
 
-UNDERSCORE_TO_DOT = [
-    # TODO: Use the model style to determine this, single source of truth
-    "DeepSeek-V3-FC",
-    "gpt-4.5-preview-2025-02-27-FC",
-    "gpt-4.1-2025-04-14-FC",
-    "gpt-4.1-mini-2025-04-14-FC",
-    "gpt-4.1-nano-2025-04-14-FC",
-    "o1-2024-12-17-FC",
-    "o3-mini-2025-01-31-FC",
-    "gpt-4o-2024-11-20-FC",
-    "gpt-4o-mini-2024-07-18-FC",
-    "claude-3-opus-20240229-FC",
-    "claude-3-sonnet-20240229-FC",
-    "claude-3-5-sonnet-20240620-FC",
-    "claude-3-5-sonnet-20241022-FC",
-    "claude-3-7-sonnet-20250219-FC",
-    "claude-3-haiku-20240307-FC",
-    "claude-3-5-haiku-20241022-FC",
-    "nova-pro-v1.0",
-    "nova-lite-v1.0",
-    "nova-micro-v1.0",
-    "open-mistral-nemo-2407-FC",
-    "mistral-large-2411-FC",
-    "mistral-small-2503-FC",
-    "gemini-2.5-pro-exp-03-25-FC",
-    "gemini-2.0-flash-lite-001-FC",
-    "gemini-2.0-flash-001-FC",
-    "grok-3-beta-FC",
-    "grok-3-mini-beta-FC",
-    "meetkai/functionary-small-v3.1-FC",
-    "meetkai/functionary-small-v3.2-FC",
-    "meetkai/functionary-medium-v3.1-FC",
-    "command-r-plus-FC",
-    "command-r7b-12-2024-FC",
-    "command-a-03-2025-FC",
-    "THUDM/glm-4-9b-chat",
-    "ibm-granite/granite-20b-functioncalling",
-    "yi-large-fc",
-    "openbmb/MiniCPM3-4B-FC",
-    "qwen/qwq-32b-FC-novita",
-    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
-    "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita",
-]
 
 RED_FONT = "\033[91m"
 RESET = "\033[0m"
