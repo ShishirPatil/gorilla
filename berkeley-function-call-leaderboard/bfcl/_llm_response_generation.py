@@ -276,6 +276,10 @@ def main(args):
         all_test_entries_involved,
     ) = get_involved_test_entries(args.test_category, args.run_ids)
 
+    for model_name in args.model:
+        if model_name not in HANDLER_MAP:
+            raise ValueError(f"Unknown model name '{model_name}'. Please refer to the supported models listed in `SUPPORTED_MODELS.md`.")
+
     print(f"Generating results for {args.model}")
     if args.run_ids:
         print("Running specific test cases. Ignoring `--test-category` argument.")
