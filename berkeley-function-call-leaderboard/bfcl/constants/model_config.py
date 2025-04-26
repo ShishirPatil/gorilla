@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+from typing import Optional
+
 from bfcl.model_handler.api_inference.claude import ClaudeHandler
 from bfcl.model_handler.api_inference.cohere import CohereHandler
 from bfcl.model_handler.api_inference.databricks import DatabricksHandler
@@ -33,7 +36,6 @@ from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
-from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.phi_fc import PhiFCHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
@@ -41,32 +43,45 @@ from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
+from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 
+
+@dataclass
 class ModelConfig:
-    def __init__(
-        self,
-        model_name,
-        model_display_name,
-        model_url,
-        model_organization,
-        model_license,
-        model_handler,
-        input_price=None, # price per million token, None for local models
-        output_price=None, # price per million token, None for local models
-        is_fc_model=False,
-        underscore_to_dot=False, # if True: model name is in UNDERSCORE_TO_DOT (does not support "." in function name, replace with "_")
-    ):
-        self.model_name = model_name
-        self.model_display_name = model_display_name
-        self.model_url = model_url
-        self.model_organization = model_organization
-        self.model_license = model_license
-        self.model_handler = model_handler
-        self.input_price = input_price
-        self.output_price = output_price
-        self.is_fc_model = is_fc_model
-        self.underscore_to_dot = underscore_to_dot
+    """
+    Model configuration class for storing model metadata and settings.
 
+    Attributes:
+        model_name (str): [Not Used] Name of the model as used in the API or on Hugging Face.
+        display_name (str): Name displayed on the leaderboard.
+        url (str): Reference URL for the model or hosting service.
+        org (str): Organization providing the model.
+        license (str): License under which the model is released.
+        model_handler (str): Handler name for invoking the model.
+        input_price (Optional[float]): USD per million input tokens (None for open source models).
+        output_price (Optional[float]): USD per million output tokens (None for open source models).
+        is_fc_model (bool): True if this model is used in Function-Calling mode, otherwise False for Prompt-based mode.
+        underscore_to_dot (bool): True if model does not support '.' in function names, in which case we will replace '.' with '_'.
+
+    """
+
+    model_name: str
+    display_name: str
+    url: str
+    org: str
+    license: str
+
+    model_handler: str
+
+    # Prices are in USD per million tokens; open source models have None
+    input_price: Optional[float] = None
+    output_price: Optional[float] = None
+
+    # True if the model is in function-calling mode, False if in prompt mode
+    is_fc_model: bool = True
+
+    # True if this model does not allow '.' in function names
+    underscore_to_dot: bool = False
 
 
 MODEL_CONFIG_MAPPING = {
