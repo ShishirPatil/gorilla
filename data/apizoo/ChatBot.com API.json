@@ -1,0 +1,583 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Example request",
+        "api_call": "https://api.chatbot.com/v2/stories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{developerAccessToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Get list of chats",
+        "api_call": "https://api.chatbot.com/v2/chats",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The results are divided into pages, each containing 40 chats. To access next pages of the results, use\u00a0`?after=`\u00a0parameter."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Get single chat",
+        "api_call": "https://api.chatbot.com/v2/chats/:chatId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List all user entities",
+        "api_call": "https://api.chatbot.com/entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `id` | String | User Entity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List single user entity",
+        "api_call": "https://api.chatbot.com/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `id` | String | User Entity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Add new entity",
+        "api_call": "https://api.chatbot.com/entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"movies\",\n    \"entries\": [\n        {\n            \"synonyms\": [\n                {\n                    \"value\": \"Star Wars\"\n                },\n                {\n                    \"value\": \"SW\"\n                }\n            ],\n            \"value\": \"Star Wars\"\n        },\n        {\n            \"synonyms\": [\n                {\n                    \"value\": \"The Lord of the Rings\"\n                },\n                {\n                    \"value\": \"LOTR\"\n                },\n                {\n                    \"value\": \"The Fellowship of the Ring\"\n                }\n            ],\n            \"value\": \"The Lord of the Rings\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | String | User entity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Update entity",
+        "api_call": "https://api.chatbot.com/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"moviesEdited\",\n    \"entries\": [\n        {\n            \"synonyms\": [\n                {\n                    \"value\": \"Star Wars\"\n                },\n                {\n                    \"value\": \"SW\"\n                },\n                {\n                    \"value\": \"StarWars\"\n                }\n            ],\n            \"value\": \"Star Wars\"\n        },\n        {\n            \"synonyms\": [\n                {\n                    \"value\": \"The Lord of the Rings\"\n                },\n                {\n                    \"value\": \"LOTR\"\n                },\n                {\n                    \"value\": \"The Fellowship of the Ring\"\n                }\n            ],\n            \"value\": \"The Lord of the Rings\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | String | User entity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Delete entity",
+        "api_call": "https://api.chatbot.com/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Conversations report",
+        "api_call": "https://api.chatbot.com/reports/conversations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Paid conversations report",
+        "api_call": "https://api.chatbot.com/reports/conversations.paid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Conversations messages report",
+        "api_call": "https://api.chatbot.com/reports/conversations.messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Average conversations report",
+        "api_call": "https://api.chatbot.com/reports/conversations.avg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Busiest period report",
+        "api_call": "https://api.chatbot.com/reports/conversations.heatmap",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Interactions popularity report",
+        "api_call": "https://api.chatbot.com/reports/conversations.interactions?storyId=<your_story_id>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `from` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List all stories",
+        "api_call": "https://api.chatbot.com/v2/stories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `id` | String | Story id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List single story",
+        "api_call": "https://api.chatbot.com/v2/stories/:storyId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `id` | String | Story id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Create new story",
+        "api_call": "https://api.chatbot.com/v2/stories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Story name\",\n    \"description\": \"Story description\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | String | Story name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Update story metadata",
+        "api_call": "https://api.chatbot.com/v2/stories/:storyId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"New story name\",\n    \"description\": \"Different story description\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | String | Story name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Delete story",
+        "api_call": "https://api.chatbot.com/v2/stories/:storyId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List phrases",
+        "api_call": "https://api.chatbot.com/training",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| Property | Type | Required | Default |\n| --- | --- | --- | --- |\n| `page` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Train phrases",
+        "api_call": "https://api.chatbot.com/v2/training/train",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"storyId\":\"<your_story_id>\",\n    \"targetId\":\"<your_interaction_id>\",\n    \"items\":[\"<training_phrase_id>\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Train with custom text",
+        "api_call": "https://api.chatbot.com/v2/training/train/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"storyId\":\"<your_story_id>\",\n    \"targetId\":\"<your_interaction_id>\",\n    \"text\": \"<your_phrase>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| parameter | type |\n| --- | --- |\n| `text` | String(1, 256) |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Ignore phrases",
+        "api_call": "https://api.chatbot.com/training/ignore",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  \"<training_phrase_id>\"\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Delete phrases",
+        "api_call": "https://api.chatbot.com/training",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  \"<training_phrase_id>\"\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List all users",
+        "api_call": "https://api.chatbot.com/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `limit` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List single user",
+        "api_call": "https://api.chatbot.com/users/:userId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Create user",
+        "api_call": "https://api.chatbot.com/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"userId\": \"1234555\",\n    \"attributes\": {\n        \"default_email\": \"john@doe.com\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `userId` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Update user",
+        "api_call": "https://api.chatbot.com/users/:userId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"attributes\": {\n        \"default_email\": \"john2@doe.com\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Add user to segment",
+        "api_call": "https://api.chatbot.com/users/:userId/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\"<segment_id>\"]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n**Data Params**\n\n`String[] || Array`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Update user segments",
+        "api_call": "https://api.chatbot.com/users/:userId/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\"<segment_id>\"]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n**Data Params**\n\n`String[] || Array`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Delete user from segment",
+        "api_call": "https://api.chatbot.com/users/:userId/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\"<segment_id>\"]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n**Data Params**\n\n`String[] || Array`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Ban or unban user",
+        "api_call": "https://api.chatbot.com/users/:userId/ban",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"banned\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Export users",
+        "api_call": "https://api.chatbot.com/users/export",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `sort` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: List all segments",
+        "api_call": "https://api.chatbot.com/users/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "#### Segment object\n\n| parameter | type |\n| --- | --- |\n| `id` | String |\n| `name` | String |\n| `users`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Create segment",
+        "api_call": "https://api.chatbot.com/users/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"segmentName\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n| `name` |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Add users to segment",
+        "api_call": "https://api.chatbot.com/users/segments/members",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"segments\": [\n        \"<your_segment_id>\"\n    ],\n    \"users\": [\n        \"<your_user_id>\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### Properties\n\n| parameter | type | required |\n| --- | --- | --- |\n| `segments` | String\\[1,100\\] | required |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Update segment",
+        "api_call": "https://api.chatbot.com/users/segments/:segmentId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"segmentName\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`\n\n#### Properties\n\n| parameter | type | required | default |\n| --- | --- | --- | --- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ChatBot.com API: Remove segment",
+        "api_call": "https://api.chatbot.com/users/segments/:segmentId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### URL Params\n\n**Required:**\n\n`id=[alphanumeric]`"
+    }
+]
