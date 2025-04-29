@@ -1167,10 +1167,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=True,
     ),
-    "Qwen/Qwen2.5-0.5B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-0.5B-Instruct-FC",
-        display_name="Qwen2.5-0.5B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+    "Qwen/Qwen3-0.6B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-0.6B-FC",
+        display_name="Qwen3-0.6B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1179,10 +1179,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-0.5B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-0.5B-Instruct",
-        display_name="Qwen2.5-0.5B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+    "Qwen/Qwen3-0.6B": ModelConfig(
+        model_name="Qwen/Qwen3-0.6B",
+        display_name="Qwen3-0.6B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1191,10 +1191,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-1.5B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-1.5B-Instruct-FC",
-        display_name="Qwen2.5-1.5B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+    "Qwen/Qwen3-1.7B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-1.7B-FC",
+        display_name="Qwen3-1.7B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1203,10 +1203,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-1.5B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-1.5B-Instruct",
-        display_name="Qwen2.5-1.5B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+    "Qwen/Qwen3-1.7B": ModelConfig(
+        model_name="Qwen/Qwen3-1.7B",
+        display_name="Qwen3-1.7B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1215,10 +1215,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-3B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-3B-Instruct-FC",
-        display_name="Qwen2.5-3B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+    "Qwen/Qwen3-4B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-4B-FC",
+        display_name="Qwen3-4B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="qwen",
         model_handler=QwenFCHandler,
@@ -1227,10 +1227,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-3B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-3B-Instruct",
-        display_name="Qwen2.5-3B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+    "Qwen/Qwen3-4B": ModelConfig(
+        model_name="Qwen/Qwen3-4B",
+        display_name="Qwen3-4B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="qwen",
         model_handler=QwenHandler,
@@ -1239,10 +1239,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-7B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-7B-Instruct-FC",
-        display_name="Qwen2.5-7B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen3-8B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-8B-FC",
+        display_name="Qwen3-8B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1251,10 +1251,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-7B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-7B-Instruct",
-        display_name="Qwen2.5-7B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen3-8B": ModelConfig(
+        model_name="Qwen/Qwen3-8B",
+        display_name="Qwen3-8B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1263,10 +1263,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-14B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-14B-Instruct-FC",
-        display_name="Qwen2.5-14B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+    "Qwen/Qwen3-14B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-14B-FC",
+        display_name="Qwen3-14B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1275,10 +1275,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-14B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-14B-Instruct",
-        display_name="Qwen2.5-14B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+    "Qwen/Qwen3-14B": ModelConfig(
+        model_name="Qwen/Qwen3-14B",
+        display_name="Qwen3-14B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1287,10 +1287,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-32B-Instruct-FC": ModelConfig(
-        model_name="Qwen/Qwen2.5-32B-Instruct-FC",
-        display_name="Qwen2.5-32B-Instruct (FC)",
-        url="https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+    "Qwen/Qwen3-32B-FC": ModelConfig(
+        model_name="Qwen/Qwen3-32B-FC",
+        display_name="Qwen3-32B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1299,10 +1299,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen2.5-32B-Instruct": ModelConfig(
-        model_name="Qwen/Qwen2.5-32B-Instruct",
-        display_name="Qwen2.5-32B-Instruct (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+    "Qwen/Qwen3-32B": ModelConfig(
+        model_name="Qwen/Qwen3-32B",
+        display_name="Qwen3-32B (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1431,10 +1431,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/QwQ-32B-Preview": ModelConfig(
-        model_name="Qwen/QwQ-32B-Preview",
-        display_name="QwQ-32B-Preview (Prompt)",
-        url="https://huggingface.co/Qwen/QwQ-32B-Preview",
+    "Qwen/QwQ-32B": ModelConfig(
+        model_name="Qwen/QwQ-32B",
+        display_name="QwQ-32B (Prompt)",
+        url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,

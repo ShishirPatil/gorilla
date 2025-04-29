@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 29, 2025] [#](https://github.com/ShishirPatil/gorilla/pull/): Add the following new models to the leaderboard:
+  - `Qwen/QwQ-32B`
+  - 
 - [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
   - `gpt-4.1-2025-04-14-FC`
   - `gpt-4.1-2025-04-14`
