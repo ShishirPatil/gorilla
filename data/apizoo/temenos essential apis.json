@@ -1,0 +1,436 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Create Customer",
+        "api_call": "https://api.temenos.com/api/v5.3.0/party/customers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "apikey",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\"header\": {\r\n},\r\n\"body\": {\r\n\"displayNames\": [\r\n{\r\n\"displayName\": \"String\"\r\n} \r\n],\r\n\"customerNames\": [\r\n{\r\n\"customerName\": \"String\"\r\n}\r\n],\r\n    \"communicationDevices\": [\r\n      {\r\n        \"phoneNumber\": \"String\",\r\n        \"email\": \"String\"\r\n      }\r\n    ],\r\n\"gender\": \"String\",\r\n\"dateOfBirth\": \"****-**-**\",\r\n\"customerStatus\": \"1\",\r\n\"language\": 1,\r\n\"customerMnemonic\": \"String\",\r\n\"nationalityId\": \"String\",\r\n\"accountOfficerId\": 6,\r\n\"industryId\": 1000,\r\n\"target\": 1,\r\n\"sectorId\": 1000\r\n}\r\n}"
+            }
+        },
+        "functionality": "Create a new customer with personal information & segment"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Customer Details",
+        "api_call": "https://api.temenos.com/api/v5.3.0/party/customers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "apikey",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\"header\": {\r\n},\r\n\"body\": {\r\n\"displayNames\": [\r\n{\r\n\"displayName\": \"String\"\r\n}\r\n],\r\n\"customerNames\": [\r\n{\r\n\"customerName\": \"String\"\r\n}\r\n],\r\n\"language\": 1,\r\n\"customerStatus\": 1,\r\n\"customerMnemonic\": \"String\",\r\n\"nationalityId\": \"String\",\r\n\"accountOfficerId\": 6,\r\n\"industryId\": 1000,\r\n\"target\": 1,\r\n\"customer\": \"String\",\r\n\"sectorId\": 1000\r\n}\r\n}\r\n"
+            }
+        },
+        "functionality": "Create a new customer with personal information & segment "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Customer",
+        "api_call": "https://api.temenos.com/api/v5.3.0/party/customers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "apikey",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Create a new customer with personal information & segment "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Create Account",
+        "api_call": "https://api.temenos.com/api/v6.0.0/holdings/accounts/currentAccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\"header\": {\r\n\r\n\"override\": {\r\n\"overrideDetails\": [\r\n{\r\n\"code\": \"O-12187\",\r\n\"description\": \"Statement would get generated both on schedule date and the date defined in statement condition for CRINTEREST DRINTEREST\",\r\n\"id\": \"AA.PS.DUPLICATE.STATEMENT.GENERATE\",\r\n\"type\": \"Override\"\r\n},\r\n{\r\n\"code\": \"O-12005\",\r\n\"options\": [\r\n\"RECEIVED\",\r\n\"NOT RECEIVED\"\r\n],\r\n\"description\": \"Have you received Account Opening Agreement/AAA*212 from 100100}RECEIVED_NOT RECEIVED\",\r\n\"id\": \"DM.CONFIRM.DOC\",\r\n\"type\": \"Warning\",\r\n\"responseCode\":\"RECEIVED\"\r\n}\r\n]\r\n}\r\n},\r\n\"body\": {\r\n\"activityId\": \"ACCOUNTS-NEW-ARRANGEMENT\",\r\n\"productId\": \"CURRENT.ACCOUNT\",\r\n\"partyIds\": [\r\n{\r\n\"partyId\": \"100100\"\r\n}\r\n],\r\n\"currency\": \"USD\"\r\n}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Funds Transfer",
+        "api_call": "https://api.temenos.com/api/v1.0.1/order/transfers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "apikey",
+                    "type": "text",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\"header\": {\n},\n\"body\": {\n\"debitCurrency\": \"USD\",\n\"debitAccountId\": \"14613\",\n\"debitAmount\": 10000,\n\"transactionType\": \"AC\",\n\"creditAccountId\": \"String\"\n}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Account Details",
+        "api_call": "https://api.temenos.com/api/v4.3.0/holdings/accounts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Create Deposit Account",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/deposits/createDeposits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"body\": {\r\n    \"customerMnemonic\": \"FVPLUIF\",\r\n    \"sectorId\": \"2001\",\r\n    \"streets\": [\r\n      {\r\n        \"street\": \"STREET\"\r\n      }\r\n    ],\r\n    \"productId\": \"DEPOSIT.12M\",\r\n    \"nationalityId\": \"GB\",\r\n    \"displayNames\": [\r\n      {\r\n        \"displayName\": \"DEPOICUST\"\r\n      }\r\n    ],\r\n    \"customerNames\": [\r\n      {\r\n        \"customerName\": \"DEPOICUST\"\r\n      }\r\n    ],\r\n    \"commitment\": {\r\n      \"amount\": \"50000\",\r\n      \"term\": \"2Y\"\r\n    },\r\n    \"language\": \"1\",\r\n    \"partyRoles\": [\r\n      {\r\n        \"partyRole\": \"OWNER\"\r\n      }\r\n    ],\r\n    \"residenceId\": \"GB\",\r\n    \"settlement\": [\r\n      {\r\n        \"payout\": [\r\n          {\r\n            \"property\": [\r\n              {\r\n                \"payoutAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ],\r\n        \"assocSettlement\": [\r\n          {\r\n            \"reference\": [\r\n              {\r\n                \"payinAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ],\r\n        \"settlement\": [\r\n          {\r\n            \"reference\": [\r\n              {\r\n                \"payinAccount\": \"21067\",\r\n                \"payoutAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    \"partyIds\": [\r\n      {\r\n        \"partyId\": \"800282\"\r\n      }\r\n    ],\r\n    \"activityId\": \"DEPOSITS-NEW-ARRANGEMENT\",\r\n    \"currency\": \"USD\"\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Funds Transfer",
+        "api_call": "https://api.temenos.com/api/v1.0.1/order/transfers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "uniqueIdentifier",
+                    "type": "text",
+                    "value": "test123",
+                    "disabled": true
+                },
+                {
+                    "key": "apikey",
+                    "type": "text",
+                    "value": "{{apikey}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"header\": {    \"override\": {\n        \"overrideDetails\": [\n            {\n                \"code\": \"O-12621\",\n                \"description\": \"The rate calculated is a reference rate and not actual rate\",\n                \"id\": \"PI-SIM.OFF.FX.INVOLVE1\",\n                \"type\": \"Override\"\n            },\n            {\n                \"code\": \"O-12622\",\n                \"description\": \"Amount shown are notional\",\n                \"id\": \"PI-SIM.OFF.FX.INVOLVE2\",\n                \"type\": \"Override\"\n            }\n        ]}},\n    \"body\": {\n        \"paymentOrderProductId\": \"ACOTHER\",\n        \"debitAccountId\": \"11018\",\n        \"creditAccountId\": \"121665\",\n        \"amount\": 100,\n        \"endToEndReference\": \"Thanks for the Pizza\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Redeem Deposit Account",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/deposits/redeemDeposits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"body\": {\r\n    \"customerMnemonic\": \"FVPLUIF\",\r\n    \"sectorId\": \"2001\",\r\n    \"streets\": [\r\n      {\r\n        \"street\": \"STREET\"\r\n      }\r\n    ],\r\n    \"productId\": \"DEPOSIT.12M\",\r\n    \"nationalityId\": \"GB\",\r\n    \"displayNames\": [\r\n      {\r\n        \"displayName\": \"DEPOICUST\"\r\n      }\r\n    ],\r\n    \"customerNames\": [\r\n      {\r\n        \"customerName\": \"DEPOICUST\"\r\n      }\r\n    ],\r\n    \"commitment\": {\r\n      \"amount\": \"50000\",\r\n      \"term\": \"2Y\"\r\n    },\r\n    \"language\": \"1\",\r\n    \"partyRoles\": [\r\n      {\r\n        \"partyRole\": \"OWNER\"\r\n      }\r\n    ],\r\n    \"residenceId\": \"GB\",\r\n    \"settlement\": [\r\n      {\r\n        \"payout\": [\r\n          {\r\n            \"property\": [\r\n              {\r\n                \"payoutAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ],\r\n        \"assocSettlement\": [\r\n          {\r\n            \"reference\": [\r\n              {\r\n                \"payinAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ],\r\n        \"settlement\": [\r\n          {\r\n            \"reference\": [\r\n              {\r\n                \"payinAccount\": \"21067\",\r\n                \"payoutAccount\": \"21067\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    \"partyIds\": [\r\n      {\r\n        \"partyId\": \"800282\"\r\n      }\r\n    ],\r\n    \"activityId\": \"DEPOSITS-NEW-ARRANGEMENT\",\r\n    \"currency\": \"USD\"\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Create Personal Loan",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/loans/personalLoans",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "apikey",
+                    "type": "text",
+                    "value": "{{apikey}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"header\": {\r\n    \"override\": {\r\n      \"overrideDetails\": [\r\n        {\r\n          \"description\": \"Maturity Date is not a Working Day\",\r\n          \"id\": \"AA.MATURITY.DATE.NOT.WORKING.DAY\",\r\n          \"type\": \"Override\"\r\n        },\r\n        {\r\n          \"options\": [\r\n            \"RECEIVED\",\r\n            \"NOT RECEIVED\"\r\n          ],\r\n          \"description\": \"Have you received Loan Agreement/AAA*203 from 100336}RECEIVED_NOT RECEIVED\",\r\n          \"id\": \"DM.CONFIRM.DOC\",\r\n          \"type\": \"Warning\",\r\n          \"responseCode\": \"RECEIVED\"\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  \"body\": {\r\n    \"partyIds\": [\r\n      {\r\n        \"partyId\": \"100336\"\r\n      }\r\n    ],\r\n    \"activityId\": \"LENDING-NEW-ARRANGEMENT\",\r\n    \"arrangmentId\": \"NEW\",\r\n    \"productId\": \"PERSONAL.LOAN\",\r\n    \"commitment\": {\r\n      \"amount\": \"25000\",\r\n      \"term\": \"2Y\"\r\n    },\r\n    \"currency\": \"USD\",\r\n    \"partyRoles\": [\r\n      {\r\n        \"partyRole\": \"OWNER\"\r\n      }\r\n    ],\r\n    \"arrangementEffectiveDate\": \"20190417\"\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Create Payment Order",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/loans/personalLoans",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "apikey",
+                    "type": "text",
+                    "value": "{{apikey}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"header\": {\r\n    \"override\": {\r\n      \"overrideDetails\": [\r\n        {\r\n          \"id\": \"121665\",\r\n          \"description\": \"string\",\r\n          \"code\": \"string\",\r\n          \"responseCode\": \" NOT RECEIVED\"\r\n        }\r\n      ]\r\n    },\r\n    \"audit\": {\r\n      \"versionNumber\": \"1\"\r\n    }\r\n  },\r\n  \"body\": {\r\n    \"narratives\": [\r\n      {\r\n        \"narrative\": \"string\"\r\n      }\r\n    ],\r\n    \"additionalInformations\": [\r\n      {\r\n        \"additionalInformation\": \"none\"\r\n      }\r\n    ],\r\n    \"remittanceInformations\": [\r\n      {\r\n        \"remittanceInformation\": \"none\"\r\n      }\r\n    ],\r\n    \"beneficiaryAddresses\": [\r\n      {\r\n        \"beneficiaryAddress\": \" Avengers Road 15\"\r\n      }\r\n    ],\r\n    \"signatories\": [\r\n      {\r\n        \"signatory\": \"TStark\"\r\n      }\r\n    ],\r\n    \"invoiceReferences\": [\r\n      {\r\n        \"invoiceReference\": \"1235\"\r\n      }\r\n    ],\r\n    \"charges\": [\r\n      {\r\n        \"chargeType\": \"string\",\r\n        \"chargeName\": \"Batman\",\r\n        \"chargeCurrency\": \"USD\",\r\n        \"chargeAmount\": 19,\r\n        \"chargeAccountCurrencyAmount\": \"100,000\"\r\n      }\r\n    ],\r\n    \"overrides\": [\r\n      {\r\n        \"override\": \"string\"\r\n      }\r\n    ],\r\n    \"reasons\": [\r\n      {\r\n        \"reason\": \"string\"\r\n      }\r\n    ],\r\n    \"accountWithInstitutionAddresses\": [\r\n      {\r\n        \"accountWithInstitutionAddress\": \" Marvel City\"\r\n      }\r\n    ],\r\n    \"orderingPostAddrLine\": [\r\n      {\r\n        \"debtorAddress\": \"Gotham 356\"\r\n      }\r\n    ],\r\n    \"paymentOrderProductId\": \"string\",\r\n    \"debitAccountId\": \"string\",\r\n    \"debitAccountIBAN\": \"string\",\r\n    \"debitCurrency\": \"string\",\r\n    \"debitValueDate\": \"2019-08-24\",\r\n    \"creditAccountId\": \"string\",\r\n    \"creditAccountIBAN\": \"string\",\r\n    \"orderingCustomerId\": \"string\",\r\n    \"orderingCustomerName\": \"string\",\r\n    \"paymentCurrencyId\": \"string\",\r\n    \"amount\": 19,\r\n    \"executionDate\": \"2019-08-24\",\r\n    \"treasuryRate\": \"string\",\r\n    \"forexSpread\": \"string\",\r\n    \"forexCustomerRate\": \"string\",\r\n    \"orderingPortfolio\": \"string\",\r\n    \"creditPortfolio\": \"string\",\r\n    \"orderingReference\": \"string\",\r\n    \"chargeBearer\": \"string\",\r\n    \"beneficiaryId\": \"string\",\r\n    \"beneficiaryAccountId\": \"string\",\r\n    \"beneficiaryBIC\": \"string\",\r\n    \"beneficiaryName\": \"string\",\r\n    \"accountWithBankBIC\": \"string\",\r\n    \"beneficiaryBankClearingCode\": \"string\",\r\n    \"accountWithBankClearingCode\": \"string\",\r\n    \"clearingChannel\": \"string\",\r\n    \"structuredCreditorReference\": \"string\",\r\n    \"beneficiaryCountryCode\": \"string\",\r\n    \"beneficiaryIBAN\": \"string\",\r\n    \"accountWithBankIBAN\": \"string\",\r\n    \"requiredCreditValueDate\": \"2019-08-24\",\r\n    \"purpose\": \"string\",\r\n    \"structuredCommunicationCode\": \"string\",\r\n    \"structuredIssuer\": \"string\",\r\n    \"endToEndReference\": \"string\",\r\n    \"instructionIdReference\": \"string\",\r\n    \"termsAndConditions\": \"string\",\r\n    \"indicativeRate\": \"string\",\r\n    \"chargeAccountId\": \"string\",\r\n    \"chargeAccountCurrencyId\": \"string\",\r\n    \"creditValueDate\": \"2019-08-24\",\r\n    \"PSDCompliant\": \"string\",\r\n    \"totalDebitAmount\": \"string\",\r\n    \"localInstrumentCode\": \"string\",\r\n    \"recordStatus\": \"string\",\r\n    \"bulkReference\": \"string\",\r\n    \"bulkTypeId\": \"string\",\r\n    \"action\": \"string\",\r\n    \"cancelReason\": \"string\",\r\n    \"cancelRemark\": \"string\",\r\n    \"initiationTime\": \"string\",\r\n    \"paymentSource\": \"string\",\r\n    \"beneficiaryPhoneNumber\": \"string\",\r\n    \"beneficiaryEmailId\": \"string\",\r\n    \"accountWithBankCountryId\": \"string\",\r\n    \"exchangeRate\": \"string\",\r\n    \"accountType\": \"string\",\r\n    \"requestedAmount\": \"string\",\r\n    \"requestedCurrency\": \"string\",\r\n    \"preAuthorizationReference\": \"string\",\r\n    \"sourceType\": \"string\"\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Bill Details",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/loans/AAACT2110551DFJK7Y",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"header\": {\r\n    \"audit\": {\r\n      \"T24_time\": 386,\r\n      \"responseParse_time\": 0,\r\n      \"versionNumber\": \"string\",\r\n      \"requestParse_time\": 498\r\n    },\r\n    \"page_start\": 1,\r\n    \"total_size\": 3,\r\n    \"page_token\": \"202104159034039785.02,99\",\r\n    \"status\": \"success\",\r\n    \"page_size\": 99\r\n  },\r\n  \"body\": [\r\n    {\r\n      \"billedAmount\": \"110.00\",\r\n      \"outstandingAmount\": \"string\",\r\n      \"billType\": \"EXTERNAL\",\r\n      \"billId\": \"AABILL21105QHJC1\",\r\n      \"billStatus\": \"Issued\",\r\n      \"billDate\": \"12 APR 2021\"\r\n    }\r\n  ]\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Loan Details",
+        "api_call": "https://api.temenos.com/api/v1.0.0/holdings/loans/AAACT2110551DFJK7Y",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: Get the Customer Information",
+        "api_call": "https://api.temenos.com/api/v1.0.0/fcm/kyc/api/v1/resource/customer/information/list?customerId=190078&company=TST001&infoType=ALL",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: To compute the customer risk using risk matrix of customer's company",
+        "api_call": "https://api.temenos.com/api/v1.0.0/fcm/kyc/api/v1/computations/customer/onboard/computerisk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"assessments\": [\r\n    {\r\n      \"name\": \"Intended Products\",\r\n      \"value\": \"Loans\"\r\n    }\r\n  ],\r\n  \"cifFields\": [],\r\n  \"customerDetails\": {\r\n    \"address1\": \"1285, AVENUE OF THE AMERICAS\",\r\n    \"address2\": \"NEW YORK, NEW YORK\",\r\n    \"application\": \"GUI-SectorLinking\",\r\n    \"bankId2\": \"18001\",\r\n    \"birthCity\": \"New York\",\r\n    \"birthCountry\": \"BE\",\r\n    \"birthDate\": \"1930-01-10 00:00:00\",\r\n    \"branch\": \"GB0010001\",\r\n    \"careOf\": \"false\",\r\n    \"city\": \"New York\",\r\n    \"closed\": \"false\",\r\n    \"company\": \"GB0010001\",\r\n    \"coreData1\": \"0.5\",\r\n    \"coreData2\": \"0.5\",\r\n    \"coreData3\": \"0.5\",\r\n    \"coreData4\": \"0.5\",\r\n    \"coreData5\": \"0.5\",\r\n    \"country\": \"BE\",\r\n    \"customerId\": \"BE\",\r\n    \"firstName\": \"ROBERT GABRIEL MUGABE\",\r\n    \"fiscalCountry\": \"BE\",\r\n    \"name\": \"ROBERT GABRIEL MUGABE\",\r\n    \"natCountry\": \"BE\",\r\n    \"nationalId\": \"GE5Z4342333\",\r\n    \"occupation\": \"Consultant\",\r\n    \"passportNumber\": \"GE5Z4342333\",\r\n    \"pep\": \"false\",\r\n    \"segmentCode\": \"8899\",\r\n    \"socialSecurityNumber\": \"GE5Z4342333\",\r\n    \"ssnCountry\": \"BE\",\r\n    \"state\": \"Ohio\",\r\n    \"telephoneNumberFix\": \"+0430788888342\",\r\n    \"telephoneNumberMobile\": \"+0430788888341\",\r\n    \"title\": \"Sir\",\r\n    \"typeId\": \"T24\",\r\n    \"zipCode\": \"098799\",\r\n    \"persist\": \"false\",\r\n    \"entityType\": \"4\"\r\n  },\r\n  \"sectors\": {\r\n    \"sectorNames\": [\r\n      \"Gambling\",\r\n      \"Agriculture\",\r\n      \"Entertainment\"\r\n    ]\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: To onboard a customer and compute the risk using risk matrix",
+        "api_call": "https://api.temenos.com/api/v1.0.0/fcm/kyc/api/v1/computations/customer/calculateRisk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"assessments\": [\r\n    {\r\n      \"name\": \"Intended Products\",\r\n      \"value\": \"Loans\"\r\n    }\r\n  ],\r\n  \"cifFields\": [],\r\n  \"customerDetails\": {\r\n    \"address1\": \"1285, AVENUE OF THE AMERICAS\",\r\n    \"address2\": \"NEW YORK, NEW YORK\",\r\n    \"application\": \"GUI-SectorLinking\",\r\n    \"bankId2\": \"18001\",\r\n    \"birthCity\": \"New York\",\r\n    \"birthCountry\": \"BE\",\r\n    \"birthDate\": \"1930-01-10 00:00:00\",\r\n    \"branch\": \"GB0010001\",\r\n    \"careOf\": \"false\",\r\n    \"city\": \"New York\",\r\n    \"closed\": \"false\",\r\n    \"company\": \"GB0010001\",\r\n    \"coreData1\": \"0.5\",\r\n    \"coreData2\": \"0.5\",\r\n    \"coreData3\": \"0.5\",\r\n    \"coreData4\": \"0.5\",\r\n    \"coreData5\": \"0.5\",\r\n    \"country\": \"BE\",\r\n    \"customerId\": \"BE\",\r\n    \"firstName\": \"ROBERT GABRIEL MUGABE\",\r\n    \"fiscalCountry\": \"BE\",\r\n    \"name\": \"ROBERT GABRIEL MUGABE\",\r\n    \"natCountry\": \"BE\",\r\n    \"nationalId\": \"GE5Z4342333\",\r\n    \"occupation\": \"Consultant\",\r\n    \"passportNumber\": \"GE5Z4342333\",\r\n    \"pep\": \"false\",\r\n    \"segmentCode\": \"8899\",\r\n    \"socialSecurityNumber\": \"GE5Z4342333\",\r\n    \"ssnCountry\": \"BE\",\r\n    \"state\": \"Ohio\",\r\n    \"telephoneNumberFix\": \"+0430788888342\",\r\n    \"telephoneNumberMobile\": \"+0430788888341\",\r\n    \"title\": \"Sir\",\r\n    \"typeId\": \"T24\",\r\n    \"zipCode\": \"098799\",\r\n    \"persist\": \"false\",\r\n    \"entityType\": \"4\"\r\n  },\r\n  \"sectors\": {\r\n    \"sectorNames\": [\r\n      \"Gambling\",\r\n      \"Agriculture\",\r\n      \"Entertainment\"\r\n    ]\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "temenos essential apis: To Update Customer",
+        "api_call": "https://api.temenos.com/api/v1.0.0/fcm/kyc/api/v1/customer/190078/documents/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "apikey",
+                    "value": "{{apikey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"assessments\": [\r\n    {\r\n      \"name\": \"Intended Products\",\r\n      \"value\": \"Loans\"\r\n    }\r\n  ],\r\n  \"cifFields\": [],\r\n  \"customerDetails\": {\r\n    \"address1\": \"1285, AVENUE OF THE AMERICAS\",\r\n    \"address2\": \"NEW YORK, NEW YORK\",\r\n    \"application\": \"GUI-SectorLinking\",\r\n    \"bankId2\": \"18001\",\r\n    \"birthCity\": \"New York\",\r\n    \"birthCountry\": \"BE\",\r\n    \"birthDate\": \"1930-01-10 00:00:00\",\r\n    \"branch\": \"GB0010001\",\r\n    \"careOf\": \"false\",\r\n    \"city\": \"New York\",\r\n    \"closed\": \"false\",\r\n    \"company\": \"GB0010001\",\r\n    \"coreData1\": \"0.5\",\r\n    \"coreData2\": \"0.5\",\r\n    \"coreData3\": \"0.5\",\r\n    \"coreData4\": \"0.5\",\r\n    \"coreData5\": \"0.5\",\r\n    \"country\": \"BE\",\r\n    \"customerId\": \"BE\",\r\n    \"firstName\": \"ROBERT GABRIEL MUGABE\",\r\n    \"fiscalCountry\": \"BE\",\r\n    \"name\": \"ROBERT GABRIEL MUGABE\",\r\n    \"natCountry\": \"BE\",\r\n    \"nationalId\": \"GE5Z4342333\",\r\n    \"occupation\": \"Consultant\",\r\n    \"passportNumber\": \"GE5Z4342333\",\r\n    \"pep\": \"false\",\r\n    \"segmentCode\": \"8899\",\r\n    \"socialSecurityNumber\": \"GE5Z4342333\",\r\n    \"ssnCountry\": \"BE\",\r\n    \"state\": \"Ohio\",\r\n    \"telephoneNumberFix\": \"+0430788888342\",\r\n    \"telephoneNumberMobile\": \"+0430788888341\",\r\n    \"title\": \"Sir\",\r\n    \"typeId\": \"T24\",\r\n    \"zipCode\": \"098799\",\r\n    \"persist\": \"false\",\r\n    \"entityType\": \"4\"\r\n  },\r\n  \"sectors\": {\r\n    \"sectorNames\": [\r\n      \"Gambling\",\r\n      \"Agriculture\",\r\n      \"Entertainment\"\r\n    ]\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
