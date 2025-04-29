@@ -1,0 +1,704 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: List models",
+        "api_call": "https://api.openai.com/v1/models",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the currently available engines, and provides basic information about each one such as the owner and availability.\n\n[See More](https://beta.openai.com/docs/api-reference/engines/list)\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Retrieve model",
+        "api_call": "https://api.openai.com/v1/models/:model_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves an engine instance, providing basic information about the engine such as the owner and availability.\n\n[See More](https://beta.openai.com/docs/api-reference/engines/retrieve)\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create completion",
+        "api_call": "https://api.openai.com/v1/completions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"gpt-3.5-turbo-instruct\",\n  \"prompt\": \"Write a limmerick about APIs\",\n  \"max_tokens\": 250,\n  \"temperature\": 0.7\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a completion for the provided prompt and parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create chat message completion",
+        "api_call": "https://api.openai.com/v1/chat/completions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Who won the world series in 2020?\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"The Los Angeles Dodgers won the World Series in 2020.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"Where was it played?\"\n        }\n    ],\n    \"temperature\": 1,\n    \"top_p\": 1,\n    \"n\": 1,\n    \"stream\": false,\n    \"max_tokens\": 250,\n    \"presence_penalty\": 0,\n    \"frequency_penalty\": 0\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Analyze picture (multi-modal)",
+        "api_call": "https://api.openai.com/v1/chat/completions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"gpt-4-vision-preview\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": [\n                    {\n                        \"type\": \"text\",\n                        \"text\": \"What\u2019s in this image? Can you find Waldo in it?\"\n                    },\n                    {\n                        \"type\": \"image_url\",\n                        \"image_url\": \"https://blog.kuula.co/assets/waldo/header.png\"\n                    }\n            ]\n        }\n    ],\n    \"temperature\": 1,\n    \"top_p\": 1,\n    \"n\": 1,\n    \"stream\": false,\n    \"max_tokens\": 250,\n    \"presence_penalty\": 0,\n    \"frequency_penalty\": 0\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create edit",
+        "api_call": "https://api.openai.com/v1/edits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"text-davinci-edit-001\",\n  \"input\": \"What day of the wek is it?\",\n  \"instruction\": \"Fix the spelling mistakes\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new edit for the provided input, instruction, and parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create image",
+        "api_call": "https://api.openai.com/v1/images/generations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"prompt\": \"A cute baby sea otter\",\n  \"n\": 2,\n  \"size\": \"1024x1024\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an image given a prompt."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create image (DALL-E 3)",
+        "api_call": "https://api.openai.com/v1/images/generations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"prompt\": \"comic book style: three astronauts wearing white uniforms with orange elements are recording a new song in a collaborative jamming session\",\n  \"n\": 1,\n  \"size\": \"1024x1024\",\n  \"model\": \"dall-e-3\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an image given a prompt."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create image edit",
+        "api_call": "https://api.openai.com/v1/images/edits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "image",
+                        "description": "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.",
+                        "type": "file",
+                        "src": "sfLWMJw3y/output-onlinepngtools (1).png"
+                    },
+                    {
+                        "key": "mask",
+                        "description": "An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where image should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as image.",
+                        "type": "file",
+                        "src": "poKIrTn-l/gerenuk-removebg-preview.png"
+                    },
+                    {
+                        "key": "prompt",
+                        "value": "make the background on the moon",
+                        "description": "A text description of the desired image(s). The maximum length is 1000 characters.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "n",
+                        "value": "2",
+                        "description": "The number of images to generate. Must be between 1 and 10.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "size",
+                        "value": "1024x1024",
+                        "description": "The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "response_format",
+                        "value": "url",
+                        "description": "The format in which the generated images are returned. Must be one of url or b64_json.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "user",
+                        "value": "",
+                        "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a variation of a given image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create image variation",
+        "api_call": "https://api.openai.com/v1/images/variations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "image",
+                        "description": "The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.",
+                        "type": "file",
+                        "src": "v3VHX8Xi0/gerenuk.png"
+                    },
+                    {
+                        "key": "n",
+                        "value": "2",
+                        "description": "The number of images to generate. Must be between 1 and 10.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "size",
+                        "value": "1024x1024",
+                        "description": "The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "response_format",
+                        "value": "url",
+                        "description": "The format in which the generated images are returned. Must be one of url or b64_json.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "user",
+                        "value": "",
+                        "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a variation of a given image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create Transcription",
+        "api_call": "https://api.openai.com/v1/audio/transcriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "description": "(Required) The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n",
+                        "src": "sg656JXMR/sample.mp3"
+                    },
+                    {
+                        "key": "model",
+                        "value": "whisper-1",
+                        "type": "text",
+                        "description": "(Required) ID of the model to use. Only `whisper-1` is currently available.\n"
+                    },
+                    {
+                        "key": "prompt",
+                        "value": "Some style context for the transcription.",
+                        "type": "text",
+                        "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.\n",
+                        "disabled": true
+                    },
+                    {
+                        "key": "response_format",
+                        "value": "json",
+                        "type": "text",
+                        "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                    },
+                    {
+                        "key": "temperature",
+                        "value": "0",
+                        "type": "text",
+                        "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                    },
+                    {
+                        "key": "language",
+                        "value": "en",
+                        "type": "text",
+                        "description": "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.\n"
+                    },
+                    {
+                        "key": "transcription",
+                        "value": "srt",
+                        "description": "Choose the format for the transcription\nAllowed values:plain text, srt, vtt\nDefault value: plain text",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create Translation",
+        "api_call": "https://api.openai.com/v1/audio/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "description": "(Required) The audio file to translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.\n",
+                        "src": "zUaWKk6op/example-ja.m4a"
+                    },
+                    {
+                        "key": "model",
+                        "value": "whisper-1",
+                        "type": "text",
+                        "description": "(Required) ID of the model to use. Only `whisper-1` is currently available.\n"
+                    },
+                    {
+                        "key": "prompt",
+                        "value": "Some style context for the translation.",
+                        "type": "text",
+                        "description": "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.\n",
+                        "disabled": true
+                    },
+                    {
+                        "key": "response_format",
+                        "value": "json",
+                        "type": "text",
+                        "description": "The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.\n"
+                    },
+                    {
+                        "key": "temperature",
+                        "value": "0",
+                        "type": "text",
+                        "description": "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"
+                    },
+                    {
+                        "key": "language",
+                        "value": "ja",
+                        "description": "Language of the audio",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create Speech",
+        "api_call": "https://api.openai.com/v1/audio/speech",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"tts-1-hd\",\n    \"input\": \"OpenAI now also supports text to speech with two models: tts-1 and tts-1-hd. For real-time applications, the standard tts-1 model provides the lowest latency but at a lower quality than the tts-1-hd model. Due to the way the audio is generated, tts-1 is likely to generate content that has more static in certain situations than tts-1-hd. In some cases, the audio may not have noticeable differences depending on your listening device and the individual person. The input to generate the audio from can be up to 4096 characters. Supported voices are alloy, echo, fable, onyx, nova, and shimmer. Supported response formats are mp3, opus, aac, and flac. It is also possible to control the speed, select a value from 0.25 to 4.0. 1.0 is the default. There is no direct mechanism to control the emotional output of the audio generated. Certain factors may influence the output audio like capitalization or grammar but OpenAI's internal tests with these have yielded mixed results. Please note that OpenAI's Usage Policies require you to provide a clear disclosure to end users that the TTS voice they are hearing is AI-generated and not a human voice.\",\n    \"voice\": \"alloy\",\n    \"response_format\": \"mp3\",\n    \"speed\": \"1.1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create embeddings",
+        "api_call": "https://api.openai.com/v1/embeddings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"text-similarity-babbage-001\",\n  \"input\": \"I was looking for something interesting to write about when it came to technology...\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an embedding vector representing the input text."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Upload file",
+        "api_call": "https://api.openai.com/v1/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "description": "Name of the JSON Lines file to be uploaded.",
+                        "type": "file",
+                        "src": "hoOzENuhO/my-custom-model.jsonl"
+                    },
+                    {
+                        "key": "purpose",
+                        "value": "fine-tune",
+                        "description": "The intended purpose of the uploaded documents.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Upload a file that contains document(s) to be used across various endpoints/features. Currently, the size of all the files uploaded"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: List files",
+        "api_call": "https://api.openai.com/v1/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of files that belong to the user's organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Retrieve files",
+        "api_call": "https://api.openai.com/v1/files/:file_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Retrieve file content",
+        "api_call": "https://api.openai.com/v1/files/:file_id/content",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Delete file",
+        "api_call": "https://api.openai.com/v1/files/:file_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create fine-tune",
+        "api_call": "https://api.openai.com/v1/fine-tunes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"training_file\": \"file-vGxE9KywnSUkEL6dv9qZxKAF\",\n  \"model\": \"davinci\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a job that fine-tunes a specified model from a given dataset.\n\nModels eligble for fine tuning are: `ada`, `babbage`, `curie`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: List fine-tunes",
+        "api_call": "https://api.openai.com/v1/fine-tunes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Creates a job that fine-tunes a specified model from a given dataset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Retrieve fine-tune",
+        "api_call": "https://api.openai.com/v1/fine-tunes/:fine_tune_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Creates a job that fine-tunes a specified model from a given dataset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Cancel fine-tune",
+        "api_call": "https://api.openai.com/v1/fine-tunes/:fine_tune_id/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Creates a job that fine-tunes a specified model from a given dataset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: List fine-tune events",
+        "api_call": "https://api.openai.com/v1/fine-tunes/:fine_tune_id/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Creates a job that fine-tunes a specified model from a given dataset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Delete a fine-tuned model. You must have the Owner role in your organization.",
+        "api_call": "https://api.openai.com/v1/models/:model",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Use fine-tuned model (completion)",
+        "api_call": "https://api.openai.com/v1/completions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"davinci:ft-personal-2023-03-23-00-00-32\",\n  \"prompt\": \"Why did the chicken use AI?\",\n  \"max_tokens\": 10,\n  \"temperature\": 0.7\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Create moderation",
+        "api_call": "https://api.openai.com/v1/moderations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"input\": \"I want to kill them.\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a completion for the provided prompt and parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: List engines",
+        "api_call": "https://api.openai.com/v1/engines",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the currently available engines, and provides basic information about each one such as the owner and availability.\n\n[See More](https://beta.openai.com/docs/api-reference/engines/list)\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Retrieve engine",
+        "api_call": "https://api.openai.com/v1/engines/:engineId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves an engine instance, providing basic information about the engine such as the owner and availability.\n\n[See More](https://beta.openai.com/docs/api-reference/engines/retrieve)\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Search",
+        "api_call": "https://api.openai.com/v1/engines/:engine_id/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"query\": \"the president\",\n  \"documents\": [\n    \"mollit cillum irure\"\n  ],\n  \"file\": \"tempor deserunt of\",\n  \"max_rerank\": 200,\n  \"return_metadata\": false,\n  \"user\": \"user-1234\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The search endpoint computes similarity scores between provided query and documents. Documents can be passed directly to the API if"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenAI: Answer Question",
+        "api_call": "https://api.openai.com/v1/answers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"ipsum occaecat\",\n  \"question\": \"What is the capital of Japan?\",\n  \"examples\": [\n    [\n      \"esse\",\n      \"dolo\"\n    ]\n  ],\n  \"examples_context\": \"Ottawa, Canada's capital, is located in the east of southern Ontario, near the city of Montr\u00e9al and the U.S. border.\",\n  \"documents\": [\n    \"est in mollit nisi elit\",\n    \"consectetur exercitation quis cil\"\n  ],\n  \"file\": \"ipsum esse minim Lorem\",\n  \"search_model\": \"ada\",\n  \"max_rerank\": 200,\n  \"temperature\": 0,\n  \"logprobs\": null,\n  \"max_tokens\": 16,\n  \"stop\": \"\\n\",\n  \"n\": 1,\n  \"logit_bias\": null,\n  \"return_metadata\": false,\n  \"return_prompt\": false,\n  \"user\": \"user-1234\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Answers the specified question using the provided documents and examples.The endpoint first [searches](/docs/api-reference/searches) over provided documents or files to find"
+    }
+]
