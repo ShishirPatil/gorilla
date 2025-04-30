@@ -220,6 +220,8 @@ third_party_inference_handler_map = {
     "Qwen/Qwen2.5-7B-Instruct-Turbo-FC-together": TogetherHandler,
     "Qwen/Qwen2.5-72B-Instruct-Turbo-together": TogetherHandler,
     "Qwen/Qwen2.5-72B-Instruct-Turbo-FC-together": TogetherHandler,
+    "Qwen/Qwen3-235B-A22B-fp8-tput-together": TogetherHandler,
+    "Qwen/Qwen3-235B-A22B-fp8-tput-FC-together": TogetherHandler,
     "deepseek-ai/DeepSeek-V3-together": TogetherHandler,
     "deepseek-ai/DeepSeek-V3-FC-together": TogetherHandler,
 }

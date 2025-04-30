@@ -1116,6 +1116,18 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "qwen",
     ],
+    "Qwen/Qwen3-235B-A22B-fp8-tput-together": [
+        "Qwen3-235B-A22B (Prompt)",
+        "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+        "Qwen",
+        "qwen",
+    ],
+    "Qwen/Qwen3-235B-A22B-fp8-tput-FC-together": [
+        "Qwen3-235B-A22B (FC)",
+        "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+        "Qwen",
+        "qwen",
+    ],
     "deepseek-ai/DeepSeek-V3-together": [
         "DeepSeek-V3 (Prompt)",
         "https://api-docs.deepseek.com/news/news1226",
