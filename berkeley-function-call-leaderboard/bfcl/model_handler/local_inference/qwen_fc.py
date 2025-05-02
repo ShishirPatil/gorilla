@@ -1,7 +1,7 @@
 import json
 import re
 
-from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
+from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.utils import (
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
@@ -9,7 +9,7 @@ from bfcl.model_handler.utils import (
 from overrides import override
 
 
-class QwenFCHandler(OSSHandler):
+class QwenFCHandler(QwenHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.is_fc_model = True
@@ -124,14 +124,13 @@ class QwenFCHandler(OSSHandler):
         if len(function) > 0:
             formatted_prompt += "<|im_start|>system\n"
             if messages[0]["role"] == "system":
-                system_prompt = messages[0]["content"]
-            formatted_prompt += system_prompt
+                formatted_prompt += messages[0]["content"]
             formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
             for tool in function:
                 formatted_prompt += f"\n{json.dumps(tool, indent=4)}\n"
             formatted_prompt += '\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{"name": <function-name>, "arguments": <args-json-object>}\n</tool_call><|im_end|>\n'
         else:
-            formatted_prompt += f"<|im_start|>system\n{system_prompt}<|im_end|>\n"
+            formatted_prompt += f"<|im_start|>system\n{messages[0]['content']}<|im_end|>\n"
 
         last_query_index = len(messages) - 1
         for idx in reversed(range(len(messages))):
@@ -181,14 +180,13 @@ class QwenFCHandler(OSSHandler):
                 if idx == 0 or prev_role != "tool":
                     formatted_prompt.append("<|im_start|>user")
 
-                # TODO
                 formatted_prompt.append("\n<tool_response>\n" + message["content"] + "\n</tool_response>")
 
                 if idx == len(messages) - 1 or next_role != "tool":
                     formatted_prompt.append("<|im_end|>\n")
 
         formatted_prompt += "<|im_start|>assistant\n"
-        
+        print("formatted_prompt", formatted_prompt)
         return formatted_prompt
 
     @override
@@ -203,6 +201,7 @@ class QwenFCHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        print("api_response", api_response)
         model_responses = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_responses)
 

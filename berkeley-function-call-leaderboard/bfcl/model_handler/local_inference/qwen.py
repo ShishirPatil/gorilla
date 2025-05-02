@@ -20,3 +20,23 @@ class QwenHandler(OSSHandler):
         formatted_prompt += "<|im_start|>assistant\n"
 
         return formatted_prompt
+
+    @override
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+        model_responses = api_response.choices[0].text
+
+        # Qwen 3 series and QwQ-32B respond with <think>...</think> for reasoning
+        before_think, think_tag, after_think = model_responses.partition("</think>")
+        if think_tag:
+            reasoning_content = before_think.replace("<think>", "").strip().replace("\n", " ")
+            cleaned_response = after_think.strip()
+        else:
+            reasoning_content = ""
+            cleaned_response = model_responses.strip()
+
+        return {
+            "reasoning_content": reasoning_content,
+            "model_responses": model_responses,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
