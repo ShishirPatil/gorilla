@@ -488,7 +488,7 @@ def main(model, test_categories, result_dir, score_dir):
     if model:
         model_names = []
         for model_name in model:
-            if model_name not in HANDLER_MAP:
+            if model_name not in MODEL_CONFIG_MAPPING:
                 raise ValueError(f"Invalid model name '{model_name}'.")
             # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
             # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
