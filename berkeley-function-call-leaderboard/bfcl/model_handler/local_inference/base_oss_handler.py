@@ -121,44 +121,46 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         if not skip_server_setup:
             if backend == "vllm":
+                cmd = [
+                    "vllm",
+                    "serve",
+                    str(self.model_path_or_id),
+                    "--port",
+                    str(self.vllm_port),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tensor-parallel-size",
+                    str(num_gpus),
+                    "--gpu-memory-utilization",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ]
                 process = subprocess.Popen(
-                    [
-                        "vllm",
-                        "serve",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tensor-parallel-size",
-                        str(num_gpus),
-                        "--gpu-memory-utilization",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
+                    cmd,
                     stdout=subprocess.PIPE,  # Capture stdout
                     stderr=subprocess.PIPE,  # Capture stderr
                     text=True,  # To get the output as text instead of bytes
                 )
+                print(f"running process: {' '.join(cmd)}")
             elif backend == "sglang":
-
+                cmd = [
+                    "python",
+                    "-m",
+                    "sglang.launch_server",
+                    "--model-path",
+                    str(self.model_path_or_id),
+                    "--port",
+                    str(self.vllm_port),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tp",
+                    str(num_gpus),
+                    "--mem-fraction-static",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ]
                 process = subprocess.Popen(
-                    [
-                        "python",
-                        "-m",
-                        "sglang.launch_server",
-                        "--model-path",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tp",
-                        str(num_gpus),
-                        "--mem-fraction-static",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
+                    cmd,
                     stdout=subprocess.PIPE,  # Capture stdout
                     stderr=subprocess.PIPE,  # Capture stderr
                     text=True,  # To get the output as text instead of bytes
