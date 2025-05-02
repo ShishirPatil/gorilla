@@ -21,8 +21,8 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
-        super().__init__(model_name, temperature)
+    def __init__(self, model_name, temperature, dtype="bfloat16", dump_io_logs=False) -> None:
+        super().__init__(model_name, temperature, dump_io_logs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype

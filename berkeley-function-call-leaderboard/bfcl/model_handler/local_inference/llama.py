@@ -17,8 +17,8 @@ class LlamaHandler(OSSHandler):
     As a result, we will not have separate "prompt mode" for Llama models to avoid confusion.
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(self, model_name, temperature, dump_io_logs=False) -> None:
+        super().__init__(model_name, temperature, dump_io_logs=dump_io_logs)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override

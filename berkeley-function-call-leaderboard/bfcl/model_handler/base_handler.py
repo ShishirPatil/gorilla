@@ -1,6 +1,8 @@
 import json
 import time
 from copy import deepcopy
+from pathlib import Path
+from typing import Dict, List, Any
 
 from bfcl.constants.category_mapping import VERSION_PREFIX
 from bfcl.constants.default_prompts import (
@@ -23,7 +25,7 @@ class BaseHandler:
     model_name: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name, temperature, dump_io_logs) -> None:
         self.model_name = model_name
         # Replace the slash with underscore to avoid creating subdirectories
         # Replace the dash and dot with underscore for valid variable name
@@ -32,6 +34,62 @@ class BaseHandler:
         )
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
+        self.dump_io_logs = dump_io_logs
+        self.test_data_dir = Path("io_logs") / self.model_name_underline_replaced
+        self.test_data_dir.mkdir(parents=True, exist_ok=True)
+
+    def _save_test_data(self, test_entry: dict, model_response: Any, category: str) -> None:
+        """Save test data to JSON file."""
+        if not self.dump_io_logs:
+            return
+        
+        # Dump raw test data and model response
+        dump_data = {
+            "test_entry": test_entry,
+            "model_response": model_response
+        }
+        
+        dump_path = self.test_data_dir / f"{test_entry['id']}_raw.json"
+        with open(dump_path, 'w') as f:
+            json.dump(dump_data, f, indent=2)
+        return
+
+        # Extract test category from test_entry id
+        test_category = test_entry["id"].rsplit("_", 1)[0]
+        
+        # Create category-specific directory
+        category_dir = self.test_data_dir / test_category
+        category_dir.mkdir(exist_ok=True)
+        
+        data = {
+            "test_id": test_entry["id"],
+            "category": category,
+            "prompt": test_entry["question"][0]["content"] if "question" in test_entry else "",
+            "model_response": model_response,
+            "expected_response": test_entry.get("expected_response", ""),
+            "timestamp": time.time(),
+            "model_name": self.model_name,
+            "temperature": self.temperature
+        }
+        
+        # Determine if it's single-turn or multi-turn
+        is_multi_turn = "multi_turn" in test_entry["id"]
+        filename = "multi_turn_samples.json" if is_multi_turn else "single_turn_samples.json"
+        
+        # Load existing data or create new list
+        file_path = category_dir / filename
+        if file_path.exists():
+            with open(file_path, 'r') as f:
+                existing_data = json.load(f)
+        else:
+            existing_data = []
+        
+        # Append new data
+        existing_data.append(data)
+        
+        # Save updated data
+        with open(file_path, 'w') as f:
+            json.dump(existing_data, f, indent=2)
 
     def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         # This method is used to retrive model response for each model.
