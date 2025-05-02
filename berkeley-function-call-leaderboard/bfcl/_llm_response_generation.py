@@ -277,7 +277,7 @@ def main(args):
     ) = get_involved_test_entries(args.test_category, args.run_ids)
 
     for model_name in args.model:
-        if model_name not in HANDLER_MAP:
+        if model_name not in MODEL_CONFIG_MAPPING:
             raise ValueError(
                         f"Unknown model_name '{model_name}'.\n"
                         "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
