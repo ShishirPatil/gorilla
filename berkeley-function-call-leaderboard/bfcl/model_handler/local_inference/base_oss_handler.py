@@ -358,7 +358,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             )
         end_time = time.time()
 
-        return api_response, end_time - start_time
+        return api_response, end_time - start_time, formatted_prompt
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
