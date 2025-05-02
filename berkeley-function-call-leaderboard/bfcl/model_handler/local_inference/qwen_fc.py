@@ -127,19 +127,20 @@ class QwenFCHandler(QwenHandler):
                 formatted_prompt += messages[0]["content"]
             formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
             for tool in function:
-                formatted_prompt += f"\n{json.dumps(tool, indent=4)}\n"
+                formatted_prompt += f"\n{json.dumps(tool)}\n"
             formatted_prompt += '\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{"name": <function-name>, "arguments": <args-json-object>}\n</tool_call><|im_end|>\n'
         else:
             formatted_prompt += f"<|im_start|>system\n{messages[0]['content']}<|im_end|>\n"
 
         last_query_index = len(messages) - 1
         for idx in reversed(range(len(messages))):
-            msg = messages[idx]
-            if msg["role"] == "user" and not (msg["content"].startswith("<tool_response>") and msg["content"].endswith("</tool_response>")):
+            message = messages[idx]
+            if message["role"] == "user" and not (message["content"].startswith("<tool_response>") and message["content"].endswith("</tool_response>")):
                 last_query_index = idx
                 break
         
         for idx, message in enumerate(messages):
+            print("message", message)
             role = message["role"]
             content = message["content"]
             tool_calls = message.get(
@@ -204,6 +205,11 @@ class QwenFCHandler(QwenHandler):
         print("api_response", api_response)
         model_responses = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_responses)
+        
+        reasoning_content = ""
+        if "</think>" in model_response:
+            model_response = model_response.split("</think>")[-1]
+            reasoning_content = model_response.split("</think>")[0]
 
         if len(extracted_tool_calls) > 0:
             model_responses_message_for_chat_history = {
@@ -224,7 +230,8 @@ class QwenFCHandler(QwenHandler):
                 "content": api_response.choices[0].text,
             }
 
-        # TODO: add reasoning content
+        if reasoning_content:
+            model_responses_message_for_chat_history["reasoning_content"] = reasoning_content
 
         return {
             "model_responses": model_responses,
@@ -237,7 +244,6 @@ class QwenFCHandler(QwenHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        # TODO dive deeper
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"],
         )
@@ -248,7 +254,6 @@ class QwenFCHandler(QwenHandler):
         pattern = r"<tool_call>\n(.*?)\n</tool_call>"
         matches = re.findall(pattern, input_string, re.DOTALL)
 
-        # TODO dive deeper
         # Process matches into a list of dictionaries
         result = []
         for match in matches:
