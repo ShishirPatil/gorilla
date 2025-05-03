@@ -230,11 +230,9 @@ class QwenFCHandler(QwenHandler):
                 "content": api_response.choices[0].text,
             }
 
-        if reasoning_content:
-            model_responses_message_for_chat_history["reasoning_content"] = reasoning_content
-
         return {
             "model_responses": model_responses,
+            "reasoning_content": reasoning_content,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
