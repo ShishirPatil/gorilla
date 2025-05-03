@@ -208,8 +208,8 @@ class QwenFCHandler(QwenHandler):
         
         reasoning_content = ""
         if "</think>" in model_response:
-            model_response = model_response.split("</think>")[-1]
-            reasoning_content = model_response.split("</think>")[0]
+            reasoning_content = model_response.split("</think>")[0].split("<think>")[-1].strip()
+            model_response = model_response.split("</think>")[-1].strip()
 
         if len(extracted_tool_calls) > 0:
             model_responses_message_for_chat_history = {

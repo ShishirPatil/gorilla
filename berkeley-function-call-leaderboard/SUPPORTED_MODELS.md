@@ -105,7 +105,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Qwen3-{30B-A3B,235B-A22B}                      | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}-FC                           |
 | QwQ-32B                                        | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
 | QwQ-32B                                        | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
-| QwQ-32B                                        | Prompt           | Self-hosted 💻 | Qwen/QwQ-32B                                                |
 | Sky-T1-32B-Preview                             | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ThinkAgent-1B                                  | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |

@@ -122,7 +122,6 @@ SUPPORTED_MODELS = [
     "ZJared/Haha-7B",
     "speakleash/Bielik-11B-v2.3-Instruct",
     "NovaSky-AI/Sky-T1-32B-Preview",
-    "Qwen/QwQ-32B",
     "tiiuae/Falcon3-10B-Instruct-FC",
     "tiiuae/Falcon3-7B-Instruct-FC",
     "tiiuae/Falcon3-3B-Instruct-FC",

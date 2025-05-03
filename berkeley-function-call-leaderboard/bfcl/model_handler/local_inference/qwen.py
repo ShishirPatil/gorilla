@@ -15,58 +15,28 @@ class QwenHandler(OSSHandler):
         formatted_prompt = ""
 
         for message in messages:
-            formatted_prompt += f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
+            # Qwen 3 does not have a tool role
+            if message["role"] == "tool":
+                formatted_prompt += f"<|im_start|>assistant\n<tool_call>\n{message['name']}\n</tool_call>\n<|im_end|>\n"
+                formatted_prompt += f"<|im_start|>user\n<tool_response>\n{message['content']}\n</tool_response>\n<|im_end|>\n"
+            else: 
+                formatted_prompt += f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
 
         formatted_prompt += "<|im_start|>assistant\n"
-
         return formatted_prompt
-    
-    @override
-    def _add_execution_results_prompting(
-        self, inference_data: dict, execution_results: list[str], model_response_data: dict
-    ) -> dict:
-        tool_message = {
-            "role": "user",
-            "content": [],
-        }
-        for execution_result, decoded_model_response in zip(
-            execution_results, model_response_data["model_responses_decoded"]
-        ):
-            tool_message["content"].append(
-                {
-                    "role": "tool",
-                    "name": decoded_model_response,
-                    "content": execution_result,
-                }
-            )
-
-        inference_data["message"].append(tool_message)
-        return inference_data
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         model_response = api_response.choices[0].text
         reasoning_content = ""
         if "</think>" in model_response:
-            model_response = model_response.split("</think>")[-1]
-            reasoning_content = model_response.split("</think>")[0]
+            reasoning_content = model_response.split("</think>")[0].split("<think>")[-1].strip()
+            model_response = model_response.split("</think>")[-1].strip()
 
         return {
             "model_responses": model_response,
             "reasoning_content": reasoning_content,
-            "model_responses_message_for_chat_history": api_response.choices[0].text,
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
         }
     
-    @override
-    def _add_assistant_message_prompting(
-        self, inference_data: dict, model_response_data: dict
-    ) -> dict:
-        inference_data["message"].append(
-            {
-                "role": "assistant",
-                "content": model_response_data["model_responses_message_for_chat_history"],
-            }
-        )
-        return inference_data
