@@ -23,12 +23,16 @@ from bfcl.model_handler.api_inference.yi import YiHandler
 from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
-from bfcl.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
+from bfcl.model_handler.local_inference.deepseek_reasoning import (
+    DeepseekReasoningHandler,
+)
 from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
 from bfcl.model_handler.local_inference.glaive import GlaiveHandler
 from bfcl.model_handler.local_inference.glm import GLMHandler
-from bfcl.model_handler.local_inference.granite import GraniteHandler
+from bfcl.model_handler.local_inference.granite import GraniteFunctionCallingHandler
+from bfcl.model_handler.local_inference.granite_31 import Granite31FCHandler
+from bfcl.model_handler.local_inference.granite_31_lab import Granite31LabFCHandler
 from bfcl.model_handler.local_inference.hammer import HammerHandler
 from bfcl.model_handler.local_inference.hermes import HermesHandler
 from bfcl.model_handler.local_inference.llama import LlamaHandler
@@ -1095,13 +1099,61 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "granite-3.1-8b-lab-v1.5-deepspeed": ModelConfig(
+        model_name="/new_data/experiments_rh/granite-3.1-8b-lab-v1.5-deepspeed/hf_format/samples_561094",
+        display_name="ibm-granite-3.1-8b-lab-v1.5-deepspeed",
+        url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite31LabFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "/mnt/nvme1n1/granite-3.1-8b-lab-v1.5-fsdp/hf_format/samples_428609": ModelConfig(
+        model_name="/mnt/nvme1n1/granite-3.1-8b-lab-v1.5-fsdp/hf_format/samples_428609",
+        display_name="ibm-granite-3.1-8b-lab-v1.5-fsdp",
+        url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite31LabFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "ibm-granite/granite-3.1-8b-instruct": ModelConfig(
+        model_name="ibm-granite/granite-3.1-8b-instruct",
+        display_name="Granite-3.1-8B-Instruct (FC)",
+        url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite31FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "/mnt/nvme0n1/models/granite-3.1-8b-lab-v2": ModelConfig(
+        model_name="/mnt/nvme0n1/models/granite-3.1-8b-lab-v2",
+        display_name="Granite-3.1-8B-Lab (FC)",
+        url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+        org="Red Hat",
+        license="Apache-2.0",
+        model_handler=Granite31LabFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
     "ibm-granite/granite-20b-functioncalling": ModelConfig(
         model_name="ibm-granite/granite-20b-functioncalling",
         display_name="Granite-20b-FunctionCalling (FC)",
         url="https://huggingface.co/ibm-granite/granite-20b-functioncalling",
         org="IBM",
         license="Apache-2.0",
-        model_handler=GraniteHandler,
+        model_handler=GraniteFunctionCallingHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
