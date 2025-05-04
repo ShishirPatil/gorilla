@@ -32,10 +32,12 @@ class QwenFCHandler(QwenHandler):
         tool_calls = self.extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
             return []
-        return [
-            f"{call['name']}({', '.join(f'{k}={repr(v)}' for k, v in call['arguments'].items())})"
-            for call in calls
-        ]
+        decoded_result = []
+        for item in tool_calls:
+            if type(item) == str:
+                item = eval(item)
+            decoded_result.append({item["name"]: item["arguments"]})
+        return convert_to_function_call(decoded_result)
 
     @override
     def _format_prompt(self, messages, function):
@@ -184,12 +186,12 @@ class QwenFCHandler(QwenHandler):
                 next_role = messages[idx + 1]["role"] if idx < len(messages) - 1 else None
 
                 if idx == 0 or prev_role != "tool":
-                    formatted_prompt.append("<|im_start|>user")
+                    formatted_prompt += "<|im_start|>user"
 
-                formatted_prompt.append("\n<tool_response>\n" + message["content"] + "\n</tool_response>")
+                formatted_prompt += "\n<tool_response>\n" + message["content"] + "\n</tool_response>"
 
                 if idx == len(messages) - 1 or next_role != "tool":
-                    formatted_prompt.append("<|im_end|>\n")
+                    formatted_prompt + "<|im_end|>\n"
 
         formatted_prompt += "<|im_start|>assistant\n"
         return formatted_prompt
@@ -208,12 +210,12 @@ class QwenFCHandler(QwenHandler):
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         model_response = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_response)
-        print(f"extracted_tool_calls: {extracted_tool_calls}")
         
         reasoning_content = ""
+        cleaned_response = model_response
         if "</think>" in model_response:
             reasoning_content = model_response.split("</think>")[0].split("<think>")[-1].strip()
-            cleaned_response = model_response.split("</think>")[-1].strip()
+            cleaned_response = model_response.split("</think>")[-1].lstrip("\n")
 
         if len(extracted_tool_calls) > 0:
             model_responses_message_for_chat_history = {
@@ -221,21 +223,15 @@ class QwenFCHandler(QwenHandler):
                 "content": None,
                 "tool_calls": extracted_tool_calls,
             }
-            model_responses = []
-            for item in extracted_tool_calls:
-                # Handle the situation: ['{"name": "random_forest.train", "arguments": {"n_estimators": 100, "max_depth": 5, "data": my_data}}']
-                if type(item) == str:
-                    item = eval(item)
-                model_responses.append({item["name"]: item["arguments"]})
 
         else:
             model_responses_message_for_chat_history = {
                 "role": "assistant",
-                "content": api_response.choices[0].text,
+                "content": cleaned_response,
             }
 
         return {
-            "model_responses": cleaned_response,
+            "model_responses": model_response,
             "reasoning_content": reasoning_content,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "input_token": api_response.usage.prompt_tokens,

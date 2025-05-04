@@ -17,6 +17,8 @@ class QwenHandler(OSSHandler):
         for message in messages:
             # Qwen 3 does not have a tool role
             if message["role"] == "tool":
+                # TODO: should we parse the tool call and response as in the chat template?
+                print("tool message", message)
                 formatted_prompt += f"<|im_start|>assistant\n<tool_call>\n{message['name']}\n</tool_call>\n<|im_end|>\n"
                 formatted_prompt += f"<|im_start|>user\n<tool_response>\n{message['content']}\n</tool_response>\n<|im_end|>\n"
             else: 
