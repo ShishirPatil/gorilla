@@ -66,6 +66,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | GPT-4o-mini-2024-07-18                 | Function Calling | OpenAI         | gpt-4o-mini-2024-07-18-FC                                   |
 | GPT-4o-mini-2024-07-18                 | Prompt           | OpenAI         | gpt-4o-mini-2024-07-18                                      |
 | Granite-20b-FunctionCalling            | Function Calling | Self-hosted 💻 | ibm-granite/granite-20b-functioncalling                     |
+| Granite-3.1-8B-Instruct                | Function Calling | Self-hosted 💻 | ibm-granite/granite-3.1-8b-instruct                         |
 | Grok-3-beta                            | Function Calling | xAI            | grok-3-beta-FC                                              |
 | Grok-3-beta                            | Prompt           | xAI            | grok-3-beta                                                 |
 | Grok-3-mini-beta                       | Function Calling | xAI            | grok-3-mini-beta-FC                                         |
