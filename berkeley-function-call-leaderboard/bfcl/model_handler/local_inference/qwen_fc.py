@@ -1,7 +1,7 @@
 import json
 import re
 
-from bfcl.model_handler.local_inference.qwen import QwenHandler
+from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
@@ -9,7 +9,7 @@ from bfcl.model_handler.utils import (
 from overrides import override
 
 
-class QwenFCHandler(QwenHandler):
+class QwenFCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.is_fc_model = True
