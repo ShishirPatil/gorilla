@@ -46,6 +46,7 @@ from bfcl.model_handler.api_inference.mining import MiningHandler
 # Inference through API calls
 api_inference_handler_map = {
     "xiaoming-14B": MiningHandler,
+    "xiaoming-8B": MiningHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
     "DeepSeek-R1": DeepSeekAPIHandler,
     "DeepSeek-V3-FC": DeepSeekAPIHandler,
