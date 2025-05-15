@@ -15,3 +15,4 @@ class ModelStyle(Enum):
     COHERE = "cohere"
     WRITER = "writer"
     NOVITA_AI = "novita_ai"
+    WATSONX_AI = "watsonx_ai"
