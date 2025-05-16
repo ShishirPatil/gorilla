@@ -31,6 +31,7 @@ from bfcl.model_handler.local_inference.glm import GLMHandler
 from bfcl.model_handler.local_inference.granite import GraniteHandler
 from bfcl.model_handler.local_inference.hammer import HammerHandler
 from bfcl.model_handler.local_inference.hermes import HermesHandler
+from bfcl.model_handler.local_inference.marin import MarinHandler
 from bfcl.model_handler.local_inference.llama import LlamaHandler
 from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
@@ -898,6 +899,18 @@ local_inference_model_map = {
         org="Meta",
         license="Meta Llama 3 Community",
         model_handler=LlamaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "marin-8b-instruct": ModelConfig(
+        model_name="marin-8b-instruct",
+        display_name="Marin-8b-Instruct (Prompt)",
+        url="https://huggingface.co/marin-community/marin-8b-instruct",
+        org="Marin",
+        license="Proprietary",
+        model_handler=MarinHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
