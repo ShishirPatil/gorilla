@@ -10,7 +10,6 @@ from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
-    convert_to_function_call,
     convert_to_tool,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
@@ -117,9 +116,6 @@ class WatsonxAIHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        inference_data["message"].append(
-            model_response_data["model_responses_message_for_chat_history"]
-        )
         return inference_data
 
     def _add_execution_results_FC(
@@ -147,12 +143,18 @@ class WatsonxAIHandler(BaseHandler):
         )
 
         prediction: list[dict] | str = (
-            output.get("tool_calls", [])
+            [
+                {
+                    key: value for key, value in tool_call.items()
+                    if key not in ("id", "type")
+                }
+                for tool_call in output.get("tool_calls", [])
+            ]
             if is_tool_call
             else output.get("content", "")
         )
         tool_call_ids: Optional[list[str]] = (
-            [tool_call["id"] for tool_call in prediction]
+            [tool_call["id"] for tool_call in output.get("tool_calls", [])]
             if is_tool_call
             else None
         )
@@ -255,6 +257,21 @@ class WatsonxAIHandler(BaseHandler):
 
     def decode_execute(self, result):
         if self.is_fc_model:
-            return convert_to_function_call(result)
+            decoded_result = []
+
+            for tool_call in result:
+                func = tool_call.get("function")
+                if not func:
+                    decoded_result.append(tool_call)
+                    continue
+
+                func_name, func_args = func.values()
+                arg_str = ",".join(
+                    f"{arg_name}={repr(arg_val)}"
+                    for arg_name, arg_val in json.loads(func_args).items()
+                )
+                decoded_result.append(f"{func_name}({arg_str})")
+
+            return decoded_result
 
         default_decode_execute_prompting(result)
