@@ -44,7 +44,7 @@ from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
-
+from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1438,6 +1438,18 @@ local_inference_model_map = {
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "QwQ-32B": ModelConfig(
+        model_name="qwq-32b",
+        display_name="QwQ-32B (Prompt)",
+        url="https://huggingface.co/Qwen/QwQ-32B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAPIHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,

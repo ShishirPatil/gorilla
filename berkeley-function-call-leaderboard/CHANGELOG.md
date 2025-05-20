@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [May 20, 2025] [#1014](https://github.com/ShishirPatil/gorilla/pull/1014): Add support for API inference for `QwQ-32B`
 - [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
   - `gpt-4.1-2025-04-14-FC`
   - `gpt-4.1-2025-04-14`
