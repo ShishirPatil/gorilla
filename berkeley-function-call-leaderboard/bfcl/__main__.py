@@ -13,8 +13,8 @@ from bfcl.constants.eval_config import (
     RESULT_PATH,
     SCORE_PATH,
 )
+from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.eval_checker.eval_runner import main as evaluation_main
-from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
 
@@ -78,7 +78,7 @@ def models():
     List available models.
     """
     table = tabulate(
-        [[model] for model in HANDLER_MAP.keys()],
+        [[model] for model in MODEL_CONFIG_MAPPING.keys()],
         tablefmt="plain",
         colalign=("left",),
     )
@@ -187,9 +187,9 @@ def results(
         Returns:
             str: The original name of the model.
         """
-        if name not in HANDLER_MAP:
+        if name not in MODEL_CONFIG_MAPPING:
             candidate = name.replace("_", "/")
-            if candidate in HANDLER_MAP:
+            if candidate in MODEL_CONFIG_MAPPING:
                 return candidate
             print(f"Unknown model name: {name}")
         return name

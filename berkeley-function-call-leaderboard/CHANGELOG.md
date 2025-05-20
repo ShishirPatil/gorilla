@@ -2,6 +2,23 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
+  - `gpt-4.1-2025-04-14-FC`
+  - `gpt-4.1-2025-04-14`
+  - `gpt-4.1-mini-2025-04-14-FC`
+  - `gpt-4.1-mini-2025-04-14`
+  - `gpt-4.1-nano-2025-04-14-FC`
+  - `gpt-4.1-nano-2025-04-14`
+- [Apr 23, 2025] [#1000](https://github.com/ShishirPatil/gorilla/pull/1000): Add new model `microsoft/phi-4` to the leaderboard.
+- [Apr 23, 2025] [#967](https://github.com/ShishirPatil/gorilla/pull/967): Add the following new models to the leaderboard:
+  - `microsoft/Phi-4-mini-instruct`
+  - `microsoft/Phi-4-mini-instruct-FC`
+- [Apr 22, 2025] [#997](https://github.com/ShishirPatil/gorilla/pull/997): Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
+- [Apr 14, 2025] [#987](https://github.com/ShishirPatil/gorilla/pull/987): Add the following new models to the leaderboard:
+  - `grok-3-beta`
+  - `grok-3-beta-FC`
+  - `grok-3-mini-beta`
+  - `grok-3-mini-beta-FC`
 - [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model’s files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
 - [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)

@@ -249,3 +249,4 @@ outdated_model_handler_map = {
 }
 
 HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map, **third_party_inference_handler_map}
+

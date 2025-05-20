@@ -116,22 +116,6 @@ class DeepSeekAPIHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
-        content = api_response.choices[0].message.content
-        response_data = {
-            "model_responses": content,
-            "model_responses_message_for_chat_history": api_response.choices[0].message,
-            "input_token": api_response.usage.prompt_tokens,
-            "output_token": api_response.usage.completion_tokens,
-        }
-
-        # Include reasoning_content only if it exists
-        if hasattr(api_response.choices[0].message, "reasoning_content"):
-            response_data["reasoning_content"] = api_response.choices[0].message.reasoning_content
-            # Reasoning content should not be included in the chat history
-            # See https://api-docs.deepseek.com/guides/reasoning_model#multi-round-conversation
-            response_data["model_responses_message_for_chat_history"] = {
-                "role": "assistant",
-                "content": content,
-            }
-
+        response_data = super()._parse_query_response_prompting(api_response)
+        self._add_reasoning_content_if_available(api_response, response_data)
         return response_data
