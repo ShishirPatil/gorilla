@@ -25,7 +25,9 @@ class QwenAPIHandler(OpenAIHandler):
             messages=inference_data["message"],
             model="qwq-32b",
             stream=True,
-            stream_options={"include_usage": True}, # retrieving token usage for stream response
+            stream_options={
+                "include_usage": True
+            },  # retrieving token usage for stream response
         )
 
     @override
