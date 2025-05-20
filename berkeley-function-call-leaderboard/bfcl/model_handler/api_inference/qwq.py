@@ -12,7 +12,7 @@ class QwenAPIHandler(OpenAIHandler):
         self.model_style = ModelStyle.OpenAI
         self.chat_history = []
         self.client = OpenAI(
-            base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             api_key=os.getenv("QWEN_API_KEY"),
         )
 
