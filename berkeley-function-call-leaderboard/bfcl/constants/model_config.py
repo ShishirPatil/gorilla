@@ -1444,8 +1444,8 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "QwQ-32B": ModelConfig(
-        model_name="Qwen/QwQ-32B-API",
-        display_name="QwQ-32B-API(Prompt)",
+        model_name="qwq-32b",
+        display_name="QwQ-32B (Prompt)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
