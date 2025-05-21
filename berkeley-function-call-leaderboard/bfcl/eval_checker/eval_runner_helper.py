@@ -106,6 +106,10 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
     model_config = MODEL_CONFIG_MAPPING[model_name]
 
+    if model_config.input_price is None or model_config.output_price is None:
+        # Open source models should not have a cost or latency
+        return "N/A", "N/A", "N/A", "N/A"
+
     if (
         model_config.input_price is not None
         and len(cost_data["input_data"]) > 0
@@ -127,9 +131,6 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         mean_latency = round(mean_latency, 2)
         std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
-
-    if model_config.input_price is None or model_config.output_price is None:
-        cost = "N/A"
 
     return cost, mean_latency, std_latency, percentile_95_latency
 
