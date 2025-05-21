@@ -102,7 +102,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     leaderboard_table[model_name]["latency"]["data"].extend(latency)
 
 
-def get_cost_letency_info(model_name, cost_data, latency_data):
+def get_cost_latency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
     model_config = MODEL_CONFIG_MAPPING[model_name]
 
@@ -194,7 +194,7 @@ def generate_leaderboard_csv(
 
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
-        cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
+        cost, latency_mean, latency_std, percentile_95_latency = get_cost_latency_info(
             model_name_escaped, cost_data, latency_data
         )
 
