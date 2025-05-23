@@ -622,7 +622,7 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-        "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
+    "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
         model_name="gemini-2.5-pro-preview-05-06-FC",
         display_name="Gemini-2.5-Pro-Preview-05-06 (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
