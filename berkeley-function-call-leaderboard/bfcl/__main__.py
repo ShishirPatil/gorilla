@@ -88,14 +88,14 @@ def models():
 @cli.command()
 def generate(
     model: List[str] = typer.Option(
-        ["gorilla-openfunctions-v2"], 
+        ["gorilla-openfunctions-v2"],
         help="A list of model names to generate the llm response. Use commas to separate multiple models.",
-        callback=handle_multiple_input
+        callback=handle_multiple_input,
     ),
     test_category: List[str] = typer.Option(
-        ["all"], 
+        ["all"],
         help="A list of test categories to run the evaluation on. Use commas to separate multiple test categories.",
-        callback=handle_multiple_input
+        callback=handle_multiple_input,
     ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
@@ -224,14 +224,12 @@ def results(
 @cli.command()
 def evaluate(
     model: List[str] = typer.Option(
-        None, 
-        help="A list of model names to evaluate.",
-        callback=handle_multiple_input
+        None, help="A list of model names to evaluate.", callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
-        ["all"], 
+        ["all"],
         help="A list of test categories to run the evaluation on.",
-        callback=handle_multiple_input
+        callback=handle_multiple_input,
     ),
     result_dir: str = typer.Option(
         None,
