@@ -598,9 +598,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-pro-exp-03-25-FC": ModelConfig(
-        model_name="gemini-2.5-pro-exp-03-25-FC",
-        display_name="Gemini-2.5-Pro-Exp-03-25 (FC)",
+    "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
+        model_name="gemini-2.5-pro-preview-05-06-FC",
+        display_name="Gemini-2.5-Pro-Preview-05-06 (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
@@ -610,9 +610,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-pro-exp-03-25": ModelConfig(
-        model_name="gemini-2.5-pro-exp-03-25",
-        display_name="Gemini-2.5-Pro-Exp-03-25 (Prompt)",
+    "gemini-2.5-pro-preview-05-06": ModelConfig(
+        model_name="gemini-2.5-pro-preview-05-06",
+        display_name="Gemini-2.5-Pro-Preview-05-06 (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
