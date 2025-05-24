@@ -17,17 +17,27 @@ class QwenFCHandler(OSSHandler):
 
     @override
     def decode_ast(self, result, language="Python"):
-        # The input is already a list of dictionaries, so no need to decode
-        # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
-        if type(result) != list or any(type(item) != dict for item in result):
+        # Model response is of the form:
+        # "<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Taylor Swift\", \"duration\": 20}}\n</tool_call>\n<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Maroon 5\", \"duration\": 15}}\n</tool_call>"?
+        tool_calls = self._extract_tool_calls(result)
+        if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
             return []
-        return result
+        return [
+            {call["name"]: {k: v for k, v in call["arguments"].items()}}
+            for call in tool_calls
+        ]
 
     @override
     def decode_execute(self, result):
-        if type(result) != list or any(type(item) != dict for item in result):
+        tool_calls = self._extract_tool_calls(result)
+        if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
             return []
-        return convert_to_function_call(result)
+        decoded_result = []
+        for item in tool_calls:
+            if type(item) == str:
+                item = eval(item)
+            decoded_result.append({item["name"]: item["arguments"]})
+        return convert_to_function_call(decoded_result)
 
     @override
     def _format_prompt(self, messages, function):
@@ -35,49 +45,81 @@ class QwenFCHandler(OSSHandler):
         "chat_template":
         {%- if tools %}
             {{- '<|im_start|>system\n' }}
-            {%- if messages[0]['role'] == 'system' %}
-                {{- messages[0]['content'] }}
-            {%- else %}
-                {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}
+            {%- if messages[0].role == 'system' %}
+                {{- messages[0].content + '\n\n' }}
             {%- endif %}
-            {{- "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>" }}
+            {{- "# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>" }}
             {%- for tool in tools %}
                 {{- "\n" }}
                 {{- tool | tojson }}
             {%- endfor %}
             {{- "\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{\"name\": <function-name>, \"arguments\": <args-json-object>}\n</tool_call><|im_end|>\n" }}
         {%- else %}
-            {%- if messages[0]['role'] == 'system' %}
-                {{- '<|im_start|>system\n' + messages[0]['content'] + '<|im_end|>\n' }}
-            {%- else %}
-                {{- '<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n' }}
+            {%- if messages[0].role == 'system' %}
+                {{- '<|im_start|>system\n' + messages[0].content + '<|im_end|>\n' }}
             {%- endif %}
         {%- endif %}
+        {%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}
+        {%- for message in messages[::-1] %}
+            {%- set index = (messages|length - 1) - loop.index0 %}
+            {%- if ns.multi_step_tool and message.role == "user" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}
+                {%- set ns.multi_step_tool = false %}
+                {%- set ns.last_query_index = index %}
+            {%- endif %}
+        {%- endfor %}
         {%- for message in messages %}
-            {%- if (message.role == "user") or (message.role == "system" and not loop.first) or (message.role == "assistant" and not message.tool_calls) %}
-                {{- '<|im_start|>' + message.role + '\n' + message.content + '<|im_end|>' + '\n' }}
+            {%- if message.content is string %}
+                {%- set content = message.content %}
+            {%- else %}
+                {%- set content = '' %}
+            {%- endif %}
+            {%- if (message.role == "user") or (message.role == "system" and not loop.first) %}
+                {{- '<|im_start|>' + message.role + '\n' + content + '<|im_end|>' + '\n' }}
             {%- elif message.role == "assistant" %}
-                {{- '<|im_start|>' + message.role }}
-                {%- if message.content %}
-                    {{- '\n' + message.content }}
-                {%- endif %}
-                {%- for tool_call in message.tool_calls %}
-                    {%- if tool_call.function is defined %}
-                        {%- set tool_call = tool_call.function %}
+                {%- set reasoning_content = '' %}
+                {%- if message.reasoning_content is string %}
+                    {%- set reasoning_content = message.reasoning_content %}
+                {%- else %}
+                    {%- if '</think>' in content %}
+                        {%- set reasoning_content = content.split('</think>')[0].rstrip('\n').split('<think>')[-1].lstrip('\n') %}
+                        {%- set content = content.split('</think>')[-1].lstrip('\n') %}
                     {%- endif %}
-                    {{- '\n<tool_call>\n{"name": "' }}
-                    {{- tool_call.name }}
-                    {{- '", "arguments": ' }}
-                    {{- tool_call.arguments | tojson }}
-                    {{- '}\n</tool_call>' }}
-                {%- endfor %}
+                {%- endif %}
+                {%- if loop.index0 > ns.last_query_index %}
+                    {%- if loop.last or (not loop.last and reasoning_content) %}
+                        {{- '<|im_start|>' + message.role + '\n<think>\n' + reasoning_content.strip('\n') + '\n</think>\n\n' + content.lstrip('\n') }}
+                    {%- else %}
+                        {{- '<|im_start|>' + message.role + '\n' + content }}
+                    {%- endif %}
+                {%- else %}
+                    {{- '<|im_start|>' + message.role + '\n' + content }}
+                {%- endif %}
+                {%- if message.tool_calls %}
+                    {%- for tool_call in message.tool_calls %}
+                        {%- if (loop.first and content) or (not loop.first) %}
+                            {{- '\n' }}
+                        {%- endif %}
+                        {%- if tool_call.function %}
+                            {%- set tool_call = tool_call.function %}
+                        {%- endif %}
+                        {{- '<tool_call>\n{"name": "' }}
+                        {{- tool_call.name }}
+                        {{- '", "arguments": ' }}
+                        {%- if tool_call.arguments is string %}
+                            {{- tool_call.arguments }}
+                        {%- else %}
+                            {{- tool_call.arguments | tojson }}
+                        {%- endif %}
+                        {{- '}\n</tool_call>' }}
+                    {%- endfor %}
+                {%- endif %}
                 {{- '<|im_end|>\n' }}
             {%- elif message.role == "tool" %}
-                {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != "tool") %}
+                {%- if loop.first or (messages[loop.index0 - 1].role != "tool") %}
                     {{- '<|im_start|>user' }}
                 {%- endif %}
                 {{- '\n<tool_response>\n' }}
-                {{- message.content }}
+                {{- content }}
                 {{- '\n</tool_response>' }}
                 {%- if loop.last or (messages[loop.index0 + 1].role != "tool") %}
                     {{- '<|im_end|>\n' }}
@@ -86,60 +128,90 @@ class QwenFCHandler(OSSHandler):
         {%- endfor %}
         {%- if add_generation_prompt %}
             {{- '<|im_start|>assistant\n' }}
+            {%- if enable_thinking is defined and enable_thinking is false %}
+                {{- '<think>\n\n</think>\n\n' }}
+            {%- endif %}
         {%- endif %}
         """
         formatted_prompt = ""
 
-        if messages[0]["role"] == "system":
-            system_prompt = messages[0]["content"]
-        else:
-            system_prompt = (
-                "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
-            )
-
         if len(function) > 0:
             formatted_prompt += "<|im_start|>system\n"
-            formatted_prompt += system_prompt
-            formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
+            if messages[0]["role"] == "system":
+                formatted_prompt += messages[0]["content"] + "\n\n"
+
+            formatted_prompt += "# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
             for tool in function:
-                formatted_prompt += f"\n{json.dumps(tool, indent=4)}\n"
+                formatted_prompt += f"\n{json.dumps(tool)}"
             formatted_prompt += '\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{"name": <function-name>, "arguments": <args-json-object>}\n</tool_call><|im_end|>\n'
+
         else:
-            formatted_prompt += f"<|im_start|>system\n{system_prompt}<|im_end|>\n"
+            if messages[0]["role"] == "system":
+                formatted_prompt += (
+                    f"<|im_start|>system\n{messages[0]['content']}<|im_end|>\n"
+                )
+
+        last_query_index = len(messages) - 1
+        for offset, message in enumerate(reversed(messages)):
+            idx = len(messages) - 1 - offset
+            if (
+                message["role"] == "user"
+                and type(message["content"]) == str
+                and not (
+                    message["content"].startswith("<tool_response>")
+                    and message["content"].endswith("</tool_response>")
+                )
+            ):
+                last_query_index = idx
+                break
 
         for idx, message in enumerate(messages):
             role = message["role"]
             content = message["content"]
-            tool_calls = message.get(
-                "tool_calls", []
-            )  # tool calls is only present for assistant messages
 
-            if (
-                role == "user"
-                or (role == "system" and idx != 0)
-                or (role == "assistant" and not tool_calls)
-            ):
+            if role == "user" or (role == "system" and idx != 0):
                 formatted_prompt += f"<|im_start|>{role}\n{content}<|im_end|>\n"
+
             elif role == "assistant":
-                formatted_prompt += f"<|im_start|>{role}"
-                if content:
-                    formatted_prompt += f"\n{content}"
-                for tool_call in tool_calls:
-                    if "function" in tool_call:
-                        tool_call = tool_call["function"]
-                    tool_name = tool_call.get("name", "")
-                    arguments = tool_call.get("arguments", {})
-                    formatted_prompt += f'\n<tool_call>\n{{"name": "{tool_name}", "arguments": {json.dumps(arguments)}}}\n</tool_call>'
+                reasoning_content = ""
+                if "reasoning_content" in message and message["reasoning_content"]:
+                    reasoning_content = message["reasoning_content"]
+
+                elif "</think>" in content:
+                    parts = content.split("</think>")
+                    reasoning_content = (
+                        parts[0].rstrip("\n").split("<think>")[-1].lstrip("\n")
+                    )
+                    content = parts[-1].lstrip("\n")
+
+                if idx > last_query_index:
+                    if idx == len(messages) - 1 or reasoning_content:
+                        formatted_prompt += (
+                            f"<|im_start|>{role}\n<think>\n"
+                            + reasoning_content.strip("\n")
+                            + f"\n</think>\n\n"
+                            + content.lstrip("\n")
+                        )
+                    else:
+                        formatted_prompt += f"<|im_start|>{role}\n{content}"
+                else:
+                    formatted_prompt += f"<|im_start|>{role}\n{content}"
+
                 formatted_prompt += "<|im_end|>\n"
+
             elif role == "tool":
-                if idx == 0 or messages[idx - 1]["role"] != "tool":
+                prev_role = messages[idx - 1]["role"] if idx > 0 else None
+                next_role = messages[idx + 1]["role"] if idx < len(messages) - 1 else None
+
+                if idx == 0 or prev_role != "tool":
                     formatted_prompt += "<|im_start|>user"
+
                 formatted_prompt += f"\n<tool_response>\n{content}\n</tool_response>"
-                if idx == len(messages) - 1 or messages[idx + 1]["role"] != "tool":
-                    formatted_prompt += "<|im_end|>\n"
+
+                if idx == len(messages) - 1 or next_role != "tool":
+                    formatted_prompt + "<|im_end|>\n"
 
         formatted_prompt += "<|im_start|>assistant\n"
-
         return formatted_prompt
 
     @override
@@ -154,30 +226,32 @@ class QwenFCHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
-        model_responses = api_response.choices[0].text
-        extracted_tool_calls = self.extract_tool_calls(model_responses)
+        model_response = api_response.choices[0].text
+        extracted_tool_calls = self._extract_tool_calls(model_response)
+
+        reasoning_content = ""
+        cleaned_response = model_response
+        if "</think>" in model_response:
+            parts = model_response.split("</think>")
+            reasoning_content = parts[0].rstrip("\n").split("<think>")[-1].lstrip("\n")
+            cleaned_response = parts[-1].lstrip("\n")
 
         if len(extracted_tool_calls) > 0:
             model_responses_message_for_chat_history = {
                 "role": "assistant",
-                "content": None,
+                "content": "",
                 "tool_calls": extracted_tool_calls,
             }
-            model_responses = []
-            for item in extracted_tool_calls:
-                # Handle the situation: ['{"name": "random_forest.train", "arguments": {"n_estimators": 100, "max_depth": 5, "data": my_data}}']
-                if type(item) == str:
-                    item = eval(item)
-                model_responses.append({item["name"]: item["arguments"]})
 
         else:
             model_responses_message_for_chat_history = {
                 "role": "assistant",
-                "content": api_response.choices[0].text,
+                "content": cleaned_response,
             }
 
         return {
-            "model_responses": model_responses,
+            "model_responses": cleaned_response,
+            "reasoning_content": reasoning_content,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
@@ -193,7 +267,7 @@ class QwenFCHandler(OSSHandler):
         return inference_data
 
     @staticmethod
-    def extract_tool_calls(input_string):
+    def _extract_tool_calls(input_string):
         pattern = r"<tool_call>\n(.*?)\n</tool_call>"
         matches = re.findall(pattern, input_string, re.DOTALL)
 
