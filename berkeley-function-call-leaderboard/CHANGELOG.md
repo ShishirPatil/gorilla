@@ -2,23 +2,24 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [May 4, 2025] [#1015](https://github.com/ShishirPatil/gorilla/pull/1015): Add the following new models to the leaderboard:
- - `Qwen/Qwen3-0.6B`
- - `Qwen/Qwen3-1.7B`
- - `Qwen/Qwen3-4B`
- - `Qwen/Qwen3-8B`
- - `Qwen/Qwen3-14B`
- - `Qwen/Qwen3-32B`
- - `Qwen/Qwen3-0.6B-FC`
- - `Qwen/Qwen3-1.7B-FC`
- - `Qwen/Qwen3-4B-FC`
- - `Qwen/Qwen3-8B-FC`
- - `Qwen/Qwen3-14B-FC`
- - `Qwen/Qwen3-32B-FC`
- - `Qwen/Qwen3-30B-A3B`
- - `Qwen/Qwen3-235B-A22B`
- - `Qwen/Qwen3-30B-A3B-FC`
- - `Qwen/Qwen3-235B-A22B-FC`
+- [May 24, 2025] [#1015](https://github.com/ShishirPatil/gorilla/pull/1015): Add the following new models to the leaderboard:
+  - `Qwen/Qwen3-0.6B`
+  - `Qwen/Qwen3-0.6B-FC`
+  - `Qwen/Qwen3-1.7B`
+  - `Qwen/Qwen3-1.7B-FC`
+  - `Qwen/Qwen3-4B`
+  - `Qwen/Qwen3-4B-FC`
+  - `Qwen/Qwen3-8B`
+  - `Qwen/Qwen3-8B-FC`
+  - `Qwen/Qwen3-14B`
+  - `Qwen/Qwen3-14B-FC`
+  - `Qwen/Qwen3-32B`
+  - `Qwen/Qwen3-32B-FC`
+  - `Qwen/Qwen3-30B-A3B`
+  - `Qwen/Qwen3-30B-A3B-FC`
+  - `Qwen/Qwen3-235B-A22B`
+  - `Qwen/Qwen3-235B-A22B-FC`
+- [May 20, 2025] [#1014](https://github.com/ShishirPatil/gorilla/pull/1014): Add support for API inference for `QwQ-32B`
 - [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
   - `gpt-4.1-2025-04-14-FC`
   - `gpt-4.1-2025-04-14`

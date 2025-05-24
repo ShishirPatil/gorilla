@@ -44,7 +44,7 @@ from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
-
+from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -598,9 +598,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-pro-exp-03-25-FC": ModelConfig(
-        model_name="gemini-2.5-pro-exp-03-25-FC",
-        display_name="Gemini-2.5-Pro-Exp-03-25 (FC)",
+    "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
+        model_name="gemini-2.5-pro-preview-05-06-FC",
+        display_name="Gemini-2.5-Pro-Preview-05-06 (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
@@ -610,9 +610,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-pro-exp-03-25": ModelConfig(
-        model_name="gemini-2.5-pro-exp-03-25",
-        display_name="Gemini-2.5-Pro-Exp-03-25 (Prompt)",
+    "gemini-2.5-pro-preview-05-06": ModelConfig(
+        model_name="gemini-2.5-pro-preview-05-06",
+        display_name="Gemini-2.5-Pro-Preview-05-06 (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
@@ -1450,6 +1450,18 @@ local_inference_model_map = {
         org="NovaSky-AI",
         license="apache-2.0",
         model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "QwQ-32B": ModelConfig(
+        model_name="qwq-32b",
+        display_name="QwQ-32B (Prompt)",
+        url="https://huggingface.co/Qwen/QwQ-32B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAPIHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
