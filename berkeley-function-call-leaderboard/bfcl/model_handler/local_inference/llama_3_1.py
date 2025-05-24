@@ -14,8 +14,8 @@ class LlamaHandler_3_1(OSSHandler):
     
     For all other Llama models, see the LlamaHandler class.
     """
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(self, model_name, temperature, dump_io_logs=False) -> None:
+        super().__init__(model_name, temperature, dump_io_logs=dump_io_logs)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override

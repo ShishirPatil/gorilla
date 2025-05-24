@@ -63,10 +63,9 @@ def get_args():
     return args
 
 
-def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+def build_handler(model_name, temperature, dump_io_logs=False):
+    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature, dump_io_logs)
     return handler
-
 
 def get_involved_test_entries(test_category_args, run_ids):
     all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
@@ -220,7 +219,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 def generate_results(args, model_name, test_cases_total):
     update_mode = args.allow_overwrite
-    handler = build_handler(model_name, args.temperature)
+    handler = build_handler(model_name, args.temperature, args.dump_io_logs)
 
     if handler.model_style == ModelStyle.OSSMODEL:
         # batch_inference will handle the writing of results

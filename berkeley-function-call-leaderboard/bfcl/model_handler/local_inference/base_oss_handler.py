@@ -21,8 +21,8 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
-        super().__init__(model_name, temperature)
+    def __init__(self, model_name, temperature, dtype="bfloat16", dump_io_logs=False) -> None:
+        super().__init__(model_name, temperature, dump_io_logs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
@@ -121,44 +121,46 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         if not skip_server_setup:
             if backend == "vllm":
+                cmd = [
+                    "vllm",
+                    "serve",
+                    str(self.model_path_or_id),
+                    "--port",
+                    str(self.vllm_port),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tensor-parallel-size",
+                    str(num_gpus),
+                    "--gpu-memory-utilization",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ]
                 process = subprocess.Popen(
-                    [
-                        "vllm",
-                        "serve",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tensor-parallel-size",
-                        str(num_gpus),
-                        "--gpu-memory-utilization",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
+                    cmd,
                     stdout=subprocess.PIPE,  # Capture stdout
                     stderr=subprocess.PIPE,  # Capture stderr
                     text=True,  # To get the output as text instead of bytes
                 )
+                print(f"running process: {' '.join(cmd)}")
             elif backend == "sglang":
-
+                cmd = [
+                    "python",
+                    "-m",
+                    "sglang.launch_server",
+                    "--model-path",
+                    str(self.model_path_or_id),
+                    "--port",
+                    str(self.vllm_port),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tp",
+                    str(num_gpus),
+                    "--mem-fraction-static",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ]
                 process = subprocess.Popen(
-                    [
-                        "python",
-                        "-m",
-                        "sglang.launch_server",
-                        "--model-path",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tp",
-                        str(num_gpus),
-                        "--mem-fraction-static",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
+                    cmd,
                     stdout=subprocess.PIPE,  # Capture stdout
                     stderr=subprocess.PIPE,  # Capture stderr
                     text=True,  # To get the output as text instead of bytes
@@ -356,7 +358,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             )
         end_time = time.time()
 
-        return api_response, end_time - start_time
+        return api_response, end_time - start_time, formatted_prompt
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
