@@ -29,7 +29,7 @@ dependencies = [
     "typer>=0.12.5",
     "tabulate>=0.9.0",
     "datamodel-code-generator==0.25.7",
-    "google-cloud-aiplatform==1.84.0",
+    "google-cloud-aiplatform==1.93.1",
     "mpmath==1.3.0",
     "tenacity==9.0.0",
     "writer-sdk>=2.1.0",
@@ -47,6 +47,6 @@ include = ["bfcl*"]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
 
 [project.optional-dependencies]
-oss_eval_vllm = ["vllm==0.7.3"]
+oss_eval_vllm = ["vllm==0.8.5"]
 oss_eval_sglang = ["sglang[all]"]
 wandb = ["wandb==0.18.5"]

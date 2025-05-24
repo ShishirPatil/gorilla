@@ -45,8 +45,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Gemini-2.0-Flash-Lite-001                      | Function Calling | Google         | gemini-2.0-flash-lite-001-FC                                |
 | Gemini-2.0-Flash-Lite-001                      | Prompt           | Google         | gemini-2.0-flash-lite-001                                   |
 | Gemini-2.0-Flash-Thinking-Exp-01-21            | Prompt           | Google         | gemini-2.0-flash-thinking-exp-01-21                         |
-| Gemini-2.5-Pro-Exp-03-25                       | Function Calling | Google         | gemini-2.5-pro-exp-03-25-FC                                 |
-| Gemini-2.5-Pro-Exp-03-25                       | Prompt           | Google         | gemini-2.5-pro-exp-03-25                                    |
+| Gemini-2.5-Pro-Exp-05-06                       | Function Calling | Google         | gemini-2.5-pro-preview-05-06-FC                                 |
+| Gemini-2.5-Pro-Exp-05-06                       | Prompt           | Google         | gemini-2.5-pro-preview-05-06                                    |
 | Gemma-3-{1b,4b,12b,27b}-it                     | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
 | GLM-4-9b-Chat                                  | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                                      | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
@@ -99,11 +99,12 @@ For model names containing `{...}`, multiple versions are available. For example
 | phi-4                                          | Prompt           | Self-hosted 💻 | microsoft/phi-4                                             |
 | Phi-4-mini-instruct                            | Prompt           | Self-hosted 💻 | microsoft/Phi-4-mini-instruct                               |
 | Phi-4-mini-instruct                            | Function Calling | Self-hosted 💻 | microsoft/Phi-4-mini-instruct-FC                            |
-| Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Prompt           | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct         |
-| Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct | Function Calling | Self-hosted 💻 | Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct-FC      |
+| Qwen3-{0.6B,1.7B,4B,8B,14B,32B}                | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,4B,8B,14B,32B}                        |
+| Qwen3-{0.6B,1.7B,4B,8B,14B,32B}                | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,4B,8B,14B,32B}-FC                     |
+| Qwen3-{30B-A3B,235B-A22B}                      | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}                              |
+| Qwen3-{30B-A3B,235B-A22B}                      | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}-FC                           |
 | QwQ-32B                                        | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
 | QwQ-32B                                        | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
-| QwQ-32B-Preview                                | Prompt           | Self-hosted 💻 | Qwen/QwQ-32B-Preview                                        |
 | Sky-T1-32B-Preview                             | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct            | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ThinkAgent-1B                                  | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
