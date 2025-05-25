@@ -23,12 +23,14 @@ For model names containing `{...}`, multiple versions are available. For example
 | BitAgent-8B                                    | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
 | Claude-3-Opus-20240229                         | Function Calling | Anthropic      | claude-3-opus-20240229-FC                                   |
 | Claude-3-Opus-20240229                         | Prompt           | Anthropic      | claude-3-opus-20240229                                      |
+| Claude-Opus-4-20250514                         | Prompt           | Anthropic      | claude-opus-4-20250514                                      |
 | claude-3.5-haiku-20241022                      | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
 | claude-3.5-haiku-20241022                      | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
 | Claude-3.5-Sonnet-20241022                     | Function Calling | Anthropic      | claude-3-5-sonnet-20241022-FC                               |
 | Claude-3.5-Sonnet-20241022                     | Prompt           | Anthropic      | claude-3-5-sonnet-20241022                                  |
 | Claude-3.7-Sonnet-20250219                     | Function Calling | Anthropic      | claude-3-7-sonnet-20250219-FC                               |
 | Claude-3.7-Sonnet-20250219                     | Prompt           | Anthropic      | claude-3-7-sonnet-20250219                                  |
+| Claude-Sonnet-4-20250514                       | Prompt           | Anthropic      | claude-sonnet-4-20250514                                    |
 | CoALM-{8B, 70B, 405B}                          | Function Calling | Self-hosted 💻 | uiuc-convai/CoALM-{8B,70B,405B}                             |
 | Command A                                      | Function Calling | Cohere         | command-a-03-2025-FC                                        |
 | Command R7B                                    | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
