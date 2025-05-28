@@ -28,9 +28,9 @@ class Granite31LabFCHandler(OSSHandler):
     @override
     def _format_prompt(self, messages, function):
         """
-                "bos_token": "<|begin_of_text|>",
-                "chat_template":
-                {%- if messages[0]['role'] == 'system' %}
+        "bos_token": "<|begin_of_text|>",
+        "chat_template":
+        {%- if messages[0]['role'] == 'system' %}
             {%- set system_message = messages[0]['content'] %}
             {%- set loop_messages = messages[1:] %}
         {%- else %}
@@ -258,7 +258,33 @@ class Granite31LabFCHandler(OSSHandler):
         input_string = input_string.lstrip("ASSISTANT:")
         input_string = input_string.lstrip()
 
+        if "<|tool_call|>" not in input_string and "<tool_call>" not in input_string:
+            # if it looks like a JSON dict then it is 😉
+            try:
+                data = json.loads(input_string)
+            except json.JSONDecodeError:
+                # try to raw evaluate lol
+                try:
+                    data = eval(input_string)
+                except:
+                    # failure mode for sure
+                    return []
+                
+            # but now we just need to make sure the result is either a list or a dict
+            if type(data) not in [list, dict]:
+                return []
+            
+            result = data
+            if type(data) is dict:
+                result = [data]
+        
+            return result
+
+        # otherwise we know it's going to be one or the other
         if "<tool_call>" in input_string:
+            # sometimes the model will generate `</tool_call>`
+            if "</tool_call>" in input_string:
+                input_string = input_string.replace("</tool_call>", "")
             pattern = r"<tool_call>(.*)"
         else:
             pattern = r"<\|tool_call\|>(.*)"

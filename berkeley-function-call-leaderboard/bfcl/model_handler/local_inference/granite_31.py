@@ -180,7 +180,6 @@ class Granite31FCHandler(OSSHandler):
                 + msg["content"]
                 + "<|end_of_text|>\n"
             )
-
         return formatted_prompt
 
     # copied from phi_fc.py
@@ -258,6 +257,8 @@ class Granite31FCHandler(OSSHandler):
         input_string = input_string.lstrip()
 
         if "<tool_call>" in input_string:
+            # granite will sometimes output a </tool_call> token at the very end
+            input_string = input_string.replace("</tool_call>", "")
             pattern = r"<tool_call>(.*)"
         else:
             pattern = r"<\|tool_call\|>(.*)"

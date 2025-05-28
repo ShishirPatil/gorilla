@@ -1133,7 +1133,7 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
-        underscore_to_dot=True,
+        underscore_to_dot=False,
     ),
     "/mnt/nvme0n1/models/granite-3.1-8b-lab-v2": ModelConfig(
         model_name="/mnt/nvme0n1/models/granite-3.1-8b-lab-v2",
