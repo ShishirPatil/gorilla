@@ -720,14 +720,14 @@ api_inference_model_map = {
     ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
     model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
-    display_name="LLaMA-3.1 Nemotron Ultra 253B v1 (FC)",
+    display_name="LLaMA-3.1 Nemotron Ultra 253B v1",
     url="https://build.nvidia.com/nvidia/llama-3_1-nemotron-ultra-253b-v1/modelcard",
     org="NVIDIA",
     license="Proprietary",
     model_handler=NvidiaHandler,
     input_price=None,
     output_price=None,
-    is_fc_model=True,
+    is_fc_model=False,
     underscore_to_dot=True,
     ),
     "nvidia/nemotron-4-340b-instruct": ModelConfig(
