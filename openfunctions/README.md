@@ -212,16 +212,15 @@ def format_response(response: str):
 
 ### End to End Example
 
-First, follow the basic installation instructions in the Berkeley Function Calling Leaderboard [README](../berkeley-function-call-leaderboard/README.md#basic-installation).
-
-Make sure to additionally install the `oss_eval_vllm` or `oss_eval_sglang` dependencies, refer [this part](../berkeley-function-call-leaderboard/README.md#extra-dependencies-for-self-hosted-models)
-
-E.g. if you are using `vllm`:
+First, follow the setup instructions as follows:
 ```bash
-pip install -e .[oss_eval_vllm]
+# Create a new Conda environment with Python 3.10
+conda create -n openfunctions python=3.10
+conda activate openfunctions
+pip install -r requirements.txt
 ```
 
-Then, after activating the conda environment, run the example code in `inference_local.py` to see how the model works.
+Then, run the example code in `inference_local.py` to see how the model works.
 
 ```bash
 python inference_local.py
