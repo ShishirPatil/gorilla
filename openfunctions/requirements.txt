@@ -1,0 +1,9 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.31.0
+openai==0.28.0
+
+# Tree-sitter dependencies
+tree-sitter==0.21.3
+tree-sitter-java==0.21.0
+tree-sitter-javascript==0.21.4

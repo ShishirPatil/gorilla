@@ -1,14 +1,9 @@
 import json
 from tree_sitter import Language, Parser
+import tree_sitter_java
 
-# Load your language and initialize the parser as previously described
-from tree_sitter import Language, Parser
+JAVA_LANGUAGE = Language(tree_sitter_java.language(), "java")
 
-Language.build_library(
-    "build/tree_sitter.so",
-    ["./tree-sitter-java"],
-)
-JAVA_LANGUAGE = Language("build/tree_sitter.so", "java")
 parser = Parser()
 parser.set_language(JAVA_LANGUAGE)
 
