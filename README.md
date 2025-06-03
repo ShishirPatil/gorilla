@@ -31,7 +31,7 @@
 - 🟢 [06/06/2023] Released Commercially usable, Apache 2.0 licensed Gorilla models
 - :rocket: [05/30/2023] Provided the [CLI interface](inference/README.md) to chat with Gorilla!
 - :rocket: [05/28/2023] Released Torch Hub and TensorFlow Hub Models!
-- :rocket: [05/27/2023] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) or [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
+- :rocket: [05/27/2023] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1y78Zj7xHysX0xMpr9S468HYs12Mj6X1F?usp=sharing) or [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
 - :fire: [05/27/2023] We released the APIZoo contribution guide for community API contributions!
 - :fire: [05/25/2023] We release the APIBench dataset and the evaluation code of Gorilla!
 
@@ -59,9 +59,9 @@ Since our initial release, we've served ~500k requests and witnessed incredible 
 
 ### Quick Start
 Try Gorilla in your browser:
-- 🚀 [Gorilla Colab Demo](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing): Try the base Gorilla model
+- 🚀 [Gorilla Colab Demo](https://colab.research.google.com/drive/1y78Zj7xHysX0xMpr9S468HYs12Mj6X1F?usp=sharing): Try the base Gorilla model
 - 🌐 [Gorilla Gradio Demo](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/): Interactive web interface
-- 🔥 [OpenFunctions Colab Demo](https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing): Try the latest OpenFunctions model
+- 🔥 [OpenFunctions Colab Demo](https://colab.research.google.com/drive/1Td3_R5vPael9PnKYHcl-PxmZkZzA9TCo?usp=sharing): Try the latest OpenFunctions model
 - 🎯 [OpenFunctions Website Demo](https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer): Experiment with function calling
 - 📊 [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard): Compare function calling capabilities
 

@@ -1,7 +1,7 @@
 # Gorilla OpenFunctions
 
 💡 Comes with Parallel Function Calling!  
-🚀 Try it out on [Colab](https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing)   
+🚀 Try it out on [Colab](https://colab.research.google.com/drive/1Td3_R5vPael9PnKYHcl-PxmZkZzA9TCo?usp=sharing)   
 📣 Read more in our [OpenFunctions release blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 
 ## Introduction
