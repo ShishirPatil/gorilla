@@ -49,6 +49,8 @@ SUPPORTED_MODELS = [
     "mistral-large-2411-FC",
     "mistral-small-2503",
     "mistral-small-2503-FC",
+    "mistral-medium-2505",
+    "mistral-medium-2505-FC",
     "firefunction-v2-FC",
     "Nexusflow-Raven-v2",
     "gemini-2.0-flash-lite-001-FC",

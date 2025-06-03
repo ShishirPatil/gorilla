@@ -87,6 +87,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | mistral-large-2411                             | Prompt           | Mistral AI     | mistral-large-2411                                          |
 | Mistral-small-2503                             | Function Calling | Mistral AI     | mistral-small-2503-FC                                       |
 | Mistral-Small-2503                             | Prompt           | Mistral AI     | mistral-small-2503                                          |
+| Mistral-Medium-2505                            | Prompt           | Mistral AI     | mistral-medium-2505                                         |
+| Mistral-Medium-2505                            | Function Calling | Mistral AI     | mistral-medium-2505-FC                                      |
 | Nemotron-4-340b-instruct                       | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                             | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
 | o1-2024-12-17                                  | Function Calling | OpenAI         | o1-2024-12-17-FC                                            |

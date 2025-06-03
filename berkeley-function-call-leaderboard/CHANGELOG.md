@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [May 27, 2025] [#1040](https://github.com/ShishirPatil/gorilla/pull/1040): Add the following new models to the leaderboard:
+  - `mistral-medium-2505`
+  - `mistral-medium-2505-FC`
 - [May 24, 2025] [#1033](https://github.com/ShishirPatil/gorilla/pull/1033): Remove latency statistics for open-source models
 - [May 24, 2025] [#1015](https://github.com/ShishirPatil/gorilla/pull/1015): Add the following new models to the leaderboard:
   - `Qwen/Qwen3-0.6B`
