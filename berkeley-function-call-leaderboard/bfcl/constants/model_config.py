@@ -45,6 +45,7 @@ from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaH
 from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
+from bfcl.model_handler.api_inference.dm_cito import DMCitoHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -844,7 +845,7 @@ api_inference_model_map = {
         url="https://www.mininglamp.com/",
         org="Mininglamp",
         license="Proprietary",
-        model_handler=MiningHandler,
+        model_handler=DMCitoHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
