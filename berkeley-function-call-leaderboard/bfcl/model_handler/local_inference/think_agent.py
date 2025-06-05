@@ -38,7 +38,6 @@ class ThinkAgentHandler(OSSHandler):
 
     @override
     def _format_prompt(self, messages, function):
-        # Think agent is doing the tools_in_user_message approach
         """
         {{- bos_token }}
         {%- if custom_tools is defined %}
@@ -62,29 +61,30 @@ class ThinkAgentHandler(OSSHandler):
         {{- "Cutting Knowledge Date: December 2023" }}
         {{- "Today Date: " + date_string + "" }}
         {%- if tools is not none and not tools_in_user_message %}
-            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt." }}
-            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.' }}
-            {{- "Do not use variables." }}
-            {{- "Available tools:" }}
-            {{- tools | tojson(indent=4) }}
+            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.\n" }}
+            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}. Do not use variables.\n' }}
+            {{- "You have access to the following functions:\n" }}
+            {{- tools | tojson(indent=4) + '\n' }}
         {%- endif %}
         {{- system_message }}
         {{- "<|eot_id|>" }}
+    
         {%- if tools_in_user_message and tools|length > 0 %}
             {%- if messages | length != 0 %}
                 {%- set first_user_message = messages[0]['content']|trim %}
                 {%- set messages = messages[1:] %}
             {%- else %}
                 {{- raise_exception("Cannot put tools in the first user message when there's no first user message!") }}
+            {%- endif %}
+            {{- '<|start_header_id|>user<|end_header_id|>\n' }}
+            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.\n" }}
+            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}. Do not use variables.\n' }}
+            {{- "You have access to the following functions:\n" }}
+            {{- tools | tojson(indent=4) + '\n' }}
+            {{- first_user_message + "\n" }}
+            {{- "<|eot_id|>" }}
         {%- endif %}
-            {{- '<|start_header_id|>user<|end_header_id|>' }}
-            {{- "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt." }}
-            {{- 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.' }}
-            {{- "Do not use variables." }}
-            {{- "Available tools:" }}
-            {{- tools | tojson(indent=4) }}
-            {{- first_user_message + "<|eot_id|>"}}
-        {%- endif %}
+    
         {%- for message in messages %}
             {%- if not (message.role == 'tool' or 'tool_calls' in message) %}
                 {{- '<|start_header_id|>' + message['role'] + '<|end_header_id|>' + message['content'] | trim + '<|eot_id|>' }}
@@ -97,42 +97,43 @@ class ThinkAgentHandler(OSSHandler):
                 {{- '{"name": "' + tool_call.name + '", ' }}
                 {{- '"parameters": ' }}
                 {{- tool_call.arguments | tojson }}
-                {{- "}" }}
-                {{- "<|eot_id|>" }}
+                {{- '}<|eot_id|>' }}
             {%- endif %}
         {%- endfor %}
+    
         {%- if add_generation_prompt %}
             {{- '<|start_header_id|>assistant<|end_header_id|>' }}
         {%- endif %}
         """
-        # We first format the function signature and then add the messages
+
         tools = self._convert_functions_format(function)
-
+    
         formatted_prompt = "<|begin_of_text|>"
-
+    
         remaining_messages = messages
         if messages[0]["role"] == "system":
             remaining_messages = messages[1:]
-
+    
         formatted_prompt += "<|start_header_id|>system<|end_header_id|>"
         formatted_prompt += "Cutting Knowledge Date: December 2023"
         formatted_prompt += "Today Date: 07 Dec 2024"
         formatted_prompt += "<|eot_id|>"
-
+    
         if len(remaining_messages) > 0:
-            formatted_prompt += "<|start_header_id|>user<|end_header_id|>"
-            formatted_prompt += "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt."
-            formatted_prompt += 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}.'
-            formatted_prompt += "Do not use variables."
-            formatted_prompt += "Available tools:"
-            formatted_prompt += f"{tools}"
+            formatted_prompt += "<|start_header_id|>user<|end_header_id|>\n"
+            formatted_prompt += "Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.\n"
+            formatted_prompt += 'Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}. Do not use variables.\n'
+            formatted_prompt += "You have access to the following functions:\n"
+            formatted_prompt += f"{tools}\n"
             formatted_prompt += remaining_messages[0]["content"].strip()
+            formatted_prompt += "\n"
             formatted_prompt += "<|eot_id|>"
-
+    
         formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
+    
         return formatted_prompt
 
+        
     @override
     def decode_ast(self, result, language="Python"):
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
