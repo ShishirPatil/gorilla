@@ -1,6 +1,7 @@
 import os
 import time
-
+from google import genai
+from google.genai import types
 import vertexai
 from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl.model_handler.base_handler import BaseHandler
@@ -16,6 +17,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from google.api_core.exceptions import ResourceExhausted, TooManyRequests
+from google.genai.errors import ClientError
 from vertexai.generative_models import (
     Content,
     FunctionDeclaration,
@@ -30,12 +32,21 @@ class GeminiHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Google
-        # Initialize Vertex AI
-        vertexai.init(
-            project=os.getenv("VERTEX_AI_PROJECT_ID"),
-            location=os.getenv("VERTEX_AI_LOCATION"),
-        )
-        self.client = GenerativeModel(self.model_name.replace("-FC", ""))
+
+        if os.getenv("GOOGLE_GENAI_USE_VERTEXAI")=="false":
+            self.use_vertexai = False
+        else:
+            self.use_vertexai = True
+
+        if self.use_vertexai:
+            # Initialize Vertex AI (default option)
+            vertexai.init(
+                project=os.getenv("VERTEX_AI_PROJECT_ID"),
+                location=os.getenv("VERTEX_AI_LOCATION"),
+            )
+            self.client = GenerativeModel(self.model_name.replace("-FC", ""))
+        else:
+            self.client = genai.Client(api_key=os.getenv("GEMINI_API_Key"))
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
@@ -73,58 +84,125 @@ class GeminiHandler(BaseHandler):
             return func_call_list
 
     @retry_with_backoff(error_type=[ResourceExhausted, TooManyRequests])
-    def generate_with_backoff(self, client, **kwargs):
+    def generate_with_backoff_vertexai(self, client, **kwargs):
         start_time = time.time()
+        
         api_response = client.generate_content(**kwargs)
         end_time = time.time()
 
         return api_response, end_time - start_time
+    
+    @retry_with_backoff(error_type=[ClientError])
+    def generate_with_backoff_aiStudio(self, client, **kwargs):
+        start_time = time.time()
+        
+        # api_response = client.models.generate_content(**kwargs)
+
+        try:
+            api_response =  client.models.generate_content(**kwargs)
+        except Exception as e:
+            # print("CAUGHT EXCEPTION:", type(e), repr(e))
+            print(f"Exception type: {type(e)}")
+            print(f"Exception module: {type(e).__module__}")
+            print(f"Exception class name: {type(e).__name__}")
+            raise
+        end_time = time.time()
+
+        return api_response, end_time - start_time
+    
 
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
         # Gemini models needs to first conver the function doc to FunctionDeclaration and Tools objects.
         # We do it here to avoid json serialization issues.
-        func_declarations = []
-        for function in inference_data["tools"]:
-            func_declarations.append(
-                FunctionDeclaration(
-                    name=function["name"],
-                    description=function["description"],
-                    parameters=function["parameters"],
+        if self.use_vertexai:
+            func_declarations = []
+            for function in inference_data["tools"]:
+                func_declarations.append(
+                    FunctionDeclaration(
+                        name=function["name"],
+                        description=function["description"],
+                        parameters=function["parameters"],
+                    )
                 )
+
+            if func_declarations:
+                tools = [Tool(function_declarations=func_declarations)]
+            else:
+                tools = None
+
+            inference_data["inference_input_log"] = {
+                "message": repr(inference_data["message"]),
+                "tools": inference_data["tools"],
+                "system_prompt": inference_data.get("system_prompt", None),
+            }
+
+            # messages are already converted to Content object
+            if "system_prompt" in inference_data:
+                # We re-instantiate the GenerativeModel object with the system prompt
+                # We cannot reassign the self.client object as it will affect other entries
+                client = GenerativeModel(
+                    self.model_name.replace("-FC", ""),
+                    system_instruction=inference_data["system_prompt"],
+                )
+            else:
+                client = self.client
+
+            return self.generate_with_backoff_vertexai(
+                client=client,
+                contents=inference_data["message"],
+                generation_config=GenerationConfig(
+                    temperature=self.temperature,
+                ),
+                tools=tools,
             )
-
-        if func_declarations:
-            tools = [Tool(function_declarations=func_declarations)]
         else:
-            tools = None
+            func_declarations = []
+            for function in inference_data["tools"]:
+                func_declarations.append(
+                    types.FunctionDeclaration(
+                        name=function["name"],
+                        description=function["description"],
+                        parameters=function["parameters"],
+                    )
+                )
+            
+            if func_declarations:
+                tools = types.Tool(function_declarations=func_declarations)
+            else:
+                tools = None
 
-        inference_data["inference_input_log"] = {
-            "message": repr(inference_data["message"]),
-            "tools": inference_data["tools"],
-            "system_prompt": inference_data.get("system_prompt", None),
-        }
+            
+            inference_data["inference_input_log"] = {
+                "message": repr(inference_data["message"]),
+                "tools": inference_data["tools"],
+                "system_prompt": inference_data.get("system_prompt", None),
+            }
 
-        # messages are already converted to Content object
-        if "system_prompt" in inference_data:
-            # We re-instantiate the GenerativeModel object with the system prompt
-            # We cannot reassign the self.client object as it will affect other entries
-            client = GenerativeModel(
-                self.model_name.replace("-FC", ""),
-                system_instruction=inference_data["system_prompt"],
-            )
-        else:
-            client = self.client
-
-        return self.generate_with_backoff(
-            client=client,
-            contents=inference_data["message"],
-            generation_config=GenerationConfig(
-                temperature=self.temperature,
-            ),
-            tools=tools,
-        )
+            if "system_prompt" in inference_data:
+                return self.generate_with_backoff_aiStudio(
+                    client=self.client,
+                    model=self.model_name.replace("-FC", ""),
+                    contents=inference_data["message"],
+                    config=types.GenerateContentConfig(
+                        temperature=self.temperature,
+                        system_instruction=inference_data["system_prompt"],
+                        tools=[tools],
+                    ),
+                    
+                )
+            else:
+                return self.generate_with_backoff_aiStudio(
+                    client=self.client,
+                    model=self.model_name.replace("-FC", ""),
+                    contents=inference_data["message"],
+                    config=types.GenerateContentConfig(
+                        temperature=self.temperature,
+                        tools=[tools],
+                    ),
+                    
+                )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
 
@@ -138,6 +216,7 @@ class GeminiHandler(BaseHandler):
         system_prompt = extract_system_prompt(test_entry["question"][0])
         if system_prompt:
             inference_data["system_prompt"] = system_prompt
+
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
@@ -175,12 +254,20 @@ class GeminiHandler(BaseHandler):
                 else:
                     text_parts.append(part.text)
         else:
-            response_function_call_content = Content(
-                role="model",
-                parts=[
-                    Part.from_text("The model did not return any response."),
-                ],
-            )
+            if self.use_vertexai:
+                response_function_call_content = Content(
+                    role="model",
+                    parts=[
+                        Part.from_text("The model did not return any response."),
+                    ],
+                )
+            else:
+                response_function_call_content = types.Content(
+                    role="model",
+                    parts=[
+                        types.Part(text="The model did not return any response."),
+                    ],
+                )
 
         model_responses = fc_parts if fc_parts else text_parts
 
@@ -195,15 +282,26 @@ class GeminiHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        
         for message in first_turn_message:
-            inference_data["message"].append(
-                Content(
-                    role=message["role"],
-                    parts=[
-                        Part.from_text(message["content"]),
-                    ],
+            if self.use_vertexai:
+                inference_data["message"].append(
+                    Content(
+                        role=message["role"],
+                        parts=[
+                            Part.from_text(message["content"]),
+                        ],
+                    )
                 )
-            )
+            else:
+                inference_data["message"].append(
+                    types.Content(
+                        role=message["role"],
+                        parts=[
+                            types.Part(text=message["content"]),
+                        ],
+                    )
+                )
         return inference_data
 
     def _add_next_turn_user_message_FC(
@@ -231,16 +329,28 @@ class GeminiHandler(BaseHandler):
         for execution_result, tool_call_func_name in zip(
             execution_results, model_response_data["tool_call_func_names"]
         ):
-            tool_response_parts.append(
-                Part.from_function_response(
-                    name=tool_call_func_name,
-                    response={
-                        "content": execution_result,
-                    },
+            if self.use_vertexai:
+                tool_response_parts.append(
+                    Part.from_function_response(
+                        name=tool_call_func_name,
+                        response={
+                            "content": execution_result,
+                        },
+                    )
                 )
-            )
-
-        tool_response_content = Content(parts=tool_response_parts)
+            else:
+                tool_response_parts.append(
+                    types.Part.from_function_response(
+                        name=tool_call_func_name,
+                        response={
+                            "content": execution_result,
+                        },
+                    )
+                )
+        if self.use_vertexai:
+            tool_response_content = Content(parts=tool_response_parts)
+        else:
+            tool_response_content = types.Content(parts=tool_response_parts)
         inference_data["message"].append(tool_response_content)
 
         return inference_data
@@ -252,22 +362,44 @@ class GeminiHandler(BaseHandler):
             "message": repr(inference_data["message"]),
             "system_prompt": inference_data.get("system_prompt", None),
         }
+        if self.use_vertexai:
+            # messages are already converted to Content object
+            if "system_prompt" in inference_data:
+                client = GenerativeModel(
+                    self.model_name.replace("-FC", ""),
+                    system_instruction=inference_data["system_prompt"],
+                )
+            else:
+                client = self.client
 
-        # messages are already converted to Content object
-        if "system_prompt" in inference_data:
-            client = GenerativeModel(
-                self.model_name.replace("-FC", ""),
-                system_instruction=inference_data["system_prompt"],
+            api_response = self.generate_with_backoff_vertexai(
+                client=client,
+                contents=inference_data["message"],
+                generation_config=GenerationConfig(
+                    temperature=self.temperature,
+                ),
             )
+
         else:
-            client = self.client
-        api_response = self.generate_with_backoff(
-            client=client,
-            contents=inference_data["message"],
-            generation_config=GenerationConfig(
-                temperature=self.temperature,
-            ),
-        )
+            if "system_prompt" in inference_data:
+                api_response = self.generate_with_backoff_aiStudio(
+                    client=self.client,
+                    model=self.model_name.replace("-FC", ""),
+                    contents=inference_data["message"],
+                    config=types.GenerateContentConfig(
+                        temperature=self.temperature,
+                        system_instruction=inference_data["system_prompt"],
+                    ),
+                )
+            else:
+                api_response = self.generate_with_backoff_aiStudio(
+                    client=self.client,
+                    model=self.model_name.replace("-FC", ""),
+                    contents=inference_data["message"],
+                    config=types.GenerateContentConfig(
+                        temperature=self.temperature
+                    ),
+                )
         return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
@@ -310,14 +442,24 @@ class GeminiHandler(BaseHandler):
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         for message in first_turn_message:
-            inference_data["message"].append(
-                Content(
-                    role=message["role"],
-                    parts=[
-                        Part.from_text(message["content"]),
-                    ],
+            if self.use_vertexai:
+                inference_data["message"].append(
+                    Content(
+                        role=message["role"],
+                        parts=[
+                            Part.from_text(message["content"]),
+                        ],
+                    )
                 )
-            )
+            else:
+                inference_data["message"].append(
+                    types.Content(
+                        role=message["role"],
+                        parts=[
+                            types.Part(text=message["content"]),
+                        ],
+                    )
+                )
         return inference_data
 
     def _add_next_turn_user_message_prompting(
@@ -328,14 +470,24 @@ class GeminiHandler(BaseHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        inference_data["message"].append(
-            Content(
-                role="model",
-                parts=[
-                    Part.from_text(model_response_data["model_responses"]),
-                ],
+        if self.use_vertexai:
+            inference_data["message"].append(
+                Content(
+                    role="model",
+                    parts=[
+                        Part.from_text(model_response_data["model_responses"]),
+                    ],
+                )
             )
-        )
+        else:
+            inference_data["message"].append(
+                types.Content(
+                    role="model",
+                    parts=[
+                        types.Part(text=model_response_data["model_responses"]),
+                    ]
+                )
+            )
         return inference_data
 
     def _add_execution_results_prompting(
@@ -344,11 +496,19 @@ class GeminiHandler(BaseHandler):
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )
-        tool_message = Content(
-            role="user",
-            parts=[
-                Part.from_text(formatted_results_message),
-            ],
-        )
+        if self.use_vertexai:
+            tool_message = Content(
+                role="user",
+                parts=[
+                    Part.from_text(formatted_results_message),
+                ],
+            )
+        else:
+            tool_message = types.Content(
+                role="user",
+                parts=[
+                    types.Part(text=formatted_results_message),
+                ],
+            )
         inference_data["message"].append(tool_message)
         return inference_data

@@ -4,6 +4,7 @@ import copy
 import json
 import operator
 import re
+import os
 from functools import reduce
 from typing import Callable, List, Optional, Type, Union
 
@@ -142,6 +143,11 @@ def convert_to_tool(functions, mapping, model_style):
                 ):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
+
+                # Gemini with Genai library doesn't support propoerties with format "date"
+                if model_style == ModelStyle.Google and os.getenv("GOOGLE_GENAI_USE_VERTEXAI")=="false" and "format" in params:
+                    if "date" == params["format"]:
+                        params["format"]="date-time"
 
         # Process the return field
         if "response" in item:
