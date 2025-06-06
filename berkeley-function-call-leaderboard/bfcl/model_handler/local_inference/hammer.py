@@ -29,11 +29,14 @@ The example format is as follows. Please make sure the parameter type is correct
 
 
 class HammerHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the Hammer model that specializes in processing tool/function calls. It formats prompts, decodes model outputs into function calls, and handles pre-processing of queries for tool invocation scenarios.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: dict | list[dict]) -> str:
         """
         "chat_template": "{%- set system_message = 'You are a helpful assistant.' %}\n{%- if messages[0]['role'] == 'system' %}\n    {%- set system_message = messages[0]['content'] %}\n    {%- if messages[1]['role'] == 'system' %}\n        {%- set format_message = messages[1]['content'] %}\n        {%- set loop_messages = messages[2:] %}\n    {%- else %}\n        {%- set loop_messages = messages[1:] %}\n    {%- endif %}\n{%- else %}\n    {%- set loop_messages = messages %}\n{%- endif %}\n{%- if not tools is defined %}\n    {%- set tools = none %}\n{%- endif %}\n{%- if system_message is defined %}\n{{- '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}\n{%- endif %}\n\n\n{%- if tools is not none %}\n{% set task_instruction %}You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:\n1. Make one or more function/tool calls to meet the request based on the question.\n2. If none of the function can be used, point it out and refuse to answer.\n3. If the given question lacks the parameters required by the function, also point it out.\n\nThe following are characters that may interact with you\n1. user: Provides query or additional information.\n2. tool: Returns the results of the tool calling.\n{% endset %}\n\n{% set format_instruction %}\nThe output MUST strictly adhere to the following JSON format, and NO other text MUST be included.\nThe example format is as follows. Please make sure the parameter type is correct. If no function call is needed, please directly output an empty list '[]'\n```\n[\n    {\"name\": \"func_name1\", \"arguments\": {\"argument1\": \"value1\", \"argument2\": \"value2\"}},\n    ... (more tool calls as required)\n]\n```\n{% endset %}\n{{- '<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\n' + task_instruction + '\n[END OF TASK INSTRUCTION]\n\n'}}\n    {{- '[BEGIN OF AVAILABLE_TOOLS]\n' }}\n    {{- tools|string }}\n    {{- '\n[END OF AVAILABLE_TOOLS]\n\n' }}\n    {{- '\n[BEGIN OF TASK INSTRUCTION]\n' + format_instruction + '\n[END OF TASK INSTRUCTION]\n\n<|im_end|>\n' }}\n{%- endif %}\n\n{%- for message in loop_messages %}\n    {%- set role = message['role'] %}\n    {%- set content = message['content'] %}\n    {{- '<|im_start|>'+ role +'\n' +  content + '<|im_end|>\n'}}\n{%- endfor %}\n{{- '<|im_start|>assistant\n' }}",
         """
@@ -88,7 +91,19 @@ class HammerHandler(OSSHandler):
         return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n{user_query}<|im_start|>assistant\n"
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict]]:
+        """
+        Decodes the model's output into an abstract syntax tree (AST) representation of function calls.
+        
+        Args:
+            result (`str`):
+                The raw string output from the model containing potential function calls
+            language (`str`, optional):
+                The programming language of the function calls (default: 'Python')
+        
+        Returns:
+            `list[dict[str, dict]]`: A list of dictionaries where each dictionary represents a function call with its arguments
+        """
         result = result.replace("```", "")
         try:
             result = json.loads(result)
@@ -103,7 +118,7 @@ class HammerHandler(OSSHandler):
         return decoded_output
 
     @staticmethod
-    def xlam_json_to_python_tool_calls(tool_calls):
+    def xlam_json_to_python_tool_calls(tool_calls: list[dict] | dict) -> list[str]:
         """
         Converts a list of function calls in xLAM JSON format to Python format.
 
@@ -129,7 +144,17 @@ class HammerHandler(OSSHandler):
         return python_format
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's output into executable Python function call strings.
+        
+        Args:
+            result (`str`):
+                The raw string output from the model containing potential function calls
+        
+        Returns:
+            `list[str]`: A list of executable Python function call strings
+        """
         result = result.replace("```", "")
         try:
             result = json.loads(result)
@@ -147,6 +172,16 @@ class HammerHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry to prepare it for Hammer model input. Converts system prompts to user prompts and performs language-specific processing on function definitions.
+        
+        Args:
+            test_entry (`dict`):
+                The test case containing questions and function definitions
+        
+        Returns:
+            `dict`: Processed input containing messages and functions formatted for Hammer model
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 

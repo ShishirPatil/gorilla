@@ -1,3 +1,4 @@
+from typing import Union
 import json
 
 from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
@@ -11,11 +12,14 @@ from overrides import override
 
 
 class GraniteHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the Granite model that extends OSSHandler. This class implements specific methods for formatting prompts, processing queries, and decoding outputs for the Granite model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> str:
         """
         "chat_template": "{% set function_str = messages.get('functions_str', {}) %}\n{% set query = messages['query'] %}\n{% set sys_prompt = 'You are a helpful assistant with access to the following function calls. Your task is to produce a sequence of function calls necessary to generate response to the user utterance. Use the following function calls as required. ' %}\n{% set funcstr = function_str|join('\n') %}\n{{ 'SYSTEM: ' + sys_prompt + '\n<|function_call_library|>\n' + funcstr + '\n\nIf none of the functions are relevant or the given question lacks the parameters required by the function, please output \"<function_call> {\"name\": \"no_function\", \"arguments\": {}}\".\n\nUSER: ' + query}}\n{% if add_generation_prompt %}\n{{ 'ASSISTANT:' }}{% endif %}",
         """
@@ -44,6 +48,16 @@ class GraniteHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry before querying the model. This includes processing function documentation and preparing the input format expected by Granite.
+        
+        Args:
+            test_entry (`dict`):
+                The test entry containing function information and ID.
+        
+        Returns:
+            `dict`: A dictionary containing processed messages and functions ready for model input.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -54,7 +68,20 @@ class GraniteHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[Union[dict[str, dict[str, Any]], str]]:
+        """
+        Decodes the model's output into an abstract syntax tree (AST) representation.
+        
+        Args:
+            result (`str`):
+                The raw output string from the model.
+            language (`str`, optional):
+                The programming language of the output. Defaults to "Python".
+        
+        Returns:
+            `list[Union[dict[str, dict[str, Any]], str]]`:
+                A list of decoded function calls or error messages.
+        """
         decoded_outputs = []
         result = [
             call.strip()
@@ -80,7 +107,18 @@ class GraniteHandler(OSSHandler):
         return decoded_outputs
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's output into executable function calls.
+        
+        Args:
+            result (`str`):
+                The raw output string from the model.
+        
+        Returns:
+            `list[str]`:
+                A list of executable function call strings or error messages.
+        """
         decoded_outputs = []
         result = [
             call.strip()

@@ -156,7 +156,7 @@ class TradingBot:
         self.transaction_history: List[Dict[str, Union[str, float, int]]]
         self._api_description = "This tool belongs to the trading system, which allows users to trade stocks, manage their account, and view stock information."
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _load_scenario(self, scenario: dict, long_context: bool=False) -> None:
         """
         Load a scenario into the TradingBot.
 

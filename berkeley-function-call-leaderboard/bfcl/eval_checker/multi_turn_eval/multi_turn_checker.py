@@ -1,3 +1,4 @@
+from typing import Union, Any
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,
@@ -159,7 +160,7 @@ def multi_turn_irrelevance_checker(
 #### Sub-Chekcers ####
 
 
-def state_checker(model_instances: dict, ground_truth_instances: dict):
+def state_checker(model_instances: dict, ground_truth_instances: dict) -> dict[str, Union[bool, str, dict]]:
     """
     Checks if, after executing the function calls, the model_instance has the same state (defined by the attributes) as the ground_truth_instance.
     It checks if every instance in the model_instances has the same attributes as their corresponding instance (of the same class) from ground_truth_instances.
@@ -196,7 +197,7 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
 
 def response_checker(
     model_response_list: list, ground_truth_response_list: list, turn_index: int
-):
+) -> dict[str, Union[bool, str, dict]]:
     """
     Checks if the model_response is a subsequence of the ground_truth_response.
     Each list contains the response of the function calls executed in that single turn.
@@ -220,7 +221,7 @@ def response_checker(
     return {"valid": True}
 
 
-def method_invoke_order_checker(model_instances: dict, ground_truth_instances: dict):
+def method_invoke_order_checker(model_instances: dict, ground_truth_instances: dict) -> dict[str, Union[bool, str, dict]]:
     """
     Checks if the model_instance called the same order of methods as the ground_truth_instance.
     model_instance can call additional methods, but not skip any method that the ground_truth_instance called.
@@ -256,7 +257,7 @@ def method_invoke_order_checker(model_instances: dict, ground_truth_instances: d
 #### Helper functions ####
 
 
-def _compare_instances(model_obect, ground_truth_object):
+def _compare_instances(model_obect, ground_truth_object) -> tuple[bool, dict]:
     """
     Checks if the model_object has the same attributes as the ground_truth_object. They are instances of the same class.
     """
@@ -279,7 +280,7 @@ def _compare_instances(model_obect, ground_truth_object):
     return valid, differences
 
 
-def _is_subsequence(list1, list2) -> tuple[bool, list]:
+def _is_subsequence(list1: list[Any], list2: list[Any]) -> tuple[bool, list]:
     """
     Checks if list1 is a subsequence of list2, i.e., all elements of list1 are present in list2 in the same order.
     Also returns the elements of list1 that are not present in list2.
@@ -291,7 +292,7 @@ def _is_subsequence(list1, list2) -> tuple[bool, list]:
     ]
 
 
-def _is_subsequence_unordered(list1, list2) -> tuple[bool, list]:
+def _is_subsequence_unordered(list1: list[Any], list2: list[Any]) -> tuple[bool, list]:
     """
     Checks if all elements of list1 are present in list2, regardless of order.
     Also returns the elements of list1 that are not present in list2.

@@ -6,6 +6,24 @@ import mpmath
 
 
 class MathAPI:
+    """
+    A comprehensive mathematical API providing various arithmetic, statistical, and conversion operations with error handling and precision control.
+    
+    This class offers methods for:
+    - Basic arithmetic operations (add, subtract, multiply, divide)
+    - Advanced mathematical functions (logarithms, powers, square roots)
+    - Statistical calculations (mean, standard deviation, min/max values)
+    - Unit conversions (SI and imperial units)
+    - Rounding and percentage calculations
+    
+    All methods return dictionaries with either a 'result' key containing the computed value or an 'error' key with an error message if the operation fails.
+    
+    Key Features:
+    - High precision calculations using mpmath and Decimal modules
+    - Comprehensive error handling for invalid inputs
+    - Support for both floating point and integer operations
+    - Unit conversion between common measurement systems
+    """
     def __init__(self):
         self._api_description = "This tool belongs to the Math API, which provides various mathematical operations."
         

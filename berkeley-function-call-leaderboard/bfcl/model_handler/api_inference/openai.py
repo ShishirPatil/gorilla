@@ -1,3 +1,4 @@
+from typing import Any
 import json
 import os
 import time
@@ -19,12 +20,25 @@ from openai import OpenAI, RateLimitError
 
 
 class OpenAIHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with OpenAI's API, providing methods for generating completions, processing responses, and managing conversation flow. Inherits from BaseHandler.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: list[dict] | str, language: str="Python") -> list[dict]:
+        """
+        Decodes the abstract syntax tree (AST) from the model's output. Handles both function calling (FC) and prompting models differently.
+        
+        Args:
+            result (list[dict] | str): The model's output to decode
+            language (str): The programming language of the output (default: 'Python')
+        
+        Returns:
+            list[dict]: Decoded function calls or parsed output
+        """
         if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
@@ -35,14 +49,32 @@ class OpenAIHandler(BaseHandler):
         else:
             return default_decode_ast_prompting(result, language)
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: str | dict) -> dict:
+        """
+        Decodes execution results from the model's output. Handles both function calling (FC) and prompting models differently.
+        
+        Args:
+            result (str | dict): The model's output to decode
+        
+        Returns:
+            dict: Decoded execution results
+        """
         if "FC" in self.model_name or self.is_fc_model:
             return convert_to_function_call(result)
         else:
             return default_decode_execute_prompting(result)
 
     @retry_with_backoff(error_type=RateLimitError)
-    def generate_with_backoff(self, **kwargs):
+    def generate_with_backoff(self, **kwargs) -> tuple[Any, float]:
+        """
+        Generates completions with exponential backoff retry logic for rate limits.
+        
+        Args:
+            **kwargs: Arguments to pass to the OpenAI API
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         start_time = time.time()
         api_response = self.client.chat.completions.create(**kwargs)
         end_time = time.time()
@@ -51,7 +83,16 @@ class OpenAIHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Handles queries for function calling models, including tool setup and temperature adjustment.
+        
+        Args:
+            inference_data (dict): Data for the inference request
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
@@ -86,10 +127,30 @@ class OpenAIHandler(BaseHandler):
                 )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Prepares data before querying function calling models.
+        
+        Args:
+            inference_data (dict): Current inference data
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         inference_data["message"] = []
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function definitions into tools for function calling.
+        
+        Args:
+            inference_data (dict): Current inference data
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Inference data with compiled tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -101,6 +162,15 @@ class OpenAIHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses responses from function calling models.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response data including function calls and token usage
+        """
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -126,18 +196,48 @@ class OpenAIHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial message to function calling conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            first_turn_message (list[dict]): Initial message(s)
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to ongoing function calling conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            user_message (list[dict]): User message(s)
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to function calling conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -149,6 +249,17 @@ class OpenAIHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
+        """
+        Adds tool execution results to function calling conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            execution_results (list[str]): Results from tool execution
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         # Add the execution results to the current round result, one at a time
         for execution_result, tool_call_id in zip(
             execution_results, model_response_data["tool_call_ids"]
@@ -164,7 +275,16 @@ class OpenAIHandler(BaseHandler):
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Handles queries for prompting models, with temperature adjustment.
+        
+        Args:
+            inference_data (dict): Data for the inference request
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
         # OpenAI reasoning models don't support temperature parameter
@@ -182,6 +302,15 @@ class OpenAIHandler(BaseHandler):
             )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Prepares data before querying prompting models.
+        
+        Args:
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -194,6 +323,15 @@ class OpenAIHandler(BaseHandler):
         return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses responses from prompting models.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response data including content and token usage
+        """
         return {
             "model_responses": api_response.choices[0].message.content,
             "model_responses_message_for_chat_history": api_response.choices[0].message,
@@ -204,18 +342,48 @@ class OpenAIHandler(BaseHandler):
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial message to prompting conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            first_turn_message (list[dict]): Initial message(s)
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to ongoing prompting conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            user_message (list[dict]): User message(s)
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to prompting conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -224,6 +392,17 @@ class OpenAIHandler(BaseHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to prompting conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            execution_results (list[str]): Execution results
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )
@@ -240,6 +419,16 @@ class OpenAIHandler(BaseHandler):
     def _add_reasoning_content_if_available(
         self, api_response: any, response_data: dict
     ) -> None:
+        """
+        Adds reasoning content to response if available in API response (for non-OpenAI models using OpenAI interface).
+        
+        Args:
+            api_response (any): Raw API response
+            response_data (dict): Current response data
+        
+        Returns:
+            None: Modifies response_data in place
+        """
         message = api_response.choices[0].message
         if hasattr(message, "reasoning_content"):
             response_data["reasoning_content"] = message.reasoning_content

@@ -32,7 +32,7 @@ class TicketAPI:
         self.current_user: Optional[str]
         self._api_description = "This tool belongs to the ticketing system that is part of a company, which allows users to create, view, and manage support business tickets."
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _load_scenario(self, scenario: dict, long_context: bool=False) -> None:
         """
         Load a scenario into the ticket queue.
 

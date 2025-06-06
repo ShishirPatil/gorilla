@@ -66,7 +66,7 @@ class MessageAPI:
         self.current_user: Optional[str]
         self._api_description = "This tool belongs to the Message API, which is used to manage user interactions in a workspace."
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _load_scenario(self, scenario: dict, long_context: bool=False) -> None:
         """
         Load a scenario into the MessageAPI.
 
@@ -87,6 +87,16 @@ class MessageAPI:
         self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
 
     def __eq__(self, value: object) -> bool:
+        """
+        Compares two MessageAPI instances for equality by comparing all non-private attributes.
+        
+        Args:
+            value (`object`):
+                The object to compare with this instance.
+        
+        Returns:
+            `bool`: True if all non-private attributes are equal, False otherwise.
+        """
         if not isinstance(value, MessageAPI):
             return False
 
@@ -101,7 +111,7 @@ class MessageAPI:
 
         return True
 
-    def _generate_id(self):
+    def _generate_id(self) -> Dict[str, int]:
         """
         Generate a unique ID for a message.
 

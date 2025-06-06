@@ -1,3 +1,4 @@
+from typing import Optional, Any, Union
 import argparse
 
 from bfcl.constants.category_mapping import (
@@ -26,15 +27,40 @@ from dotenv import load_dotenv
 from tqdm import tqdm
 
 
-def get_handler(model_name):
+def get_handler(model_name: str):
+    """
+    Get the model handler for a given model name from the MODEL_CONFIG_MAPPING.
+    
+    Args:
+        model_name (`str`):
+            Name of the model to get handler for
+    
+    Returns:
+        Model handler instance configured with temperature=0
+    """
     return MODEL_CONFIG_MAPPING[model_name].model_handler(
         model_name, temperature=0
     )  # Temperature doesn't matter for evaluation
 
 
 def multi_turn_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
-):
+    handler, model_result: list[dict], prompt: list[dict], possible_answer: list[dict], model_name: str, test_category: str, score_dir: Path
+) -> tuple[float, int]:
+    """
+    Evaluate multi-turn test cases by comparing model outputs against ground truth.
+    
+    Args:
+        handler: Model handler instance
+        model_result (`list[dict]`): List of model outputs
+        prompt (`list[dict]`): List of input prompts
+        possible_answer (`list[dict]`): List of ground truth answers
+        model_name (`str`): Name of model being evaluated
+        test_category (`str`): Category of test being run
+        score_dir (`Path`): Directory to save scores
+    
+    Returns:
+        `tuple[float, int]`: Accuracy score and total count of test cases
+    """
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
@@ -166,8 +192,22 @@ def multi_turn_runner(
 
 
 def relevance_file_runner(
-    handler, model_result, prompt, model_name, test_category, score_dir
-):
+    handler, model_result: list[dict], prompt: list[dict], model_name: str, test_category: str, score_dir: Path
+) -> tuple[float, int]:
+    """
+    Evaluate relevance/irrelevance test cases by checking if model outputs contain function calls.
+    
+    Args:
+        handler: Model handler instance
+        model_result (`list[dict]`): List of model outputs
+        prompt (`list[dict]`): List of input prompts
+        model_name (`str`): Name of model being evaluated
+        test_category (`str`): Category of test being run
+        score_dir (`Path`): Directory to save scores
+    
+    Returns:
+        `tuple[float, int]`: Accuracy score and total count of test cases
+    """
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call.
     # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
@@ -242,14 +282,30 @@ def relevance_file_runner(
 
 def ast_file_runner(
     handler,
-    model_result,
-    prompt,
-    possible_answer,
-    language,
-    test_category,
-    model_name,
-    score_dir,
-):
+    model_result: list[dict],
+    prompt: list[dict],
+    possible_answer: list[dict],
+    language: str,
+    test_category: str,
+    model_name: str,
+    score_dir: Path,
+) -> tuple[float, int]:
+    """
+    Evaluate AST test cases by comparing model outputs against ground truth.
+    
+    Args:
+        handler: Model handler instance
+        model_result (`list[dict]`): List of model outputs
+        prompt (`list[dict]`): List of input prompts
+        possible_answer (`list[dict]`): List of ground truth answers
+        language (`str`): Programming language being tested
+        test_category (`str`): Category of test being run
+        model_name (`str`): Name of model being evaluated
+        score_dir (`Path`): Directory to save scores
+    
+    Returns:
+        `tuple[float, int]`: Accuracy score and total count of test cases
+    """
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
@@ -343,7 +399,19 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, result_dir, score_dir):
+def runner(model_names: Optional[list[str]], test_categories: list[str], result_dir: Path, score_dir: Path) -> None:
+    """
+    Main function to run evaluation across all models and test categories.
+    
+    Args:
+        model_names (`Optional[list[str]]`): List of model names to evaluate
+        test_categories (`list[str]`): List of test categories to run
+        result_dir (`Path`): Directory containing model results
+        score_dir (`Path`): Directory to save evaluation scores
+    
+    Returns:
+        None
+    """
 
     # State udpated by each eval subtask.
     state = dict(
@@ -405,14 +473,29 @@ def runner(model_names, test_categories, result_dir, score_dir):
 
 
 def evaluate_task(
-    test_category,
-    result_dir,
-    score_dir,
-    model_result,
-    model_name,
+    test_category: str,
+    result_dir: Path,
+    score_dir: Path,
+    model_result: list[dict],
+    model_name: str,
     handler,
-    state,
-):
+    state: dict,
+) -> dict:
+    """
+    Evaluate a single test task and update evaluation state.
+    
+    Args:
+        test_category (`str`): Category of test being run
+        result_dir (`Path`): Directory containing model results
+        score_dir (`Path`): Directory to save scores
+        model_result (`list[dict]`): List of model outputs
+        model_name (`str`): Name of model being evaluated
+        handler: Model handler instance
+        state (`dict`): Current evaluation state
+    
+    Returns:
+        Updated evaluation state `dict`
+    """
 
     language = "Python"
     if is_java(test_category):
@@ -468,7 +551,19 @@ def evaluate_task(
     return state
 
 
-def main(model, test_categories, result_dir, score_dir):
+def main(model: Optional[list[str]], test_categories: Union[str, list[str]], result_dir: Optional[str], score_dir: Optional[str]) -> None:
+    """
+    Entry point for evaluation script. Parses arguments and runs evaluation.
+    
+    Args:
+        model (`Optional[list[str]]`): List of model names to evaluate
+        test_categories (`Union[str, list[str]]`): Test categories to run
+        result_dir (`Optional[str]`): Path to model results
+        score_dir (`Optional[str]`): Path to save scores
+    
+    Returns:
+        None
+    """
     if result_dir is None:
         result_dir = RESULT_PATH
     else:

@@ -1,3 +1,4 @@
+from typing import Any
 import json
 
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
@@ -6,11 +7,24 @@ from overrides import override
 
 
 class GlaiveHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for processing and decoding function call results from Glaive models. Extends the base OSSHandler class to provide specialized decoding functionality for function call outputs.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+        """
+        Decodes the function call result into an abstract syntax tree (AST) representation. Parses the function call string and converts it into a structured dictionary format.
+        
+        Args:
+            result (`str`): The raw output string from the model containing the function call
+            language (`str`, optional): The target programming language for the output. Defaults to 'Python'.
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: A list containing dictionaries mapping function names to their arguments
+        """
         function_call = result.split("<functioncall>")[-1]
         function_call = function_call.replace("'", "")
         decoded_function = json.loads(function_call)
@@ -26,7 +40,16 @@ class GlaiveHandler(OSSHandler):
         return decoded_result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str):
+        """
+        Decodes the function call result into an executable format. Parses the function call string and converts it into a format suitable for execution.
+        
+        Args:
+            result (`str`): The raw output string from the model containing the function call
+        
+        Returns:
+            The converted function call in an executable format
+        """
         function_call = result.split("<functioncall>")[-1]
         function_call = function_call.replace("'", "")
         decoded_function = json.loads(function_call)

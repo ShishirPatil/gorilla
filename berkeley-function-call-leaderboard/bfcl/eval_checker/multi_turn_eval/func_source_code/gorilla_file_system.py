@@ -8,6 +8,9 @@ from bfcl.eval_checker.multi_turn_eval.func_source_code.long_context import (
 
 
 class File:
+    """
+    A class representing a file in a file system with basic file operations.
+    """
 
     def __init__(self, name: str, content: str = "") -> None:
         """
@@ -50,7 +53,7 @@ class File:
         self.content += additional_content
         self._last_modified = datetime.datetime.now()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<<File: {self.name}, Content: {self.content}>>"
 
     def __eq__(self, other: object) -> bool:
@@ -60,6 +63,9 @@ class File:
 
 
 class Directory:
+    """
+    A class representing a directory in a file system that can contain files and subdirectories.
+    """
 
     def __init__(self, name: str, parent: Optional["Directory"] = None) -> None:
         """
@@ -122,7 +128,7 @@ class Directory:
         """
         return list(self.contents.keys())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Directory: {self.name}, Parent: {self.parent.name if self.parent else None}, Contents: {self.contents}>"
 
     def __eq__(self, other: object) -> bool:
@@ -135,6 +141,9 @@ DEFAULT_STATE = {"root": Directory("/", None)}
 
 
 class GorillaFileSystem:
+    """
+    A simple file system implementation that provides common file operations like navigation, file creation, reading/writing, etc.
+    """
 
     def __init__(self) -> None:
         """
@@ -247,7 +256,7 @@ class GorillaFileSystem:
             file_name = f"{name}"
             directory._add_file(file_name)
 
-    def pwd(self):
+    def pwd(self) -> Dict[str, str]:
         """
         Return the current working directory path.
         Args:
@@ -308,6 +317,15 @@ class GorillaFileSystem:
         return {"current_working_directory": target_dir.name}
 
     def _validate_file_or_directory_name(self, dir_name: str) -> bool:
+        """
+        Validates if a file or directory name contains invalid characters.
+        
+        Args:
+            dir_name (str): The name to validate
+        
+        Returns:
+            bool: True if valid, False if contains invalid characters
+        """
         if any(c in dir_name for c in '|/\\?%*:"><'):
             return False
         return True

@@ -7,7 +7,20 @@ parser = Parser()
 parser.set_language(JS_LANGUAGE)
 
 
-def parse_javascript_function_call(source_code):
+def parse_javascript_function_call(source_code: str) -> list[dict[str, dict[str, str]]]:
+    """
+    Parses JavaScript source code to extract function call information including function name and arguments.
+    
+    Args:
+        source_code (`str`):
+            The JavaScript source code containing a function call to parse.
+    
+    Returns:
+        `list[dict[str, dict[str, str]]]`: A list containing a single dictionary with the function name as key and another dictionary as value. The nested dictionary contains argument names as keys and their values. Unnamed arguments are stored with None as key.
+    
+    Raises:
+        `Exception`: If there's a parsing error in the JavaScript code or if multiple arguments with the same name are found.
+    """
     # Parse the source code
     tree = parser.parse(bytes(source_code, "utf8"))
     root_node = tree.root_node

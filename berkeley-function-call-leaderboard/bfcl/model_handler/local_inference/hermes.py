@@ -12,14 +12,27 @@ from overrides import override
 
 
 class HermesHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the Hermes model that extends OSSHandler. This class provides specific implementations for prompt formatting, AST decoding, and execution result processing tailored for the Hermes model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         # Only this specific Hermes model uses float16
         if model_name == "NousResearch/Hermes-2-Pro-Llama-3-8B":
             self.dtype = "float16"
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: dict) -> str:
+        """
+        Formats the prompt for the Hermes model by converting the function to the appropriate format and constructing the prompt with system instructions and user messages.
+        
+        Args:
+            messages (`list[dict[str, str]]`): A list of message dictionaries containing 'role' and 'content' keys.
+            function (`dict`): The function to be converted and included in the prompt.
+        
+        Returns:
+            `str`: The formatted prompt string ready for model input.
+        """
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL)
         pydantic_format = """{"properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"], "title": "FunctionCall", "type": "object"}"""
@@ -56,7 +69,17 @@ class HermesHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict]]:
+        """
+        Decodes the model's output to extract function calls from the AST (Abstract Syntax Tree).
+        
+        Args:
+            result (`str`): The raw model output string.
+            language (`str`, optional): The programming language of the output. Defaults to 'Python'.
+        
+        Returns:
+            `list[dict[str, dict]]`: A list of dictionaries where each dictionary represents a function call with its name and arguments.
+        """
         lines = result.split("\n")
         flag = False
         func_call = []
@@ -74,7 +97,16 @@ class HermesHandler(OSSHandler):
         return func_call
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's output to extract executable function calls.
+        
+        Args:
+            result (`str`): The raw model output string.
+        
+        Returns:
+            `list[str]`: A list of executable function call strings.
+        """
         lines = result.split("\n")
         flag = False
         function_call_list = []
@@ -101,6 +133,15 @@ class HermesHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Processes the test entry to prepare the prompt for the Hermes model.
+        
+        Args:
+            test_entry (`dict`): A dictionary containing the test entry with 'function' and 'id' keys.
+        
+        Returns:
+            `dict`: A dictionary containing processed messages and functions for the prompt.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -114,6 +155,17 @@ class HermesHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data for subsequent prompting.
+        
+        Args:
+            inference_data (`dict`): The inference data dictionary.
+            execution_results (`list[str]`): A list of execution result strings.
+            model_response_data (`dict`): A dictionary containing decoded model responses.
+        
+        Returns:
+            `dict`: The updated inference data with execution results added.
+        """
         for execution_result, decoded_model_response in zip(
             execution_results, model_response_data["model_responses_decoded"]
         ):

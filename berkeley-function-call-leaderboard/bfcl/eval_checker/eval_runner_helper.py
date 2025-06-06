@@ -1,3 +1,4 @@
+from typing import Union, Optional
 import os
 import statistics
 from datetime import datetime
@@ -12,7 +13,19 @@ from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.utils import extract_test_category, load_file
 
 
-def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
+def calculate_weighted_accuracy(accuracy_dict_list: list[dict[str, Union[float, int, str]]], display_na_if_category_missing: bool=True) -> dict[str, Union[float, int, str]]:
+    """
+    Calculates weighted accuracy from a list of accuracy dictionaries. The weight is determined by the count of samples in each category.
+    
+    Args:
+        accuracy_dict_list (`list[dict[str, Union[float, int, str]]]`):
+            List of dictionaries containing accuracy, count and display_accuracy for each category
+        display_na_if_category_missing (`bool`, optional):
+            If True, returns 'N/A' as display_accuracy if any category is missing. Defaults to True.
+    
+    Returns:
+        `dict[str, Union[float, int, str]]`: Dictionary containing weighted accuracy, total count and display accuracy
+    """
     has_na = False
     total_count = 0
     total_accuracy = 0
@@ -35,7 +48,19 @@ def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missi
     return result
 
 
-def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
+def calculate_unweighted_accuracy(accuracy_dict_list: list[dict[str, Union[float, int, str]]], display_na_if_category_missing: bool=True) -> dict[str, Union[float, int, str]]:
+    """
+    Calculates unweighted accuracy (simple average) from a list of accuracy dictionaries.
+    
+    Args:
+        accuracy_dict_list (`list[dict[str, Union[float, int, str]]]`):
+            List of dictionaries containing accuracy, count and display_accuracy for each category
+        display_na_if_category_missing (`bool`, optional):
+            If True, returns 'N/A' as display_accuracy if any category is missing. Defaults to True.
+    
+    Returns:
+        `dict[str, Union[float, int, str]]`: Dictionary containing unweighted accuracy, total count and display accuracy
+    """
     has_na = False
     total_count = 0
     total_accuracy = 0
@@ -62,7 +87,25 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
     return result
 
 
-def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
+def record_result(leaderboard_table: dict[str, dict[str, dict[str, Union[float, int]]]], model_name: str, test_category: str, accuracy: float, total_count: int) -> None:
+    """
+    Records model evaluation results in the leaderboard table.
+    
+    Args:
+        leaderboard_table (`dict[str, dict[str, dict[str, Union[float, int]]]]`):
+            Dictionary storing evaluation results for all models
+        model_name (`str`):
+            Name of the model being evaluated
+        test_category (`str`):
+            Category of the test being recorded
+        accuracy (`float`):
+            Accuracy score for the test
+        total_count (`int`):
+            Total number of test cases
+    
+    Returns:
+        None
+    """
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
     leaderboard_table[model_name][test_category] = {
@@ -71,7 +114,21 @@ def record_result(leaderboard_table, model_name, test_category, accuracy, total_
     }
 
 
-def record_cost_latency(leaderboard_table, model_name, model_output_data):
+def record_cost_latency(leaderboard_table: dict[str, dict[str, dict[str, list]]], model_name: str, model_output_data: list[dict[str, Union[int, list[int]]]]) -> None:
+    """
+    Records cost and latency metrics in the leaderboard table.
+    
+    Args:
+        leaderboard_table (`dict[str, dict[str, dict[str, list]]]`):
+            Dictionary storing evaluation results for all models
+        model_name (`str`):
+            Name of the model being evaluated
+        model_output_data (`list[dict[str, Union[int, list[int]]]]`):
+            List of dictionaries containing input/output token counts and latency data
+    
+    Returns:
+        None
+    """
     def process_data(key, data, output_list):
         # All entries are either a list of list (in multi-turn), or a single value (in single-turn)
         if key in data:
@@ -102,7 +159,22 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     leaderboard_table[model_name]["latency"]["data"].extend(latency)
 
 
-def get_cost_latency_info(model_name, cost_data, latency_data):
+def get_cost_latency_info(model_name: str, cost_data: dict[str, list[int]], latency_data: dict[str, list[float]]) -> tuple[Union[str, float], Union[str, float], Union[str, float], Union[str, float]]:
+    """
+    Calculates cost and latency statistics for a model.
+    
+    Args:
+        model_name (`str`):
+            Name of the model
+        cost_data (`dict[str, list[int]]`):
+            Dictionary containing input and output token counts
+        latency_data (`dict[str, list[float]]`):
+            Dictionary containing latency measurements
+    
+    Returns:
+        `tuple[Union[str, float], Union[str, float], Union[str, float], Union[str, float]]`:
+            Tuple containing (cost, mean_latency, std_latency, 95th_percentile_latency)
+    """
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
     model_config = MODEL_CONFIG_MAPPING[model_name]
 
@@ -136,6 +208,18 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
 
 
 def get_category_score(score_dict: dict, test_category: str) -> dict:
+    """
+    Gets the score for a specific test category from the score dictionary.
+    
+    Args:
+        score_dict (`dict`):
+            Dictionary containing scores for different test categories
+        test_category (`str`):
+            Name of the test category to retrieve
+    
+    Returns:
+        `dict`: Dictionary containing accuracy, count and display_accuracy for the category
+    """
     if test_category in score_dict:
         score = score_dict[test_category]
         score["display_accuracy"] = score["accuracy"]
@@ -150,12 +234,30 @@ def get_category_score(score_dict: dict, test_category: str) -> dict:
 
 
 def write_score_csv_file(
-    data,
+    data: list[list[Union[str, float]]],
     file_path: str,
     header: list,
     sort_column_index: int,
     no_conversion_numeric_column_index: list[int] = [],
 ) -> None:
+    """
+    Writes evaluation results to a CSV file with proper formatting.
+    
+    Args:
+        data (`list[list[Union[str, float]]]`):
+            List of rows to write to the CSV
+        file_path (`str`):
+            Path to the output CSV file
+        header (`list`):
+            List of column headers
+        sort_column_index (`int`):
+            Index of column to sort by
+        no_conversion_numeric_column_index (`list[int]`, optional):
+            List of column indices that should not be converted to percentages. Defaults to [].
+    
+    Returns:
+        None
+    """
     data.sort(key=lambda x: x[sort_column_index], reverse=True)
     for i in range(len(data)):
         # Add the ranking column, start from 0
@@ -181,8 +283,24 @@ def write_score_csv_file(
 
 
 def generate_leaderboard_csv(
-    leaderboard_table, output_path, eval_models=None, eval_categories=None
-):
+    leaderboard_table: dict[str, dict[str, dict[str, Union[float, int, str]]]], output_path: Path, eval_models: Optional[list[str]]=None, eval_categories: Optional[list[str]]=None
+) -> None:
+    """
+    Generates CSV files with evaluation results for different test categories.
+    
+    Args:
+        leaderboard_table (`dict[str, dict[str, dict[str, Union[float, int, str]]]]`):
+            Dictionary storing evaluation results for all models
+        output_path (`Path`):
+            Directory to save the CSV files
+        eval_models (`Optional[list[str]]`, optional):
+            List of models being evaluated. Defaults to None.
+        eval_categories (`Optional[list[str]]`, optional):
+            List of test categories being evaluated. Defaults to None.
+    
+    Returns:
+        None
+    """
     print("📈 Aggregating data to generate leaderboard score table...")
     data_non_live = []
     data_live = []
@@ -471,8 +589,20 @@ def generate_leaderboard_csv(
 
 
 def update_leaderboard_table_with_local_score_file(
-    leaderboard_table, score_path: Path
+    leaderboard_table: dict[str, dict[str, dict[str, Union[float, int]]]], score_path: Path
 ) -> None:
+    """
+    Updates the leaderboard table with scores from local JSON files.
+    
+    Args:
+        leaderboard_table (`dict[str, dict[str, dict[str, Union[float, int]]]]`):
+            Dictionary storing evaluation results for all models
+        score_path (`Path`):
+            Path to directory containing score JSON files
+    
+    Returns:
+        None
+    """
 
     entries = score_path.iterdir()
 

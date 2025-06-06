@@ -1,3 +1,4 @@
+from typing import Any
 import os
 
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
@@ -6,7 +7,10 @@ from openai import OpenAI
 
 
 class NovitaHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for interacting with Novita AI's API, extending the OpenAIHandler class. This class provides specific implementations for querying Novita AI models with both function calling and standard prompting approaches.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.NOVITA_AI
         self.client = OpenAI(
@@ -17,6 +21,18 @@ class NovitaHandler(OpenAIHandler):
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
+        """
+        Handles function calling queries to the Novita AI API.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the message and tools for the function call. Expected keys:
+                - 'message': List of message dictionaries
+                - 'tools': List of tool definitions for function calling
+        
+        Returns:
+            The API response from Novita AI for the function calling request
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {
@@ -42,6 +58,17 @@ class NovitaHandler(OpenAIHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
+        """
+        Handles standard prompting queries to the Novita AI API.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the message for the prompt. Expected key:
+                - 'message': List of message dictionaries
+        
+        Returns:
+            The API response from Novita AI for the standard prompt request
+        """
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
         return self.generate_with_backoff(

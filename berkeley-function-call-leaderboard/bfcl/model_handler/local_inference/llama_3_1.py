@@ -14,12 +14,12 @@ class LlamaHandler_3_1(OSSHandler):
     
     For all other Llama models, see the LlamaHandler class.
     """
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> str:
         """
         "bos_token": "<|begin_of_text|>",
         "chat_template":
@@ -182,7 +182,19 @@ class LlamaHandler_3_1(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+        """
+        Decodes the model's output into abstract syntax tree (AST) format for function calls. Handles both semicolon-separated and JSON array formatted outputs from Llama models.
+        
+        Args:
+            result (`str`):
+                The raw output string from the model containing function call information
+            language (`str`, optional):
+                The programming language of the function calls (defaults to 'Python')
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: A list of dictionaries where each key is a function name and the value is its parameters
+        """
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:
@@ -208,7 +220,17 @@ class LlamaHandler_3_1(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's output into executable function call strings. Handles both semicolon-separated and JSON array formatted outputs from Llama models.
+        
+        Args:
+            result (`str`):
+                The raw output string from the model containing function call information
+        
+        Returns:
+            `list[str]`: A list of executable function call strings with parameters
+        """
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:
@@ -231,6 +253,16 @@ class LlamaHandler_3_1(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries before querying the model, including function documentation processing.
+        
+        Args:
+            test_entry (`dict`):
+                Dictionary containing test case information including functions and test ID
+        
+        Returns:
+            `dict`: Processed dictionary with empty message list and processed functions
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 

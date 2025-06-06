@@ -21,7 +21,19 @@ from tabulate import tabulate
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
-    def list_commands(self, ctx):
+    """
+    A custom Typer command group that maintains a specific order of commands when displaying help or listing commands.
+    """
+    def list_commands(self, ctx: typer.Context) -> List[str]:
+        """
+        Returns the list of commands in a specific order for the CLI interface.
+        
+        Args:
+            ctx (typer.Context): The Typer context object.
+        
+        Returns:
+            List[str]: A list of command names in the desired order.
+        """
         return [
             "models",
             "test-categories",
@@ -40,7 +52,7 @@ cli = typer.Typer(
 )
 
 
-def handle_multiple_input(input_str):
+def handle_multiple_input(input_str: Optional[str]) -> List[str]:
     """
     Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
     """
@@ -58,14 +70,14 @@ def handle_multiple_input(input_str):
     return [item.strip() for item in ",".join(input_str).split(",") if item.strip()]
 
 @cli.command()
-def version():
+def version() -> None:
     """
     Show the bfcl version. PyPI versions are in development, please rely on the commit hash for reproducibility.
     """
     print(f"bfcl version: {_version('bfcl')} \nNote: pypi versions are in development, please rely on the commit hash for reproducibility.")
 
 @cli.command()
-def test_categories():
+def test_categories() -> None:
     """
     List available test categories.
     """
@@ -81,7 +93,7 @@ def test_categories():
 
 
 @cli.command()
-def models():
+def models() -> None:
     """
     List available models.
     """
@@ -148,7 +160,7 @@ def generate(
         "--run-ids",
         help="If true, also run the test entry mentioned in the test_case_ids_to_generate.json file, in addition to the --test_category argument.",
     ),
-):
+) -> None:
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
@@ -180,7 +192,7 @@ def results(
         "--result-dir",
         help="Relative path to the model response folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
-):
+) -> None:
     """
     List the results available for evaluation.
     """
@@ -251,7 +263,7 @@ def evaluate(
         "--score-dir",
         help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
-):
+) -> None:
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
@@ -267,7 +279,7 @@ def scores(
         "--score-dir",
         help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
-):
+) -> None:
     """
     Display the leaderboard.
     """
