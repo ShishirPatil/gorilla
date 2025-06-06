@@ -2,7 +2,7 @@ import ast
 import json
 import os
 import time
-from typing import Any
+from typing import Any, Optional
 
 import cohere
 from bfcl.model_handler.base_handler import BaseHandler
@@ -17,15 +17,28 @@ from tenacity.stop import stop_after_attempt
 
 
 class CohereHandler(BaseHandler):
+    """
+    A handler class for interacting with Cohere's API, providing methods for processing and generating responses using Cohere's models.
+    """
     client: cohere.ClientV2
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.COHERE
         self.is_fc_model = True
         self.client = cohere.ClientV2(api_key=os.getenv("COHERE_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: list[dict[str, Any]], language: str="Python") -> list[dict[str, Any]]:
+        """
+        Decodes the AST (Abstract Syntax Tree) representation of the tool calls from the Cohere API response.
+        
+        Args:
+            result (`list[dict[str, Any]]`): The result from the Cohere API containing tool calls.
+            language (`str`, optional): The programming language of the tool calls. Defaults to 'Python'.
+        
+        Returns:
+            `list[dict[str, Any]]`: A list of dictionaries where each dictionary represents a tool call with its parameters.
+        """
         decoded_output = []
         if isinstance(result, list):
             for tool_call in result:
@@ -34,7 +47,16 @@ class CohereHandler(BaseHandler):
                 decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: list[dict[str, Any]]) -> list[str]:
+        """
+        Generates executable strings from the tool calls in the Cohere API response.
+        
+        Args:
+            result (`list[dict[str, Any]]`): The result from the Cohere API containing tool calls.
+        
+        Returns:
+            `list[str]`: A list of executable strings representing the tool calls.
+        """
         execution_list = []
         if isinstance(result, list):
             for tool_call in result:
@@ -46,7 +68,16 @@ class CohereHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[dict[str, Any], float]:
+        """
+        Queries the Cohere API with the provided inference data and returns the response metadata and latency.
+        
+        Args:
+            inference_data (`dict`): The data used for inference, including system messages and chat turns.
+        
+        Returns:
+            `tuple[dict[str, Any], float]`: A tuple containing the response metadata and the latency of the API call.
+        """
         if system_message := inference_data.get("system_message"):
             system_turn = [
                 cohere.SystemChatMessageV2(
@@ -107,6 +138,16 @@ class CohereHandler(BaseHandler):
         messages: list,
         tools: list[cohere.types.ToolV2]
     ) -> tuple[cohere.types.ChatResponse, float]:
+        """
+        Generates a response from the Cohere API with exponential backoff retry logic.
+        
+        Args:
+            messages (`list`): The list of messages to send to the Cohere API.
+            tools (`list[cohere.types.ToolV2]`): The list of tools to use for the API call.
+        
+        Returns:
+            `tuple[cohere.types.ChatResponse, float]`: A tuple containing the API response and the latency of the call.
+        """
         start_time = time.time()
         api_response = self.client.chat(
             model=self.model_name.replace("-FC", ""),
@@ -120,6 +161,16 @@ class CohereHandler(BaseHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Preprocesses the chat turns and extracts the system message from the test entry.
+        
+        Args:
+            inference_data (`dict`): The inference data to be processed.
+            test_entry (`dict`): The test entry containing the questions and other data.
+        
+        Returns:
+            `dict`: The processed inference data.
+        """
         turns = []
         for turn_idx, turn in enumerate(test_entry["question"]):
             if turn_idx == 0:  # we only extract system message from the first turn
@@ -135,6 +186,16 @@ class CohereHandler(BaseHandler):
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles the tools from the test entry into a format suitable for the Cohere API.
+        
+        Args:
+            inference_data (`dict`): The inference data to be processed.
+            test_entry (`dict`): The test entry containing the functions and other data.
+        
+        Returns:
+            `dict`: The inference data with compiled tools.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -145,6 +206,15 @@ class CohereHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
+        """
+        Parses the response from the Cohere API into a standardized format.
+        
+        Args:
+            api_response (`Any`): The raw API response from Cohere.
+        
+        Returns:
+            `dict`: The parsed response containing model responses, tool calls, and other metadata.
+        """
         if len(api_response["tool_calls"]) > 0:  # non empty tool call list
             model_responses = api_response["tool_calls"]  # list: {"tool_name": , "parameters"}
         else:
@@ -170,6 +240,16 @@ class CohereHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds the first turn message to the inference data.
+        
+        Args:
+            inference_data (`dict`): The inference data to be updated.
+            first_turn_message (`list[dict]`): The first turn message to add.
+        
+        Returns:
+            `dict`: The updated inference data.
+        """
         chat_turns = []
         for message in first_turn_message:
             message_role = message["role"]
@@ -191,6 +271,16 @@ class CohereHandler(BaseHandler):
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds the next user message to the inference data.
+        
+        Args:
+            inference_data (`dict`): The inference data to be updated.
+            user_message (`list[dict]`): The user message to add.
+        
+        Returns:
+            `dict`: The updated inference data.
+        """
         assert "chat_turns" in inference_data, "expected chat_turns to be present"
         for message in user_message:
             message_role = message["role"]
@@ -214,12 +304,33 @@ class CohereHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds the assistant message to the inference data.
+        
+        Args:
+            inference_data (`dict`): The inference data to be updated.
+            model_response_data (`dict`): The assistant message to add.
+        
+        Returns:
+            `dict`: The updated inference data.
+        """
         # Cohere has all the messages in the chat history already, so no need to add anything here
         return inference_data
 
     def _add_execution_results_FC(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds the execution results to the inference data.
+        
+        Args:
+            inference_data (`dict`): The inference data to be updated.
+            execution_results (`list[str]`): The execution results to add.
+            model_response_data (`dict`): The model response data.
+        
+        Returns:
+            `dict`: The updated inference data.
+        """
         if execution_results:
             # non-empty execution_results, the last turn of inference_data["chat_turns"] must be a tool use turn
             # otherwise, do nothing
@@ -255,7 +366,16 @@ class CohereHandler(BaseHandler):
         return inference_data
 
 
-def load_system_message(all_messages: list[dict]):
+def load_system_message(all_messages: list[dict]) -> Optional[str]:
+    """
+    Loads the system message from a list of messages.
+    
+    Args:
+        all_messages (`list[dict]`): The list of messages to search for a system message.
+    
+    Returns:
+        `Optional[str]`: The system message if found, otherwise None.
+    """
     for message in all_messages:
         if message["role"] == "system":
             return message["content"]
@@ -263,6 +383,15 @@ def load_system_message(all_messages: list[dict]):
 
 
 def preprocess_chat_turns(all_messages: list[dict]) -> list[dict]:
+    """
+    Preprocesses the chat turns by filtering out system messages.
+    
+    Args:
+        all_messages (`list[dict]`): The list of messages to preprocess.
+    
+    Returns:
+        `list[dict]`: The preprocessed messages.
+    """
     processed_messages: list[dict] = []
     for message in all_messages:
         if message["role"] == "system":
@@ -271,7 +400,16 @@ def preprocess_chat_turns(all_messages: list[dict]) -> list[dict]:
     return processed_messages
 
 
-def load_cohere_tool(tool: dict):
+def load_cohere_tool(tool: dict) -> cohere.types.ToolV2:
+    """
+    Loads a tool into the Cohere tool format.
+    
+    Args:
+        tool (`dict`): The tool to load.
+    
+    Returns:
+        `cohere.types.ToolV2`: The loaded tool in Cohere's format.
+    """
     function = tool["function"]
     return cohere.ToolV2(
         type="function",

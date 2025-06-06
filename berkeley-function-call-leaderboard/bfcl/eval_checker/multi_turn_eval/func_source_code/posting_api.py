@@ -14,6 +14,22 @@ DEFAULT_STATE = {
 
 
 class TwitterAPI:
+    """
+    A class that simulates core Twitter API functionality including authentication, posting tweets, retweeting, commenting, following users, and retrieving various Twitter data.
+    
+    This class maintains an internal state representing user accounts, tweets, comments, retweets, and following relationships. It provides methods for all major Twitter operations while handling authentication and error cases.
+    
+    Key Features:
+    - User authentication and session management
+    - Tweet creation with tags and mentions
+    - Retweeting and commenting functionality
+    - User following/unfollowing
+    - Comprehensive tweet and user data retrieval
+    - Search capabilities
+    - Statistics generation
+    
+    The class maintains data integrity by checking authentication status and validating inputs for all operations.
+    """
     def __init__(self):
         self.username: str
         self.password: str
@@ -26,7 +42,7 @@ class TwitterAPI:
         self.tweet_counter: int
         self._api_description = "This tool belongs to the TwitterAPI, which provides core functionality for posting tweets, retweeting, commenting, and following users on Twitter."
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _load_scenario(self, scenario: dict, long_context: bool=False) -> None:
         """
         Load a scenario into the TwitterAPI instance.
         Args:

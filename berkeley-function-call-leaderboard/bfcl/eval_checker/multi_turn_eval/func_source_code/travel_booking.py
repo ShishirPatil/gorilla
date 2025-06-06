@@ -21,6 +21,24 @@ DEFAULT_STATE = {
 
 
 class TravelAPI:
+    """
+    A class that simulates a travel API for booking flights, managing credit cards, and other travel-related operations. This API provides functionality for authentication, flight booking, credit card management, and various travel utilities.
+    
+    The API maintains state including:
+    - Credit card information
+    - Booking records
+    - Authentication tokens
+    - User information
+    - Budget limits
+    
+    Key features include:
+    - Flight booking and cancellation
+    - Credit card registration and balance management
+    - Airport and flight cost information
+    - Currency exchange calculations
+    - Traveler verification
+    - Customer support functionality
+    """
     # Adapted from source : https://developer.concur.com/api-reference/
     def __init__(self):
         super().__init__()
@@ -75,6 +93,16 @@ class TravelAPI:
             self._add_booking_records()  # Add booking record extension
 
     def __eq__(self, value: object) -> bool:
+        """
+        Compares two TravelAPI instances for equality by checking all non-private attributes.
+        
+        Args:
+            value (`object`):
+                The object to compare with this instance
+        
+        Returns:
+            `bool`: True if all non-private attributes are equal, False otherwise
+        """
         if not isinstance(value, TravelAPI):
             return False
 

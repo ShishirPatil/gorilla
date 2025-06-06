@@ -1,3 +1,4 @@
+from typing import Union, Optional, Any
 from bfcl.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl.constants.type_mappings import (
     JAVA_TYPE_CONVERSION,
@@ -28,8 +29,22 @@ NESTED_CONVERSION_TYPE_LIST = ["Array", "ArrayList", "array"]
 
 #### Main function ####
 def ast_checker(
-    func_description, model_output, possible_answer, language, test_category, model_name
-):
+    func_description: dict, model_output: list[dict], possible_answer: list[dict], language: str, test_category: str, model_name: str
+) -> dict:
+    """
+    Main function that routes to different checker functions based on test category.
+    
+    Args:
+        func_description (`dict`): Function description containing name and parameters
+        model_output (`list[dict]`): Model output to be checked
+        possible_answer (`list[dict]`): Expected correct answers
+        language (`str`): Programming language being checked (Python/Java/JavaScript)
+        test_category (`str`): Type of test ('parallel', 'multiple' or simple)
+        model_name (`str`): Name of model being evaluated
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     if "parallel" in test_category:
         return parallel_function_checker_no_order(
             func_description, model_output, possible_answer, language, model_name
@@ -54,7 +69,17 @@ def ast_checker(
 
 
 #### Helper functions for AST ####
-def find_description(func_descriptions, name):
+def find_description(func_descriptions: Union[list[dict], dict], name: str) -> Optional[dict]:
+    """
+    Finds function description by name in a list of descriptions.
+    
+    Args:
+        func_descriptions (`Union[list[dict], dict]`): List of function descriptions or single description
+        name (`str`): Name of function to find
+    
+    Returns:
+        `Optional[dict]`: Matching function description or None if not found
+    """
     if type(func_descriptions) == list:
         for func_description in func_descriptions:
             if func_description["name"] == name:
@@ -65,14 +90,33 @@ def find_description(func_descriptions, name):
         return func_descriptions
 
 
-def get_possible_answer_type(possible_answer: list):
+def get_possible_answer_type(possible_answer: list) -> Optional[type]:
+    """
+    Gets the type of first non-empty possible answer.
+    
+    Args:
+        possible_answer (`list`): List of possible answers
+    
+    Returns:
+        `Optional[type]`: Type of first non-empty answer or None if all empty
+    """
     for answer in possible_answer:
         if answer != "":  # Optional parameter
             return type(answer)
     return None
 
 
-def convert_func_name(function_name, model_name: str):
+def convert_func_name(function_name: str, model_name: str) -> str:
+    """
+    Converts function name based on model naming conventions.
+    
+    Args:
+        function_name (`str`): Original function name
+        model_name (`str`): Name of model being evaluated
+    
+    Returns:
+        `str`: Converted function name
+    """
     model_name_escaped = model_name.replace("_", "/")
     if "." in function_name:
         if MODEL_CONFIG_MAPPING[model_name_escaped].underscore_to_dot:
@@ -87,9 +131,23 @@ def type_checker(
     value,
     possible_answer: list,
     expected_type_description: str,
-    expected_type_converted,
-    nested_type_converted,
-):
+    expected_type_converted: type,
+    nested_type_converted: Optional[type],
+) -> dict:
+    """
+    Checks if parameter value matches expected type.
+    
+    Args:
+        param (`str`): Parameter name
+        value: Parameter value to check
+        possible_answer (`list`): Possible valid answers
+        expected_type_description (`str`): Expected type as string
+        expected_type_converted (`type`): Expected Python type
+        nested_type_converted (`Optional[type]`): Expected type for nested elements
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     # NOTE: This type checker only supports nested type checking for one level deep.
     # We didn't implement recursive type checking for nested types, as it's not needed for the current use case and it's very complex.
 
@@ -163,7 +221,16 @@ def type_checker(
     return result
 
 
-def standardize_string(input_string: str):
+def standardize_string(input_string: str) -> str:
+    """
+    Standardizes string by removing spaces/punctuation and lowercasing.
+    
+    Args:
+        input_string (`str`): String to standardize
+    
+    Returns:
+        `str`: Standardized string
+    """
     # This function standardizes the string by removing all the spaces, ",./-_*^" punctuation, and converting it to lowercase
     # It will also convert all the single quotes to double quotes
     # This is used to compare the model output with the possible answers
@@ -172,7 +239,18 @@ def standardize_string(input_string: str):
     return re.sub(regex_string, "", input_string).lower().replace("'", '"')
 
 
-def string_checker(param: str, model_output: str, possible_answer: list):
+def string_checker(param: str, model_output: str, possible_answer: list) -> dict:
+    """
+    Validates string parameter against possible answers.
+    
+    Args:
+        param (`str`): Parameter name
+        model_output (`str`): Model output value
+        possible_answer (`list`): Possible valid answers
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     standardize_possible_answer = []
     standardize_model_output = standardize_string(model_output)
     for i in range(len(possible_answer)):
@@ -191,7 +269,18 @@ def string_checker(param: str, model_output: str, possible_answer: list):
     return {"valid": True, "error": []}
 
 
-def list_checker(param: str, model_output: list, possible_answer: list):
+def list_checker(param: str, model_output: list, possible_answer: list) -> dict:
+    """
+    Validates list parameter against possible answers.
+    
+    Args:
+        param (`str`): Parameter name
+        model_output (`list`): Model output value
+        possible_answer (`list`): Possible valid answers
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     # Convert the tuple to a list
 
     standardize_model_output = list(model_output)
@@ -225,7 +314,18 @@ def list_checker(param: str, model_output: list, possible_answer: list):
     return {"valid": True, "error": []}
 
 
-def dict_checker(param: str, model_output: dict, possible_answers: list):
+def dict_checker(param: str, model_output: dict, possible_answers: list) -> dict:
+    """
+    Validates dictionary parameter against possible answers.
+    
+    Args:
+        param (`str`): Parameter name
+        model_output (`dict`): Model output value
+        possible_answers (`list`): Possible valid answers
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     # This function works for simple dictionaries, but not dictionaries with nested dictionaries.
     # The current dataset only contains simple dictionaries, so this is sufficient.
 
@@ -288,7 +388,18 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
     return result
 
 
-def list_dict_checker(param: str, model_output: list, possible_answers: list):
+def list_dict_checker(param: str, model_output: list, possible_answers: list) -> dict:
+    """
+    Validates list of dictionaries parameter.
+    
+    Args:
+        param (`str`): Parameter name
+        model_output (`list`): Model output value
+        possible_answers (`list`): Possible valid answers
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     # This function takes in a list of dictionaries and checks if each dictionary is valid
     # The order of the dictionaries in the list must match the order of the possible answers
 
@@ -326,7 +437,20 @@ def simple_function_checker(
     possible_answer: dict,
     language: str,
     model_name: str,
-):
+) -> dict:
+    """
+    Validates single function call output.
+    
+    Args:
+        func_description (`dict`): Function description
+        model_output (`dict`): Model output
+        possible_answer (`dict`): Expected correct answer
+        language (`str`): Programming language
+        model_name (`str`): Model name
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     possible_answer = list(possible_answer.values())[0]
     # Extract function name and parameters details
     func_name = func_description["name"]
@@ -510,7 +634,20 @@ def parallel_function_checker_enforce_order(
     possible_answers: dict,
     language: str,
     model_name: str,
-):
+) -> dict:
+    """
+    Validates parallel function calls with enforced order.
+    
+    Args:
+        func_descriptions (`list`): List of function descriptions
+        model_output (`list`): Model output
+        possible_answers (`dict`): Expected correct answers
+        language (`str`): Programming language
+        model_name (`str`): Model name
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     if len(model_output) != len(possible_answers):
         return {
             "valid": False,
@@ -546,7 +683,20 @@ def parallel_function_checker_no_order(
     possible_answers: list,
     language: str,
     model_name: str,
-):
+) -> dict:
+    """
+    Validates parallel function calls without order enforcement.
+    
+    Args:
+        func_descriptions (`list`): List of function descriptions
+        model_output (`list`): Model output
+        possible_answers (`list`): Expected correct answers
+        language (`str`): Programming language
+        model_name (`str`): Model name
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     if len(model_output) != len(possible_answers):
         return {
             "valid": False,
@@ -616,7 +766,20 @@ def multiple_function_checker(
     possible_answers: list,
     language: str,
     model_name: str,
-):
+) -> dict:
+    """
+    Validates multiple function calls.
+    
+    Args:
+        func_descriptions (`list`): List of function descriptions
+        model_output (`list`): Model output
+        possible_answers (`list`): Expected correct answers
+        language (`str`): Programming language
+        model_name (`str`): Model name
+    
+    Returns:
+        `dict`: Validation result with 'valid' flag and any errors
+    """
     if len(model_output) != len(possible_answers):
         return {
             "valid": False,

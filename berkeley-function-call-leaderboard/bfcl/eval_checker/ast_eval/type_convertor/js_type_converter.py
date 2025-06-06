@@ -1,8 +1,26 @@
+from typing import Optional, Union, Literal
 import re
 from bfcl.constants.type_mappings import JS_TYPE_CONVERSION
 
 
-def js_type_converter(value, expected_type, nested_type=None):
+def js_type_converter(value: str, expected_type: str, nested_type: Optional[str]=None) -> Union[str, int, float, bool, list, dict]:
+    """
+    Converts a JavaScript value string to a Python value of the specified type.
+    
+    Args:
+        value (`str`):
+            The JavaScript value string to convert
+        expected_type (`str`):
+            The expected Python type to convert to (e.g. 'String', 'integer', 'float')
+        nested_type (`str`, optional):
+            For collections, specifies the type of nested elements
+    
+    Returns:
+        `Union[str, int, float, bool, list, dict]`: The converted Python value
+    
+    Raises:
+        ValueError: If the expected_type is not supported or value cannot be converted
+    """
     if expected_type not in JS_TYPE_CONVERSION:
         raise ValueError(f"Unsupported type: {expected_type}")
 
@@ -39,7 +57,24 @@ def js_type_converter(value, expected_type, nested_type=None):
         raise ValueError(f"Unsupported type: {expected_type}")
 
 
-def parse_js_collection(code, type_str, nested_type=None):
+def parse_js_collection(code: str, type_str: Literal['array', 'dict'], nested_type: Optional[str]=None) -> Union[list, dict, str]:
+    """
+    Parses a JavaScript collection (array or dict) string into a Python collection.
+    
+    Args:
+        code (`str`):
+            The JavaScript collection string to parse
+        type_str (`Literal['array', 'dict']`):
+            The type of collection to parse
+        nested_type (`str`, optional):
+            For nested collections, specifies the type of elements
+    
+    Returns:
+        `Union[list, dict, str]`: The parsed collection or original string if parsing fails
+    
+    Raises:
+        ValueError: If type_str is not 'array' or 'dict'
+    """
     code = code.strip()
     if type_str == "array":
         # Regular expression patterns
@@ -133,7 +168,17 @@ def parse_js_collection(code, type_str, nested_type=None):
         raise ValueError(f"Unsupported type: {type_str}")
 
 
-def parse_js_value(value_str: str):
+def parse_js_value(value_str: str) -> Union[str, int, float, bool]:
+    """
+    Parses a basic JavaScript value string into a Python value.
+    
+    Args:
+        value_str (`str`):
+            The JavaScript value string to parse
+    
+    Returns:
+        `Union[str, int, float, bool]`: The parsed Python value (defaults to string if parsing fails)
+    """
     value_str = value_str.strip()
     if value_str == "true":
         return True
@@ -154,7 +199,10 @@ def parse_js_value(value_str: str):
 
 
 # Write tests for the `js_type_converter` function
-def test_js_type_converter():
+def test_js_type_converter() -> None:
+    """
+    Tests for the js_type_converter function covering basic type conversions.
+    """
     assert js_type_converter("true", "Boolean") == True
     assert js_type_converter("false", "Boolean") == False
     assert js_type_converter("123", "integer") == 123
@@ -219,7 +267,10 @@ def test_js_type_converter():
     print("All tests passed successfully!")
 
 
-def test_js_type_converter_nested_array():
+def test_js_type_converter_nested_array() -> None:
+    """
+    Tests for js_type_converter with nested array conversions.
+    """
     # Test array with nested integers
     assert js_type_converter("[1, 2, 3]", "array", "integer") == [1, 2, 3]
     assert js_type_converter("new Array(4, 5, 6)", "array", "integer") == [4, 5, 6]
@@ -293,7 +344,10 @@ def test_js_type_converter_nested_array():
     print("All nested array tests passed successfully!")
 
 
-def test_js_type_converter_dictionary_with_arrays():
+def test_js_type_converter_dictionary_with_arrays() -> None:
+    """
+    Tests for js_type_converter with complex dictionary containing arrays.
+    """
     complex_dict = js_type_converter(
         '{"initialState": initialStateObject, "reducers": reducersMap, "middlewares": ["loggerMiddleware"], "enhancers": ["applyMiddleware", "myMiddleWare"]}',
         "dict",

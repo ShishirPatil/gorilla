@@ -1,9 +1,24 @@
 import re
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Any, Optional
 from bfcl.constants.type_mappings import JAVA_TYPE_CONVERSION
 
 
-def java_type_converter(value, expected_type, nested_type=None):
+def java_type_converter(value: str, expected_type: str, nested_type: Optional[str]=None) -> Union[int, float, bool, str, List[Any], Dict[Any, Any]]:
+    """
+    Converts a Java value string to a Python value based on the expected Java type. Handles primitive types, arrays, ArrayLists, and HashMaps. For unsupported types or invalid values, falls back to string or raises appropriate exceptions.
+    
+    Args:
+        value (`str`): The Java value string to convert
+        expected_type (`str`): The expected Java type (e.g. 'int', 'float', 'ArrayList')
+        nested_type (`str`, optional): For collection types, specifies the type of elements
+    
+    Returns:
+        `Union[int, float, bool, str, List[Any], Dict[Any, Any]]`: The converted Python value
+    
+    Raises:
+        `ValueError`: For unsupported types or invalid values
+        `NotImplementedError`: For unimplemented collection types
+    """
     if expected_type not in JAVA_TYPE_CONVERSION:
         raise ValueError(f"Unsupported type: {expected_type}")
     if (
@@ -50,13 +65,36 @@ def java_type_converter(value, expected_type, nested_type=None):
         raise ValueError(f"Unsupported type: {expected_type}")
 
 
-def parse_java_boolean(value):
+def parse_java_boolean(value: str) -> bool:
+    """
+    Parses a Java boolean string into a Python boolean.
+    
+    Args:
+        value (`str`): The Java boolean string ('true' or 'false')
+    
+    Returns:
+        `bool`: The parsed boolean value
+    """
     return value == "true"
 
 
 def parse_java_collection(
-    input_str: str, type_str: str, nested_type=None
+    input_str: str, type_str: str, nested_type: Optional[str]=None
 ) -> Union[List, Dict]:
+    """
+    Parses a Java collection string into a Python list or dict based on the collection type.
+    
+    Args:
+        input_str (`str`): The Java collection string
+        type_str (`str`): The collection type ('ArrayList', 'Array', or 'HashMap')
+        nested_type (`str`, optional): For typed collections, specifies the element type
+    
+    Returns:
+        `Union[List, Dict]`: The parsed collection
+    
+    Raises:
+        `ValueError`: For unsupported collection types
+    """
     if type_str == "ArrayList":
         return parse_arraylist(input_str, nested_type)
     elif type_str == "Array":
@@ -67,7 +105,17 @@ def parse_java_collection(
         raise ValueError(f"Unsupported type: {type_str}")
 
 
-def parse_arraylist(input_str: str, nested_type=None) -> List:
+def parse_arraylist(input_str: str, nested_type: Optional[str]=None) -> List:
+    """
+    Parses a Java ArrayList string into a Python list. Handles both Arrays.asList() and add() initialization styles.
+    
+    Args:
+        input_str (`str`): The ArrayList string
+        nested_type (`str`, optional): For typed ArrayLists, specifies the element type
+    
+    Returns:
+        `List`: The parsed list of elements
+    """
     match_asList = re.search(
         r"new\s+ArrayList<\w*>\(Arrays\.asList\((.+?)\)\)", input_str
     )
@@ -118,7 +166,17 @@ def parse_arraylist(input_str: str, nested_type=None) -> List:
     return input_str  # default to string
 
 
-def parse_array(input_str: str, nested_type=None) -> List:
+def parse_array(input_str: str, nested_type: Optional[str]=None) -> List:
+    """
+    Parses a Java array string into a Python list.
+    
+    Args:
+        input_str (`str`): The array string
+        nested_type (`str`, optional): For typed arrays, specifies the element type
+    
+    Returns:
+        `List`: The parsed list of elements
+    """
     match = re.search(r"new\s+\w+\[\]\s*\{(.*?)\}", input_str)
     if match:
         elements_str = match.group(1)
@@ -141,6 +199,15 @@ def parse_array(input_str: str, nested_type=None) -> List:
 
 
 def parse_hashmap(input_str: str) -> Dict:
+    """
+    Parses a Java HashMap string into a Python dict.
+    
+    Args:
+        input_str (`str`): The HashMap string
+    
+    Returns:
+        `Dict`: The parsed dictionary of key-value pairs
+    """
     elements = {}
     match = re.search(
         r"new\s+HashMap<.*?>\s*\(\)\s*\{\s*\{?\s*(.*?)\s*\}?\s*\}", input_str, re.DOTALL
@@ -163,7 +230,16 @@ def parse_hashmap(input_str: str) -> Dict:
 
 
 # This method parses without the information of what each element type is, contrary of the previous
-def parse_java_value(value_str: str):
+def parse_java_value(value_str: str) -> Union[int, float, bool, str]:
+    """
+    Parses a Java value string into a Python value without type information by trying common formats.
+    
+    Args:
+        value_str (`str`): The Java value string
+    
+    Returns:
+        `Union[int, float, bool, str]`: The parsed value
+    """
     # check if it's boolean
     if value_str == "true":
         return True
@@ -191,7 +267,10 @@ def parse_java_value(value_str: str):
 
 
 # Write tests for the `java_type_converter` function
-def test_java_type_converter():
+def test_java_type_converter() -> None:
+    """
+    Runs comprehensive tests for the java_type_converter function and related parsers. Tests valid conversions, edge cases, and error handling for all supported types.
+    """
     # Test valid conversions
     assert java_type_converter("true", "boolean") == True
     assert java_type_converter("false", "boolean") == False

@@ -110,7 +110,17 @@ def execute_multi_turn_func_call(
     return execution_results, involved_instances
 
 
-def is_empty_execute_response(input_list: list):
+def is_empty_execute_response(input_list: list) -> bool:
+    """
+    Check if an execution response list is empty or contains only empty strings.
+    
+    Args:
+        input_list (`list`):
+            List of execution results to check
+    
+    Returns:
+        `bool`: True if the list is empty or contains only empty strings, False otherwise
+    """
     if len(input_list) == 0:
         return True
     if len(input_list) == 1 and len(input_list[0]) == 0:

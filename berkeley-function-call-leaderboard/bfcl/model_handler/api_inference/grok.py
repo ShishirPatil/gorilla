@@ -6,7 +6,10 @@ from overrides import override
 
 
 class GrokHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with the Grok API, extending the OpenAIHandler. This class provides specific implementations for processing responses from the Grok API, including handling both prompting and function calling (FC) response formats.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.client = OpenAI(
             base_url="https://api.x.ai/v1",
@@ -16,12 +19,32 @@ class GrokHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the response from the Grok API when using standard prompting. This method extends the parent class's implementation by adding reasoning content if available in the response.
+        
+        Args:
+            api_response (`any`):
+                The raw response received from the Grok API.
+        
+        Returns:
+            `dict`: The parsed response data including any additional reasoning content.
+        """
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available(api_response, response_data)
         return response_data
 
     @override
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses the response from the Grok API when using function calling (FC). This method extends the parent class's implementation by adding reasoning content if available in the response.
+        
+        Args:
+            api_response (`any`):
+                The raw response received from the Grok API.
+        
+        Returns:
+            `dict`: The parsed response data including any additional reasoning content.
+        """
         response_data = super()._parse_query_response_FC(api_response)
         self._add_reasoning_content_if_available(api_response, response_data)
         return response_data

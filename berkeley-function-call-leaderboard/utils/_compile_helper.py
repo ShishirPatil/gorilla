@@ -1,7 +1,7 @@
 import inspect
 import json
 import re
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Optional, Callable
 
 TYPE_MAPPING = {
     "str": "string",
@@ -16,6 +16,16 @@ TYPE_MAPPING = {
 
 # Type Conversions
 def convert_type_to_json_compatible(type_name: str) -> str:
+    """
+    Converts Python type names to JSON-compatible type names using a predefined mapping.
+    
+    Args:
+        type_name (`str`):
+            The Python type name to convert (e.g. 'str', 'int')
+    
+    Returns:
+        `str`: The corresponding JSON type name (e.g. 'string', 'integer')
+    """
     return TYPE_MAPPING.get(type_name.lower(), "any")
 
 def parse_type_string(type_str: str) -> dict:
@@ -60,6 +70,22 @@ def parse_type_string(type_str: str) -> dict:
     return {"type": base_type}
 
 def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
+    """
+    Parses a Python docstring into a structured dictionary representation.
+    
+    Extracts the description, parameters (with their types and descriptions), and return value information
+    from a properly formatted docstring. Supports nested parameter definitions for dictionaries.
+    
+    Args:
+        docstring (`str`):
+            The docstring to parse
+    
+    Returns:
+        `Dict[str, Union[str, dict]]`: A dictionary containing:
+            - description: The general description from the docstring
+            - parameters: Type information for all parameters
+            - response_properties: Type information for the return value
+    """
     description = ""
     parameters = {}
     response = {}
@@ -171,7 +197,23 @@ def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
         "response_properties": response,
     }
 
-def function_to_json(func) -> str:
+def function_to_json(func: Callable[..., Any]) -> str:
+    """
+    Converts a Python function into a JSON representation of its interface.
+    
+    Extracts the function name, description, parameters (with types, descriptions and defaults),
+    and return value structure from the function's docstring and signature.
+    
+    Args:
+        func (`Callable[..., Any]`):
+            The function to convert to JSON
+    
+    Returns:
+        `str`: A JSON string representing the function's interface
+    
+    Raises:
+        ValueError: If the function doesn't have a docstring
+    """
     func_name = func.__name__
     docstring = func.__doc__
 
@@ -225,6 +267,9 @@ def function_to_json(func) -> str:
 # PROOF OF CONCEPT TEST
 
 class TestAPI:
+    """
+    Test class containing example methods for demonstrating the docstring parsing functionality.
+    """
     # Amitoj Note: PASTE WHICHEVER FUNCTION YOU WANT TO CHECK HERE AND REPLACE
     def edit_ticket(
         self, ticket_id: int, updates: Dict[str, Optional[Union[str, int]]]

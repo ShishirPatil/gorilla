@@ -12,7 +12,10 @@ from openai import OpenAI, RateLimitError
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 
 class MiningHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for mining and processing function calls from AI model responses. Extends OpenAIHandler to provide specialized processing for function call mining tasks.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
@@ -20,7 +23,17 @@ class MiningHandler(OpenAIHandler):
             api_key=os.getenv("MINING_API_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: list[dict[str, dict]], language: str="Python") -> list[dict[str, dict]]:
+        """
+        Decodes the abstract syntax tree (AST) representation of function calls into a structured format.
+        
+        Args:
+            result (`list[dict[str, dict]]`): List of function call dictionaries containing 'name' and 'arguments'
+            language (`str`, optional): Programming language of the functions (default: 'Python')
+        
+        Returns:
+            `list[dict[str, dict]]`: List of decoded function calls with name as key and arguments as value
+        """
         decoded_output = []
         for invoked_function in result:
             name = invoked_function["name"]
@@ -28,7 +41,16 @@ class MiningHandler(OpenAIHandler):
             decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: list[dict[str, Any]]) -> list[str]:
+        """
+        Converts function call dictionaries into executable string representations.
+        
+        Args:
+            result (`list[dict[str, Any]]`): List of function call dictionaries
+        
+        Returns:
+            `list[str]`: List of executable function call strings
+        """
         too_call_format = []
         for tool_call in result:
             if isinstance(tool_call, dict):
@@ -43,6 +65,15 @@ class MiningHandler(OpenAIHandler):
     #### Prompting methods ####
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries before querying the model by formatting questions and function documentation.
+        
+        Args:
+            test_entry (`dict`): Test case containing function definitions and questions
+        
+        Returns:
+            `dict`: Processed message structure for the API call
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -54,6 +85,15 @@ class MiningHandler(OpenAIHandler):
         return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the API response to extract tool calls and usage metrics.
+        
+        Args:
+            api_response (`any`): Raw response from the API call
+        
+        Returns:
+            `dict`: Parsed response containing tool calls, chat history message, and token usage
+        """
         match = re.search(r'<tool_calls>\n(.*?)\n</tool_calls>', api_response.choices[0].message.content, re.DOTALL)
         tool_calls = api_response.choices[0].message.content
         if match:
@@ -71,7 +111,18 @@ class MiningHandler(OpenAIHandler):
             "output_token": api_response.usage.completion_tokens,
         }
 
-    def mining_system_prompt_pre_processing_chat_model(self,prompts, function_docs, test_category):
+    def mining_system_prompt_pre_processing_chat_model(self,prompts: list[dict[str, str]], function_docs: str, test_category: str) -> list[dict[str, str]]:
+        """
+        Formats system prompts for the chat model with function documentation and calling instructions.
+        
+        Args:
+            prompts (`list[dict[str, str]]`): List of message dictionaries
+            function_docs (`str`): Documentation of available functions
+            test_category (`str`): Category of the test case
+        
+        Returns:
+            `list[dict[str, str]]`: Updated prompts with system message
+        """
         system_pre="""You are a function calling AI model. 
 You are provided with function signatures within <tools></tools> XML tags.
 You may call one or more functions to assist with the user query. 

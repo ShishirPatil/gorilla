@@ -148,7 +148,20 @@ entry_id_with_problem = set()
 test_categories_total, test_filename_total = parse_test_category_argument(["single_turn"])
 
 
-def format_checker(func_description: dict):
+def format_checker(func_description: dict) -> tuple[bool, str]:
+    """
+    Validates the structure and content of a function description dictionary according to specified schema rules.
+    
+    Args:
+        func_description (`dict`):
+            The function description dictionary to validate. Must contain 'name', 'description', and 'parameters' fields.
+    
+    Returns:
+        `tuple[bool, str]`: A tuple where the first element indicates validity (True/False) and the second provides an error message if invalid.
+    
+    Raises:
+        None: Returns error messages rather than raising exceptions.
+    """
     if type(func_description) != dict:
         return False, "Function description must be a dictionary."
 
@@ -244,7 +257,20 @@ def format_checker(func_description: dict):
     return True, "Function description is correctly formatted.✅"
 
 
-def param_checker(properties: dict):
+def param_checker(properties: dict) -> tuple[bool, str]:
+    """
+    Validates the structure and content of parameter definitions within a function description.
+    
+    Args:
+        properties (`dict`):
+            The 'properties' dictionary containing parameter definitions to validate.
+    
+    Returns:
+        `tuple[bool, str]`: A tuple where the first element indicates validity (True/False) and the second provides an error message if invalid.
+    
+    Raises:
+        None: Returns error messages rather than raising exceptions.
+    """
     if type(properties) != dict:
         return (
             False,

@@ -1,3 +1,4 @@
+from typing import Any
 import json
 import re
 
@@ -17,13 +18,13 @@ class PhiFCHandler(OSSHandler):
     - microsoft/Phi-4-mini-instruct
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
         self.is_fc_model = True
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> str:
         """
         "bos_token": "<|endoftext|>",
         "chat_template":
@@ -83,7 +84,17 @@ class PhiFCHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language: str="Python") -> list[dict[str, Any]]:
+        """
+        Converts the model's raw output into an abstract syntax tree (AST) representation of function calls.
+        
+        Args:
+            result (any): The raw output from the model
+            language (str, optional): The programming language of the function calls (default: 'Python')
+        
+        Returns:
+            list[dict[str, Any]]: A list of dictionaries representing function calls in AST format
+        """
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list or any(type(item) != dict for item in result):
@@ -91,13 +102,31 @@ class PhiFCHandler(OSSHandler):
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result) -> list[Any]:
+        """
+        Converts the model's raw output into executable function calls.
+        
+        Args:
+            result (any): The raw output from the model
+        
+        Returns:
+            list[Any]: A list of executable function calls
+        """
         if type(result) != list or any(type(item) != dict for item in result):
             return []
         return convert_to_function_call(result)
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry to prepare it for the model's specific prompting format.
+        
+        Args:
+            test_entry (dict): The test case containing function definitions and metadata
+        
+        Returns:
+            dict: Processed input containing messages and functions in the model's required format
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 

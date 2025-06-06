@@ -1,3 +1,4 @@
+from typing import Optional
 from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
 
@@ -10,11 +11,35 @@ Formatting the prompt manually give us better control over the final formatted p
 
 
 class QuickTestingOSSHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for quick testing that automatically applies chat template formatting to prompts.
+    
+    This is a simplified version of OSSHandler that should only be used for testing purposes. For production use, we recommend
+    formatting prompts manually for better control.
+    
+    Args:
+        model_name (`str`):
+            Name of the model to use
+        temperature (`float`):
+            Temperature parameter for generation
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: Optional[str]) -> str:
+        """
+        Automatically formats chat messages using the tokenizer's chat template.
+        
+        Args:
+            messages (`list[dict[str, str]]`):
+                List of message dictionaries with 'role' and 'content' keys
+            function (`Optional[str]`):
+                (Not used in this implementation)
+        
+        Returns:
+            `str`: Formatted prompt string ready for model input
+        """
 
         formatted_prompt = self.tokenizer.apply_chat_template(
             messages, add_generation_prompt=True, tokenize=False

@@ -48,6 +48,9 @@ DEFAULT_STATE = {
 
 
 class VehicleControlAPI:
+    """
+    A comprehensive vehicle control API that simulates various aspects of car functionality including engine control, door locking, climate control, lighting, braking, cruise control, navigation and more. The API maintains internal state for all vehicle systems and provides methods to interact with them.
+    """
 
     def __init__(self):
         """
@@ -78,7 +81,7 @@ class VehicleControlAPI:
         self.rearRightTirePressure: float
         self._api_description = "This tool belongs to the vehicle control system, which allows users to control various aspects of the car such as engine, doors, climate control, lights, and more."
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _load_scenario(self, scenario: dict, long_context: bool=False) -> None:
         """
         Loads the scenario for the vehicle control.
         Args:
@@ -158,6 +161,15 @@ class VehicleControlAPI:
         self.long_context = long_context
 
     def __eq__(self, value: object) -> bool:
+        """
+        Compares two VehicleControlAPI instances for equality by checking all non-private attributes.
+        
+        Args:
+            value (object): The object to compare with
+        
+        Returns:
+            bool: True if all non-private attributes are equal, False otherwise
+        """
         if not isinstance(value, VehicleControlAPI):
             return False
 
@@ -504,7 +516,7 @@ class VehicleControlAPI:
         """
         return {"currentSpeed": self._random.uniform(0.0, 120.0)}
 
-    def display_log(self, messages: List[str]):
+    def display_log(self, messages: List[str]) -> Dict[str, List[str]]:
         """
         Displays the log messages.
         Args:
@@ -656,7 +668,7 @@ class VehicleControlAPI:
         self.destination = destination
         return {"status": "Navigating to " + destination}
 
-    def check_tire_pressure(self):
+    def check_tire_pressure(self) -> Dict[str, Union[float, bool, Dict[str, Any]]]:
         """
         Checks the tire pressure of the vehicle.
         Returns:

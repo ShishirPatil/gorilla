@@ -1,3 +1,4 @@
+from typing import Union, Any
 import json
 import os
 import time
@@ -17,13 +18,26 @@ from mistralai import Mistral
 
 
 class MistralHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with Mistral AI models, providing functionality for both function calling and standard prompting approaches. Inherits from BaseHandler.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Mistral
 
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, Any]]:
+        """
+        Parses the model output into abstract syntax tree (AST) format for function calls or direct execution.
+        
+        Args:
+            result (str): The raw model output to parse
+            language (str): The programming language of the output (default: 'Python')
+        
+        Returns:
+            list[dict[str, Any]]: Parsed function calls with their parameters
+        """
         if "FC" in self.model_name:
             decoded_output = []
             for invoked_function in result:
@@ -41,7 +55,16 @@ class MistralHandler(BaseHandler):
             decoded_output = ast_parse(func, language)
             return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> Union[dict[str, Any], list[str]]:
+        """
+        Converts model output into executable function calls or code snippets.
+        
+        Args:
+            result (str): The raw model output to process
+        
+        Returns:
+            Union[dict[str, Any], list[str]]: Either a function call dictionary or list of executable strings
+        """
         if "FC" in self.model_name:
             function_call = convert_to_function_call(result)
             return function_call
@@ -59,7 +82,16 @@ class MistralHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Sends a query to the Mistral API using function calling approach.
+        
+        Args:
+            inference_data (dict): Contains message and tools for the API call
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         message = inference_data["message"]
         tool = inference_data["tools"]
         inference_data["inference_input_log"] = {
@@ -79,10 +111,30 @@ class MistralHandler(BaseHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Prepares the inference data for function calling queries.
+        
+        Args:
+            inference_data (dict): Initial inference data
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         inference_data["message"] = []
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function descriptions into tool specifications for the API.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            test_entry (dict): Contains function descriptions
+        
+        Returns:
+            dict: Updated inference data with tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -94,6 +146,15 @@ class MistralHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Processes the API response from a function calling query.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response containing model outputs and metadata
+        """
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -123,18 +184,48 @@ class MistralHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial system message for function calling conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            first_turn_message (list[dict]): Initial message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to ongoing function calling conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            user_message (list[dict]): User message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to function calling conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            model_response_data (dict): Contains assistant response
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -143,6 +234,17 @@ class MistralHandler(BaseHandler):
     def _add_execution_results_FC(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds function execution results to conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            execution_results (list[str]): Results of function executions
+            model_response_data (dict): Contains function call metadata
+        
+        Returns:
+            dict: Updated inference data
+        """
         for execution_result, func_name, tool_call_id in zip(
             execution_results,
             model_response_data["tool_call_func_names"],
@@ -159,7 +261,16 @@ class MistralHandler(BaseHandler):
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Sends a standard prompt query to the Mistral API.
+        
+        Args:
+            inference_data (dict): Contains message for the API call
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": message}
 
@@ -174,6 +285,15 @@ class MistralHandler(BaseHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Prepares the inference data for standard prompting queries.
+        
+        Args:
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data with empty message list
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -186,6 +306,15 @@ class MistralHandler(BaseHandler):
         return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Processes the API response from a standard prompt query.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response containing model output and metadata
+        """
         return {
             "model_responses": api_response.choices[0].message.content,
             "model_responses_message_for_chat_history": api_response.choices[0].message,
@@ -196,18 +325,48 @@ class MistralHandler(BaseHandler):
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial system message for standard prompting conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            first_turn_message (list[dict]): Initial message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to ongoing standard prompting conversation.
+        
+        Args:
+            inference_data (dict): Current inference data
+            user_message (list[dict]): User message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to standard prompting conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            model_response_data (dict): Contains assistant response
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -216,6 +375,17 @@ class MistralHandler(BaseHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to standard prompting conversation history.
+        
+        Args:
+            inference_data (dict): Current inference data
+            execution_results (list[str]): Results to add
+            model_response_data (dict): Contains response metadata
+        
+        Returns:
+            dict: Updated inference data
+        """
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )

@@ -17,12 +17,27 @@ class LlamaHandler(OSSHandler):
     As a result, we will not have separate "prompt mode" for Llama models to avoid confusion.
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: str) -> str:
+        """
+        Formats the prompt for Llama models according to their specific template requirements.
+        
+        Args:
+            messages (`list[dict[str, str]]`):
+                List of message dictionaries containing 'role' and 'content' keys.
+            function (`str`):
+                The function signature to be included in the prompt (not currently used for Llama models).
+        
+        Returns:
+            `str`: The formatted prompt string following Llama's specific template format.
+        
+        Note:
+            The formatting differs between Llama 3 and Llama 4 series models, using different special tokens.
+        """
         # For Llama 4 series, they use a different set of tokens than Llama 3
         if "Llama-4" in self.model_name:
             formatted_prompt = "<|begin_of_text|>"
@@ -46,6 +61,23 @@ class LlamaHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data in Llama's specific format.
+        
+        Args:
+            inference_data (`dict`):
+                The current inference data containing the conversation history.
+            execution_results (`list[str]`):
+                List of execution results to be added to the conversation.
+            model_response_data (`dict`):
+                Additional model response data (not currently used).
+        
+        Returns:
+            `dict`: The updated inference data with execution results added as 'ipython' role messages.
+        
+        Note:
+            Llama models use a special 'ipython' role for execution results in the conversation history.
+        """
         for execution_result in execution_results:
             # Llama uses the `ipython` role for execution results
             inference_data["message"].append(

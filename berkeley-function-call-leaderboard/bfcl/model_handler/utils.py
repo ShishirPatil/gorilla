@@ -5,7 +5,7 @@ import json
 import operator
 import re
 from functools import reduce
-from typing import Callable, List, Optional, Type, Union
+from typing import Callable, List, Optional, Type, Union, Any
 
 from bfcl.constants.default_prompts import DEFAULT_SYSTEM_PROMPT
 from bfcl.constants.type_mappings import GORILLA_TO_OPENAPI
@@ -20,7 +20,17 @@ from tenacity import (
 )
 
 
-def _cast_to_openai_type(properties, mapping):
+def _cast_to_openai_type(properties: dict[str, dict], mapping: dict[str, str]) -> dict[str, dict]:
+    """
+    Converts function parameter types from Gorilla format to OpenAI format. Handles nested structures like arrays and objects recursively.
+    
+    Args:
+        properties (`dict[str, dict]`): Dictionary of parameter properties to convert
+        mapping (`dict[str, str]`): Type mapping between formats (e.g. Gorilla to OpenAI)
+    
+    Returns:
+        `dict[str, dict]`: Converted properties with updated types
+    """
     for key, value in properties.items():
         if "type" not in value:
             properties[key]["type"] = "string"
@@ -65,7 +75,18 @@ def _cast_to_openai_type(properties, mapping):
     return properties
 
 
-def convert_to_tool(functions, mapping, model_style):
+def convert_to_tool(functions: list[dict], mapping: dict[str, str], model_style: ModelStyle) -> list[dict]:
+    """
+    Converts function definitions to tool format compatible with different model styles (OpenAI, Anthropic, Google etc). Handles model-specific formatting requirements.
+    
+    Args:
+        functions (`list[dict]`): List of function definitions to convert
+        mapping (`dict[str, str]`): Type mapping between formats
+        model_style (`ModelStyle`): Target model style for conversion
+    
+    Returns:
+        `list[dict]`: List of converted tool definitions
+    """
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
@@ -179,7 +200,16 @@ def convert_to_tool(functions, mapping, model_style):
     return oai_tool
 
 
-def convert_to_function_call(function_call_list):
+def convert_to_function_call(function_call_list: Union[dict, list[dict]]) -> list[str]:
+    """
+    Converts function call dictionaries into executable function call strings. Handles both single calls and lists of calls.
+    
+    Args:
+        function_call_list (`Union[dict, list[dict]]`): Function call(s) to convert
+    
+    Returns:
+        `list[str]`: List of executable function call strings
+    """
     if type(function_call_list) == dict:
         function_call_list = [function_call_list]
     # function_call_list is of type list[dict[str, str]] or list[dict[str, dict]]
@@ -195,7 +225,7 @@ def convert_to_function_call(function_call_list):
     return execution_list
 
 
-def convert_value(value, type_str):
+def convert_value(value: str, type_str: str):
     """Convert a string value into its appropriate Python data type based on the provided type string.
 
     Arg:
@@ -220,7 +250,17 @@ def convert_value(value, type_str):
         return value
 
 
-def ast_parse(input_str, language="Python"):
+def ast_parse(input_str: str, language: str="Python") -> list[dict]:
+    """
+    Parses function call strings into structured dictionaries using AST. Supports multiple languages.
+    
+    Args:
+        input_str (`str`): Input string containing function call(s)
+        language (`str`, optional): Language of input ('Python', 'Java', 'JavaScript')
+    
+    Returns:
+        `list[dict]`: Parsed function calls as dictionaries
+    """
     if language == "Python":
         cleaned_input = input_str.strip("[]'")
         parsed = ast.parse(cleaned_input, mode="eval")
@@ -242,7 +282,16 @@ def ast_parse(input_str, language="Python"):
         raise NotImplementedError(f"Unsupported language: {language}")
 
 
-def resolve_ast_call(elem):
+def resolve_ast_call(elem: ast.Call) -> dict[str, dict]:
+    """
+    Resolves an AST Call node into a function call dictionary with name and arguments.
+    
+    Args:
+        elem (`ast.Call`): AST Call node to resolve
+    
+    Returns:
+        `dict[str, dict]`: Function call dictionary with name and arguments
+    """
     # Handle nested attributes for deeply nested module paths
     func_parts = []
     func_part = elem.func
@@ -259,7 +308,16 @@ def resolve_ast_call(elem):
     return {func_name: args_dict}
 
 
-def resolve_ast_by_type(value):
+def resolve_ast_by_type(value: ast.AST):
+    """
+    Resolves an AST node value based on its type. Handles constants, lists, dicts, etc.
+    
+    Args:
+        value (`ast.AST`): AST node to resolve
+    
+    Returns:
+        `Any`: Resolved value from AST node
+    """
     if isinstance(value, ast.Constant):
         if value.value is Ellipsis:
             output = "..."
@@ -305,7 +363,7 @@ def resolve_ast_by_type(value):
     return output
 
 
-def system_prompt_pre_processing_chat_model(prompts, function_docs, test_category):
+def system_prompt_pre_processing_chat_model(prompts: list[dict], function_docs: str, test_category: str) -> list[dict]:
     """
     Add a system prompt to the chat model to instruct the model on the available functions and the expected response format.
     If the prompts list already contains a system prompt, append the additional system prompt content to the existing system prompt.
@@ -359,7 +417,16 @@ def combine_consecutive_user_prompts(prompts: list[dict]) -> list[dict]:
     return combined_prompts
 
 
-def _get_language_specific_hint(test_category):
+def _get_language_specific_hint(test_category: str) -> str:
+    """
+    Returns language-specific hint text to append to function descriptions.
+    
+    Args:
+        test_category (`str`): Language category ('python', 'java', 'javascript')
+    
+    Returns:
+        `str`: Language-specific hint text
+    """
     if test_category == "java":
         return " Note that the provided function is in Java 8 SDK syntax."
     elif test_category == "javascript":
@@ -368,7 +435,17 @@ def _get_language_specific_hint(test_category):
         return " Note that the provided function is in Python 3 syntax."
 
 
-def func_doc_language_specific_pre_processing(function, test_category):
+def func_doc_language_specific_pre_processing(function: list[dict], test_category: str) -> list[dict]:
+    """
+    Adds language-specific processing to function documentation. Updates descriptions and parameter types.
+    
+    Args:
+        function (`list[dict]`): Function definitions to process
+        test_category (`str`): Language category
+    
+    Returns:
+        `list[dict]`: Processed function definitions
+    """
     if len(function) == 0:
         return function
 
@@ -427,7 +504,16 @@ def func_doc_language_specific_pre_processing(function, test_category):
     return function
 
 
-def construct_tool_use_system_prompt(tools):
+def construct_tool_use_system_prompt(tools: list[dict]) -> str:
+    """
+    Constructs Claude-style system prompt for tool usage with XML formatting.
+    
+    Args:
+        tools (`list[dict]`): List of tool definitions
+    
+    Returns:
+        `str`: Formatted system prompt
+    """
     tool_use_system_prompt = (
         "In this environment you have access to a set of tools you can use to answer the user's question.\n"
         "\n"
@@ -458,7 +544,18 @@ def construct_tool_use_system_prompt(tools):
     return tool_use_system_prompt
 
 
-def construct_format_tool_for_claude_prompt(name, description, parameters):
+def construct_format_tool_for_claude_prompt(name: str, description: str, parameters: dict[str, dict]) -> str:
+    """
+    Formats a single tool definition for Claude prompt with XML tags.
+    
+    Args:
+        name (`str`): Tool name
+        description (`str`): Tool description
+        parameters (`dict[str, dict]`): Tool parameters
+    
+    Returns:
+        `str`: Formatted tool description
+    """
     constructed_prompt = (
         "<tool_description>\n"
         f"<tool_name>{name}</tool_name>\n"
@@ -474,7 +571,16 @@ def construct_format_tool_for_claude_prompt(name, description, parameters):
     return constructed_prompt
 
 
-def construct_format_parameters_prompt(parameters):
+def construct_format_parameters_prompt(parameters: dict[str, dict]) -> str:
+    """
+    Formats tool parameters for Claude prompt with XML tags.
+    
+    Args:
+        parameters (`dict[str, dict]`): Parameter definitions
+    
+    Returns:
+        `str`: Formatted parameters
+    """
     constructed_prompt = ""
     for parameter_name, parameter in parameters.items():
         if parameter_name == "required":
@@ -499,7 +605,7 @@ def construct_format_parameters_prompt(parameters):
     return constructed_prompt
 
 
-def _function_calls_valid_format_and_invoke_extraction(last_completion):
+def _function_calls_valid_format_and_invoke_extraction(last_completion: str) -> dict:
     """Check if the function call follows a valid format and extract the attempted function calls if so. Does not check if the tools actually exist or if they are called with the requisite params."""
 
     # Check if there are any of the relevant XML tags present that would indicate an attempted function call.
@@ -611,7 +717,7 @@ def _function_calls_valid_format_and_invoke_extraction(last_completion):
     }
 
 
-def _convert_value(value, type_str):
+def _convert_value(value: str, type_str: str):
     """Convert a string value into its appropriate Python data type based on the provided type string.
 
     Arg:
@@ -639,6 +745,15 @@ def _convert_value(value, type_str):
 
 # TODO: Re-organize this file to make it more readable and maintainable
 def extract_system_prompt(prompts: list[dict]) -> str:
+    """
+    Extracts and removes system prompt from conversation history.
+    
+    Args:
+        prompts (`list[dict]`): Conversation history
+    
+    Returns:
+        `str`: Extracted system prompt content
+    """
     for i, prompt in enumerate(prompts):
         if prompt["role"] == "system":
             system_prompt = prompt["content"]
@@ -648,6 +763,16 @@ def extract_system_prompt(prompts: list[dict]) -> str:
 
 
 def extract_last_user_message(prompts: list[dict], user_role_name: str = "user") -> dict:
+    """
+    Extracts and removes last user message from conversation history.
+    
+    Args:
+        prompts (`list[dict]`): Conversation history
+        user_role_name (`str`, optional): Role name for user messages
+    
+    Returns:
+        `dict`: Last user message
+    """
     for i in range(len(prompts) - 1, -1, -1):
         if prompts[i]["role"] == user_role_name:
             last_user_message = prompts[i]
@@ -662,6 +787,17 @@ def extract_last_user_message(prompts: list[dict], user_role_name: str = "user")
 def format_execution_results_prompting(
     inference_data: dict, execution_results: list[str], model_response_data: dict
 ) -> str:
+    """
+    Formats tool execution results for prompting.
+    
+    Args:
+        inference_data (`dict`): Inference metadata
+        execution_results (`list[str]`): Tool execution results
+        model_response_data (`dict`): Model response data
+    
+    Returns:
+        `str`: Formatted execution results
+    """
     # Add the execution results to one single user message
     tool_results = []
     for execution_result, decoded_model_response in zip(
@@ -674,7 +810,17 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result, language="Python"):
+def default_decode_ast_prompting(result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+    """
+    Default AST parsing for model responses with language support.
+    
+    Args:
+        result (`str`): Model response to parse
+        language (`str`, optional): Language of response
+    
+    Returns:
+        `list[dict[str, dict[str, Any]]]`: Parsed function calls
+    """
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -684,7 +830,16 @@ def default_decode_ast_prompting(result, language="Python"):
     return decoded_output
 
 
-def default_decode_execute_prompting(result):
+def default_decode_execute_prompting(result: str) -> list[str]:
+    """
+    Default decoding for executable function calls from model responses.
+    
+    Args:
+        result (`str`): Model response to parse
+    
+    Returns:
+        `list[str]`: Executable function call strings
+    """
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -694,7 +849,7 @@ def default_decode_execute_prompting(result):
     return decoded_output_to_execution_list(decoded_output)
 
 
-def parse_nested_value(value):
+def parse_nested_value(value) -> str:
     """
     Parse a potentially nested value from the AST output.
 
@@ -721,7 +876,7 @@ def parse_nested_value(value):
     return repr(value)
 
 
-def decoded_output_to_execution_list(decoded_output):
+def decoded_output_to_execution_list(decoded_output: list[dict[str, dict[str, Any]]]) -> list[str]:
     """
     Convert decoded output to a list of executable function calls.
 

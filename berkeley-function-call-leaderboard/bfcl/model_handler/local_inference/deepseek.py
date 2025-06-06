@@ -6,11 +6,21 @@ class DeepseekHandler(OSSHandler):
     """
     This is the handler for the Deepseek model. Deepseek-Coder models should use the DeepseekCoderHandler instead.
     """
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> str:
+        """
+        Decodes the AST (Abstract Syntax Tree) from the model's response by removing any code block markers (```json or ```python) and then calling the parent class's decode_ast method.
+        
+        Args:
+            result (str): The raw model response containing the AST.
+            language (str, optional): The programming language of the AST. Defaults to "Python".
+        
+        Returns:
+            str: The decoded AST with code block markers removed.
+        """
         result = result.strip()
         if result.startswith("```json"):
             result = result[len("```json"):]
@@ -19,7 +29,16 @@ class DeepseekHandler(OSSHandler):
         return super().decode_ast(result, language)
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> str:
+        """
+        Decodes the execution result from the model's response by removing any code block markers (```json or ```python) and then calling the parent class's decode_execute method.
+        
+        Args:
+            result (str): The raw model response containing the execution result.
+        
+        Returns:
+            str: The decoded execution result with code block markers removed.
+        """
         if result.startswith("```json"):
             result = result[len("```json"):]
         if result.startswith("```python"):
@@ -27,7 +46,7 @@ class DeepseekHandler(OSSHandler):
         return super().decode_execute(result)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict], function: str) -> str:
         """
         "bos_token": {
             "__type": "AddedToken",
@@ -65,6 +84,17 @@ class DeepseekHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data by formatting them as user messages (since Deepseek doesn't support tool roles).
+        
+        Args:
+            inference_data (dict): The current inference data containing the conversation history.
+            execution_results (list[str]): The results from executing the model's requested actions.
+            model_response_data (dict): Contains decoded model responses including the tool names.
+        
+        Returns:
+            dict: The updated inference data with execution results added as user messages.
+        """
         # Deepseek don't take the tool role; so we use the user role to send the tool output
         tool_message = {
             "role": "user",

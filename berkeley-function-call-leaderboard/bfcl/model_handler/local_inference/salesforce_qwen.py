@@ -6,11 +6,26 @@ from overrides import override
 
 
 class SalesforceQwenHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for Salesforce's Qwen model that extends the base OSSHandler. This class provides specific implementations for prompt formatting, AST decoding, execution decoding, and pre-query processing for the Qwen model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> str:
+        """
+        Formats the prompt for the Qwen model with system instructions and conversation history.
+        
+        Args:
+            messages (`list[dict[str, str]]`):
+                List of message dictionaries containing 'role' and 'content' keys.
+            function (`list[dict[str, Any]]`):
+                List of function/tool definitions to include in the prompt.
+        
+        Returns:
+            `str`: The formatted prompt string ready for model input.
+        """
         formatted_prompt = ""
 
         system_message = "You are a helpful assistant that can use tools. You are developed by Salesforce xLAM team."
@@ -61,7 +76,19 @@ class SalesforceQwenHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+        """
+        Decodes the model's output into an abstract syntax tree (AST) representation of function calls.
+        
+        Args:
+            result (`str`):
+                The raw model output string to decode.
+            language (`str`, optional):
+                The programming language of the output (defaults to 'Python').
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: A list of decoded function calls with their arguments.
+        """
         # result = result.replace("<|python_tag|>", "")
         try:
             # Parse the JSON array of function calls
@@ -81,7 +108,17 @@ class SalesforceQwenHandler(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's output into executable function call strings.
+        
+        Args:
+            result (`str`):
+                The raw model output string to decode.
+        
+        Returns:
+            `list[str]`: A list of executable function call strings.
+        """
         try:
             function_calls = json.loads(result)
             if not isinstance(function_calls, list):
@@ -101,6 +138,16 @@ class SalesforceQwenHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries before querying the model.
+        
+        Args:
+            test_entry (`dict`):
+                The test entry containing function definitions and metadata.
+        
+        Returns:
+            `dict`: The processed test entry with language-specific function documentation.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
         functions = func_doc_language_specific_pre_processing(functions, test_category)

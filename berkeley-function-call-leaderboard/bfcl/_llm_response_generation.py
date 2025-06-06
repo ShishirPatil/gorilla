@@ -1,3 +1,4 @@
+from typing import Any
 import argparse
 import json
 import time
@@ -26,7 +27,27 @@ RETRY_LIMIT = 3
 RETRY_DELAY = 65  # Delay in seconds
 
 
-def get_args():
+def get_args() -> argparse.Namespace:
+    """
+    Parses command line arguments for the evaluation script.
+    
+    Returns:
+        argparse.Namespace: Parsed command line arguments containing:
+            - model: List of model names to evaluate
+            - test_category: List of test categories to evaluate
+            - temperature: Temperature parameter for generation
+            - include_input_log: Flag to include input logs
+            - exclude_state_log: Flag to exclude state logs
+            - num_threads: Number of threads for parallel execution
+            - num_gpus: Number of GPUs to use
+            - backend: Backend to use (vllm or sglang)
+            - gpu_memory_utilization: GPU memory utilization fraction
+            - result_dir: Directory to store results
+            - run_ids: Flag to run specific test IDs
+            - allow_overwrite: Flag to allow overwriting existing results
+            - skip_server_setup: Flag to skip server setup
+            - local_model_path: Path to local model directory
+    """
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
     parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
@@ -63,12 +84,35 @@ def get_args():
     return args
 
 
-def build_handler(model_name, temperature):
+def build_handler(model_name: str, temperature: float):
+    """
+    Creates a model handler instance for the specified model.
+    
+    Args:
+        model_name (str): Name of the model to create handler for
+        temperature (float): Temperature parameter for generation
+    
+    Returns:
+        Model handler instance configured for the specified model
+    """
     handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
     return handler
 
 
-def get_involved_test_entries(test_category_args, run_ids):
+def get_involved_test_entries(test_category_args: list[str], run_ids: bool) -> tuple[list[str], list[str], list[dict]]:
+    """
+    Gets the test entries to evaluate based on command line arguments.
+    
+    Args:
+        test_category_args (list[str]): List of test categories to evaluate
+        run_ids (bool): Flag indicating whether to run specific test IDs
+    
+    Returns:
+        tuple[list[str], list[str], list[dict]]: Tuple containing:
+            - List of test file paths
+            - List of test categories
+            - List of test entries to evaluate
+    """
     all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
     if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
@@ -103,8 +147,21 @@ def get_involved_test_entries(test_category_args, run_ids):
 
 
 def collect_test_cases(
-    args, model_name, all_test_categories, all_test_file_paths, all_test_entries_involved
-):
+    args: argparse.Namespace, model_name: str, all_test_categories: list[str], all_test_file_paths: list[str], all_test_entries_involved: list[dict]
+) -> list[dict]:
+    """
+    Collects test cases to generate based on existing results and command line arguments.
+    
+    Args:
+        args (argparse.Namespace): Command line arguments
+        model_name (str): Name of model being evaluated
+        all_test_categories (list[str]): List of test categories
+        all_test_file_paths (list[str]): List of test file paths
+        all_test_entries_involved (list[dict]): List of all test entries
+    
+    Returns:
+        list[dict]: List of test cases to generate, sorted by ID
+    """
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = args.result_dir / model_name_dir
 
@@ -135,7 +192,7 @@ def collect_test_cases(
     return sorted(test_cases_to_generate, key=sort_key)
 
 
-def process_multi_turn_test_case(test_cases):
+def process_multi_turn_test_case(test_cases: list[dict]) -> list[dict]:
     """
     Multi-turn test cases don't have the function doc in the prompt. We need to add them here.
     """
@@ -167,7 +224,22 @@ def process_multi_turn_test_case(test_cases):
     return test_cases
 
 
-def multi_threaded_inference(handler, test_case, include_input_log, exclude_state_log):
+def multi_threaded_inference(handler, test_case: dict, include_input_log: bool, exclude_state_log: bool) -> dict:
+    """
+    Performs inference on a test case with retry logic for rate limits.
+    
+    Args:
+        handler: Model handler instance
+        test_case (dict): Test case to evaluate
+        include_input_log (bool): Flag to include input logs
+        exclude_state_log (bool): Flag to exclude state logs
+    
+    Returns:
+        dict: Result dictionary containing:
+            - id: Test case ID
+            - result: Model output or error message
+            - metadata: Additional metadata from inference
+    """
 
     assert type(test_case["function"]) is list
 
@@ -218,7 +290,15 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total):
+def generate_results(args: argparse.Namespace, model_name: str, test_cases_total: list[dict]) -> None:
+    """
+    Generates results for all test cases using either batch or threaded inference.
+    
+    Args:
+        args (argparse.Namespace): Command line arguments
+        model_name (str): Name of model being evaluated
+        test_cases_total (list[dict]): List of test cases to evaluate
+    """
     update_mode = args.allow_overwrite
     handler = build_handler(model_name, args.temperature)
 
@@ -263,7 +343,19 @@ def generate_results(args, model_name, test_cases_total):
                     pbar.update()
 
 
-def main(args):
+def main(args: argparse.Namespace) -> None:
+    """
+    Main function that orchestrates the evaluation process.
+    
+    Args:
+        args (argparse.Namespace): Command line arguments
+    
+    Handles:
+        - Argument validation
+        - Test case collection
+        - Result generation for all specified models
+        - Error handling and progress reporting
+    """
 
     if type(args.model) is not list:
         args.model = [args.model]
