@@ -76,6 +76,7 @@ SUPPORTED_MODELS = [
     "grok-3-mini-beta",
     "QwQ-32B",
     "xiaoming-14B",
+    "DM-Cito-8B",
     "deepseek-ai/DeepSeek-R1",
     "google/gemma-3-1b-it",
     "google/gemma-3-4b-it",

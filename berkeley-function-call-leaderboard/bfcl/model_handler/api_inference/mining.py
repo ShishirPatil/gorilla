@@ -19,7 +19,7 @@ class MiningHandler(OpenAIHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
-            base_url="http://algo-dm-generation.mlamp.cn:8188/v1",
+            base_url= os.getenv("MINING_BASE_URL"),
             api_key=os.getenv("MINING_API_KEY"),
         )
 
