@@ -88,6 +88,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | mistral-large-2411                             | Prompt           | Mistral AI     | mistral-large-2411                                          |
 | Mistral-small-2503                             | Function Calling | Mistral AI     | mistral-small-2503-FC                                       |
 | Mistral-Small-2503                             | Prompt           | Mistral AI     | mistral-small-2503                                          |
+| Mistral-Medium-2505                            | Prompt           | Mistral AI     | mistral-medium-2505                                         |
+| Mistral-Medium-2505                            | Function Calling | Mistral AI     | mistral-medium-2505-FC                                      |
 | Nemotron-4-340b-instruct                       | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                             | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
 | o1-2024-12-17                                  | Function Calling | OpenAI         | o1-2024-12-17-FC                                            |
@@ -118,7 +120,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-70b-fc-r                                | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                                 | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
 | yi-large                                       | Function Calling | 01.AI          | yi-large-fc                                                 |
-
+| DM-Cito-8B                                     | Prompt           | Mininglamp     | DM-Cito-8B                                                  |
 ---
 
 ## Additional Requirements for Certain Models
