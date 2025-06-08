@@ -1,37 +1,30 @@
+import os
 from pathlib import Path
 
 VLLM_PORT = 1053
 
-# The root directory of the project, relative to the current file location
-PROJECT_ROOT = "../../"
+# Directory of the installed package
+PACKAGE_ROOT = Path(__file__).resolve().parents[2]
+
+# By default, results and other generated files are stored alongside the
+# package itself so that editable installs behave the same as a regular
+# installation. You can override this by setting the ``BFCL_PROJECT_ROOT``
+# environment variable.
+PROJECT_ROOT = Path(os.getenv("BFCL_PROJECT_ROOT", PACKAGE_ROOT))
 
 # NOTE: These paths are relative to the PROJECT_ROOT directory.
-RESULT_PATH = "./result/"
-PROMPT_PATH = "./data/"
-MULTI_TURN_FUNC_DOC_PATH = "./data/multi_turn_func_doc/"
-POSSIBLE_ANSWER_PATH = "./data/possible_answer/"
-SCORE_PATH = "./score/"
-DOTENV_PATH = "./.env"
-UTILS_PATH = "./utils/"
-TEST_IDS_TO_GENERATE_PATH = "./test_case_ids_to_generate.json"
-
+RESULT_PATH = PROJECT_ROOT / "result"
+PROMPT_PATH = PACKAGE_ROOT / "data"
+MULTI_TURN_FUNC_DOC_PATH = PROMPT_PATH / "multi_turn_func_doc"
+POSSIBLE_ANSWER_PATH = PROMPT_PATH / "possible_answer"
+SCORE_PATH = PROJECT_ROOT / "score"
+DOTENV_PATH = PROJECT_ROOT / ".env"
+UTILS_PATH = PACKAGE_ROOT / "utils"
+TEST_IDS_TO_GENERATE_PATH = PACKAGE_ROOT / "test_case_ids_to_generate.json"
 
 
 RED_FONT = "\033[91m"
 RESET = "\033[0m"
-
-# Construct the full path for other modules to use
-script_dir = Path(__file__).parent
-PROJECT_ROOT = (script_dir / PROJECT_ROOT).resolve()
-
-RESULT_PATH = (PROJECT_ROOT / RESULT_PATH).resolve()
-PROMPT_PATH = (PROJECT_ROOT / PROMPT_PATH).resolve()
-MULTI_TURN_FUNC_DOC_PATH = (PROJECT_ROOT / MULTI_TURN_FUNC_DOC_PATH).resolve()
-POSSIBLE_ANSWER_PATH = (PROJECT_ROOT / POSSIBLE_ANSWER_PATH).resolve()
-SCORE_PATH = (PROJECT_ROOT / SCORE_PATH).resolve()
-DOTENV_PATH = (PROJECT_ROOT / DOTENV_PATH).resolve()
-UTILS_PATH = (PROJECT_ROOT / UTILS_PATH).resolve()
-TEST_IDS_TO_GENERATE_PATH = (PROJECT_ROOT / TEST_IDS_TO_GENERATE_PATH).resolve()
 
 RESULT_PATH.mkdir(parents=True, exist_ok=True)
 SCORE_PATH.mkdir(parents=True, exist_ok=True)

@@ -1,12 +1,16 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bfcl"
-version = "1.0.0"
+name = "bfcl_eval"
+version = "3.0.0"
 description = "Berkeley Function Calling Leaderboard (BFCL)"
-authors = [{ name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" }]
+authors = [
+    { name = "Huanzhi Mao", email = "huanzhimao@cs.berkeley.edu" },
+    { name = "Shishir Patil", email = "shishirpatil@cs.berkeley.edu" },
+    { name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" },
+]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { "text" = "Apache 2.0" }
@@ -34,14 +38,27 @@ dependencies = [
     "tenacity==9.0.0",
     "writer-sdk>=2.1.0",
     "overrides",
-    "boto3"
+    "boto3",
 ]
 
 [project.scripts]
 bfcl = "bfcl.__main__:cli"
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 include = ["bfcl*"]
+
+[tool.setuptools.package-data]
+"bfcl" = [
+    "../data/**/*",
+    "../utils/*.py",
+    "../test_case_ids_to_generate.json",
+    "../.env.example",
+    "../*.md",
+    "../architecture_diagram.png",
+]
 
 [project.urls]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
