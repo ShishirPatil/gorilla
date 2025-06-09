@@ -17,7 +17,7 @@ The repository is organized as follows:
 
 ```plaintext
 berkeley-function-call-leaderboard/
-├── bfcl/
+├── bfcl_eval/
 |   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
@@ -36,18 +36,18 @@ berkeley-function-call-leaderboard/
 │   │   │   ├── ...
 │   │   ├── parser/                # Parsing utilities for Java/JavaScript
 │   │   ├── base_handler.py        # Base handler blueprint
-├── data/                         # Datasets
+│   ├── data/                  # Datasets
+│   ├── scripts/               # Helper scripts
 ├── result/                       # Model responses
 ├── score/                        # Evaluation results
-├── utils/                        # Helper scripts
 ```
 
 To add a new model, focus primarily on the `model_handler` directory. You do not need to modify the parsing utilities in `model_handler/parser` or any other directories.
 
 ## Where to Begin
 
-- **Base Handler:** Start by reviewing `bfcl/model_handler/base_handler.py`. All model handlers inherit from this base class. The `inference_single_turn` and `inference_multi_turn` methods defined there are helpful for understanding the model response generation pipeline. The `base_handler.py` contains many useful details in the docstrings of each abstract method, so be sure to review them.
-  - If your model is hosted locally, you should also look at `bfcl/model_handler/local_inference/base_oss_handler.py`.
+- **Base Handler:** Start by reviewing `bfcl_eval/model_handler/base_handler.py`. All model handlers inherit from this base class. The `inference_single_turn` and `inference_multi_turn` methods defined there are helpful for understanding the model response generation pipeline. The `base_handler.py` contains many useful details in the docstrings of each abstract method, so be sure to review them.
+  - If your model is hosted locally, you should also look at `bfcl_eval/model_handler/local_inference/base_oss_handler.py`.
 - **Reference Handlers:** Checkout some of the existing model handlers (such as `openai.py`, `claude.py`, etc); you can likely reuse some of the existing code if your new model outputs in a similar format.
   - If your model is OpenAI-compatible, the `openai.py` handler will be helpful (and you might be able to just use it as is).
   - If your model is locally hosted, the `llama_fc.py` handler or the `deepseek_coder.py` handler can be good starting points.
@@ -98,7 +98,7 @@ Regardless of mode or model type, you should implement the following methods to 
 
 ## Updating Model Config Mapping
 
-1. **Add a new entry in `bfcl/constants/model_config.py`**
+1. **Add a new entry in `bfcl_eval/constants/model_config.py`**
 
    Populate every field in the `ModelConfig` dataclass:
 
@@ -132,7 +132,7 @@ Regardless of mode or model type, you should implement the following methods to 
 4. **Update Supported Models**
 
    1. Add your model to the list of supported models in `SUPPORTED_MODELS.md`. Include the model name and type (FC or Prompt) in the table.
-   2. Add a new entry in `bfcl/constants/supported_models.py` as well.
+   2. Add a new entry in `bfcl_eval/constants/supported_models.py` as well.
 
 ## Submitting Your Pull Request
 
