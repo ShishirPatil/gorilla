@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel", "build"]
+requires = ["setuptools>=61.0", "wheel", "build", "setuptools-scm[toml]>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "bfcl_eval"
-version = "2025.06.08"
+dynamic = ["version"]
 description = "Berkeley Function Calling Leaderboard (BFCL)"
 authors = [
     { name = "Huanzhi Mao", email = "huanzhimao@cs.berkeley.edu" },
@@ -66,3 +66,8 @@ Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-functio
 oss_eval_vllm = ["vllm==0.8.5"]
 oss_eval_sglang = ["sglang[all]"]
 wandb = ["wandb==0.18.5"]
+
+[tool.setuptools_scm]
+tag_regex = '^v(?P<version>[0-9]{4}\.[0-9]{2}\.[0-9]{2}(?:\.[0-9]+)?)$'
+local_scheme = "no-local-version"
+version_scheme = "no-guess-dev"
