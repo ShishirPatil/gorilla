@@ -13,7 +13,7 @@ def parse_java_function_call(source_code):
     sexp_result = root_node.sexp()
 
     if "ERROR" in sexp_result:
-        raise Exception("Error parsing java the source code.")
+        raise SyntaxError("Error parsing java the source code.")
 
     def get_text(node):
         """Returns the text represented by the node."""
