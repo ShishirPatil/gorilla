@@ -46,6 +46,7 @@ from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHan
 from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
 from bfcl.model_handler.api_inference.dm_cito import DMCitoHandler
+from bfcl.model_handler.api_inference.nemotron import NemotronHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -744,16 +745,16 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
-    model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
-    display_name="LLaMA-3.1 Nemotron Ultra 253B v1",
-    url="https://build.nvidia.com/nvidia/llama-3_1-nemotron-ultra-253b-v1/modelcard",
-    org="NVIDIA",
-    license="Proprietary",
-    model_handler=NvidiaHandler,
-    input_price=None,
-    output_price=None,
-    is_fc_model=False,
-    underscore_to_dot=True,
+        model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
+        display_name="LLaMA-3.1 Nemotron Ultra 253B v1",
+        url="https://build.nvidia.com/nvidia/llama-3_1-nemotron-ultra-253b-v1/modelcard",
+        org="NVIDIA",
+        license="Proprietary",
+        model_handler=NemotronHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=True,
     ),
     "nvidia/nemotron-4-340b-instruct": ModelConfig(
         model_name="nvidia/nemotron-4-340b-instruct",
