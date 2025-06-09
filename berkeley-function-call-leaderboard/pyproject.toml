@@ -69,5 +69,4 @@ wandb = ["wandb==0.18.5"]
 
 [tool.setuptools_scm]
 tag_regex = '^v(?P<version>[0-9]{4}\.[0-9]{2}\.[0-9]{2}(?:\.[0-9]+)?)$'
-local_scheme = "no-local-version"
-version_scheme = "no-guess-dev"
+fallback_version = "0.0.0.dev0"
