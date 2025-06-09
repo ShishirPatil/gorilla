@@ -13,7 +13,7 @@ def parse_javascript_function_call(source_code):
     root_node = tree.root_node
     sexp_result = root_node.sexp()
     if "ERROR" in sexp_result:
-        raise Exception("Error js parsing the source code.")
+        raise SyntaxError("Error js parsing the source code.")
 
     # Function to recursively extract argument details
     def extract_arguments(node):
