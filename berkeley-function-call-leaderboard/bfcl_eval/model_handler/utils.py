@@ -220,7 +220,7 @@ def convert_value(value, type_str):
         return value
 
 
-def ast_parse(input_str, language="Python"):
+def ast_parse(input_str: str, language: str="Python") -> list[dict]:
     if language == "Python":
         cleaned_input = input_str.strip("[]'")
         parsed = ast.parse(cleaned_input, mode="eval")
@@ -674,7 +674,7 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result: str, language="Python"):
+def default_decode_ast_prompting(result: str, language: str="Python") -> list[dict]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -684,7 +684,7 @@ def default_decode_ast_prompting(result: str, language="Python"):
     return decoded_output
 
 
-def default_decode_execute_prompting(result: str):
+def default_decode_execute_prompting(result: str) -> list[str]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -721,7 +721,7 @@ def parse_nested_value(value):
     return repr(value)
 
 
-def decoded_output_to_execution_list(decoded_output):
+def decoded_output_to_execution_list(decoded_output: list[dict]) -> list[str]:
     """
     Convert decoded output to a list of executable function calls.
 
