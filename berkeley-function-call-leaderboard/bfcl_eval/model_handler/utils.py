@@ -674,7 +674,7 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result, language="Python"):
+def default_decode_ast_prompting(result: str, language="Python"):
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -684,7 +684,7 @@ def default_decode_ast_prompting(result, language="Python"):
     return decoded_output
 
 
-def default_decode_execute_prompting(result):
+def default_decode_execute_prompting(result: str):
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
