@@ -3,16 +3,20 @@ import re
 from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.utils import (
     ast_parse,
-    combine_consecutive_user_prompts,
     func_doc_language_specific_pre_processing,
 )
 
 class NemotronHandler(NvidiaHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    """Handler for the LLaMA 3.1 Nemotron Ultra 253B v1 model.
+    
+    This handler extends NvidiaHandler to support the Nemotron model's XML-based
+    function calling format. The model expects:
+    - <TOOLCALL>[function_calls]</TOOLCALL> for function calls
+    - <AVAILABLE_TOOLS>{functions}</AVAILABLE_TOOLS> for function documentation
+    """
 
     def _format_system_prompt(self, functions):
-        """Format the system prompt in the Nemotron-specific format."""
+        """Format the system prompt in the Nemotron-specific XML format."""
         system_prompt = """You are an expert in composing functions. You are given a question and a set of possible functions.
 Based on the question, you will need to make one or more function/tool calls to achieve the purpose.
 If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
@@ -28,27 +32,40 @@ Here is a list of functions in JSON format that you can invoke.
         return system_prompt.format(functions=json.dumps(functions, indent=2))
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """Process the input query and format it for the Nemotron model."""
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
+        # Pre-process functions based on language
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Create system prompt with Nemotron-specific format
         system_prompt = self._format_system_prompt(functions)
         
-        # Add system prompt to the first message
-        if test_entry["question"][0]["role"] == "system":
-            test_entry["question"][0]["content"] = system_prompt
-        else:
-            test_entry["question"].insert(0, {"role": "system", "content": system_prompt})
+        # Return empty message list - messages will be added incrementally
+        return {"message": [], "system_prompt": system_prompt}
 
-        # Combine consecutive user prompts
-        for round_idx in range(len(test_entry["question"])):
-            test_entry["question"][round_idx] = combine_consecutive_user_prompts(
-                test_entry["question"][round_idx]
-            )
-
-        return {"message": []}
+    def add_first_turn_message_prompting(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        """Add the first turn message to the inference data."""
+        if "message" not in inference_data:
+            inference_data["message"] = []
+        
+        # Add our custom system prompt first
+        if "system_prompt" in inference_data:
+            inference_data["message"].append({
+                "role": "system",
+                "content": inference_data["system_prompt"]
+            })
+            del inference_data["system_prompt"]
+        
+        # Add all other messages
+        for msg in first_turn_message:
+            if msg["role"] != "system":  # Skip system messages as we've already added ours
+                inference_data["message"].append(msg)
+        
+        return inference_data
 
     def decode_ast(self, result, language="Python"):
         """Extract function calls from the Nemotron XML format."""
