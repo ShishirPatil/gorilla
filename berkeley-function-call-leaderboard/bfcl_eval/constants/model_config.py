@@ -1900,5 +1900,3 @@ MODEL_CONFIG_MAPPING = {
     **local_inference_model_map,
     **third_party_inference_model_map,
 }
-
-print(repr(list(MODEL_CONFIG_MAPPING.keys())))
