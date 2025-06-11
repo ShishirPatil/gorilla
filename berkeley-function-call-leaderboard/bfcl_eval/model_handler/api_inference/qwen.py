@@ -10,12 +10,9 @@ class QwenAPIHandler(OpenAIHandler):
     """
     This is the OpenAI-compatible API handler with streaming enabled.
 
-    For Qwen's hosted service,
-    - Qwen3 series without reasoning support non-streaming response.
-    - QwQ series, and Qwen3 series with reasoning enabled only support streaming response for both prompting and FC mode.
+    For Qwen's hosted service, the QwQ series, and Qwen3 series with reasoning enabled only support streaming response for both prompting and FC mode.
     So to make things simple, we will just use streaming response for all Qwen model variants.
 
-    Also, QwQ's reasoning trace cannot be turned off. It won't error out if we include `"enable_thinking": False` in the request body; it has no effect. So for readability, we didn't include `-reasoning` in the model name for QwQ.
     """
 
     def __init__(self, model_name, temperature) -> None:
@@ -36,11 +33,11 @@ class QwenAPIHandler(OpenAIHandler):
 
         return self.generate_with_backoff(
             messages=inference_data["message"],
-            model=self.model_name.replace("-FC", "").replace("-reasoning", ""),
+            model=self.model_name.replace("-FC", ""),
             tools=tools,
             parallel_tool_calls=True,
             extra_body={
-                "enable_thinking": True if "reasoning" in self.model_name else False
+                "enable_thinking": True
             },
             stream=True,
             stream_options={
@@ -152,9 +149,9 @@ class QwenAPIHandler(OpenAIHandler):
 
         return self.generate_with_backoff(
             messages=inference_data["message"],
-            model=self.model_name.replace("-reasoning", ""),
+            model=self.model_name,
             extra_body={
-                "enable_thinking": True if "reasoning" in self.model_name else False
+                "enable_thinking": True
             },
             stream=True,
             stream_options={
