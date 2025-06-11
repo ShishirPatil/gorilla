@@ -829,7 +829,7 @@ api_inference_model_map = {
     ),
     "qwen3-0.6b-reasoning-FC": ModelConfig(
         model_name="qwen3-0.6b-reasoning-FC",
-        display_name="Qwen3-0.6B (FC, Reasoning)",
+        display_name="Qwen3-0.6B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
@@ -853,7 +853,7 @@ api_inference_model_map = {
     ),
     "qwen3-0.6b-reasoning": ModelConfig(
         model_name="qwen3-0.6b-reasoning",
-        display_name="Qwen3-0.6B (Prompt, Reasoning)",
+        display_name="Qwen3-0.6B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
@@ -877,7 +877,7 @@ api_inference_model_map = {
     ),
     "qwen3-1.7b-reasoning-FC": ModelConfig(
         model_name="qwen3-1.7b-reasoning-FC",
-        display_name="Qwen3-1.7B (FC, Reasoning)",
+        display_name="Qwen3-1.7B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -901,7 +901,7 @@ api_inference_model_map = {
     ),
     "qwen3-1.7b-reasoning": ModelConfig(
         model_name="qwen3-1.7b-reasoning",
-        display_name="Qwen3-1.7B (Prompt, Reasoning)",
+        display_name="Qwen3-1.7B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -925,7 +925,7 @@ api_inference_model_map = {
     ),
     "qwen3-4b-reasoning-FC": ModelConfig(
         model_name="qwen3-4b-reasoning-FC",
-        display_name="Qwen3-4B (FC, Reasoning)",
+        display_name="Qwen3-4B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
@@ -949,7 +949,7 @@ api_inference_model_map = {
     ),
     "qwen3-4b-reasoning": ModelConfig(
         model_name="qwen3-4b-reasoning",
-        display_name="Qwen3-4B (Prompt, Reasoning)",
+        display_name="Qwen3-4B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
@@ -973,7 +973,7 @@ api_inference_model_map = {
     ),
     "qwen3-8b-reasoning-FC": ModelConfig(
         model_name="qwen3-8b-reasoning-FC",
-        display_name="Qwen3-8B (FC, Reasoning)",
+        display_name="Qwen3-8B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -997,7 +997,7 @@ api_inference_model_map = {
     ),
     "qwen3-8b-reasoning": ModelConfig(
         model_name="qwen3-8b-reasoning",
-        display_name="Qwen3-8B (Prompt, Reasoning)",
+        display_name="Qwen3-8B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -1021,7 +1021,7 @@ api_inference_model_map = {
     ),
     "qwen3-14b-reasoning-FC": ModelConfig(
         model_name="qwen3-14b-reasoning-FC",
-        display_name="Qwen3-14B (FC, Reasoning)",
+        display_name="Qwen3-14B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -1045,7 +1045,7 @@ api_inference_model_map = {
     ),
     "qwen3-14b-reasoning": ModelConfig(
         model_name="qwen3-14b-reasoning",
-        display_name="Qwen3-14B (Prompt, Reasoning)",
+        display_name="Qwen3-14B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -1069,7 +1069,7 @@ api_inference_model_map = {
     ),
     "qwen3-32b-reasoning-FC": ModelConfig(
         model_name="qwen3-32b-reasoning-FC",
-        display_name="Qwen3-32B (FC, Reasoning)",
+        display_name="Qwen3-32B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1093,7 +1093,7 @@ api_inference_model_map = {
     ),
     "qwen3-32b-reasoning": ModelConfig(
         model_name="qwen3-32b-reasoning",
-        display_name="Qwen3-32B (Prompt, Reasoning)",
+        display_name="Qwen3-32B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1117,7 +1117,7 @@ api_inference_model_map = {
     ),
     "qwen3-30b-a3b-reasoning-FC": ModelConfig(
         model_name="qwen3-30b-a3b-reasoning-FC",
-        display_name="Qwen3-30B-A3B (FC, Reasoning)",
+        display_name="Qwen3-30B-A3B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
         org="Qwen",
         license="apache-2.0",
@@ -1141,7 +1141,7 @@ api_inference_model_map = {
     ),
     "qwen3-30b-a3b-reasoning": ModelConfig(
         model_name="qwen3-30b-a3b-reasoning",
-        display_name="Qwen3-30B-A3B (Prompt, Reasoning)",
+        display_name="Qwen3-30B-A3B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
         org="Qwen",
         license="apache-2.0",
@@ -1165,7 +1165,7 @@ api_inference_model_map = {
     ),
     "qwen3-235b-a22b-reasoning-FC": ModelConfig(
         model_name="qwen3-235b-a22b-reasoning-FC",
-        display_name="Qwen3-235B-A22B (FC, Reasoning)",
+        display_name="Qwen3-235B-A22B (FC Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B",
         org="Qwen",
         license="apache-2.0",
@@ -1189,7 +1189,7 @@ api_inference_model_map = {
     ),
     "qwen3-235b-a22b-reasoning": ModelConfig(
         model_name="qwen3-235b-a22b-reasoning",
-        display_name="Qwen3-235B-A22B (Prompt, Reasoning)",
+        display_name="Qwen3-235B-A22B (Prompt Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B",
         org="Qwen",
         license="apache-2.0",
