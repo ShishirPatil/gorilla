@@ -115,12 +115,18 @@ class QwenAPIHandler(OpenAIHandler):
                 "content": None,
                 "tool_calls": tool_calls_for_history,
             }
+            # Attach reasoning content so that it can be passed to the next turn
+            if reasoning_content:
+                model_response_message_for_chat_history["reasoning_content"] = reasoning_content
         else:
             model_response = answer_content
             model_response_message_for_chat_history = {
                 "role": "assistant",
                 "content": answer_content,
             }
+            # Attach reasoning content so that it can be passed to the next turn
+            if reasoning_content:
+                model_response_message_for_chat_history["reasoning_content"] = reasoning_content
 
         response_data = {
             "model_responses": model_response,
@@ -184,6 +190,12 @@ class QwenAPIHandler(OpenAIHandler):
             "input_token": chunk.usage.prompt_tokens,
             "output_token": chunk.usage.completion_tokens,
         }
+
+        # Attach reasoning content to the assistant message for the next turn if present
+        if reasoning_content:
+            response_data["model_responses_message_for_chat_history"][
+                "reasoning_content"
+            ] = reasoning_content
 
         if not reasoning_content:
             del response_data["reasoning_content"]
