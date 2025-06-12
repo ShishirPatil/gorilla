@@ -131,7 +131,7 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "DeepSeek-V3-0324": ModelConfig(
+    "DeepSeek-V3-0324-FC": ModelConfig(
         model_name="DeepSeek-V3-0324",
         display_name="DeepSeek-V3-0324 (FC)",
         url="https://api-docs.deepseek.com/news/news250325",
