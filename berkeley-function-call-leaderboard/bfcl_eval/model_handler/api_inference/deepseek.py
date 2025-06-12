@@ -50,6 +50,8 @@ class DeepSeekAPIHandler(OpenAIHandler):
         # This will need to be updated if newer models are released.
         if "DeepSeek-V3" in self.model_name:
             api_model_name = "deepseek-chat"
+        elif "DeepSeek-R1" in self.model_name:
+            api_model_name = "deepseek-reasoner"
         else:
             raise ValueError(
                 f"Model name {self.model_name} not yet supported in this method"
