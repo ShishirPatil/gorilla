@@ -5,6 +5,7 @@ from enum import Enum
 class ModelStyle(Enum):
     Gorilla = "gorilla"
     OpenAI = "gpt"
+    OpenAIResponses = "gpt-responses"
     Anthropic = "claude"
     Mistral = "mistral"
     Google = "google"

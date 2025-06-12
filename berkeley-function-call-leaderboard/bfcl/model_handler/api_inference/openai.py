@@ -17,6 +17,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI, RateLimitError
+from openai.types.responses import Response
 
 
 class OpenAIBaseHandler(BaseHandler):
@@ -255,6 +256,140 @@ class OpenAICompletionsHandler(OpenAIBaseHandler):
         if hasattr(message, "reasoning_content"):
             response_data["reasoning_content"] = message.reasoning_content
             # Reasoning content should not be included in the chat history
+            response_data["model_responses_message_for_chat_history"] = {
+                "role": "assistant",
+                "content": str(response_data["model_responses"]),
+            }
+
+
+class OpenAIResponsesHandler(OpenAIBaseHandler):
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
+        self.model_style = ModelStyle.OpenAIResponses
+
+    @retry_with_backoff(error_type=RateLimitError)
+    def generate_with_backoff(self, **kwargs):
+        start_time = time.time()
+        api_response = self.client.responses.create(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
+
+    #### FC methods ####
+
+    def _query_FC(self, inference_data: dict):
+        message: list[dict] = inference_data["message"]
+        tools = inference_data["tools"]
+        inference_data["inference_input_log"] = {
+            "message": repr(message),
+            "tools": tools,
+        }
+
+        if len(tools) > 0:
+            # Reasoning models don't support temperature parameter
+            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    tools=tools,
+                )
+            else:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                    tools=tools,
+                )
+        else:
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                )
+            else:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                )
+
+    def _parse_query_response_FC(self, api_response: Response) -> dict:
+        try:
+            model_responses = [
+                {func_call.name: func_call.arguments}
+                for func_call in api_response.output
+                if func_call.type == "function_call"
+            ]
+            tool_call_ids = [
+                func_call.id
+                for func_call in api_response.output
+                if func_call.type == "function_call"
+            ]
+        except:
+            model_responses = api_response.output_text
+            tool_call_ids = []
+
+        model_responses_message_for_chat_history = next(
+            (item.content for item in api_response.output if item.type == "message"),
+            None,
+        )
+
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "tool_call_ids": tool_call_ids,
+            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
+            "output_token": api_response.usage.output_tokens
+            if api_response.usage
+            else 0,
+        }
+
+    def _query_prompting(self, inference_data: dict):
+        inference_data["inference_input_log"] = {
+            "message": repr(inference_data["message"])
+        }
+
+        # OpenAI reasoning models don't support temperature parameter
+        # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+        if "o1" in self.model_name or "o3-mini" in self.model_name:
+            return self.generate_with_backoff(
+                input=inference_data["message"],
+                model=self.model_name,
+            )
+        else:
+            return self.generate_with_backoff(
+                input=inference_data["message"],
+                model=self.model_name,
+                temperature=self.temperature,
+            )
+
+    def _parse_query_response_prompting(self, api_response: Response) -> dict:
+        return {
+            "model_responses": api_response.output_text,
+            "model_responses_message_for_chat_history": next(
+                (item.content for item in api_response.output if item.type == "message")
+            ),
+            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
+            "output_token": api_response.usage.output_tokens
+            if api_response.usage
+            else 0,
+        }
+
+    # Adds reasoning content to response_data if present in the response.
+    # OpenAI models don't show reasoning content in the api response,
+    # but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
+    # So this method is included here to avoid code duplication.
+    def _add_reasoning_content_if_available(
+        self, api_response: Response, response_data: dict
+    ) -> None:
+        message = next(
+            (item for item in api_response.output if item.type == "reasoning"), None
+        )
+        if message:
+            response_data["reasoning_content"] = message.summary
+            # Reasoning content should not be included in the chat history
+            # TODO: Figure out how to change this
             response_data["model_responses_message_for_chat_history"] = {
                 "role": "assistant",
                 "content": str(response_data["model_responses"]),

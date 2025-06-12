@@ -71,6 +71,7 @@ def convert_to_tool(functions, mapping, model_style):
     for item in functions:
         if "." in item["name"] and model_style in [
             ModelStyle.OpenAI,
+            ModelStyle.OpenAIResponses,
             ModelStyle.Mistral,
             ModelStyle.Google,
             ModelStyle.OSSMODEL,
@@ -164,6 +165,13 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
+        elif model_style in [
+            ModelStyle.OpenAIResponses
+        ]:
+            oai_tool.append({"type": "function", 
+                             "name": item["name"], 
+                             "description": item["description"], 
+                             "parameters": item["parameters"]})
         elif model_style in [
             ModelStyle.COHERE,
             ModelStyle.OpenAI,
