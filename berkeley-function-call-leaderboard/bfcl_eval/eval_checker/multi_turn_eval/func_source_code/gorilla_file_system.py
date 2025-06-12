@@ -111,6 +111,8 @@ class Directory:
         Returns:
             item (any): The retrieved item or None if it does not exist.
         """
+        if item_name == ".":
+            return self
         return self.contents.get(item_name)
 
     def _list_contents(self) -> List[str]:
