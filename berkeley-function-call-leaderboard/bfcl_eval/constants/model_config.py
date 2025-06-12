@@ -107,18 +107,6 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1": ModelConfig(
-        model_name="DeepSeek-R1",
-        display_name="DeepSeek-R1 (Prompt)",
-        url="https://api-docs.deepseek.com/news/news1226",
-        org="DeepSeek",
-        license="MIT",
-        model_handler=DeepSeekAPIHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
     "DeepSeek-R1-0528": ModelConfig(
         model_name="DeepSeek-R1-0528",
         display_name="DeepSeek-R1-0528 (Prompt)",
