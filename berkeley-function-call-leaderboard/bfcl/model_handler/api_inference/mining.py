@@ -9,9 +9,9 @@ from bfcl.model_handler.utils import (
     retry_with_backoff,
 )
 from openai import OpenAI, RateLimitError
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.openai import OpenAICompletionsHandler
 
-class MiningHandler(OpenAIHandler):
+class MiningHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI

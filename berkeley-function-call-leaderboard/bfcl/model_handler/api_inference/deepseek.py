@@ -1,8 +1,9 @@
 import json
 import os
 import time
+from typing import Any
 
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.openai import OpenAICompletionsHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -14,7 +15,7 @@ from openai import OpenAI, RateLimitError
 from overrides import override
 
 
-class DeepSeekAPIHandler(OpenAIHandler):
+class DeepSeekAPIHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
@@ -115,7 +116,7 @@ class DeepSeekAPIHandler(OpenAIHandler):
         return {"message": []}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available(api_response, response_data)
         return response_data

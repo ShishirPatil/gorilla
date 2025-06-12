@@ -1,10 +1,10 @@
 import os
 
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.openai import OpenAICompletionsHandler
 from openai import OpenAI
 
 
-class GoGoAgentHandler(OpenAIHandler):
+class GoGoAgentHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.is_fc_model = False

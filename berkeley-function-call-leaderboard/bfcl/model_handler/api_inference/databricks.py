@@ -2,7 +2,7 @@ import os
 import re
 import time
 
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.openai import OpenAICompletionsHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
@@ -13,7 +13,7 @@ from bfcl.model_handler.utils import (
 from openai import OpenAI
 
 
-class DatabricksHandler(OpenAIHandler):
+class DatabricksHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
