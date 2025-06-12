@@ -315,20 +315,19 @@ class OpenAIResponsesHandler(OpenAIBaseHandler):
                 )
 
     def _parse_query_response_FC(self, api_response: Response) -> dict:
-        try:
-            model_responses = [
-                {func_call.name: func_call.arguments}
-                for func_call in api_response.output
-                if func_call.type == "function_call"
-            ]
-            tool_call_ids = [
-                func_call.id
-                for func_call in api_response.output
-                if func_call.type == "function_call"
-            ]
-        except:
+        model_responses = [
+            {func_call.name: func_call.arguments}
+            for func_call in api_response.output
+            if func_call.type == "function_call"
+        ]
+        tool_call_ids = [
+            func_call.id
+            for func_call in api_response.output
+            if func_call.type == "function_call"
+        ]
+
+        if not model_responses:     # If there are no function calls
             model_responses = api_response.output_text
-            tool_call_ids = []
 
         model_responses_message_for_chat_history = next(
             (item.content for item in api_response.output if item.type == "message"),
@@ -388,9 +387,3 @@ class OpenAIResponsesHandler(OpenAIBaseHandler):
         )
         if message:
             response_data["reasoning_content"] = message.summary
-            # Reasoning content should not be included in the chat history
-            # TODO: Figure out how to change this
-            response_data["model_responses_message_for_chat_history"] = {
-                "role": "assistant",
-                "content": str(response_data["model_responses"]),
-            }
