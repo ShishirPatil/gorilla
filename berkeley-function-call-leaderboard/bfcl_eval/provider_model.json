@@ -1,0 +1,36 @@
+{
+  "sambanova": [
+    "sambanova/Meta-Llama-3.1-405B-Instruct-FC",
+    "sambanova/Meta-Llama-3.3-70B-Instruct-FC",
+    "sambanova/Llama-4-Scout-17B-16E-Instruct-FC",
+    "sambanova/Llama-4-Maverick-17B-128E-Instruct-FC",
+    "sambanova/DeepSeek-V3-0324-FC",
+    "sambanova/Qwen3-32B-FC"
+  ],
+  "groq": [
+    "groq/llama-3.3-70b-versatile-FC",
+    "groq/meta-llama/llama-4-scout-17b-16e-instruct-FC",
+    "groq/meta-llama/llama-4-maverick-17b-128e-instruct-FC"
+  ],
+  "cerebras": [
+    "cerebras/llama-3.3-70b-FC",
+    "cerebras/llama-4-scout-17b-16e-instruct-FC",
+    "cerebras/qwen-3-32b-FC"
+  ],
+  "fireworks": [
+    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-long-FC",
+    "fireworks/accounts/fireworks/models/llama-v3p3-70b-instruct-FC",
+    "fireworks/accounts/fireworks/models/llama4-scout-instruct-basic-FC",
+    "fireworks/accounts/fireworks/models/llama4-maverick-instruct-basic-FC",
+    "fireworks/accounts/fireworks/models/deepseek-v3-0324-FC",
+    "fireworks/accounts/fireworks/models/qwen3-30b-a3b-FC"
+  ],
+  "together": [
+    "together/meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo-FC",
+    "together/meta-llama/Llama-3.3-70B-Instruct-Turbo-Free-FC",
+    "together/meta-llama/Llama-4-Scout-17B-16E-Instruct-FC",
+    "together/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC",
+    "together/deepseek-ai/DeepSeek-V3-FC",
+    "together/Qwen/Qwen3-235B-A22B-fp8-tput-FC"
+  ]
+}
