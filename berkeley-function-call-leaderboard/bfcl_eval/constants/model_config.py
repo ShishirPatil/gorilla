@@ -46,6 +46,7 @@ from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1074,6 +1075,18 @@ api_inference_model_map = {
         org="Mininglamp",
         license="Proprietary",
         model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "Ling/ling-lite-v1.5": ModelConfig(
+        model_name="Ling/ling-lite-v1.5",
+        display_name="ling-lite-v1.5 (Prompt)",
+        url="https://huggingface.co/inclusionAI/Ling-lite-1.5",
+        org="Ling",
+        license="MIT",
+        model_handler=LingAPIHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,

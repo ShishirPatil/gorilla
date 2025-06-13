@@ -163,4 +163,5 @@ SUPPORTED_MODELS = [
     "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita",
     "qwen/qwq-32b-FC-novita",
     "qwen/qwq-32b-novita",
+    "Ling/ling-lite-v1.5",
 ]
