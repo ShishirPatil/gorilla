@@ -13,15 +13,13 @@ from bfcl_eval.model_handler.utils import (
 from openai import OpenAI, RateLimitError
 from overrides import override
 
+
 class LingAPIHandler(OpenAIHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
-        api_url="https://bailingchat.alipay.com"
-        self.client = OpenAI(
-            base_url=api_url,
-            api_key=os.getenv("LING_API_KEY")
-        )
+        api_url = "https://bailingchat.alipay.com"
+        self.client = OpenAI(base_url=api_url, api_key=os.getenv("LING_API_KEY"))
 
     @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError])
     def generate_with_backoff(self, **kwargs):
@@ -41,7 +39,7 @@ class LingAPIHandler(OpenAIHandler):
         inference_data["inference_input_log"] = {"message": repr(message)}
 
         if "Ling/ling-lite-v1.5" in self.model_name:
-            api_name="Ling-lite-1.5-250604"
+            api_name = "Ling-lite-1.5-250604"
         else:
             raise ValueError(
                 f"Model name {self.model_name} not yet supported in this method"
@@ -73,5 +71,5 @@ class LingAPIHandler(OpenAIHandler):
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         response_data = super()._parse_query_response_prompting(api_response)
-        self._add_reasoning_content_if_available(api_response, response_data)
+        self._add_reasoning_content_if_available_prompting(api_response, response_data)
         return response_data

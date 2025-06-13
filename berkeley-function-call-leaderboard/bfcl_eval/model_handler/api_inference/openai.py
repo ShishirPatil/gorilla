@@ -162,6 +162,51 @@ class OpenAIHandler(BaseHandler):
 
         return inference_data
 
+    def _add_reasoning_content_if_available_FC(
+        self, api_response: any, response_data: dict
+    ) -> None:
+        """
+        OpenAI models don't show reasoning content in the api response,
+        but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
+        This method is included here to avoid code duplication.
+
+        These models often don't take reasoning content in the chat history for next turn.
+        Thus, this method saves reasoning content to response_data (for local result file) if present in the response,
+        but does not include it in the chat history.
+        """
+        # Original assistant message object (contains `reasoning_content` on DeepSeek).
+        message = api_response.choices[0].message
+
+        # Preserve tool_call information but strip the unsupported `reasoning_content` field before inserting into chat history.
+        if getattr(message, "tool_calls", None):
+            assistant_message = {
+                "role": "assistant",
+                "content": message.content,
+                "tool_calls": [
+                    {
+                        "id": tool_call.id,
+                        "type": tool_call.type,
+                        "function": {
+                            "name": tool_call.function.name,
+                            "arguments": tool_call.function.arguments,
+                        },
+                    }
+                    for tool_call in message.tool_calls
+                ],
+            }
+            response_data["model_responses_message_for_chat_history"] = assistant_message
+
+        # If no tool_calls, we still need to strip reasoning_content.
+        elif hasattr(message, "reasoning_content"):
+            response_data["model_responses_message_for_chat_history"] = {
+                "role": "assistant",
+                "content": message.content,
+            }
+
+        # Capture the reasoning trace so it can be logged to the local result file.
+        if hasattr(message, "reasoning_content"):
+            response_data["reasoning_content"] = message.reasoning_content
+
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
@@ -233,13 +278,18 @@ class OpenAIHandler(BaseHandler):
 
         return inference_data
 
-    # Adds reasoning content to response_data if present in the response.
-    # OpenAI models don't show reasoning content in the api response,
-    # but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
-    # So this method is included here to avoid code duplication.
-    def _add_reasoning_content_if_available(
+    def _add_reasoning_content_if_available_prompting(
         self, api_response: any, response_data: dict
     ) -> None:
+        """
+        OpenAI models don't show reasoning content in the api response,
+        but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
+        This method is included here to avoid code duplication.
+
+        These models often don't take reasoning content in the chat history for next turn.
+        Thus, this method saves reasoning content to response_data (for local result file) if present in the response,
+        but does not include it in the chat history.
+        """
         message = api_response.choices[0].message
         if hasattr(message, "reasoning_content"):
             response_data["reasoning_content"] = message.reasoning_content

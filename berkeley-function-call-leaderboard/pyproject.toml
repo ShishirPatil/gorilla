@@ -7,8 +7,8 @@ name = "bfcl_eval"
 dynamic = ["version"]
 description = "Berkeley Function Calling Leaderboard (BFCL)"
 authors = [
-    { name = "Huanzhi Mao", email = "huanzhimao@cs.berkeley.edu" },
-    { name = "Shishir Patil", email = "shishirpatil@cs.berkeley.edu" },
+    { name = "Huanzhi Mao", email = "huanzhimao@eecs.berkeley.edu" },
+    { name = "Shishir Patil", email = "shishirpatil@eecs.berkeley.edu" },
     { name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" },
 ]
 readme = "README.md"
