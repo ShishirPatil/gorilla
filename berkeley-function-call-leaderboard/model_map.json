@@ -1,0 +1,31 @@
+{
+  "sambanova_Meta-Llama-3.1-405B-Instruct-FC": "Meta-Llama-3.1-405B-Instruct",
+  "fireworks_accounts_fireworks_models_llama-v3p1-405b-instruct-long-FC": "Meta-Llama-3.1-405B-Instruct",
+  "together_meta-llama_Meta-Llama-3.1-405B-Instruct-Turbo-FC": "Meta-Llama-3.1-405B-Instruct",
+
+  "sambanova_Meta-Llama-3.3-70B-Instruct-FC": "Meta-Llama-3.3-70B-Instruct",
+  "fireworks_accounts_fireworks_models_llama-v3p3-70b-instruct-FC": "Meta-Llama-3.3-70B-Instruct",
+  "groq_llama-3.3-70b-versatile-FC": "Meta-Llama-3.3-70B-Instruct",
+  "cerebras_llama-3.3-70b-FC": "Meta-Llama-3.3-70B-Instruct",
+  "together_meta-llama_Llama-3.3-70B-Instruct-Turbo-Free-FC": "Meta-Llama-3.3-70B-Instruct",
+
+  "sambanova_Llama-4-Scout-17B-16E-Instruct-FC": "Llama-4-Scout-17B-16E-Instruct",
+  "fireworks_accounts_fireworks_models_llama4-scout-instruct-basic-FC": "Llama-4-Scout-17B-16E-Instruct",
+  "groq_meta-llama_llama-4-scout-17b-16e-instruct-FC": "Llama-4-Scout-17B-16E-Instruct",
+  "cerebras_llama-4-scout-17b-16e-instruct-FC": "Llama-4-Scout-17B-16E-Instruct",
+  "together_meta-llama_Llama-4-Scout-17B-16E-Instruct-FC": "Llama-4-Scout-17B-16E-Instruct",
+
+  "sambanova_Llama-4-Maverick-17B-128E-Instruct-FC": "Llama-4-Maverick-17B-128E-Instruct",
+  "fireworks_accounts_fireworks_models_llama4-maverick-instruct-basic-FC": "Llama-4-Maverick-17B-128E-Instruct",
+  "groq_meta-llama_llama-4-maverick-17b-128e-instruct-FC": "Llama-4-Maverick-17B-128E-Instruct",
+  "together_meta-llama_Llama-4-Maverick-17B-128E-Instruct-FP8-FC": "Llama-4-Maverick-17B-128E-Instruct",
+
+  "sambanova_DeepSeek-V3-0324-FC": "DeepSeek-V3-0324",
+  "fireworks_accounts_fireworks_models_deepseek-v3-0324-FC": "DeepSeek-V3-0324",
+  "together_deepseek-ai_DeepSeek-V3-FC": "DeepSeek-V3-0324",
+
+  "sambanova_Qwen3-32B-FC": "Qwen3-32B",
+  "fireworks_accounts_fireworks_models_qwen3-30b-a3b-FC": "Qwen3-32B",
+  "cerebras_qwen-3-32b-FC": "Qwen3-32B",
+  "together_Qwen_Qwen3-235B-A22B-fp8-tput-FC": "Qwen3-32B"
+}
