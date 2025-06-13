@@ -46,6 +46,7 @@ from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -107,10 +108,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1": ModelConfig(
-        model_name="DeepSeek-R1",
-        display_name="DeepSeek-R1 (Prompt)",
-        url="https://api-docs.deepseek.com/news/news1226",
+    "DeepSeek-R1-0528": ModelConfig(
+        model_name="DeepSeek-R1-0528",
+        display_name="DeepSeek-R1-0528 (Prompt)",
+        url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
         model_handler=DeepSeekAPIHandler,
@@ -119,10 +120,22 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DeepSeek-V3-FC": ModelConfig(
-        model_name="DeepSeek-V3-FC",
-        display_name="DeepSeek-V3 (FC)",
-        url="https://api-docs.deepseek.com/news/news1226",
+    "DeepSeek-R1-0528-FC": ModelConfig(
+        model_name="DeepSeek-R1-0528-FC",
+        display_name="DeepSeek-R1-0528 (FC)",
+        url="https://api-docs.deepseek.com/news/news250528",
+        org="DeepSeek",
+        license="MIT",
+        model_handler=DeepSeekAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "DeepSeek-V3-0324-FC": ModelConfig(
+        model_name="DeepSeek-V3-0324",
+        display_name="DeepSeek-V3-0324 (FC)",
+        url="https://api-docs.deepseek.com/news/news250325",
         org="DeepSeek",
         license="DeepSeek License",
         model_handler=DeepSeekAPIHandler,
@@ -1062,6 +1075,18 @@ api_inference_model_map = {
         org="Mininglamp",
         license="Proprietary",
         model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "Ling/ling-lite-v1.5": ModelConfig(
+        model_name="Ling/ling-lite-v1.5",
+        display_name="ling-lite-v1.5 (Prompt)",
+        url="https://huggingface.co/inclusionAI/Ling-lite-1.5",
+        org="Ling",
+        license="MIT",
+        model_handler=LingAPIHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
