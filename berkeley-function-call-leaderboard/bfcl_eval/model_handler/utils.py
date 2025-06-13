@@ -70,7 +70,7 @@ def convert_to_tool(functions, mapping, model_style):
     oai_tool = []
     for item in functions:
         if "." in item["name"] and model_style in [
-            ModelStyle.OpenAI,
+            ModelStyle.OpenAICompletions,
             ModelStyle.OpenAIResponses,
             ModelStyle.Mistral,
             ModelStyle.Google,
@@ -174,7 +174,7 @@ def convert_to_tool(functions, mapping, model_style):
                              "parameters": item["parameters"]})
         elif model_style in [
             ModelStyle.COHERE,
-            ModelStyle.OpenAI,
+            ModelStyle.OpenAICompletions,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
             ModelStyle.WRITER,

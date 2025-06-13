@@ -23,7 +23,7 @@ from openai.types.responses import Response
 class OpenAIBaseHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAICompletions
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
