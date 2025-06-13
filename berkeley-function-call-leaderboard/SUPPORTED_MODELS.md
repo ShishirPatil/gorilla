@@ -34,9 +34,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Command R7B                            | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
 | Command-R-Plus                         | Function Calling | Cohere         | command-r-plus-FC                                           |
 | DBRX-Instruct                          | Prompt           | Databricks     | databricks-dbrx-instruct                                    |
-| DeepSeek-R1                            | Prompt           | DeepSeek       | DeepSeek-R1                                                 |
 | DeepSeek-R1                            | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
-| DeepSeek-V3                            | Function Calling | DeepSeek       | DeepSeek-V3-FC                                              |
+| DeepSeek-R1-0528                       | Prompt           | DeepSeek       | DeepSeek-R1-0528                                            |
+| DeepSeek-R1-0528                       | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
+| DeepSeek-V3-0324                       | Function Calling | DeepSeek       | DeepSeek-V3-0324-FC                                         |
 | DM-Cito-8B                             | Prompt           | Mininglamp     | DM-Cito-8B                                                  |
 | Falcon3-{1B,3B,7B,10B}-Instruct        | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-v2                        | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
