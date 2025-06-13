@@ -6,8 +6,8 @@ from pathlib import Path
 
 DEFAULT_SEED = 42
 CURRENT_DIR = Path(__file__).resolve().parent
-DATA_DIR = CURRENT_DIR / 'data'
-BACKUP_DIR = CURRENT_DIR / 'original_data'
+DATA_DIR = CURRENT_DIR / 'bfcl_eval' / 'data'
+BACKUP_DIR = CURRENT_DIR / 'bfcl_eval' / 'original_data'
 
 
 def load_jsonl(path):
