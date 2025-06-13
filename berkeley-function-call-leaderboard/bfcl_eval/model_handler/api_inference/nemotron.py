@@ -1,7 +1,8 @@
 import json
 import re
-from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl.model_handler.utils import (
+
+from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
+from bfcl_eval.model_handler.utils import (
     ast_parse,
     func_doc_language_specific_pre_processing,
 )
