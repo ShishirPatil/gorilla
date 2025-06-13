@@ -22,6 +22,9 @@ class OpenAIHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
+        self._init_client()
+        
+    def _init_client(self):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
@@ -43,8 +46,17 @@ class OpenAIHandler(BaseHandler):
 
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
+        max_retries = 3
+        retry_count = 0
         start_time = time.time()
-        api_response = self.client.chat.completions.create(**kwargs)
+        while retry_count < max_retries:
+            api_response = self.client.chat.completions.create(**kwargs)
+            if hasattr(api_response, 'error') and api_response.error:
+                retry_count += 1
+                print(f"Sleeping for 10 seconds...")
+                time.sleep(20)
+                continue
+            break
         end_time = time.time()
 
         return api_response, end_time - start_time

@@ -112,7 +112,7 @@ def type_checker(
             is_variable = True
 
     # value is the same type as in function description
-    if type(value) == expected_type_converted:
+    if type(value) == expected_type_converted or value is None:
         # We don't need to do recursive check for simple types
         if nested_type_converted == None:
             result["is_variable"] = is_variable
@@ -121,23 +121,27 @@ def type_checker(
             for possible_answer_item in possible_answer:
                 flag = True  # Each parameter should match to at least one possible answer type.
                 # Here, we assume that each item should be the same type. We could also relax it.
-                if type(possible_answer_item) == list:
-                    for value_item in value:
-                        checker_result = type_checker(
-                            param,
-                            value_item,
-                            possible_answer_item,
-                            str(nested_type_converted),
-                            nested_type_converted,
-                            None,
-                        )
-                        if not checker_result["valid"]:
-                            flag = False
-                            break
+                try:
+                    if type(possible_answer_item) == list:
+                        if value is None:
+                            value = []
+                        for value_item in value:
+                            checker_result = type_checker(
+                                param,
+                                value_item,
+                                possible_answer_item,
+                                str(nested_type_converted),
+                                nested_type_converted,
+                                None,
+                            )
+                            if not checker_result["valid"]:
+                                flag = False
+                                break
 
-                if flag:
-                    return {"valid": True, "error": [], "is_variable": is_variable}
-
+                    if flag:
+                        return {"valid": True, "error": [], "is_variable": is_variable}
+                except:
+                    pass
             result["valid"] = False
             result["error"] = [
                 f"Nested type checking failed for parameter {repr(param)}. Expected outer type {expected_type_description} with inner type {str(nested_type_converted)}. Parameter value: {repr(value)}."
@@ -456,6 +460,8 @@ def simple_function_checker(
         if not is_variable:
             # Special handle for dictionaries
             if expected_type_converted == dict:
+                if value is None:
+                    value = {}
                 result = dict_checker(param, value, possible_answer[param])
                 if not result["valid"]:
                     return result
@@ -463,6 +469,8 @@ def simple_function_checker(
 
             # Special handle for list of dictionaries
             elif expected_type_converted == list and nested_type_converted == dict:
+                if value is None:
+                    value = []
                 result = list_dict_checker(param, value, possible_answer[param])
                 if not result["valid"]:
                     return result
@@ -471,18 +479,24 @@ def simple_function_checker(
             # Special handle for strings
             elif expected_type_converted == str:
                 # We don't check for case sensitivity for string, as long as it's not a variable
+                if value is None:
+                    value = ""
                 result = string_checker(param, value, possible_answer[param])
                 if not result["valid"]:
                     return result
                 continue
 
             elif expected_type_converted == list:
+                if value is None:
+                    value = ""
                 result = list_checker(param, value, possible_answer[param])
                 if not result["valid"]:
                     return result
                 continue
 
         # Check if the value is within the possible answers
+        if value is None:
+                    value = ""
         if value not in possible_answer[param]:
             result["valid"] = False
             result["error"].append(
