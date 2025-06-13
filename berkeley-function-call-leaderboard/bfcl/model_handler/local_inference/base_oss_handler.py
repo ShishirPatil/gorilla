@@ -1,14 +1,12 @@
+import os
 import subprocess
 import threading
 import time
-import os
 from concurrent.futures import ThreadPoolExecutor
+from typing import Optional
 
 import requests
-from bfcl.constants.eval_config import (
-    RESULT_PATH,
-    VLLM_PORT,
-)
+from bfcl.constants.eval_config import RESULT_PATH, VLLM_PORT
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
@@ -28,6 +26,11 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
+
+        # Will be overridden in batch_inference method
+        # Used to indicate where the tokenizer and config should be loaded from
+        self.model_path_or_id = None
+
         # Read from env vars with fallbacks
         self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
         self.vllm_port = os.getenv("VLLM_PORT", VLLM_PORT)
@@ -63,6 +66,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         gpu_memory_utilization: float,
         backend: str,
         skip_server_setup: bool,
+        local_model_path: Optional[str],
         include_input_log: bool,
         exclude_state_log: bool,
         update_mode: bool,
@@ -73,13 +77,37 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         """
         from transformers import AutoConfig, AutoTokenizer
 
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name_huggingface, trust_remote_code=True
-        )
+        # Determine the model source
+        if local_model_path is not None:
+            # Validate the local_model_path
+            if not os.path.isdir(local_model_path):
+                raise ValueError(
+                    f"local_model_path '{local_model_path}' does not exist or is not a directory."
+                )
 
-        config = AutoConfig.from_pretrained(
-            self.model_name_huggingface, trust_remote_code=True
-        )
+            required_files = ["config.json", "tokenizer_config.json"]
+            for file_name in required_files:
+                if not os.path.exists(os.path.join(local_model_path, file_name)):
+                    raise ValueError(
+                        f"Required file '{file_name}' not found in local_model_path '{local_model_path}'."
+                    )
+
+            self.model_path_or_id = local_model_path
+            load_kwargs = {
+                "pretrained_model_name_or_path": self.model_path_or_id,
+                "local_files_only": True,
+                "trust_remote_code": True,
+            }
+        else:
+            self.model_path_or_id = self.model_name_huggingface
+            load_kwargs = {
+                "pretrained_model_name_or_path": self.model_path_or_id,
+                "trust_remote_code": True,
+            }
+
+        self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+        config = AutoConfig.from_pretrained(**load_kwargs)
+
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
         elif self.tokenizer.model_max_length is not None:
@@ -97,7 +125,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     [
                         "vllm",
                         "serve",
-                        str(self.model_name_huggingface),
+                        str(self.model_path_or_id),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
@@ -120,7 +148,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                         "-m",
                         "sglang.launch_server",
                         "--model-path",
-                        str(self.model_name_huggingface),
+                        str(self.model_path_or_id),
                         "--port",
                         str(self.vllm_port),
                         "--dtype",
@@ -311,18 +339,20 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         start_time = time.time()
         if len(extra_body) > 0:
             api_response = self.client.completions.create(
-                model=self.model_name_huggingface,
+                model=self.model_path_or_id,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
                 extra_body=extra_body,
+                timeout=72000,  # Avoid timeout errors
             )
         else:
             api_response = self.client.completions.create(
-                model=self.model_name_huggingface,
+                model=self.model_path_or_id,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
+                timeout=72000,  # Avoid timeout errors
             )
         end_time = time.time()
 

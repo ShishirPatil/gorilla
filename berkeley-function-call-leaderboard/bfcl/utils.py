@@ -171,14 +171,6 @@ def is_executable_format_output(decoded_output):
     return False
 
 
-def is_rest_format_output(decoded_output):
-    # Ensure the output is a list of one string
-    if type(decoded_output) == list:
-        if len(decoded_output) == 1 and type(decoded_output[0]) == str:
-            return True
-    return False
-
-
 def is_empty_output(decoded_output):
     # This function is a patch to the ast decoder for relevance detection
     # Sometimes the ast decoder will parse successfully, but the input doens't really have a function call
@@ -190,17 +182,6 @@ def is_empty_output(decoded_output):
     if len(decoded_output) == 1 and len(decoded_output[0]) == 0:
         return True
     return False
-
-
-def check_api_key_supplied() -> bool:
-    """
-    This function checks if the four API Keys needed for the executable categoreis are provided. If not, those categories will be skipped.
-    """
-    ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
-    for var in ENV_VARS:
-        if os.getenv(var) == "":
-            return False
-    return True
 
 
 def parse_test_category_argument(test_category_args):
