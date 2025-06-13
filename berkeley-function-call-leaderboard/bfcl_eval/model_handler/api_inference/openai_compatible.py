@@ -1,14 +1,14 @@
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
-from bfcl.model_handler.api_inference.deepseek import DeepSeekAPIHandler
+from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
+from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
 from openai import OpenAI, RateLimitError
 import os
 import time
 import json
-from bfcl.model_handler.utils import (
+from bfcl_eval.model_handler.utils import (
     retry_with_backoff,
 )
-from bfcl.constants.category_mapping import VERSION_PREFIX
-from bfcl.utils import load_file, make_json_serializable, sort_key
+from bfcl_eval.constants.category_mapping import VERSION_PREFIX
+from bfcl_eval.utils import load_file, make_json_serializable, sort_key
 from overrides import final
 
 class OpenaiCompatibleHandler(OpenAIHandler):
