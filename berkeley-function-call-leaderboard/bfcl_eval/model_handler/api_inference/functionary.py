@@ -6,6 +6,6 @@ from openai import OpenAI
 class FunctionaryHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAICompletions
+        self.model_style = ModelStyle.OpenAI_Completions
 
         self.client = OpenAI(base_url="http://localhost:8000/v1", api_key="functionary")

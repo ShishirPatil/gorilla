@@ -16,7 +16,7 @@ from openai import OpenAI
 class DatabricksHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAICompletions
+        self.model_style = ModelStyle.OpenAI_Completions
 
         # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         self.client = OpenAI(

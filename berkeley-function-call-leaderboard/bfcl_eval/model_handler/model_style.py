@@ -4,8 +4,8 @@ from enum import Enum
 # TODO: Use all caps for enum values to maintain consistency
 class ModelStyle(Enum):
     Gorilla = "gorilla"
-    OpenAICompletions = "gpt-completions"
-    OpenAIResponses = "gpt-responses"
+    OpenAI_Completions = "openai-completions"
+    OpenAI_Responses = "openai-responses"
     Anthropic = "claude"
     Mistral = "mistral"
     Google = "google"
