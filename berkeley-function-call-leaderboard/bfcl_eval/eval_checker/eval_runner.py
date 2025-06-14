@@ -462,7 +462,7 @@ def evaluate_task(
                 score_dir,
             )
 
-    record_result(state, model_name, test_category, accuracy, total_count)
+    record_result(state["leaderboard_table"], model_name, test_category, accuracy, total_count)
     print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
     return state

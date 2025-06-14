@@ -74,6 +74,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Hammer2.1-{7b,3b,1.5b,0.5b}            | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
 | Llama-3.1-{8B,70B}-Instruct            | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct            | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
+| Llama-3.1-Nemotron-Ultra-253B-v1       | Prompt           | Nvidia         | nvidia/llama-3.1-nemotron-ultra-253b-v1                     |
 | Llama-3.2-{1B,3B}-Instruct             | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |
 | Llama-3.3-70B-Instruct                 | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct-FC                        |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita    |
@@ -105,7 +106,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Phi-4-mini-instruct                    | Function Calling | Self-hosted 💻 | microsoft/Phi-4-mini-instruct-FC                            |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Prompt           | Alibaba Cloud  | qwen3-{0.6b,1.7b,4b,8b,14b,32b}                             |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,4B,8B,14B,32B}                        |
-| Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Function Calling | Alibaba Cloud  | qwen3-{0.6b,1.7b,4b,8b,14b,32b}-FC                         |
+| Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Function Calling | Alibaba Cloud  | qwen3-{0.6b,1.7b,4b,8b,14b,32b}-FC                          |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,4B,8B,14B,32B}-FC                     |
 | Qwen3-{30B-A3B,235B-A22B}              | Prompt           | Alibaba Cloud  | qwen3-{30b-a3b, 235b-a22b}                                  |
 | Qwen3-{30B-A3B,235B-A22B}              | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}                              |
