@@ -20,6 +20,8 @@ from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
 from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler
+from bfcl_eval.model_handler.api_inference.qwen_by_agent_think import QwenAgentThinkHandler
+from bfcl_eval.model_handler.api_inference.qwen_by_agent_nothink import QwenAgentNoThinkHandler
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
@@ -1891,6 +1893,30 @@ third_party_inference_model_map = {
         output_price=0.2,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "qwen3-agent-4b-think-FC": ModelConfig(
+        model_name="qwen3-agent-4b-think-FC",
+        display_name="Qwen3-4B-Agent-Think (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAgentThinkHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "qwen3-agent-4b-nothink-FC": ModelConfig(
+        model_name="qwen3-agent-4b-nothink-FC",
+        display_name="Qwen3-4B-Agent-NoThink (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAgentNoThinkHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
 }
 
