@@ -50,7 +50,7 @@ Here is a list of functions in JSON format that you can invoke.
             functions=function_docs, user_prompt=user_prompt
         )
 
-        # 3. Insert the system prompt at the beginning of the list.
+        # Insert the system prompt at the beginning of the list.
         prompts.insert(0, {"role": "system", "content": system_prompt})
 
         return prompts
