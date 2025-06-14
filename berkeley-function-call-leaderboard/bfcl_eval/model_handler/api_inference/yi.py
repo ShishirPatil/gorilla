@@ -16,7 +16,7 @@ from openai import OpenAI
 class YiHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAI_Completions
         self.base_url = "https://api.01.ai/v1"
         self.client = OpenAI(base_url=self.base_url, api_key=os.getenv("YI_API_KEY"))
 

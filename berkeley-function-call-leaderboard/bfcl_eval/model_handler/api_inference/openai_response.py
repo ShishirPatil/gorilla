@@ -17,12 +17,13 @@ from bfcl_eval.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI, RateLimitError
+from openai.types.responses import Response
 
 
-class OpenAICompletionsHandler(BaseHandler):
+class OpenAIResponsesHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OpenAI_Responses
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
@@ -45,7 +46,7 @@ class OpenAICompletionsHandler(BaseHandler):
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
-        api_response = self.client.chat.completions.create(**kwargs)
+        api_response = self.client.responses.create(**kwargs)
         end_time = time.time()
 
         return api_response, end_time - start_time
@@ -55,21 +56,39 @@ class OpenAICompletionsHandler(BaseHandler):
     def _query_FC(self, inference_data: dict):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
-        inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
+        inference_data["inference_input_log"] = {
+            "message": repr(message),
+            "tools": tools,
+        }
 
         if len(tools) > 0:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-                tools=tools,
-            )
+            # Reasoning models don't support temperature parameter
+            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    tools=tools,
+                )
+            else:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                    tools=tools,
+                )
         else:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-            )
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                )
+            else:
+                return self.generate_with_backoff(
+                    input=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -86,27 +105,32 @@ class OpenAICompletionsHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
-        try:
-            model_responses = [
-                {func_call.function.name: func_call.function.arguments}
-                for func_call in api_response.choices[0].message.tool_calls
-            ]
-            tool_call_ids = [
-                func_call.id for func_call in api_response.choices[0].message.tool_calls
-            ]
-        except:
-            model_responses = api_response.choices[0].message.content
-            tool_call_ids = []
+    def _parse_query_response_FC(self, api_response: Response) -> dict:
+        model_responses = [
+            {func_call.name: func_call.arguments}
+            for func_call in api_response.output
+            if func_call.type == "function_call"
+        ]
+        tool_call_ids = [
+            func_call.id
+            for func_call in api_response.output
+            if func_call.type == "function_call"
+        ]
 
-        model_responses_message_for_chat_history = api_response.choices[0].message
+        if not model_responses:  # If there are no function calls
+            model_responses = api_response.output_text
+
+        model_responses_message_for_chat_history = next(
+            (item.content for item in api_response.output if item.type == "message"),
+            None,
+        )
 
         return {
             "model_responses": model_responses,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "tool_call_ids": tool_call_ids,
-            "input_token": api_response.usage.prompt_tokens,
-            "output_token": api_response.usage.completion_tokens,
+            "input_token": api_response.usage.input_tokens,
+            "output_token": api_response.usage.output_tokens,
         }
 
     def add_first_turn_message_FC(
@@ -198,11 +222,19 @@ class OpenAICompletionsHandler(BaseHandler):
     def _query_prompting(self, inference_data: dict):
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
-        return self.generate_with_backoff(
-            messages=inference_data["message"],
-            model=self.model_name,
-            temperature=self.temperature,
-        )
+        # OpenAI reasoning models don't support temperature parameter
+        # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+        if "o1" in self.model_name or "o3-mini" in self.model_name:
+            return self.generate_with_backoff(
+                input=inference_data["message"],
+                model=self.model_name,
+            )
+        else:
+            return self.generate_with_backoff(
+                input=inference_data["message"],
+                model=self.model_name,
+                temperature=self.temperature,
+            )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -216,12 +248,14 @@ class OpenAICompletionsHandler(BaseHandler):
 
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Response) -> dict:
         return {
-            "model_responses": api_response.choices[0].message.content,
-            "model_responses_message_for_chat_history": api_response.choices[0].message,
-            "input_token": api_response.usage.prompt_tokens,
-            "output_token": api_response.usage.completion_tokens,
+            "model_responses": api_response.output_text,
+            "model_responses_message_for_chat_history": next(
+                (item.content for item in api_response.output if item.type == "message")
+            ),
+            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
+            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
         }
 
     def add_first_turn_message_prompting(
@@ -268,11 +302,8 @@ class OpenAICompletionsHandler(BaseHandler):
         Thus, this method saves reasoning content to response_data (for local result file) if present in the response,
         but does not include it in the chat history.
         """
-        message = api_response.choices[0].message
-        if hasattr(message, "reasoning_content"):
-            response_data["reasoning_content"] = message.reasoning_content
-            # Reasoning content should not be included in the chat history
-            response_data["model_responses_message_for_chat_history"] = {
-                "role": "assistant",
-                "content": str(response_data["model_responses"]),
-            }
+        message = next(
+            (item for item in api_response.output if item.type == "reasoning"), None
+        )
+        if message:
+            response_data["reasoning_content"] = message.summary
