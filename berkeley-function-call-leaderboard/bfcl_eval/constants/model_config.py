@@ -765,8 +765,8 @@ api_inference_model_map = {
         model_handler=NemotronHandler,
         input_price=None,
         output_price=None,
-        is_fc_model=False,
-        underscore_to_dot=True,
+        is_fc_model=True,
+        underscore_to_dot=False,
     ),
     "nvidia/nemotron-4-340b-instruct": ModelConfig(
         model_name="nvidia/nemotron-4-340b-instruct",
