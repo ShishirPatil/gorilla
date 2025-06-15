@@ -368,7 +368,7 @@ api_inference_model_map = {
         input_price=15,    
         output_price=75,   
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "claude-3-7-sonnet-20250219": ModelConfig(
         model_name="claude-3-7-sonnet-20250219",
@@ -440,7 +440,7 @@ api_inference_model_map = {
         input_price=3,     
         output_price=15,   
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "claude-3-5-haiku-20241022": ModelConfig(
         model_name="claude-3-5-haiku-20241022",
