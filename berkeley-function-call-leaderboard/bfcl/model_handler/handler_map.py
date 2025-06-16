@@ -175,6 +175,12 @@ local_inference_handler_map = {
     "ThinkAgents/ThinkAgent-1B": ThinkAgentHandler,
     "AymanTarig/Llama-3.2-1B-FC-v1": LlamaJsonHandler,
     "AymanTarig/Llama-3.2-1B-FC-v2": LlamaJsonHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v3": ThinkAgentHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v0.1": LlamaJsonHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v0.2": LlamaJsonHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v0.3": LlamaJsonHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v0.4": LlamaJsonHandler,
+    "AymanTarig/Llama-3.2-1B-FC-v0.5": LlamaJsonHandler,
 
 }
 
