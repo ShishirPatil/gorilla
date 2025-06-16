@@ -2,6 +2,13 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 12, 2025] [#1063](https://github.com/ShishirPatil/gorilla/pull/1063): Add support for DeepSeek-R1-0528 and DeepSeek-V3-0324
+- [Jun 11, 2025] [#1061](https://github.com/ShishirPatil/gorilla/pull/1061): Add support for DashScope API inference for `Qwen3` series
+- [Jun 8, 2025] [#1054](https://github.com/ShishirPatil/gorilla/pull/1054), [#1055](https://github.com/ShishirPatil/gorilla/pull/1055): Packagerize codebase for PyPI Distribution. Now available with `pip install bfcl-eval`, in addition to the existing `pip install -e`.
+- [May 27, 2025] [#1040](https://github.com/ShishirPatil/gorilla/pull/1040): Add the following new models to the leaderboard:
+  - `mistral-medium-2505`
+  - `mistral-medium-2505-FC`
+- [May 24, 2025] [#1033](https://github.com/ShishirPatil/gorilla/pull/1033): Remove latency statistics for open-source models
 - [May 24, 2025] [#1015](https://github.com/ShishirPatil/gorilla/pull/1015): Add the following new models to the leaderboard:
   - `Qwen/Qwen3-0.6B`
   - `Qwen/Qwen3-0.6B-FC`
