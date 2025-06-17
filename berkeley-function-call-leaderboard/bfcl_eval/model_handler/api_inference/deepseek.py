@@ -1,3 +1,4 @@
+from typing import Any
 import json
 import os
 import time
@@ -15,7 +16,10 @@ from overrides import override
 
 
 class DeepSeekAPIHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for interacting with the DeepSeek API, extending OpenAIHandler functionality. This class provides methods to query DeepSeek's chat and reasoning models with proper API configuration and error handling.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
@@ -24,7 +28,7 @@ class DeepSeekAPIHandler(OpenAIHandler):
 
     # The deepseek API is unstable at the moment, and will frequently give empty responses, so retry on JSONDecodeError is necessary
     @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError])
-    def generate_with_backoff(self, **kwargs):
+    def generate_with_backoff(self, **kwargs) -> tuple[Any, float]:
         """
         Per the DeepSeek API documentation:
         https://api-docs.deepseek.com/quick_start/rate_limit
@@ -41,7 +45,16 @@ class DeepSeekAPIHandler(OpenAIHandler):
         return api_response, end_time - start_time
 
     @override
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Queries the DeepSeek API for function calling mode. Handles model-specific API configurations and retries on rate limits or JSON decode errors.
+        
+        Args:
+            inference_data (`dict`): Dictionary containing message and tools for the API call
+        
+        Returns:
+            tuple[Any, float]: API response and execution time
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
@@ -72,7 +85,7 @@ class DeepSeekAPIHandler(OpenAIHandler):
             )
 
     @override
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
         """
         This method is intended to be used by the `DeepSeek-R1` models. If used for other models, you will need to modify the code accordingly.
 
@@ -99,6 +112,15 @@ class DeepSeekAPIHandler(OpenAIHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries for prompting mode before sending to DeepSeek API. Handles function documentation processing and combines consecutive user prompts.
+        
+        Args:
+            test_entry (`dict`): Test entry containing questions and functions
+        
+        Returns:
+            dict: Processed message structure for API call
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 

@@ -7,7 +7,25 @@ parser = Parser()
 parser.set_language(JAVA_LANGUAGE)
 
 
-def parse_java_function_call(source_code):
+def parse_java_function_call(source_code: str) -> dict[str, dict[str, Any]]:
+    """
+    Parses Java source code to extract function call information including method name, class name (if present), and arguments.
+    
+    Args:
+        source_code (`str`):
+            The Java source code string containing the function call to parse.
+    
+    Returns:
+        `dict[str, dict[str, Any]]`: A dictionary containing the parsed function call information with the following structure:
+            - Keys are function names in 'ClassName.methodName' format (or just 'methodName' if no class)
+            - Values are dictionaries of arguments where:
+                - Keys are argument names (None for positional arguments)
+                - Values are argument values
+    
+    Raises:
+        `SyntaxError`: If the input Java code contains syntax errors that prevent parsing.
+        `Exception`: If multiple arguments with the same name are found (not currently supported).
+    """
     tree = parser.parse(bytes(source_code, "utf8"))
     root_node = tree.root_node
     sexp_result = root_node.sexp()

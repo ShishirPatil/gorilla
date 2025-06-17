@@ -1,3 +1,4 @@
+from typing import Any
 import json
 import os
 import time
@@ -15,14 +16,26 @@ from overrides import override
 
 
 class LingAPIHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for interacting with the Ling API, extending OpenAIHandler with Ling-specific functionality. This class handles API calls, preprocessing, and response parsing for the Ling API service.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         api_url = "https://bailingchat.alipay.com"
         self.client = OpenAI(base_url=api_url, api_key=os.getenv("LING_API_KEY"))
 
     @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError])
-    def generate_with_backoff(self, **kwargs):
+    def generate_with_backoff(self, **kwargs) -> tuple[Any, float]:
+        """
+        Makes API calls to Ling API with retry logic for rate limits and JSON decode errors.
+        
+        Args:
+            **kwargs: Arguments to pass to the API call
+        
+        Returns:
+            tuple[Any, float]: The API response and the time taken for the call
+        """
         start_time = time.time()
         api_response = self.client.chat.completions.create(**kwargs)
         end_time = time.time()
@@ -30,7 +43,7 @@ class LingAPIHandler(OpenAIHandler):
         return api_response, end_time - start_time
 
     @override
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
         """
         Call the model API in prompting mode to get the response.
         Return the response object that can be used to feed into the decode method.
@@ -52,6 +65,15 @@ class LingAPIHandler(OpenAIHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Preprocesses test entries before querying the API in prompting mode.
+        
+        Args:
+            test_entry (dict): The test entry containing questions and functions
+        
+        Returns:
+            dict: Processed message structure ready for API call
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -70,6 +92,15 @@ class LingAPIHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the API response in prompting mode, adding any available reasoning content.
+        
+        Args:
+            api_response (any): The raw API response
+        
+        Returns:
+            dict: Parsed response data
+        """
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available_prompting(api_response, response_data)
         return response_data

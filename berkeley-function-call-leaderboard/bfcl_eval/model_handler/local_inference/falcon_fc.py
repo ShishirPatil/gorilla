@@ -6,12 +6,27 @@ from overrides import override
 
 
 class Falcon3FCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    Handler class for Falcon 3 function calling models. This class provides methods to format prompts, decode model responses into AST and executable formats, and pre-process queries before sending to the model.
+    
+    Args:
+        model_name (`str`):
+            Name of the Falcon 3 model to use (with '-FC' suffix removed for HuggingFace)
+        temperature (`float`):
+            Temperature parameter for model generation
+    
+    Methods:
+        _format_prompt(): Formats chat messages and function definitions into Falcon 3's prompt template
+        decode_ast(): Converts model's tool call response into abstract syntax tree format
+        decode_execute(): Converts model's tool call response into executable function calls
+        _pre_query_processing_prompting(): Pre-processes test queries before sending to model
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: dict[str, Any]) -> str:
         """Format the prompt according to Falcon 3's chat template."""
         tokenizer = self.tokenizer
         formatted_prompt = tokenizer.apply_chat_template(
@@ -23,7 +38,7 @@ class Falcon3FCHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
         """Decode the model's response into AST format."""
         try:
             if "<tool_call>" not in result:
@@ -52,7 +67,7 @@ class Falcon3FCHandler(OSSHandler):
             return []
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
         """Convert the model's response into executable function calls."""
         try:
             if "<tool_call>" not in result:

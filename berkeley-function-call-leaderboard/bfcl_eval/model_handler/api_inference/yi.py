@@ -14,13 +14,26 @@ from openai import OpenAI
 
 
 class YiHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with the Yi model API, extending BaseHandler. This class provides methods for decoding model outputs, executing function calls, and managing conversation turns with the Yi model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.base_url = "https://api.01.ai/v1"
         self.client = OpenAI(base_url=self.base_url, api_key=os.getenv("YI_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: list[dict], language: str="Python") -> list[dict]:
+        """
+        Decodes the abstract syntax tree (AST) output from the model into a more usable dictionary format.
+        
+        Args:
+            result (list[dict]): The raw output from the model containing function calls
+            language (str, optional): The programming language of the output. Defaults to "Python".
+        
+        Returns:
+            list[dict]: A list of decoded function calls with their parameters
+        """
         decoded_output = []
         for invoked_function in result:
             name = list(invoked_function.keys())[0]
@@ -29,13 +42,31 @@ class YiHandler(BaseHandler):
 
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: dict) -> dict:
+        """
+        Converts the model's function call output into an executable format.
+        
+        Args:
+            result (dict): The raw function call output from the model
+        
+        Returns:
+            dict: The executable function call representation
+        """
         function_call = convert_to_function_call(result)
         return function_call
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> dict:
+        """
+        Sends a query to the Yi model API for function calling.
+        
+        Args:
+            inference_data (dict): Contains the message and tools for the API call
+        
+        Returns:
+            tuple: The API response and the time taken for the request
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
@@ -59,10 +90,30 @@ class YiHandler(BaseHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Prepares the inference data before sending to the API.
+        
+        Args:
+            inference_data (dict): The data to be processed
+            test_entry (dict): The test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         inference_data["message"] = []
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function definitions into the tool format expected by the Yi API.
+        
+        Args:
+            inference_data (dict): The inference data to modify
+            test_entry (dict): Contains the function definitions to compile
+        
+        Returns:
+            dict: Inference data with compiled tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -74,6 +125,15 @@ class YiHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses the response from the Yi API after a function call query.
+        
+        Args:
+            api_response (any): The raw API response
+        
+        Returns:
+            dict: Parsed response containing model outputs and token usage
+        """
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -105,18 +165,48 @@ class YiHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds the initial message to start a conversation.
+        
+        Args:
+            inference_data (dict): The conversation data
+            first_turn_message (list[dict]): The initial message(s)
+        
+        Returns:
+            dict: Updated inference data with initial message
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds a user message to continue the conversation.
+        
+        Args:
+            inference_data (dict): The conversation data
+            user_message (list[dict]): The user's message(s)
+        
+        Returns:
+            dict: Updated inference data with user message
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds the assistant's response to the conversation history.
+        
+        Args:
+            inference_data (dict): The conversation data
+            model_response_data (dict): The assistant's response
+        
+        Returns:
+            dict: Updated inference data with assistant message
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -128,6 +218,17 @@ class YiHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
+        """
+        Adds function execution results to the conversation.
+        
+        Args:
+            inference_data (dict): The conversation data
+            execution_results (list[str]): Results from function executions
+            model_response_data (dict): Contains tool call metadata
+        
+        Returns:
+            dict: Updated inference data with execution results
+        """
         # Add the execution results to the current round result, one at a time
         for execution_result, tool_call_id, tool_call_func_name in zip(
             execution_results,

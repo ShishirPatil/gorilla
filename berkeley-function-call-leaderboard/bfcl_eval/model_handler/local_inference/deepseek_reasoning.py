@@ -14,11 +14,14 @@ class DeepseekReasoningHandler(OSSHandler):
     We DO also support the benchmark/inference for DeepSeek-R1 model through their official hosted API. The `api_inference/deepseek.py` file contains the implementation for the API inference handler.
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry before querying the model. Handles function documentation processing and system prompt conversion for Deepseek models which don't support native function calling. Combines consecutive user prompts and converts system prompts to user prompts as recommended by Deepseek's documentation.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -42,7 +45,7 @@ class DeepseekReasoningHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> dict[str, Any]:
         """
         "bos_token": {
             "__type": "AddedToken",
@@ -125,6 +128,9 @@ class DeepseekReasoningHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data. Since Deepseek doesn't support the 'tool' role, this method uses the 'user' role to send tool outputs. Appends the execution results to the message history for subsequent model queries.
+        """
         # Deepseek don't take the tool role; so we use the user role to send the tool output
         tool_message = {
             "role": "user",
@@ -147,6 +153,9 @@ class DeepseekReasoningHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the API response from Deepseek model. Extracts the model response and any reasoning content (content within <think> tags). Returns token usage information and formatted response data for chat history.
+        """
         model_response = api_response.choices[0].text
         reasoning_content = ""
         if "</think>" in model_response:
@@ -165,6 +174,9 @@ class DeepseekReasoningHandler(OSSHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds the assistant's response to the message history. Appends the model's response (including any reasoning content) to maintain conversation context for subsequent queries.
+        """
         inference_data["message"].append(
             {
                 "role": "assistant",

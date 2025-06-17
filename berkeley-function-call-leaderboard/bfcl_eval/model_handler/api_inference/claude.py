@@ -23,12 +23,25 @@ from bfcl_eval.utils import is_multi_turn
 
 
 class ClaudeHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with Anthropic's Claude models, supporting both function calling and standard prompting approaches. This class inherits from BaseHandler and implements model-specific processing for Claude API interactions.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Anthropic
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict]]:
+        """
+        Parses the model's output into abstract syntax tree (AST) format for function calls.
+        
+        Args:
+            result (str): The raw model output to parse
+            language (str): The programming language of the output (default: 'Python')
+        
+        Returns:
+            list[dict[str, dict]]: Parsed function calls in AST format
+        """
         if "FC" not in self.model_name:
             func = result
             if " " == func[0]:
@@ -48,7 +61,16 @@ class ClaudeHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Converts the model's output into executable function call strings.
+        
+        Args:
+            result (str): The raw model output to parse
+        
+        Returns:
+            list[str]: Executable function call strings
+        """
         if "FC" not in self.model_name:
             func = result
             if " " == func[0]:
@@ -71,7 +93,16 @@ class ClaudeHandler(BaseHandler):
             return function_call
 
     @retry_with_backoff(error_type=RateLimitError)
-    def generate_with_backoff(self, **kwargs):
+    def generate_with_backoff(self, **kwargs) -> tuple[any, float]:
+        """
+        Wrapper for Claude API calls with automatic retry on rate limits.
+        
+        Args:
+            **kwargs: Arguments to pass to the Claude API
+        
+        Returns:
+            tuple[any, float]: API response and execution time
+        """
         start_time = time.time()
         api_response = self.client.messages.create(**kwargs)
         end_time = time.time()
@@ -80,7 +111,16 @@ class ClaudeHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[any, float]:
+        """
+        Handles function calling queries to Claude API.
+        
+        Args:
+            inference_data (dict): Data for the inference request
+        
+        Returns:
+            tuple[any, float]: API response and execution time
+        """
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
             "tools": inference_data["tools"],
@@ -110,6 +150,16 @@ class ClaudeHandler(BaseHandler):
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Pre-processes test data for function calling queries.
+        
+        Args:
+            inference_data (dict): Inference data to process
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
                 test_entry["question"][round_idx]
@@ -127,6 +177,16 @@ class ClaudeHandler(BaseHandler):
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function definitions into tool specifications for Claude API.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Updated inference data with compiled tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -149,6 +209,15 @@ class ClaudeHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses Claude API response for function calling queries.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response data
+        """
         text_outputs = []
         tool_call_outputs = []
         tool_call_ids = []
@@ -175,6 +244,16 @@ class ClaudeHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial message to conversation history for function calling.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            first_turn_message (list[dict]): Initial message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         for message in first_turn_message:
             message["content"] = [{"type": "text", "text": message["content"]}]
         inference_data["message"].extend(first_turn_message)
@@ -183,6 +262,16 @@ class ClaudeHandler(BaseHandler):
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to conversation history for function calling.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            user_message (list[dict]): User message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         for message in user_message:
             message["content"] = [{"type": "text", "text": message["content"]}]
         inference_data["message"].extend(user_message)
@@ -191,6 +280,16 @@ class ClaudeHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to conversation history for function calling.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             {
                 "role": "assistant",
@@ -205,6 +304,17 @@ class ClaudeHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
+        """
+        Adds tool execution results to conversation history for function calling.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            execution_results (list[str]): Execution results
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         # Claude don't use the tool role; it uses the user role to send the tool output
         tool_message = {
             "role": "user",
@@ -227,7 +337,16 @@ class ClaudeHandler(BaseHandler):
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[any, float]:
+        """
+        Handles standard prompting queries to Claude API.
+        
+        Args:
+            inference_data (dict): Data for the inference request
+        
+        Returns:
+            tuple[any, float]: API response and execution time
+        """
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
             "system_prompt": inference_data["system_prompt"],
@@ -256,6 +375,15 @@ class ClaudeHandler(BaseHandler):
         )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test data for standard prompting queries.
+        
+        Args:
+            test_entry (dict): Test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         functions: list = test_entry["function"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
@@ -288,6 +416,15 @@ class ClaudeHandler(BaseHandler):
         }
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses Claude API response for standard prompting queries.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Parsed response data
+        """
         return {
             "model_responses": api_response.content[0].text,
             "input_token": api_response.usage.input_tokens,
@@ -297,6 +434,16 @@ class ClaudeHandler(BaseHandler):
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial message to conversation history for standard prompting.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            first_turn_message (list[dict]): Initial message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         for message in first_turn_message:
             message["content"] = [{"type": "text", "text": message["content"]}]
         inference_data["message"].extend(first_turn_message)
@@ -305,6 +452,16 @@ class ClaudeHandler(BaseHandler):
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to conversation history for standard prompting.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            user_message (list[dict]): User message(s) to add
+        
+        Returns:
+            dict: Updated inference data
+        """
         for message in user_message:
             message["content"] = [{"type": "text", "text": message["content"]}]
         inference_data["message"].extend(user_message)
@@ -313,6 +470,16 @@ class ClaudeHandler(BaseHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to conversation history for standard prompting.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         inference_data["message"].append(
             {
                 "role": "assistant",
@@ -324,6 +491,17 @@ class ClaudeHandler(BaseHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to conversation history for standard prompting.
+        
+        Args:
+            inference_data (dict): Inference data to update
+            execution_results (list[str]): Execution results
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated inference data
+        """
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )

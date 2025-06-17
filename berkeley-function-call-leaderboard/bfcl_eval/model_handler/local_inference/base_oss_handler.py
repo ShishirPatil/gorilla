@@ -21,7 +21,18 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
+    """
+    Handler for Open Source Software (OSS) models that require server setup for inference. This class manages model loading, server setup, and batch inference for OSS models using either vLLM or sglang backends.
+    
+    Args:
+        model_name (`str`):
+            Name of the model to load (HuggingFace identifier or local path)
+        temperature (`float`):
+            Temperature parameter for generation
+        dtype (`str`):
+            Data type for model weights (default: 'bfloat16')
+    """
+    def __init__(self, model_name: str, temperature: float, dtype: str="bfloat16") -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
@@ -39,7 +50,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
 
     @override
-    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool) -> None:
         """
         OSS models have a different inference method.
         They needs to spin up a server first and then send requests to it.
@@ -51,11 +62,33 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         )
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> str:
+        """
+        Default implementation for decoding AST (Abstract Syntax Tree) from model responses.
+        
+        Args:
+            result (`str`):
+                Model response to decode
+            language (`str`):
+                Programming language of the code (default: 'Python')
+        
+        Returns:
+            `str`: Decoded AST representation
+        """
         return default_decode_ast_prompting(result, language)
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> str:
+        """
+        Default implementation for decoding execution results from model responses.
+        
+        Args:
+            result (`str`):
+                Model response to decode
+        
+        Returns:
+            `str`: Decoded execution results
+        """
         return default_decode_execute_prompting(result)
 
     @final
@@ -70,8 +103,8 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         include_input_log: bool,
         exclude_state_log: bool,
         update_mode: bool,
-        result_dir=RESULT_PATH,
-    ):
+        result_dir: str=RESULT_PATH,
+    ) -> None:
         """
         Batch inference for OSS models.
         """
@@ -262,8 +295,8 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
     @final
     def _multi_threaded_inference(
-        self, test_case, include_input_log: bool, exclude_state_log: bool
-    ):
+        self, test_case: dict, include_input_log: bool, exclude_state_log: bool
+    ) -> dict:
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
         """
@@ -299,7 +332,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
     #### Prompting methods ####
 
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict], function: list[dict]) -> str:
         """
         Manually apply the chat template to construct the formatted prompt.
         This way, we can have full control over the final formatted prompt and is generally recommended for advanced use cases.
@@ -309,7 +342,17 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         )
 
     @override
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> dict:
+        """
+        Internal method to query the model with a formatted prompt. Handles token counting and API request formatting.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing function and message data
+        
+        Returns:
+            `tuple`: (API response, inference time in seconds)
+        """
         # We use the OpenAI Completions API
         function: list[dict] = inference_data["function"]
         message: list[dict] = inference_data["message"]
@@ -360,6 +403,16 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries before querying the model. Applies language-specific processing to function documentation.
+        
+        Args:
+            test_entry (`dict`):
+                Test case dictionary
+        
+        Returns:
+            `dict`: Processed test entry with message and function data
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -373,6 +426,16 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the raw API response into a standardized format.
+        
+        Args:
+            api_response (`any`):
+                Raw response from the model API
+        
+        Returns:
+            `dict`: Parsed response containing model output and token counts
+        """
         return {
             "model_responses": api_response.choices[0].text,
             "input_token": api_response.usage.prompt_tokens,
@@ -383,6 +446,18 @@ class OSSHandler(BaseHandler, EnforceOverrides):
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds the initial system message to the conversation history.
+        
+        Args:
+            inference_data (`dict`):
+                Current inference data
+            first_turn_message (`list[dict]`):
+                Initial system message
+        
+        Returns:
+            `dict`: Updated inference data
+        """
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
@@ -390,6 +465,18 @@ class OSSHandler(BaseHandler, EnforceOverrides):
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user message to the conversation history for multi-turn dialogues.
+        
+        Args:
+            inference_data (`dict`):
+                Current inference data
+            user_message (`list[dict]`):
+                User message to add
+        
+        Returns:
+            `dict`: Updated inference data
+        """
         inference_data["message"].extend(user_message)
         return inference_data
 
@@ -397,6 +484,18 @@ class OSSHandler(BaseHandler, EnforceOverrides):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant response to the conversation history.
+        
+        Args:
+            inference_data (`dict`):
+                Current inference data
+            model_response_data (`dict`):
+                Model response to add
+        
+        Returns:
+            `dict`: Updated inference data
+        """
         inference_data["message"].append(
             {"role": "assistant", "content": model_response_data["model_responses"]}
         )
@@ -406,6 +505,20 @@ class OSSHandler(BaseHandler, EnforceOverrides):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the conversation history.
+        
+        Args:
+            inference_data (`dict`):
+                Current inference data
+            execution_results (`list[str]`):
+                Results of code execution
+            model_response_data (`dict`):
+                Model response data containing decoded responses
+        
+        Returns:
+            `dict`: Updated inference data
+        """
         for execution_result, decoded_model_response in zip(
             execution_results, model_response_data["model_responses_decoded"]
         ):

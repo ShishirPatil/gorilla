@@ -15,7 +15,7 @@ class QwenAPIHandler(OpenAIHandler):
 
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
@@ -26,7 +26,19 @@ class QwenAPIHandler(OpenAIHandler):
     #### FC methods ####
 
     @override
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> dict:
+        """
+        Performs a function calling query to the Qwen API with streaming enabled.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the inference parameters including:
+                - message: List of message dictionaries for the chat
+                - tools: List of tools/functions available for the model to call
+        
+        Returns:
+            `dict`: Raw API response stream object
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
@@ -47,6 +59,22 @@ class QwenAPIHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses the streaming response from a function calling query into a structured format.
+        
+        Args:
+            api_response (`any`):
+                The streaming response object from the API call
+        
+        Returns:
+            `dict`: Parsed response containing:
+            - model_responses: List of tool calls or assistant response
+            - model_responses_message_for_chat_history: Formatted message for chat history
+            - reasoning_content: Any reasoning content from the model
+            - tool_call_ids: List of tool call IDs
+            - input_token: Number of input tokens used
+            - output_token: Number of output tokens used
+        """
 
         reasoning_content = ""
         answer_content = ""
@@ -143,7 +171,18 @@ class QwenAPIHandler(OpenAIHandler):
     #### Prompting methods ####
 
     @override
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> dict:
+        """
+        Performs a standard prompting query to the Qwen API with streaming enabled.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the inference parameters including:
+                - message: List of message dictionaries for the chat
+        
+        Returns:
+            `dict`: Raw API response stream object
+        """
         message: list[dict] = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(message)}
 
@@ -161,6 +200,21 @@ class QwenAPIHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the streaming response from a prompting query into a structured format.
+        
+        Args:
+            api_response (`any`):
+                The streaming response object from the API call
+        
+        Returns:
+            `dict`: Parsed response containing:
+            - model_responses: Assistant's text response
+            - model_responses_message_for_chat_history: Formatted message for chat history
+            - reasoning_content: Any reasoning content from the model
+            - input_token: Number of input tokens used
+            - output_token: Number of output tokens used
+        """
 
         reasoning_content = ""
         answer_content = ""
