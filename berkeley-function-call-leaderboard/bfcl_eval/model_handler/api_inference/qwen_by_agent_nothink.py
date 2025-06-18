@@ -29,7 +29,7 @@ class QwenAgentNoThinkHandler(OpenAIHandler):
         """
         
         self.llm = get_chat_model({
-        'model': 'Qwen/Qwen3-4B', # name of the model served by vllm server
+        'model': model_name, # name of the model served by vllm server
         'model_type': 'oai',
         'model_server':'http://localhost:8000/v1', # can be replaced with server host
         'api_key': "none",
@@ -41,7 +41,7 @@ class QwenAgentNoThinkHandler(OpenAIHandler):
                 }
             },
             "thought_in_content": False,
-            'temperature': temperature,
+            'temperature': 0.6,
             'top_p': 0.95,
             'top_k': 20,
             'repetition_penalty': 1.0,

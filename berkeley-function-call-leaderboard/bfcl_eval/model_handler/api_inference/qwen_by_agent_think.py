@@ -41,7 +41,7 @@ class QwenAgentThinkHandler(OpenAIHandler):
                 }
             },
             "thought_in_content": True,
-            'temperature': temperature,
+            'temperature': 0.6,
             'top_p': 0.95,
             'top_k': 20,
             'repetition_penalty': 1.0,

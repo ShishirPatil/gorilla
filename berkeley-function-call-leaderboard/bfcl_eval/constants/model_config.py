@@ -1894,9 +1894,9 @@ third_party_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "qwen3-agent-4b-think-FC": ModelConfig(
-        model_name="qwen3-agent-4b-think-FC",
-        display_name="Qwen3-4B-Agent-Think (FC)",
+    "qwen3-4b-think-FC": ModelConfig(
+        model_name="qwen3-4b-think-FC",
+        display_name="Qwen3-4B-Think (FC)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
@@ -1906,9 +1906,9 @@ third_party_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "qwen3-agent-4b-nothink-FC": ModelConfig(
-        model_name="qwen3-agent-4b-nothink-FC",
-        display_name="Qwen3-4B-Agent-NoThink (FC)",
+    "qwen3-4b-nothink-FC": ModelConfig(
+        model_name="qwen3-4b-nothink-FC",
+        display_name="Qwen3-4B-NoThink (FC)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
