@@ -34,6 +34,7 @@ berkeley-function-call-leaderboard/bfcl_eval/scripts/ground_truth_conversation/
 
 .direnv/
 .venv
+venv
 
 # Ignore the wandb cache:
 **/wandb/
