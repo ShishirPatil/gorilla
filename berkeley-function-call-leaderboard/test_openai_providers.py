@@ -2,12 +2,17 @@ import subprocess
 import concurrent.futures
 import uuid
 from datetime import datetime
+from threading import Lock
+from bfcl_eval.utils import upload_to_s3
+from pathlib import Path, PurePosixPath
+from dotenv import load_dotenv
 import json
 import time
 import csv
 import os
-from threading import Lock
 
+
+load_dotenv()
 
 CSV_HEADERS = [
     "run_id",
@@ -22,7 +27,8 @@ CSV_HEADERS = [
     "Qwen3-32B"
 ]
 
-with open('scores.csv', 'w', newline='') as csvfile:
+date = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+with open(f'./scores-{date}.csv', 'w', newline='') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=CSV_HEADERS, delimiter=';')
     writer.writeheader()
 
@@ -54,14 +60,25 @@ def run_bfcl_command(command_type, model, test_category, result_dir, score_dir=N
         print(f"FAILED [{model}] - Return code: {e.returncode}")
         print("Error output:", e.stderr)
 
-def run_models_for_provider(provider, models, run_id, test_category, model_map, lock, date):
+def run_models_for_provider(provider, models, run_id, test_category, model_map, lock, date,
+                             concurrency_models: bool = True):
+    result_path = os.path.join("result", provider, date)
+    score_path = os.path.join("score", provider, date)
 
-    for model in models:
-        result_path = os.path.join("result", provider, date)
-        score_path = os.path.join("score", provider, date)
-
+    
+    def run_model(model):
         run_bfcl_command("generate", model, ",".join(test_category), result_path)
         run_bfcl_command("evaluate", model, ",".join(test_category), result_path, score_dir=score_path)
+
+    if concurrency_models is True:
+    # Run all models concurrently
+        with concurrent.futures.ThreadPoolExecutor() as model_executor:
+            model_futures = [model_executor.submit(run_model, model) for model in models]
+            concurrent.futures.wait(model_futures)
+    else:
+        for model in models:
+            run_bfcl_command("generate", model, ",".join(test_category), result_path)
+            run_bfcl_command("evaluate", model, ",".join(test_category), result_path, score_dir=score_path)
 
     for category in test_category:
         curr_dict = {
@@ -89,11 +106,14 @@ def run_models_for_provider(provider, models, run_id, test_category, model_map, 
                 print(f"Error reading score for {provider}/{model}: {e}")
 
         with lock:
-            with open('scores.csv', 'a', newline='') as csvfile:
+            csv_file_path = f'./scores-{date}.csv'
+            Path(csv_file_path).parent.mkdir(parents=True, exist_ok=True)
+            with open(csv_file_path, 'a', newline='') as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=CSV_HEADERS, delimiter=';', extrasaction='ignore')
-                if os.stat('scores.csv').st_size == 0:
+                if os.stat(csv_file_path).st_size == 0:
                     writer.writeheader()
                 writer.writerow(curr_dict)
+            upload_to_s3(csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(csv_file_path).name}")
 
 def main(date: str):
     json_path = "provider_models.json"
@@ -125,7 +145,6 @@ def main(date: str):
 
 if __name__ == "__main__":
     start_time = time.time()
-    date = datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
     main(date)
     end_time = time.time()
     execution_time = end_time - start_time
