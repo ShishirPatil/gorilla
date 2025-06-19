@@ -4,6 +4,7 @@ from openai import OpenAI, RateLimitError
 import os
 import time
 import json
+import threading
 from bfcl_eval.model_handler.utils import (
     retry_with_backoff,
 )
@@ -20,25 +21,30 @@ class OpenaiCompatibleHandler(OpenAIHandler):
     def _init_client(self):
         if self.compatible_provider == "sambanova":
             base_url = "https://api.sambanova.ai/v1"
-            self.client = OpenAI(base_url=base_url, api_key=os.getenv("SAMBANOVA_API_KEY"))
+            self.client = OpenAI(base_url=base_url, api_key=os.getenv("SAMBANOVA_API_KEY"),
+                                  max_retries=1, timeout=20)
         elif self.compatible_provider == "groq":
             base_url = "https://api.groq.com/openai/v1"
-            self.client = OpenAI(base_url=base_url, api_key=os.getenv("GROQ_API_KEY"))
+            self.client = OpenAI(base_url=base_url, api_key=os.getenv("GROQ_API_KEY"),
+                                  max_retries=1, timeout=20)
         elif self.compatible_provider == "cerebras":
             base_url = "https://api.cerebras.ai/v1"
-            self.client = OpenAI(base_url=base_url, api_key=os.getenv("CEREBRAS_API_KEY"))
+            self.client = OpenAI(base_url=base_url, api_key=os.getenv("CEREBRAS_API_KEY"),
+                                  max_retries=1, timeout=20)
         elif self.compatible_provider == "fireworks":
             base_url = "https://api.fireworks.ai/inference/v1"
-            self.client = OpenAI(base_url=base_url, api_key=os.getenv("FIREWORKS_API_KEY"))
+            self.client = OpenAI(base_url=base_url, api_key=os.getenv("FIREWORKS_API_KEY"),
+                                  max_retries=1, timeout=20)
         elif self.compatible_provider == "together":
             base_url = "https://api.together.xyz/v1"
-            self.client = OpenAI(base_url=base_url, api_key=os.getenv("TOGETHER_API_KEY"))
+            self.client = OpenAI(base_url=base_url, api_key=os.getenv("TOGETHER_API_KEY"),
+                                  max_retries=1, timeout=20)
         else:
             raise(Exception(f"{self.compatible_provider} not implemented"))
 
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
-        max_retries = 10
+        max_retries = 4
         retry_count = 0
         start_time = time.time()
         while retry_count < max_retries:
@@ -53,7 +59,7 @@ class OpenaiCompatibleHandler(OpenAIHandler):
             # Calculate exponential backoff (base 2)
             sleep_time = min(2 ** retry_count, 60)  # Cap at 60 seconds to avoid too long waits
             print(f"Attempt {retry_count + 1} failed. Sleeping for {sleep_time} seconds...")
-            time.sleep(sleep_time)
+            threading.Event().wait(sleep_time)
             retry_count += 1
 
         end_time = time.time()
