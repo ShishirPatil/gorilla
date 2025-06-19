@@ -41,6 +41,7 @@ from bfcl_eval.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl_eval.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl_eval.model_handler.local_inference.phi import PhiHandler
 from bfcl_eval.model_handler.local_inference.phi_fc import PhiFCHandler
+from bfcl_eval.model_handler.local_inference.phi_4_vllm import Phi4VllmHandler
 from bfcl_eval.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
@@ -1383,6 +1384,30 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "microsoft/phi-4-vllm": ModelConfig(
+        model_name="microsoft/phi-4",
+        display_name="Phi-4 (vLLM)",
+        url="https://huggingface.co/microsoft/phi-4",
+        org="Microsoft",
+        license="MIT",
+        model_handler=Phi4VllmHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "microsoft/phi-4-mini-instruct-vllm": ModelConfig(
+        model_name="microsoft/Phi-4-mini-instruct",
+        display_name="Phi-4-mini-instruct (vLLM)",
+        url="https://huggingface.co/microsoft/Phi-4-mini-instruct",
+        org="Microsoft",
+        license="MIT",
+        model_handler=Phi4VllmHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
         underscore_to_dot=False,
     ),
     "ibm-granite/granite-20b-functioncalling": ModelConfig(
