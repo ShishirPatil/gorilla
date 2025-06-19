@@ -19,9 +19,7 @@ from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
-from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler
-from bfcl_eval.model_handler.api_inference.qwen_by_agent_think import QwenAgentThinkHandler
-from bfcl_eval.model_handler.api_inference.qwen_by_agent_nothink import QwenAgentNoThinkHandler
+from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler, QwenAgentThinkHandler, QwenAgentNoThinkHandler
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
