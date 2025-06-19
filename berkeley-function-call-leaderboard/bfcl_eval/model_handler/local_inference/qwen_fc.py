@@ -209,7 +209,7 @@ class QwenFCHandler(OSSHandler):
                 formatted_prompt += f"\n<tool_response>\n{content}\n</tool_response>"
 
                 if idx == len(messages) - 1 or next_role != "tool":
-                    formatted_prompt + "<|im_end|>\n"
+                    formatted_prompt += "<|im_end|>\n"
 
         formatted_prompt += "<|im_start|>assistant\n"
         return formatted_prompt
