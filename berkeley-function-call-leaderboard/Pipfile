@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 requests = "*"
-bfcl-eval = {file = ".", editable = true}
+wandb = "==0.18.5"
+transformers = "==4.46.2"
 
 [dev-packages]
 

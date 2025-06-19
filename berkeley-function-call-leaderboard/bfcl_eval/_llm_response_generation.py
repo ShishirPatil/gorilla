@@ -99,7 +99,8 @@ def validate_tensor_parallel_args(args):
 def build_handler(model_name, temperature, args=None):
     handler_class = MODEL_CONFIG_MAPPING[model_name].model_handler
     
-    if args and hasattr(handler_class, '__init__') and 'tensor_parallel_size' in handler_class.__init__.__code__.co_varnames:
+    # Check if this is a phi-4 vLLM handler that supports tensor parallel configuration
+    if args and 'phi-4' in model_name and 'vllm' in model_name:
         tensor_parallel_config = resolve_tensor_parallel_config(args)
         handler = handler_class(model_name, temperature, **tensor_parallel_config)
     else:

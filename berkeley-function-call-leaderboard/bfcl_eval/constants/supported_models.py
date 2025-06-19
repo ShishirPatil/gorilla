@@ -121,6 +121,8 @@ SUPPORTED_MODELS = [
     "microsoft/Phi-4-mini-instruct-FC",
     "microsoft/phi-4-vllm",
     "microsoft/phi-4-mini-instruct-vllm",
+    "microsoft/phi-4-vllm-fc",
+    "microsoft/phi-4-mini-instruct-vllm-fc",
     "ibm-granite/granite-20b-functioncalling",
     "MadeAgents/Hammer2.1-7b",
     "MadeAgents/Hammer2.1-3b",
