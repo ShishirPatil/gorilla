@@ -23,6 +23,7 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_exe
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
+import pathlib
 from tqdm import tqdm
 
 
@@ -39,7 +40,7 @@ def multi_turn_runner(
     possible_answer: list[dict],
     model_name: str,
     test_category: str,
-    score_dir: str,
+    score_dir: pathlib.Path,
 ) -> tuple[float, int]:
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -177,7 +178,7 @@ def relevance_file_runner(
     prompt: list[dict],
     model_name: str,
     test_category: str,
-    score_dir: str,
+    score_dir: pathlib.Path,
 ) -> tuple[float, int]:
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call.
@@ -259,7 +260,7 @@ def ast_file_runner(
     language: str,
     test_category: str,
     model_name: str,
-    score_dir: str,
+    score_dir: pathlib.Path,
 ) -> tuple[float, int]:
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -354,7 +355,7 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names: list[str], test_categories: list[str], result_dir: str, score_dir: str):
+def runner(model_names: list[str], test_categories: list[str], result_dir: pathlib.Path, score_dir: pathlib.Path):
 
     # State udpated by each eval subtask.
     state = dict(
