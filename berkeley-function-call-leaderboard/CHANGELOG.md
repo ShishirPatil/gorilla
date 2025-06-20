@@ -2,6 +2,12 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 18, 2025] [#1068](https://github.com/ShishirPatil/gorilla/pull/1068): Fix prompt concatenation issue in Qwen chat template. The self-hosted `Qwen3` models are affected.
+- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Removed the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
+- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fixed multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
+- [Jun 14, 2025] [#1032](https://github.com/ShishirPatil/gorilla/pull/1032): Add `Llama-3.1-Nemotron-Ultra-253B-v1` to the leaderboard.
+- [Jun 12, 2025] [#1056](https://github.com/ShishirPatil/gorilla/pull/1056): Add `Ling-Lite-V1.5` to the leaderboard.
+- [Jun 12, 2025] [#1063](https://github.com/ShishirPatil/gorilla/pull/1063): Add support for `DeepSeek-R1-0528` and `DeepSeek-V3-0324`
 - [Jun 11, 2025] [#1061](https://github.com/ShishirPatil/gorilla/pull/1061): Add support for DashScope API inference for `Qwen3` series
 - [Jun 8, 2025] [#1054](https://github.com/ShishirPatil/gorilla/pull/1054), [#1055](https://github.com/ShishirPatil/gorilla/pull/1055): Packagerize codebase for PyPI Distribution. Now available with `pip install bfcl-eval`, in addition to the existing `pip install -e`.
 - [May 27, 2025] [#1040](https://github.com/ShishirPatil/gorilla/pull/1040): Add the following new models to the leaderboard:
