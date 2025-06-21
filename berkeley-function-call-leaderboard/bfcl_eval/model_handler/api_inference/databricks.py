@@ -1,3 +1,4 @@
+from typing import Any
 import os
 import re
 import time
@@ -14,7 +15,10 @@ from openai import OpenAI
 
 
 class DatabricksHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with Databricks models through the OpenAI API interface. This class extends OpenAIHandler and provides specific implementations for Databricks model interactions.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
 
@@ -24,7 +28,19 @@ class DatabricksHandler(OpenAIHandler):
             base_url=os.getenv("DATABRICKS_AZURE_ENDPOINT_URL"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python"):
+        """
+        Parse and decode the AST (Abstract Syntax Tree) from the model's output string.
+        
+        Args:
+            result (`str`):
+                The raw string output from the model to be parsed
+            language (`str`, optional):
+                The programming language of the output (default: 'Python')
+        
+        Returns:
+            The parsed AST output
+        """
         func = re.sub(r"'([^']*)'", r"\1", result)
         func = func.replace("\n    ", "")
         if not func.startswith("["):
@@ -39,7 +55,19 @@ class DatabricksHandler(OpenAIHandler):
             decode_output = ast_parse(result, language)
         return decode_output
 
-    def decode_execute(self, result, language="Python"):
+    def decode_execute(self, result: str, language: str="Python") -> list[str]:
+        """
+        Parse the model output into executable function calls.
+        
+        Args:
+            result (`str`):
+                The raw string output from the model
+            language (`str`, optional):
+                The programming language of the output (default: 'Python')
+        
+        Returns:
+            `list[str]`: A list of executable function call strings
+        """
         func = re.sub(r"'([^']*)'", r"\1", result)
         func = func.replace("\n    ", "")
         if not func.startswith("["):
@@ -62,7 +90,17 @@ class DatabricksHandler(OpenAIHandler):
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
+        """
+        Send a query to the Databricks model and measure response time.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the message to send to the model
+        
+        Returns:
+            `tuple[Any, float]`: The API response and the time taken for the request
+        """
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
@@ -77,6 +115,16 @@ class DatabricksHandler(OpenAIHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-process test entries before sending to the Databricks model.
+        
+        Args:
+            test_entry (`dict`):
+                Dictionary containing test information and questions
+        
+        Returns:
+            `dict`: Processed message dictionary ready for model input
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 

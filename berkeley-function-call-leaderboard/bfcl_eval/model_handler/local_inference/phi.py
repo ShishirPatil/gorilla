@@ -1,13 +1,27 @@
+from typing import Any
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
 
 
 class PhiHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for processing and interacting with Phi models (both Phi-4-mini and Phi-4 variants). This class extends OSSHandler to provide specialized handling for Phi model inputs and outputs.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python"):
+        """
+        Processes and cleans model output strings before AST decoding by removing markdown code block indicators.
+        
+        Args:
+            result (`str`): The raw model output string
+            language (`str`, optional): The programming language of the code (default: 'Python')
+        
+        Returns:
+            The cleaned string ready for AST parsing
+        """
         result = result.strip()
         if result.startswith("```json"):
             result = result[len("```json") :]
@@ -16,7 +30,16 @@ class PhiHandler(OSSHandler):
         return super().decode_ast(result, language)
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str):
+        """
+        Processes and cleans model output strings before execution by removing markdown code block indicators.
+        
+        Args:
+            result (`str`): The raw model output string
+        
+        Returns:
+            The cleaned string ready for execution
+        """
         if result.startswith("```json"):
             result = result[len("```json") :]
         if result.startswith("```python"):
@@ -24,7 +47,17 @@ class PhiHandler(OSSHandler):
         return super().decode_execute(result)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function) -> str:
+        """
+        Formats chat messages into the specific prompt format required by different Phi model variants.
+        
+        Args:
+            messages (`list[dict[str, str]]`): List of message dictionaries with 'role' and 'content' keys
+            function: Unused parameter (maintained for interface compatibility)
+        
+        Returns:
+            `str`: The formatted prompt string ready for model input
+        """
         formatted_prompt = ""
 
         if "Phi-4-mini" in self.model_name:

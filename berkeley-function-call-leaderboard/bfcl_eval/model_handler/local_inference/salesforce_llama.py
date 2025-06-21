@@ -6,11 +6,26 @@ from overrides import override
 
 
 class SalesforceLlamaHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    Handler for Salesforce's Llama model that extends the base OSSHandler. This class implements model-specific prompt formatting and response decoding for function calling capabilities.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: list[dict[str, Any]]) -> str:
+        """
+        Formats messages and function definitions into the specific prompt structure required by Salesforce's Llama model.
+        
+        Args:
+            messages (`list[dict[str, str]]`):
+                List of message dictionaries containing 'role' and 'content' keys.
+            function (`list[dict[str, Any]]`):
+                List of function definitions to include in the prompt.
+        
+        Returns:
+            `str`: Formatted prompt string with system message, function definitions, and conversation history.
+        """
         formatted_prompt = "<|begin_of_text|>"
 
         system_message = "You are a helpful assistant that can use tools. You are developed by Salesforce xLAM team."
@@ -59,7 +74,19 @@ class SalesforceLlamaHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+        """
+        Decodes the model's function call output into abstract syntax tree (AST) format.
+        
+        Args:
+            result (`str`):
+                Raw string output from the model containing function calls.
+            language (`str`, optional):
+                Programming language of the function calls (default: 'Python').
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: List of decoded function calls where each call is represented as a dictionary with function name and arguments.
+        """
         try:
             # Parse the JSON array of function calls
             function_calls = json.loads(result)
@@ -78,7 +105,17 @@ class SalesforceLlamaHandler(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes the model's function call output into executable format.
+        
+        Args:
+            result (`str`):
+                Raw string output from the model containing function calls.
+        
+        Returns:
+            `list[str]`: List of executable function call strings.
+        """
         try:
             function_calls = json.loads(result)
             if not isinstance(function_calls, list):
@@ -98,6 +135,16 @@ class SalesforceLlamaHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entries before querying the model, including language-specific function documentation processing.
+        
+        Args:
+            test_entry (`dict`):
+                Dictionary containing test case information including 'function' definitions and 'id'.
+        
+        Returns:
+            `dict`: Processed dictionary containing messages and functions ready for prompt formatting.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
         functions = func_doc_language_specific_pre_processing(functions, test_category)

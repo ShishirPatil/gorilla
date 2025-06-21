@@ -10,13 +10,26 @@ from overrides import override
 
 
 class QwenFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    Handler class for Qwen function calling models. Inherits from OSSHandler and implements specific methods for processing function calls and tool interactions with Qwen models.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.is_fc_model = True
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict[str, Any]]]:
+        """
+        Extracts and decodes tool calls from model response into abstract syntax tree (AST) format.
+        
+        Args:
+            result (`str`): The raw model response string containing tool calls
+            language (`str`, optional): Programming language for AST (default: Python)
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: List of decoded tool calls in AST format
+        """
         # Model response is of the form:
         # "<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Taylor Swift\", \"duration\": 20}}\n</tool_call>\n<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Maroon 5\", \"duration\": 15}}\n</tool_call>"?
         tool_calls = self._extract_tool_calls(result)
@@ -28,7 +41,16 @@ class QwenFCHandler(OSSHandler):
         ]
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[dict[str, dict[str, Any]]]:
+        """
+        Extracts and decodes tool calls from model response into executable function calls.
+        
+        Args:
+            result (`str`): The raw model response string containing tool calls
+        
+        Returns:
+            `list[dict[str, dict[str, Any]]]`: List of decoded function calls ready for execution
+        """
         tool_calls = self._extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
             return []
@@ -40,7 +62,7 @@ class QwenFCHandler(OSSHandler):
         return convert_to_function_call(decoded_result)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, Any]], function: list[dict[str, Any]]) -> str:
         """
         "chat_template":
         {%- if tools %}
@@ -216,6 +238,15 @@ class QwenFCHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes test entry data before querying the model.
+        
+        Args:
+            test_entry (`dict`): Dictionary containing test case data
+        
+        Returns:
+            `dict`: Processed data with messages and functions formatted for model input
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -226,6 +257,15 @@ class QwenFCHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the model's API response into structured data.
+        
+        Args:
+            api_response (`any`): Raw response from the model API
+        
+        Returns:
+            `dict`: Parsed response containing model outputs, tokens usage, and chat history data
+        """
         model_response = api_response.choices[0].text
         extracted_tool_calls = self._extract_tool_calls(model_response)
 
@@ -261,13 +301,32 @@ class QwenFCHandler(OSSHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds assistant's response to the conversation history.
+        
+        Args:
+            inference_data (`dict`): Current inference data state
+            model_response_data (`dict`): Parsed model response data
+        
+        Returns:
+            `dict`: Updated inference data with assistant response added
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"],
         )
         return inference_data
 
     @staticmethod
-    def _extract_tool_calls(input_string):
+    def _extract_tool_calls(input_string: str) -> list[dict[str, Any]]:
+        """
+        Extracts tool calls from a string response using regex pattern matching.
+        
+        Args:
+            input_string (`str`): String containing potential tool calls
+        
+        Returns:
+            `list[dict[str, Any]]`: List of extracted tool calls as dictionaries
+        """
         pattern = r"<tool_call>\n(.*?)\n</tool_call>"
         matches = re.findall(pattern, input_string, re.DOTALL)
 

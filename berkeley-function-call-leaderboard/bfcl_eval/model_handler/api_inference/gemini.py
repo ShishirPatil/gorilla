@@ -27,7 +27,10 @@ from vertexai.generative_models import (
 
 
 class GeminiHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for interacting with Google's Gemini models, providing functionality for both function calling and standard prompting approaches. Inherits from BaseHandler.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Google
         # Initialize Vertex AI
@@ -39,6 +42,15 @@ class GeminiHandler(BaseHandler):
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
+        """
+        Converts standard chat roles (user/assistant/tool) to Gemini-specific roles (user/model/function).
+        
+        Args:
+            prompts (list[dict]): List of prompt dictionaries with 'role' and 'content' keys
+        
+        Returns:
+            list[dict]: Modified prompts with Gemini-compatible roles
+        """
         # Allowed roles: user, model, function
         for prompt in prompts:
             if prompt["role"] == "user":
@@ -50,7 +62,17 @@ class GeminiHandler(BaseHandler):
 
         return prompts
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict] | str:
+        """
+        Decodes the abstract syntax tree from model output for function calling.
+        
+        Args:
+            result (str): Raw model output
+            language (str): Programming language of the output (default: 'Python')
+        
+        Returns:
+            list[dict] | str: Parsed function calls or raw text output
+        """
         if "FC" not in self.model_name:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
             return default_decode_ast_prompting(result, language)
@@ -59,7 +81,16 @@ class GeminiHandler(BaseHandler):
                 result = [result]
             return result
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: str | list[dict]) -> list[str]:
+        """
+        Decodes executable function calls from model output.
+        
+        Args:
+            result (str | list[dict]): Raw model output or parsed function calls
+        
+        Returns:
+            list[str]: Executable function call strings
+        """
         if "FC" not in self.model_name:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
             return default_decode_execute_prompting(result)
@@ -73,7 +104,17 @@ class GeminiHandler(BaseHandler):
             return func_call_list
 
     @retry_with_backoff(error_type=[ResourceExhausted, TooManyRequests])
-    def generate_with_backoff(self, client, **kwargs):
+    def generate_with_backoff(self, client: GenerativeModel, **kwargs) -> tuple[any, float]:
+        """
+        Wrapper for model generation with exponential backoff on rate limits.
+        
+        Args:
+            client (GenerativeModel): Gemini client instance
+            **kwargs: Generation parameters
+        
+        Returns:
+            tuple[any, float]: API response and execution time
+        """
         start_time = time.time()
         api_response = client.generate_content(**kwargs)
         end_time = time.time()
@@ -82,7 +123,16 @@ class GeminiHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> dict:
+        """
+        Executes a function calling query against the Gemini API.
+        
+        Args:
+            inference_data (dict): Contains messages, tools, and system prompt
+        
+        Returns:
+            dict: API response containing function calls or text
+        """
         # Gemini models needs to first conver the function doc to FunctionDeclaration and Tools objects.
         # We do it here to avoid json serialization issues.
         func_declarations = []
@@ -127,6 +177,16 @@ class GeminiHandler(BaseHandler):
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Preprocesses test entries for function calling queries.
+        
+        Args:
+            inference_data (dict): Data structure for the inference
+            test_entry (dict): Raw test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
 
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = self._substitute_prompt_role(
@@ -141,6 +201,16 @@ class GeminiHandler(BaseHandler):
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function documentation into Gemini-compatible tool declarations.
+        
+        Args:
+            inference_data (dict): Data structure for the inference
+            test_entry (dict): Raw test case data
+        
+        Returns:
+            dict: Inference data with compiled tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -152,6 +222,15 @@ class GeminiHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses Gemini's function calling API response.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Structured response data with function calls and token counts
+        """
         tool_call_func_names = []
         fc_parts = []
         text_parts = []
@@ -195,6 +274,16 @@ class GeminiHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial messages to function calling conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            first_turn_message (list[dict]): Initial messages
+        
+        Returns:
+            dict: Updated conversation state
+        """
         for message in first_turn_message:
             inference_data["message"].append(
                 Content(
@@ -209,11 +298,31 @@ class GeminiHandler(BaseHandler):
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user messages to ongoing function calling conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            user_message (list[dict]): User messages to add
+        
+        Returns:
+            dict: Updated conversation state
+        """
         return self.add_first_turn_message_FC(inference_data, user_message)
 
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds model responses to function calling conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated conversation state
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -225,6 +334,17 @@ class GeminiHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
+        """
+        Adds function execution results to conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            execution_results (list[str]): Function execution outputs
+            model_response_data (dict): Original model response data
+        
+        Returns:
+            dict: Updated conversation state
+        """
         # Tool response needs to be converted to Content object as well.
         # One Content object for all tool responses.
         tool_response_parts = []
@@ -247,7 +367,16 @@ class GeminiHandler(BaseHandler):
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> dict:
+        """
+        Executes a standard prompting query against the Gemini API.
+        
+        Args:
+            inference_data (dict): Contains messages and system prompt
+        
+        Returns:
+            dict: API response containing text output
+        """
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
             "system_prompt": inference_data.get("system_prompt", None),
@@ -271,6 +400,15 @@ class GeminiHandler(BaseHandler):
         return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Preprocesses test entries for standard prompting queries.
+        
+        Args:
+            test_entry (dict): Raw test case data
+        
+        Returns:
+            dict: Processed inference data
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -293,6 +431,15 @@ class GeminiHandler(BaseHandler):
             return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses Gemini's standard API response.
+        
+        Args:
+            api_response (any): Raw API response
+        
+        Returns:
+            dict: Structured response data with text output and token counts
+        """
         if (
             len(api_response.candidates) > 0
             and len(api_response.candidates[0].content.parts) > 0
@@ -309,6 +456,16 @@ class GeminiHandler(BaseHandler):
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds initial messages to standard conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            first_turn_message (list[dict]): Initial messages
+        
+        Returns:
+            dict: Updated conversation state
+        """
         for message in first_turn_message:
             inference_data["message"].append(
                 Content(
@@ -323,11 +480,31 @@ class GeminiHandler(BaseHandler):
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds user messages to ongoing standard conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            user_message (list[dict]): User messages to add
+        
+        Returns:
+            dict: Updated conversation state
+        """
         return self.add_first_turn_message_prompting(inference_data, user_message)
 
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds model responses to standard conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            model_response_data (dict): Model response data
+        
+        Returns:
+            dict: Updated conversation state
+        """
         inference_data["message"].append(
             Content(
                 role="model",
@@ -341,6 +518,17 @@ class GeminiHandler(BaseHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to standard conversation.
+        
+        Args:
+            inference_data (dict): Conversation state
+            execution_results (list[str]): Execution outputs
+            model_response_data (dict): Original model response data
+        
+        Returns:
+            dict: Updated conversation state
+        """
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )
