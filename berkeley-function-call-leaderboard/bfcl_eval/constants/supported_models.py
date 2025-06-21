@@ -14,8 +14,9 @@
 
 SUPPORTED_MODELS = [
     "gorilla-openfunctions-v2",
-    "DeepSeek-R1",
-    "DeepSeek-V3-FC",
+    "DeepSeek-R1-0528",
+    "DeepSeek-R1-0528-FC",
+    "DeepSeek-V3-0324-FC",
     "gpt-4.5-preview-2025-02-27",
     "gpt-4.5-preview-2025-02-27-FC",
     "gpt-4.1-2025-04-14-FC",
@@ -67,6 +68,7 @@ SUPPORTED_MODELS = [
     "command-r7b-12-2024-FC",
     "command-a-03-2025-FC",
     "snowflake/arctic",
+    "nvidia/llama-3.1-nemotron-ultra-253b-v1",
     "nvidia/nemotron-4-340b-instruct",
     "BitAgent/GoGoAgent",
     "palmyra-x-004",
@@ -162,4 +164,5 @@ SUPPORTED_MODELS = [
     "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita",
     "qwen/qwq-32b-FC-novita",
     "qwen/qwq-32b-novita",
+    "Ling/ling-lite-v1.5",
 ]
