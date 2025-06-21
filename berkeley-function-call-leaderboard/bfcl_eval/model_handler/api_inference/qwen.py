@@ -261,7 +261,7 @@ class QwenAgentThinkHandler(OpenAIHandler):
         
         return responses, end_time-start_time
     
-    # @override
+    @override
     def _parse_query_response_FC(self, api_response: any) -> dict:
         try:
             model_responses = [
