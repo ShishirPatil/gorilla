@@ -40,7 +40,6 @@ dependencies = [
     "writer-sdk>=2.1.0",
     "overrides",
     "boto3",
-    "duckduckgo_search",
     "beautifulsoup4",
     "html2text",
     "rank_bm25==0.2.2",
