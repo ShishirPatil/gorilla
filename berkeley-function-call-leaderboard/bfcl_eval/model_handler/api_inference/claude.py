@@ -10,16 +10,14 @@ from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     ast_parse,
     combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
     convert_to_function_call,
     convert_to_tool,
     extract_system_prompt,
     format_execution_results_prompting,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from bfcl_eval.utils import is_multi_turn
+from bfcl_eval.utils import contain_multi_turn_interaction
 
 
 class ClaudeHandler(BaseHandler):
@@ -84,10 +82,14 @@ class ClaudeHandler(BaseHandler):
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
             "tools": inference_data["tools"],
+            "system_prompt": inference_data.get("system_prompt", []),
         }
         messages = inference_data["message"]
 
         if inference_data["caching_enabled"]:
+            if "system_prompt" in inference_data:
+                # Cache the system prompt
+                inference_data["system_prompt"][0]["cache_control"] = {"type": "ephemeral"}
             # Only add cache control to the last two user messages
             # Remove previously set cache control flags from all user messages except the last two
             count = 0
@@ -100,40 +102,48 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
-        return self.generate_with_backoff(
-            model=self.model_name.strip("-FC"),
-            max_tokens=(
+        kwargs = {
+            "model": self.model_name.strip("-FC"),
+            "max_tokens": (
                 4096 if "claude-3-opus-20240229" in self.model_name else 8192
-            ),  # 3.5 Sonnet has a higher max token limit
-            tools=inference_data["tools"],
-            messages=messages,
-        )
+            ),  # 3.5 Sonnet has a higher max token limit,
+            "tools": inference_data["tools"],
+            "messages": messages,
+        }
+
+        # Include system_prompt if it exists
+        if "system_prompt" in inference_data:
+            kwargs["system"] = inference_data["system_prompt"]
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        inference_data["message"] = []
+        # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
+        system_prompt = extract_system_prompt(test_entry["question"][0])
+        if system_prompt is not None:
+            system_prompt = [{"type": "text", "text": system_prompt}]
+            inference_data["system_prompt"] = system_prompt
+
         for round_idx in range(len(test_entry["question"])):
-            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                test_entry["question"][round_idx]
-            )
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(
                 test_entry["question"][round_idx]
             )
-        inference_data["message"] = []
 
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        inference_data["caching_enabled"] = is_multi_turn(test_category)
+        caching_enabled: bool = contain_multi_turn_interaction(test_category)
+        inference_data["caching_enabled"] = caching_enabled
 
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
-        if inference_data["caching_enabled"]:
+        if inference_data["caching_enabled"] and len(tools) > 0:
             # First time compiling tools, so adding cache control flag to the last tool
             if "tools" not in inference_data:
                 tools[-1]["cache_control"] = {"type": "ephemeral"}
@@ -260,8 +270,6 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
@@ -279,7 +287,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        caching_enabled: bool = is_multi_turn(test_category)
+        caching_enabled: bool = contain_multi_turn_interaction(test_category)
 
         return {
             "message": [],

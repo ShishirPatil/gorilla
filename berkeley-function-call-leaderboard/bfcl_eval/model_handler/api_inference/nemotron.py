@@ -6,7 +6,6 @@ from bfcl_eval.model_handler.utils import (
     convert_system_prompt_into_user_prompt,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
-    func_doc_language_specific_pre_processing,
 )
 from overrides import override
 
@@ -60,9 +59,6 @@ Here is a list of functions in JSON format that you can invoke.
         """Process the input query and format it for the Nemotron model."""
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        # Pre-process functions based on language
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(

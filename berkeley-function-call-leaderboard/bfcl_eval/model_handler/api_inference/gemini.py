@@ -11,7 +11,6 @@ from bfcl_eval.model_handler.utils import (
     default_decode_execute_prompting,
     extract_system_prompt,
     format_execution_results_prompting,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
@@ -142,9 +141,7 @@ class GeminiHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         inference_data["tools"] = tools
@@ -273,8 +270,6 @@ class GeminiHandler(BaseHandler):
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = self._substitute_prompt_role(

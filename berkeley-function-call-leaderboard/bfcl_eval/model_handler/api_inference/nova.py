@@ -10,7 +10,6 @@ from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
     extract_system_prompt,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
 )
 
@@ -95,9 +94,7 @@ class NovaHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         inference_data["tools"] = tools
