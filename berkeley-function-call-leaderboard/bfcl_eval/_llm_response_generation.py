@@ -1,24 +1,22 @@
 import argparse
 import json
+import multiprocessing as mp
+import os
+import shutil
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 
-from bfcl_eval.constants.category_mapping import (
-    MULTI_TURN_FUNC_DOC_FILE_MAPPING,
-    TEST_FILE_MAPPING,
-)
 from bfcl_eval.constants.eval_config import (
-    MULTI_TURN_FUNC_DOC_PATH,
     PROJECT_ROOT,
-    PROMPT_PATH,
     RESULT_PATH,
     TEST_IDS_TO_GENERATE_PATH,
 )
-from bfcl_eval.eval_checker.eval_runner_helper import load_file
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
+from bfcl_eval.eval_checker.eval_runner_helper import load_file
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.utils import is_multi_turn, parse_test_category_argument, sort_key
+from bfcl_eval.utils import *
 from tqdm import tqdm
 
 RETRY_LIMIT = 3
@@ -69,59 +67,71 @@ def build_handler(model_name, temperature):
 
 
 def get_involved_test_entries(test_category_args, run_ids):
-    all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
+    all_test_categories, all_test_entries_involved = [], []
     if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
             test_ids_to_generate = json.load(f)
         for category, test_ids in test_ids_to_generate.items():
             if len(test_ids) == 0:
                 continue
-            test_file_path = TEST_FILE_MAPPING[category]
             all_test_entries_involved.extend(
-                [
-                    entry
-                    for entry in load_file(PROMPT_PATH / test_file_path)
-                    if entry["id"] in test_ids
-                ]
+                [entry for entry in load_dataset_entry(category) if entry["id"] in test_ids]
             )
             all_test_categories.append(category)
-            all_test_file_paths.append(test_file_path)
 
     else:
-        all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
-        # Make a copy here since we are removing list elemenets inside the for loop
-        for test_category, file_to_open in zip(
-            all_test_categories[:], all_test_file_paths[:]
-        ):
-            all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
+        all_test_categories = parse_test_category_argument(test_category_args)
+        for test_category in all_test_categories:
+            all_test_entries_involved.extend(load_dataset_entry(test_category))
 
     return (
-        all_test_file_paths,
         all_test_categories,
         all_test_entries_involved,
     )
 
 
-def collect_test_cases(
-    args, model_name, all_test_categories, all_test_file_paths, all_test_entries_involved
-):
+def collect_test_cases(args, model_name, all_test_categories, all_test_entries_involved):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = args.result_dir / model_name_dir
 
     existing_result = []
-    for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
+    for test_category in all_test_categories:
 
-        result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
-        if result_file_path.exists():
-            # Not allowing overwrite, we will load the existing results
-            if not args.allow_overwrite:
-                existing_result.extend(load_file(result_file_path))
-            # Allow overwrite and not running specific test ids, we will delete the existing result file before generating new results
-            elif not args.run_ids:
-                result_file_path.unlink()
-            # Allow overwrite and running specific test ids, we will do nothing here
-            else:
-                pass
+        # TODO: Simplify the handling of memory prerequisite entries/categories
+        result_file_paths = [
+            model_result_dir / get_file_name_by_category(test_category, is_result_file=True)
+        ]
+        if is_memory(test_category):
+            # Memory test cases have the pre-requisite entries in a separate file
+            result_file_paths.append(
+                model_result_dir
+                / get_file_name_by_category(f"{test_category}_prereq", is_result_file=True)
+            )
+
+        for file_path in result_file_paths:
+            if file_path.exists():
+                # Not allowing overwrite, we will load the existing results
+                if not args.allow_overwrite:
+                    existing_result.extend(load_file(file_path))
+                # Allow overwrite and not running specific test ids, we will delete the existing result file before generating new results
+                elif not args.run_ids:
+                    file_path.unlink()
+                # Allow overwrite and running specific test ids, we will do nothing here
+                else:
+                    pass
+
+        if is_memory(test_category):
+            # We also need to special handle the pre-requisite entries and the snapshot result for memory test cases
+            snapshot_folder = model_result_dir / "memory_snapshot" / test_category
+            if snapshot_folder.exists():
+                if not args.allow_overwrite:
+                    pass
+                elif not args.run_ids:
+                    shutil.rmtree(snapshot_folder)
+                else:
+                    # TODO: If running id and id involes prereq entries, we should just delete those snapshot files
+                    # It's not implemented yet, but it won't affect the accuracy, as those files will be overwritten anyway (assume generation success)
+                    pass
 
         existing_ids = [entry["id"] for entry in existing_result]
 
@@ -130,46 +140,26 @@ def collect_test_cases(
         for test_case in all_test_entries_involved
         if test_case["id"] not in existing_ids
     ]
-    test_cases_to_generate = process_multi_turn_test_case(test_cases_to_generate)
+
+    test_cases_to_generate = clean_up_memory_prereq_entries(test_cases_to_generate)
+    test_cases_to_generate = populate_initial_settings_for_memory_test_cases(
+        test_cases_to_generate, model_result_dir
+    )
 
     return sorted(test_cases_to_generate, key=sort_key)
 
 
-def process_multi_turn_test_case(test_cases):
-    """
-    Multi-turn test cases don't have the function doc in the prompt. We need to add them here.
-    """
-    for entry in test_cases:
-        if not is_multi_turn(entry["id"]):
-            continue
-        involved_classes = entry["involved_classes"]
-        entry["function"] = []
-        for func_collection in involved_classes:
-            # func_doc is a list of dict
-            func_doc = load_file(
-                MULTI_TURN_FUNC_DOC_PATH / MULTI_TURN_FUNC_DOC_FILE_MAPPING[func_collection]
-            )
-            entry["function"].extend(func_doc)
-
-        # Handle Miss Func category; we need to remove the holdout function doc
-        if "missed_function" in entry:
-            for turn_index, missed_func_names in entry["missed_function"].items():
-                entry["missed_function"][turn_index] = []
-                for missed_func_name in missed_func_names:
-                    for i, func_doc in enumerate(entry["function"]):
-                        if func_doc["name"] == missed_func_name:
-                            # Add the missed function doc to the missed_function list
-                            entry["missed_function"][turn_index].append(func_doc)
-                            # Remove it from the function list
-                            entry["function"].pop(i)
-                            break
-
-    return test_cases
-
-
-def multi_threaded_inference(handler, test_case, include_input_log, exclude_state_log):
+def multi_threaded_inference(
+    handler, test_case, events, include_input_log, exclude_state_log
+):
 
     assert type(test_case["function"]) is list
+
+    # Wait for all dependencies to complete
+    for dependency_id in test_case.get("depends_on", []):
+        # TODO: Improve the dependency handling, when prereq doesn't need to be re-run
+        if dependency_id in events:
+            events[dependency_id].wait()  # Wait until the dependent task sets its event
 
     retry_count = 0
 
@@ -180,8 +170,6 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
             )
             break  # Success, exit the loop
         except Exception as e:
-            # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
-            # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run.
             if retry_count < RETRY_LIMIT and (
                 "rate limit reached" in str(e).lower()
                 or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
@@ -203,10 +191,11 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
                 print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
                 print("-" * 100)
 
-                return {
-                    "id": test_case["id"],
-                    "result": f"Error during inference: {str(e)}",
-                }
+                result = f"Error during inference: {str(e)}"
+                metadata = {}
+
+    # Signal that the current task is complete
+    events[test_case["id"]].set()
 
     result_to_write = {
         "id": test_case["id"],
@@ -239,6 +228,7 @@ def generate_results(args, model_name, test_cases_total):
 
     else:
         futures = []
+        events = {test_case["id"]: threading.Event() for test_case in test_cases_total}
         with ThreadPoolExecutor(max_workers=args.num_threads) as executor:
             with tqdm(
                 total=len(test_cases_total), desc=f"Generating results for {model_name}"
@@ -249,6 +239,7 @@ def generate_results(args, model_name, test_cases_total):
                         multi_threaded_inference,
                         handler,
                         test_case,
+                        events,
                         args.include_input_log,
                         args.exclude_state_log,
                     )
@@ -265,13 +256,22 @@ def generate_results(args, model_name, test_cases_total):
 
 def main(args):
 
+    # Note: The following environment variables are needed for the memory vector store implementation 
+    # Otherwise you get segfault or huggingface tokenizer warnings
+    # disable HuggingFace tokenizers’ thread pool
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    # limit all OpenMP/MKL threads to 1
+    os.environ["OMP_NUM_THREADS"] = "1"
+    os.environ["MKL_NUM_THREADS"] = "1"
+    # use spawn method for multiprocessing
+    mp.set_start_method("spawn", force=True)
+
     if type(args.model) is not list:
         args.model = [args.model]
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
     (
-        all_test_file_paths,
         all_test_categories,
         all_test_entries_involved,
     ) = get_involved_test_entries(args.test_category, args.run_ids)
@@ -279,10 +279,10 @@ def main(args):
     for model_name in args.model:
         if model_name not in MODEL_CONFIG_MAPPING:
             raise ValueError(
-                        f"Unknown model_name '{model_name}'.\n"
-                        "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
-                        "• For running new models, please refer to `README.md` and `CONTRIBUTING.md`."
-                    )
+                f"Unknown model_name '{model_name}'.\n"
+                "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
+                "• For running new models, please refer to `README.md` and `CONTRIBUTING.md`."
+            )
     print(f"Generating results for {args.model}")
     if args.run_ids:
         print("Running specific test cases. Ignoring `--test-category` argument.")
@@ -299,7 +299,6 @@ def main(args):
             args,
             model_name,
             all_test_categories,
-            all_test_file_paths,
             all_test_entries_involved,
         )
 
