@@ -1,6 +1,6 @@
 import json
-import time
 from copy import deepcopy
+from typing import TYPE_CHECKING
 
 from bfcl_eval.constants.category_mapping import VERSION_PREFIX
 from bfcl_eval.constants.default_prompts import (
@@ -9,14 +9,23 @@ from bfcl_eval.constants.default_prompts import (
     MAXIMUM_STEP_LIMIT,
 )
 from bfcl_eval.constants.eval_config import RESULT_PATH
-from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
+from bfcl_eval.constants.executable_backend_config import (
+    OMIT_STATE_INFO_CLASSES,
     STATELESS_CLASSES,
+)
+from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,
 )
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.utils import load_file, make_json_serializable, sort_key
+from bfcl_eval.model_handler.utils import add_memory_instruction_system_prompt
+from bfcl_eval.utils import *
 from overrides import final
+
+if TYPE_CHECKING:
+    from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
+        MemoryAPI,
+    )
 
 
 class BaseHandler:
@@ -30,16 +39,23 @@ class BaseHandler:
         self.model_name_underline_replaced = (
             model_name.replace("/", "_").replace("-", "_").replace(".", "_")
         )
+        # The directory name for the model
+        self.model_name_dir = model_name.replace("/", "_")
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
+    def inference(
+        self,
+        test_entry: dict,
+        include_input_log: bool,
+        exclude_state_log: bool,
+    ):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
-            if "multi_turn" in test_entry["id"]:
+            if contain_multi_turn_interaction(test_entry["id"]):
                 return self.inference_multi_turn_FC(
                     test_entry, include_input_log, exclude_state_log
                 )
@@ -47,7 +63,7 @@ class BaseHandler:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
-            if "multi_turn" in test_entry["id"]:
+            if contain_multi_turn_interaction(test_entry["id"]):
                 return self.inference_multi_turn_prompting(
                     test_entry, include_input_log, exclude_state_log
                 )
@@ -56,9 +72,12 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
+        self,
+        test_entry: dict,
+        include_input_log: bool,
+        exclude_state_log: bool,
     ) -> tuple[list[list], dict]:
-        initial_config: dict = test_entry["initial_config"]
+        initial_config: dict = test_entry.get("initial_config", {})
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
@@ -79,22 +98,35 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         all_reasoning_content: list[list] = []
+
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if not exclude_state_log:
-            _, involved_instances = execute_multi_turn_func_call(
-                [],
-                initial_config,
-                involved_classes,
-                self.model_name_underline_replaced,
-                test_entry_id,
-                long_context=(
-                    "long_context" in test_category or "composite" in test_category
-                ),
-                is_evaL_run=False,
+        _, involved_instances = execute_multi_turn_func_call(
+            [],
+            initial_config,
+            involved_classes,
+            self.model_name_underline_replaced,
+            test_entry_id,
+            long_context=("long_context" in test_category or "composite" in test_category),
+            is_evaL_run=False,
+        )
+
+        if is_memory(test_category):
+            assert (
+                len(involved_instances) == 1
+            ), "Memory category should only involve one class."
+
+            memory_instance: "MemoryAPI" = list(involved_instances.values())[0]
+            test_entry["question"] = add_memory_instruction_system_prompt(
+                test_entry["question"],
+                test_category,
+                test_entry["scenario"],
+                memory_instance,
             )
+
+        if not exclude_state_log:
             state_log = []
             for class_name, class_instance in involved_instances.items():
-                if class_name in STATELESS_CLASSES:
+                if class_name in STATELESS_CLASSES or class_name in OMIT_STATE_INFO_CLASSES:
                     continue
                 # Avoid modification in future turns
                 class_instance = deepcopy(class_instance)
@@ -109,7 +141,8 @@ class BaseHandler:
                         },
                     }
                 )
-            all_inference_log.append(state_log)
+            if len(state_log) > 0:
+                all_inference_log.append(state_log)
 
         inference_data: dict = {}
         inference_data = self._pre_query_processing_FC(inference_data, test_entry)
@@ -126,6 +159,8 @@ class BaseHandler:
                 assert (
                     len(current_turn_message) == 0
                 ), "Holdout turn should not have user message."
+                # TODO: Move this to before pre_query_processing_FC.
+                # Shouldn't be happening in the inference loop.
                 current_turn_message = [
                     {
                         "role": "user",
@@ -284,7 +319,10 @@ class BaseHandler:
             if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
-                    if class_name in STATELESS_CLASSES:
+                    if (
+                        class_name in STATELESS_CLASSES
+                        or class_name in OMIT_STATE_INFO_CLASSES
+                    ):
                         continue
                     # Avoid modification in future turns
                     class_instance = deepcopy(class_instance)
@@ -299,10 +337,20 @@ class BaseHandler:
                             },
                         }
                     )
-                all_inference_log.append(state_log)
+                if len(state_log) > 0:
+                    all_inference_log.append(state_log)
 
             if force_quit:
                 break
+
+        # Special handling for the memory category
+        # Need to flush the memory to local file at the end of the conversation
+        if is_memory_prereq(test_entry_id):
+            assert (
+                len(involved_instances) == 1
+            ), "Memory category should only involve one class."
+            memory_instance: "MemoryAPI" = list(involved_instances.values())[0]
+            memory_instance._flush_memory_to_local_file()
 
         metadata = {
             "input_token_count": total_input_token_count,
@@ -321,9 +369,12 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
+        self,
+        test_entry: dict,
+        include_input_log: bool,
+        exclude_state_log: bool,
     ) -> tuple[list[list], dict]:
-        initial_config: dict = test_entry["initial_config"]
+        initial_config: dict = test_entry.get("initial_config", {})
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
@@ -344,21 +395,33 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if not exclude_state_log:
-            _, involved_instances = execute_multi_turn_func_call(
-                [],
-                initial_config,
-                involved_classes,
-                self.model_name_underline_replaced,
-                test_entry_id,
-                long_context=(
-                    "long_context" in test_category or "composite" in test_category
-                ),
-                is_evaL_run=False,
+        _, involved_instances = execute_multi_turn_func_call(
+            [],
+            initial_config,
+            involved_classes,
+            self.model_name_underline_replaced,
+            test_entry_id,
+            long_context=("long_context" in test_category or "composite" in test_category),
+            is_evaL_run=False,
+        )
+
+        if is_memory(test_category):
+            assert (
+                len(involved_instances) == 1
+            ), "Memory category should only involve one class."
+
+            memory_instance: "MemoryAPI" = list(involved_instances.values())[0]
+            test_entry["question"] = add_memory_instruction_system_prompt(
+                test_entry["question"],
+                test_category,
+                test_entry["scenario"],
+                memory_instance,
             )
+
+        if not exclude_state_log:
             state_log = []
             for class_name, class_instance in involved_instances.items():
-                if class_name in STATELESS_CLASSES:
+                if class_name in STATELESS_CLASSES or class_name in OMIT_STATE_INFO_CLASSES:
                     continue
                 # Avoid modification in future turns
                 class_instance = deepcopy(class_instance)
@@ -373,7 +436,8 @@ class BaseHandler:
                         },
                     }
                 )
-            all_inference_log.append(state_log)
+            if len(state_log) > 0:
+                all_inference_log.append(state_log)
 
         inference_data: dict = self._pre_query_processing_prompting(test_entry)
 
@@ -544,7 +608,10 @@ class BaseHandler:
             if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
-                    if class_name in STATELESS_CLASSES:
+                    if (
+                        class_name in STATELESS_CLASSES
+                        or class_name in OMIT_STATE_INFO_CLASSES
+                    ):
                         continue
                     # Avoid modification in future turns
                     class_instance = deepcopy(class_instance)
@@ -559,10 +626,20 @@ class BaseHandler:
                             },
                         }
                     )
-                all_inference_log.append(state_log)
+                if len(state_log) > 0:
+                    all_inference_log.append(state_log)
 
             if force_quit:
                 break
+
+        # Special handling for the memory category
+        # Need to flush the memory to local file at the end of the conversation
+        if is_memory_prereq(test_entry_id):
+            assert (
+                len(involved_instances) == 1
+            ), "Memory category should only involve one class."
+            memory_instance: "MemoryAPI" = list(involved_instances.values())[0]
+            memory_instance._flush_memory_to_local_file()
 
         metadata = {
             "input_token_count": total_input_token_count,

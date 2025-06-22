@@ -5,9 +5,14 @@ import json
 import operator
 import re
 from functools import reduce
-from typing import Callable, List, Optional, Type, Union
+from typing import TYPE_CHECKING, Callable, List, Optional, Type, Union
 
-from bfcl_eval.constants.default_prompts import DEFAULT_SYSTEM_PROMPT
+from bfcl_eval.constants.default_prompts import (
+    DEFAULT_SYSTEM_PROMPT,
+    MEMORY_AGENT_SETTINGS,
+    MEMORY_BACKEND_INSTRUCTION_CORE_ARCHIVAL,
+    MEMORY_BACKEND_INSTRUCTION_UNIFIED,
+)
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.parser.java_parser import parse_java_function_call
@@ -18,6 +23,11 @@ from tenacity import (
     retry_if_exception_type,
     wait_random_exponential,
 )
+
+if TYPE_CHECKING:
+    from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
+        MemoryAPI,
+    )
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -305,6 +315,7 @@ def resolve_ast_by_type(value):
     return output
 
 
+# TODO: consider moving this step to pipeline instead of in each model handler
 def system_prompt_pre_processing_chat_model(prompts, function_docs, test_category):
     """
     Add a system prompt to the chat model to instruct the model on the available functions and the expected response format.
@@ -357,284 +368,6 @@ def combine_consecutive_user_prompts(prompts: list[dict]) -> list[dict]:
             combined_prompts.append(prompt)
 
     return combined_prompts
-
-
-def _get_language_specific_hint(test_category):
-    if test_category == "java":
-        return " Note that the provided function is in Java 8 SDK syntax."
-    elif test_category == "javascript":
-        return " Note that the provided function is in JavaScript syntax."
-    else:
-        return " Note that the provided function is in Python 3 syntax."
-
-
-def func_doc_language_specific_pre_processing(function, test_category):
-    if len(function) == 0:
-        return function
-
-    assert type(function) == list
-    for item in function:
-        # Add language specific hints to the function description
-        func_description = item["description"]
-        item["description"] = item["description"] + _get_language_specific_hint(
-            test_category
-        )
-        # Process the parameters
-        properties = item["parameters"]["properties"]
-        if test_category == "java":
-            for key, value in properties.items():
-                if value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += " This parameter can be of any type of Java object in string representation."
-                else:
-                    value[
-                        "description"
-                    ] += f" This is Java {value['type']} type parameter in string representation."
-                if value["type"] == "ArrayList" or value["type"] == "Array":
-                    value[
-                        "description"
-                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
-                    del value["items"]
-
-                value["type"] = "string"
-
-        elif test_category == "javascript":
-            for key, value in properties.items():
-                if value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += " This parameter can be of any type of JavaScript object in string representation."
-                else:
-                    value[
-                        "description"
-                    ] += f" This is JavaScript {value['type']} type parameter in string representation."
-                if value["type"] == "array":
-                    value[
-                        "description"
-                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
-                    del value["items"]
-
-                if value["type"] == "dict":
-                    if "properties" in value:  # not every dict has properties
-                        value[
-                            "description"
-                        ] += f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
-                        del value["properties"]
-
-                value["type"] = "string"
-
-    return function
-
-
-def construct_tool_use_system_prompt(tools):
-    tool_use_system_prompt = (
-        "In this environment you have access to a set of tools you can use to answer the user's question.\n"
-        "\n"
-        "You may call them like this:\n"
-        "<function_calls>\n"
-        "<invoke>\n"
-        "<tool_name>$TOOL_NAME</tool_name>\n"
-        "<parameters>\n"
-        "<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n"
-        "...\n"
-        "</parameters>\n"
-        "</invoke>\n"
-        "</function_calls>\n"
-        "\n"
-        "Here are the tools available:\n"
-        "<tools>\n"
-        + "\n".join(
-            [
-                construct_format_tool_for_claude_prompt(
-                    tool["name"], tool["description"], tool["parameters"]["properties"]
-                )
-                for tool in tools
-            ]
-        )
-        + "\n</tools>"
-    )
-
-    return tool_use_system_prompt
-
-
-def construct_format_tool_for_claude_prompt(name, description, parameters):
-    constructed_prompt = (
-        "<tool_description>\n"
-        f"<tool_name>{name}</tool_name>\n"
-        "<description>\n"
-        f"{description}\n"
-        "</description>\n"
-        "<parameters>\n"
-        f"{construct_format_parameters_prompt(parameters)}\n"
-        "</parameters>\n"
-        "</tool_description>"
-    )
-
-    return constructed_prompt
-
-
-def construct_format_parameters_prompt(parameters):
-    constructed_prompt = ""
-    for parameter_name, parameter in parameters.items():
-        if parameter_name == "required":
-            continue
-        if "description" in parameter:
-            description_string = parameter["description"]
-        else:
-            description_string = ""
-        if "default" in parameter:
-            description_string += f"\nDefault value: {parameter['default']}"
-        elif "items" in parameter:
-            description_string += f"\n List element type: {str(parameter['items'])}"
-        elif "properties" in parameter:
-            description_string += (
-                f"\n Dictionaries properties: {str(parameter['properties'])}"
-            )
-        if "description" in parameter:
-            constructed_prompt += f"<parameter>\n<name>{parameter_name}</name>\n<type>{parameter['type']}</type>\n<description>{description_string}</description>\n</parameter>\n"
-        else:
-            constructed_prompt += f"<parameter>\n<name>{parameter_name}</name>\n<type>{parameter['type']}</type>\n</parameter>\n"
-    constructed_prompt = constructed_prompt[:-1]
-    return constructed_prompt
-
-
-def _function_calls_valid_format_and_invoke_extraction(last_completion):
-    """Check if the function call follows a valid format and extract the attempted function calls if so. Does not check if the tools actually exist or if they are called with the requisite params."""
-
-    # Check if there are any of the relevant XML tags present that would indicate an attempted function call.
-    function_call_tags = re.findall(
-        r"<function_calls>|</function_calls>|<invoke>|</invoke>|<tool_name>|</tool_name>|<parameters>|</parameters>",
-        last_completion,
-        re.DOTALL,
-    )
-    if not function_call_tags:
-        return {"status": True, "invokes": []}
-
-    # Extract content between <function_calls> tags. If there are multiple we will only parse the first and ignore the rest, regardless of their correctness.
-    match = re.search(r"<function_calls>(.*)</function_calls>", last_completion, re.DOTALL)
-    if not match:
-        return {
-            "status": False,
-            "reason": "No valid <function_calls></function_calls> tags present in your query.",
-        }
-
-    func_calls = match.group(1)
-
-    prefix_match = re.search(r"^(.*?)<function_calls>", last_completion, re.DOTALL)
-    if prefix_match:
-        func_call_prefix_content = prefix_match.group(1)
-
-    # Check for invoke tags
-    invoke_regex = r"<invoke>.*?</invoke>"
-    if not re.search(invoke_regex, func_calls, re.DOTALL):
-        return {
-            "status": False,
-            "reason": "Missing <invoke></invoke> tags inside of <function_calls></function_calls> tags.",
-        }
-
-    # Check each invoke contains tool name and parameters
-    invoke_strings = re.findall(invoke_regex, func_calls, re.DOTALL)
-    invokes = []
-    for invoke_string in invoke_strings:
-        tool_name = re.findall(r"<tool_name>.*?</tool_name>", invoke_string, re.DOTALL)
-        if not tool_name:
-            return {
-                "status": False,
-                "reason": "Missing <tool_name></tool_name> tags inside of <invoke></invoke> tags.",
-            }
-        if len(tool_name) > 1:
-            return {
-                "status": False,
-                "reason": "More than one tool_name specified inside single set of <invoke></invoke> tags.",
-            }
-
-        parameters = re.findall(r"<parameters>.*?</parameters>", invoke_string, re.DOTALL)
-        if not parameters:
-            return {
-                "status": False,
-                "reason": "Missing <parameters></paraeters> tags inside of <invoke></invoke> tags.",
-            }
-        if len(parameters) > 1:
-            return {
-                "status": False,
-                "reason": "More than one set of <parameters></parameters> tags specified inside single set of <invoke></invoke> tags.",
-            }
-
-        # Check for balanced tags inside parameters
-        tags = re.findall(
-            r"<.*?>",
-            parameters[0].replace("<parameters>", "").replace("</parameters>", ""),
-            re.DOTALL,
-        )
-        if len(tags) % 2 != 0:
-            return {
-                "status": False,
-                "reason": "Imbalanced tags inside <parameters></parameters> tags.",
-            }
-
-        # Loop through the tags and check if each even-indexed tag matches the tag in the position after it (with the / of course). If valid store their content for later use.
-        parameters_with_values = []
-        for i in range(0, len(tags), 2):
-            opening_tag = tags[i]
-            closing_tag = tags[i + 1]
-            closing_tag_without_second_char = closing_tag[:1] + closing_tag[2:]
-            if closing_tag[1] != "/" or opening_tag != closing_tag_without_second_char:
-                return {
-                    "status": False,
-                    "reason": "Non-matching opening and closing tags inside <parameters></parameters> tags.",
-                }
-
-            parameters_with_values.append(
-                (
-                    opening_tag[1:-1],
-                    re.search(
-                        rf"{opening_tag}(.*?){closing_tag}", parameters[0], re.DOTALL
-                    ).group(1),
-                )
-            )
-
-        # Parse out the full function call
-        invokes.append(
-            {
-                "tool_name": tool_name[0]
-                .replace("<tool_name>", "")
-                .replace("</tool_name>", ""),
-                "parameters_with_values": parameters_with_values,
-            }
-        )
-
-    return {
-        "status": True,
-        "invokes": invokes,
-        "prefix_content": func_call_prefix_content,
-    }
-
-
-def _convert_value(value, type_str):
-    """Convert a string value into its appropriate Python data type based on the provided type string.
-
-    Arg:
-        value: the value to convert
-        type_str: the type to convert the value to
-
-    Returns:
-        The value converted into the requested type or the original value
-        if the conversion failed.
-    """
-
-    if type_str in ("list", "dict"):
-        try:
-            return ast.literal_eval(value)
-        except:
-            return value
-    if type_str == "string":
-        type_str = "str"
-    type_class = getattr(builtins, type_str)
-    try:
-        return type_class(value)
-    except ValueError:
-        return value
 
 
 # TODO: Re-organize this file to make it more readable and maintainable
@@ -801,3 +534,49 @@ def retry_with_backoff(
         return wrapped
 
     return decorator
+
+
+#### utils for memory category ####
+
+
+def add_memory_instruction_system_prompt(
+    prompts: list[list[dict]],
+    test_category: str,
+    scenario: str,
+    memory_backend_instance: "MemoryAPI",
+) -> list[list[dict]]:
+    """
+    Memory categories requires a system prompt that instructs the model on how to use the memory backend, and also provides the content in core memory (if applicable).
+    The input for prompts is a list of list of dictionaries, where each outer list item represents a conversation turn, and each inner list item represents a message in that turn.
+    System prompt are added as the first message in the first turn of the conversation.
+    """
+    assert len(prompts) >= 1
+
+    scenario_setting = MEMORY_AGENT_SETTINGS[scenario]
+
+    memory_content = memory_backend_instance._dump_core_memory_to_context()
+
+    if "rec_sum" in test_category:
+        system_prompt_template = MEMORY_BACKEND_INSTRUCTION_UNIFIED
+    else:
+        system_prompt_template = MEMORY_BACKEND_INSTRUCTION_CORE_ARCHIVAL
+
+    system_prompt = system_prompt_template.format(
+        scenario_setting=scenario_setting, memory_content=memory_content
+    )
+
+    # System prompt must be in the first position
+    # If the question comes with a system prompt, append its content at the end of the chat template.
+    first_turn_prompts = prompts[0]
+    if first_turn_prompts[0]["role"] == "system":
+        first_turn_prompts[0]["content"] = (
+            system_prompt + "\n\n" + first_turn_prompts[0]["content"]
+        )
+    # Otherwise, use the system prompt template to create a new system prompt.
+    else:
+        first_turn_prompts.insert(
+            0,
+            {"role": "system", "content": system_prompt},
+        )
+
+    return prompts
