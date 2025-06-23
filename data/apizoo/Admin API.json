@@ -1,0 +1,982 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Folders",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Folder",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/folders/:folder",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Folder",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/folders/:folder",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Folder",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/folders/:folder",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Metadata Fields",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Metadata Field",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{          \n    \"external_id\": \"my_metadata\",\n    \"label\": \"My Metadata\",\n    \"type\": \"set\" ,\n    \"mandatory\": \"true\",\n    \"default_value\": [\"value1\",\"value2\"],\n    \"datasource\": {\n      \"values\": [\n        {\"external_id\": \"value1\", \"value\": \"value1\"},\n        {\"external_id\": \"value2\", \"value\": \"value2\"}\n      ]\n    }\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Metadata Field",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Metadata Field",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{          \n    \"external_id\": \"my_metadata\",\n    \"label\": \"My Metadata Updated\",\n    \"type\": \"set\" ,\n    \"mandatory\": \"false\",\n    \"default_value\": [\"value1\"]\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Metadata Field Datasource",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id/datasource",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{  \n    \"values\":[{  \n      \"external_id\":\"value1\",\n      \"value\":\"new_value1\"\n    },\n    {  \n      \"external_id\":\"value2\",\n      \"value\":\"new_value2\"\n    }]\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Metadata Field",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "folder",
+                        "value": "my_map",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Entries in Metadata Field Datasource",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id/datasource?external_ids[]=value2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Restore Entries in Metadata Field Datasource",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/metadata_fields/:external_id/datasource_restore?external_ids[]=value2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Ping Servers",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/ping",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources By Asset Folder",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/by_asset_folder?asset_folder=<folder>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources By Asset Id",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/by_asset_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "asset_ids[]",
+                        "value": "<asset_id1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "asset_ids[]",
+                        "value": "<asset_id2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources By Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/tags/:tag",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources By PublicId",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/:publicId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resources By Context",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/context?key=my_context_key",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Resource in Moderation Queue",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/moderations/:moderation_kind/:status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Details of a Single Resource",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/:type/:public_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Resource",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/:publicId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "tags",
+                        "value": "<yourTags>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Access Mode",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/update_access_mode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "access_mode",
+                        "value": "public",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId2>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "",
+                        "value": "",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Restore Resources",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/restore",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Resources",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Derived Resources",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/:resource_type/upload/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "derived_resource_ids[]",
+                        "value": "<derivedResourceId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "derived_resource_ids[]",
+                        "value": "<derivedResourceId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Add Related Assets",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/related_assets/:resource_type/:type/:public_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "type": "text",
+                        "key": "assets_to_relate[]",
+                        "value": "<resource_type/type/public_id>"
+                    },
+                    {
+                        "type": "text",
+                        "key": "assets_to_relate[]",
+                        "value": "<resource_type/type/public_id>"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Related Assets",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/resources/related_assets/:resource_type/:type/:public_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "type": "text",
+                        "key": "assets_to_unrelate[]",
+                        "value": "<resource_type/type/public_id>"
+                    },
+                    {
+                        "type": "text",
+                        "key": "assets_to_unrelate[]",
+                        "value": "<resource_type/type/public_id>"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Profiles",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/streaming_profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Profile",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/streaming_profiles/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "name",
+                        "value": "my_profile",
+                        "type": "text"
+                    },
+                    {
+                        "key": "display_name",
+                        "value": "My Profile",
+                        "type": "text"
+                    },
+                    {
+                        "key": "representations",
+                        "value": "[{\"transformation\": \"c_limit,w_900,h_900,br_3500k\"},{\"transformation\": \"c_limit,w_600,h_600,br_1500k\"}]",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Profile",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/streaming_profiles/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Profile",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/streaming_profiles/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "display_name",
+                        "value": "My Profile Updated",
+                        "type": "text"
+                    },
+                    {
+                        "key": "representations",
+                        "value": "[{\"transformation\": \"c_limit,w_1200,h_1200,br_3500k\"},{\"transformation\": \"c_limit,w_600,h_600,br_1500k\"}]",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete or Revert Profile",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/streaming_profiles/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "folder",
+                        "value": "my_map",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Tags",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/tags/:resource_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Tags by Prefix",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/tags/:resource_type?prefix=a",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Transformations",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Named Transformations",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "named",
+                        "value": "true",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Transformation",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "transformation",
+                        "value": "c_scale,w_500/e_sepia",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Transformation",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations/:transformation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Transformation",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations/:transformation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "unsafe_update",
+                        "value": "w_700",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Transformation",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/transformations/:transformation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Triggers",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/triggers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Trigger",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/triggers?uri=https://mysite.example.com/my_notification_endpoint&event_type=all",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Trigger",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/triggers/:id?new_uri=https://mysite.example.com/my_notification_endpoint",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Trigger",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/triggers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Upload Mappings",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_mappings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Upload Mapping",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_mappings/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "folder",
+                        "value": "my_map",
+                        "type": "text"
+                    },
+                    {
+                        "key": "template",
+                        "value": "https://www.example.com/images/",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Upload Mapping",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_mappings/?folder=my_map",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Upload Mapping",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_mappings/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "folder",
+                        "value": "my_map",
+                        "type": "text"
+                    },
+                    {
+                        "key": "template",
+                        "value": "https://www.example.com/videos/",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Upload Mapping",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_mappings/?folder=my_map",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Upload Presets",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_presets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Create Upload Preset",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_presets/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "name",
+                        "value": "my_preset",
+                        "type": "text"
+                    },
+                    {
+                        "key": "unsigned",
+                        "value": "true",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tags",
+                        "value": "remote",
+                        "type": "text"
+                    },
+                    {
+                        "key": "allowed_formats",
+                        "value": "jpg,png",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Upload Preset",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_presets/:preset",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Update Upload Preset",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_presets/:preset",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "unsigned",
+                        "value": "true",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tags",
+                        "value": "remote",
+                        "type": "text"
+                    },
+                    {
+                        "key": "allowed_formats",
+                        "value": "jpg,png,webp",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Delete Upload Preset",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/upload_presets/:preset",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Admin API: Get Usage",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/usage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

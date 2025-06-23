@@ -1,0 +1,2826 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /oauth/authorize",
+        "api_call": "{{url}}/oauth/authorize?client_id={{client_id}}&response_type=code&scopes=email&login_hint=test@gmail.com&redirect_uri=http://localhost:4567&state",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /oauth/token",
+        "api_call": "{{url}}/oauth/token?client_id={{client_id}}&client_secret={{client_secret}}&grant_type=authorization_code&code={{code}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /oauth/revoke",
+        "api_call": "{{url}}/oauth/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "user",
+                        "value": "{{access_token}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/authorize exchange",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "text/plain"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"name\": \"{{name}}\",\n    \"email_address\": \"{{exchange_email}}\",\n    \"provider\": \"exchange\",\n    \"settings\": {\n        \"username\": \"{{exchange_email}}\",\n        \"password\": \"{{exchange_password}}\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/authorize yahoo",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"name\": \"{{name}}\",\n    \"email_address\": \"{{yahoo_email}}\",\n    \"provider\": \"yahoo\",\n    \"settings\": {\n        \"password\": \"{{yahoo_password}}\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/authorize gmail",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"name\": \"{{name}}\",\n    \"email_address\": \"{{google_email}}\",\n    \"provider\": \"gmail\",\n    \"settings\": {\n        \"google_refresh_token\": \"{{google_refresh_token}}\",\n        \"google_client_id\": \"{{google_client_id}}\",\n        \"google_client_secret\": \"{{google_client_secret}}\"\n    },\n    \"scopes\": \"email, calendar, contacts\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/authorize gmail service account",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"name\": \"{{name}}\",\n    \"email_address\": \"nylas1@nylastestgsuite.com\",\n    \"provider\": \"gmail\",\n    \"settings\": {\n\t\t\"service_account_json\": {{service_account_json}}\n    },\n    \"scopes\": \"calendar\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/authorize imap",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\":     \"{{client_id}}\",\n    \"name\":          \"Sarah Nylanaut\",\n    \"email_address\": \"{{imap_email}}\",\n    \"provider\":      \"imap\",\n    \"settings\":      {\n        \"imap_host\":     \"{{imap_host}}\",\n        \"imap_port\":     {{imap_port}},\n        \"imap_username\": \"{{imap_email}}\",\n        \"smtp_username\": \"{{smtp_email}}\",\n        \"imap_password\": \"{{imap_password}}\",\n        \"smtp_host\":     \"{{smtp_host}}\",\n        \"smtp_port\":     {{smtp_port}},\n        \"smtp_password\": \"{{smtp_password}}\"\n        }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /connect/token",
+        "api_call": "{{url}}/connect/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"client_secret\": \"{{client_secret}}\",\n    \"code\": \"{{code}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Virtual Calendars",
+        "api_call": "{{url}}/connect/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "    {\n    \"client_id\": \"{{client_id}}\",\n    \"provider\": \"nylas\",\n    \"scopes\": \"{{scopes}}\", \n    \"email\": \"{{email}}\",\n    \"name\": \"{{name}}\",\n    \"settings\": {}\n    }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /account",
+        "api_call": "{{url}}/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /downgrade account",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}/downgrade",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /upgrade account",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}/upgrade",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /revoke-all tokens",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}/revoke-all",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"keep_access_token\": \"My Access Token\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /accounts ",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/?offset=0&limit=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /accounts/:id",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /ip_addresses",
+        "api_call": "{{url}}/a/{{client_id}}/ip_addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /accounts/{id}/token-info",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}/token-info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: List Application Details",
+        "api_call": "{{url}}/a/{{client_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Update Application Details",
+        "api_call": "{{url}}/a/{{client_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"application_name\": \"My New App Name\",\n    \"redirect_uris\": [\n\t    \"http://localhost:5555/login_callback\",\n\t    \"localhost\",\n\t    \"chrome://deeplink\"\n\t]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Delete an Account",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{delete_account_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Add Account Metadata",
+        "api_call": "{{url}}/a/{{client_id}}/accounts/{{account_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"metadata\":{\n        \"hello\": \"goodbye\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Retrieve Account Icon and Redirect URL",
+        "api_call": "{{url}}/a/{{client_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Update Account Icon and Redirect URL",
+        "api_call": "{{url}}/a/{{client_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"application_name\": \"Alpha\",\n    \"icon_url\": \"\",\n    \"redirect_uris\": [\n        \"http://localhost:3000/oauth/callback\",\n        \"http://localhost:4567\",\n        \"http://localhost:1234\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads",
+        "api_call": "{{url}}/threads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/:id",
+        "api_call": "{{url}}/threads/{{thread_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/:id unread status",
+        "api_call": "{{url}}/threads/{{thread_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"unread\": false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/:id move a thread",
+        "api_call": "{{url}}/threads/{{thread_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"folder_id\": \"{{folder_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/:id add/remove labels",
+        "api_call": "{{url}}/threads/{{thread_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label_ids\": [\"{{label_id}}\"]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/:id set starred",
+        "api_call": "{{url}}/threads/{{thread_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"starred\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages",
+        "api_call": "{{url}}/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                },
+                {
+                    "key": "Accept",
+                    "value": "message/rfc822",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id",
+        "api_call": "{{url}}/messages/{{message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id unread status",
+        "api_call": "{{url}}/messages/{{message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"unread\": false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id move a message",
+        "api_call": "{{url}}/messages/{{message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"folder_id\": {{folder_id}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id add/remove labels",
+        "api_call": "{{url}}/messages/{{message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label_ids\": [\"{{label_id}}\"]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id starred",
+        "api_call": "{{url}}/messages/{{message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"starred\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/:id delete message",
+        "api_call": "{{url}}/messages/{{delete_message_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label_ids\": [\"{{delete_label_id}}\"]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /folders",
+        "api_call": "{{url}}/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /folders/:id",
+        "api_call": "{{url}}/folders/{{folder_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /folders create",
+        "api_call": "{{url}}/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"display_name\": \"My New Folder\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /folders/:id rename",
+        "api_call": "{{url}}/folders/{{folder_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"display_name\": \"My Renamed Folder\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /folders/:id delete",
+        "api_call": "{{url}}/folders/{{folder_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /labels",
+        "api_call": "{{url}}/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /labels/:id",
+        "api_call": "{{url}}/labels/{{label_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /labels create",
+        "api_call": "{{url}}/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"display_name\": \"My new label\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /labels/:id rename",
+        "api_call": "{{url}}/labels/{{label_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"display_name\": \"My renamed label\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /labels/:id delete",
+        "api_call": "{{url}}/labels/{{label_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /drafts/",
+        "api_call": "{{url}}/drafts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /drafts/:id",
+        "api_call": "{{url}}/drafts/{{draft_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /drafts/",
+        "api_call": "{{url}}/drafts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subject\": \"In Reply to a draft\",\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"{{email}}\"\n        }\n    ],\n    \"cc\": [],\n    \"bcc\": [],\n    \"body\": \"<html><body>Thank you.</body></html>\",\n    \"reply_to\": [\n    \t{\n    \t\t\"name\": \"{{name}}\",\n    \t\t\"email\": \"{{email}}\"\n    \t}\n    ],\n    \"reply_to_message_id\": \"{{message_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /drafts/:id update",
+        "api_call": "{{url}}/drafts/{{draft_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subject\": \"Dinner on Friday?\",\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"{{email}}\"\n        }\n    ],\n    \"cc\": [],\n    \"bcc\": [],\n    \"body\": \"<html><body>Let's go eat!</body></html>\",\n\t\"reply_to\": [\n\t\t{\n\t\t\t\"name\": \"{{name}}\",\n\t\t\t\"email\": \"{{email}}\"\n\t\t}\n\t],\n    \"reply_to_message_id\": \"{{message_id}}\",\n    \"version\": 0\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /drafts/:id delete",
+        "api_call": "{{url}}/drafts/{{draft_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"version\": {{draft_version}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send direct with tracking",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"reply_to_message_id\": \"{{message_id}}\",\n    \"body\" : \"Sounds great! See you then.\",\n    \"subject\": \"Re: Meeting\",\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"mike@nylas.com\"\n        }\n    ],\n    \"tracking\": {\n      \"opens\": \"true\",\n      \"links\": \"true\",\n      \"thread_replies\": true,\n      \"payload\": \"it's a test!\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send direct",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"body\" : \"Sounds great! See you then.\",\n    \"subject\": \"Re: Meeting\",\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"{{exchange_email}}\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send direct w/ attachment",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"body\" : \"Here's an attachment!\",\n    \"subject\": \"Bugs\",\n    \"file_ids\": [\"{{file_id}}\"],\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"{{exchange_email}}\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send direct with tracking",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"body\" : \"Link tracking has a new format, learn more here: <a href='https://changelog.nylas.com/changes-to-link-tracking-110420'>Link Tracking Changes</a>\",\n    \"subject\": \"Re: Meeting\",\n    \"to\": [\n        {\n            \"email\": \"support@nylas.com\"\n        }\n    ],\n    \"tracking\": {\n      \"opens\": \"true\",\n      \"links\": \"true\",\n      \"thread_replies\": \"true\",\n      \"payload\": \"it's a test!\"\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send draft",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"draft_id\": \"{{draft_id}}\",\n    \"version\": {{draft_version}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send raw mime",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/rfc822"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "MIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nIn-Reply-To: <84umizq7c4jtrew491brpa6iu-0@mailer.nylas.com>\nReferences: <84umizq7c4jtrew491brpa6iu-0@mailer.nylas.com>\nSubject: Meeting on Thursday\nFrom: Bill <wbrogers@mit.edu>\nTo: Ben Bitdiddle <ben.bitdiddle@gmail.com>\n\nHey Ben,\n\nWould you like to grab coffee @ 2pm this Thursday?\"\nBill"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send inline image",
+        "api_call": "{{url}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"body\" : \"Sounds great! <img src='cid:{{file_id}}'> See you then.\",\n    \"subject\": \"Re: Meeting\",\n    \"to\": [\n        {\n            \"name\": \"{{name}}\",\n            \"email\": \"{{exchange_email}}\"\n        }\n    ],\n    \"file_ids\": [\"{{file_id}}\"]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /outbox",
+        "api_call": "/outbox",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get a list of all messages scheduled to be sent."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /outbox/{job_status_id}",
+        "api_call": "/outbox/job_status_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Delete a scheduled message. Use the job_status_id returned from [/outbox](https://docs.nylas.com/reference#post-outbox)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /outbox",
+        "api_call": "/outbox",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"from\": [{\n\t\t\"email\": \"{email}\",\n\t\t\"name\": \"{name}\"\n\t}],\n\t\"to\": [{\n\t\t\"email\": \"{email}\",\n\t\t\"name\": \"{name}\"\n\t}],\n\t\"reply_to_message_id\": \"{message_id}\",\n\t\"subject\": \"{subject}\",\n\t\"body\": \"{body}\",\n\t\"reply_to\": [{\n\t\t\"email\": \"{email}\",\n\t\t\"name\": \"{name}\"\n\t}],\n\t\"file_ids\": [\"{file_id}\"]\n}"
+            }
+        },
+        "functionality": "Send a message or schedule messages to be sent."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /outbox/{job_status_id}",
+        "api_call": "/outbox/{{job_status_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"send_at\": {{unix_time_stamp}}\n}"
+            }
+        },
+        "functionality": "Update the message scheduled send time. Use the job_status_id returned from [/outbox](https://docs.nylas.com/reference#post-outbox)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /files",
+        "api_call": "{{url}}/files/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /files/:id",
+        "api_call": "{{url}}/files/{{file_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /files/:id/download",
+        "api_call": "{{url}}/files/{{file_id}}/download",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /files",
+        "api_call": "{{url}}/files/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars",
+        "api_call": "{{url}}/calendars",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/id",
+        "api_call": "{{url}}/calendars/{{calendar_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/free-busy",
+        "api_call": "{{url}}/calendars/free-busy/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"start_time\":\"{{now}}\",\n\t\"end_time\":\"{{one_week}}\",\n\t\"emails\": [\"{{email}}\"]\n}"
+            }
+        },
+        "functionality": "Free/Busy allows you to query availability information for a Calendar during a certain time period. Furthermore, the data returned doesn't"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars",
+        "api_call": "{{url}}/calendars",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\":\"calendar_test\",\n\t\"description\":\"This is a test calendar\",\n\t\"location\":\"test_room\",\n\t\"timezone\":\"America/Los_Angeles\",\n    \"metadata\":{\n        \"hello\":\"goodbye\"\n    }\n}"
+            }
+        },
+        "functionality": "Create secondary calendars"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/id",
+        "api_call": "{{url}}/calendars/{{calendar_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\":\"updated_calendar_test\",\n\t\"description\":\"This is a test calendar\",\n\t\"location\":\"updates_test_room\",\n\t\"timezone\":\"America/Los_Angeles\"\n}"
+            }
+        },
+        "functionality": "Edit properties of secondary calendars that have been created. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/id ",
+        "api_call": "{{url}}/calendars/{{calendar_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Delete any secondary calendars that have been created. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/availability",
+        "api_call": "{{url}}/calendars/availability",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"duration_minutes\": {{duration_minutes}},\n\t\"start_time\": {{start_time}},\n\t\"end_time\": {{end_time}},\n\t\"interval_minutes\": {{interval_minutes}},\n\t\"emails\": [\n\t\t\"{{email_string}}\"\n\t],\n\t\"free_busy\": [{\n\t\t\t\"email\": \"{{email_string}}\",\n\t\t\t\"object\": \"free_busy\",\n\t\t\t\"time_slots\": [{\n\t\t\t\t\"start_time\": {{start_time}},\n\t\t\t\t\"end_time\": {{end_time}},\n\t\t\t\t\"object\": \"time_slot\",\n\t\t\t\t\"status\": \"busy\"\n\t\t\t}]\n\t\t},\n\t\t{\n\t\t\t\"email\": \"{{email_string}}\",\n\t\t\t\"object\": \"free_busy\",\n\t\t\t\"time_slots\": [{\n\t\t\t\t\"start_time\": {{start_time}},\n\t\t\t\t\"end_time\": {{end_time}},\n\t\t\t\t\"object\": \"time_slot\",\n\t\t\t\t\"status\": \"busy\"\n\t\t\t}]\n\t\t}\n\t],\n\t\"open_hours\": [{\n\t\t\"emails\": [\n\t\t\t\"{{email_string}}\"\n\t\t],\n\t\t\"days\": [0,1],\n\t\t\"timezone\": \"{{time_zone}}\",\n\t\t\"start\": \"{{start_time_24_hour_clock}}\",\n\t\t\"end\": \"{{end_time_24_hour_clock}}\",\n\t\t\"object_type\": \"open_hours\"\n\t}]\n}"
+            }
+        },
+        "functionality": "Check multiple calendars to find available time slots for a single meeting."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /calendars/availability/consecutive",
+        "api_call": "{{url}}/calendars/availability/consecutive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"duration_minutes\": {{duration_minutes}},\n    \"start_time\": {{start_time}},\n    \"end_time\": {{end_time}},\n    \"interval_minutes\": {{interval_minutes}},\n    \"emails\": [\n        [\"{{email_string}}\"]\n    ],\n    \"free_busy\": [\n        {\n            \"email\": \"{{email_string}}\",\n            \"object\": \"free_busy\",\n            \"time_slots\": [\n                {\n                    \"start_time\": {{start_time}},\n                    \"end_time\": {{end_time}},\n                    \"object\": \"time_slot\",\n                    \"status\": \"busy\"\n                }\n            ]\n        },\n        {\n            \"email\": \"{{email_string}}\",\n            \"object\": \"free_busy\",\n            \"time_slots\": [\n                {\n                    \"start_time\": {{start_time}},\n                    \"end_time\": {{end_time}},\n                    \"object\": \"time_slot\",\n                    \"status\": \"busy\"\n                }\n            ]\n        }\n    ],\n    \"open_hours\": [\n        {\n            \"emails\": [\n                \"{{email_string}}\"\n            ],\n            \"days\": [0,1],\n            \"timezone\": \"{{time_zone}}\",\n            \"start\": \"{{start_time_24_hour_clock}}\",\n            \"end\": \"{{end_time_24_hour_clock}}\",\n            \"object_type\": \"open_hours\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Check multiple calendars to find available time slots for a single meeting."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /resources",
+        "api_call": "{{url}}/resources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /events",
+        "api_call": "{{url}}/events?calendar_id={{calendar_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /events/:id",
+        "api_call": "{{url}}/events/{{event_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /events",
+        "api_call": "{{url}}/events?notify_participants=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\":\"Example Event\",\n    \"when\" : {\n        \"start_time\": {{timestamp}},\n        \"end_time\": {{timestamp2}}\n    },\n    \"location\": \"Coffee Shop\",\n    \"calendar_id\": \"{{calendar_id}}\",\n    \"participants\": [\n        {\n            \"email\": \"nylatest2@nylatest.onmicrosoft.com\",\n            \"name\": \"Sarah Nylanaut\"\n        }\n    ],\n        \"metadata\":{\n        \"hello\":\"goodbye\"\n    }\n}"
+            }
+        },
+        "functionality": "Creates an event. Note that notify participants is set to true, so an email will be sent to invitees."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /events/:id",
+        "api_call": "{{url}}/events/{{event_id}}?notify_participants=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\":\"Friday meeting\",\n    \"when\" : {\n        \"start_time\": {{timestamp}},\n        \"end_time\": {{timestamp2}}\n    },\n    \"location\": \"Nylas HQ\",\n    \"calendar_id\": \"{{calendar_id}}\",\n    \"participants\": [\n        {\n            \"email\": \"{{email}}\",\n            \"name\": \"Name Change\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /events/:id",
+        "api_call": "{{url}}/events/{{event_id}}?notify_participants=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /send-rsvp",
+        "api_call": "{{url}}/send-rsvp/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event_id\": \"{{event_id}}\",\n    \"status\": \"yes\",\n    \"comment\": \"Excited to come!\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Create a Recurring Event",
+        "api_call": "{{url}}/events?notify_participants=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\":\"Example Event\",\n    \"when\" : {\n        \"start_time\": {{timestamp}},\n        \"end_time\": {{timestamp2}}\n    },\n    \"location\": \"Coffee Shop\",\n    \"calendar_id\": \"{{calendar_id}}\",\n    \"participants\": [\n        {\n            \"email\": \"nylatest2@nylatest.onmicrosoft.com\",\n            \"name\": \"Sarah Nylanaut\"\n        }\n    ],\n    \"recurrence\": {\n\t\t\"rrule\": [\n\t\t\t \"RRULE:FREQ=WEEKLY;BYDAY=WE;INTERVAL=2\"\n\t\t],\n\t\"timezone\": \"America/New_York\"\n\t}\t\n\n}"
+            }
+        },
+        "functionality": "Creates a recurring event by adding the recurrence object. See https://docs.nylas.com/reference#event-subobjects for more info."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts",
+        "api_call": "{{url}}/contacts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts/groups",
+        "api_call": "{{url}}/contacts/groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts/:id",
+        "api_call": "{{url}}/contacts/{{contact_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts",
+        "api_call": "{{url}}/contacts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emails\": [{\n  \t\"type\": \"work\",\n  \t\"email\": \"created@gmail.com\"\n  }\n  ],\n  \"im_addresses\": [{\n  \t\"type\": \"aim\",\n  \t\"im_address\": \"snake\"\n  }],\n  \"physical_addresses\": [{\n  \t\"format\": \"structured\",\n  \t\"type\": \"work\",\n  \t\"street_address\": \"1235 Street\",\n  \t\"city\": \"San Francisco\",\n  \t\"postal_code\": \"94103\",\n  \t\"state\": \"CA\",\n  \t\"country\": \"USA\"\n  } ],\n  \"phone_numbers\": [\n  \t{\n  \t\t\"type\":\"home\",\n  \t\t\"number\": \"123-123-1234\"\n  \t}],\n  \t\"group\": \"bmeg4pze0qxcjxrndor26v7lr\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts",
+        "api_call": "{{url}}/contacts/{{contact_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emails\": [{\n  \t\"type\": \"work\",\n  \t\"email\": \"{{email}}\"\n  }\n  ],\n  \"im_addresses\": [{\n  \t\"type\": \"aim\",\n  \t\"im_address\": \"snake\"\n  }],\n  \"physical_addresses\": [{\n  \t\"format\": \"structured\",\n  \t\"type\": \"work\",\n  \t\"street_address\": \"1235 Street\",\n  \t\"city\": \"San Francisco\",\n  \t\"postal_code\": \"94103\",\n  \t\"state\": \"CA\",\n  \t\"country\": \"USA\"\n  } ],\n  \"phone_numbers\": [\n  \t{\n  \t\t\"type\":\"home\",\n  \t\t\"number\": \"123-123-1234\"\n  \t}],\n  \"given_name\": \"asdf\",\n  \"middle_name\": \"asdf\",\n  \"surname\": \"asdf\",\n  \"birthday\": \"asdf\",\n  \"suffix\": \"asdf\",\n  \"nickname\": \"asdf\",\n  \"company_name\": \"asdf\",\n  \"job_title\": \"asdf\",\n  \"manager_name\": \"asdf\",\n  \"office_location\": \"asdf\",\n  \"notes\": \"asdf\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts",
+        "api_call": "{{url}}/contacts/{{contact_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /contacts/:id/picture",
+        "api_call": "{{url}}/contacts/{{contact_id}}/picture",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages/search",
+        "api_call": "{{url}}/messages/search?q=test",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads/search",
+        "api_call": "{{url}}/threads/search?q=test",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /webhooks/",
+        "api_call": "{{url}}/a/{{client_id}}/webhooks/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /webhooks/",
+        "api_call": "{{url}}/a/{{client_id}}/webhooks/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"callback_url\": \"https://084eb929.ngrok.io/webook\",\n\t\"triggers\": [\"message.opened\"],\n\t\"state\": \"active\"\n}"
+            }
+        },
+        "functionality": "Creates a new webhook for the specified client ID"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /webhooks/{id}",
+        "api_call": "{{url}}/a/{{client_id}}/webhooks/{{webhook_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /webhooks/{id}",
+        "api_call": "{{url}}/a/{{client_id}}/webhooks/{{webhook_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"state\": \"inactive\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /webhooks/{id}",
+        "api_call": "{{url}}/a/{{client_id}}/webhooks/{{webhook_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /delta/latest_cursor",
+        "api_call": "{{url}}/delta/latest_cursor",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /delta",
+        "api_call": "{{url}}/delta?cursor={{cursor_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /delta/longpoll",
+        "api_call": "{{url}}/delta/longpoll?cursor={{cursor_id}}&timeout=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /delta/streaming",
+        "api_call": "{{url}}/delta/streaming?cursor={{cursor_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /delta with filters",
+        "api_call": "{{url}}/delta?cursor={{cursor_id}}&include_types=draft,thread",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads with filters",
+        "api_call": "{{url}}/threads?unread=true&any_email={{email}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads limit and offset",
+        "api_call": "{{url}}/threads?limit=2&offset=2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /messages view ids",
+        "api_call": "{{url}}/messages?view=ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads count",
+        "api_call": "{{url}}/threads?view=count",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /threads view expanded",
+        "api_call": "{{url}}/threads?view=expanded",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /job-statuses/id",
+        "api_call": "{{url}}/job-statuses/{job_status_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the job status for a specific job_status_id. States for this can be successful, pending, or failed. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: /job-statuses",
+        "api_call": "{{url}}/job-statuses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A list of all job status by ID. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Conversation",
+        "api_call": "{{url}}/neural/conversation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"message_id\": [\n    \"{{message_ids}}\"\n  ],\n  \"ignore_links\": true,\n  \"ignore_images\": true,\n  \"ignore_tables\": true,\n  \"remove_conclusion_phrases\": true,\n  \"images_as_markdown\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Conversation Feedback",
+        "api_call": "{{url}}/neural/conversation/feedback",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message_id\": \"{{message_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Categorize",
+        "api_call": "{{url}}/neural/categorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"message_id\": [\n    \"{{array_of_message_ids}}\"\n  ],\n  \"only_category\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Categorize Feedback",
+        "api_call": "{{url}}/neural/categorize/feedback",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"message_id\": \"{{message_id}}\",\n  \"category\": \"{{message_category}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Category can be:\n* `feed`\n* `conversation`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Signature",
+        "api_call": "{{url}}/neural/signature",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"message_id\": [\n    \"{{message_id}}\"\n  ],\n  \"ignore_links\": true,\n  \"ignore_images\": true,\n  \"ignore_tables\": true,\n  \"remove_conclusion_phrases\": true,\n  \"images_as_markdown\": true,\n  \"parse_contacts\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Signature Feedback",
+        "api_call": "{{url}}/neural/signature/feedback",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message_id\":\"{{message_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: OCR",
+        "api_call": "{{url}}/neural/ocr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n     \"file_id\": \"{{file_id}}\",\n     \"pages\": [{{array_of_page_numbers}}]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: OCR Feedback",
+        "api_call": "{{url}}/neural/ocr/feedback",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"file_id\":\"{{file_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: PUT Sentiment Analysis",
+        "api_call": "{{url}}/neural/sentiment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\": \"{{text}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Sentiment Feedback",
+        "api_call": "{{url}}/neural/sentiment/feedback",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"sentiment\": \"positive\",\n  \"overwrite\": true,\n  \"message_id\": \"{{message_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Return All Scheduling Pages",
+        "api_call": "https://api.schedule.nylas.com/manage/pages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Create a Scheduling Page",
+        "api_call": "https://api.schedule.nylas.com/manage/pages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"access_tokens\": [\"{{access_token}}\"],\n    \"config\": {\n        \"booking\": {\n            \"additional_fields\": [],\n            \"additional_guests_hidden\": false,\n            \"available_days_in_future\": 21,\n            \"calendar_invite_to_guests\": true,\n            \"confirmation_emails_to_guests\": true,\n            \"confirmation_emails_to_host\": true,\n            \"confirmation_method\": \"automatic\",\n            \"min_booking_notice\": 15,\n            \"min_buffer\": 0,\n            \"min_cancellation_notice\": 15,\n            \"name_field_hidden\": false,\n            \"opening_hours\": [\n                {\n                    \"account_id\": \"{{account_id}}\",\n                    \"days\": [\n                        \"M\",\n                        \"T\",\n                        \"W\",\n                        \"R\",\n                        \"F\"\n                    ],\n                    \"start\": \"09:00\",\n                    \"end\": \"17:00\"\n                }\n            ]\n        },\n        \"calendar_ids\": {\n            \"{{account_id}}\": {\n                \"availability\": [\n                    \"{{calendar_id}}\"\n                ],\n                \"booking\": \"{{calendar_id}}\"\n            }\n        },\n        \"event\": {\n            \"capacity\": 1,\n            \"duration\": 30,\n            \"location\": \"Zoom Link\",\n            \"title\": \"Scheduler Example - {{reminder_message_title}}\"\n        },\n        \"locale\": \"en\",\n        \"timezone\": \"America/Denver\",\n        \"reminders\": [\n        {\n            \"delivery_method\": \"email\",\n            \"delivery_recipient\": \"both\",\n            \"time_before_event\": \"30\",\n            \"email_subject\": \"Reminder - {{reminder_message_title}} about to start\"\n        }\n        ]\n    },\n    \"name\": \"Scheduler Example - {{reminder_message_title}}\",\n    \"slug\": \"{{url_slug}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Return a Scheduling Page",
+        "api_call": "https://api.schedule.nylas.com/manage/pages/{{page_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "page_id",
+                    "value": "883644",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Update a Scheduling Page",
+        "api_call": "https://api.schedule.nylas.com/manage/pages/{{page_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"access_token_infos\": [\n        {\n            \"account_email\": \"adam.b@nylas.com\",\n            \"account_name\": \"Adam Bauman\"\n        }\n    ],\n    \"app_client_id\": \"28w95fajm5a24om779nqaapk5\",\n    \"app_organization_id\": 122496,\n    \"config\": {\n        \"appearance\": {\n            \"color\": \"#0068D3\",\n            \"company_name\": \"\",\n            \"logo\": \"\",\n            \"show_autoschedule\": false,\n            \"show_nylas_branding\": false,\n            \"show_timezone_options\": true,\n            \"show_week_view\": true,\n            \"submit_text\": \"Submit\"\n        },\n        \"booking\": {\n            \"additional_fields\": [],\n            \"additional_guests_hidden\": false,\n            \"available_days_in_future\": 21,\n            \"calendar_invite_to_guests\": true,\n            \"confirmation_emails_to_guests\": true,\n            \"confirmation_emails_to_host\": true,\n            \"confirmation_method\": \"external\",\n            \"min_booking_notice\": 0,\n            \"min_buffer\": 0,\n            \"min_cancellation_notice\": 0,\n            \"name_field_hidden\": false,\n            \"opening_hours\": [\n                {\n                    \"account_id\": \"31do88a3z9voyc2y6jm8udnby\",\n                    \"days\": [\n                        \"M\",\n                        \"T\",\n                        \"W\",\n                        \"R\",\n                        \"F\"\n                    ],\n                    \"end\": \"17:00\",\n                    \"start\": \"09:00\"\n                }\n            ],\n            \"scheduling_method\": \"round-robin-maximize-availability\"\n        },\n        \"calendar_ids\": {\n            \"31do88a3z9voyc2y6jm8udnby\": {\n                \"availability\": [\n                    \"4o2zuj77j1duoh9gaz19lr8im\"\n                ],\n                \"booking\": \"4o2zuj77j1duoh9gaz19lr8im\"\n            }\n        },\n        \"event\": {\n            \"capacity\": 1,\n            \"duration\": 30,\n            \"location\": \"Zoom Link\",\n            \"title\": \"Scheduler Example - Generic Concrete Hat\"\n        },\n        \"features\": {\n            \"collective_meetings\": false\n        },\n        \"locale\": \"en\",\n        \"reminders\": [\n            {\n                \"delivery_method\": \"email\",\n                \"delivery_recipient\": \"both\",\n                \"email_subject\": \"\",\n                \"time_before_event\": 30\n            }\n        ],\n        \"timezone\": \"America/Denver\"\n    },\n    \"created_at\": \"2022-02-07\",\n    \"edit_token\": \"JKbbyAi76WljCHQ_c-lZiARsK_PG1I-6\",\n    \"id\": 1722702,\n    \"modified_at\": \"2022-02-07\",\n    \"name\": \"Scheduler Example - Generic Concrete Hat\",\n    \"slug\": \"ut-non-et\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Delete a Scheduling Page",
+        "api_call": "https://api.schedule.nylas.com/manage/pages/{{page_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Get Available Calendars",
+        "api_call": "https://api.schedule.nylas.com/manage/pages/{{page_id}}/calendars",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Detect provider based on given email address",
+        "api_call": "{{url}}/connect/detect-provider",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"client_secret\": \"{{client_secret}}\",\n  \"email_address\": \"{{$randomEmail}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use this endpoint to detect which provider an email uses. If we are able to detect the provider, we'll return\u00a0`detected:true`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Create Integration - Zoom",
+        "api_call": "https://beta.us.nylas.com/connect/integrations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"{{$randomProductName}}\",\n  \"provider\": \"zoom\",\n  \"settings\": {\n    \"client_id\": \"{{client_id}}\",\n    \"client_secret\": \"{{client_secret}}\"\n  },\n  \"redirect_uris\": [\n    \"https://beta.us.nylas.com/connect/callback\"\n  ],\n  \"expires_in\": 1209600\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Get Integrations",
+        "api_call": "https://beta.us.nylas.com/connect/integrations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Get Integration - Zoom",
+        "api_call": "https://beta.us.nylas.com/connect/integrations/zoom",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2 Nylas API: Delete Integration",
+        "api_call": "https://beta.us.nylas.com/connect/integrations/zoom",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
