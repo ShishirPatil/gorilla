@@ -42,6 +42,15 @@ def get_args():
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
+    parser.add_argument("--tensor-parallel-preset", default="manual", type=str, 
+                        choices=["auto", "single", "dual", "quad", "octa", "manual"],
+                        help="Tensor-parallel preset for phi-4 models. 'auto' selects optimal config based on available resources. 'single'=1 GPU (16GB), 'dual'=2 GPUs (9GB each), 'quad'=4 GPUs (BROKEN), 'octa'=8 GPUs (untested), 'manual'=use --tensor-parallel-size")
+    parser.add_argument("--tensor-parallel-size", default=None, type=int,
+                        help="Manual tensor-parallel size (overrides preset). Must be 1, 2, 4, or 8 for phi-4 models")
+    parser.add_argument("--available-gpus", default=None, type=int,
+                        help="Total available GPUs for auto preset selection")
+    parser.add_argument("--memory-per-gpu", default=None, type=float,
+                        help="Memory per GPU in GB for auto preset selection")
     parser.add_argument("--result-dir", default=None, type=str)
     parser.add_argument("--run-ids", action="store_true", default=False)
     parser.add_argument("--allow-overwrite", "-o", action="store_true", default=False)
@@ -60,13 +69,71 @@ def get_args():
         help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     )
     args = parser.parse_args()
-
+    validate_tensor_parallel_args(args)
     return args
 
 
-def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+def validate_tensor_parallel_args(args):
+    if args.tensor_parallel_preset == "auto":
+        if args.available_gpus is None or args.memory_per_gpu is None:
+            raise ValueError("--tensor-parallel-preset=auto requires --available-gpus and --memory-per-gpu")
+        if args.available_gpus < 1:
+            raise ValueError("--available-gpus must be >= 1")
+        if args.memory_per_gpu <= 0:
+            raise ValueError("--memory-per-gpu must be > 0")
+    
+    if args.tensor_parallel_preset == "quad":
+        print("⚠️ WARNING: --tensor-parallel-preset=quad is currently broken in vLLM due to KV head division issue")
+    
+    if args.tensor_parallel_preset == "octa":
+        print("⚠️ WARNING: --tensor-parallel-preset=octa is untested and may require vLLM fixes")
+    
+    if args.tensor_parallel_size is not None:
+        if args.tensor_parallel_size not in [1, 2, 4, 8]:
+            raise ValueError("--tensor-parallel-size must be 1, 2, 4, or 8 for phi-4 models")
+        if args.tensor_parallel_size == 4:
+            print("⚠️ WARNING: --tensor-parallel-size=4 is currently broken in vLLM")
+        if args.tensor_parallel_size == 8:
+            print("⚠️ WARNING: --tensor-parallel-size=8 is untested and may not work")
+
+
+def build_handler(model_name, temperature, args=None):
+    handler_class = MODEL_CONFIG_MAPPING[model_name].model_handler
+    
+    # Check if this is a phi-4 vLLM handler that supports tensor parallel configuration
+    if args and 'phi-4' in model_name and 'vllm' in model_name:
+        tensor_parallel_config = resolve_tensor_parallel_config(args)
+        handler = handler_class(model_name, temperature, **tensor_parallel_config)
+    else:
+        handler = handler_class(model_name, temperature)
+    
     return handler
+
+
+def resolve_tensor_parallel_config(args):
+    config = {}
+    
+    if args.tensor_parallel_preset == "auto":
+        if args.available_gpus is None or args.memory_per_gpu is None:
+            raise ValueError("--tensor-parallel-preset=auto requires --available-gpus and --memory-per-gpu")
+        config["auto_config"] = True
+        config["available_gpus"] = args.available_gpus
+        config["memory_per_gpu_gb"] = args.memory_per_gpu
+    elif args.tensor_parallel_preset == "single":
+        config["tensor_parallel_size"] = 1
+    elif args.tensor_parallel_preset == "dual":
+        config["tensor_parallel_size"] = 2
+    elif args.tensor_parallel_preset == "quad":
+        config["tensor_parallel_size"] = 4
+    elif args.tensor_parallel_preset == "octa":
+        config["tensor_parallel_size"] = 8
+    elif args.tensor_parallel_preset == "manual":
+        if args.tensor_parallel_size is not None:
+            config["tensor_parallel_size"] = args.tensor_parallel_size
+        else:
+            config["tensor_parallel_size"] = args.num_gpus
+    
+    return config
 
 
 def get_involved_test_entries(test_category_args, run_ids):
@@ -222,7 +289,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 def generate_results(args, model_name, test_cases_total):
     update_mode = args.allow_overwrite
-    handler = build_handler(model_name, args.temperature)
+    handler = build_handler(model_name, args.temperature, args)
 
     if handler.model_style == ModelStyle.OSSMODEL:
         # batch_inference will handle the writing of results

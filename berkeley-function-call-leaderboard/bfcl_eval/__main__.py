@@ -148,6 +148,26 @@ def generate(
         "--run-ids",
         help="If true, also run the test entry mentioned in the test_case_ids_to_generate.json file, in addition to the --test_category argument.",
     ),
+    tensor_parallel_preset: str = typer.Option(
+        "manual",
+        "--tensor-parallel-preset",
+        help="Tensor-parallel preset for phi-4 models. 'auto' selects optimal config based on available resources. 'single'=1 GPU (16GB), 'dual'=2 GPUs (9GB each), 'quad'=4 GPUs (BROKEN), 'octa'=8 GPUs (untested), 'manual'=use --tensor-parallel-size"
+    ),
+    tensor_parallel_size: Optional[int] = typer.Option(
+        None,
+        "--tensor-parallel-size", 
+        help="Manual tensor-parallel size (overrides preset). Must be 1, 2, 4, or 8 for phi-4 models"
+    ),
+    available_gpus: Optional[int] = typer.Option(
+        None,
+        "--available-gpus",
+        help="Total available GPUs for auto preset selection"
+    ),
+    memory_per_gpu: Optional[float] = typer.Option(
+        None,
+        "--memory-per-gpu",
+        help="Memory per GPU in GB for auto preset selection"
+    ),
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
@@ -168,7 +188,16 @@ def generate(
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,
+        tensor_parallel_preset=tensor_parallel_preset,
+        tensor_parallel_size=tensor_parallel_size,
+        available_gpus=available_gpus,
+        memory_per_gpu=memory_per_gpu,
     )
+    
+    # Import and call validation
+    from bfcl_eval._llm_response_generation import validate_tensor_parallel_args
+    validate_tensor_parallel_args(args)
+    
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     generation_main(args)
 

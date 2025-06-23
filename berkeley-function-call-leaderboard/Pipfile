@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+wandb = "==0.18.5"
+transformers = "==4.46.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"
