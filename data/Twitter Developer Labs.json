@@ -1,0 +1,68 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Single user by ID",
+        "api_call": "https://api.twitter.com/labs/2/users/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint returns information about users. You can specify users by their ID or username.\n\nFor full details, see the [API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Multiple users",
+        "api_call": "https://api.twitter.com/labs/2/users?ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint returns information about users. You can specify users by their ID or username.\n\nFor full details, see the [API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Single user by username",
+        "api_call": "https://api.twitter.com/labs/2/users/by/username/:username",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint returns information about users. You can specify users by their ID or username.\n\nFor full details, see the [API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Multiple users by username",
+        "api_call": "https://api.twitter.com/labs/2/users/by?usernames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint returns information about users. You can specify users by their ID or username.\n\nFor full details, see the [API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Single Tweet",
+        "api_call": "https://api.twitter.com/labs/2/tweets/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoints returns information about the Tweet specified by the requested IDs.\n\nFor full details, see the [API reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-tweets-v1) for this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Developer Labs: Multiple Tweets",
+        "api_call": "https://api.twitter.com/labs/2/tweets?ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoints returns information about the Tweet specified by the requested IDs.\n\nFor full details, see the [API reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-tweets-v1) for this"
+    }
+]

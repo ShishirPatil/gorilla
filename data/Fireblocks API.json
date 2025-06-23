@@ -1,0 +1,3756 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update address description",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses/:addressId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"description\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the description of an existing address of an asset in a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Assign AML customer reference ID",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses/:addressId/set_customer_ref_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sets an AML/KYT customer reference ID for a specific address."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Convert a segwit address to legacy format",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses/:addressId/create_legacy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Converts an existing segwit address to the legacy format."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get asset addresses",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Lists all addresses for specific asset of vault account.\n- This endpoint will be deprecated on Mar 31,2024.\n- If your application"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create new asset deposit address",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"description\": \"<string>\",\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new deposit address for an asset of a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the asset balance for a vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a wallet for a specific asset of a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a new wallet",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"eosAccountName\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a wallet for a specific asset in a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Activate a wallet in a vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Initiates activation for a wallet in a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Refresh asset balance data",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "*/*"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<object>"
+            }
+        },
+        "functionality": "Updates the balance of a specific asset in a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List addresses (Paginated)",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/addresses_paginated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a paginated response of the addresses for a given vault account and asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the maximum spendable amount in a single transaction.",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/max_spendable_amount",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the maximum amount of a particular asset that can be spent in a single transaction from a specified vault"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get UTXO unspent inputs information",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/unspent_inputs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns unspent inputs information of an asset in a vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the public key for a vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/:assetId/:change/:addressIndex/public_key_info",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the public key information for the vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a vault account by ID",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns the requested vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Rename a vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Renames the requested vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Hide a vault account in the console",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/hide",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Hides the requested vault account from the web console view."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Unhide a vault account in the console",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/unhide",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Makes a hidden vault account visible in web console view."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set an AML/KYT customer reference ID for a vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/set_customer_ref_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Assigns an AML/KYT customer reference ID for the vault account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Turn autofueling on or off",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/:vaultAccountId/set_auto_fuel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"autoFuel\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sets the autofueling property of the vault account to enabled or disabled."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List vault accounts",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets all vault accounts in your workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a new vault account",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"hiddenOnUI\": \"<boolean>\",\n  \"customerRefId\": \"<string>\",\n  \"autoFuel\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new vault account with the requested name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Bulk creation of new vault accounts",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts/bulk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"count\": \"<integer>\",\n  \"assetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create multiple vault accounts by running an async job. </br>\n**Note**:\n- These endpoints are currently in beta and might be subject"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get asset balance for chosen assets",
+        "api_call": "https://api.fireblocks.io/v1/vault/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the assets amount summary for all accounts or filtered accounts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Bulk creation of wallets",
+        "api_call": "https://api.fireblocks.io/v1/vault/assets/bulk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"assetId\": \"<string>\",\n  \"vaultAccountIdFrom\": \"<string>\",\n  \"vaultAccountIdTo\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create multiple wallets for a given vault account by running an async job. </br>\n**Note**:\n- These endpoints are currently in beta"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get vault balance by asset",
+        "api_call": "https://api.fireblocks.io/v1/vault/assets/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the vault balance summary for an asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List vault accounts (Paginated)",
+        "api_call": "https://api.fireblocks.io/v1/vault/accounts_paged",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets all vault accounts in your workspace. This endpoint returns a limited amount of results with a quick response time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List asset wallets (Paginated)",
+        "api_call": "https://api.fireblocks.io/v1/vault/asset_wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets all asset wallets at all of the vault accounts in your workspace. An asset wallet is an asset at"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the public key information",
+        "api_call": "https://api.fireblocks.io/v1/vault/public_key_info?derivationPath=<string>&algorithm=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the public key information based on derivation path and signing algorithm."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific exchange account",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts/:exchangeAccountId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns an exchange account by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Internal transfer for exchange accounts",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts/:exchangeAccountId/internal_transfer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"asset\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"sourceType\": \"<string>\",\n  \"destType\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Transfers funds between trading accounts under the same exchange account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Convert exchange account funds from the source asset to the destination asset.",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts/:exchangeAccountId/convert",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"srcAsset\": \"<string>\",\n  \"destAsset\": \"<string>\",\n  \"amount\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find an asset for an exchange account",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts/:exchangeAccountId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns an asset for an exchange account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List exchange accounts",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Deprecated (use new 'paged' endpoint) - Returns all exchange accounts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Pagination list exchange accounts",
+        "api_call": "https://api.fireblocks.io/v1/exchange_accounts/paged?limit=3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a page include exchange accounts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific fiat account",
+        "api_call": "https://api.fireblocks.io/v1/fiat_accounts/:accountId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a fiat account by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Redeem funds to DDA",
+        "api_call": "https://api.fireblocks.io/v1/fiat_accounts/:accountId/redeem_to_linked_dda",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amount\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Redeems funds to the linked DDA."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Deposit funds from DDA",
+        "api_call": "https://api.fireblocks.io/v1/fiat_accounts/:accountId/deposit_from_linked_dda",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amount\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Deposits funds from the linked DDA."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List fiat accounts",
+        "api_call": "https://api.fireblocks.io/v1/fiat_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns all fiat accounts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get a network connection",
+        "api_call": "https://api.fireblocks.io/v1/network_connections/:connectionId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets a network connection by ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Deletes a network connection by ID",
+        "api_call": "https://api.fireblocks.io/v1/network_connections/:connectionId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Deletes an existing network connection specified by its connection ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update network connection routing policy.",
+        "api_call": "https://api.fireblocks.io/v1/network_connections/:connectionId/set_routing_policy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"routingPolicy\": {\n    \"crypto\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an existing network connection's routing policy.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Retrieve third-party network routing validation by asset type.",
+        "api_call": "https://api.fireblocks.io/v1/network_connections/:connectionId/is_third_party_routing/:assetType",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "The Fireblocks Network allows for flexibility around incoming deposits. A receiver can receive network deposits to locations other than Fireblocks."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List network connections",
+        "api_call": "https://api.fireblocks.io/v1/network_connections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns all network connections.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your transactions are"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Creates a new network connection",
+        "api_call": "https://api.fireblocks.io/v1/network_connections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"localNetworkId\": \"<string>\",\n  \"remoteNetworkId\": \"<string>\",\n  \"routingPolicy\": {\n    \"crypto\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sen\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"signet\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"sen_test\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"signet_test\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Initiates a new network connection.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your transactions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Returns specific network ID.",
+        "api_call": "https://api.fireblocks.io/v1/network_ids/:networkId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Retrieves a network by its ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Deletes specific network ID.",
+        "api_call": "https://api.fireblocks.io/v1/network_ids/:networkId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Deletes a network by its ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update network id routing policy.",
+        "api_call": "https://api.fireblocks.io/v1/network_ids/:networkId/set_routing_policy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"routingPolicy\": {\n    \"crypto\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the routing policy of a specified network ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update network ID's discoverability.",
+        "api_call": "https://api.fireblocks.io/v1/network_ids/:networkId/set_discoverability",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"isDiscoverable\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update whether or not the network ID is discoverable by others.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update network ID's name.",
+        "api_call": "https://api.fireblocks.io/v1/network_ids/:networkId/set_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates name of a specified network ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Returns all network IDs, both local IDs and discoverable remote IDs",
+        "api_call": "https://api.fireblocks.io/v1/network_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Retrieves a list of all local and discoverable remote network IDs.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Creates a new Network ID",
+        "api_call": "https://api.fireblocks.io/v1/network_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"routingPolicy\": {\n    \"crypto\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"sen_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"signet_test\": {\n      \"scheme\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new Network ID.\n\n**Note:** This API call is subject to Flexible Routing Schemes.\n\nYour routing policy defines how your transactions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get an asset from an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns information for an asset in an internal wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Add an asset to an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"address\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds an asset to an existing internal wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete a whitelisted address from an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes a whitelisted address (for an asset) from an internal wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get assets for internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns all assets in an internal wallet by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes an internal wallet by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set an AML/KYT customer reference ID for an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets/:walletId/set_customer_ref_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sets an AML/KYT customer reference ID for the specific internal wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List internal wallets",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets a list of internal wallets.\n\n**Note**: BTC-based assets belonging to whitelisted addresses cannot be retrieved between 00:00 UTC and 00:01"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create an internal wallet",
+        "api_call": "https://api.fireblocks.io/v1/internal_wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new internal wallet with the requested name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get an asset from an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns an external wallet by wallet ID and asset ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Add an asset to an external wallet.",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"address\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds an asset to an existing external wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete an asset from an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes an external wallet asset by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns an external wallet by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes an external wallet by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set an AML customer reference ID for an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets/:walletId/set_customer_ref_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sets an AML/KYT customer reference ID for the specific external wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List external wallets",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets a list of external wallets under the workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create an external wallet",
+        "api_call": "https://api.fireblocks.io/v1/external_wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"customerRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new external wallet with the requested name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a contract asset",
+        "api_call": "https://api.fireblocks.io/v1/contracts/:contractId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a contract asset by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Add an asset to a contract",
+        "api_call": "https://api.fireblocks.io/v1/contracts/:contractId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"address\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds an asset to an existing contract."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete a contract asset",
+        "api_call": "https://api.fireblocks.io/v1/contracts/:contractId/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes a contract asset by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific contract",
+        "api_call": "https://api.fireblocks.io/v1/contracts/:contractId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a contract by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete a contract",
+        "api_call": "https://api.fireblocks.io/v1/contracts/:contractId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes a contract by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List contracts",
+        "api_call": "https://api.fireblocks.io/v1/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets a list of contracts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a contract",
+        "api_call": "https://api.fireblocks.io/v1/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new contract."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific transaction by Fireblocks transaction ID",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a transaction by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set confirmation threshold by transaction ID",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId/set_confirmation_threshold",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"numOfConfirmations\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Overrides the required number of confirmations for transaction completion by transaction ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Drop ETH transaction by ID",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId/drop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.",
+                    "key": "X-End-User-Wallet-Id",
+                    "value": "<uuid>",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"txId\": \"<string>\",\n  \"feeLevel\": \"<string>\",\n  \"gasPrice\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Drops a stuck ETH transaction and creates a replacement transaction."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Cancel a transaction",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.",
+                    "key": "X-End-User-Wallet-Id",
+                    "value": "<uuid>",
+                    "disabled": true
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Cancels a transaction by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Freeze a transaction",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId/freeze",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.",
+                    "key": "X-End-User-Wallet-Id",
+                    "value": "<uuid>",
+                    "disabled": true
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Freezes a transaction by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Unfreeze a transaction",
+        "api_call": "https://api.fireblocks.io/v1/transactions/:txId/unfreeze",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.",
+                    "key": "X-End-User-Wallet-Id",
+                    "value": "<uuid>",
+                    "disabled": true
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Unfreezes a transaction by ID and makes the transaction available again."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List transaction history",
+        "api_call": "https://api.fireblocks.io/v1/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Lists the transaction history for your workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a new transaction",
+        "api_call": "https://api.fireblocks.io/v1/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.",
+                    "key": "X-End-User-Wallet-Id",
+                    "value": "<uuid>",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"operation\": \"TRANSFER\",\n  \"note\": \"<string>\",\n  \"externalTxId\": \"<string>\",\n  \"assetId\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"subType\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"walletId\": \"<uuid>\"\n  },\n  \"destination\": \"<object>\",\n  \"destinations\": [\n    {\n      \"amount\": \"<string>\",\n      \"destination\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"amount\": \"<string>\",\n      \"destination\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"amount\": \"<string>\",\n  \"treatAsGrossAmount\": \"<boolean>\",\n  \"forceSweep\": \"<boolean>\",\n  \"feeLevel\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"priorityFee\": \"<string>\",\n  \"failOnLowFee\": \"<boolean>\",\n  \"maxFee\": \"<string>\",\n  \"gasLimit\": \"<string>\",\n  \"gasPrice\": \"<string>\",\n  \"networkFee\": \"<string>\",\n  \"replaceTxByHash\": \"<string>\",\n  \"extraParameters\": {},\n  \"customerRefId\": \"<string>\",\n  \"travelRuleMessage\": {\n    \"originatorVASPdid\": \"<string>\",\n    \"beneficiaryVASPdid\": \"<string>\",\n    \"originator\": {\n      \"description\": \"Information about the originator of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiary\": {\n      \"description\": \"Information about the beneficiary of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiaryVASPname\": \"<string>\",\n    \"transactionBlockchainInfo\": {\n      \"description\": \"Information about the blockchain transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"encrypted\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"skipBeneficiaryDataValidation\": \"<boolean>\",\n    \"travelRuleBehavior\": \"<boolean>\",\n    \"originatorProof\": {\n      \"description\": \"Ownership proof related to the originator of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiaryProof\": {\n      \"description\": \"Ownership proof related to the beneficiary of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"pii\": {\n      \"description\": \"Personal identifiable information related to the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"autoStaking\": \"<boolean>\",\n  \"networkStaking\": \"<string>\",\n  \"cpuStaking\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new transaction."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Estimate transaction fee",
+        "api_call": "https://api.fireblocks.io/v1/transactions/estimate_fee",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"operation\": \"TRANSFER\",\n  \"note\": \"<string>\",\n  \"externalTxId\": \"<string>\",\n  \"assetId\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"subType\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"walletId\": \"<uuid>\"\n  },\n  \"destination\": \"<object>\",\n  \"destinations\": [\n    {\n      \"amount\": \"<string>\",\n      \"destination\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"amount\": \"<string>\",\n      \"destination\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"amount\": \"<string>\",\n  \"treatAsGrossAmount\": \"<boolean>\",\n  \"forceSweep\": \"<boolean>\",\n  \"feeLevel\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"priorityFee\": \"<string>\",\n  \"failOnLowFee\": \"<boolean>\",\n  \"maxFee\": \"<string>\",\n  \"gasLimit\": \"<string>\",\n  \"gasPrice\": \"<string>\",\n  \"networkFee\": \"<string>\",\n  \"replaceTxByHash\": \"<string>\",\n  \"extraParameters\": {},\n  \"customerRefId\": \"<string>\",\n  \"travelRuleMessage\": {\n    \"originatorVASPdid\": \"<string>\",\n    \"beneficiaryVASPdid\": \"<string>\",\n    \"originator\": {\n      \"description\": \"Information about the originator of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiary\": {\n      \"description\": \"Information about the beneficiary of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiaryVASPname\": \"<string>\",\n    \"transactionBlockchainInfo\": {\n      \"description\": \"Information about the blockchain transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"encrypted\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"skipBeneficiaryDataValidation\": \"<boolean>\",\n    \"travelRuleBehavior\": \"<boolean>\",\n    \"originatorProof\": {\n      \"description\": \"Ownership proof related to the originator of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"beneficiaryProof\": {\n      \"description\": \"Ownership proof related to the beneficiary of the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"pii\": {\n      \"description\": \"Personal identifiable information related to the transaction\",\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"autoStaking\": \"<boolean>\",\n  \"networkStaking\": \"<string>\",\n  \"cpuStaking\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Estimates the transaction fee for a transaction request.\n* Note: Supports all Fireblocks assets except ZCash (ZEC)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific transaction by external transaction ID",
+        "api_call": "https://api.fireblocks.io/v1/transactions/external_tx_id/:externalTxId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns transaction by external transaction ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Validate destination address",
+        "api_call": "https://api.fireblocks.io/v1/transactions/validate_address/:assetId/:address",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Checks if an address is valid (for XRP, DOT, XLM, and EOS)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the status of a payout instruction set",
+        "api_call": "https://api.fireblocks.io/v1/payments/payout/:payoutId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Execute a payout instruction set",
+        "api_call": "https://api.fireblocks.io/v1/payments/payout/:payoutId/actions/execute",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a payout instruction set",
+        "api_call": "https://api.fireblocks.io/v1/payments/payout",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"paymentAccount\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"instructionSet\": [\n    {\n      \"amount\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"payeeAccount\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": \"<string>\"\n    },\n    {\n      \"amount\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"payeeAccount\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "**Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Edit gas station settings",
+        "api_call": "https://api.fireblocks.io/v1/gas_station/configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"gasThreshold\": \"<string>\",\n  \"gasCap\": \"<string>\",\n  \"maxGasPrice\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Configures gas station settings for ETH."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Edit gas station settings for an asset",
+        "api_call": "https://api.fireblocks.io/v1/gas_station/configuration/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"gasThreshold\": \"<string>\",\n  \"gasCap\": \"<string>\",\n  \"maxGasPrice\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Configures gas station settings for a requested asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get gas station settings",
+        "api_call": "https://api.fireblocks.io/v1/gas_station",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns gas station settings and ETH balance."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get gas station settings by asset",
+        "api_call": "https://api.fireblocks.io/v1/gas_station/:assetId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns gas station settings and balances for a requested asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get user group",
+        "api_call": "https://api.fireblocks.io/v1/management/user_groups/:groupId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Get a user group by ID.</br>\n\n**Note**:\n- This endpoint is now in Beta, disabled for general availability at this time.\n- Please"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update user group",
+        "api_call": "https://api.fireblocks.io/v1/management/user_groups/:groupId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update a user group by ID.</br>\n\n**Note**:\n- This endpoint is now in Beta, disabled for general availability at this time.\n- Please"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete user group",
+        "api_call": "https://api.fireblocks.io/v1/management/user_groups/:groupId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a user group by ID.</br>\n\n**Note**:\n- This endpoint is now in Beta, disabled for general availability at this time.\n- Please"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List user groups",
+        "api_call": "https://api.fireblocks.io/v1/management/user_groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Get all user groups in your workspace. </br>\n\n**Note**:\n- This endpoint is now in Beta, disabled for general availability at this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create user group",
+        "api_call": "https://api.fireblocks.io/v1/management/user_groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new user group.</br>\n\n**Note**:\n- This endpoint is now in Beta, disabled for general availability at this time.\n- Please note"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Enable or disable transactions to OTA",
+        "api_call": "https://api.fireblocks.io/v1/management/ota",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Enable or disable transactions to OTA"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Returns current OTA status",
+        "api_call": "https://api.fireblocks.io/v1/management/ota",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns current OTA status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get console users",
+        "api_call": "https://api.fireblocks.io/v1/management/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "get console users from the current tenant"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: create console user",
+        "api_call": "https://api.fireblocks.io/v1/management/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "creates fireblocks console user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: resets device",
+        "api_call": "https://api.fireblocks.io/v1/management/users/:id/reset_device",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "resets device"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get api users",
+        "api_call": "https://api.fireblocks.io/v1/management/api_users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "get api users from the current tenant"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: create api user",
+        "api_call": "https://api.fireblocks.io/v1/management/api_users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"csrPem\": \"<string>\",\n  \"coSignerSetupType\": \"<string>\",\n  \"coSignerSetupIsFirstUser\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "creates api user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: gets ip addresses",
+        "api_call": "https://api.fireblocks.io/v1/management/api_users/:userId/whitelist_ip_addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "gets ip addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get audit logs",
+        "api_call": "https://api.fireblocks.io/v1/management/audit_logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get all audits"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Returns current workspace status",
+        "api_call": "https://api.fireblocks.io/v1/management/workspace_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns current workspace status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: create settlement for a trader",
+        "api_call": "https://api.fireblocks.io/v1/off_exchange/settlements/trader",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"mainExchangeAccountId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "create settlement for a trader"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get settlements transactions from exchange",
+        "api_call": "https://api.fireblocks.io/v1/off_exchange/settlements/transactions?mainExchangeAccountId=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "get settlements transactions from exchange"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: add collateral",
+        "api_call": "https://api.fireblocks.io/v1/off_exchange/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transactionRequest\": {\n    \"operation\": \"TRANSFER\",\n    \"note\": \"<string>\",\n    \"externalTxId\": \"<string>\",\n    \"assetId\": \"<string>\",\n    \"source\": {\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"subType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"name\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"walletId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"destination\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"destinations\": [\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    ],\n    \"amount\": \"<string>\",\n    \"treatAsGrossAmount\": \"<boolean>\",\n    \"forceSweep\": \"<boolean>\",\n    \"feeLevel\": \"<string>\",\n    \"fee\": \"<string>\",\n    \"priorityFee\": \"<string>\",\n    \"failOnLowFee\": \"<boolean>\",\n    \"maxFee\": \"<string>\",\n    \"gasLimit\": \"<string>\",\n    \"gasPrice\": \"<string>\",\n    \"networkFee\": \"<string>\",\n    \"replaceTxByHash\": \"<string>\",\n    \"extraParameters\": {},\n    \"customerRefId\": \"<string>\",\n    \"travelRuleMessage\": {\n      \"originatorVASPdid\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryVASPdid\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"originator\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryVASPname\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"transactionBlockchainInfo\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"encrypted\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"protocol\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"skipBeneficiaryDataValidation\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"travelRuleBehavior\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"originatorProof\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryProof\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"pii\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"autoStaking\": \"<boolean>\",\n    \"networkStaking\": \"<string>\",\n    \"cpuStaking\": \"<string>\"\n  },\n  \"isSrcCollateral\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "add collateral, create deposit request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: remove collateral",
+        "api_call": "https://api.fireblocks.io/v1/off_exchange/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transactionRequest\": {\n    \"operation\": \"TRANSFER\",\n    \"note\": \"<string>\",\n    \"externalTxId\": \"<string>\",\n    \"assetId\": \"<string>\",\n    \"source\": {\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"subType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"name\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"walletId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"destination\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"destinations\": [\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    ],\n    \"amount\": \"<string>\",\n    \"treatAsGrossAmount\": \"<boolean>\",\n    \"forceSweep\": \"<boolean>\",\n    \"feeLevel\": \"<string>\",\n    \"fee\": \"<string>\",\n    \"priorityFee\": \"<string>\",\n    \"failOnLowFee\": \"<boolean>\",\n    \"maxFee\": \"<string>\",\n    \"gasLimit\": \"<string>\",\n    \"gasPrice\": \"<string>\",\n    \"networkFee\": \"<string>\",\n    \"replaceTxByHash\": \"<string>\",\n    \"extraParameters\": {},\n    \"customerRefId\": \"<string>\",\n    \"travelRuleMessage\": {\n      \"originatorVASPdid\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryVASPdid\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"originator\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryVASPname\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"transactionBlockchainInfo\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"encrypted\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"protocol\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"skipBeneficiaryDataValidation\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"travelRuleBehavior\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"originatorProof\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"beneficiaryProof\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"pii\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"autoStaking\": \"<boolean>\",\n    \"networkStaking\": \"<string>\",\n    \"cpuStaking\": \"<string>\"\n  },\n  \"isDstCollateral\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "remove collateral, create withdraw request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find a specific collateral exchange account",
+        "api_call": "https://api.fireblocks.io/v1/off_exchange/collateral_accounts/:mainExchangeAccountId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns a collateral account by mainExchangeAccountId."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Resend failed webhooks",
+        "api_call": "https://api.fireblocks.io/v1/webhooks/resend",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Resends all failed webhook notifications."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Resend failed webhooks for a transaction by ID",
+        "api_call": "https://api.fireblocks.io/v1/webhooks/resend/:txId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"resendCreated\": \"<boolean>\",\n  \"resendStatusUpdated\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Resends failed webhook notifications for a transaction by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Chain Info",
+        "api_call": "https://api.fireblocks.io/v1/staking/chains/:chainDescriptor/chainInfo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return chain-specific, staking-related information summary (e.g. epoch details, lockup durations, estimated rewards, etc.)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: execute Action",
+        "api_call": "https://api.fireblocks.io/v1/staking/chains/:chainDescriptor/:actionId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"vaultAccountId\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"stakeAmount\": \"<string>\",\n  \"txNote\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"feeLevel\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Perform a chain-specific staking action (e.g. stake, unstake, withdraw)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Chains",
+        "api_call": "https://api.fireblocks.io/v1/staking/chains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return an alphabetical list of supported chains."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Summary",
+        "api_call": "https://api.fireblocks.io/v1/staking/positions/summary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return a summary of all vaults, categorized by their status (active, inactive), the total amounts staked and total rewards per-chain."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Summary By Vault",
+        "api_call": "https://api.fireblocks.io/v1/staking/positions/summary/vaults",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return a summary for each vault, categorized by their status (active, inactive), the total amounts staked and total rewards per-chain."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get All Delegations",
+        "api_call": "https://api.fireblocks.io/v1/staking/positions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return detailed information on all staking positions, including the staked amount, rewards, status and more."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Delegation By Id",
+        "api_call": "https://api.fireblocks.io/v1/staking/positions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return detailed information on a staking position, including the staked amount, rewards, status and more."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: get Providers",
+        "api_call": "https://api.fireblocks.io/v1/staking/providers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Return information on all the available staking providers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: approve Terms Of Service By Provider Id",
+        "api_call": "https://api.fireblocks.io/v1/staking/providers/:providerId/approveTermsOfService",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Approve the terms of service of the staking provider.\nThis must be called before performing a staking action for the first"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Refresh vault account tokens",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/tokens?blockchainDescriptor=<string>&vaultAccountId=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "Updates all tokens and balances per blockchain and vault account.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List all owned tokens (paginated)",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/tokens",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all tokens and their data in your workspace.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update token ownership status",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/tokens/:id/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"status\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates token status for a tenant, in all tenant vaults.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update tokens ownership status",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/tokens/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"assetId\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  {\n    \"assetId\": \"<string>\",\n    \"status\": \"<string>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates tokens status for a tenant, in all tenant vaults."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update tokens ownership spam property",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/tokens/spam",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"assetId\": \"<string>\",\n    \"spam\": \"<boolean>\"\n  },\n  {\n    \"assetId\": \"<string>\",\n    \"spam\": \"<boolean>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates tokens spam property for a tenant's token ownerships, in all tenant vaults."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List all distinct owned tokens (paginated)",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all owned distinct tokens (for your tenant) and their data in your workspace.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List owned collections (paginated)",
+        "api_call": "https://api.fireblocks.io/v1/nfts/ownership/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all collections in your workspace\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Refresh token metadata",
+        "api_call": "https://api.fireblocks.io/v1/nfts/tokens/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "Updates the latest token metadata.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List token data by ID",
+        "api_call": "https://api.fireblocks.io/v1/nfts/tokens/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the requested token data.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List tokens by IDs",
+        "api_call": "https://api.fireblocks.io/v1/nfts/tokens?ids=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the requested tokens data.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Respond to a pending Web3 connection request.",
+        "api_call": "https://api.fireblocks.io/v1/connections/wc/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"approve\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submit a response to *approve* or *reject* an initiated Web3 connection.\n* Note: This call is used to complete your `POST"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Remove an existing Web3 connection.",
+        "api_call": "https://api.fireblocks.io/v1/connections/wc/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Remove a Web3 connection"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create a new Web3 connection.",
+        "api_call": "https://api.fireblocks.io/v1/connections/wc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"vaultAccountId\": \"<number>\",\n  \"feeLevel\": \"<string>\",\n  \"uri\": \"<string>\",\n  \"chainIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Initiate a new Web3 connection.\n\n* Note: After this succeeds, make a request to `PUT /v1/connections/wc/{id}` (below) to approve or reject"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List all open Web3 connections.",
+        "api_call": "https://api.fireblocks.io/v1/connections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get open Web3 connections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Validate Travel Rule Transaction",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/transaction/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transactionAsset\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"transactionAmount\": \"<string>\",\n  \"originatorVASPdid\": \"<string>\",\n  \"originatorEqualsBeneficiary\": \"<boolean>\",\n  \"travelRuleBehavior\": \"<boolean>\",\n  \"beneficiaryVASPdid\": \"<string>\",\n  \"beneficiaryVASPname\": \"<string>\",\n  \"beneficiaryName\": \"<string>\",\n  \"beneficiaryAccountNumber\": \"<string>\",\n  \"beneficiaryAddress\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Validate Travel Rule transactions.\n\nChecks what beneficiary VASP details are required by your jurisdiction and the beneficiary's jurisdiction.\n\n**Note:** The reference content"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Validate Full Travel Rule Transaction",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/transaction/validate/full",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transactionAsset\": \"<string>\",\n  \"transactionAmount\": \"<string>\",\n  \"originatorVASPdid\": \"<string>\",\n  \"beneficiaryVASPdid\": \"<string>\",\n  \"transactionBlockchainInfo\": {\n    \"txHash\": \"<string>\",\n    \"origin\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"originator\": {\n    \"fullName\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"placeOfBirth\": \"<string>\",\n    \"address\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"countryOfResidence\": \"<string>\",\n    \"taxIdentificationNumber\": \"<string>\",\n    \"customerNumber\": \"<string>\"\n  },\n  \"beneficiary\": {\n    \"fullName\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"placeOfBirth\": \"<string>\",\n    \"address\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"countryOfResidence\": \"<string>\",\n    \"taxIdentificationNumber\": \"<string>\",\n    \"customerNumber\": \"<string>\"\n  },\n  \"originatorDid\": \"<string>\",\n  \"beneficiaryDid\": \"<string>\",\n  \"beneficiaryVASPname\": \"<string>\",\n  \"encrypted\": \"<string>\",\n  \"protocol\": \"<string>\",\n  \"notificationEmail\": \"<string>\",\n  \"skipBeneficiaryDataValidation\": \"<boolean>\",\n  \"travelRuleBehavior\": \"<boolean>\",\n  \"originatorProof\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"issueDate\": \"<string>\",\n    \"issuer\": \"<string>\"\n  },\n  \"beneficiaryProof\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"issueDate\": \"<string>\",\n    \"issuer\": \"<string>\"\n  },\n  \"pii\": {\n    \"fullName\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"placeOfBirth\": \"<string>\",\n    \"address\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"countryOfResidence\": \"<string>\",\n    \"taxIdentificationNumber\": \"<string>\",\n    \"customerNumber\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Validate Full Travel Rule transactions.\n\nChecks for all required information on the originator and beneficiary VASPs.\n\n**Note:** The reference content in this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get All VASPs",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/vasp",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get All VASPs.\n\nReturns a list of VASPs. VASPs can be searched and sorted and results are paginated.\n\n**Note:** The reference content"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get VASP details",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/vasp/:did",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get VASP Details.\n\nReturns information about a VASP that has the specified DID.\n\n**Note:** The reference content in this section documents the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Add jsonDidKey to VASP details",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/vasp/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"did\": \"<string>\",\n  \"pii_didkey\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update VASP Details.\n\nUpdates a VASP with the provided parameters. Use this endpoint to add your public jsonDIDkey generated by Notabene.\n\n**Note:**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get Travel Rule Screening Policy Configuration",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/policy_configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the configuration for Travel Rule screening policy."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update Travel Rule Configuration",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/policy_configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates bypass screening, inbound delay, or outbound delay configurations for Travel Rule."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Travel Rule - View Post-Screening Policy",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/post_screening_policy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the post-screening policy for Travel Rule."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Travel Rule - View Screening Policy",
+        "api_call": "https://api.fireblocks.io/v1/screening/travel_rule/screening_policy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the screening policy for Travel Rule."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the active draft",
+        "api_call": "https://api.fireblocks.io/v1/tap/draft",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns the active draft and its validation. </br>\n**Note:** These endpoints are currently in beta and might be subject to changes.\nIf"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update the draft with a new set of rules",
+        "api_call": "https://api.fireblocks.io/v1/tap/draft",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"amountCurrency\": \"<string>\",\n      \"amountScope\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"periodSec\": \"<number>\",\n      \"operator\": \"<string>\",\n      \"operators\": {\n        \"wildcard\": \"<string>\",\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transactionType\": \"<string>\",\n      \"designatedSigner\": \"<string>\",\n      \"designatedSigners\": {\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"srcType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcId\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"src\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dst\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstAddressType\": \"<string>\",\n      \"authorizers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authorizersCount\": \"<number>\",\n      \"authorizationGroups\": {\n        \"logic\": \"<string>\",\n        \"allowOperatorAsAuthorizer\": \"<boolean>\",\n        \"groups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"amountAggregation\": {\n        \"operators\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"srcTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dstTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"rawMessageSigning\": {\n        \"algorithm\": \"<string>\",\n        \"derivationPath\": {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"applyForApprove\": \"<boolean>\",\n      \"applyForTypedMessage\": \"<boolean>\",\n      \"externalDescriptor\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"amountCurrency\": \"<string>\",\n      \"amountScope\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"periodSec\": \"<number>\",\n      \"operator\": \"<string>\",\n      \"operators\": {\n        \"wildcard\": \"<string>\",\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transactionType\": \"<string>\",\n      \"designatedSigner\": \"<string>\",\n      \"designatedSigners\": {\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"srcType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcId\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"src\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dst\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstAddressType\": \"<string>\",\n      \"authorizers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authorizersCount\": \"<number>\",\n      \"authorizationGroups\": {\n        \"logic\": \"<string>\",\n        \"allowOperatorAsAuthorizer\": \"<boolean>\",\n        \"groups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"amountAggregation\": {\n        \"operators\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"srcTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dstTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"rawMessageSigning\": {\n        \"algorithm\": \"<string>\",\n        \"derivationPath\": {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"applyForApprove\": \"<boolean>\",\n      \"applyForTypedMessage\": \"<boolean>\",\n      \"externalDescriptor\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update the draft and return its validation. </br>\n**Note:** These endpoints are currently in beta and might be subject to changes.\nIf"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Send publish request for a certain draft id",
+        "api_call": "https://api.fireblocks.io/v1/tap/draft",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"draftId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send publish request of certain draft id and returns the response. </br>\n**Note:** These endpoints are currently in beta and might"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get the active policy and its validation",
+        "api_call": "https://api.fireblocks.io/v1/tap/active_policy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns the active policy and its validation. </br>\n**Note:** These endpoints are currently in beta and might be subject to changes.\nIf"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Send publish request for a set of policy rules",
+        "api_call": "https://api.fireblocks.io/v1/tap/publish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"amountCurrency\": \"<string>\",\n      \"amountScope\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"periodSec\": \"<number>\",\n      \"operator\": \"<string>\",\n      \"operators\": {\n        \"wildcard\": \"<string>\",\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transactionType\": \"<string>\",\n      \"designatedSigner\": \"<string>\",\n      \"designatedSigners\": {\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"srcType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcId\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"src\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dst\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstAddressType\": \"<string>\",\n      \"authorizers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authorizersCount\": \"<number>\",\n      \"authorizationGroups\": {\n        \"logic\": \"<string>\",\n        \"allowOperatorAsAuthorizer\": \"<boolean>\",\n        \"groups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"amountAggregation\": {\n        \"operators\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"srcTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dstTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"rawMessageSigning\": {\n        \"algorithm\": \"<string>\",\n        \"derivationPath\": {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"applyForApprove\": \"<boolean>\",\n      \"applyForTypedMessage\": \"<boolean>\",\n      \"externalDescriptor\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"amountCurrency\": \"<string>\",\n      \"amountScope\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"periodSec\": \"<number>\",\n      \"operator\": \"<string>\",\n      \"operators\": {\n        \"wildcard\": \"<string>\",\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"services\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transactionType\": \"<string>\",\n      \"designatedSigner\": \"<string>\",\n      \"designatedSigners\": {\n        \"users\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"usersGroups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"srcType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"srcId\": {\n        \"description\": \"(deprecated - replaced by \\\"src\\\") source account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"src\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstSubType\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination sub account type\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dstId\": {\n        \"description\": \"(deprecated - replaced by \\\"dst\\\") destination account id\",\n        \"deprecated\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"dst\": {\n        \"ids\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dstAddressType\": \"<string>\",\n      \"authorizers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authorizersCount\": \"<number>\",\n      \"authorizationGroups\": {\n        \"logic\": \"<string>\",\n        \"allowOperatorAsAuthorizer\": \"<boolean>\",\n        \"groups\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"amountAggregation\": {\n        \"operators\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"srcTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dstTransferPeers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"rawMessageSigning\": {\n        \"algorithm\": \"<string>\",\n        \"derivationPath\": {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"applyForApprove\": \"<boolean>\",\n      \"applyForTypedMessage\": \"<boolean>\",\n      \"externalDescriptor\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send publish request of set of policy rules and returns the response. </br>\n**Note:** These endpoints are currently in beta and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Search ticket by leg (term) ID",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms/:termId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Find Smart Transfer ticket term by id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update ticket leg (term)",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms/:termId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"asset\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"fromNetworkId\": \"<string>\",\n  \"toNetworkId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update ticket term (when ticket status is DRAFT)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Delete ticket leg (term)",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms/:termId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete ticket term when ticket is in DRAFT status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Define funding source",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms/:termId/fund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"asset\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"networkConnectionId\": \"<string>\",\n  \"srcId\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"fee\": \"<string>\",\n  \"feeLevel\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Set funding source for ticket term (in case of ASYNC tickets, this will execute transfer immediately)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Manually add term transaction",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms/:termId/manually-fund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"txHash\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Manually set ticket term transaction"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create leg (term)",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/terms",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"asset\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"fromNetworkId\": \"<string>\",\n  \"toNetworkId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates new smart transfer ticket term (when the ticket status is DRAFT)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Search Tickets by ID",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Find Smart Transfer ticket by id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set expiration",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/expires-in",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"expiresIn\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Set expiration date on Smart Transfer ticket"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Add external ref. ID",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/external-id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"externalRefId\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Set external id Smart Transfer ticket"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Submit ticket",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/submit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"expiresIn\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submit Smart Transfer ticket - change status into ready for approval if auto approval is not turned on, or OPEN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Fund ticket manually",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/fulfill",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Manually fulfill ticket, in case when all terms (legs) are funded manually"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Cancel Ticket",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/:ticketId/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancel Smart Transfer ticket"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set user group",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/settings/user-groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"userGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Set Smart Transfer user group"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get user group",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers/settings/user-groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get Smart Transfer user groups"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Create Ticket",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"createdByNetworkId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"expiresIn\": \"<number>\",\n  \"terms\": [\n    {\n      \"asset\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"fromNetworkId\": \"<string>\",\n      \"toNetworkId\": \"<string>\"\n    },\n    {\n      \"asset\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"fromNetworkId\": \"<string>\",\n      \"toNetworkId\": \"<string>\"\n    }\n  ],\n  \"externalRefId\": \"<string>\",\n  \"note\": \"<string>\",\n  \"submit\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates new Smart Transfer ticket"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Find Ticket",
+        "api_call": "https://api.fireblocks.io/v1/smart-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Finds Smart Transfer tickets that match the submitted criteria"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get job details",
+        "api_call": "https://api.fireblocks.io/v1/batch/:jobId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Get an object describing the given job"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Pause a job",
+        "api_call": "https://api.fireblocks.io/v1/batch/:jobId/pause",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Pause the given job, after the current task is done. A paused job can later be resumed by calling \u2018continue\u2019,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Continue a paused job",
+        "api_call": "https://api.fireblocks.io/v1/batch/:jobId/continue",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Continue the given paused job."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Cancel a running job",
+        "api_call": "https://api.fireblocks.io/v1/batch/:jobId/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Stop the given job immediately. If the job is in the \u2018Active\u2019 state, the job will be canceled after completing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Return a list of tasks for given job",
+        "api_call": "https://api.fireblocks.io/v1/batch/:jobId/tasks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Return a list of tasks for given job"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Return a list of jobs belonging to tenant",
+        "api_call": "https://api.fireblocks.io/v1/batch/jobs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Get an array of objects including all active, paused, canceled, and complete jobs in a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Freeze Workspace",
+        "api_call": "https://api.fireblocks.io/v1/workspace/freeze",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Freezes a Workspace so that ALL operations by ANY user are blocked.\n\nYou should only perform this action when the workspace"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List all asset types supported by Fireblocks",
+        "api_call": "https://api.fireblocks.io/v1/supported_assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Returns all asset types supported by Fireblocks."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Set confirmation threshold by transaction hash",
+        "api_call": "https://api.fireblocks.io/v1/txHash/:txHash/set_confirmation_threshold",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"numOfConfirmations\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Overrides the required number of confirmations for transaction completion by transaction hash."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Estimate the required fee for an asset",
+        "api_call": "https://api.fireblocks.io/v1/estimate_network_fee?assetId=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the estimated required fee for an asset. For UTXO based assets, the response will contain the suggested fee per"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: List users",
+        "api_call": "https://api.fireblocks.io/v1/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "List all users for the workspace.\n\nPlease note that this endpoint is available only for API keys with Admin permissions.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Get audit logs",
+        "api_call": "https://api.fireblocks.io/v1/audits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get all audits"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Fireblocks API: Update admin quorum threshold",
+        "api_call": "https://api.fireblocks.io/v1/admin_quorum",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"adminQuorumThreshold\": \"<number>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update admin quorum threshold"
+    }
+]
