@@ -1,0 +1,13 @@
+# Client Ignores
+client/node_modules
+client/.next
+
+# Server Ignores
+
+server/*.env
+server/__pycache__
+
+# misc
+.DS_Store
+*.pem
+.venv
