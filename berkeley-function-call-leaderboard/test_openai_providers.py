@@ -71,7 +71,7 @@ def generate_summary_tables(scores_path: str, summaries_paths):
         summary_filepath = summaries_paths / f"summary_{test_type.lower().replace(' ', '_')}.csv"
         summary.to_csv(summary_filepath, index=False, sep=";")
         print(f"Saved summary to: {summary_filepath}")
-        upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla_snova/{date}/{PurePosixPath(summary_filepath).name}")
+        upload_to_s3(summary_filepath, f"fc-so-testing-suite/gorilla_snova/{date}/{PurePosixPath(summary_filepath).name}")
 
 def run_bfcl_command(command_type, model, test_category, result_dir, score_dir=None):
     
