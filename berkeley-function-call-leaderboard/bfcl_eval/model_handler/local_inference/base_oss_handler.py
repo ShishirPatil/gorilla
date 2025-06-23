@@ -287,8 +287,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
             print("-" * 100)
 
-            model_responses = f"Error during inference: {str(e)} \nTraceback: {traceback.format_exc()}"
-            metadata = {}
+            model_responses = f"Error during inference: {str(e)}"
+            metadata = {
+                "traceback": traceback.format_exc(),
+            }
 
         result_to_write = {
             "id": test_case["id"],
