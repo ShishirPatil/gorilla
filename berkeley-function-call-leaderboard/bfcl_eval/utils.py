@@ -50,7 +50,7 @@ def list_from_s3(prefix=""):
     try:
         bucket_name = os.getenv("AWS_S3_BUCKET_NAME", "")
         s3 = get_s3_client()
-        response = s3.list_objects_v2(Bucket=bucket_name)
+        response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
         if "Contents" in response:
             for obj in response["Contents"]:
                 print(obj["Key"])

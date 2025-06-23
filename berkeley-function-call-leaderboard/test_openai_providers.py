@@ -28,10 +28,10 @@ CSV_HEADERS = [
     "Qwen3-32B"
 ]
 
-date = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 base_dir = Path(__file__).resolve().parent
 results_dir = base_dir / "results"
-scores_csv_file_path = results_dir / f'scores-{date}.csv'
+scores_csv_file_path = results_dir / date / 'scores.csv'
 scores_csv_file_path.parent.mkdir(parents=True, exist_ok=True)
 with open(scores_csv_file_path, 'w', newline='') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=CSV_HEADERS, delimiter=';')
@@ -71,7 +71,7 @@ def generate_summary_tables(scores_path: str, summaries_paths):
         summary_filepath = summaries_paths / f"summary_{test_type.lower().replace(' ', '_')}.csv"
         summary.to_csv(summary_filepath, index=False, sep=";")
         print(f"Saved summary to: {summary_filepath}")
-        upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(summary_filepath).name}")
+        upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{date}/{PurePosixPath(summary_filepath).name}")
 
 def run_bfcl_command(command_type, model, test_category, result_dir, score_dir=None):
     
@@ -154,7 +154,7 @@ def run_models_for_provider(provider,
                         for key, value in curr_dict.items():
                             df.loc[mask, key] = value
                     df.to_csv(scores_csv_file_path, index=False, sep=";")
-                    upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(scores_csv_file_path).name}")
+                    upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{date}/{PurePosixPath(scores_csv_file_path).name}")
             else:
                 df =  pd.read_csv(scores_csv_file_path, sep=";")
                 mask = (
@@ -167,7 +167,7 @@ def run_models_for_provider(provider,
                     for key, value in curr_dict.items():
                         df.loc[mask, key] = value
                 df.to_csv(scores_csv_file_path, index=False, sep=";")
-                upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(scores_csv_file_path).name}")
+                upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{date}/{PurePosixPath(scores_csv_file_path).name}")
         
 
     if concurrency_models is True:
