@@ -4,6 +4,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
+import traceback
 
 import requests
 from bfcl_eval.constants.eval_config import RESULT_PATH, VLLM_PORT
@@ -286,7 +287,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
             print("-" * 100)
 
-            model_responses = f"Error during inference: {str(e)}"
+            model_responses = f"Error during inference: {str(e)} \nTraceback: {traceback.format_exc()}"
             metadata = {}
 
         result_to_write = {
