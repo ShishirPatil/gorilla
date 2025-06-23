@@ -29,15 +29,49 @@ CSV_HEADERS = [
 ]
 
 date = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-csv_file_path = f'./scores-{date}.csv'
-csv_file_path, Path(csv_file_path).parent.mkdir(parents=True, exist_ok=True)
-with open(csv_file_path, 'w', newline='') as csvfile:
+base_dir = Path(__file__).resolve().parent
+results_dir = base_dir / "results"
+scores_csv_file_path = results_dir / f'scores-{date}.csv'
+scores_csv_file_path.parent.mkdir(parents=True, exist_ok=True)
+with open(scores_csv_file_path, 'w', newline='') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=CSV_HEADERS, delimiter=';')
     writer.writeheader()
 
 def load_json(file_path):
     with open(file_path, "r") as f:
         return json.load(f)
+    
+def generate_summary_tables(scores_path: str, summaries_paths):
+    df = pd.read_csv(scores_path, sep=';')
+    df = df.dropna(subset=["provider", "test_suite_name"], how='all')
+
+    # Melt the wide format to long format (model columns → rows)
+    df_long = df.melt(
+        id_vars=["date", "test_suite_name", "provider"],
+        value_vars=[col for col in df.columns if col not in ["run_id", "test_suite_name", "provider", "n_samples", "date"]],
+        var_name="model",
+        value_name="Accuracy"
+    )
+    
+    for test_type in df["test_suite_name"].dropna().unique():
+        test_type = test_type.split(" - ")[-1]
+        filtered = df_long[df_long["test_suite_name"].str.contains(test_type, case=False)]
+        # Convert Accuracy to numeric just in case
+        filtered["Accuracy"] = pd.to_numeric(filtered["Accuracy"], errors='coerce')
+
+        # Group by and average (or use first, max, etc.)
+        summary = (
+            filtered
+            .groupby(["date", "provider", "model"], as_index=False)
+            .agg({"Accuracy": "mean"})
+            .sort_values(by=["provider", "model"])
+        )
+        
+        # Save to CSV
+        summary_filepath = summaries_paths / f"summary_{test_type.lower().replace(' ', '_')}.csv"
+        summary.to_csv(summary_filepath, index=False, sep=";")
+        print(f"Saved summary to: {summary_filepath}")
+        upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(summary_filepath).name}")
 
 def run_bfcl_command(command_type, model, test_category, result_dir, score_dir=None):
     
@@ -109,7 +143,7 @@ def run_models_for_provider(provider,
 
             if concurrent:
                 with lock:
-                    df =  pd.read_csv(csv_file_path, sep=";")
+                    df =  pd.read_csv(scores_csv_file_path, sep=";")
                     mask = (
                         (df["test_suite_name"] == curr_dict["test_suite_name"]) &
                         (df["provider"] == curr_dict["provider"])
@@ -119,10 +153,10 @@ def run_models_for_provider(provider,
                     else:
                         for key, value in curr_dict.items():
                             df.loc[mask, key] = value
-                    df.to_csv(csv_file_path, index=False, sep=";")
-                    upload_to_s3(csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(csv_file_path).name}")
+                    df.to_csv(scores_csv_file_path, index=False, sep=";")
+                    upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(scores_csv_file_path).name}")
             else:
-                df =  pd.read_csv(csv_file_path, sep=";")
+                df =  pd.read_csv(scores_csv_file_path, sep=";")
                 mask = (
                     (df["test_suite_name"] == curr_dict["test_suite_name"]) &
                     (df["provider"] == curr_dict["provider"])
@@ -132,8 +166,8 @@ def run_models_for_provider(provider,
                 else:
                     for key, value in curr_dict.items():
                         df.loc[mask, key] = value
-                df.to_csv(csv_file_path, index=False, sep=";")
-                upload_to_s3(csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(csv_file_path).name}")
+                df.to_csv(scores_csv_file_path, index=False, sep=";")
+                upload_to_s3(scores_csv_file_path, f"fc-so-testing-suite/gorilla-snova/{PurePosixPath(scores_csv_file_path).name}")
         
 
     if concurrency_models is True:
@@ -172,6 +206,9 @@ def main(date: str):
             for provider, models in providers.items()
         ]
         concurrent.futures.wait(futures)
+        
+    generate_summary_tables(scores_csv_file_path, results_dir)
+
 
 if __name__ == "__main__":
     start_time = time.time()
