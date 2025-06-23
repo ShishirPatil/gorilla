@@ -1,0 +1,2280 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Task Attachment",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/attachment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "name": "Content-Type",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "attachment",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Access Token",
+        "api_call": "https://api.clickup.com/api/v2/oauth/token?client_id=&client_secret=&code=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Authorized User",
+        "api_call": "https://api.clickup.com/api/v2/user",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Authorized Teams",
+        "api_call": "https://api.clickup.com/api/v2/team",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Checklist",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/checklist",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Checklist\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit Checklist",
+        "api_call": "https://api.clickup.com/api/v2/checklist/checklist_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Checklist\",\n  \"position\": 0\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete Checklist",
+        "api_call": "https://api.clickup.com/api/v2/checklist/checklist_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Checklist Item",
+        "api_call": "https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Checklist Item\",\n  \"assignee\": 546\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit Checklist Item",
+        "api_call": "https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item/checklist_item_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Checklist Item\",\n  \"assignee\": null,\n  \"resolved\": true,\n  \"parent\": null\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete Checklist Item",
+        "api_call": "https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item/checklist_item_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Task Comment",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"comment_text\": \"Task comment content\",\n  \"assignee\": 53480,\n  \"notify_all\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Chat View Comment",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"comment_text\": \"View comment content\",\n  \"notify_all\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create List Comment",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"comment_text\": \"Task comment content\",\n  \"assignee\": 53480,\n  \"notify_all\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Task Comments",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Chat View Comments",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get List Comments",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/comment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update Comment",
+        "api_call": "https://api.clickup.com/api/v2/comment/comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"comment_text\": \"Updated comment text\",\n    \"assignee\": 53480,\n    \"resolved\": true\n}"
+            }
+        },
+        "functionality": "Please paste comment_id from original task comment created for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete Comment",
+        "api_call": "https://api.clickup.com/api/v2/comment/comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste comment_id from original task comment created for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Accessible Custom Fields",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/field",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Set Custom Field Value",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/field/field_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": 0\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Custom Field Value",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/field/field_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Dependency",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/dependency",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"depends_on\": \"task_id\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Dependency",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/dependency?depends_on=task_id&dependency_of=task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Task Link",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/link/links_to",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete Task Link",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/link/links_to",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Folder",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/folder",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"New Folder From API V2\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a Folder",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Folder Name\"\n}"
+            }
+        },
+        "functionality": "Please paste previously created folder_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Folder",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste previously updated folder_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Folders",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/folder",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Folder",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Goal",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/goal",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Goal From API V2\",\n  \"due_date\": 1577811600000,\n  \"description\": \"Goal Description\",\n  \"multiple_owners\": true,\n  \"owners\": [\n    53480\n  ],\n  \"color\": \"#32a852\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a Goal",
+        "api_call": "https://api.clickup.com/api/v2/goal/goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Updated Goal Name\",\n    \"due_date\": 1577811600000,\n    \"description\": \"Updated Goal Description\",\n    \"rem_owners\": [53480],\n    \"add_owners\": [53480],\n    \"color\": \"#32a852\"\n}"
+            }
+        },
+        "functionality": "Please paste goal_id from previously created Goal for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Goal",
+        "api_call": "https://api.clickup.com/api/v2/goal/goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste goal_id from previously updated Goal for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Goals",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/goal",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Goal",
+        "api_call": "https://api.clickup.com/api/v2/goal/goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste goal_id after creating another Goal for continuity. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Key Result",
+        "api_call": "https://api.clickup.com/api/v2/goal/goal_id/key_result",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"New Key Result From API V2\",\n  \"owners\": [\n    53480\n  ],\n  \"type\": \"number\",\n  \"steps_start\": 0,\n  \"steps_end\": 10,\n  \"unit\": \"km\",\n  \"task_ids\": [],\n  \"list_ids\": []\n}"
+            }
+        },
+        "functionality": "Please use previously created goal_id created before \"Get Goal\" for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit a Key Result",
+        "api_call": "https://api.clickup.com/api/v2/key_result/key_result_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"steps_current\": 5,\n  \"note\": \"Target achieved\"\n}"
+            }
+        },
+        "functionality": "Please paste key_result_id from previously created key_result for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Key Result",
+        "api_call": "https://api.clickup.com/api/v2/key_result/key_result_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please post key_result_id from the previously edited key_result for continuity. Please also delete the previously created Goal created for testing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Invite Guest to Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/guest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"bspry.testuser4@gmail.com\",\n  \"can_edit_tags\": true,\n  \"can_see_time_estimated\": true,\n  \"can_see_time_spent\": true,\n  \"can_create_views\": true,\n  \"custom_role_id\": 12345\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The type of JSON to fill out:\n{\n  \"email\": \"example@gmail.com\",\n  \"can_edit_tags\": true || false,\n  \"can_see_time_estimated\": true || false,\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit Guest on Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"can_edit_tags\": true,\n  \"can_see_time_spent\": true,\n  \"can_see_time_estimated\": true,\n  \"can_create_views\": true,\n  \"custom_role_id\":12345\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Guest from Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Guest",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "All the locations on the Workspace the guest has access too"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Guest to Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"permission_level\": \"read\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "JSON Body:\n{\n  \"permission_level\": \"read\" || \"comment\" || \"edit\" || \"create\"\n}"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Guest from Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Guest to List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "JSON Body:\n{\n  \"permission_level\": \"read\" || \"comment\" || \"edit\" || \"create\"\n}"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Guest from List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Guest to Folder",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "JSON Body:\n{\n  \"permission_level\": \"read\" || \"comment\" || \"edit\" || \"create\"\n}"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Guest from Folder",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/guest/guest_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a List",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"New List Name\",\n  \"content\": \"Sent from API V2\",\n  \"due_date\": 1577811600000,\n  \"due_date_time\": false,\n  \"priority\": 1,\n  \"assignee\": 53480,\n  \"status\": \"red\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Folderless List",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"New List Name\",\r\n  \"content\": \"New List Content\",\r\n  \"due_date\": 1567780450202,\r\n  \"due_date_time\": false,\r\n  \"priority\": 1,\r\n  \"assignee\": 183,\r\n  \"status\": \"red\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated List Name\",\n  \"content\": \"Updated List Content\",\n  \"due_date\": 1577811600000,\n  \"due_date_time\": true,\n  \"priority\": 2,\n  \"assignee\": \"none\"\n}"
+            }
+        },
+        "functionality": "Please paste previously created list_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste previously updated list_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Lists",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Folderless Lists",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Task To List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/task/task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Task From List",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/task/task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Task members",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/member",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get List Members",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/member",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "    "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Custom Roles",
+        "api_call": "https://api.clickup.com/api/v2/team_id/customRoles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Shared Hierarchy",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/shared",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Space",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/space",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\n{\n  \"name\": \"New Space From API V2\",\n  \"multiple_assignees\": true,\n  \"features\": {\n    \"due_dates\": {\n      \"enabled\": true,\n      \"start_date\": false,\n      \"remap_due_dates\": true,\n      \"remap_closed_due_date\": false\n    },\n    \"time_tracking\": {\n      \"enabled\": false\n    },\n    \"tags\": {\n      \"enabled\": true\n    },\n    \"time_estimates\": {\n      \"enabled\": true\n    },\n    \"checklists\": {\n      \"enabled\": true\n    },\n    \"custom_fields\": {\n      \"enabled\": true\n    },\n    \"remap_dependencies\": {\n      \"enabled\": true\n    },\n    \"dependency_warning\": {\n      \"enabled\": true\n    },\n    \"portfolios\": {\n      \"enabled\": true\n    }\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a Space",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\n{\n  \"name\": \"Updated Space Name\",\n  \"color\": \"#7B68EE\",\n  \"private\": false,\n  \"admin_can_manage\": false,\n  \"multiple_assignees\": true,\n  \"features\": {\n    \"due_dates\": {\n      \"enabled\": true,\n      \"start_date\": false,\n      \"remap_due_dates\": true,\n      \"remap_closed_due_date\": false\n    },\n    \"time_tracking\": {\n      \"enabled\": true\n    },\n    \"tags\": {\n      \"enabled\": true\n    },\n    \"time_estimates\": {\n      \"enabled\": true\n    },\n    \"checklists\": {\n      \"enabled\": true\n    },\n    \"custom_fields\": {\n      \"enabled\": true\n    },\n    \"remap_dependencies\": {\n      \"enabled\": true\n    },\n    \"dependency_warning\": {\n      \"enabled\": false\n    },\n    \"portfolios\": {\n      \"enabled\": true\n    }\n  }\n}"
+            }
+        },
+        "functionality": "Please paste the previously created space_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Space",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste the previously updated space_id for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Spaces",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/space",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Space",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Space Tags",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/tag",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Space Tag",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/tag",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"tag\": {\n    \"name\": \"API V2\",\n    \"tag_fg\": \"#ffffff\",\n    \"tag_bg\": \"#3c9d9b\"\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit a Space Tag",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/tag/tag_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"tag\": {\n    \"name\": \"API V2 PUT\",\n    \"tag_fg\": \"#ffffff\",\n    \"tag_bg\": \"#3e3d9f\"\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Space Tag",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/tag/tag_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"tag\": {\r\n    \"name\": \"Tag name\",\r\n    \"tag_fg\": \"#000000\",\r\n    \"tag_bg\": \"#000000\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add Tag To Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/tag/tag_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove Tag From Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/tag/tag_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Task",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/task",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\n{\n  \"name\": \"New Task Name\",\n  \"description\": \"New Task Description\",\n  \"assignees\": [\n    183\n  ],\n  \"tags\": [\n    \"tag name 1\"\n  ],\n  \"status\": \"Open\",\n  \"priority\": 3,\n  \"due_date\": 1508369194377,\n  \"due_date_time\": false,\n  \"time_estimate\": 8640000,\n  \"start_date\": 1567780450202,\n  \"start_date_time\": false,\n  \"notify_all\": true,\n  \"parent\": null,\n  \"links_to\": null,\n  \"custom_fields\": [\n    {\n      \"id\": \"0a52c486-5f05-403b-b4fd-c512ff05131c\",\n      \"value\": 23\n    },\n    {\n      \"id\": \"03efda77-c7a0-42d3-8afd-fd546353c2f5\",\n      \"value\": \"Text field input\"\n    }\n  ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Updated Task Name\",\n    \"description\": \"Updated Task Content\",\n    \"status\": \"in progress\",\n    \"priority\": 1,\n    \"time_estimate\": 8640000,\n    \"assignees\": {\n        \"add\": [182],\n        \"rem\": [183]\n    },\n    \"archived\": false,\n}"
+            }
+        },
+        "functionality": "Paste task_id from previously created task.\n\nMake sure to update all fields when testing to make sure they are all updated."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Please delete previously created/updated task for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Tasks",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/task",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Task",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Tasks that have a value in their dropdown field",
+        "api_call": "https://api.clickup.com/api/v2/team/9005019039/task?custom_fields=[{field_id:\"82ed1ef8-5ec3-4e11-9f76-3c27c09ef3ef\",\"operator\":\"=\",\"value\":\"4af2be24-b7e6-4bb3-99e4-8e0a98c1313a\"}]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "pk_44670296_9LN6E7KRILI0B4IVNOP8KHXNSTIVD8G1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Task's Time in Status",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/time_in_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Bulk Tasks' Time in Status",
+        "api_call": "https://api.clickup.com/api/v2/task/bulk_time_in_status/task_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Task Templates",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/taskTemplate?page=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Task From Template",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/taskTemplate/template_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"API V2 Test\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Team",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/group",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Team name\"\n    \"member_ids\": [123456, 987654]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Teams",
+        "api_call": "https://api.clickup.com/api/v2/team/6931406/group",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Team name\"\n    \"member_ids\": [123456, 987654]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update Team",
+        "api_call": "https://api.clickup.com/api/v2/group/group_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"team name\"\n    \"handle\": \"handle\"\n    \"members\": {\n        \"add\":[123456],\n        \"rem\": [654564]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Team",
+        "api_call": "https://api.clickup.com/api/v2/group/group_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Teams",
+        "api_call": "https://api.clickup.com/api/v2/team",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Workspace Seats",
+        "api_call": "https://api.clickup.com/api/v2/team/workspace_id/seats",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Track Time",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/time",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"start\": 1567780450202,\n  \"end\": 1508369194377,\n  \"time\": 8640000\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Time Tracked",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/time/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit Time Tracked",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/time/interval_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"start\": 1567780450202,\n  \"end\": 1508369194377,\n  \"time\": 8640000\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete Time Tracked",
+        "api_call": "https://api.clickup.com/api/v2/task/task_id/time/interval_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get time entries within a date range",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get time entry history",
+        "api_call": "https://api.clickup.com/api/v2/team/team_Id/time_entries/timer_id/history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get singular time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/time_entry_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get running time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/current",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"description\": \"from api\",\r\n  \"tags\": [\r\n    {\r\n    \t\"name\": \"josh1\",\r\n    \t\"tag_bg\": \"#BF55EC\",\r\n        \"tag_fg\": \"#BF55EC\"\r\n    }\r\n  ],\r\n  \"start\": 1595282645000,\r\n  \"created_with\": \"string\",\r\n  \"billable\": true,\r\n  \"duration\": 50000,\r\n  \"assignee\": 300528\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove tags from timer entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"time_entry_ids\": [\n\t\t2004673344540003570\n\t],\n\t\"tags\": [\n\t\t{\n\t\t\t\"name\": \"josh1\",\n\t    \t\"tag_bg\": \"#BF55EC\",\n\t        \"tag_fg\": \"#BF55EC\"\n\t\t}\n\t]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Add tags from time entries",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"time_entry_ids\": [\r\n    \"2043908062133112350\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n        \"name\": \"test tag\",\r\n        \"tag_bg\": \"#000000\",\r\n        \"tag_fg\": \"#000000\"\r\n    }\r\n  ]\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get all tags from time entries",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Change tag names from time entries",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"joshy\",\r\n  \"new_name\": \"MAMA\",\r\n  \"tag_bg\": \"#000000\",\r\n  \"tag_fg\": \"#000000\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Start a time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/start/{timer_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Stop current time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete time a time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/time_entry_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update a time entry",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/time_entries/timer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"description\": \"string\",\r\n  \"tags\": [\r\n    \"string\"\r\n  ],\r\n  \"tag_action\": \"replace\",\r\n  \"start\": 0,\r\n  \"end\": 0,\r\n  \"tid\": \"JOSH-720\",\r\n  \"billable\": true,\r\n  \"duration\": 40000,\r\n  \"assignee\": 0\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Invite User to Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/user",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"admin\": true,\r\n  \"custom_role_id\": 123456\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Edit User on Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/user/user_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"username\": \"User Name\",\r\n  \"admin\": false,\r\n  \"custom_role_id\": 12345\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Remove User From Workspace",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/user/user_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get User",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/user/user_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Team View",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"New Team View Name\",\n  \"type\": \"list\",\n  \"grouping\": {\n    \"field\": \"status\",\n    \"dir\": 1,\n    \"collapsed\": [],\n    \"ignore\": false\n  },\n  \"divide\": {\n    \"field\": null,\n    \"dir\": null,\n    \"collapsed\": []\n  },\n  \"sorting\": {\n    \"fields\": []\n  },\n  \"filters\": {\n    \"op\": \"AND\",\n    \"fields\": [],\n    \"search\": \"\",\n    \"show_closed\": false\n  },\n  \"columns\": {\n    \"fields\": []\n  },\n  \"team_sidebar\": {\n    \"assignees\": [],\n    \"assigned_comments\": false,\n    \"unassigned_tasks\": false\n  },\n  \"settings\": {\n    \"show_task_locations\": false,\n    \"show_subtasks\": 3,\n    \"show_subtask_parent_names\": false,\n    \"show_closed_subtasks\": false,\n    \"show_assignees\": true,\n    \"show_images\": true,\n    \"collapse_empty_columns\": null,\n    \"me_comments\": true,\n    \"me_subtasks\": true,\n    \"me_checklists\": true\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Space View",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"API V2 View\",\n  \"type\": \"list\",\n  \"grouping\": {\n    \"field\": \"status\",\n    \"dir\": 1,\n    \"collapsed\": [],\n    \"ignore\": false\n  },\n  \"divide\": {\n    \"field\": null,\n    \"dir\": null,\n    \"collapsed\": []\n  },\n  \"sorting\": {\n    \"fields\": []\n  },\n  \"filters\": {\n    \"op\": \"AND\",\n    \"fields\": [],\n    \"search\": \"\",\n    \"show_closed\": false\n  },\n  \"columns\": {\n    \"fields\": []\n  },\n  \"team_sidebar\": {\n    \"assignees\": [],\n    \"assigned_comments\": false,\n    \"unassigned_tasks\": false\n  },\n  \"settings\": {\n    \"show_task_locations\": false,\n    \"show_subtasks\": 3,\n    \"show_subtask_parent_names\": false,\n    \"show_closed_subtasks\": false,\n    \"show_assignees\": true,\n    \"show_images\": true,\n    \"collapse_empty_columns\": null,\n    \"me_comments\": true,\n    \"me_subtasks\": true,\n    \"me_checklists\": true\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create Folder View",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"API V2 View\",\n  \"type\": \"list\",\n  \"grouping\": {\n    \"field\": \"status\",\n    \"dir\": 1,\n    \"collapsed\": [],\n    \"ignore\": false\n  },\n  \"divide\": {\n    \"field\": null,\n    \"dir\": null,\n    \"collapsed\": []\n  },\n  \"sorting\": {\n    \"fields\": []\n  },\n  \"filters\": {\n    \"op\": \"AND\",\n    \"fields\": [],\n    \"search\": \"\",\n    \"show_closed\": false\n  },\n  \"columns\": {\n    \"fields\": []\n  },\n  \"team_sidebar\": {\n    \"assignees\": [],\n    \"assigned_comments\": false,\n    \"unassigned_tasks\": false\n  },\n  \"settings\": {\n    \"show_task_locations\": false,\n    \"show_subtasks\": 3,\n    \"show_subtask_parent_names\": false,\n    \"show_closed_subtasks\": false,\n    \"show_assignees\": true,\n    \"show_images\": true,\n    \"collapse_empty_columns\": null,\n    \"me_comments\": true,\n    \"me_subtasks\": true,\n    \"me_checklists\": true\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create List View",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"API V2 View\",\n  \"type\": \"list\",\n  \"grouping\": {\n    \"field\": \"status\",\n    \"dir\": 1,\n    \"collapsed\": [],\n    \"ignore\": false\n  },\n  \"divide\": {\n    \"field\": null,\n    \"dir\": null,\n    \"collapsed\": []\n  },\n  \"sorting\": {\n    \"fields\": []\n  },\n  \"filters\": {\n    \"op\": \"AND\",\n    \"fields\": [],\n    \"search\": \"\",\n    \"show_closed\": false\n  },\n  \"columns\": {\n    \"fields\": []\n  },\n  \"team_sidebar\": {\n    \"assignees\": [],\n    \"assigned_comments\": false,\n    \"unassigned_tasks\": false\n  },\n  \"settings\": {\n    \"show_task_locations\": false,\n    \"show_subtasks\": 3,\n    \"show_subtask_parent_names\": false,\n    \"show_closed_subtasks\": false,\n    \"show_assignees\": true,\n    \"show_images\": true,\n    \"collapse_empty_columns\": null,\n    \"me_comments\": true,\n    \"me_subtasks\": true,\n    \"me_checklists\": true\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Team Views",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Space Views",
+        "api_call": "https://api.clickup.com/api/v2/space/space_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Folder Views",
+        "api_call": "https://api.clickup.com/api/v2/folder/folder_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get List Views",
+        "api_call": "https://api.clickup.com/api/v2/list/list_id/view",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get View",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste view_id from \"API V2 View\" on \"API V2 Test Space\" for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get View Tasks",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id/task?page=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update View",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"API V2 View\",\n  \"type\": \"list\",\n  \"parent\": {\n    \"id\": \"512\",\n    \"type\": 7\n  },\n  \"grouping\": {\n    \"field\": \"status\",\n    \"dir\": 1,\n    \"collapsed\": [],\n    \"ignore\": false\n  },\n  \"divide\": {\n    \"field\": null,\n    \"dir\": null,\n    \"collapsed\": []\n  },\n  \"sorting\": {\n    \"fields\": []\n  },\n  \"filters\": {\n    \"op\": \"AND\",\n    \"fields\": [],\n    \"search\": \"\",\n    \"show_closed\": false\n  },\n  \"columns\": {\n    \"fields\": []\n  },\n  \"team_sidebar\": {\n    \"assignees\": [],\n    \"assigned_comments\": false,\n    \"unassigned_tasks\": false\n  },\n  \"settings\": {\n    \"show_task_locations\": false,\n    \"show_subtasks\": 3,\n    \"show_subtask_parent_names\": true,\n    \"show_closed_subtasks\": true,\n    \"show_assignees\": false,\n    \"show_images\": true,\n    \"collapse_empty_columns\": null,\n    \"me_comments\": true,\n    \"me_subtasks\": true,\n    \"me_checklists\": true\n  }\n}"
+            }
+        },
+        "functionality": "Please paste view_id from \"API V2 View\" on \"API V2 Test Space\" for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a View",
+        "api_call": "https://api.clickup.com/api/v2/view/view_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste view_id from a view on \"Everything\" for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Create a Webhook",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"endpoint\": \"https://af4a0f62.ngrok.io\",\n  \"events\": [\n    \"taskCreated\",\n    \"taskUpdated\",\n    \"taskDeleted\",\n    \"taskPriorityUpdated\",\n    \"taskStatusUpdated\",\n    \"taskAssigneeUpdated\",\n    \"taskDueDateUpdated\",\n    \"taskTagUpdated\",\n    \"taskMoved\",\n    \"taskCommentPosted\",\n    \"taskCommentUpdated\",\n    \"taskTimeEstimateUpdated\",\n    \"taskTimeTrackedUpdated\",\n    \"listCreated\",\n    \"listUpdated\",\n    \"listDeleted\",\n    \"folderCreated\",\n    \"folderUpdated\",\n    \"folderDeleted\",\n    \"spaceCreated\",\n    \"spaceUpdated\",\n    \"spaceDeleted\",\n    \"goalCreated\",\n    \"goalUpdated\",\n    \"goalDeleted\",\n    \"keyResultCreated\",\n    \"keyResultUpdated\",\n    \"keyResultDelted\"\n  ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Update Webhook",
+        "api_call": "https://api.clickup.com/api/v2/webhook/webhook_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"endpoint\": \"https://yourdomain.com/webhook\",\n  \"events\": \"*\",\n  \"status\": \"active\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Delete a Webhook",
+        "api_call": "https://api.clickup.com/api/v2/webhook/webhook_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please paste webhook_id from previously created webhook for continuity"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ClickUp Public API: Get Webhooks",
+        "api_call": "https://api.clickup.com/api/v2/team/team_id/webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Please create another webhook and test afterward"
+    }
+]

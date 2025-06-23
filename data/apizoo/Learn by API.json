@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Learn by API: Begin Learning",
+        "api_call": "learn-by-api.glitch.me/intro",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Click __Send__ in Postman to begin learning about APIs!"
+    }
+]
