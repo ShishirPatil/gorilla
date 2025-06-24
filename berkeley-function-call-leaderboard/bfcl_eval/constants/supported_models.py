@@ -176,7 +176,7 @@ SUPPORTED_MODELS = [
     "cerebras/llama-3.3-70b-FC",
     "cerebras/llama-4-scout-17b-16e-instruct-FC",
     "cerebras/qwen-3-32b-FC",
-    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-long-FC",
+    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-FC",
     "fireworks/accounts/fireworks/models/llama-v3p3-70b-instruct-FC",
     "fireworks/accounts/fireworks/models/llama4-scout-instruct-basic-FC",
     "fireworks/accounts/fireworks/models/llama4-maverick-instruct-basic-FC",

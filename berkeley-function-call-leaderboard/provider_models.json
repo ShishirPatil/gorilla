@@ -17,7 +17,7 @@
     "cerebras/qwen-3-32b-FC"
   ],
   "fireworks": [
-    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-long-FC",
+    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-FC",
     "fireworks/accounts/fireworks/models/llama-v3p3-70b-instruct-FC",
     "fireworks/accounts/fireworks/models/llama4-scout-instruct-basic-FC",
     "fireworks/accounts/fireworks/models/llama4-maverick-instruct-basic-FC",

@@ -1785,9 +1785,9 @@ local_inference_model_map = {
         underscore_to_dot=True,
     ),
 
-    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-long-FC": ModelConfig(
-        model_name="accounts/fireworks/models/llama-v3p1-405b-instruct-long-FC",
-        display_name="accounts/fireworks/models/llama-v3p1-405b-instruct-long (FC)",
+    "fireworks/accounts/fireworks/models/llama-v3p1-405b-instruct-FC": ModelConfig(
+        model_name="accounts/fireworks/models/llama-v3p1-405b-instruct-FC",
+        display_name="accounts/fireworks/models/llama-v3p1-405b-instruct (FC)",
         url="https://www.anthropic.com/news/3-5-models-and-computer-use",
         org="fireworks",
         license="Proprietary",
