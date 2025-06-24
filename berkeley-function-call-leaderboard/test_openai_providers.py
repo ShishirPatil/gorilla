@@ -32,6 +32,7 @@ CSV_HEADERS = [
     "Qwen3-32B",
 ]
 DEFAULT_SEED = 42
+DATASETS_PREFIX = "BFCL_v3_"
 
 date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 base_dir = Path(__file__).resolve().parent
@@ -241,7 +242,7 @@ def main(
     for category in test_categories:
         try:
             generate_subset(
-                dataset_name=category, subset_size=subset_size, seed=DEFAULT_SEED
+                dataset_name=f"{DATASETS_PREFIX}{category}", subset_size=subset_size, seed=DEFAULT_SEED
             )
         except Exception as e:
             raise Exception(f"Subset generation Error output: {category}: {e}")
