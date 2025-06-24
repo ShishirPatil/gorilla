@@ -59,9 +59,8 @@ def generate_subset(dataset_name, subset_size, seed):
         )
 
     if subset_size > len(questions):
-        raise ValueError(
-            f"Subset size {subset_size} is larger than dataset size {len(questions)}"
-        )
+        subset_size = len(questions)
+        print(f"Subset size {subset_size} is larger than dataset size {len(questions)} using dataset size {len(questions)}")
 
     random.seed(seed)
     indices = sorted(random.sample(range(len(questions)), subset_size))
