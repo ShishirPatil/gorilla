@@ -17,8 +17,6 @@ from dotenv import load_dotenv
 from generate_subsets import generate_subset
 from utils import upload_to_s3
 
-load_dotenv()
-
 CSV_HEADERS = [
     "run_id",
     "test_suite_name",
@@ -35,7 +33,10 @@ DEFAULT_SEED = 42
 DATASETS_PREFIX = "BFCL_v3_"
 
 date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+
 base_dir = Path(__file__).resolve().parent
+load_dotenv(base_dir / ".env")
+load_dotenv()
 results_dir = base_dir / "results"
 scores_csv_file_path = results_dir / date / "scores.csv"
 scores_csv_file_path.parent.mkdir(parents=True, exist_ok=True)
@@ -134,8 +135,8 @@ def run_models_for_provider(
     date,
     concurrency_models: bool = True,
 ):
-    result_path = Path("./result") / provider / date
-    score_path = Path("./score") / provider / date
+    result_path = base_dir / "result" / provider / date
+    score_path = base_dir / "score" / provider / date
 
     def run_model(model, concurrent):
         for category in test_category:
