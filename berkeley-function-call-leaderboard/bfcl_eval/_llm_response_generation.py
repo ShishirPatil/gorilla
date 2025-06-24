@@ -4,6 +4,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from pathlib import Path
+import traceback
 
 from bfcl_eval.constants.category_mapping import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
@@ -222,6 +223,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
                 return {
                     "id": test_case["id"],
                     "result": f"Error during inference: {str(e)}",
+                    "traceback": traceback.format_exc()
                 }
 
     result_to_write = {
