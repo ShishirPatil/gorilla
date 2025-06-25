@@ -1,0 +1,44 @@
+name: Dependency Check and Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8  # Replace with your desired Python version
+
+      - name: Install pip-tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-tools
+
+      - name: Check for Updates
+        run: |
+          pip-compile --generate-hashes --output-file=requirements.txt requirements.in
+
+      - name: Commit and Push Updated Dependencies
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add requirements.txt
+          git commit -m "Update dependencies"
+          git push
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update dependencies"
+          branch: dependency-update
+          title: "Update Dependencies"
+          body: "Automated dependency update."
