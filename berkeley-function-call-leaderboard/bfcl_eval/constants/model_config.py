@@ -47,6 +47,7 @@ from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 
 # -----------------------------------------------------------------------------
@@ -1953,6 +1954,54 @@ third_party_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "katanemo/Arch-Agent-1.5B": ModelConfig(
+        model_name="katanemo/Arch-Agent-1.5B",
+        display_name="Arch-Agent-1.5B",
+        url="https://www.katanemo.com/",
+        org="katanemo",
+        license="Proprietary",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-3B": ModelConfig(
+        model_name="katanemo/Arch-Agent-3B",
+        display_name="Arch-Agent-3B",
+        url="https://www.katanemo.com/",
+        org="katanemo",
+        license="Proprietary",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-7B": ModelConfig(
+        model_name="katanemo/Arch-Agent-7B",
+        display_name="Arch-Agent-7B",
+        url="https://www.katanemo.com/",
+        org="katanemo",
+        license="Proprietary",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-32B": ModelConfig(
+        model_name="katanemo/Arch-Agent-32B",
+        display_name="Arch-Agent-32B",
+        url="https://www.katanemo.com/",
+        org="katanemo",
+        license="Proprietary",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
     ),
 }
 
