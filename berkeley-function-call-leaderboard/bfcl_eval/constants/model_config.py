@@ -1958,7 +1958,7 @@ third_party_inference_model_map = {
     "katanemo/Arch-Agent-1.5B": ModelConfig(
         model_name="katanemo/Arch-Agent-1.5B",
         display_name="Arch-Agent-1.5B",
-        url="https://www.katanemo.com/",
+        url="https://huggingface.co/katanemo/Arch-Agent-1.5B",
         org="katanemo",
         license="Proprietary",
         model_handler=ArchHandler,
@@ -1970,7 +1970,7 @@ third_party_inference_model_map = {
     "katanemo/Arch-Agent-3B": ModelConfig(
         model_name="katanemo/Arch-Agent-3B",
         display_name="Arch-Agent-3B",
-        url="https://www.katanemo.com/",
+        url="https://huggingface.co/katanemo/Arch-Agent-3B",
         org="katanemo",
         license="Proprietary",
         model_handler=ArchHandler,
@@ -1982,7 +1982,7 @@ third_party_inference_model_map = {
     "katanemo/Arch-Agent-7B": ModelConfig(
         model_name="katanemo/Arch-Agent-7B",
         display_name="Arch-Agent-7B",
-        url="https://www.katanemo.com/",
+        url="https://huggingface.co/katanemo/Arch-Agent-7B",
         org="katanemo",
         license="Proprietary",
         model_handler=ArchHandler,
@@ -1994,7 +1994,7 @@ third_party_inference_model_map = {
     "katanemo/Arch-Agent-32B": ModelConfig(
         model_name="katanemo/Arch-Agent-32B",
         display_name="Arch-Agent-32B",
-        url="https://www.katanemo.com/",
+        url="https://huggingface.co/katanemo/Arch-Agent-32B",
         org="katanemo",
         license="Proprietary",
         model_handler=ArchHandler,
