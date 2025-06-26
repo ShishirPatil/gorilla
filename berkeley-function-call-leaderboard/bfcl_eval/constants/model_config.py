@@ -48,6 +48,7 @@ from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceL
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
+from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1109,6 +1110,18 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
+    "BitAgent/BitAgent-Bounty-8B": ModelConfig(
+        model_name="BitAgent/BitAgent-Bounty-8B",
+        display_name="BitAgent-Bounty-8B",
+        url="https://huggingface.co/BitAgent/BitAgent-Bounty-8B",
+        org="Bittensor",
+        license="Apache-2.0",
+        model_handler=BitAgentHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
