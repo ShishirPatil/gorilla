@@ -1,53 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-<<<<<<< HEAD:berkeley-function-call-leaderboard/bfcl/constants/model_config.py
-from bfcl.model_handler.api_inference.claude import ClaudeHandler
-from bfcl.model_handler.api_inference.cohere import CohereHandler
-from bfcl.model_handler.api_inference.databricks import DatabricksHandler
-from bfcl.model_handler.api_inference.deepseek import DeepSeekAPIHandler
-from bfcl.model_handler.api_inference.fireworks import FireworksHandler
-from bfcl.model_handler.api_inference.functionary import FunctionaryHandler
-from bfcl.model_handler.api_inference.gemini import GeminiHandler
-from bfcl.model_handler.api_inference.gogoagent import GoGoAgentHandler
-from bfcl.model_handler.api_inference.gorilla import GorillaHandler
-from bfcl.model_handler.api_inference.grok import GrokHandler
-from bfcl.model_handler.api_inference.mining import MiningHandler
-from bfcl.model_handler.api_inference.mistral import MistralHandler
-from bfcl.model_handler.api_inference.nexus import NexusHandler
-from bfcl.model_handler.api_inference.nova import NovaHandler
-from bfcl.model_handler.api_inference.novita import NovitaHandler
-from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
-from bfcl.model_handler.api_inference.writer import WriterHandler
-from bfcl.model_handler.api_inference.yi import YiHandler
-from bfcl.model_handler.local_inference.bielik import BielikHandler
-from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
-from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
-from bfcl.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
-from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
-from bfcl.model_handler.local_inference.gemma import GemmaHandler
-from bfcl.model_handler.local_inference.glaive import GlaiveHandler
-from bfcl.model_handler.local_inference.glm import GLMHandler
-from bfcl.model_handler.local_inference.granite import GraniteHandler
-from bfcl.model_handler.local_inference.hammer import HammerHandler
-from bfcl.model_handler.local_inference.hermes import HermesHandler
-from bfcl.model_handler.local_inference.llama import LlamaHandler
-from bfcl.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
-from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
-from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
-from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
-from bfcl.model_handler.local_inference.phi import PhiHandler
-from bfcl.model_handler.local_inference.phi_fc import PhiFCHandler
-from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
-from bfcl.model_handler.local_inference.qwen import QwenHandler
-from bfcl.model_handler.local_inference.qwen_fc import QwenFCHandler
-from bfcl.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
-from bfcl.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
-from bfcl.model_handler.local_inference.think_agent import ThinkAgentHandler
-from bfcl.model_handler.api_inference.qwq import QwenAPIHandler
-from bfcl.model_handler.api_inference.dm_cito import DMCitoHandler
-=======
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
 from bfcl_eval.model_handler.api_inference.databricks import DatabricksHandler
@@ -95,7 +48,6 @@ from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceL
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
->>>>>>> upstream/main:berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1141,8 +1093,18 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-<<<<<<< HEAD:berkeley-function-call-leaderboard/bfcl/constants/model_config.py
-=======
+    "DM-Cito-8B-v2": ModelConfig(
+        model_name="DM-Cito-8B-v2",
+        display_name="DM-Cito-8B-v2 (Prompt)",
+        url="https://www.mininglamp.com/",
+        org="Mininglamp",
+        license="Proprietary",
+        model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "Ling/ling-lite-v1.5": ModelConfig(
         model_name="Ling/ling-lite-v1.5",
         display_name="ling-lite-v1.5 (Prompt)",
@@ -1155,7 +1117,6 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
->>>>>>> upstream/main:berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
 }
 
 # Inference through local hosting
