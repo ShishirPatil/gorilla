@@ -65,7 +65,10 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+    config = MODEL_CONFIG_MAPPING[model_name]
+    handler = config.model_handler(model_name, temperature)
+    # Propagate config flags to the handler instance
+    handler.is_fc_model = config.is_fc_model
     return handler
 
 
