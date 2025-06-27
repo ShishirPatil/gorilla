@@ -865,6 +865,18 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
+    "phronetic-ai/RZN-T": ModelConfig(
+        model_name="phronetic-ai/RZN-T",
+        display_name="RZN-T (Prompt)",
+        url="https://huggingface.co/phronetic-ai/RZN-T",
+        org="Phronetic AI",
+        license="apache-2.0",
+        model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "qwen3-0.6b": ModelConfig(
         model_name="qwen3-0.6b",
         display_name="Qwen3-0.6B (Prompt)",

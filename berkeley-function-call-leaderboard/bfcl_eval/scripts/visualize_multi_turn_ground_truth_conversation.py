@@ -3,13 +3,13 @@ from copy import deepcopy
 
 from bfcl_eval._llm_response_generation import parse_test_category_argument
 from bfcl_eval.constants.eval_config import POSSIBLE_ANSWER_PATH, PROMPT_PATH, UTILS_PATH
-from bfcl_eval.eval_checker.eval_runner_helper import load_file, write_list_of_dicts_to_file
+from bfcl_eval.utils import load_file, write_list_of_dicts_to_file
 from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     STATELESS_CLASSES,
     execute_multi_turn_func_call,
 )
 
-_, test_filename_total = parse_test_category_argument(["multi_turn"])
+test_filename_total, _ = parse_test_category_argument(["multi_turn"])
 
 for file_path in test_filename_total:
     ground_truth_data = load_file(POSSIBLE_ANSWER_PATH / file_path)
