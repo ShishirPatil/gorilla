@@ -162,33 +162,20 @@
                     </i>
                 </p>
 
-                <h4 id="llm-and-retrievers">Love at First Query: The Untold Bond of LLMs and Retrievers</h4>
                 <div class="body">
+                    <hr class="post-separator">
                     <p>
-                        If you are deploying LLMs in production today, you might be
-                        augmenting your model with retrievers such as in Retriever Augmented Generation (RAG) paradigms. Given, most LLMs today are used with retrievers, shouldn't the training recipe for the LLM consider this!! In Gorilla, we consider retrievers to be first class citizens, and train our models to be <em>retriever aware</em>. If you are thinking about integrating LLMs with llamaindex, vector databases such as Weviate, etc check out our blog post on <a class="continue-link" href="blogs/blog_post_2_rat.html"> Retrieval Aware Training (RAT)</a> where we teach LLMs to "work-together" with retrievers! 
+                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
                     </p>
-                </div>
-
-                <!-- Gorilla side by side comparison -->
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_1_result.png" alt="How well does Gorilla perform" width="65%">
-                    <br>
-                </p>
-                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
-                    <i style="font-size: 0.9em;">
-                        Examples of API calls. In this example, for the given prompt GPT-4 presents a model that doesn't exist, and Claude picks an incorrect library. In contrast, our Gorilla model can identify the task correctly and suggest a fully-qualified API call.
-                    </i>
-                </p>
-
-                <h4 id="hallucinations">Reality Bytes: When LLMs See Things That Aren't There</h4>
-                <div class="body">
-                    <p>
-                        Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but at least not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
-                        Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
-
-                    </p>
-                </div>
+                    <p id="gorilla-bibtex">
+                        If you would like to cite Gorilla:<br>
+                        @inproceedings{patil2024gorilla,
+                        &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs},
+                        &nbsp; 	author={Patil, Shishir G. and Zhang, Tianjun and Wang, Xin and Gonzalez, Joseph E.},
+                        &nbsp; 	year={2024},
+                        &nbsp;	journal={Advances in Neural Information Processing Systems}
+                    }</p>
+                </div>                
             </div>
         </div>
     </div>
