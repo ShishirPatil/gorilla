@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 29, 2025] [#1087](https://github.com/ShishirPatil/gorilla/pull/1087): Added missing base-cost definitions for three airport routes in `travel_booking` backend.
 - [Jun 28, 2025] [#1085](https://github.com/ShishirPatil/gorilla/pull/1085): Fix question wording for `irrelevance_232`.
 - [Jun 28, 2025] [#1084](https://github.com/ShishirPatil/gorilla/pull/1084): Fix typo in ground truth for `parallel_multiple_141`.
 - [Jun 18, 2025] [#1068](https://github.com/ShishirPatil/gorilla/pull/1068): Fix prompt concatenation issue in Qwen chat template. The self-hosted `Qwen3` models are affected.
