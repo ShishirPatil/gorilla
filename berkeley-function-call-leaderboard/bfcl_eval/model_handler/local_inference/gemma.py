@@ -1,3 +1,4 @@
+from typing import Any
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -8,11 +9,14 @@ from overrides import override
 
 
 class GemmaHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the Gemma model that extends the base OSSHandler. This class provides specific implementations for prompt formatting and preprocessing for the Gemma model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function) -> str:
         """
         "bos_token": "<bos>",
         "chat_template": "{{ bos_token }}\n{%- if messages[0]['role'] == 'system' -%}\n    {%- if messages[0]['content'] is string -%}\n        {%- set first_user_prefix = messages[0]['content'] + '\n\n' -%}\n    {%- else -%}\n        {%- set first_user_prefix = messages[0]['content'][0]['text'] + '\n\n' -%}\n    {%- endif -%}\n    {%- set loop_messages = messages[1:] -%}\n{%- else -%}\n    {%- set first_user_prefix = \"\" -%}\n    {%- set loop_messages = messages -%}\n{%- endif -%}\n{%- for message in loop_messages -%}\n    {%- if (message['role'] == 'user') != (loop.index0 % 2 == 0) -%}\n        {{ raise_exception(\"Conversation roles must alternate user/assistant/user/assistant/...\") }}\n    {%- endif -%}\n    {%- if (message['role'] == 'assistant') -%}\n        {%- set role = \"model\" -%}\n    {%- else -%}\n        {%- set role = message['role'] -%}\n    {%- endif -%}\n    {{ '<start_of_turn>' + role + '\n' + (first_user_prefix if loop.first else \"\") }}\n    {%- if message['content'] is string -%}\n        {{ message['content'] | trim }}\n    {%- elif message['content'] is iterable -%}\n        {%- for item in message['content'] -%}\n            {%- if item['type'] == 'image' -%}\n                {{ '<start_of_image>' }}\n            {%- elif item['type'] == 'text' -%}\n                {{ item['text'] | trim }}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {{ raise_exception(\"Invalid content type\") }}\n    {%- endif -%}\n    {{ '<end_of_turn>\n' }}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{'<start_of_turn>model\n'}}\n{%- endif -%}\n",
@@ -36,6 +40,16 @@ class GemmaHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Preprocesses the test entry before querying the model. This includes processing function documentation, system prompts, and combining consecutive user prompts.
+        
+        Args:
+            test_entry (`dict`):
+                The test entry containing questions and functions to be processed.
+        
+        Returns:
+            `dict`: A dictionary containing processed messages and functions.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -57,6 +71,16 @@ class GemmaHandler(OSSHandler):
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
+        """
+        Substitutes the 'assistant' role with 'model' in the prompts to match Gemma's expected format.
+        
+        Args:
+            prompts (`list[dict]`):
+                List of prompt dictionaries to process.
+        
+        Returns:
+            `list[dict]`: The processed prompts with roles substituted.
+        """
         for prompt in prompts:
             if prompt["role"] == "assistant":
                 prompt["role"] = "model"

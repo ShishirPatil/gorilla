@@ -16,11 +16,14 @@ class DeepseekCoderHandler(OSSHandler):
     This is the handler for the Deepseek-Coder models. Models are benchmarked in their Function Calling mode.
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: list[dict] | str, language: str="Python") -> list[dict]:
+        """
+        Processes the model's response to extract the abstract syntax tree (AST) representation. If the input is not a list, returns an empty list. Otherwise, returns the input as-is since it's already in the expected format.
+        """
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list:
@@ -28,13 +31,16 @@ class DeepseekCoderHandler(OSSHandler):
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: list[dict] | str) -> list[dict]:
+        """
+        Processes the model's response to extract executable function calls. If the input is not a list, returns an empty list. Otherwise, converts the list of function calls into executable format using `convert_to_function_call`.
+        """
         if type(result) != list:
             return []
         return convert_to_function_call(result)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict], function: list[dict]) -> str:
         """
         "bos_token": {
             "__type": "AddedToken",
@@ -117,6 +123,9 @@ class DeepseekCoderHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Prepares the input prompt for the model by processing function definitions and questions. Converts system prompts into user prompts and combines consecutive user prompts. Adds a system prompt with tool definitions at the beginning of the question list.
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -144,6 +153,9 @@ class DeepseekCoderHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the model's response to extract tool calls or assistant messages. Returns the parsed responses along with token usage information.
+        """
         model_responses = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_responses)
 
@@ -174,13 +186,16 @@ class DeepseekCoderHandler(OSSHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds the model's response to the chat history. The response can be either a tool call or a regular assistant message.
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"],
         )
         return inference_data
 
     @staticmethod
-    def extract_tool_calls(input_string):
+    def extract_tool_calls(input_string: str) -> list[dict]:
         """
         Input is like this:
         "<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>function<｜tool▁sep｜>calculate_cosine.similarity

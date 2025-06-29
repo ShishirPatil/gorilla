@@ -1,3 +1,4 @@
+from typing import Any
 import re
 
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
@@ -20,7 +21,7 @@ class NemotronHandler(NvidiaHandler):
     - <AVAILABLE_TOOLS>{functions}</AVAILABLE_TOOLS> for function documentation
     """
 
-    def _format_system_prompt(self, prompts, function_docs, test_category):
+    def _format_system_prompt(self, prompts: list[dict[str, str]], function_docs: str, test_category: str) -> list[dict[str, str]]:
         """Format the system prompt in the Nemotron-specific XML format."""
 
         system_prompt_template = """You are an expert in composing functions. You are given a question and a set of possible functions.
@@ -80,7 +81,7 @@ Here is a list of functions in JSON format that you can invoke.
         return {"message": []}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[Any]:
         """Extract function calls from the Nemotron XML format."""
         # Extract content between TOOLCALL tags
         toolcall_match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", result, re.DOTALL)
@@ -93,7 +94,7 @@ Here is a list of functions in JSON format that you can invoke.
         return default_decode_ast_prompting(func_call_str, language)
 
     @override
-    def decode_execute(self, result, language="Python"):
+    def decode_execute(self, result: str, language: str="Python") -> list[Any]:
         """Convert Nemotron response to executable function calls."""
         # Extract content between TOOLCALL tags
         toolcall_match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", result, re.DOTALL)

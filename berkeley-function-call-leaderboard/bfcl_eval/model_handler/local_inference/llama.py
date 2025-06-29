@@ -17,12 +17,29 @@ class LlamaHandler(OSSHandler):
     As a result, we will not have separate "prompt mode" for Llama models to avoid confusion.
     """
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: dict[str, Any]) -> str:
+        """
+        Formats the prompt for Llama models according to their specific template requirements for function calling.
+        
+        Args:
+            messages (`list[dict[str, str]]`):
+                List of message dictionaries containing 'role' and 'content' keys.
+            function (`dict[str, Any]`):
+                Function definition to be included in the prompt.
+        
+        Returns:
+            `str`: Formatted prompt string following Llama's specific template format.
+        
+        Note:
+            - For Llama 4 series, uses `<|header_start|>` and `<|header_end|>` tokens
+            - For Llama 3 series, uses `<|start_header_id|>` and `<|end_header_id|>` tokens
+            - Both versions end assistant messages with `<|eot|>` or `<|eot_id|>` respectively
+        """
         # For Llama 4 series, they use a different set of tokens than Llama 3
         if "Llama-4" in self.model_name:
             formatted_prompt = "<|begin_of_text|>"
@@ -46,6 +63,23 @@ class LlamaHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data in Llama's specific format using the 'ipython' role.
+        
+        Args:
+            inference_data (`dict`):
+                Dictionary containing the current inference state.
+            execution_results (`list[str]`):
+                List of execution results to be added to the prompt.
+            model_response_data (`dict`):
+                Dictionary containing model response metadata.
+        
+        Returns:
+            `dict`: Updated inference data with execution results added as 'ipython' role messages.
+        
+        Note:
+            Llama models expect execution results to be provided with the 'ipython' role rather than the standard 'function' role used by other models.
+        """
         for execution_result in execution_results:
             # Llama uses the `ipython` role for execution results
             inference_data["message"].append(

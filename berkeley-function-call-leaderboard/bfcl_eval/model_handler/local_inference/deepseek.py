@@ -6,11 +6,14 @@ class DeepseekHandler(OSSHandler):
     """
     This is the handler for the Deepseek model. Deepseek-Coder models should use the DeepseekCoderHandler instead.
     """
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> str:
+        """
+        Decodes the AST (Abstract Syntax Tree) from the model's response by stripping any code block markers (```json or ```python) from the beginning of the response and then delegating to the parent class's decode_ast method.
+        """
         result = result.strip()
         if result.startswith("```json"):
             result = result[len("```json"):]
@@ -19,7 +22,10 @@ class DeepseekHandler(OSSHandler):
         return super().decode_ast(result, language)
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> str:
+        """
+        Decodes the execution result from the model's response by stripping any code block markers (```json or ```python) from the beginning of the response and then delegating to the parent class's decode_execute method.
+        """
         if result.startswith("```json"):
             result = result[len("```json"):]
         if result.startswith("```python"):
@@ -27,7 +33,7 @@ class DeepseekHandler(OSSHandler):
         return super().decode_execute(result)
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict], function: str) -> str:
         """
         "bos_token": {
             "__type": "AddedToken",
@@ -65,6 +71,9 @@ class DeepseekHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data by formatting them as user messages (since Deepseek doesn't support tool roles) and appending them to the message history. Each execution result is paired with its corresponding decoded model response.
+        """
         # Deepseek don't take the tool role; so we use the user role to send the tool output
         tool_message = {
             "role": "user",
