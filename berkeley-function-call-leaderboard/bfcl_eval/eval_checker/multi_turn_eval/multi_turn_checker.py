@@ -36,7 +36,7 @@ def multi_turn_checker(
         single_turn_ground_truth_execution_results = []
         model_instances = {}  # Will be overwritten in the for loop
         single_step_model_execution_results = []  # Will be overwritten in the for loop
-    
+
         for single_step_model_response in single_turn_model_response_list:
             single_step_model_execution_results, model_instances = (
                 execute_multi_turn_func_call(
@@ -298,7 +298,7 @@ def _is_subsequence_unordered(list1, list2) -> tuple[bool, list]:
     """
     # Copy list2 to avoid modifying the original list during checks
     list2_copy = list2[:]
-    
+
     # Check each item in list1 to see if it exists in list2_copy
     missing_elements = []
     for item in list1:
@@ -308,7 +308,7 @@ def _is_subsequence_unordered(list1, list2) -> tuple[bool, list]:
         except ValueError:
             # If item is not found, add it to missing_elements
             missing_elements.append(item)
-    
+
     # If there are missing elements, list1 is not a subsequence of list2
     is_subsequence = len(missing_elements) == 0
     return is_subsequence, missing_elements
