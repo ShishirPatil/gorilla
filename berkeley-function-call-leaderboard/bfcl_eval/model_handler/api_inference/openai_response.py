@@ -95,7 +95,7 @@ class OpenAIResponsesHandler(BaseHandler):
             if func_call.type == "function_call"
         ]
         tool_call_ids = [
-            func_call.id
+            func_call.call_id
             for func_call in api_response.output
             if func_call.type == "function_call"
         ]
@@ -105,8 +105,8 @@ class OpenAIResponsesHandler(BaseHandler):
 
         model_responses_message_for_chat_history = []
 
-        # Reasoning content should be added back into the conversation state
-        model_output = [{"role": "assistant"} | r.to_dict() for r in api_response.output if r.type in ("reasoning")]
+        # Reasoning content and function calls should be added back into the conversation state
+        model_output = [{"role": "assistant"} | r.to_dict() for r in api_response.output if r.type in ("reasoning", "function_call")]
         messages = [{"role": r.role, "content": r.content} for r in api_response.output if r.type == "message"]
         model_responses_message_for_chat_history.extend(model_output)
         model_responses_message_for_chat_history.extend(messages)
@@ -151,8 +151,9 @@ class OpenAIResponsesHandler(BaseHandler):
         ):
             tool_message = {
                 "role": "tool",
-                "content": execution_result,
-                "tool_call_id": tool_call_id,
+                "type": "function_call_output",
+                "call_id": tool_call_id,
+                "output": execution_result,
             }
             inference_data["message"].append(tool_message)
 
