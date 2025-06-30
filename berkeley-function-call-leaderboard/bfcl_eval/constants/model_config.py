@@ -20,13 +20,19 @@ from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
-from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler, QwenAgentThinkHandler, QwenAgentNoThinkHandler
+from bfcl_eval.model_handler.api_inference.qwen import (
+    QwenAPIHandler,
+    QwenAgentThinkHandler,
+    QwenAgentNoThinkHandler,
+)
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
-from bfcl_eval.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
+from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
+    DeepseekReasoningHandler,
+)
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
 from bfcl_eval.model_handler.local_inference.glaive import GlaiveHandler
@@ -344,8 +350,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=15,    
-        output_price=75,   
+        input_price=15,
+        output_price=75,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -356,8 +362,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=15,    
-        output_price=75,   
+        input_price=15,
+        output_price=75,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
@@ -368,8 +374,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=3,     
-        output_price=15,   
+        input_price=3,
+        output_price=15,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -380,8 +386,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=3,     
-        output_price=15,   
+        input_price=3,
+        output_price=15,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
@@ -392,8 +398,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -404,8 +410,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
