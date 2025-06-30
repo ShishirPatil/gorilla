@@ -28,7 +28,7 @@ dependencies = [
     "tree-sitter-javascript==0.21.4",
     "openai>=1.86.0",
     "mistralai==1.7.0",
-    "anthropic==0.49.0",
+    "anthropic==0.53.0",
     "cohere==5.13.3",
     "typer>=0.12.5",
     "tabulate>=0.9.0",

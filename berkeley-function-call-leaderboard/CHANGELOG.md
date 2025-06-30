@@ -2,11 +2,15 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 30, 2025] [#956](https://github.com/ShishirPatil/gorilla/pull/956): Fix typo in ground truth for multi_turn_base.
+- [Jun 29, 2025] [#1034](https://github.com/ShishirPatil/gorilla/pull/1034): Add support for `claude-opus-4-20250514` and `claude-sonnet-4-20250514`
+- [Jun 29, 2025] [#1086](https://github.com/ShishirPatil/gorilla/pull/1086): Fix duplicate test entry ID `live-relevance_3-3-0`.
+- [Jun 29, 2025] [#1087](https://github.com/ShishirPatil/gorilla/pull/1087): Add missing base-cost definitions for three airport routes in `travel_booking` backend.
 - [Jun 28, 2025] [#1085](https://github.com/ShishirPatil/gorilla/pull/1085): Fix question wording for `irrelevance_232`.
 - [Jun 28, 2025] [#1084](https://github.com/ShishirPatil/gorilla/pull/1084): Fix typo in ground truth for `parallel_multiple_141`.
 - [Jun 18, 2025] [#1068](https://github.com/ShishirPatil/gorilla/pull/1068): Fix prompt concatenation issue in Qwen chat template. The self-hosted `Qwen3` models are affected.
-- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Removed the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
-- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fixed multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
+- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Remove the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
+- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fix multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
 - [Jun 14, 2025] [#1032](https://github.com/ShishirPatil/gorilla/pull/1032): Add `Llama-3.1-Nemotron-Ultra-253B-v1` to the leaderboard.
 - [Jun 12, 2025] [#1056](https://github.com/ShishirPatil/gorilla/pull/1056): Add `Ling-Lite-V1.5` to the leaderboard.
 - [Jun 12, 2025] [#1063](https://github.com/ShishirPatil/gorilla/pull/1063): Add support for `DeepSeek-R1-0528` and `DeepSeek-V3-0324`
