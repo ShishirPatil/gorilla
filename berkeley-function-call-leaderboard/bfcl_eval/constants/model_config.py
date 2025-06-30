@@ -1075,9 +1075,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DM-Cito-8B": ModelConfig(
-        model_name="DM-Cito-8B",
-        display_name="DM-Cito-8B (Prompt)",
+    "DM-Cito-8B-v2": ModelConfig(
+        model_name="DM-Cito-8B-v2",
+        display_name="DM-Cito-8B-v2 (Prompt)",
         url="https://www.mininglamp.com/",
         org="Mininglamp",
         license="Proprietary",
