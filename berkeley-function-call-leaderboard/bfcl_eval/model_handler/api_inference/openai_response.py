@@ -1,7 +1,6 @@
 import json
 import os
 import time
-from typing import Any
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
@@ -56,10 +55,14 @@ class OpenAIResponsesHandler(BaseHandler):
     def _query_FC(self, inference_data: dict):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
-        
+
         # OpenAI reasoning models don't support temperature parameter
         # As of 6/29/25, not officially documented but returned an error when manually tested
-        temperature = self.temperature if "o1" not in self.model_name and "o3-mini" not in self.model_name else None
+        temperature = (
+            self.temperature
+            if "o1" not in self.model_name and "o3-mini" not in self.model_name
+            else None
+        )
 
         inference_data["inference_input_log"] = {
             "message": repr(message),
@@ -106,8 +109,16 @@ class OpenAIResponsesHandler(BaseHandler):
         model_responses_message_for_chat_history = []
 
         # Reasoning content and function calls should be added back into the conversation state
-        model_output = [{"role": "assistant"} | r.to_dict() for r in api_response.output if r.type in ("reasoning", "function_call")]
-        messages = [{"role": r.role, "content": r.content} for r in api_response.output if r.type == "message"]
+        model_output = [
+            {"role": "assistant"} | r.to_dict()
+            for r in api_response.output
+            if r.type in ("reasoning", "function_call")
+        ]
+        messages = [
+            {"role": r.role, "content": r.content}
+            for r in api_response.output
+            if r.type == "message"
+        ]
         model_responses_message_for_chat_history.extend(model_output)
         model_responses_message_for_chat_history.extend(messages)
 
@@ -115,8 +126,10 @@ class OpenAIResponsesHandler(BaseHandler):
             "model_responses": model_responses,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "tool_call_ids": tool_call_ids,
-            "input_token": api_response.usage.input_tokens,
-            "output_token": api_response.usage.output_tokens,
+            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
+            "output_token": api_response.usage.output_tokens
+            if api_response.usage
+            else 0,
         }
 
     def add_first_turn_message_FC(
@@ -181,11 +194,17 @@ class OpenAIResponsesHandler(BaseHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-         
+        inference_data["inference_input_log"] = {
+            "message": repr(inference_data["message"])
+        }
+
         # OpenAI reasoning models don't support temperature parameter
         # As of 6/29/25, not officially documented but returned an error when manually tested
-        temperature = self.temperature if "o1" not in self.model_name and "o3-mini" not in self.model_name else None
+        temperature = (
+            self.temperature
+            if "o1" not in self.model_name and "o3-mini" not in self.model_name
+            else None
+        )
 
         return self.generate_with_backoff(
             input=inference_data["message"],
@@ -212,7 +231,9 @@ class OpenAIResponsesHandler(BaseHandler):
                 (item.content for item in api_response.output if item.type == "message")
             ),
             "input_token": api_response.usage.input_tokens if api_response.usage else 0,
-            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
+            "output_token": api_response.usage.output_tokens
+            if api_response.usage
+            else 0,
         }
 
     def add_first_turn_message_prompting(
@@ -236,7 +257,10 @@ class OpenAIResponsesHandler(BaseHandler):
         return inference_data
 
     def _add_execution_results_prompting(
-        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+        self,
+        inference_data: dict,
+        execution_results: list[str],
+        model_response_data: dict,
     ) -> dict:
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
