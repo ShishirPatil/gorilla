@@ -6,6 +6,7 @@ on:
 
 jobs:
   build_and_publish:
+    if: github.repository == 'ShishirPatil/gorilla'
     runs-on: ubuntu-latest
     permissions:
       # IMPORTANT: this permission is mandatory for Trusted Publishing

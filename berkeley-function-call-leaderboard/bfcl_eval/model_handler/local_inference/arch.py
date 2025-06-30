@@ -99,7 +99,7 @@ class ArchHandler(OSSHandler):
             formatted_prompt += system_prompt
             formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
             for tool in function:
-                formatted_prompt += f"\n{json.dumps(tool, indent=4)}\n"
+                formatted_prompt += f"\n{json.dumps(tool)}"
             formatted_prompt += '\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{"name": <function-name>, "arguments": <args-json-object>}\n</tool_call><|im_end|>\n'
         else:
             formatted_prompt += f"<|im_start|>system\n{system_prompt}<|im_end|>\n"
