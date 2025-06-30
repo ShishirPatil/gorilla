@@ -121,6 +121,7 @@ class ClaudeHandler(BaseHandler):
             tools=inference_data["tools"],
             temperature=self.temperature,
             messages=messages,
+            timeout=1200,
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
@@ -269,6 +270,7 @@ class ClaudeHandler(BaseHandler):
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
+            timeout=1200,
         )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
