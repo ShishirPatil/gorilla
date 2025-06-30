@@ -56,39 +56,22 @@ class OpenAIResponsesHandler(BaseHandler):
     def _query_FC(self, inference_data: dict):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
+        
+        # OpenAI reasoning models don't support temperature parameter
+        # As of 6/29/25, not officially documented but returned an error when manually tested
+        temperature = self.temperature if "o1" not in self.model_name and "o3-mini" not in self.model_name else None
+
         inference_data["inference_input_log"] = {
             "message": repr(message),
             "tools": tools,
         }
 
-        if len(tools) > 0:
-            # Reasoning models don't support temperature parameter
-            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-            if "o1" in self.model_name or "o3-mini" in self.model_name:
-                return self.generate_with_backoff(
-                    input=message,
-                    model=self.model_name.replace("-FC", ""),
-                    tools=tools,
-                )
-            else:
-                return self.generate_with_backoff(
-                    input=message,
-                    model=self.model_name.replace("-FC", ""),
-                    temperature=self.temperature,
-                    tools=tools,
-                )
-        else:
-            if "o1" in self.model_name or "o3-mini" in self.model_name:
-                return self.generate_with_backoff(
-                    input=message,
-                    model=self.model_name.replace("-FC", ""),
-                )
-            else:
-                return self.generate_with_backoff(
-                    input=message,
-                    model=self.model_name.replace("-FC", ""),
-                    temperature=self.temperature,
-                )
+        return self.generate_with_backoff(
+            input=message,
+            model=self.model_name.replace("-FC", ""),
+            temperature=temperature,
+            tools=tools,
+        )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -221,20 +204,16 @@ class OpenAIResponsesHandler(BaseHandler):
 
     def _query_prompting(self, inference_data: dict):
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-
+         
         # OpenAI reasoning models don't support temperature parameter
-        # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-        if "o1" in self.model_name or "o3-mini" in self.model_name:
-            return self.generate_with_backoff(
-                input=inference_data["message"],
-                model=self.model_name,
-            )
-        else:
-            return self.generate_with_backoff(
-                input=inference_data["message"],
-                model=self.model_name,
-                temperature=self.temperature,
-            )
+        # As of 6/29/25, not officially documented but returned an error when manually tested
+        temperature = self.temperature if "o1" not in self.model_name and "o3-mini" not in self.model_name else None
+
+        return self.generate_with_backoff(
+            input=inference_data["message"],
+            model=self.model_name,
+            temperature=temperature,
+        )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
