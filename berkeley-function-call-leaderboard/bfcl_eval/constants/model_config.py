@@ -20,7 +20,7 @@ from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
-from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler
+from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler, QwenAgentThinkHandler, QwenAgentNoThinkHandler
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
@@ -912,6 +912,18 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "phronetic-ai/RZN-T": ModelConfig(
+        model_name="phronetic-ai/RZN-T",
+        display_name="RZN-T (Prompt)",
+        url="https://huggingface.co/phronetic-ai/RZN-T",
+        org="Phronetic AI",
+        license="apache-2.0",
+        model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
     "qwen3-0.6b": ModelConfig(
         model_name="qwen3-0.6b",
@@ -1977,6 +1989,30 @@ third_party_inference_model_map = {
         output_price=0.2,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "qwen3-4b-think-FC": ModelConfig(
+        model_name="qwen3-4b-think-FC",
+        display_name="Qwen3-4B-Think (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAgentThinkHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "qwen3-4b-nothink-FC": ModelConfig(
+        model_name="qwen3-4b-nothink-FC",
+        display_name="Qwen3-4B-NoThink (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=QwenAgentNoThinkHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
 }
 

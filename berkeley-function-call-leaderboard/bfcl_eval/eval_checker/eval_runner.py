@@ -27,9 +27,12 @@ from tqdm import tqdm
 
 
 def get_handler(model_name):
-    return MODEL_CONFIG_MAPPING[model_name].model_handler(
+    config = MODEL_CONFIG_MAPPING[model_name]
+    handler = config.model_handler(
         model_name, temperature=0
     )  # Temperature doesn't matter for evaluation
+    handler.is_fc_model = config.is_fc_model
+    return handler
 
 
 def multi_turn_runner(
