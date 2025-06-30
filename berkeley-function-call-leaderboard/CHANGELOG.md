@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 29, 2025] [#1034](https://github.com/ShishirPatil/gorilla/pull/1034): Add support for `claude-opus-4-20250514` and `claude-sonnet-4-20250514`
 - [Jun 29, 2025] [#1086](https://github.com/ShishirPatil/gorilla/pull/1086): Fix duplicate test entry ID `live-relevance_3-3-0`.
 - [Jun 29, 2025] [#1087](https://github.com/ShishirPatil/gorilla/pull/1087): Add missing base-cost definitions for three airport routes in `travel_booking` backend.
 - [Jun 28, 2025] [#1085](https://github.com/ShishirPatil/gorilla/pull/1085): Fix question wording for `irrelevance_232`.
