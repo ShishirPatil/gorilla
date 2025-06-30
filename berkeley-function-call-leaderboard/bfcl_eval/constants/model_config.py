@@ -20,13 +20,19 @@ from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
-from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler, QwenAgentThinkHandler, QwenAgentNoThinkHandler
+from bfcl_eval.model_handler.api_inference.qwen import (
+    QwenAPIHandler,
+    QwenAgentThinkHandler,
+    QwenAgentNoThinkHandler,
+)
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
-from bfcl_eval.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
+from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
+    DeepseekReasoningHandler,
+)
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
 from bfcl_eval.model_handler.local_inference.glaive import GlaiveHandler
@@ -337,10 +343,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-opus-20240229": ModelConfig(
-        model_name="claude-3-opus-20240229",
-        display_name="Claude-3-Opus-20240229 (Prompt)",
-        url="https://www.anthropic.com/news/claude-3-family",
+    "claude-opus-4-20250514": ModelConfig(
+        model_name="claude-opus-4-20250514",
+        display_name="Claude-Opus-4-20250514 (Prompt)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -349,10 +355,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-opus-20240229-FC": ModelConfig(
-        model_name="claude-3-opus-20240229-FC",
-        display_name="Claude-3-Opus-20240229 (FC)",
-        url="https://www.anthropic.com/news/claude-3-family",
+    "claude-opus-4-20250514-FC": ModelConfig(
+        model_name="claude-opus-4-20250514",
+        display_name="Claude-Opus-4-20250514 (FC)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -361,10 +367,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-7-sonnet-20250219": ModelConfig(
-        model_name="claude-3-7-sonnet-20250219",
-        display_name="Claude-3.7-Sonnet-20250219 (Prompt)",
-        url="https://www.anthropic.com/news/claude-3-7-sonnet",
+    "claude-sonnet-4-20250514": ModelConfig(
+        model_name="claude-sonnet-4-20250514",
+        display_name="Claude-Sonnet-4-20250514 (Prompt)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -373,34 +379,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-7-sonnet-20250219-FC": ModelConfig(
-        model_name="claude-3-7-sonnet-20250219-FC",
-        display_name="Claude-3.7-Sonnet-20250219 (FC)",
-        url="https://www.anthropic.com/news/claude-3-7-sonnet",
-        org="Anthropic",
-        license="Proprietary",
-        model_handler=ClaudeHandler,
-        input_price=3,
-        output_price=15,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
-    "claude-3-5-sonnet-20241022": ModelConfig(
-        model_name="claude-3-5-sonnet-20241022",
-        display_name="Claude-3.5-Sonnet-20241022 (Prompt)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
-        org="Anthropic",
-        license="Proprietary",
-        model_handler=ClaudeHandler,
-        input_price=3,
-        output_price=15,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "claude-3-5-sonnet-20241022-FC": ModelConfig(
-        model_name="claude-3-5-sonnet-20241022-FC",
-        display_name="Claude-3.5-Sonnet-20241022 (FC)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+    "claude-sonnet-4-20250514-FC": ModelConfig(
+        model_name="claude-sonnet-4-20250514",
+        display_name="Claude-Sonnet-4-20250514 (FC)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -416,8 +398,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -428,8 +410,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
