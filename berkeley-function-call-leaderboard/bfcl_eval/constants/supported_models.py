@@ -163,4 +163,8 @@ SUPPORTED_MODELS = [
     "qwen/qwq-32b-FC-novita",
     "qwen/qwq-32b-novita",
     "Ling/ling-lite-v1.5",
+    "katanemo/Arch-Agent-1.5B",
+    "katanemo/Arch-Agent-3B",
+    "katanemo/Arch-Agent-7B",
+    "katanemo/Arch-Agent-32B"
 ]
