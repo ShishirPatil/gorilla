@@ -1,16 +1,13 @@
 import json
+import re
+from typing import Any
 
-from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl_eval.model_handler.utils import (
-    convert_to_tool,
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
 )
 from overrides import override
-import re
-import typing as t
 
 
 class Granite3FCHandler(OSSHandler):
@@ -80,9 +77,7 @@ class Granite3FCHandler(OSSHandler):
         inference_data["message"].append(
             {
                 "role": "assistant",
-                "content": model_response_data[
-                    "model_responses_message_for_chat_history"
-                ],
+                "content": model_response_data["model_responses_message_for_chat_history"],
             }
         )
         return inference_data
@@ -146,7 +141,7 @@ class Granite3FCHandler(OSSHandler):
 
     # copied from phi_fc.py
     @staticmethod
-    def _is_tool_call_response_format(input: t.Any) -> bool:
+    def _is_tool_call_response_format(input: Any) -> bool:
         """
         This is a helper method to detect if the tool call extracted by `_extract_tool_calls` is actually a tool call.
         This is important because the model might return a dictionary that looks like a tool call, but is not. It sometimes returns the function document.
@@ -180,7 +175,6 @@ class Granite31FCHandler(Granite3FCHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
     def _format_prompt(self, messages, function):
@@ -468,4 +462,5 @@ class Granite32FCHandler(Granite31FCHandler):
                 + msg["content"]
                 + "<|end_of_text|>\n"
             )
+
         return formatted_prompt

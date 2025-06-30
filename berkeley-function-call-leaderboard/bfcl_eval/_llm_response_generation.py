@@ -3,6 +3,7 @@ import json
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
+import traceback
 
 from bfcl_eval.constants.category_mapping import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
@@ -64,7 +65,10 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+    config = MODEL_CONFIG_MAPPING[model_name]
+    handler = config.model_handler(model_name, temperature)
+    # Propagate config flags to the handler instance
+    handler.is_fc_model = config.is_fc_model
     return handler
 
 
@@ -206,6 +210,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
                 return {
                     "id": test_case["id"],
                     "result": f"Error during inference: {str(e)}",
+                    "traceback": traceback.format_exc()
                 }
 
     result_to_write = {
