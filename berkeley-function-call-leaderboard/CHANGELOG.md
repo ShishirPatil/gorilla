@@ -2,6 +2,84 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jun 29, 2025] [#1034](https://github.com/ShishirPatil/gorilla/pull/1034): Add support for `claude-opus-4-20250514` and `claude-sonnet-4-20250514`
+- [Jun 29, 2025] [#1086](https://github.com/ShishirPatil/gorilla/pull/1086): Fix duplicate test entry ID `live-relevance_3-3-0`.
+- [Jun 29, 2025] [#1087](https://github.com/ShishirPatil/gorilla/pull/1087): Add missing base-cost definitions for three airport routes in `travel_booking` backend.
+- [Jun 28, 2025] [#1085](https://github.com/ShishirPatil/gorilla/pull/1085): Fix question wording for `irrelevance_232`.
+- [Jun 28, 2025] [#1084](https://github.com/ShishirPatil/gorilla/pull/1084): Fix typo in ground truth for `parallel_multiple_141`.
+- [Jun 18, 2025] [#1068](https://github.com/ShishirPatil/gorilla/pull/1068): Fix prompt concatenation issue in Qwen chat template. The self-hosted `Qwen3` models are affected.
+- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Remove the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
+- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fix multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
+- [Jun 14, 2025] [#1032](https://github.com/ShishirPatil/gorilla/pull/1032): Add `Llama-3.1-Nemotron-Ultra-253B-v1` to the leaderboard.
+- [Jun 12, 2025] [#1056](https://github.com/ShishirPatil/gorilla/pull/1056): Add `Ling-Lite-V1.5` to the leaderboard.
+- [Jun 12, 2025] [#1063](https://github.com/ShishirPatil/gorilla/pull/1063): Add support for `DeepSeek-R1-0528` and `DeepSeek-V3-0324`
+- [Jun 11, 2025] [#1061](https://github.com/ShishirPatil/gorilla/pull/1061): Add support for DashScope API inference for `Qwen3` series
+- [Jun 8, 2025] [#1054](https://github.com/ShishirPatil/gorilla/pull/1054), [#1055](https://github.com/ShishirPatil/gorilla/pull/1055): Packagerize codebase for PyPI Distribution. Now available with `pip install bfcl-eval`, in addition to the existing `pip install -e`.
+- [May 27, 2025] [#1040](https://github.com/ShishirPatil/gorilla/pull/1040): Add the following new models to the leaderboard:
+  - `mistral-medium-2505`
+  - `mistral-medium-2505-FC`
+- [May 24, 2025] [#1033](https://github.com/ShishirPatil/gorilla/pull/1033): Remove latency statistics for open-source models
+- [May 24, 2025] [#1015](https://github.com/ShishirPatil/gorilla/pull/1015): Add the following new models to the leaderboard:
+  - `Qwen/Qwen3-0.6B`
+  - `Qwen/Qwen3-0.6B-FC`
+  - `Qwen/Qwen3-1.7B`
+  - `Qwen/Qwen3-1.7B-FC`
+  - `Qwen/Qwen3-4B`
+  - `Qwen/Qwen3-4B-FC`
+  - `Qwen/Qwen3-8B`
+  - `Qwen/Qwen3-8B-FC`
+  - `Qwen/Qwen3-14B`
+  - `Qwen/Qwen3-14B-FC`
+  - `Qwen/Qwen3-32B`
+  - `Qwen/Qwen3-32B-FC`
+  - `Qwen/Qwen3-30B-A3B`
+  - `Qwen/Qwen3-30B-A3B-FC`
+  - `Qwen/Qwen3-235B-A22B`
+  - `Qwen/Qwen3-235B-A22B-FC`
+- [May 20, 2025] [#1014](https://github.com/ShishirPatil/gorilla/pull/1014): Add support for API inference for `QwQ-32B`
+- [Apr 24, 2025] [#1002](https://github.com/ShishirPatil/gorilla/pull/1002): Add the following new models to the leaderboard:
+  - `gpt-4.1-2025-04-14-FC`
+  - `gpt-4.1-2025-04-14`
+  - `gpt-4.1-mini-2025-04-14-FC`
+  - `gpt-4.1-mini-2025-04-14`
+  - `gpt-4.1-nano-2025-04-14-FC`
+  - `gpt-4.1-nano-2025-04-14`
+- [Apr 23, 2025] [#1000](https://github.com/ShishirPatil/gorilla/pull/1000): Add new model `microsoft/phi-4` to the leaderboard.
+- [Apr 23, 2025] [#967](https://github.com/ShishirPatil/gorilla/pull/967): Add the following new models to the leaderboard:
+  - `microsoft/Phi-4-mini-instruct`
+  - `microsoft/Phi-4-mini-instruct-FC`
+- [Apr 22, 2025] [#997](https://github.com/ShishirPatil/gorilla/pull/997): Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
+- [Apr 14, 2025] [#987](https://github.com/ShishirPatil/gorilla/pull/987): Add the following new models to the leaderboard:
+  - `grok-3-beta`
+  - `grok-3-beta-FC`
+  - `grok-3-mini-beta`
+  - `grok-3-mini-beta-FC`
+- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model’s files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
+- [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
+  - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
+  - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
+  - `Qwen/QwQ-32B` (Prompt & FC),
+- [Apr 13, 2025] [#981](https://github.com/ShishirPatil/gorilla/pull/981): Add the following new models to the leaderboard:
+  - `meta-llama/Llama-4-Scout-17B-16E-Instruct-FC`
+  - `meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC`
+- [Apr 9, 2025] [#943](https://github.com/ShishirPatil/gorilla/pull/943): Retire the executable categories from the leaderboard. The following categories will be excluded from the evaluation pipeline:
+  - `rest`
+  - `exec_simple`
+  - `exec_parallel`
+  - `exec_multiple`
+  - `exec_parallel_multiple`
+- [Apr 9, 2025] [#972](https://github.com/ShishirPatil/gorilla/pull/972): Add the following new models to the leaderboard:
+  - `Salesforce/Llama-xLAM-2-70b-fc-r`
+  - `Salesforce/Llama-xLAM-2-8b-fc-r`
+  - `Salesforce/xLAM-2-32b-fc-r`
+  - `Salesforce/xLAM-2-3b-fc-r`
+  - `Salesforce/xLAM-2-1b-fc-r`
+- [Apr 8, 2025] [#979](https://github.com/ShishirPatil/gorilla/pull/979): Fix typo in `multi_turn_base_166` ground truth.
+- [Apr 6, 2025] [#974](https://github.com/ShishirPatil/gorilla/pull/974): Add the following new models to the leaderboard:
+  - `gemini-2.5-pro-exp-03-25-FC`
+  - `gemini-2.5-pro-exp-03-25`
+- [Mar 26, 2025] [#963](https://github.com/ShishirPatil/gorilla/pull/963): Fix wrong date in `live_simple_205-116-13`.
+- [Mar 25, 2025] [#962](https://github.com/ShishirPatil/gorilla/pull/962): Fix ambiguous user query in `exec_parallel_10`.
 - [Mar 20, 2025] [#951](https://github.com/ShishirPatil/gorilla/pull/951): Add new model `command-a-03-2025-FC` to the leaderboard.
 - [Mar 15, 2025] [#942](https://github.com/ShishirPatil/gorilla/pull/942): Add the following new models to the leaderboard:
   - `gemini-2.0-flash-lite-001-FC`

@@ -7,7 +7,7 @@ We welcome your contributions to the Leaderboard! This guide provides step-by-st
   - [Where to Begin](#where-to-begin)
   - [Function Calling (FC) vs. Prompt Models](#function-calling-fc-vs-prompt-models)
   - [Creating Your Model Handler](#creating-your-model-handler)
-  - [Updating the Handler Map and Model Metadata](#updating-the-handler-map-and-model-metadata)
+  - [Updating Model Config Mapping](#updating-model-config-mapping)
   - [Submitting Your Pull Request](#submitting-your-pull-request)
   - [Join Our Community](#join-our-community)
 
@@ -17,16 +17,18 @@ The repository is organized as follows:
 
 ```plaintext
 berkeley-function-call-leaderboard/
-├── bfcl/
+├── bfcl_eval/
+|   ├── constants/                # Global constants and configuration values
 │   ├── eval_checker/             # Evaluation modules
 │   │   ├── ast_eval/             # AST-based evaluation
-│   │   ├── executable_eval/      # Evaluation by execution
 │   │   ├── multi_turn_eval/      # Multi-turn evaluation
 │   ├── model_handler/            # All model-specific handlers
 │   │   ├── local_inference/            # Handlers for locally-hosted models
-│   │   │   ├── base_oss_handler.py   # Base handler for OSS models
-│   │   │   ├── llama_fc.py           # Example: LLaMA (FC mode)
-│   │   │   ├── deepseek_coder.py     # Example: DeepSeek Coder
+│   │   │   ├── base_oss_handler.py       # Base handler for OSS models
+│   │   │   ├── gemma.py                  # Example: Gemma models
+│   │   │   ├── qwen.py                   # Example: Qwen models (Prompt mode)
+│   │   │   ├── qwen_fc.py                # Example: Qwen models (FC mode)
+│   │   │   ├── deepseek_reasoning.py     # Example: DeepSeek reasoning models (with reasoning trace)
 │   │   │   ├── ...
 │   │   ├── api_inference/    # Handlers for API-based models
 │   │   │   ├── openai.py             # Example: OpenAI models
@@ -34,19 +36,18 @@ berkeley-function-call-leaderboard/
 │   │   │   ├── ...
 │   │   ├── parser/                # Parsing utilities for Java/JavaScript
 │   │   ├── base_handler.py        # Base handler blueprint
-│   │   ├── handler_map.py         # Maps model names to handler classes
-├── data/                         # Datasets
+│   ├── data/                  # Datasets
+│   ├── scripts/               # Helper scripts
 ├── result/                       # Model responses
 ├── score/                        # Evaluation results
-├── utils/                        # Helper scripts
 ```
 
 To add a new model, focus primarily on the `model_handler` directory. You do not need to modify the parsing utilities in `model_handler/parser` or any other directories.
 
 ## Where to Begin
 
-- **Base Handler:** Start by reviewing `bfcl/model_handler/base_handler.py`. All model handlers inherit from this base class. The `inference_single_turn` and `inference_multi_turn` methods defined there are helpful for understanding the model response generation pipeline. The `base_handler.py` contains many useful details in the docstrings of each abstract method, so be sure to review them.
-  - If your model is hosted locally, you should also look at `bfcl/model_handler/local_inference/base_oss_handler.py`.
+- **Base Handler:** Start by reviewing `bfcl_eval/model_handler/base_handler.py`. All model handlers inherit from this base class. The `inference_single_turn` and `inference_multi_turn` methods defined there are helpful for understanding the model response generation pipeline. The `base_handler.py` contains many useful details in the docstrings of each abstract method, so be sure to review them.
+  - If your model is hosted locally, you should also look at `bfcl_eval/model_handler/local_inference/base_oss_handler.py`.
 - **Reference Handlers:** Checkout some of the existing model handlers (such as `openai.py`, `claude.py`, etc); you can likely reuse some of the existing code if your new model outputs in a similar format.
   - If your model is OpenAI-compatible, the `openai.py` handler will be helpful (and you might be able to just use it as is).
   - If your model is locally hosted, the `llama_fc.py` handler or the `deepseek_coder.py` handler can be good starting points.
@@ -63,7 +64,7 @@ We support models in two modes:
 
 For API-based models (such as OpenAI GPT), both FC and Prompting modes can be defined in the same handler. Methods related to FC mode end with `_FC`, while Prompting mode methods end with `_prompting`.
 
-For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `llama_fc.py` for FC mode and `llama.py` for Prompting mode).
+For locally-hosted models, we only implement prompting methods to maintain code readablity. If a locally-hosted model has both FC and Prompting modes, you will typically create two separate handlers (e.g., `qwen_fc.py` for FC mode and `qwen.py` for Prompting mode).
 
 ## Creating Your Model Handler
 
@@ -95,35 +96,47 @@ Regardless of mode or model type, you should implement the following methods to 
    ["func1(param1=val1, param2=val2)", "func2(param1=val1)"]
    ```
 
-## Updating the Handler Map and Model Metadata
+## Updating Model Config Mapping
 
-1. **Update `bfcl/model_handler/handler_map.py`:**  
-   Add your new model’s handler class and associate it with the model’s name.
+1. **Add a new entry in `bfcl_eval/constants/model_config.py`**
 
-2. **Update `bfcl/constants/model_metadata.py`:**  
-   In `bfcl/constants/model_metadata.py`, add entries in `MODEL_METADATA_MAPPING` to include:
+   Populate every field in the `ModelConfig` dataclass:
 
-   - Model display name (as shown in the leaderboard)
-   - URL to the model’s documentation or homepage
-   - License details
-   - Company name
+   | Field               | What to put in it                                                                 |
+   | ------------------- | --------------------------------------------------------------------------------- |
+   | **`model_name`**    | Model name as used in the API or on Hugging Face.                                 |
+   | **`display_name`**  | Model name as it should appear on the leaderboard.                                |
+   | **`url`**           | Link to the model’s documentation, homepage, or repo.                             |
+   | **`org`**           | Company or organization that developed the model.                                 |
+   | **`license`**       | License under which the model is released. `Proprietary` if it’s not open-source. |
+   | **`model_handler`** | Name of the handler class (e.g., `OpenAIHandler`, `GeminiHandler`).               |
 
-   If your model is API-based and has usage costs, update the following accordingly:
+2. **(Optional) Add pricing**
 
-   - `INPUT_PRICE_PER_MILLION_TOKEN`
-   - `OUTPUT_PRICE_PER_MILLION_TOKEN`
+   If the model is billed by token usage, specify prices _per million tokens_:
 
-   If the model is API-based but free, add it to the `NO_COST_API_BASED_MODELS` list.
+   ```python
+   input_price  = 0.50   # USD per 1M input tokens
+   output_price = 1.00   # USD per 1M output tokens
+   ```
 
-3. **Update `bfcl/constants/eval_config.py`:**  
-   If your model is a Function Calling model and it does not support `.` in the function name (such as GPT in FC mode), add the model name to the `UNDERSCORE_TO_DOT` list.
+   For free/open-source models, set both to `None`.
 
-4. **Update `SUPPORTED_MODELS.md`:**  
-   Add your model to the list of supported models. Include the model name and type (FC or Prompt) in the table.
+3. **Set behavior flags**
+
+   | Flag                    | When to set it to `True`                                                                                                      |
+   | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+   | **`is_fc_model`**       | The handler invokes the model in its _function-calling_ mode instead of prompt-based mode.                                    |
+   | **`underscore_to_dot`** | Your FC model rejects dots (`.`) in function names; set this so the dots will auto-converts to underscores during evaluation. |
+
+4. **Update Supported Models**
+
+   1. Add your model to the list of supported models in `SUPPORTED_MODELS.md`. Include the model name and type (FC or Prompt) in the table.
+   2. Add a new entry in `bfcl_eval/constants/supported_models.py` as well.
 
 ## Submitting Your Pull Request
 
-- Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler and the necessary updates to the metadata.
+- Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler and the necessary updates to the model config.
 - Ensure that the model you add is publicly accessible, either open-source or behind a publicly available API. While you may require authentication, billing, registration, or tokens, the general public should ultimately be able to access the endpoint.
   - If your model is not publicly accessible, we would still welcome your contribution, but we unfortunately cannot include it in the public-facing leaderboard.
 

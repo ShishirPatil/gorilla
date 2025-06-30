@@ -172,18 +172,6 @@ def get_prompt(user_query: str, functions: list = []) -> str:
     return f"{system}\n### Instruction: <<function>>{functions_string}\n<<question>>{user_query}\n### Response: "
 ```
 
-Further, here is how we format the response:
-
-Install the dependencies with:
-
-```bash
-pip3 install tree_sitter
-git clone https://github.com/tree-sitter/tree-sitter-java.git
-git clone https://github.com/tree-sitter/tree-sitter-javascript.git
-```
-
-Please `git clone` and run example code under current `openfunctions` directory!
-
 And you can use the following code to format the response:
 
 ```python
@@ -224,7 +212,15 @@ def format_response(response: str):
 
 ### End to End Example
 
-In the current directory, run the example code in `inference_local.py` to see how the model works.
+First, follow the setup instructions as follows:
+```bash
+# Create a new Conda environment with Python 3.10
+conda create -n openfunctions python=3.10
+conda activate openfunctions
+pip install -r requirements.txt
+```
+
+Then, run the example code in `inference_local.py` to see how the model works.
 
 ```bash
 python inference_local.py
@@ -241,7 +237,7 @@ OpenAI compatible `function_call`: [{'name': 'get_current_weather', 'arguments':
 --------------------
 ```
 
-**Note:** Use the `get_prompt` and `format_response`  only if you are hosting it locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally:
+**Note:** Use the `get_prompt` and `format_response`  only if you are hosting it locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally.
 
 
 ## Evaluation
