@@ -78,6 +78,19 @@ class ClaudeHandler(BaseHandler):
 
         return api_response, end_time - start_time
 
+    def _get_max_tokens(self):
+        """
+        max_tokens is required to be set when querying, so we default to the model's max tokens
+        """
+        if "claude-opus-4-20250514" in self.model_name:
+            return 32000
+        elif "claude-sonnet-4-20250514" in self.model_name:
+            return 64000
+        elif "claude-3-5-haiku-20241022" in self.model_name:
+            return 8192
+        else:
+            raise ValueError(f"Unsupported model: {self.model_name}")
+
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -100,12 +113,13 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
+        # Need to set timeout to avoid auto-error when requesting large context length
+        # https://github.com/anthropics/anthropic-sdk-python#long-requests
         return self.generate_with_backoff(
             model=self.model_name.strip("-FC"),
-            max_tokens=(
-                4096 if "claude-3-opus-20240229" in self.model_name else 8192
-            ),  # 3.5 Sonnet has a higher max token limit
+            max_tokens=self._get_max_tokens(),
             tools=inference_data["tools"],
+            temperature=self.temperature,
             messages=messages,
         )
 
@@ -247,9 +261,11 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
+        # Need to set timeout to avoid auto-error when requesting large context length
+        # https://github.com/anthropics/anthropic-sdk-python#long-requests
         return self.generate_with_backoff(
             model=self.model_name,
-            max_tokens=(4096 if "claude-3-opus-20240229" in self.model_name else 8192),
+            max_tokens=self._get_max_tokens(),
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
