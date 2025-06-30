@@ -9,6 +9,7 @@ TEST_FILE_MAPPING = {
     # "exec_multiple": f"{VERSION_PREFIX}_exec_multiple.json",
     # "exec_parallel_multiple": f"{VERSION_PREFIX}_exec_parallel_multiple.json",
     "simple": f"{VERSION_PREFIX}_simple.json",
+    "custom": f"{VERSION_PREFIX}_custom.json",
     "irrelevance": f"{VERSION_PREFIX}_irrelevance.json",
     "parallel": f"{VERSION_PREFIX}_parallel.json",
     "multiple": f"{VERSION_PREFIX}_multiple.json",
@@ -38,6 +39,7 @@ TEST_FILE_MAPPING = {
 TEST_COLLECTION_MAPPING = {
     "all": [
         "simple",
+        "custom",
         "irrelevance",
         "parallel",
         "multiple",
@@ -63,6 +65,7 @@ TEST_COLLECTION_MAPPING = {
     ],
     "single_turn": [
         "simple",
+        "custom",
         "irrelevance",
         "parallel",
         "multiple",
@@ -86,6 +89,7 @@ TEST_COLLECTION_MAPPING = {
     ],
     "non_live": [
         "simple",
+        "custom",
         "irrelevance",
         "parallel",
         "multiple",
@@ -95,6 +99,7 @@ TEST_COLLECTION_MAPPING = {
     ],
     "ast": [
         "simple",
+        "custom"
         "irrelevance",
         "parallel",
         "multiple",
@@ -114,6 +119,7 @@ TEST_COLLECTION_MAPPING = {
     ],
     "python": [
         "simple",
+        "custom",
         "irrelevance",
         "parallel",
         "multiple",

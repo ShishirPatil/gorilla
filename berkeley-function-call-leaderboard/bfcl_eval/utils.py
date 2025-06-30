@@ -190,10 +190,16 @@ def parse_test_category_argument(test_category_args):
 
     for test_category in test_category_args:
         if test_category in TEST_COLLECTION_MAPPING:
+            print("IM HEREEEEE")
             for test_name in TEST_COLLECTION_MAPPING[test_category]:
                 test_name_total.add(test_name)
                 test_filename_total.add(TEST_FILE_MAPPING[test_name])
+        elif test_category == 'custom':
+            print("FUCKKKKK")
+            test_name_total.add(test_category)
+            test_filename_total.add(TEST_FILE_MAPPING[test_category])        
         elif test_category in TEST_FILE_MAPPING:
+            print("NOOOOOO")
             test_name_total.add(test_category)
             test_filename_total.add(TEST_FILE_MAPPING[test_category])
         else:
