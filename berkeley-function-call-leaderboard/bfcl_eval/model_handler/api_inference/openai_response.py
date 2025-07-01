@@ -60,7 +60,9 @@ class OpenAIResponsesHandler(BaseHandler):
         # As of 6/29/25, not officially documented but returned an error when manually tested
         temperature = (
             self.temperature
-            if "o1" not in self.model_name and "o3-mini" not in self.model_name
+            if "o1" not in self.model_name
+            and "o3" not in self.model_name
+            and "o4-mini" not in self.model_name
             else None
         )
 
@@ -202,7 +204,9 @@ class OpenAIResponsesHandler(BaseHandler):
         # As of 6/29/25, not officially documented but returned an error when manually tested
         temperature = (
             self.temperature
-            if "o1" not in self.model_name and "o3-mini" not in self.model_name
+            if "o1" not in self.model_name
+            and "o3" not in self.model_name
+            and "o4-mini" not in self.model_name
             else None
         )
 
