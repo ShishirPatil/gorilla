@@ -330,6 +330,32 @@ def system_prompt_pre_processing_chat_model(prompts, function_docs, test_categor
     return prompts
 
 
+def developer_prompt_pre_processing_chat_model(prompts, function_docs, _):
+    """
+    This is a mirror of the `system_prompt_pre_processing_chat_model` function. However, newer APIs prefer
+    using the `developer` role instead of `system` role. 
+    """
+    assert type(prompts) is list
+
+    system_prompt_template = DEFAULT_SYSTEM_PROMPT
+
+    system_prompt = system_prompt_template.format(functions=function_docs)
+
+    # Developer prompt must be in the first position
+    # If the question comes with a developer prompt, append its content at the end of the chat template.
+    if prompts[0]["role"] == "system":
+        prompts[0]["role"] = "developer"
+        prompts[0]["content"] = system_prompt + "\n\n" + prompts[0]["content"]
+    # Otherwise, use the system prompt template to create a new developer prompt.
+    else:
+        prompts.insert(
+            0,
+            {"role": "developer", "content": system_prompt},
+        )
+
+    return prompts
+
+
 def convert_system_prompt_into_user_prompt(prompts: list[dict]) -> list[dict]:
     """
     Some FC models doesn't support system prompt in the message field, so we turn it into user prompt
