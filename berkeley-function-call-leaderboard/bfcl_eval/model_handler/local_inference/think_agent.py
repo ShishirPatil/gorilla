@@ -1,3 +1,4 @@
+from typing import Union
 import json
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
@@ -5,10 +6,22 @@ from overrides import override
 
 
 class ThinkAgentHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the ThinkAgent model that extends OSSHandler. This class provides methods to format prompts, convert function formats, extract JSON from text, and decode model outputs into AST and executable formats.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
-    def _convert_functions_format(self, functions):
+    def _convert_functions_format(self, functions: Union[dict, list]) -> Union[dict, list]:
+        """
+        Converts function definitions into a standardized format for the ThinkAgent model.
+        
+        Args:
+            functions (Union[dict, list]): The function definitions to convert. Can be a single function (dict) or list of functions.
+        
+        Returns:
+            Union[dict, list]: The converted function(s) in ThinkAgent format with name, description, and parameters.
+        """
         if isinstance(functions, dict):
             return {
                 "name": functions["name"],
@@ -22,7 +35,16 @@ class ThinkAgentHandler(OSSHandler):
         else:
             return functions
 
-    def _extract_json_from_text(self, text):
+    def _extract_json_from_text(self, text: str) -> str:
+        """
+        Extracts JSON content from model output text by splitting at the closing </think> tag.
+        
+        Args:
+            text (str): The model output text containing JSON.
+        
+        Returns:
+            str: The extracted JSON string, or empty array string if no </think> tag found.
+        """
         # Split the text at the closing </think> tag and take the part after it
         split_text = text.split("</think>", 1)
 
@@ -37,7 +59,7 @@ class ThinkAgentHandler(OSSHandler):
         return json_str
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: dict) -> str:
         # Think agent is doing the tools_in_user_message approach
         """
         {{- bos_token }}
@@ -134,7 +156,17 @@ class ThinkAgentHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python") -> list[dict[str, dict]]:
+        """
+        Decodes model output into an abstract syntax tree (AST) representation of function calls.
+        
+        Args:
+            result (str): The raw model output text.
+            language (str, optional): The programming language of the output. Defaults to "Python".
+        
+        Returns:
+            list[dict[str, dict]]: List of function calls where each dict contains function name and arguments.
+        """
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
         result = result.replace("'", '"')  # replace single quotes with double quotes
@@ -150,7 +182,16 @@ class ThinkAgentHandler(OSSHandler):
         return func_calls
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result: str) -> list[str]:
+        """
+        Decodes model output into executable function call strings.
+        
+        Args:
+            result (str): The raw model output text.
+        
+        Returns:
+            list[str]: List of executable function call strings in format 'function_name(arguments)'.
+        """
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
         result = result.replace("'", '"')  # replace single quotes with double quotes

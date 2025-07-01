@@ -1,3 +1,4 @@
+from typing import Any
 import json
 import random
 import string
@@ -11,11 +12,24 @@ from overrides import override
 
 
 class MistralFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    Handler class for Mistral models with function calling capabilities. Inherits from OSSHandler and implements specific methods for processing function calls and responses with Mistral models.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language: str="Python") -> list[dict]:
+        """
+        Decodes the AST (Abstract Syntax Tree) from the model's output. For Mistral models, the input is already in the correct format (list of dictionaries).
+        
+        Args:
+            result (Any): The raw output from the model
+            language (str, optional): The programming language of the output. Defaults to "Python".
+        
+        Returns:
+            list[dict]: List of function call dictionaries in the format [{func1:{param1:val1,...}},{func2:{param2:val2,...}}]
+        """
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list:
@@ -23,13 +37,22 @@ class MistralFCHandler(OSSHandler):
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result) -> list[Any]:
+        """
+        Converts the decoded AST into executable function calls.
+        
+        Args:
+            result (Any): The decoded AST output
+        
+        Returns:
+            list[Any]: List of executable function calls
+        """
         if type(result) != list:
             return []
         return convert_to_function_call(result)
 
     @staticmethod
-    def _construct_func_doc(functions):
+    def _construct_func_doc(functions: list[dict]) -> str:
         """
         {{- "[AVAILABLE_TOOLS][" }}
         {%- for tool in tools %}
@@ -73,7 +96,7 @@ class MistralFCHandler(OSSHandler):
         return result_str
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict], function: list[dict]) -> str:
         """
         "bos_token": "<s>"
         "eos_token": "</s>"
@@ -218,6 +241,15 @@ class MistralFCHandler(OSSHandler):
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry before querying the model. Performs language-specific processing on functions.
+        
+        Args:
+            test_entry (dict): The test entry containing functions and metadata
+        
+        Returns:
+            dict: Processed data with messages and functions
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -230,6 +262,17 @@ class MistralFCHandler(OSSHandler):
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
+        """
+        Adds execution results to the inference data for subsequent model queries.
+        
+        Args:
+            inference_data (dict): The current inference data
+            execution_results (list[str]): Results from executing the function calls
+            model_response_data (dict): Data from the model's response
+        
+        Returns:
+            dict: Updated inference data with execution results
+        """
         for execution_result, tool_call_id in zip(
             execution_results, model_response_data["tool_call_ids"]
         ):
@@ -252,6 +295,15 @@ class MistralFCHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the model's response into a structured format with tool call IDs and other metadata.
+        
+        Args:
+            api_response (any): The raw API response from the model
+        
+        Returns:
+            dict: Parsed response containing model responses, tool call IDs, and token counts
+        """
         model_responses = api_response.choices[0].text
         tool_call_ids = []
         """
@@ -291,6 +343,16 @@ class MistralFCHandler(OSSHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds the assistant's response to the message history.
+        
+        Args:
+            inference_data (dict): The current inference data
+            model_response_data (dict): Data from the model's response
+        
+        Returns:
+            dict: Updated inference data with assistant message
+        """
         inference_data["message"].append(
             {
                 "role": "assistant",

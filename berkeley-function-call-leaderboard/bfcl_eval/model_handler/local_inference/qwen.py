@@ -1,14 +1,18 @@
+from typing import Optional
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
 
 
 class QwenHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler class for the Qwen model that implements the OSSHandler interface. This class provides methods to format prompts and parse responses specifically for the Qwen model's chat format.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.is_fc_model = False
 
     @override
-    def _format_prompt(self, messages, function):
+    def _format_prompt(self, messages: list[dict[str, str]], function: Optional[dict]) -> str:
         """
         "chat_template":
         {%- if tools %}
@@ -171,6 +175,19 @@ class QwenHandler(OSSHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the raw API response from the Qwen model into a structured format. Extracts the model's response, any reasoning content (if present in <think> tags), and token usage information.
+        
+        Args:
+            api_response (any): The raw response object from the Qwen model API
+        
+        Returns:
+            dict: A dictionary containing:
+                - model_responses (str): The main response content
+                - reasoning_content (str): Any reasoning content extracted from <think> tags
+                - input_token (int): Number of tokens used in the prompt
+                - output_token (int): Number of tokens generated in the response
+        """
         model_response = api_response.choices[0].text
 
         reasoning_content = ""

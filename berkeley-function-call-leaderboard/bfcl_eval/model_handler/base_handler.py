@@ -1,3 +1,4 @@
+from typing import Any, Union
 import json
 import time
 from copy import deepcopy
@@ -20,10 +21,13 @@ from overrides import final
 
 
 class BaseHandler:
+    """
+    Base class for handling model inference and evaluation. Provides common functionality for both function calling (FC) and prompting-based models. Handles single and multi-turn conversations, logging, and result writing.
+    """
     model_name: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(self, model_name: str, temperature: float) -> None:
         self.model_name = model_name
         # Replace the slash with underscore to avoid creating subdirectories
         # Replace the dash and dot with underscore for valid variable name
@@ -33,7 +37,18 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool) -> tuple[list[list], dict]:
+        """
+        Main entry point for model inference. Routes to appropriate method based on model type (FC/prompting) and test type (single/multi-turn).
+        
+        Args:
+            test_entry (`dict`): Test case specification
+            include_input_log (`bool`): Whether to include input logs in metadata
+            exclude_state_log (`bool`): Whether to exclude state logs in metadata
+        
+        Returns:
+            `tuple[list[list], dict]`: Model responses and metadata
+        """
         # This method is used to retrive model response for each model.
 
         # FC model
@@ -58,6 +73,17 @@ class BaseHandler:
     def inference_multi_turn_FC(
         self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
+        """
+        Handles multi-turn function calling evaluation. Processes each turn, executes function calls, and maintains conversation state.
+        
+        Args:
+            test_entry (`dict`): Test case specification
+            include_input_log (`bool`): Whether to include input logs
+            exclude_state_log (`bool`): Whether to exclude state logs
+        
+        Returns:
+            `tuple[list[list], dict]`: Model responses and metadata
+        """
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
@@ -323,6 +349,17 @@ class BaseHandler:
     def inference_multi_turn_prompting(
         self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
+        """
+        Handles multi-turn prompting-based evaluation. Processes each turn and maintains conversation state.
+        
+        Args:
+            test_entry (`dict`): Test case specification
+            include_input_log (`bool`): Whether to include input logs
+            exclude_state_log (`bool`): Whether to exclude state logs
+        
+        Returns:
+            `tuple[list[list], dict]`: Model responses and metadata
+        """
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
@@ -583,6 +620,16 @@ class BaseHandler:
     def inference_single_turn_FC(
         self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
+        """
+        Handles single-turn function calling evaluation.
+        
+        Args:
+            test_entry (`dict`): Test case specification
+            include_input_log (`bool`): Whether to include input logs
+        
+        Returns:
+            `tuple[any, dict]`: Model response and metadata
+        """
         inference_data: dict = {}
         inference_data = self._pre_query_processing_FC(inference_data, test_entry)
         inference_data = self._compile_tools(inference_data, test_entry)
@@ -617,6 +664,16 @@ class BaseHandler:
     def inference_single_turn_prompting(
         self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
+        """
+        Handles single-turn prompting-based evaluation.
+        
+        Args:
+            test_entry (`dict`): Test case specification
+            include_input_log (`bool`): Whether to include input logs
+        
+        Returns:
+            `tuple[any, dict]`: Model response and metadata
+        """
         inference_data: dict = self._pre_query_processing_prompting(test_entry)
         inference_data = self.add_first_turn_message_prompting(
             inference_data, test_entry["question"][0]
@@ -645,20 +702,31 @@ class BaseHandler:
 
         return model_response_data["model_responses"], metadata
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result: str, language: str="Python"):
         """
         This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard AST checker input.
         """
         raise NotImplementedError
 
-    def decode_execute(self, result):
+    def decode_execute(self, result: str):
         """
         This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard execute checker input.
         """
         raise NotImplementedError
 
     @final
-    def write(self, result, result_dir, update_mode=False):
+    def write(self, result: Union[dict, list[dict]], result_dir: Path, update_mode: bool=False) -> None:
+        """
+        Writes evaluation results to JSON files, organized by model and test category.
+        
+        Args:
+            result (`Union[dict, list[dict]]`): Results to write
+            result_dir (`Path`): Directory to write results to
+            update_mode (`bool`): Whether to update existing results
+        
+        Returns:
+            `None`
+        """
         model_name_dir = self.model_name.replace("/", "_")
         model_result_dir = result_dir / model_name_dir
         model_result_dir.mkdir(parents=True, exist_ok=True)
@@ -705,7 +773,7 @@ class BaseHandler:
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> tuple[Any, float]:
         """
         Call the model API in FC mode to get the response.
         Return the response object that can be used to feed into the `_parse_query_response_FC` method.
@@ -795,7 +863,7 @@ class BaseHandler:
 
     #### Prompting methods ####
 
-    def _query_prompting(self, inference_data: dict):
+    def _query_prompting(self, inference_data: dict) -> tuple[Any, float]:
         """
         Call the model API in prompting mode to get the response.
         Return the response object that can be used to feed into the decode method.

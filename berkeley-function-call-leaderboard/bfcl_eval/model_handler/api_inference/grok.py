@@ -6,7 +6,16 @@ from overrides import override
 
 
 class GrokHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for interacting with Grok API, extending OpenAIHandler with Grok-specific functionality.
+    
+    Args:
+        model_name (`str`):
+            Name of the Grok model to use
+        temperature (`float`):
+            Temperature parameter for model generation
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.client = OpenAI(
             base_url="https://api.x.ai/v1",
@@ -16,12 +25,32 @@ class GrokHandler(OpenAIHandler):
 
     @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
+        """
+        Parses the response from Grok API for prompting mode.
+        
+        Args:
+            api_response (`any`):
+                Raw response from Grok API
+        
+        Returns:
+            `dict`: Parsed response data with added reasoning content if available
+        """
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available_prompting(api_response, response_data)
         return response_data
 
     @override
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses the response from Grok API for FC (function calling) mode.
+        
+        Args:
+            api_response (`any`):
+                Raw response from Grok API
+        
+        Returns:
+            `dict`: Parsed response data with added reasoning content if available
+        """
         response_data = super()._parse_query_response_FC(api_response)
         self._add_reasoning_content_if_available_prompting(api_response, response_data)
         return response_data

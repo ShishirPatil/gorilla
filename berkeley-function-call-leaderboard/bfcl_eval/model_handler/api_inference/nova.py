@@ -1,3 +1,4 @@
+from typing import Any
 import os
 import time
 
@@ -16,7 +17,10 @@ from bfcl_eval.model_handler.utils import (
 
 
 class NovaHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
+    """
+    A handler for interacting with Amazon's Nova model through AWS Bedrock. This class provides methods for processing inputs, making API calls, and handling responses from the Nova model.
+    """
+    def __init__(self, model_name: str, temperature: float) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.AMAZON
         self.is_fc_model = True
@@ -27,18 +31,46 @@ class NovaHandler(BaseHandler):
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language: str="Python") -> list:
+        """
+        Decodes the AST (Abstract Syntax Tree) from the model's response. Currently returns an empty list if the result is not a list.
+        
+        Args:
+            result (Any): The result from the model's response
+            language (str, optional): The programming language of the AST. Defaults to 'Python'.
+        
+        Returns:
+            list: The decoded AST or empty list if result is invalid
+        """
         if type(result) != list:
             return []
         return result
 
-    def decode_execute(self, result):
+    def decode_execute(self, result) -> list:
+        """
+        Decodes the execution result from the model's response and converts it to a function call format.
+        
+        Args:
+            result (Any): The result from the model's response
+        
+        Returns:
+            list: The converted function calls or empty list if result is invalid
+        """
         if type(result) != list:
             return []
         return convert_to_function_call(result)
 
     @retry_with_backoff(error_message_pattern=r".*\(ThrottlingException\).*")
-    def generate_with_backoff(self, **kwargs):
+    def generate_with_backoff(self, **kwargs) -> tuple[dict, float]:
+        """
+        Makes an API call to the Nova model with exponential backoff retry logic for throttling errors.
+        
+        Args:
+            **kwargs: Arguments to pass to the model's converse method
+        
+        Returns:
+            tuple[dict, float]: The API response and the time taken for the call
+        """
         start_time = time.time()
         api_response = self.client.converse(**kwargs)
         end_time = time.time()
@@ -47,7 +79,16 @@ class NovaHandler(BaseHandler):
 
     #### FC methods ####
 
-    def _query_FC(self, inference_data: dict):
+    def _query_FC(self, inference_data: dict) -> dict:
+        """
+        Makes a query to the Nova model with function calling capabilities.
+        
+        Args:
+            inference_data (dict): Contains the message, tools, and system prompt for the query
+        
+        Returns:
+            dict: The API response from the model
+        """
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
 
@@ -80,6 +121,16 @@ class NovaHandler(BaseHandler):
             )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Pre-processes the test entry data before making a query to the model.
+        
+        Args:
+            inference_data (dict): The inference data to be processed
+            test_entry (dict): The test entry containing questions
+        
+        Returns:
+            dict: The processed inference data
+        """
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(
                 test_entry["question"][round_idx]
@@ -94,6 +145,16 @@ class NovaHandler(BaseHandler):
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        """
+        Compiles function definitions into tools format for the model.
+        
+        Args:
+            inference_data (dict): The inference data to store the compiled tools
+            test_entry (dict): The test entry containing function definitions
+        
+        Returns:
+            dict: The inference data with compiled tools
+        """
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
@@ -105,6 +166,15 @@ class NovaHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
+        """
+        Parses the response from the Nova model after a function calling query.
+        
+        Args:
+            api_response (any): The raw API response from the model
+        
+        Returns:
+            dict: Parsed response containing model responses, tokens used, etc.
+        """
         model_responses_message_for_chat_history = api_response["output"]["message"]
 
         if api_response["stopReason"] == "tool_use":
@@ -155,6 +225,16 @@ class NovaHandler(BaseHandler):
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
+        """
+        Adds the first turn message to the inference data.
+        
+        Args:
+            inference_data (dict): The inference data to modify
+            first_turn_message (list[dict]): The initial message(s) to add
+        
+        Returns:
+            dict: The modified inference data
+        """
         for message in first_turn_message:
             message["content"] = [{"text": message["content"]}]
         inference_data["message"].extend(first_turn_message)
@@ -163,6 +243,16 @@ class NovaHandler(BaseHandler):
     def _add_next_turn_user_message_FC(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
+        """
+        Adds a user message for the next turn of conversation.
+        
+        Args:
+            inference_data (dict): The inference data to modify
+            user_message (list[dict]): The user message(s) to add
+        
+        Returns:
+            dict: The modified inference data
+        """
         for message in user_message:
             message["content"] = [{"text": message["content"]}]
         inference_data["message"].extend(user_message)
@@ -171,6 +261,16 @@ class NovaHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
+        """
+        Adds an assistant message to the inference data.
+        
+        Args:
+            inference_data (dict): The inference data to modify
+            model_response_data (dict): Contains the assistant's response
+        
+        Returns:
+            dict: The modified inference data
+        """
         inference_data["message"].append(
             model_response_data["model_responses_message_for_chat_history"]
         )
@@ -182,6 +282,17 @@ class NovaHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
+        """
+        Adds tool execution results to the inference data.
+        
+        Args:
+            inference_data (dict): The inference data to modify
+            execution_results (list[str]): Results from tool executions
+            model_response_data (dict): Contains tool call IDs
+        
+        Returns:
+            dict: The modified inference data
+        """
         # Nova use the `user` role for the tool result message
         tool_message = {
             "role": "user",
