@@ -1,13 +1,14 @@
 import os
+from typing import Any
 
-from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from openai import OpenAI
 from overrides import override
 from qwen_agent.llm import get_chat_model
 import time
 
-class QwenAPIHandler(OpenAIHandler):
+class QwenAPIHandler(OpenAICompletionsHandler):
     """
     This is the OpenAI-compatible API handler with streaming enabled.
 
@@ -18,7 +19,7 @@ class QwenAPIHandler(OpenAIHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAI_Completions
         self.client = OpenAI(
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             api_key=os.getenv("QWEN_API_KEY"),
@@ -47,7 +48,7 @@ class QwenAPIHandler(OpenAIHandler):
         )
 
     @override
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
 
         reasoning_content = ""
         answer_content = ""
@@ -161,7 +162,7 @@ class QwenAPIHandler(OpenAIHandler):
         )
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
 
         reasoning_content = ""
         answer_content = ""
@@ -202,11 +203,11 @@ class QwenAPIHandler(OpenAIHandler):
 
 
 
-class QwenAgentThinkHandler(OpenAIHandler):
+class QwenAgentThinkHandler(OpenAICompletionsHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAI_Completions
         """
         Note: Need to start vllm server first with command:
         vllm serve xxx \
@@ -305,7 +306,7 @@ class QwenAgentNoThinkHandler(QwenAgentThinkHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAI_Completions
         """
         Note: Need to start vllm server first with command:
         vllm serve xxx \
