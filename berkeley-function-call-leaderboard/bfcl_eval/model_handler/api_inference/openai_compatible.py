@@ -22,23 +22,23 @@ class OpenaiCompatibleHandler(OpenAIHandler):
         if self.compatible_provider == "sambanova":
             base_url = "https://api.sambanova.ai/v1"
             self.client = OpenAI(base_url=base_url, api_key=os.getenv("SAMBANOVA_API_KEY"),
-                                  max_retries=1, timeout=20)
+                                  max_retries=1, timeout=30)
         elif self.compatible_provider == "groq":
             base_url = "https://api.groq.com/openai/v1"
             self.client = OpenAI(base_url=base_url, api_key=os.getenv("GROQ_API_KEY"),
-                                  max_retries=1, timeout=20)
+                                  max_retries=1, timeout=30)
         elif self.compatible_provider == "cerebras":
             base_url = "https://api.cerebras.ai/v1"
             self.client = OpenAI(base_url=base_url, api_key=os.getenv("CEREBRAS_API_KEY"),
-                                  max_retries=1, timeout=20)
+                                  max_retries=1, timeout=30)
         elif self.compatible_provider == "fireworks":
             base_url = "https://api.fireworks.ai/inference/v1"
             self.client = OpenAI(base_url=base_url, api_key=os.getenv("FIREWORKS_API_KEY"),
-                                  max_retries=1, timeout=20)
+                                  max_retries=1, timeout=30)
         elif self.compatible_provider == "together":
             base_url = "https://api.together.xyz/v1"
             self.client = OpenAI(base_url=base_url, api_key=os.getenv("TOGETHER_API_KEY"),
-                                  max_retries=1, timeout=20)
+                                  max_retries=1, timeout=30)
         else:
             raise(Exception(f"{self.compatible_provider} not implemented"))
 
@@ -57,7 +57,7 @@ class OpenaiCompatibleHandler(OpenAIHandler):
                 print(f"Error occurred: {str(e)}")
 
             # Calculate exponential backoff (base 2)
-            sleep_time = min(2 ** retry_count, 60)  # Cap at 60 seconds to avoid too long waits
+            sleep_time = min(2 ** (retry_count+3) , 60)  # Cap at 60 seconds to avoid too long waits
             print(f"Attempt {retry_count + 1} failed. Sleeping for {sleep_time} seconds...")
             threading.Event().wait(sleep_time)
             retry_count += 1
