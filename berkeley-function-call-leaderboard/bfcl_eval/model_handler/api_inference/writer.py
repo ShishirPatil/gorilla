@@ -2,11 +2,11 @@ import os
 import time
 
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from writerai import Writer
 
 
-class WriterHandler(OpenAIHandler):
+class WriterHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.WRITER
