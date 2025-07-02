@@ -25,10 +25,10 @@ SUPPORTED_MODELS = [
     "gpt-4.1-mini-2025-04-14",
     "gpt-4.1-nano-2025-04-14-FC",
     "gpt-4.1-nano-2025-04-14",
-    "o1-2024-12-17-FC",
-    "o1-2024-12-17",
-    "o3-mini-2025-01-31-FC",
-    "o3-mini-2025-01-31",
+    "o3-2025-04-16",
+    "o3-2025-04-16-FC",
+    "o4-mini-2025-04-16",
+    "o4-mini-2025-04-16-FC",
     "gpt-4o-2024-11-20",
     "gpt-4o-2024-11-20-FC",
     "gpt-4o-mini-2024-07-18",
@@ -163,4 +163,8 @@ SUPPORTED_MODELS = [
     "qwen/qwq-32b-FC-novita",
     "qwen/qwq-32b-novita",
     "Ling/ling-lite-v1.5",
+    "katanemo/Arch-Agent-1.5B",
+    "katanemo/Arch-Agent-3B",
+    "katanemo/Arch-Agent-7B",
+    "katanemo/Arch-Agent-32B"
 ]
