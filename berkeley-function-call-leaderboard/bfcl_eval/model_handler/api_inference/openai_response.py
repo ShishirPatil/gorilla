@@ -65,6 +65,8 @@ class OpenAIResponsesHandler(BaseHandler):
             "input": message,
             "model": self.model_name.replace("-FC", ""),
             "store": False,
+            "include": ["reasoning.encrypted_content"],
+            "reasoning": {"summary": "auto"},
         }
 
         # OpenAI reasoning models don't support temperature parameter
@@ -92,42 +94,32 @@ class OpenAIResponsesHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Response) -> dict:
-        model_responses = [
-            {func_call.name: func_call.arguments}
-            for func_call in api_response.output
-            if func_call.type == "function_call"
-        ]
-        tool_call_ids = [
-            func_call.call_id
-            for func_call in api_response.output
-            if func_call.type == "function_call"
-        ]
+        model_responses = []
+        tool_call_ids = []
+
+        for func_call in api_response.output:
+            if func_call.type == "function_call":
+                model_responses.append({func_call.name: func_call.arguments})
+                tool_call_ids.append(func_call.call_id)
 
         if not model_responses:  # If there are no function calls
             model_responses = api_response.output_text
 
-        model_responses_message_for_chat_history = []
-
-        # Reasoning content and function calls should be added back into the conversation state
-        model_output = [
-            {"role": "assistant"} | r.to_dict()
-            for r in api_response.output
-            if r.type in ("reasoning", "function_call")
-        ]
-        messages = [
-            {"role": r.role, "content": r.content}
-            for r in api_response.output
-            if r.type == "message"
-        ]
-        model_responses_message_for_chat_history.extend(model_output)
-        model_responses_message_for_chat_history.extend(messages)
+        # OpenAI reasoning models don't show full reasoning content in the api response,
+        # but only a summary of the reasoning content.
+        reasoning_content = ""
+        for item in api_response.output:
+            if item.type == "reasoning":
+                for summary in item.summary:
+                    reasoning_content += summary.text + "\n"
 
         return {
             "model_responses": model_responses,
-            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "model_responses_message_for_chat_history": api_response.output,
             "tool_call_ids": tool_call_ids,
-            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
-            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
+            "reasoning_content": reasoning_content,
+            "input_token": api_response.usage.input_tokens,
+            "output_token": api_response.usage.output_tokens,
         }
 
     def add_first_turn_message_FC(
@@ -161,7 +153,6 @@ class OpenAIResponsesHandler(BaseHandler):
             execution_results, model_response_data["tool_call_ids"]
         ):
             tool_message = {
-                "role": "tool",
                 "type": "function_call_output",
                 "call_id": tool_call_id,
                 "output": execution_result,
@@ -169,25 +160,6 @@ class OpenAIResponsesHandler(BaseHandler):
             inference_data["message"].append(tool_message)
 
         return inference_data
-
-    def _add_reasoning_content_if_available_FC(
-        self, api_response: Response, response_data: dict
-    ) -> None:
-        """
-        OpenAI models don't show reasoning content in the api response,
-        but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
-        This method is included here to avoid code duplication.
-
-        These models often don't take reasoning content in the chat history for next turn.
-        Thus, this method saves reasoning content to response_data (for local result file) if present in the response,
-        but does not include it in the chat history.
-        """
-        reasonings = next(
-            (item for item in api_response.output if item.type == "reasoning"), None
-        )
-        if reasonings:
-            summaries = [r.text for r in reasonings.summary]
-            response_data["reasoning_content"] = ". ".join(summaries)
 
     #### Prompting methods ####
 
@@ -198,6 +170,8 @@ class OpenAIResponsesHandler(BaseHandler):
             "input": inference_data["message"],
             "model": self.model_name.replace("-FC", ""),
             "store": False,
+            "include": ["reasoning.encrypted_content"],
+            "reasoning": {"summary": "auto"},
         }
 
         # OpenAI reasoning models don't support temperature parameter
@@ -219,11 +193,20 @@ class OpenAIResponsesHandler(BaseHandler):
         return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: Response) -> dict:
+        # OpenAI reasoning models don't show full reasoning content in the api response,
+        # but only a summary of the reasoning content.
+        reasoning_content = ""
+        for item in api_response.output:
+            if item.type == "reasoning":
+                for summary in item.summary:
+                    reasoning_content += summary.text + "\n"
+
         return {
             "model_responses": api_response.output_text,
-            "model_responses_message_for_chat_history": [{"role": el.role, "content": el.content} for el in api_response.output],
-            "input_token": api_response.usage.input_tokens if api_response.usage else 0,
-            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
+            "model_responses_message_for_chat_history": api_response.output,
+            "reasoning_content": reasoning_content,
+            "input_token": api_response.usage.input_tokens,
+            "output_token": api_response.usage.output_tokens,
         }
 
     def add_first_turn_message_prompting(
@@ -241,7 +224,7 @@ class OpenAIResponsesHandler(BaseHandler):
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        inference_data["message"].append(
+        inference_data["message"].extend(
             model_response_data["model_responses_message_for_chat_history"]
         )
         return inference_data
@@ -260,22 +243,3 @@ class OpenAIResponsesHandler(BaseHandler):
         )
 
         return inference_data
-
-    def _add_reasoning_content_if_available_prompting(
-        self, api_response: Response, response_data: dict
-    ) -> None:
-        """
-        OpenAI models don't show reasoning content in the api response,
-        but many other models that use the OpenAI interface do, such as DeepSeek and Grok.
-        This method is included here to avoid code duplication.
-
-        These models often don't take reasoning content in the chat history for next turn.
-        Thus, this method saves reasoning content to response_data (for local result file) if present in the response,
-        but does not include it in the chat history.
-        """
-        reasonings = next(
-            (item for item in api_response.output if item.type == "reasoning"), None
-        )
-        if reasonings:
-            summaries = [r.text for r in reasonings.summary]
-            response_data["reasoning_content"] = ". ".join(summaries)
