@@ -12,7 +12,11 @@ from overrides import override
 
 class Granite3FCHandler(OSSHandler):
     """
-    Base class which handles the Granite-3.x series of models.
+    Handler for the Granite-3.x series of models.
+
+    Currently supports:
+    - Granite-3.1-8B-Instruct (https://huggingface.co/ibm-granite/granite-3.1-8b-instruct)
+    - Granite-3.2-8B-Instruct (https://huggingface.co/ibm-granite/granite-3.2-8b-instruct)
     """
 
     def __init__(self, model_name, temperature) -> None:
@@ -27,7 +31,7 @@ class Granite3FCHandler(OSSHandler):
 
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-        # Llama use its own system prompt
+        # Granite use its own system prompt
 
         return {"message": [], "function": functions}
 
@@ -92,7 +96,7 @@ class Granite3FCHandler(OSSHandler):
         input_string = input_string.lstrip()
 
         if "<tool_call>" in input_string:
-            # granite will sometimes output a </tool_call> token at the very end
+            # granite-3.x will sometimes output a </tool_call> token at the very end
             input_string = input_string.replace("</tool_call>", "")
             pattern = r"<tool_call>(.*)"
         else:
@@ -163,186 +167,6 @@ class Granite3FCHandler(OSSHandler):
                 return False
 
         return True
-
-
-class Granite31FCHandler(Granite3FCHandler):
-    """
-    Handler for the Granite-3.1-8B-Instruct function calling model.
-    View the technical specification on the HuggingFace page for reference:
-    https://huggingface.co/ibm-granite/granite-3.1-8b-instruct
-
-    """
-
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-
-    @override
-    def _format_prompt(self, messages, function):
-        """
-        "bos_token": "<|begin_of_text|>",
-        "chat_template":
-        {%- if messages[0]['role'] == 'system' %}
-            {%- set system_message = messages[0]['content'] %}
-            {%- set loop_messages = messages[1:] %}
-        {%- else %}
-            {%- set system_message = "Knowledge Cutoff Date: April 2024.
-        Today's Date: " + strftime_now('%B %d, %Y') + ".
-        You are Granite, developed by IBM." %}
-            {%- if tools and documents %}
-                {%- set system_message = system_message + " You are a helpful AI assistant with access to the following tools. When a tool is required to answer the user's query, respond with <|tool_call|> followed by a JSON list of tools used. If a tool does not exist in the provided list of tools, notify the user that you do not have the ability to fulfill the request.
-
-        Write the response to the user's input by strictly aligning with the facts in the provided documents. If the information needed to answer the question is not available in the documents, inform the user that the question cannot be answered based on the available data." %}
-            {%- elif tools %}
-                {%- set system_message = system_message + " You are a helpful AI assistant with access to the following tools. When a tool is required to answer the user's query, respond with <|tool_call|> followed by a JSON list of tools used. If a tool does not exist in the provided list of tools, notify the user that you do not have the ability to fulfill the request." %}
-            {%- elif documents %}
-                {%- set system_message = system_message + " Write the response to the user's input by strictly aligning with the facts in the provided documents. If the information needed to answer the question is not available in the documents, inform the user that the question cannot be answered based on the available data." %}
-            {%- else %}
-                {%- set system_message = system_message + " You are a helpful AI assistant." %}
-            {%- endif %}
-            {%- if 'citations' in controls and documents %}
-                {%- set system_message = system_message + '
-
-        In your response, use the symbols <co> and </co> to indicate when a fact comes from a document in the search result, e.g <co>0</co> for a fact from document 0. Afterwards, list all the citations with their corresponding documents in an ordered list.' %}
-            {%- endif %}
-            {%- if 'hallucinations' in controls and documents %}
-                {%- set system_message = system_message + '
-
-        Finally, after the response is written, include a numbered list of sentences from the response that are potentially hallucinated and not based in the documents.' %}
-            {%- endif %}
-            {%- set loop_messages = messages %}
-        {%- endif %}
-        {{- '<|start_of_role|>system<|end_of_role|>' + system_message + '<|end_of_text|>
-        ' }}
-        {%- if tools %}
-            {{- '<|start_of_role|>tools<|end_of_role|>' }}
-            {{- tools | tojson(indent=4) }}
-            {{- '<|end_of_text|>
-        ' }}
-        {%- endif %}
-        {%- if documents %}
-            {{- '<|start_of_role|>documents<|end_of_role|>' }}
-            {%- for document in documents %}
-                {{- 'Document ' + loop.index0 | string + '
-        ' }}
-                {{- document['text'] }}
-                {%- if not loop.last %}
-                    {{- '
-
-        '}}
-                {%- endif%}
-            {%- endfor %}
-            {{- '<|end_of_text|>
-        ' }}
-        {%- endif %}
-        {%- for message in loop_messages %}
-            {{- '<|start_of_role|>' + message['role'] + '<|end_of_role|>' + message['content'] + '<|end_of_text|>
-        ' }}
-            {%- if loop.last and add_generation_prompt %}
-                {{- '<|start_of_role|>assistant' }}
-                    {%- if controls %}
-                        {{- ' ' + controls | tojson()}}
-                    {%- endif %}
-                {{- '<|end_of_role|>' }}
-            {%- endif %}
-        {%- endfor %}
-        """
-
-        """
-        Here's an example of a rendered chat template from Granite-3.1-8B-Instruct
-
-        <|start_of_role|>system<|end_of_role|>Knowledge Cutoff Date: April 2024.
-        Today's Date: April 29, 2025.
-        You are Granite, developed by IBM. You are a helpful AI assistant with access to the following tools. When a tool is required to answer the user's query, respond with <|tool_call|> followed by a JSON list of tools used. If a tool does not exist in the provided list of tools, notify the user that you do not have the ability to fulfill the request.<|end_of_text|>
-        <|start_of_role|>tools<|end_of_role|>[
-            {
-                "type": "function",
-                "function": {
-                    "name": "add",
-                    "description": "Given two numbers, return their sum.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "a": {
-                                "type": "number",
-                                "description": "first number"
-                            },
-                            "b": {
-                                "type": "number",
-                                "description": "second number"
-                            }
-                        },
-                        "required": [
-                            "a",
-                            "b"
-                        ]
-                    },
-                    "return": {
-                        "type": "number"
-                    }
-                }
-            }
-        ]<|end_of_text|>
-        <|start_of_role|>user<|end_of_role|>test<|end_of_text|>
-        """
-        # formatted input prompt
-        formatted_prompt = ""
-
-        if messages[0]["role"] == "system":
-            # set the system message & shift the remaining right
-            system_prompt = messages[0]["content"]
-            messages = messages[1:]
-        else:
-            # granite-3.1-8b-instruct only provides instructions on how to create a <|tool_call|>
-            # when there is no system message passed in. I think you can get better performance by always
-            # giving these instructions, but this design deviates from how the model is realistically used
-            system_prompt = (
-                "Knowledge Cutoff Date: April 2024.\n"
-                "Today's Date: April 29, 2025.\n"
-                "You are Granite, developed by IBM."
-            )
-            if function:
-                # we only add this when the tools are provided AND no system prompt is passed
-                system_prompt += (
-                    " You are a helpful AI assistant with access "
-                    "to the following tools. When a tool is required to answer the user's query, respond "
-                    "with <|tool_call|> followed by a JSON list of tools used. If a tool does not exist "
-                    "in the provided list of tools, notify the user that you do not have the ability to fulfill the request."
-                )
-
-        # add the system message
-        formatted_prompt += (
-            f"<|start_of_role|>system<|end_of_role|>{system_prompt}<|end_of_text|>\n"
-        )
-
-        # now we format the messages
-        if function:
-            formatted_prompt += (
-                "<|start_of_role|>tools<|end_of_role|>"
-                + json.dumps(function, indent=4)
-                + "<|end_of_text|>\n"
-            )
-
-        # Granite doesn't have any remaining special cases for tool calling on any of the other messages
-        for msg in messages:
-            formatted_prompt += (
-                "<|start_of_role|>"
-                + msg["role"]
-                + "<|end_of_role|>"
-                + msg["content"]
-                + "<|end_of_text|>\n"
-            )
-        return formatted_prompt
-
-
-class Granite32FCHandler(Granite31FCHandler):
-    """
-    Handler for the Granite-3.2-8B-Instruct function calling model.
-    View the technical specification on the HuggingFace page for reference:
-    https://huggingface.co/ibm-granite/granite-3.2-8b-instruct
-    """
-
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
 
     @override
     def _format_prompt(self, messages, function):
@@ -423,7 +247,7 @@ class Granite32FCHandler(Granite31FCHandler):
             system_prompt = messages[0]["content"]
             messages = messages[1:]
         else:
-            # granite-3.2-8b-instruct only provides instructions on how to create a <|tool_call|>
+            # granite-3.x only provides instructions on how to create a <|tool_call|>
             # when there is no system message passed in. I think you can get better performance by always
             # giving these instructions, but this design deviates from how the model is realistically used
             system_prompt = (
