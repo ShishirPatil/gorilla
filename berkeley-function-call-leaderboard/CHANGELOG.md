@@ -2,7 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Jul 2, 2025] [#1090](https://github.com/ShishirPatil/gorilla/pull/1090): Replaced `system` role with `developer` role for new OpenAI Responses handler
+- [Jul 2, 2025] [#1090](https://github.com/ShishirPatil/gorilla/pull/1090): Updated OpenAI models to use `developer` role instead of `system` role, following OpenAI's documentation recommendations. This change affects only the OpenAI Responses handler.
 - [Jul 2, 2025] [#1062](https://github.com/ShishirPatil/gorilla/pull/1062): Introduce OpenAI Responses handler, and add support for `o3-2025-04-16` and `o4-mini-2025-04-16`.
 - [Jun 30, 2025] [#956](https://github.com/ShishirPatil/gorilla/pull/956): Fix typo in ground truth for multi_turn_base.
 - [Jun 29, 2025] [#1034](https://github.com/ShishirPatil/gorilla/pull/1034): Add support for `claude-opus-4-20250514` and `claude-sonnet-4-20250514`
@@ -57,7 +57,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `grok-3-beta-FC`
   - `grok-3-mini-beta`
   - `grok-3-mini-beta-FC`
-- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model’s files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
+- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model's files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
 - [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
   - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
@@ -222,7 +222,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
   - Introduce a new response-based checker, which works alongside with the existing state-based checker.
-    - The new checker compares the model’s execution result against the ground truth execution result, ensuring that the model’s result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
+    - The new checker compares the model's execution result against the ground truth execution result, ensuring that the model's result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
     - It complements the state-based checker, which doesn't work well when the functions don't directly alter the state. For example, it's unclear whether the model actually invoked `get_zipcode_by_city` or `estimate_distance` by just using the state-based checker.
     - Any multi turn entry will now only be marked correct if it passes both the state and response checkers.
   - Remove the irrelevance detection for multi-turn categories.

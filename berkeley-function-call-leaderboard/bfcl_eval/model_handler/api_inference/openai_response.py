@@ -27,7 +27,9 @@ class OpenAIResponsesHandler(BaseHandler):
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
-        # Changes system role to developer role, keeps rest the same
+        # OpenAI allows `system` role in the prompt, but it is meant for "messages added by OpenAI"
+        # For our use case, it is recommended to use `developer` role instead.
+        # See https://model-spec.openai.com/2025-04-11.html#definitions
         for prompt in prompts:
             if prompt["role"] == "system":
                 prompt["role"] = "developer"
@@ -179,9 +181,7 @@ class OpenAIResponsesHandler(BaseHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {
-            "message": repr(inference_data["message"])
-        }
+        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
         kwargs = {
             "input": inference_data["message"],
