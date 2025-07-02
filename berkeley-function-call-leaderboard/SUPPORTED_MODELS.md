@@ -22,10 +22,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Arch-Agent-{1.5B, 3B, 7B, 32B}         | Function Calling | Self-hosted 💻 | katanemo/Arch-Agent-{1.5B, 3B, 7B, 32B}                     |
 | Bielik-11B-v2.3-Instruct               | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                            | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
+| Claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
+| Claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
 | Claude-Opus-4-20250514                 | Function Calling | Anthropic      | claude-opus-4-20250514                                      |
 | Claude-Opus-4-20250514                 | Prompt           | Anthropic      | claude-opus-4-20250514                                      |
-| claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
-| claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
 | Claude-Sonnet-4-20250514               | Function Calling | Anthropic      | claude-sonnet-4-20250514                                    |
 | Claude-Sonnet-4-20250514               | Prompt           | Anthropic      | claude-sonnet-4-20250514                                    |
 | CoALM-{8B, 70B, 405B}                  | Function Calling | Self-hosted 💻 | uiuc-convai/CoALM-{8B,70B,405B}                             |
@@ -71,6 +71,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-3-mini-beta                       | Prompt           | xAI            | grok-3-mini-beta                                            |
 | Haha-7B                                | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}            | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
+| Ling-lite-v1.5                         | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct            | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct            | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
 | Llama-3.1-Nemotron-Ultra-253B-v1       | Prompt           | Nvidia         | nvidia/llama-3.1-nemotron-ultra-253b-v1                     |
@@ -93,12 +94,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Mistral-Small-2503                     | Prompt           | Mistral AI     | mistral-small-2503                                          |
 | Nemotron-4-340b-instruct               | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                     | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
-| o1-2024-12-17                          | Function Calling | OpenAI         | o1-2024-12-17-FC                                            |
-| o1-2024-12-17                          | Prompt           | OpenAI         | o1-2024-12-17                                               |
-| o3-2025-04-16                          | Prompt           | OpenAI         | o3-2025-04-16                                               |
-| o3-2025-04-16                          | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |
-| o4-mini-2025-04-16                     | Prompt           | OpenAI         | o4-mini-2025-04-16                                          |
-| o4-mini-2025-04-16                     | Function Calling | OpenAI         | o4-mini-2025-04-16-FC                                       |
+| O3-2025-04-16                          | Prompt           | OpenAI         | o3-2025-04-16                                               |
+| O3-2025-04-16                          | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |
+| O4-mini-2025-04-16                     | Prompt           | OpenAI         | o4-mini-2025-04-16                                          |
+| O4-mini-2025-04-16                     | Function Calling | OpenAI         | o4-mini-2025-04-16-FC                                       |
 | Open-Mistral-Nemo-2407                 | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                 | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
 | palmyra-x-004                          | Function Calling | Writer         | palmyra-x-004                                               |
@@ -129,7 +128,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
 | yi-large                               | Function Calling | 01.AI          | yi-large-fc                                                 |
-| Ling-lite-v1.5                         | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
 
 ---
 

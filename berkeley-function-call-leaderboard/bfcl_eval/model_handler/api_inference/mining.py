@@ -7,7 +7,7 @@ from bfcl_eval.model_handler.utils import (
     func_doc_language_specific_pre_processing
 )
 from openai import OpenAI
-from bfcl_eval.model_handler.api_inference.openai import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 
 class MiningHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:

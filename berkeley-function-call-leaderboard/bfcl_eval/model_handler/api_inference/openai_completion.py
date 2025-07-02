@@ -57,19 +57,17 @@ class OpenAICompletionsHandler(BaseHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
+        kwargs = {
+            "messages": message,
+            "model": self.model_name.replace("-FC", ""),
+            "temperature": self.temperature,
+            "store": False,
+        }
+
         if len(tools) > 0:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-                tools=tools,
-            )
-        else:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-            )
+            kwargs["tools"] = tools
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -202,6 +200,7 @@ class OpenAICompletionsHandler(BaseHandler):
             messages=inference_data["message"],
             model=self.model_name,
             temperature=self.temperature,
+            store=False,
         )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:

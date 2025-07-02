@@ -56,27 +56,25 @@ class OpenAIResponsesHandler(BaseHandler):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
 
-        # OpenAI reasoning models don't support temperature parameter
-        # As of 6/29/25, not officially documented but returned an error when manually tested
-        temperature = (
-            self.temperature
-            if "o1" not in self.model_name
-            and "o3" not in self.model_name
-            and "o4-mini" not in self.model_name
-            else None
-        )
-
         inference_data["inference_input_log"] = {
             "message": repr(message),
             "tools": tools,
         }
 
-        return self.generate_with_backoff(
-            input=message,
-            model=self.model_name.replace("-FC", ""),
-            temperature=temperature,
-            tools=tools,
-        )
+        kwargs = {
+            "input": message,
+            "model": self.model_name.replace("-FC", ""),
+            "store": False,
+        }
+
+        # OpenAI reasoning models don't support temperature parameter
+        if "o3" not in self.model_name and "o4-mini" not in self.model_name:
+            kwargs["temperature"] = self.temperature
+
+        if len(tools) > 0:
+            kwargs["tools"] = tools
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -129,9 +127,7 @@ class OpenAIResponsesHandler(BaseHandler):
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "tool_call_ids": tool_call_ids,
             "input_token": api_response.usage.input_tokens if api_response.usage else 0,
-            "output_token": api_response.usage.output_tokens
-            if api_response.usage
-            else 0,
+            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
         }
 
     def add_first_turn_message_FC(
@@ -196,25 +192,19 @@ class OpenAIResponsesHandler(BaseHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {
-            "message": repr(inference_data["message"])
+        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
+
+        kwargs = {
+            "input": inference_data["message"],
+            "model": self.model_name.replace("-FC", ""),
+            "store": False,
         }
 
         # OpenAI reasoning models don't support temperature parameter
-        # As of 6/29/25, not officially documented but returned an error when manually tested
-        temperature = (
-            self.temperature
-            if "o1" not in self.model_name
-            and "o3" not in self.model_name
-            and "o4-mini" not in self.model_name
-            else None
-        )
+        if "o3" not in self.model_name and "o4-mini" not in self.model_name:
+            kwargs["temperature"] = self.temperature
 
-        return self.generate_with_backoff(
-            input=inference_data["message"],
-            model=self.model_name,
-            temperature=temperature,
-        )
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -231,13 +221,9 @@ class OpenAIResponsesHandler(BaseHandler):
     def _parse_query_response_prompting(self, api_response: Response) -> dict:
         return {
             "model_responses": api_response.output_text,
-            "model_responses_message_for_chat_history": next(
-                (item.content for item in api_response.output if item.type == "message")
-            ),
+            "model_responses_message_for_chat_history": [{"role": el.role, "content": el.content} for el in api_response.output],
             "input_token": api_response.usage.input_tokens if api_response.usage else 0,
-            "output_token": api_response.usage.output_tokens
-            if api_response.usage
-            else 0,
+            "output_token": api_response.usage.output_tokens if api_response.usage else 0,
         }
 
     def add_first_turn_message_prompting(

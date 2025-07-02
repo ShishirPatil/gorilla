@@ -2,7 +2,7 @@ import os
 import time
 
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from writerai import Writer
 
 

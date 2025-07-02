@@ -19,7 +19,7 @@ from bfcl_eval.model_handler.api_inference.nexus import NexusHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl_eval.model_handler.api_inference.openai import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
 from bfcl_eval.model_handler.api_inference.qwen import (
     QwenAPIHandler,
@@ -246,30 +246,6 @@ api_inference_model_map = {
         model_handler=OpenAIResponsesHandler,
         input_price=0.1,
         output_price=0.4,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "o1-2024-12-17-FC": ModelConfig(
-        model_name="o1-2024-12-17-FC",
-        display_name="o1-2024-12-17 (FC)",
-        url="https://openai.com/o1/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIResponsesHandler,
-        input_price=15,
-        output_price=60,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
-    "o1-2024-12-17": ModelConfig(
-        model_name="o1-2024-12-17",
-        display_name="o1-2024-12-17 (Prompt)",
-        url="https://openai.com/o1/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIResponsesHandler,
-        input_price=15,
-        output_price=60,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
