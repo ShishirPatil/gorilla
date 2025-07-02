@@ -12,6 +12,7 @@ from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
+from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
 from bfcl_eval.model_handler.api_inference.mistral import MistralHandler
 from bfcl_eval.model_handler.api_inference.nemotron import NemotronHandler
@@ -19,15 +20,18 @@ from bfcl_eval.model_handler.api_inference.nexus import NexusHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
 from bfcl_eval.model_handler.api_inference.qwen import (
-    QwenAPIHandler,
-    QwenAgentThinkHandler,
     QwenAgentNoThinkHandler,
+    QwenAgentThinkHandler,
+    QwenAPIHandler,
 )
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
+from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
@@ -41,10 +45,7 @@ from bfcl_eval.model_handler.local_inference.glm import GLMHandler
 from bfcl_eval.model_handler.local_inference.granite import (
     GraniteFunctionCallingHandler,
 )
-from bfcl_eval.model_handler.local_inference.granite_3 import (
-    Granite31FCHandler,
-    Granite32FCHandler,
-)
+from bfcl_eval.model_handler.local_inference.granite_3 import Granite3FCHandler
 from bfcl_eval.model_handler.local_inference.hammer import HammerHandler
 from bfcl_eval.model_handler.local_inference.hermes import HermesHandler
 from bfcl_eval.model_handler.local_inference.llama import LlamaHandler
@@ -66,8 +67,6 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
-from bfcl_eval.model_handler.local_inference.arch import ArchHandler
-from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1399,7 +1398,7 @@ local_inference_model_map = {
         url="https://huggingface.co/ibm-granite/granite-3.2-8b-instruct",
         org="IBM",
         license="Apache-2.0",
-        model_handler=Granite32FCHandler,
+        model_handler=Granite3FCHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
@@ -1411,7 +1410,7 @@ local_inference_model_map = {
         url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
         org="IBM",
         license="Apache-2.0",
-        model_handler=Granite31FCHandler,
+        model_handler=Granite3FCHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
