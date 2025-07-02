@@ -25,6 +25,17 @@ class OpenAIResponsesHandler(BaseHandler):
         self.model_style = ModelStyle.OpenAI_Responses
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+    @staticmethod
+    def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
+        # OpenAI allows `system` role in the prompt, but it is meant for "messages added by OpenAI"
+        # For our use case, it is recommended to use `developer` role instead.
+        # See https://model-spec.openai.com/2025-04-11.html#definitions
+        for prompt in prompts:
+            if prompt["role"] == "system":
+                prompt["role"] = "developer"
+
+        return prompts
+
     def decode_ast(self, result, language="Python"):
         if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
@@ -79,7 +90,13 @@ class OpenAIResponsesHandler(BaseHandler):
         return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
+
         inference_data["message"] = []
+
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
@@ -189,6 +206,11 @@ class OpenAIResponsesHandler(BaseHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
+
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
 
         return {"message": []}
 
