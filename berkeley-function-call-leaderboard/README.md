@@ -174,18 +174,18 @@ IDs to run:
 
 > Note: When using `--run-ids`, the `--test-category` flag is ignored.
 
-A sample file is provided at `bfcl_eval/test_case_ids_to_generate.json`; **copy it to your project root** so the CLI can pick it up regardless of your working directory:
+A sample file is provided at `bfcl_eval/test_case_ids_to_generate.json.example`; **copy it to your project root** so the CLI can pick it up regardless of your working directory:
 
 **For editable installations:**
 
 ```bash
-cp bfcl_eval/test_case_ids_to_generate.json ./test_case_ids_to_generate.json
+cp bfcl_eval/test_case_ids_to_generate.json.example ./test_case_ids_to_generate.json
 ```
 
 **For PyPI installations:**
 
 ```bash
-cp $(python -c "import bfcl_eval, pathlib; print(pathlib.Path(bfcl_eval.__path__[0]) / 'test_case_ids_to_generate.json')") $BFCL_PROJECT_ROOT/test_case_ids_to_generate.json
+cp $(python -c "import bfcl_eval, pathlib; print(pathlib.Path(bfcl_eval.__path__[0]) / 'test_case_ids_to_generate.json.example')") $BFCL_PROJECT_ROOT/test_case_ids_to_generate.json
 ```
 
 Once `--run-ids` is provided only the IDs listed in the JSON will be evaluated.
