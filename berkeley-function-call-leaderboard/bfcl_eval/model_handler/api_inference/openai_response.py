@@ -10,10 +10,10 @@ from bfcl_eval.model_handler.utils import (
     convert_to_tool,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
-    developer_prompt_pre_processing_chat_model,
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
     retry_with_backoff,
+    system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI, RateLimitError
 from openai.types.responses import Response
@@ -24,6 +24,15 @@ class OpenAIResponsesHandler(BaseHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI_Responses
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    @staticmethod
+    def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
+        # Changes system role to developer role, keeps rest the same
+        for prompt in prompts:
+            if prompt["role"] == "system":
+                prompt["role"] = "developer"
+
+        return prompts
 
     def decode_ast(self, result, language="Python"):
         if "FC" in self.model_name or self.is_fc_model:
@@ -79,7 +88,13 @@ class OpenAIResponsesHandler(BaseHandler):
         return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
+
         inference_data["message"] = []
+
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
@@ -188,9 +203,14 @@ class OpenAIResponsesHandler(BaseHandler):
 
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-        test_entry["question"][0] = developer_prompt_pre_processing_chat_model(
+        test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
+
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
 
         return {"message": []}
 
