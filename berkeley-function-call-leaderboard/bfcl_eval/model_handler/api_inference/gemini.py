@@ -1,7 +1,8 @@
 import os
 import time
 
-import vertexai
+# import vertexai
+from google import genai
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
@@ -16,14 +17,24 @@ from bfcl_eval.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from google.api_core.exceptions import ResourceExhausted, TooManyRequests
-from vertexai.generative_models import (
-    Content,
-    FunctionDeclaration,
-    GenerationConfig,
-    GenerativeModel,
+# from vertexai.generative_models import (
+#     Content,
+#     FunctionDeclaration,
+#     GenerationConfig,
+#     GenerativeModel,
+#     Part,
+#     Tool,
+# )
+from google.genai import types
+from google.genai.types import (
+    Content, 
     Part,
+    GenerationConfig,
+    FunctionDeclaration,
     Tool,
-)
+    GenerateContentConfig,
+    FunctionResponse,
+    )
 
 
 class GeminiHandler(BaseHandler):
@@ -31,11 +42,19 @@ class GeminiHandler(BaseHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Google
         # Initialize Vertex AI
-        vertexai.init(
-            project=os.getenv("VERTEX_AI_PROJECT_ID"),
-            location=os.getenv("VERTEX_AI_LOCATION"),
-        )
-        self.client = GenerativeModel(self.model_name.replace("-FC", ""))
+        # vertexai.init(
+        #     project=os.getenv("VERTEX_AI_PROJECT_ID"),
+        #     location=os.getenv("VERTEX_AI_LOCATION"),
+        # )
+
+        #Initialize GenAI
+        api_key = os.getenv("GENAI_API_KEY")
+        if not api_key:
+            raise ValueError("API key is required")
+        self.client = genai.Client(api_key=api_key)
+
+        # self.client = GenerativeModel(self.model_name.replace("-FC", ""))
+        self.model = self.client.models.get(model_name)
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
@@ -106,24 +125,49 @@ class GeminiHandler(BaseHandler):
             "system_prompt": inference_data.get("system_prompt", None),
         }
 
+        # Prepare generation config
+        generation_config = GenerationConfig(
+            temperature=self.temperature,
+        )
+
+        # For GenAI, we need to pass system prompt as part of the request
+        request_data = {
+            "contents": inference_data["message"],
+            "config": GenerateContentConfig(
+                    generation_config=generation_config,
+                    tools=tools,
+                    system_instruction=inference_data.get("system_prompt")
+                ),
+        }
+        
+        if tools:
+            request_data["tools"] = tools
+
         # messages are already converted to Content object
         if "system_prompt" in inference_data:
             # We re-instantiate the GenerativeModel object with the system prompt
             # We cannot reassign the self.client object as it will affect other entries
-            client = GenerativeModel(
-                self.model_name.replace("-FC", ""),
-                system_instruction=inference_data["system_prompt"],
-            )
-        else:
-            client = self.client
+            # client = GenerativeModel(
+            #     self.model_name.replace("-FC", ""),
+            #     system_instruction=inference_data["system_prompt"],
+            # )
+            request_data["system_instruction"] = inference_data["system_prompt"]
+
+        # else:
+        #     client = self.client
+
+        # return self.generate_with_backoff(
+        #     client=client,
+        #     contents=inference_data["message"],
+        #     generation_config=GenerationConfig(
+        #         temperature=self.temperature,
+        #     ),
+        #     tools=tools,
+        # )
 
         return self.generate_with_backoff(
-            client=client,
-            contents=inference_data["message"],
-            generation_config=GenerationConfig(
-                temperature=self.temperature,
-            ),
-            tools=tools,
+            model=self.model,
+            **request_data
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
@@ -232,11 +276,19 @@ class GeminiHandler(BaseHandler):
             execution_results, model_response_data["tool_call_func_names"]
         ):
             tool_response_parts.append(
-                Part.from_function_response(
-                    name=tool_call_func_name,
-                    response={
-                        "content": execution_result,
-                    },
+                # Part.from_function_response(
+                #     name=tool_call_func_name,
+                #     response={
+                #         "content": execution_result,
+                #     },
+                # )
+                Part(
+                    function_response=FunctionResponse(
+                        name=tool_call_func_name,
+                        response={
+                            "content": execution_result,
+                        },
+                    )
                 )
             )
 
@@ -253,22 +305,38 @@ class GeminiHandler(BaseHandler):
             "system_prompt": inference_data.get("system_prompt", None),
         }
 
+        generation_config = GenerationConfig(
+            temperature=self.temperature,
+        )
+        request_data = {
+            "contents": inference_data["message"],
+            "config": GenerateContentConfig(
+                    generation_config=generation_config,
+                    system_instruction=inference_data.get("system_prompt")
+                ),
+        }
+
         # messages are already converted to Content object
         if "system_prompt" in inference_data:
-            client = GenerativeModel(
-                self.model_name.replace("-FC", ""),
-                system_instruction=inference_data["system_prompt"],
-            )
-        else:
-            client = self.client
-        api_response = self.generate_with_backoff(
-            client=client,
-            contents=inference_data["message"],
-            generation_config=GenerationConfig(
-                temperature=self.temperature,
-            ),
+            # client = GenerativeModel(
+            #     self.model_name.replace("-FC", ""),
+            #     system_instruction=inference_data["system_prompt"],
+            # )
+            request_data["system_instruction"] = inference_data["system_prompt"]
+        # else:
+        #     client = self.client
+        # api_response = self.generate_with_backoff(
+        #     client=client,
+        #     contents=inference_data["message"],
+        #     generation_config=GenerationConfig(
+        #         temperature=self.temperature,
+        #     ),
+        # )
+        # return api_response
+        return self.generate_with_backoff(
+            model=self.model,
+            **request_data
         )
-        return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
