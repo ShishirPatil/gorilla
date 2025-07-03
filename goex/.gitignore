@@ -1,0 +1,4 @@
+goex-env
+*.pem
+.direnv/
+user_config.json
