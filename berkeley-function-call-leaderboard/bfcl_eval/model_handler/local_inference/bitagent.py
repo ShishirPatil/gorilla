@@ -13,7 +13,7 @@ class BitAgentHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         formatted_prompt = "<|begin_of_text|>"
 
-        system_message = "You are a helpful Assistant named BitAgent that is designed to use tools"
+        system_message = "You are a helpful Assistant named BitAgent that is designed to use tools."
         remaining_messages = messages
         if messages[0]["role"] == "system":
             system_message = messages[0]["content"].strip()
