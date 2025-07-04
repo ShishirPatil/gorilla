@@ -33,6 +33,7 @@ from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
+from bfcl_eval.model_handler.local_inference.command_a_fc import CommandAFCHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
 from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
@@ -1116,6 +1117,18 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
+    "CohereLabs/c4ai-command-a-03-2025-FC": ModelConfig(
+        model_name="CohereLabs/c4ai-command-a-03-2025",
+        display_name="C4AI-Command-A-03-2025 (FC)",
+        url="https://huggingface.co/CohereLabs/c4ai-command-a-03-2025",
+        org="Cohere",
+        license="cc-by-nc-4.0",
+        model_handler=CommandAFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
