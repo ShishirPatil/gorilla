@@ -166,5 +166,6 @@ SUPPORTED_MODELS = [
     "katanemo/Arch-Agent-1.5B",
     "katanemo/Arch-Agent-3B",
     "katanemo/Arch-Agent-7B",
-    "katanemo/Arch-Agent-32B"
+    "katanemo/Arch-Agent-32B",
+    "CohereLabs/c4ai-command-a-03-2025-FC",
 ]
