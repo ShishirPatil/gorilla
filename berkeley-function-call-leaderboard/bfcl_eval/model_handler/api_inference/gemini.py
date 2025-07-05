@@ -48,7 +48,7 @@ class GeminiHandler(BaseHandler):
         # )
 
         #Initialize GenAI
-        api_key = os.getenv("GENAI_API_KEY")
+        api_key = os.getenv("GOOGLE_API_KEY")
         if not api_key:
             raise ValueError("API key is required")
         self.client = genai.Client(api_key=api_key)
