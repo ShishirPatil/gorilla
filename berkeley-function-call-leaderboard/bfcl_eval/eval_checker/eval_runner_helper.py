@@ -106,24 +106,29 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
     model_config = MODEL_CONFIG_MAPPING[model_name]
 
-    if model_config.input_price is None or model_config.output_price is None:
-        # Open source models should not have a cost or latency
-        return "N/A", "N/A", "N/A", "N/A"
-
-    if (
-        model_config.input_price is not None
-        and len(cost_data["input_data"]) > 0
-        and len(cost_data["output_data"]) > 0
-    ):
-
-        mean_input_token = statistics.mean(cost_data["input_data"])
-        mean_output_token = statistics.mean(cost_data["output_data"])
-        cost = (
-            mean_input_token * model_config.input_price
-            + mean_output_token * model_config.output_price
-        ) / 1000
+    # Calculate cost for API models (those with pricing)
+    if model_config.input_price is not None and model_config.output_price is not None:
+        if (
+            len(cost_data["input_data"]) > 0
+            and len(cost_data["output_data"]) > 0
+        ):
+            mean_input_token = statistics.mean(cost_data["input_data"])
+            mean_output_token = statistics.mean(cost_data["output_data"])
+            cost = (
+                mean_input_token * model_config.input_price
+                + mean_output_token * model_config.output_price
+            ) / 1000
+            cost = round(cost, 2)
+    
+    elif len(latency_data["data"]) > 0:
+        H100_8X_HOURLY_PRICE = 23.92  
+        H100_8X_SECOND_PRICE = H100_8X_HOURLY_PRICE / 3600  
+        total_latency_seconds = sum(latency_data["data"])
+        
+        cost = total_latency_seconds * H100_8X_SECOND_PRICE
         cost = round(cost, 2)
 
+    # Calculate latency statistics for ALL models (both API and local)
     if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
