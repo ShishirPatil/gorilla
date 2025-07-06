@@ -39,14 +39,12 @@ class GeminiHandler(BaseHandler):
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
-        # Allowed roles: user, model, function
+        # Allowed roles: user, model
         for prompt in prompts:
             if prompt["role"] == "user":
                 prompt["role"] = "user"
             elif prompt["role"] == "assistant":
                 prompt["role"] = "model"
-            else:
-                raise ValueError(f"Invalid role: {prompt['role']}")
 
         return prompts
 
@@ -72,7 +70,9 @@ class GeminiHandler(BaseHandler):
                     )
             return func_call_list
 
-    @retry_with_backoff(error_type=genai_errors.APIError)
+    # We can't retry on ClientError because it's too broad.
+    # Both rate limit and invalid function description will trigger google.genai.errors.ClientError
+    @retry_with_backoff(error_message_pattern=r".*RESOURCE_EXHAUSTED.*")
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
         api_response = self.client.models.generate_content(**kwargs)
@@ -137,9 +137,11 @@ class GeminiHandler(BaseHandler):
         fc_parts = []
         text_parts = []
         reasoning_content = []
-        print(len(api_response.candidates[0].content.parts))
+
         if (
             len(api_response.candidates) > 0
+            and api_response.candidates[0].content
+            and api_response.candidates[0].content.parts
             and len(api_response.candidates[0].content.parts) > 0
         ):
             response_function_call_content = api_response.candidates[0].content
@@ -280,9 +282,14 @@ class GeminiHandler(BaseHandler):
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         if (
             len(api_response.candidates) > 0
+            and api_response.candidates[0].content
+            and api_response.candidates[0].content.parts
             and len(api_response.candidates[0].content.parts) > 0
         ):
-            assert len(api_response.candidates[0].content.parts) == 2
+            assert (
+                len(api_response.candidates[0].content.parts) == 2
+            ), api_response.candidates[0].content.parts
+
             model_responses = ""
             reasoning_content = ""
             for part in api_response.candidates[0].content.parts:

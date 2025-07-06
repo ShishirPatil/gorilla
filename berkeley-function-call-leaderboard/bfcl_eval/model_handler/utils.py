@@ -105,6 +105,8 @@ def convert_to_tool(functions, mapping, model_style):
             if "optional" in item["parameters"]:
                 del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
+                if "description" not in params:
+                    params["description"] = ""
                 # No `default` field in GOOGLE or Palmyra's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
@@ -113,6 +115,10 @@ def convert_to_tool(functions, mapping, model_style):
                 if "optional" in params:
                     params["description"] += f" Optional: {str(params['optional'])}."
                     del params["optional"]
+                # No `required` field in parameter schema as well.
+                if "required" in params:
+                    params["description"] += f" Required: {str(params['required'])}."
+                    del params["required"]
                 # No `maximum` field.
                 if "maximum" in params:
                     params["description"] += f" Maximum value: {str(params['maximum'])}."
