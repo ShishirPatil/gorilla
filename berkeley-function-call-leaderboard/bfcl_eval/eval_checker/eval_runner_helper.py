@@ -112,20 +112,20 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
             len(cost_data["input_data"]) > 0
             and len(cost_data["output_data"]) > 0
         ):
-            mean_input_token = statistics.mean(cost_data["input_data"])
-            mean_output_token = statistics.mean(cost_data["output_data"])
+            total_input_tokens = sum(cost_data["input_data"])
+            total_output_tokens = sum(cost_data["output_data"])
             cost = (
-                mean_input_token * model_config.input_price
-                + mean_output_token * model_config.output_price
+                total_input_tokens * model_config.input_price
+                + total_output_tokens * model_config.output_price
             ) / 1000
             cost = round(cost, 2)
     
     elif len(latency_data["data"]) > 0:
         H100_8X_HOURLY_PRICE = 23.92  
-        H100_8X_SECOND_PRICE = H100_8X_HOURLY_PRICE / 3600  
         total_latency_seconds = sum(latency_data["data"])
+        total_latency_hours = total_latency_seconds / 3600
         
-        cost = total_latency_seconds * H100_8X_SECOND_PRICE
+        cost = total_latency_hours * H100_8X_HOURLY_PRICE
         cost = round(cost, 2)
 
     # Calculate latency statistics for ALL models (both API and local)
