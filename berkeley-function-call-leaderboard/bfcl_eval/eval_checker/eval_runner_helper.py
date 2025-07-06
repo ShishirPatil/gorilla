@@ -117,7 +117,7 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
             cost = (
                 total_input_tokens * model_config.input_price
                 + total_output_tokens * model_config.output_price
-            ) / 1000
+            )
             cost = round(cost, 2)
     
     elif len(latency_data["data"]) > 0:
