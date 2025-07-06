@@ -73,7 +73,7 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OpenAI_Completions,
             ModelStyle.OpenAI_Responses,
             ModelStyle.Mistral,
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
             ModelStyle.Anthropic,
             ModelStyle.COHERE,
@@ -97,7 +97,7 @@ def convert_to_tool(functions, mapping, model_style):
             del item["parameters"]
 
         if model_style in [
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.WRITER,
         ]:
             # Remove fields that are not supported by Gemini or Palmyra.
@@ -105,7 +105,7 @@ def convert_to_tool(functions, mapping, model_style):
             if "optional" in item["parameters"]:
                 del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
-                # No `default` field in Google or Palmyra's schema.
+                # No `default` field in GOOGLE or Palmyra's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
@@ -139,7 +139,7 @@ def convert_to_tool(functions, mapping, model_style):
                 # For Palmyra, `enum` field is not supported.
                 if "enum" in params and (
                     model_style == ModelStyle.WRITER
-                    or (model_style == ModelStyle.Google and params["type"] != "string")
+                    or (model_style == ModelStyle.GOOGLE and params["type"] != "string")
                 ):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
@@ -148,7 +148,7 @@ def convert_to_tool(functions, mapping, model_style):
         if "response" in item:
             if model_style in [
                 ModelStyle.Anthropic,
-                ModelStyle.Google,
+                ModelStyle.GOOGLE,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.WRITER,
                 ModelStyle.AMAZON,
@@ -161,7 +161,7 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style in [
             ModelStyle.Anthropic,
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
