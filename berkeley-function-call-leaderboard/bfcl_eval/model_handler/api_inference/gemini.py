@@ -39,7 +39,7 @@ class GeminiHandler(BaseHandler):
         # Find .env
         current_dir = Path(__file__).parent
         for parent in [current_dir] + list(current_dir.parents):
-            env_file = parent / '.env.example'
+            env_file = parent / '.env'
             if env_file.exists():
                 load_dotenv(env_file)
                 break  # Stop after first found .env
