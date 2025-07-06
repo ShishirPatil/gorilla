@@ -584,9 +584,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.0-flash-lite-001-FC": ModelConfig(
-        model_name="gemini-2.0-flash-lite-001-FC",
-        display_name="Gemini-2.0-Flash-Lite-001 (FC)",
+    "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
+        model_name="gemini-2.5-flash-lite-preview-06-17-FC",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
@@ -596,9 +596,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.0-flash-lite-001": ModelConfig(
-        model_name="gemini-2.0-flash-lite-001",
-        display_name="Gemini-2.0-Flash-Lite-001 (Prompt)",
+    "gemini-2.5-flash-lite-preview-06-17": ModelConfig(
+        model_name="gemini-2.5-flash-lite-preview-06-17",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
@@ -608,9 +608,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.0-flash-001-FC": ModelConfig(
-        model_name="gemini-2.0-flash-001-FC",
-        display_name="Gemini-2.0-Flash-001 (FC)",
+    "gemini-2.5-flash-FC": ModelConfig(
+        model_name="gemini-2.5-flash-FC",
+        display_name="Gemini-2.5-Flash (FC)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
@@ -620,9 +620,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.0-flash-001": ModelConfig(
-        model_name="gemini-2.0-flash-001",
-        display_name="Gemini-2.0-Flash-001 (Prompt)",
+    "gemini-2.5-flash": ModelConfig(
+        model_name="gemini-2.5-flash",
+        display_name="Gemini-2.5-Flash (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
@@ -632,9 +632,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
-        model_name="gemini-2.5-pro-preview-05-06-FC",
-        display_name="Gemini-2.5-Pro-Preview-05-06 (FC)",
+    "gemini-2.5-pro-FC": ModelConfig(
+        model_name="gemini-2.5-pro-FC",
+        display_name="Gemini-2.5-Pro (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
@@ -644,22 +644,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-pro-preview-05-06": ModelConfig(
-        model_name="gemini-2.5-pro-preview-05-06",
-        display_name="Gemini-2.5-Pro-Preview-05-06 (Prompt)",
+    "gemini-2.5-pro": ModelConfig(
+        model_name="gemini-2.5-pro",
+        display_name="Gemini-2.5-Pro (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
-        org="Google",
-        license="Proprietary",
-        model_handler=GeminiHandler,
-        input_price=0,
-        output_price=0,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "gemini-2.0-flash-thinking-exp-01-21": ModelConfig(
-        model_name="gemini-2.0-flash-thinking-exp-01-21",
-        display_name="Gemini-2.0-Flash-Thinking-Exp-01-21 (Prompt)",
-        url="https://deepmind.google/technologies/gemini/flash-thinking/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
