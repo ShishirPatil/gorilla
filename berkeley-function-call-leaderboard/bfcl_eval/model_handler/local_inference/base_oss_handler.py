@@ -285,6 +285,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
             )
             print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
+            traceback.print_exc()
             print("-" * 100)
 
             model_responses = f"Error during inference: {str(e)}"
