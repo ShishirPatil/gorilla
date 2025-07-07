@@ -129,6 +129,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
 | yi-large                               | Function Calling | 01.AI          | yi-large-fc                                                 |
+| c4ai-command-a-03-2025                 | Function Calling | Self-hosted 💻 | CohereLabs/c4ai-command-a-03-2025-FC                        |
 
 ---
 
