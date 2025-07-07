@@ -70,9 +70,10 @@ def convert_to_tool(functions, mapping, model_style):
     oai_tool = []
     for item in functions:
         if "." in item["name"] and model_style in [
-            ModelStyle.OpenAI,
+            ModelStyle.OpenAI_Completions,
+            ModelStyle.OpenAI_Responses,
             ModelStyle.Mistral,
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
             ModelStyle.Anthropic,
             ModelStyle.COHERE,
@@ -96,7 +97,7 @@ def convert_to_tool(functions, mapping, model_style):
             del item["parameters"]
 
         if model_style in [
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.WRITER,
         ]:
             # Remove fields that are not supported by Gemini or Palmyra.
@@ -104,7 +105,9 @@ def convert_to_tool(functions, mapping, model_style):
             if "optional" in item["parameters"]:
                 del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
-                # No `default` field in Google or Palmyra's schema.
+                if "description" not in params:
+                    params["description"] = ""
+                # No `default` field in GOOGLE or Palmyra's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
@@ -112,6 +115,10 @@ def convert_to_tool(functions, mapping, model_style):
                 if "optional" in params:
                     params["description"] += f" Optional: {str(params['optional'])}."
                     del params["optional"]
+                # No `required` field in parameter schema as well.
+                if "required" in params:
+                    params["description"] += f" Required: {str(params['required'])}."
+                    del params["required"]
                 # No `maximum` field.
                 if "maximum" in params:
                     params["description"] += f" Maximum value: {str(params['maximum'])}."
@@ -138,16 +145,20 @@ def convert_to_tool(functions, mapping, model_style):
                 # For Palmyra, `enum` field is not supported.
                 if "enum" in params and (
                     model_style == ModelStyle.WRITER
-                    or (model_style == ModelStyle.Google and params["type"] != "string")
+                    or (model_style == ModelStyle.GOOGLE and params["type"] != "string")
                 ):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
+                # No `format` when type is `string`
+                if "format" in params and params["type"] == "string":
+                    params["description"] += f" Format: {str(params['format'])}."
+                    del params["format"]
 
         # Process the return field
         if "response" in item:
             if model_style in [
                 ModelStyle.Anthropic,
-                ModelStyle.Google,
+                ModelStyle.GOOGLE,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.WRITER,
                 ModelStyle.AMAZON,
@@ -160,13 +171,20 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style in [
             ModelStyle.Anthropic,
-            ModelStyle.Google,
+            ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
         elif model_style in [
+            ModelStyle.OpenAI_Responses
+        ]:
+            oai_tool.append({"type": "function", 
+                             "name": item["name"], 
+                             "description": item["description"], 
+                             "parameters": item["parameters"]})
+        elif model_style in [
             ModelStyle.COHERE,
-            ModelStyle.OpenAI,
+            ModelStyle.OpenAI_Completions,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
             ModelStyle.WRITER,
