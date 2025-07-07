@@ -149,6 +149,10 @@ def convert_to_tool(functions, mapping, model_style):
                 ):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
+                # No `format` when type is `string`
+                if "format" in params and params["type"] == "string":
+                    params["description"] += f" Format: {str(params['format'])}."
+                    del params["format"]
 
         # Process the return field
         if "response" in item:

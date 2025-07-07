@@ -79,9 +79,15 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
                 isinstance(inner_item, list) for inner_item in data[key]
             ):
                 flattened_list = sum(data[key], [])
-                output_list.extend([item for item in flattened_list if item != 0])
+                output_list.extend(
+                    [
+                        item
+                        for item in flattened_list
+                        if isinstance(item, (int, float)) and item != 0
+                    ]
+                )
             else:
-                if data[key] != 0:
+                if isinstance(data[key], (int, float)) and data[key] != 0:
                     output_list.append(data[key])
 
     if model_name not in leaderboard_table:
