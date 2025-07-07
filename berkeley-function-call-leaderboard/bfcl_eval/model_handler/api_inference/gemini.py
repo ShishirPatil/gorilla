@@ -287,8 +287,8 @@ class GeminiHandler(BaseHandler):
             and len(api_response.candidates[0].content.parts) > 0
         ):
             assert (
-                len(api_response.candidates[0].content.parts) == 2
-            ), api_response.candidates[0].content.parts
+                len(api_response.candidates[0].content.parts) <= 2
+            ), f"Length of response parts should be less than or equal to 2. {api_response.candidates[0].content.parts}"
 
             model_responses = ""
             reasoning_content = ""
