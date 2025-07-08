@@ -117,9 +117,10 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
         if len(cost_data["input_data"]) > 0 and len(cost_data["output_data"]) > 0:
             total_input_tokens = sum(cost_data["input_data"])
             total_output_tokens = sum(cost_data["output_data"])
+            # price is in USD per million tokens
             cost = (
-                total_input_tokens * model_config.input_price
-                + total_output_tokens * model_config.output_price
+                total_input_tokens * model_config.input_price / 1000000
+                + total_output_tokens * model_config.output_price / 1000000
             )
             cost = round(cost, 2)
 
