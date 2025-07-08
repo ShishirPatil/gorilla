@@ -129,11 +129,9 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
         total_latency_seconds = sum(latency_data["data"])
         total_latency_hours = total_latency_seconds / 3600
 
-        cost = total_latency_hours * H100_X8_PRICE_PER_HOUR
+        # Divide by 100 since we are doing 100x parallel inference; this is an approximation to the GPU up-time.
+        cost = total_latency_hours * H100_X8_PRICE_PER_HOUR / 100
         cost = round(cost, 2)
-
-    else:
-        cost = "N/A"
 
     # Calculate latency statistics for ALL models (both API and local)
     if len(latency_data["data"]) != 0:
