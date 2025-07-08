@@ -59,14 +59,11 @@ class BitAgentHandler(OSSHandler):
 
     @override
     def decode_ast(self, result, language="Python"):
-        try:
-            # Parse the JSON array of function calls
-            function_calls = json.loads(result)
-            if not isinstance(function_calls, list):
-                function_calls = [function_calls]
-        except json.JSONDecodeError:
-            # Fallback for semicolon-separated format
-            function_calls = [json.loads(call.strip()) for call in result.split(";")]
+        
+        # Parse the JSON array of function calls
+        function_calls = json.loads(result)
+        if not isinstance(function_calls, list):
+            function_calls = [function_calls]
 
         decoded_output = []
         for func_call in function_calls:
