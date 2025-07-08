@@ -43,7 +43,7 @@ COLUMNS_OVERALL = [
     "Overall Acc",
     "Model",
     "Model Link",
-    "Cost ($ Per 1k Function Calls)",
+    "Total Cost ($)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
     "Latency 95th Percentile (s)",
