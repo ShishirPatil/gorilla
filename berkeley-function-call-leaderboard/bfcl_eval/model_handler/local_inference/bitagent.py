@@ -13,7 +13,9 @@ class BitAgentHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         formatted_prompt = "<|begin_of_text|>"
 
-        system_message = "You are a helpful Assistant named BitAgent that is designed to use tools."
+        system_message = (
+            "You are a helpful Assistant named BitAgent that is designed to use tools."
+        )
         remaining_messages = messages
         if messages[0]["role"] == "system":
             system_message = messages[0]["content"].strip()
@@ -59,7 +61,7 @@ class BitAgentHandler(OSSHandler):
 
     @override
     def decode_ast(self, result, language="Python"):
-        
+
         # Parse the JSON array of function calls
         function_calls = json.loads(result)
         if not isinstance(function_calls, list):
@@ -75,19 +77,18 @@ class BitAgentHandler(OSSHandler):
 
     @override
     def decode_execute(self, result):
-        try:
-            function_calls = json.loads(result)
-            if not isinstance(function_calls, list):
-                function_calls = [function_calls]
-        except json.JSONDecodeError:
-            function_calls = [json.loads(call.strip()) for call in result.split(";")]
+
+        # Parse the JSON array of function calls
+        function_calls = json.loads(result)
+        if not isinstance(function_calls, list):
+            function_calls = [function_calls]
 
         execution_list = []
         for func_call in function_calls:
             name = func_call["name"]
             arguments = func_call["arguments"]
             execution_list.append(
-                f"{name}({','.join([f'{k}={repr(v)}' for k,v in arguments.items()])})"
+                f"{name}({','.join([f'{k}={repr(v)}' for k, v in arguments.items()])})"
             )
 
         return execution_list

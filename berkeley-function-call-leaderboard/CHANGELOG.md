@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jul 8, 2025] [#1098](https://github.com/ShishirPatil/gorilla/pull/1098):
+  - Re-introduce latency statistics for locally hosted models
+  - Update cost calculation to cover the entire dataset batch, instead of the average cost per 1k function calls
 - [Jul 6, 2025] [#1100](https://github.com/ShishirPatil/gorilla/pull/1100): Add the following new models to the leaderboard:
   - `gemini-2.5-pro-FC`
   - `gemini-2.5-pro`
