@@ -22,6 +22,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Arch-Agent-{1.5B, 3B, 7B, 32B}         | Function Calling | Self-hosted 💻 | katanemo/Arch-Agent-{1.5B, 3B, 7B, 32B}                     |
 | Bielik-11B-v2.3-Instruct               | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                            | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
+| BitAgent-Bounty-8B                     | Function Calling | Self-hosted 💻 | BitAgent/BitAgent-Bounty-8B                                 |
 | Claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
 | Claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
 | Claude-Opus-4-20250514                 | Function Calling | Anthropic      | claude-opus-4-20250514                                      |
