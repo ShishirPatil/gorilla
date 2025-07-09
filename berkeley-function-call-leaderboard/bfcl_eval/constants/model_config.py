@@ -33,6 +33,7 @@ from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
 from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
+from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
 from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
@@ -67,9 +68,6 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
-from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
-from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
-
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
