@@ -154,6 +154,7 @@ SUPPORTED_MODELS = [
     "uiuc-convai/CoALM-70B",
     "uiuc-convai/CoALM-405B",
     "BitAgent/BitAgent-8B",
+    "BitAgent/BitAgent-Bounty-8B",
     "ThinkAgents/ThinkAgent-1B",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
