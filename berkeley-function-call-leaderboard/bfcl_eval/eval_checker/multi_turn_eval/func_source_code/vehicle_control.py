@@ -478,22 +478,22 @@ class VehicleControlAPI:
         if self.engine_state == "stopped":
             return {"error": "Start the engine before activating the cruise control."}
         if activate:
-            self.distanceToNextVehicle = distanceToNextVehicle
+            self.distanceToNextVehicle = float(distanceToNextVehicle)
             if speed < 0 or speed > 120 or speed % 5 != 0:
                 return {"error": "Invalid speed"}
             self.cruiseStatus = "active"
             return {
                 "cruiseStatus": "active",
-                "currentSpeed": speed,
-                "distanceToNextVehicle": distanceToNextVehicle,
+                "currentSpeed": float(speed),
+                "distanceToNextVehicle": float(distanceToNextVehicle),
             }
         else:
             self.cruiseStatus = "inactive"
-            self.distanceToNextVehicle = distanceToNextVehicle
+            self.distanceToNextVehicle = float(distanceToNextVehicle)
             return {
                 "cruiseStatus": "inactive",
-                "currentSpeed": speed,
-                "distanceToNextVehicle": distanceToNextVehicle,
+                "currentSpeed": float(speed),
+                "distanceToNextVehicle": float(distanceToNextVehicle),
             }
 
     def get_current_speed(self) -> Dict[str, float]:
