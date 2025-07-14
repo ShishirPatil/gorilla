@@ -7,6 +7,7 @@ from bfcl_eval.model_handler.api_inference.databricks import DatabricksHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
 from bfcl_eval.model_handler.api_inference.dm_cito import DMCitoHandler
 from bfcl_eval.model_handler.api_inference.fireworks import FireworksHandler
+from bfcl_eval.model_handler.api_inference.together import TogetherHandler
 from bfcl_eval.model_handler.api_inference.functionary import FunctionaryHandler
 from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
@@ -2029,6 +2030,18 @@ third_party_inference_model_map = {
         org="katanemo",
         license="katanemo-research",
         model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "moonshotai/Kimi-K2-Instruct": ModelConfig(
+        model_name="moonshotai/Kimi-K2-Instruct",
+        display_name="Kimi-K2-Instruct",
+        url="https://huggingface.co/katanemo/Arch-Agent-32B",
+        org="moonshotai",
+        license="katanemo-research",
+        model_handler=TogetherHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,

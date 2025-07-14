@@ -167,4 +167,6 @@ SUPPORTED_MODELS = [
     "katanemo/Arch-Agent-3B",
     "katanemo/Arch-Agent-7B",
     "katanemo/Arch-Agent-32B"
+    "katanemo/Arch-Agent-32B",
+    "moonshotai/Kimi-K2-Instruct"
 ]
