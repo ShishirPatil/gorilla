@@ -23,10 +23,12 @@ CSV_HEADERS = [
     "provider",
     "n_samples",
     "date",
+    "DeepSeek-R1-0528"
+    "DeepSeek-V3-0324",
+    "Llama-4-Maverick-17B-128E-Instruct",
+    "Llama-4-Scout-17B-16E-Instruct",
     "Meta-Llama-3.1-405B-Instruct",
     "Meta-Llama-3.3-70B-Instruct",
-    "Llama-4-Scout-17B-16E-Instruct",
-    "Llama-4-Maverick-17B-128E-Instruct",
     "Qwen3-32B",
 ]
 DEFAULT_SEED = 42
