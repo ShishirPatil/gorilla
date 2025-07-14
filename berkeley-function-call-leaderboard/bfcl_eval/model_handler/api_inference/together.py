@@ -1,11 +1,11 @@
 import os
 
-from bfcl.model_handler.api_inference.openai import OpenAIHandler
-from bfcl.model_handler.model_style import ModelStyle
+from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.model_style import ModelStyle
 from openai import OpenAI
 
 
-class TogetherHandler(OpenAIHandler):
+class TogetherHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.TOGETHER_AI
