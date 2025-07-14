@@ -1,12 +1,16 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "build", "setuptools-scm[toml]>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bfcl"
-version = "1.0.0"
+name = "bfcl_eval"
+dynamic = ["version"]
 description = "Berkeley Function Calling Leaderboard (BFCL)"
-authors = [{ name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" }]
+authors = [
+    { name = "Huanzhi Mao", email = "huanzhimao@eecs.berkeley.edu" },
+    { name = "Shishir Patil", email = "shishirpatil@eecs.berkeley.edu" },
+    { name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" },
+]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { "text" = "Apache 2.0" }
@@ -22,31 +26,48 @@ dependencies = [
     "tree_sitter==0.21.3",
     "tree-sitter-java==0.21.0",
     "tree-sitter-javascript==0.21.4",
-    "openai==1.65.0",
-    "mistralai==1.1.0",
-    "anthropic==0.49.0",
+    "openai>=1.86.0",
+    "mistralai==1.7.0",
+    "anthropic==0.53.0",
     "cohere==5.13.3",
     "typer>=0.12.5",
     "tabulate>=0.9.0",
     "datamodel-code-generator==0.25.7",
-    "google-cloud-aiplatform==1.84.0",
+    "google-genai==1.24.0",
+    "qwen-agent",
     "mpmath==1.3.0",
-    "tenacity==9.0.0",
-    "writer-sdk>=1.2.0",
+    "tenacity>=8.5.0",
+    "writer-sdk>=2.1.0",
     "overrides",
-    "boto3"
+    "boto3",
 ]
 
 [project.scripts]
-bfcl = "bfcl.__main__:cli"
+bfcl = "bfcl_eval.__main__:cli"
+
+[tool.setuptools]
+include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["bfcl*"]
+include = ["bfcl_eval*"]
+
+[tool.setuptools.package-data]
+"bfcl_eval" = [
+    "data/**/*",
+    "scripts/*.py",
+    "./test_case_ids_to_generate.json",
+    "./.env.example",
+    "*.md",
+]
 
 [project.urls]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
 
 [project.optional-dependencies]
-oss_eval_vllm = ["vllm==0.6.5"]
+oss_eval_vllm = ["vllm==0.8.5"]
 oss_eval_sglang = ["sglang[all]"]
 wandb = ["wandb==0.18.5"]
+
+[tool.setuptools_scm]
+tag_regex = '^v(?P<version>[0-9]{4}\.[0-9]{2}\.[0-9]{2}(?:\.[0-9]+)?)$'
+fallback_version = "0.0.0.dev0"

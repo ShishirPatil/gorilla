@@ -1,0 +1,56 @@
+name: Publish BFCL to PyPI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_and_publish:
+    if: github.repository == 'ShishirPatil/gorilla'
+    runs-on: ubuntu-latest
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      # we need full history to count commits
+
+      - name: Compute CalVer-serial version
+        id: ver
+        run: |
+          # 1) today's date in UTC -> 2025.06.08
+          DATE=$(date -u '+%Y.%m.%d')
+
+          # 2) how many commits since 00:00 UTC?
+          COMMITS_TODAY=$(git rev-list --count \
+                             --since="$(date -u '+%Y-%m-%d 00:00')" HEAD)
+
+          # 3) serial = commits - 1  (first push → 0)
+          SERIAL=$((COMMITS_TODAY - 1))
+
+          if [ "$SERIAL" -eq 0 ]; then
+            VERSION="$DATE"
+          else
+            VERSION="$DATE.$SERIAL"
+          fi
+
+          echo "Computed version: $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build wheel & sdist
+        env:
+          # 4) Tell setuptools-scm to *pretend* this is the version
+          SETUPTOOLS_SCM_PRETEND_VERSION: ${{ steps.ver.outputs.version }}
+        working-directory: berkeley-function-call-leaderboard
+        run: |
+          python -m pip install --upgrade build "setuptools-scm[toml]>=8"
+          python -m build
+          ls -l dist
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: berkeley-function-call-leaderboard/dist/

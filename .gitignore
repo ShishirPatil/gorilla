@@ -27,10 +27,14 @@ berkeley-function-call-leaderboard/score/
 
 # Ignore environment variables
 berkeley-function-call-leaderboard/.env
-!berkeley-function-call-leaderboard/.env.example
+!berkeley-function-call-leaderboard/bfcl_eval/.env.example
+
+# Ignore config file for generating test cases
+berkeley-function-call-leaderboard/test_case_ids_to_generate.json
+!berkeley-function-call-leaderboard/bfcl_eval/test_case_ids_to_generate.json.example
 
 # Ignore multi turn ground truth conversation log
-berkeley-function-call-leaderboard/utils/ground_truth_conversation/
+berkeley-function-call-leaderboard/bfcl_eval/scripts/ground_truth_conversation/
 
 .direnv/
 .venv
