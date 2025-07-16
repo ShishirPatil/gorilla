@@ -4,10 +4,11 @@ from enum import Enum
 # TODO: Use all caps for enum values to maintain consistency
 class ModelStyle(Enum):
     Gorilla = "gorilla"
-    OpenAI = "gpt"
+    OpenAI_Completions = "openai-completions"
+    OpenAI_Responses = "openai-responses"
     Anthropic = "claude"
     Mistral = "mistral"
-    Google = "google"
+    GOOGLE = "google"
     AMAZON = "amazon"
     FIREWORK_AI = "firework_ai"
     NEXUS = "nexus"

@@ -78,9 +78,15 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
                 isinstance(inner_item, list) for inner_item in data[key]
             ):
                 flattened_list = sum(data[key], [])
-                output_list.extend([item for item in flattened_list if item != 0])
+                output_list.extend(
+                    [
+                        item
+                        for item in flattened_list
+                        if isinstance(item, (int, float)) and item != 0
+                    ]
+                )
             else:
-                if data[key] != 0:
+                if isinstance(data[key], (int, float)) and data[key] != 0:
                     output_list.append(data[key])
 
     if model_name not in leaderboard_table:
@@ -105,24 +111,28 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
     model_config = MODEL_CONFIG_MAPPING[model_name]
 
-    if model_config.input_price is None or model_config.output_price is None:
-        # Open source models should not have a cost or latency
-        return "N/A", "N/A", "N/A", "N/A"
+    # For API models, we use the input and output token counts to calculate the cost
+    if model_config.input_price is not None and model_config.output_price is not None:
+        if len(cost_data["input_data"]) > 0 and len(cost_data["output_data"]) > 0:
+            total_input_tokens = sum(cost_data["input_data"])
+            total_output_tokens = sum(cost_data["output_data"])
+            # price is in USD per million tokens
+            cost = (
+                total_input_tokens * model_config.input_price / 1000000
+                + total_output_tokens * model_config.output_price / 1000000
+            )
+            cost = round(cost, 2)
 
-    if (
-        model_config.input_price is not None
-        and len(cost_data["input_data"]) > 0
-        and len(cost_data["output_data"]) > 0
-    ):
+    # For local-hosted models, we calculate the total GPU cost by summing all latencies and multiplying by the hourly GPU price.
+    elif len(latency_data["data"]) > 0:
+        total_latency_seconds = sum(latency_data["data"])
+        total_latency_hours = total_latency_seconds / 3600
 
-        mean_input_token = statistics.mean(cost_data["input_data"])
-        mean_output_token = statistics.mean(cost_data["output_data"])
-        cost = (
-            mean_input_token * model_config.input_price
-            + mean_output_token * model_config.output_price
-        ) / 1000
+        # Divide by 100 since we are doing 100x parallel inference; this is an approximation to the GPU up-time.
+        cost = total_latency_hours * H100_X8_PRICE_PER_HOUR / 100
         cost = round(cost, 2)
 
+    # Calculate latency statistics for ALL models (both API and local)
     if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])

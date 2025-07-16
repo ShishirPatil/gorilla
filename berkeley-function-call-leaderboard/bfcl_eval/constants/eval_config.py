@@ -3,6 +3,10 @@ from pathlib import Path
 
 VLLM_PORT = 1053
 
+# Price got from Lambda Cloud, 23.92 per hour for 8x H100, on-demand pay as you go total price
+# Reference: https://lambda.ai/pricing
+H100_X8_PRICE_PER_HOUR = 23.92
+
 # Directory of the installed package
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 

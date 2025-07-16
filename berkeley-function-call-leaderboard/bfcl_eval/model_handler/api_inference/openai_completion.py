@@ -1,9 +1,10 @@
 import json
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
@@ -17,10 +18,10 @@ from bfcl_eval.model_handler.utils import (
 from openai import OpenAI, RateLimitError
 
 
-class OpenAIHandler(BaseHandler):
+class OpenAICompletionsHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI
+        self.model_style = ModelStyle.OpenAI_Completions
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
@@ -58,14 +59,12 @@ class OpenAIHandler(BaseHandler):
         kwargs = {
             "messages": message,
             "model": self.model_name.replace("-FC", ""),
+            "temperature": self.temperature,
+            "store": False,
         }
 
         if len(tools) > 0:
             kwargs["tools"] = tools
-        if not ("o1" in self.model_name or "o3-mini" in self.model_name):
-            # Reasoning models don't support temperature parameter
-            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-            kwargs["temperature"] = self.temperature
 
         return self.generate_with_backoff(**kwargs)
 
@@ -75,7 +74,6 @@ class OpenAIHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
@@ -146,7 +144,7 @@ class OpenAIHandler(BaseHandler):
         return inference_data
 
     def _add_reasoning_content_if_available_FC(
-        self, api_response: any, response_data: dict
+        self, api_response: Any, response_data: dict
     ) -> None:
         """
         OpenAI models don't show reasoning content in the api response,
@@ -194,19 +192,13 @@ class OpenAIHandler(BaseHandler):
 
     def _query_prompting(self, inference_data: dict):
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-        
-        kwargs = {
-            "messages": inference_data["message"],
-            "model": self.model_name,
-        }
 
-        if not ("o1" in self.model_name or "o3-mini" in self.model_name):
-            # Reasoning models don't support temperature parameter
-            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-            kwargs["temperature"] = self.temperature
-
-        return self.generate_with_backoff(**kwargs)
-
+        return self.generate_with_backoff(
+            messages=inference_data["message"],
+            model=self.model_name,
+            temperature=self.temperature,
+            store=False,
+        )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -259,7 +251,7 @@ class OpenAIHandler(BaseHandler):
         return inference_data
 
     def _add_reasoning_content_if_available_prompting(
-        self, api_response: any, response_data: dict
+        self, api_response: Any, response_data: dict
     ) -> None:
         """
         OpenAI models don't show reasoning content in the api response,

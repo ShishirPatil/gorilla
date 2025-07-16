@@ -7,6 +7,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
+import traceback
 
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
@@ -62,7 +63,10 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = MODEL_CONFIG_MAPPING[model_name].model_handler(model_name, temperature)
+    config = MODEL_CONFIG_MAPPING[model_name]
+    handler = config.model_handler(model_name, temperature)
+    # Propagate config flags to the handler instance
+    handler.is_fc_model = config.is_fc_model
     return handler
 
 
@@ -189,10 +193,11 @@ def multi_threaded_inference(
                     "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
                 )
                 print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
+                traceback.print_exc(limit=10)
                 print("-" * 100)
 
                 result = f"Error during inference: {str(e)}"
-                metadata = {}
+                metadata = {"traceback": traceback.format_exc()}
 
     # Signal that the current task is complete
     events[test_case["id"]].set()

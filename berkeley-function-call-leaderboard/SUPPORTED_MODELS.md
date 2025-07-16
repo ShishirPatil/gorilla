@@ -19,16 +19,16 @@ For model names containing `{...}`, multiple versions are available. For example
 | Amazon-Nova-Lite-v1:0                  | Function Calling | AWS            | nova-lite-v1.0                                              |
 | Amazon-Nova-Micro-v1:0                 | Function Calling | AWS            | nova-micro-v1.0                                             |
 | Amazon-Nova-Pro-v1:0                   | Function Calling | AWS            | nova-pro-v1.0                                               |
+| Arch-Agent-{1.5B, 3B, 7B, 32B}         | Function Calling | Self-hosted 💻 | katanemo/Arch-Agent-{1.5B, 3B, 7B, 32B}                     |
 | Bielik-11B-v2.3-Instruct               | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                            | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
-| Claude-3-Opus-20240229                 | Function Calling | Anthropic      | claude-3-opus-20240229-FC                                   |
-| Claude-3-Opus-20240229                 | Prompt           | Anthropic      | claude-3-opus-20240229                                      |
-| claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
-| claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
-| Claude-3.5-Sonnet-20241022             | Function Calling | Anthropic      | claude-3-5-sonnet-20241022-FC                               |
-| Claude-3.5-Sonnet-20241022             | Prompt           | Anthropic      | claude-3-5-sonnet-20241022                                  |
-| Claude-3.7-Sonnet-20250219             | Function Calling | Anthropic      | claude-3-7-sonnet-20250219-FC                               |
-| Claude-3.7-Sonnet-20250219             | Prompt           | Anthropic      | claude-3-7-sonnet-20250219                                  |
+| BitAgent-Bounty-8B                     | Function Calling | Self-hosted 💻 | BitAgent/BitAgent-Bounty-8B                                 |
+| Claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
+| Claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
+| Claude-Opus-4-20250514                 | Function Calling | Anthropic      | claude-opus-4-20250514                                      |
+| Claude-Opus-4-20250514                 | Prompt           | Anthropic      | claude-opus-4-20250514                                      |
+| Claude-Sonnet-4-20250514               | Function Calling | Anthropic      | claude-sonnet-4-20250514                                    |
+| Claude-Sonnet-4-20250514               | Prompt           | Anthropic      | claude-sonnet-4-20250514                                    |
 | CoALM-{8B, 70B, 405B}                  | Function Calling | Self-hosted 💻 | uiuc-convai/CoALM-{8B,70B,405B}                             |
 | Command A                              | Function Calling | Cohere         | command-a-03-2025-FC                                        |
 | Command R7B                            | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
@@ -38,17 +38,16 @@ For model names containing `{...}`, multiple versions are available. For example
 | DeepSeek-R1-0528                       | Prompt           | DeepSeek       | DeepSeek-R1-0528                                            |
 | DeepSeek-R1-0528                       | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
 | DeepSeek-V3-0324                       | Function Calling | DeepSeek       | DeepSeek-V3-0324-FC                                         |
-| DM-Cito-8B                             | Prompt           | Mininglamp     | DM-Cito-8B                                                  |
+| DM-Cito-8B-v2                          | Prompt           | Mininglamp     | DM-Cito-8B-v2                                               |
 | Falcon3-{1B,3B,7B,10B}-Instruct        | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-v2                        | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
 | Functionary-{Small,Medium}-v3.1        | Function Calling | MeetKai        | meetkai/functionary-{small,medium}-v3.1-FC                  |
-| Gemini-2.0-Flash-001                   | Function Calling | Google         | gemini-2.0-flash-001-FC                                     |
-| Gemini-2.0-Flash-001                   | Prompt           | Google         | gemini-2.0-flash-001                                        |
-| Gemini-2.0-Flash-Lite-001              | Function Calling | Google         | gemini-2.0-flash-lite-001-FC                                |
-| Gemini-2.0-Flash-Lite-001              | Prompt           | Google         | gemini-2.0-flash-lite-001                                   |
-| Gemini-2.0-Flash-Thinking-Exp-01-21    | Prompt           | Google         | gemini-2.0-flash-thinking-exp-01-21                         |
-| Gemini-2.5-Pro-Exp-05-06               | Function Calling | Google         | gemini-2.5-pro-preview-05-06-FC                             |
-| Gemini-2.5-Pro-Exp-05-06               | Prompt           | Google         | gemini-2.5-pro-preview-05-06                                |
+| Gemini-2.5-Flash                       | Function Calling | Google         | gemini-2.5-flash-FC                                         |
+| Gemini-2.5-Flash                       | Prompt           | Google         | gemini-2.5-flash                                            |
+| Gemini-2.5-Flash-Lite-Preview-06-17    | Function Calling | Google         | gemini-2.5-flash-lite-preview-06-17-FC                      |
+| Gemini-2.5-Flash-Lite-Preview-06-17    | Prompt           | Google         | gemini-2.5-flash-lite-preview-06-17                         |
+| Gemini-2.5-Pro                         | Function Calling | Google         | gemini-2.5-pro-FC                                           |
+| Gemini-2.5-Pro                         | Prompt           | Google         | gemini-2.5-pro                                              |
 | Gemma-3-{1b,4b,12b,27b}-it             | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
 | GLM-4-9b-Chat                          | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                              | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
@@ -66,12 +65,14 @@ For model names containing `{...}`, multiple versions are available. For example
 | GPT-4o-mini-2024-07-18                 | Function Calling | OpenAI         | gpt-4o-mini-2024-07-18-FC                                   |
 | GPT-4o-mini-2024-07-18                 | Prompt           | OpenAI         | gpt-4o-mini-2024-07-18                                      |
 | Granite-20b-FunctionCalling            | Function Calling | Self-hosted 💻 | ibm-granite/granite-20b-functioncalling                     |
+| Granite-3.1-8B-Instruct                | Function Calling | Self-hosted 💻 | ibm-granite/granite-3.1-8b-instruct                         |
 | Grok-3-beta                            | Function Calling | xAI            | grok-3-beta-FC                                              |
 | Grok-3-beta                            | Prompt           | xAI            | grok-3-beta                                                 |
 | Grok-3-mini-beta                       | Function Calling | xAI            | grok-3-mini-beta-FC                                         |
 | Grok-3-mini-beta                       | Prompt           | xAI            | grok-3-mini-beta                                            |
 | Haha-7B                                | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}            | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
+| Ling-lite-v1.5                         | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct            | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct            | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
 | Llama-3.1-Nemotron-Ultra-253B-v1       | Prompt           | Nvidia         | nvidia/llama-3.1-nemotron-ultra-253b-v1                     |
@@ -94,10 +95,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Mistral-Small-2503                     | Prompt           | Mistral AI     | mistral-small-2503                                          |
 | Nemotron-4-340b-instruct               | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | Nexusflow-Raven-v2                     | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
-| o1-2024-12-17                          | Function Calling | OpenAI         | o1-2024-12-17-FC                                            |
-| o1-2024-12-17                          | Prompt           | OpenAI         | o1-2024-12-17                                               |
-| o3-mini-2025-01-31                     | Function Calling | OpenAI         | o3-mini-2025-01-31-FC                                       |
-| o3-mini-2025-01-31                     | Prompt           | OpenAI         | o3-mini-2025-01-31                                          |
+| O3-2025-04-16                          | Prompt           | OpenAI         | o3-2025-04-16                                               |
+| O3-2025-04-16                          | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |
+| O4-mini-2025-04-16                     | Prompt           | OpenAI         | o4-mini-2025-04-16                                          |
+| O4-mini-2025-04-16                     | Function Calling | OpenAI         | o4-mini-2025-04-16-FC                                       |
 | Open-Mistral-Nemo-2407                 | Prompt           | Mistral AI     | open-mistral-nemo-2407                                      |
 | Open-Mistral-Nemo-2407                 | Function Calling | Mistral AI     | open-mistral-nemo-2407-FC                                   |
 | palmyra-x-004                          | Function Calling | Writer         | palmyra-x-004                                               |
@@ -128,13 +129,13 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
 | yi-large                               | Function Calling | 01.AI          | yi-large-fc                                                 |
-| Ling-lite-v1.5                         | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
+
 ---
 
 ## Additional Requirements for Certain Models
 
 - **Gemini Models:**
-  For `Gemini` models, we use the Google Vertex AI endpoint for inference. Ensure you have set the `VERTEX_AI_PROJECT_ID` and `VERTEX_AI_LOCATION` in your `.env` file.
+  For `Gemini` models, we use the Google AI Studio API for inference. Ensure you have set the `GOOGLE_API_KEY` in your `.env` file.
 
 - **Databricks Models:**
   For `databrick-dbrx-instruct`, you must create an Azure Databricks workspace and set up a dedicated inference endpoint. Provide the endpoint URL via `DATABRICKS_AZURE_ENDPOINT_URL` in `.env`.

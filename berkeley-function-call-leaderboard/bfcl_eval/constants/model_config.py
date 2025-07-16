@@ -12,6 +12,7 @@ from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
+from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
 from bfcl_eval.model_handler.api_inference.mistral import MistralHandler
 from bfcl_eval.model_handler.api_inference.nemotron import NemotronHandler
@@ -19,19 +20,33 @@ from bfcl_eval.model_handler.api_inference.nexus import NexusHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl_eval.model_handler.api_inference.openai import OpenAIHandler
-from bfcl_eval.model_handler.api_inference.qwen import QwenAPIHandler, QwenAgentThinkHandler, QwenAgentNoThinkHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
+from bfcl_eval.model_handler.api_inference.qwen import (
+    QwenAgentNoThinkHandler,
+    QwenAgentThinkHandler,
+    QwenAPIHandler,
+)
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
+from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
+from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
 from bfcl_eval.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl_eval.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
-from bfcl_eval.model_handler.local_inference.deepseek_reasoning import DeepseekReasoningHandler
+from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
+    DeepseekReasoningHandler,
+)
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
 from bfcl_eval.model_handler.local_inference.glaive import GlaiveHandler
 from bfcl_eval.model_handler.local_inference.glm import GLMHandler
-from bfcl_eval.model_handler.local_inference.granite import GraniteHandler
+from bfcl_eval.model_handler.local_inference.granite import (
+    GraniteFunctionCallingHandler,
+)
+from bfcl_eval.model_handler.local_inference.granite_3 import Granite3FCHandler
 from bfcl_eval.model_handler.local_inference.hammer import HammerHandler
 from bfcl_eval.model_handler.local_inference.hermes import HermesHandler
 from bfcl_eval.model_handler.local_inference.llama import LlamaHandler
@@ -41,13 +56,18 @@ from bfcl_eval.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl_eval.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl_eval.model_handler.local_inference.phi import PhiHandler
 from bfcl_eval.model_handler.local_inference.phi_fc import PhiFCHandler
-from bfcl_eval.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
+from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
+    QuickTestingOSSHandler,
+)
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
-from bfcl_eval.model_handler.local_inference.salesforce_llama import SalesforceLlamaHandler
-from bfcl_eval.model_handler.local_inference.salesforce_qwen import SalesforceQwenHandler
+from bfcl_eval.model_handler.local_inference.salesforce_llama import (
+    SalesforceLlamaHandler,
+)
+from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
+    SalesforceQwenHandler,
+)
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
-from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -151,7 +171,7 @@ api_inference_model_map = {
         url="https://openai.com/index/introducing-gpt-4-5/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=75,
         output_price=150,
         is_fc_model=False,
@@ -163,7 +183,7 @@ api_inference_model_map = {
         url="https://openai.com/index/introducing-gpt-4-5/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=75,
         output_price=150,
         is_fc_model=True,
@@ -175,7 +195,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=2,
         output_price=8,
         is_fc_model=True,
@@ -187,7 +207,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=2,
         output_price=8,
         is_fc_model=False,
@@ -199,7 +219,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.4,
         output_price=1.6,
         is_fc_model=True,
@@ -211,7 +231,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.4,
         output_price=1.6,
         is_fc_model=False,
@@ -223,7 +243,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.1,
         output_price=0.4,
         is_fc_model=True,
@@ -235,57 +255,9 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.1,
         output_price=0.4,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "o1-2024-12-17-FC": ModelConfig(
-        model_name="o1-2024-12-17-FC",
-        display_name="o1-2024-12-17 (FC)",
-        url="https://openai.com/o1/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIHandler,
-        input_price=15,
-        output_price=60,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
-    "o1-2024-12-17": ModelConfig(
-        model_name="o1-2024-12-17",
-        display_name="o1-2024-12-17 (Prompt)",
-        url="https://openai.com/o1/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIHandler,
-        input_price=15,
-        output_price=60,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "o3-mini-2025-01-31-FC": ModelConfig(
-        model_name="o3-mini-2025-01-31-FC",
-        display_name="o3-mini-2025-01-31 (FC)",
-        url="https://openai.com/index/openai-o3-mini/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIHandler,
-        input_price=1.1,
-        output_price=4,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
-    "o3-mini-2025-01-31": ModelConfig(
-        model_name="o3-mini-2025-01-31",
-        display_name="o3-mini-2025-01-31 (Prompt)",
-        url="https://openai.com/index/openai-o3-mini/",
-        org="OpenAI",
-        license="Proprietary",
-        model_handler=OpenAIHandler,
-        input_price=1.1,
-        output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -295,7 +267,7 @@ api_inference_model_map = {
         url="https://openai.com/index/hello-gpt-4o/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=2.5,
         output_price=10,
         is_fc_model=False,
@@ -307,7 +279,7 @@ api_inference_model_map = {
         url="https://openai.com/index/hello-gpt-4o/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=2.5,
         output_price=10,
         is_fc_model=True,
@@ -319,7 +291,7 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.15,
         output_price=0.6,
         is_fc_model=False,
@@ -331,16 +303,64 @@ api_inference_model_map = {
         url="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
         org="OpenAI",
         license="Proprietary",
-        model_handler=OpenAIHandler,
+        model_handler=OpenAIResponsesHandler,
         input_price=0.15,
         output_price=0.6,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-opus-20240229": ModelConfig(
-        model_name="claude-3-opus-20240229",
-        display_name="Claude-3-Opus-20240229 (Prompt)",
-        url="https://www.anthropic.com/news/claude-3-family",
+    "o3-2025-04-16": ModelConfig(
+        model_name="o3-2025-04-16",
+        display_name="o3-2025-04-16 (Prompt)",
+        url="https://openai.com/index/introducing-o3-and-o4-mini/",
+        org="OpenAI",
+        license="Proprietary",
+        model_handler=OpenAIResponsesHandler,
+        input_price=2,
+        output_price=8,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "o3-2025-04-16-FC": ModelConfig(
+        model_name="o3-2025-04-16-FC",
+        display_name="o3-2025-04-16 (FC)",
+        url="https://openai.com/index/introducing-o3-and-o4-mini/",
+        org="OpenAI",
+        license="Proprietary",
+        model_handler=OpenAIResponsesHandler,
+        input_price=2,
+        output_price=8,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "o4-mini-2025-04-16": ModelConfig(
+        model_name="o4-mini-2025-04-16",
+        display_name="o4-mini-2025-04-16 (Prompt)",
+        url="https://openai.com/index/introducing-o3-and-o4-mini/",
+        org="OpenAI",
+        license="Proprietary",
+        model_handler=OpenAIResponsesHandler,
+        input_price=1.10,
+        output_price=4.40,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "o4-mini-2025-04-16-FC": ModelConfig(
+        model_name="o4-mini-2025-04-16-FC",
+        display_name="o4-mini-2025-04-16 (FC)",
+        url="https://openai.com/index/introducing-o3-and-o4-mini/",
+        org="OpenAI",
+        license="Proprietary",
+        model_handler=OpenAIResponsesHandler,
+        input_price=1.10,
+        output_price=4.40,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "claude-opus-4-20250514": ModelConfig(
+        model_name="claude-opus-4-20250514",
+        display_name="Claude-Opus-4-20250514 (Prompt)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -349,10 +369,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-opus-20240229-FC": ModelConfig(
-        model_name="claude-3-opus-20240229-FC",
-        display_name="Claude-3-Opus-20240229 (FC)",
-        url="https://www.anthropic.com/news/claude-3-family",
+    "claude-opus-4-20250514-FC": ModelConfig(
+        model_name="claude-opus-4-20250514",
+        display_name="Claude-Opus-4-20250514 (FC)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -361,10 +381,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-7-sonnet-20250219": ModelConfig(
-        model_name="claude-3-7-sonnet-20250219",
-        display_name="Claude-3.7-Sonnet-20250219 (Prompt)",
-        url="https://www.anthropic.com/news/claude-3-7-sonnet",
+    "claude-sonnet-4-20250514": ModelConfig(
+        model_name="claude-sonnet-4-20250514",
+        display_name="Claude-Sonnet-4-20250514 (Prompt)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -373,34 +393,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-7-sonnet-20250219-FC": ModelConfig(
-        model_name="claude-3-7-sonnet-20250219-FC",
-        display_name="Claude-3.7-Sonnet-20250219 (FC)",
-        url="https://www.anthropic.com/news/claude-3-7-sonnet",
-        org="Anthropic",
-        license="Proprietary",
-        model_handler=ClaudeHandler,
-        input_price=3,
-        output_price=15,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
-    "claude-3-5-sonnet-20241022": ModelConfig(
-        model_name="claude-3-5-sonnet-20241022",
-        display_name="Claude-3.5-Sonnet-20241022 (Prompt)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
-        org="Anthropic",
-        license="Proprietary",
-        model_handler=ClaudeHandler,
-        input_price=3,
-        output_price=15,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "claude-3-5-sonnet-20241022-FC": ModelConfig(
-        model_name="claude-3-5-sonnet-20241022-FC",
-        display_name="Claude-3.5-Sonnet-20241022 (FC)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+    "claude-sonnet-4-20250514-FC": ModelConfig(
+        model_name="claude-sonnet-4-20250514",
+        display_name="Claude-Sonnet-4-20250514 (FC)",
+        url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -416,8 +412,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -428,8 +424,8 @@ api_inference_model_map = {
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=1,
-        output_price=5,
+        input_price=0.8,
+        output_price=4,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
@@ -589,87 +585,75 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.0-flash-lite-001-FC": ModelConfig(
-        model_name="gemini-2.0-flash-lite-001-FC",
-        display_name="Gemini-2.0-Flash-Lite-001 (FC)",
+    "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
+        model_name="gemini-2.5-flash-lite-preview-06-17-FC",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0.075,
-        output_price=0.3,
+        input_price=0.1,
+        output_price=0.4,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.0-flash-lite-001": ModelConfig(
-        model_name="gemini-2.0-flash-lite-001",
-        display_name="Gemini-2.0-Flash-Lite-001 (Prompt)",
+    "gemini-2.5-flash-lite-preview-06-17": ModelConfig(
+        model_name="gemini-2.5-flash-lite-preview-06-17",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0.075,
-        output_price=0.3,
+        input_price=0.1,
+        output_price=0.4,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.0-flash-001-FC": ModelConfig(
-        model_name="gemini-2.0-flash-001-FC",
-        display_name="Gemini-2.0-Flash-001 (FC)",
+    "gemini-2.5-flash-FC": ModelConfig(
+        model_name="gemini-2.5-flash-FC",
+        display_name="Gemini-2.5-Flash (FC)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0.15,
-        output_price=0.6,
+        input_price=0.3,
+        output_price=2.5,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.0-flash-001": ModelConfig(
-        model_name="gemini-2.0-flash-001",
-        display_name="Gemini-2.0-Flash-001 (Prompt)",
+    "gemini-2.5-flash": ModelConfig(
+        model_name="gemini-2.5-flash",
+        display_name="Gemini-2.5-Flash (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0.15,
-        output_price=0.6,
+        input_price=0.3,
+        output_price=2.5,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-pro-preview-05-06-FC": ModelConfig(
-        model_name="gemini-2.5-pro-preview-05-06-FC",
-        display_name="Gemini-2.5-Pro-Preview-05-06 (FC)",
+    "gemini-2.5-pro-FC": ModelConfig(
+        model_name="gemini-2.5-pro-FC",
+        display_name="Gemini-2.5-Pro (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0,
-        output_price=0,
+        input_price=1.5,
+        output_price=10,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-pro-preview-05-06": ModelConfig(
-        model_name="gemini-2.5-pro-preview-05-06",
-        display_name="Gemini-2.5-Pro-Preview-05-06 (Prompt)",
+    "gemini-2.5-pro": ModelConfig(
+        model_name="gemini-2.5-pro",
+        display_name="Gemini-2.5-Pro (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=0,
-        output_price=0,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
-    "gemini-2.0-flash-thinking-exp-01-21": ModelConfig(
-        model_name="gemini-2.0-flash-thinking-exp-01-21",
-        display_name="Gemini-2.0-Flash-Thinking-Exp-01-21 (Prompt)",
-        url="https://deepmind.google/technologies/gemini/flash-thinking/",
-        org="Google",
-        license="Proprietary",
-        model_handler=GeminiHandler,
-        input_price=0,
-        output_price=0,
+        input_price=1.5,
+        output_price=10,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -864,6 +848,18 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "phronetic-ai/RZN-T": ModelConfig(
+        model_name="phronetic-ai/RZN-T",
+        display_name="RZN-T (Prompt)",
+        url="https://huggingface.co/phronetic-ai/RZN-T",
+        org="Phronetic AI",
+        license="apache-2.0",
+        model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
     "qwen3-0.6b": ModelConfig(
         model_name="qwen3-0.6b",
@@ -1081,9 +1077,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DM-Cito-8B": ModelConfig(
-        model_name="DM-Cito-8B",
-        display_name="DM-Cito-8B (Prompt)",
+    "DM-Cito-8B-v2": ModelConfig(
+        model_name="DM-Cito-8B-v2",
+        display_name="DM-Cito-8B-v2 (Prompt)",
         url="https://www.mininglamp.com/",
         org="Mininglamp",
         license="Proprietary",
@@ -1385,13 +1381,37 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "ibm-granite/granite-3.2-8b-instruct": ModelConfig(
+        model_name="ibm-granite/granite-3.2-8b-instruct",
+        display_name="Granite-3.2-8B-Instruct (FC)",
+        url="https://huggingface.co/ibm-granite/granite-3.2-8b-instruct",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite3FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "ibm-granite/granite-3.1-8b-instruct": ModelConfig(
+        model_name="ibm-granite/granite-3.1-8b-instruct",
+        display_name="Granite-3.1-8B-Instruct (FC)",
+        url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite3FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "ibm-granite/granite-20b-functioncalling": ModelConfig(
         model_name="ibm-granite/granite-20b-functioncalling",
         display_name="Granite-20b-FunctionCalling (FC)",
         url="https://huggingface.co/ibm-granite/granite-20b-functioncalling",
         org="IBM",
         license="Apache-2.0",
-        model_handler=GraniteHandler,
+        model_handler=GraniteFunctionCallingHandler,
         input_price=None,
         output_price=None,
         is_fc_model=False,
@@ -1841,6 +1861,18 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "BitAgent/BitAgent-Bounty-8B": ModelConfig(
+        model_name="BitAgent/BitAgent-Bounty-8B",
+        display_name="BitAgent-Bounty-8B",
+        url="https://huggingface.co/BitAgent/BitAgent-Bounty-8B",
+        org="Bittensor",
+        license="Apache-2.0",
+        model_handler=BitAgentHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "ThinkAgents/ThinkAgent-1B": ModelConfig(
         model_name="ThinkAgents/ThinkAgent-1B",
         display_name="ThinkAgent-1B (FC)",
@@ -1953,6 +1985,54 @@ third_party_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "katanemo/Arch-Agent-1.5B": ModelConfig(
+        model_name="katanemo/Arch-Agent-1.5B",
+        display_name="Arch-Agent-1.5B",
+        url="https://huggingface.co/katanemo/Arch-Agent-1.5B",
+        org="katanemo",
+        license="katanemo-research",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-3B": ModelConfig(
+        model_name="katanemo/Arch-Agent-3B",
+        display_name="Arch-Agent-3B",
+        url="https://huggingface.co/katanemo/Arch-Agent-3B",
+        org="katanemo",
+        license="katanemo-research",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-7B": ModelConfig(
+        model_name="katanemo/Arch-Agent-7B",
+        display_name="Arch-Agent-7B",
+        url="https://huggingface.co/katanemo/Arch-Agent-7B",
+        org="katanemo",
+        license="katanemo-research",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "katanemo/Arch-Agent-32B": ModelConfig(
+        model_name="katanemo/Arch-Agent-32B",
+        display_name="Arch-Agent-32B",
+        url="https://huggingface.co/katanemo/Arch-Agent-32B",
+        org="katanemo",
+        license="katanemo-research",
+        model_handler=ArchHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
     ),
 }
 

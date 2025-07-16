@@ -76,6 +76,19 @@ class ClaudeHandler(BaseHandler):
 
         return api_response, end_time - start_time
 
+    def _get_max_tokens(self):
+        """
+        max_tokens is required to be set when querying, so we default to the model's max tokens
+        """
+        if "claude-opus-4-20250514" in self.model_name:
+            return 32000
+        elif "claude-sonnet-4-20250514" in self.model_name:
+            return 64000
+        elif "claude-3-5-haiku-20241022" in self.model_name:
+            return 8192
+        else:
+            raise ValueError(f"Unsupported model: {self.model_name}")
+
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -104,9 +117,8 @@ class ClaudeHandler(BaseHandler):
 
         kwargs = {
             "model": self.model_name.strip("-FC"),
-            "max_tokens": (
-                4096 if "claude-3-opus-20240229" in self.model_name else 8192
-            ),  # 3.5 Sonnet has a higher max token limit,
+            "max_tokens": self._get_max_tokens(),
+            "temperature": self.temperature,
             "tools": inference_data["tools"],
             "messages": messages,
         }
@@ -114,6 +126,10 @@ class ClaudeHandler(BaseHandler):
         # Include system_prompt if it exists
         if "system_prompt" in inference_data:
             kwargs["system"] = inference_data["system_prompt"]
+
+        # Need to set timeout to avoid auto-error when requesting large context length
+        # https://github.com/anthropics/anthropic-sdk-python#long-requests
+        kwargs["timeout"] = 1200
 
         return self.generate_with_backoff(**kwargs)
 
@@ -257,13 +273,22 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
-        return self.generate_with_backoff(
-            model=self.model_name,
-            max_tokens=(4096 if "claude-3-opus-20240229" in self.model_name else 8192),
-            temperature=self.temperature,
-            system=inference_data["system_prompt"],
-            messages=inference_data["message"],
-        )
+        kwargs = {
+            "model": self.model_name,
+            "max_tokens": self._get_max_tokens(),
+            "temperature": self.temperature,
+            "messages": inference_data["message"],
+        }
+
+        # Include system_prompt if it exists
+        if "system_prompt" in inference_data:
+            kwargs["system"] = inference_data["system_prompt"]
+
+        # Need to set timeout to avoid auto-error when requesting large context length
+        # https://github.com/anthropics/anthropic-sdk-python#long-requests
+        kwargs["timeout"] = 1200
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]

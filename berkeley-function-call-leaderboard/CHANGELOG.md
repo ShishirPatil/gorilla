@@ -2,9 +2,28 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jul 8, 2025] [#1098](https://github.com/ShishirPatil/gorilla/pull/1098):
+  - Re-introduce latency statistics for locally hosted models
+  - Update cost calculation to cover the entire dataset batch, instead of the average cost per 1k function calls
+- [Jul 6, 2025] [#1100](https://github.com/ShishirPatil/gorilla/pull/1100): Add the following new models to the leaderboard:
+  - `gemini-2.5-pro-FC`
+  - `gemini-2.5-pro`
+  - `gemini-2.5-flash-FC`
+  - `gemini-2.5-flash`
+  - `gemini-2.5-flash-lite-preview-06-17-FC`
+  - `gemini-2.5-flash-lite-preview-06-17`
+- [Jul 6, 2025] [#1099](https://github.com/ShishirPatil/gorilla/pull/1099): Migrate Gemini inference to Google AI Studio.
+- [Jul 2, 2025] [#1090](https://github.com/ShishirPatil/gorilla/pull/1090): Updated OpenAI models to use `developer` role instead of `system` role, following OpenAI's documentation recommendations. This change affects only the OpenAI Responses handler.
+- [Jul 2, 2025] [#1062](https://github.com/ShishirPatil/gorilla/pull/1062): Introduce OpenAI Responses handler, and add support for `o3-2025-04-16` and `o4-mini-2025-04-16`.
+- [Jun 30, 2025] [#956](https://github.com/ShishirPatil/gorilla/pull/956): Fix typo in ground truth for multi_turn_base.
+- [Jun 29, 2025] [#1034](https://github.com/ShishirPatil/gorilla/pull/1034): Add support for `claude-opus-4-20250514` and `claude-sonnet-4-20250514`
+- [Jun 29, 2025] [#1086](https://github.com/ShishirPatil/gorilla/pull/1086): Fix duplicate test entry ID `live-relevance_3-3-0`.
+- [Jun 29, 2025] [#1087](https://github.com/ShishirPatil/gorilla/pull/1087): Add missing base-cost definitions for three airport routes in `travel_booking` backend.
+- [Jun 28, 2025] [#1085](https://github.com/ShishirPatil/gorilla/pull/1085): Fix question wording for `irrelevance_232`.
+- [Jun 28, 2025] [#1084](https://github.com/ShishirPatil/gorilla/pull/1084): Fix typo in ground truth for `parallel_multiple_141`.
 - [Jun 18, 2025] [#1068](https://github.com/ShishirPatil/gorilla/pull/1068): Fix prompt concatenation issue in Qwen chat template. The self-hosted `Qwen3` models are affected.
-- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Removed the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
-- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fixed multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
+- [Jun 15, 2025] [#966](https://github.com/ShishirPatil/gorilla/pull/966): Remove the `travel_cost` parameter from multi-turn backend `TravelAPI.book_flight()` and now compute cost internally to eliminate ambiguity.
+- [Jun 15, 2025] [#1060](https://github.com/ShishirPatil/gorilla/pull/1060): Fix multi-turn backend `GorillaFileSystem._get_item()` method to correctly handle `"."` in path strings.
 - [Jun 14, 2025] [#1032](https://github.com/ShishirPatil/gorilla/pull/1032): Add `Llama-3.1-Nemotron-Ultra-253B-v1` to the leaderboard.
 - [Jun 12, 2025] [#1056](https://github.com/ShishirPatil/gorilla/pull/1056): Add `Ling-Lite-V1.5` to the leaderboard.
 - [Jun 12, 2025] [#1063](https://github.com/ShishirPatil/gorilla/pull/1063): Add support for `DeepSeek-R1-0528` and `DeepSeek-V3-0324`
@@ -49,7 +68,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `grok-3-beta-FC`
   - `grok-3-mini-beta`
   - `grok-3-mini-beta-FC`
-- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model’s files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
+- [Apr 14, 2025] [#985](https://github.com/ShishirPatil/gorilla/pull/985): Support fully offline inference via the `--local-model-path` flag. Point it to a directory that already holds the model's files (`config.json`, tokenizer, weights, etc.); use this flag only when the model has been pre‑downloaded outside the default $HF_HOME cache.
 - [Apr 13, 2025] [#980](https://github.com/ShishirPatil/gorilla/pull/980): Integrate Novita AI as a third-party inference provider for the following open-source models:
   - `Llama-4-Maverick-17B-128E-Instruct-FP8` (Prompt & FC)
   - `Llama-4-Scout-17B-16E-Instruct` (Prompt & FC)
@@ -214,7 +233,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
   - Introduce a new response-based checker, which works alongside with the existing state-based checker.
-    - The new checker compares the model’s execution result against the ground truth execution result, ensuring that the model’s result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
+    - The new checker compares the model's execution result against the ground truth execution result, ensuring that the model's result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
     - It complements the state-based checker, which doesn't work well when the functions don't directly alter the state. For example, it's unclear whether the model actually invoked `get_zipcode_by_city` or `estimate_distance` by just using the state-based checker.
     - Any multi turn entry will now only be marked correct if it passes both the state and response checkers.
   - Remove the irrelevance detection for multi-turn categories.
