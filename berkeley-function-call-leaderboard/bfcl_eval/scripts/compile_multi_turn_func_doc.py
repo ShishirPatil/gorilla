@@ -14,10 +14,10 @@ CLASS_FILE_PATH_MAPPING = {
     "TradingBot": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.trading_bot",
     "TravelAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.travel_booking",
     "VehicleControlAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.vehicle_control",
-    # "WebSearchAPI": "bfcl.eval_checker.multi_turn_eval.func_source_code.web_search",  # WebSearchAPI function doc is manually written
-    "MemoryAPI_kv": "bfcl.eval_checker.multi_turn_eval.func_source_code.memory_kv",
-    "MemoryAPI_vector": "bfcl.eval_checker.multi_turn_eval.func_source_code.memory_vector",
-    "MemoryAPI_rec_sum": "bfcl.eval_checker.multi_turn_eval.func_source_code.memory_rec_sum",
+    # "WebSearchAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.web_search",  # WebSearchAPI function doc is manually written
+    "MemoryAPI_kv": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_kv",
+    "MemoryAPI_vector": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_vector",
+    "MemoryAPI_rec_sum": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_rec_sum",
 }
 
 

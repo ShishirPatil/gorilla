@@ -39,7 +39,8 @@ MULTI_TURN_CATEGORY = [
     # "multi_turn_composite",
 ]
 WEB_SEARCH_CATEGORY = [
-    "web_search",
+    "web_search_base",
+    "web_search_no_snippet",
 ]
 
 MEMORY_CATEGORY = [f"memory_{backend}" for backend in ALL_AVAILABLE_MEMORY_BACKENDS]
@@ -81,5 +82,6 @@ TEST_COLLECTION_MAPPING = {
         "live_relevance",
     ],
     "memory": MEMORY_CATEGORY,
+    "web_search": WEB_SEARCH_CATEGORY,
     "agentic": AGENTIC_CATEGORY,
 }

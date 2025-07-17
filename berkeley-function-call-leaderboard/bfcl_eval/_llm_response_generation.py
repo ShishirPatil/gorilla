@@ -48,7 +48,7 @@ def get_args():
         "--skip-server-setup",
         action="store_true",
         default=False,
-        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables."
+        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables.",
     )
     # Optional local model path
     parser.add_argument(
@@ -146,8 +146,12 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
     ]
 
     test_cases_to_generate = clean_up_memory_prereq_entries(test_cases_to_generate)
+    # TODO: Should we move these to the load_dataset_entry function?
     test_cases_to_generate = populate_initial_settings_for_memory_test_cases(
         test_cases_to_generate, model_result_dir
+    )
+    test_cases_to_generate = populate_initial_settings_for_web_search_test_cases(
+        test_cases_to_generate
     )
 
     return sorted(test_cases_to_generate, key=sort_key)
@@ -261,7 +265,7 @@ def generate_results(args, model_name, test_cases_total):
 
 def main(args):
 
-    # Note: The following environment variables are needed for the memory vector store implementation 
+    # Note: The following environment variables are needed for the memory vector store implementation
     # Otherwise you get segfault or huggingface tokenizer warnings
     # disable HuggingFace tokenizers’ thread pool
     os.environ["TOKENIZERS_PARALLELISM"] = "false"

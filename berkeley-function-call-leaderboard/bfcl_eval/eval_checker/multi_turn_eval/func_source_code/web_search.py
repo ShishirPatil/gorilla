@@ -29,20 +29,27 @@ ERROR_TEMPLATES = [
 class WebSearchAPI:
     def __init__(self):
         self._api_description = "This tool belongs to the Web Search API category. It provides functions to search the web and browse search results."
+        self.show_snippet = True
+        # Note: The following two random generators are used to simulate random errors, but that feature is not currently used
         # This one used to determine if we should simulate a random error
         # Outcome (True means simulate error): [True, False, True, True, False, True, True, True, False, False, True, True, False, True, False, False, False, False, False, True]
         self._random = random.Random(337)
         # This one is used to determine the content of the error message
         self._rng = random.Random(1053)
 
-    def duckduckgo_search(
+    def _load_scenario(self, initial_config: dict, long_context: bool = False):
+        # We don't care about the long_context parameter here
+        # It's there to match the signature of functions in the multi-turn evaluation code
+        self.show_snippet = initial_config["show_snippet"]
+
+    def search_engine_query(
         self,
         keywords: str,
         max_results: Optional[int] = 10,
         region: Optional[str] = "wt-wt",
     ) -> list:
         """
-        This function searches DuckDuckGo for the provided keywords and region.
+        This function queries the search engine for the provided keywords and region.
 
         Args:
             keywords (str): The keywords to search for.
@@ -121,7 +128,7 @@ class WebSearchAPI:
             list: A list of search result dictionaries, each containing information such as:
             - 'title' (str): The title of the search result.
             - 'href' (str): The URL of the search result.
-            # - 'body' (str): A brief description or snippet from the search result.
+            - 'body' (str): A brief description or snippet from the search result.
         """
 
         try:
@@ -142,13 +149,21 @@ class WebSearchAPI:
             # Convert the search results to the desired format
             results = []
             for result in search_results[:max_results]:
-                results.append(
-                    {
-                        "title": result["title"],
-                        "href": result["link"],
-                        "body": result["snippet"],
-                    }
-                )
+                if self.show_snippet:
+                    results.append(
+                        {
+                            "title": result["title"],
+                            "href": result["link"],
+                            "body": result["snippet"],
+                        }
+                    )
+                else:
+                    results.append(
+                        {
+                            "title": result["title"],
+                            "href": result["link"],
+                        }
+                    )
 
             return results
 
@@ -178,10 +193,10 @@ class WebSearchAPI:
                     - "markdown": Converts raw HTML content to Markdown format for better readability, using html2text.
                     - "truncate": Extracts and cleans text by removing scripts, styles, and extraneous whitespace.
         """
-        try:
-            if not url.startswith(("http://", "https://")):
-                raise ValueError(f"Invalid URL: {url}")
+        if not url.startswith(("http://", "https://")):
+            raise ValueError(f"Invalid URL: {url}")
 
+        try:
             # A header that mimics a browser request. This helps avoid 403 Forbidden errors.
             # TODO: Is this the best way to do this?
             headers = {

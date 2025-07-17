@@ -215,24 +215,37 @@ def load_file(file_path, sort_by_id=False):
     return result
 
 
-def load_dataset_entry(test_category: str, include_prereq: bool = True) -> list[dict]:
+def load_dataset_entry(
+    test_category: str,
+    include_prereq: bool = True,
+    include_language_specific_hint: bool = True,
+) -> list[dict]:
     """
     This function retrieves the dataset entry for a given test category.
     The input should not be a test category goup, but a specific test category.
     If `contain_prereq` is True, it will include the pre-requisite entries for the memory test categories.
+    If `include_language_specific_hint` is True, it will include the language-specific hint for the function description (for Java, JavaScript, and Python).
     """
-    if not is_memory(test_category):
+    if not is_memory(test_category) and not is_web_search(test_category):
         file_name = f"{VERSION_PREFIX}_{test_category}.json"
         all_entries = load_file(PROMPT_PATH / file_name)
+    elif is_web_search(test_category):
+        file_name = f"{VERSION_PREFIX}_web_search.json"
+        all_entries = load_file(PROMPT_PATH / file_name)
+        all_entries = process_web_search_test_case(all_entries, test_category)
     else:
         # Memory categories
         all_entries = load_file(PROMPT_PATH / f"{VERSION_PREFIX}_memory.json")
         for scenario in MEMORY_SCENARIO_NAME:
-            all_entries = process_memory_test_case(all_entries, test_category, scenario, include_prereq=include_prereq)
+            all_entries = process_memory_test_case(
+                all_entries, test_category, scenario, include_prereq=include_prereq
+            )
 
     all_entries = process_agentic_test_case(all_entries)
     all_entries = populate_test_cases_with_predefined_functions(all_entries)
-    all_entries = process_func_doc(all_entries)
+
+    if include_language_specific_hint:
+        all_entries = process_func_doc(all_entries)
 
     return all_entries
 
@@ -242,8 +255,10 @@ def load_ground_truth_entry(test_category: str) -> list[dict]:
     This function retrieves the ground truth entry for a given test category.
     The input should not be a test category goup, but a specific test category.
     """
-    if not is_memory(test_category):
+    if not is_memory(test_category) and not is_web_search(test_category):
         file_name = f"{VERSION_PREFIX}_{test_category}.json"
+    elif is_web_search(test_category):
+        file_name = f"{VERSION_PREFIX}_web_search.json"
     else:
         # Memory categories
         file_name = f"{VERSION_PREFIX}_memory.json"
@@ -465,8 +480,21 @@ def process_func_doc(test_cases: list[dict]) -> list[dict]:
     return test_cases
 
 
+def process_web_search_test_case(test_cases: list[dict], test_category: str) -> list[dict]:
+    """
+    Web search test cases need to have their entry id updated. As both the base and no_snippet test categories are using the same question (from the same file), we need to differentiate them here.
+    """
+    for entry in test_cases:
+        entry["id"] = entry["id"].replace("web_search", test_category)
+
+    return test_cases
+
+
 def process_memory_test_case(
-    test_cases: list[dict], test_category: str, memory_scenario_name: str, include_prereq: bool = True
+    test_cases: list[dict],
+    test_category: str,
+    memory_scenario_name: str,
+    include_prereq: bool = True,
 ) -> list[dict]:
     """
     Memory test cases needs to have the memory write phase carried out before the inference phase. So we configure some test case dependencies here.
@@ -591,6 +619,25 @@ def populate_initial_settings_for_memory_test_cases(
                     "scenario": entry["scenario"],
                     "test_id": entry["id"],
                     "test_category": extract_test_category_from_id(entry["id"]),
+                }
+            }
+            entry["initial_config"] = init_config
+    return test_cases
+
+
+def populate_initial_settings_for_web_search_test_cases(
+    test_cases: list[dict],
+) -> list[dict]:
+    """
+    Special handling for the web search category, as it controls the show_snippet parameter
+    """
+    for entry in test_cases:
+        if is_web_search(entry["id"]):
+            involved_classes = entry["involved_classes"]
+
+            init_config = {
+                involved_classes[0]: {
+                    "show_snippet": False if "no_snippet" in entry["id"] else True
                 }
             }
             entry["initial_config"] = init_config

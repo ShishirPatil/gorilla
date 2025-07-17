@@ -150,7 +150,7 @@ def get_category_score(score_dict: dict, test_category: str) -> dict:
         score["display_accuracy"] = score["accuracy"]
         return score
     else:
-        num_entry = len(load_dataset_entry(test_category))
+        num_entry = len(load_dataset_entry(test_category, include_prereq=False, include_language_specific_hint=False))
         # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
         # It will still be considered 0 in the overall score calculation though
         # We use `display_accuracy` to special handle
@@ -338,7 +338,14 @@ def generate_leaderboard_csv(
         )
 
         # Agentic Score
-        web_search = get_category_score(value, "web_search")
+        web_search_base = get_category_score(value, "web_search_base")
+        web_search_no_snippet = get_category_score(value, "web_search_no_snippet")
+        summary_web_search = calculate_unweighted_accuracy(
+            [
+                web_search_base,
+                web_search_no_snippet,
+            ]
+        )
         memory_kv = get_category_score(value, "memory_kv")
         memory_vector = get_category_score(value, "memory_vector")
         memory_rec_sum = get_category_score(value, "memory_rec_sum")
@@ -351,7 +358,7 @@ def generate_leaderboard_csv(
         )
         overall_accuracy_agentic = calculate_unweighted_accuracy(
             [
-                web_search,
+                summary_web_search,
                 summary_memory,
             ],
             display_na_if_category_missing=False,
@@ -362,7 +369,9 @@ def generate_leaderboard_csv(
                 "N/A",
                 model_config.display_name,
                 overall_accuracy_agentic["display_accuracy"],
-                web_search["display_accuracy"],
+                summary_web_search["display_accuracy"],
+                web_search_base["display_accuracy"],
+                web_search_no_snippet["display_accuracy"],
                 summary_memory["display_accuracy"],
                 memory_kv["display_accuracy"],
                 memory_vector["display_accuracy"],
@@ -412,7 +421,7 @@ def generate_leaderboard_csv(
                 multi_turn_miss_param["display_accuracy"],
                 multi_turn_long_context["display_accuracy"],
                 overall_accuracy_agentic["display_accuracy"],
-                web_search["display_accuracy"],
+                summary_web_search["display_accuracy"],
                 summary_memory["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
