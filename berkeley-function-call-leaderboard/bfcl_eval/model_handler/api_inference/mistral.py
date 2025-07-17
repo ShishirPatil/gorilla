@@ -1,9 +1,10 @@
 import json
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     ast_parse,
@@ -90,7 +91,7 @@ class MistralHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -180,7 +181,7 @@ class MistralHandler(BaseHandler):
 
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.choices[0].message.content,
             "model_responses_message_for_chat_history": api_response.choices[0].message,

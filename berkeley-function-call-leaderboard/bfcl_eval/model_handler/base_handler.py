@@ -1,6 +1,6 @@
 import json
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from bfcl_eval.constants.category_mapping import VERSION_PREFIX
 from bfcl_eval.constants.default_prompts import (
@@ -814,7 +814,7 @@ class BaseHandler:
         """
         raise NotImplementedError
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         """
         Parses the raw response from the model API to extract the result, input token count, and output token count.
 
@@ -897,7 +897,7 @@ class BaseHandler:
         """
         raise NotImplementedError
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         """
         Parses the raw response from the model API to extract the result, input token count, and output token count.
 

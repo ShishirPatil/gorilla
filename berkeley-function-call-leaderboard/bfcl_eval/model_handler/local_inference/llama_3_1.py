@@ -1,7 +1,6 @@
 import json
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
@@ -232,9 +231,6 @@ class LlamaHandler_3_1(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Llama use its own system prompt
 

@@ -1,11 +1,10 @@
 import time
+from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.utils import (
-    ast_parse,
-)
+from bfcl_eval.model_handler.utils import ast_parse
 
 
 class NexusHandler(BaseHandler):
@@ -178,7 +177,7 @@ class NexusHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response[0]["generated_text"]
             .replace("Call:", "")

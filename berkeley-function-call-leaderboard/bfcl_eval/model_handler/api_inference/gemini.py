@@ -1,5 +1,6 @@
 import os
 import time
+from typing import Any
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
@@ -129,7 +130,7 @@ class GeminiHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         tool_call_func_names = []
         fc_parts = []
         text_parts = []
@@ -274,7 +275,7 @@ class GeminiHandler(BaseHandler):
         else:
             return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         if (
             len(api_response.candidates) > 0
             and api_response.candidates[0].content

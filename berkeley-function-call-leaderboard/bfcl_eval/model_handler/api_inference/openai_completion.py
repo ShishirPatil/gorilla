@@ -81,7 +81,7 @@ class OpenAICompletionsHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -210,7 +210,7 @@ class OpenAICompletionsHandler(BaseHandler):
 
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.choices[0].message.content,
             "model_responses_message_for_chat_history": api_response.choices[0].message,

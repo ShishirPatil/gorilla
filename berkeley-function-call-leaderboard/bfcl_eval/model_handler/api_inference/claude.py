@@ -1,11 +1,12 @@
 import json
 import os
 import time
+from typing import Any
 
 from anthropic import Anthropic, RateLimitError
 from anthropic.types import TextBlock, ToolUseBlock
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     ast_parse,
@@ -174,7 +175,7 @@ class ClaudeHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         text_outputs = []
         tool_call_outputs = []
         tool_call_ids = []
@@ -320,7 +321,7 @@ class ClaudeHandler(BaseHandler):
             "caching_enabled": caching_enabled,
         }
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.content[0].text,
             "input_token": api_response.usage.input_tokens,

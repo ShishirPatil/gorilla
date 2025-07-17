@@ -1,9 +1,10 @@
 import os
 import time
+from typing import Any
 
 import boto3
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -101,7 +102,7 @@ class NovaHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         model_responses_message_for_chat_history = api_response["output"]["message"]
 
         if api_response["stopReason"] == "tool_use":

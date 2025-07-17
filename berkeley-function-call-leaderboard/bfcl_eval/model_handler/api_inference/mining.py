@@ -1,10 +1,14 @@
 import json
 import os
-
 import re
+from typing import Any
+
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from bfcl_eval.model_handler.model_style import ModelStyle
 from openai import OpenAI
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+
 
 class MiningHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -46,7 +50,7 @@ class MiningHandler(OpenAICompletionsHandler):
         )
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         match = re.search(r'<tool_calls>\n(.*?)\n</tool_calls>', api_response.choices[0].message.content, re.DOTALL)
         tool_calls = api_response.choices[0].message.content
         if match:

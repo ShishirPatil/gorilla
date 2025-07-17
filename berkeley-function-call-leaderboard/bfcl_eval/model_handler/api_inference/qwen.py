@@ -263,7 +263,7 @@ class QwenAgentThinkHandler(OpenAICompletionsHandler):
         return responses, end_time-start_time
     
     @override
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call['function']['name']: func_call['function']['arguments']}

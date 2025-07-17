@@ -2,10 +2,10 @@ import os
 import subprocess
 import threading
 import time
+import traceback
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Optional
-import traceback
+from typing import Any, Optional
 
 import requests
 from bfcl_eval.constants.eval_config import RESULT_PATH, VLLM_PORT
@@ -384,7 +384,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         return {"message": [], "function": functions}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.choices[0].text,
             "input_token": api_response.usage.prompt_tokens,

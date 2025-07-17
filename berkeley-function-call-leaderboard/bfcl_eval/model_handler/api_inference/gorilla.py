@@ -1,5 +1,6 @@
 import json
 import time
+from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
@@ -67,7 +68,7 @@ class GorillaHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
 
         return {
             "model_responses": api_response["choices"][0]["message"]["content"],

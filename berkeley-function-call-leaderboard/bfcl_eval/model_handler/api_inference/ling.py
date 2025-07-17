@@ -1,8 +1,11 @@
 import json
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -66,7 +69,7 @@ class LingAPIHandler(OpenAICompletionsHandler):
         return {"message": []}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         response_data = super()._parse_query_response_prompting(api_response)
         self._add_reasoning_content_if_available_prompting(api_response, response_data)
         return response_data

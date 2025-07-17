@@ -125,7 +125,7 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
         return response_data
 
     @override
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         """
         DeepSeek does not take reasoning content in next turn chat history, for both prompting and function calling mode.
         Error: Error code: 400 - {'error': {'message': 'The reasoning_content is an intermediate result for display purposes only and will not be included in the context for inference. Please remove the reasoning_content from your message to reduce network traffic.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
