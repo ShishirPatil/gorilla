@@ -866,9 +866,9 @@ class TravelAPI:
         """
         if booking_id not in self.booking_record:
             return {"error": "Booking not found"}
+
         return {
-            "customer_support_message": "Thank you for contacting customer support. We will get back to you shortly. "
-            + message
+            "customer_support_message": "Thank you for contacting customer support. Your message has been received and we will get back to you shortly."
         }
 
     def get_all_credit_cards(self) -> Dict[str, Dict[str, Union[str, int, float]]]:

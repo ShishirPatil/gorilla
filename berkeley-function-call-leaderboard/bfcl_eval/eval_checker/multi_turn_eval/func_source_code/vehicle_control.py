@@ -475,6 +475,9 @@ class VehicleControlAPI:
             currentSpeed (float): The current speed of the vehicle in km/h.
             distanceToNextVehicle (float): The distance to the next vehicle in meters.
         """
+        distanceToNextVehicle = float(distanceToNextVehicle)
+        speed = float(speed)
+
         if self.engine_state == "stopped":
             return {"error": "Start the engine before activating the cruise control."}
         if activate:
