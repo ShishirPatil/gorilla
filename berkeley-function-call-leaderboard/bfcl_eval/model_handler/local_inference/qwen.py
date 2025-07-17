@@ -1,3 +1,5 @@
+from typing import Any
+
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
 
@@ -170,7 +172,7 @@ class QwenHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         model_response = api_response.choices[0].text
 
         reasoning_content = ""

@@ -1,12 +1,10 @@
 import time
+from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.utils import (
-    ast_parse,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import ast_parse
 
 
 class NexusHandler(BaseHandler):
@@ -174,13 +172,12 @@ class NexusHandler(BaseHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # Nexus requires functions to be in a specific format
         inference_data["tools"] = self._generate_functions_from_dict(functions)
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response[0]["generated_text"]
             .replace("Call:", "")

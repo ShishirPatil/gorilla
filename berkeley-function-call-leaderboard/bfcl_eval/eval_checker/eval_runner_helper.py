@@ -5,11 +5,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from bfcl_eval.constants.category_mapping import TEST_FILE_MAPPING
 from bfcl_eval.constants.column_headers import *
 from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
-from bfcl_eval.utils import extract_test_category, load_file
+from bfcl_eval.utils import extract_test_category, load_file, load_dataset_entry
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
@@ -53,6 +52,59 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
         "accuracy": total_accuracy / len(accuracy_dict_list),
         "total_count": total_count,
     }
+
+    if has_na and display_na_if_category_missing:
+        result["display_accuracy"] = "N/A"
+    else:
+        result["display_accuracy"] = result["accuracy"]
+
+    return result
+
+
+def calculate_percentage_weighted_accuracy(
+    accuracy_dict_list, weights, display_na_if_category_missing=True
+):
+    """
+    Calculate accuracy using a fixed list of weights that sum to 1.0.
+
+    Parameters
+    ----------
+    accuracy_dict_list : list[dict]
+        Each element is a dict containing at least the keys ``accuracy``, ``total_count`` and ``display_accuracy``.
+    weights : list[float]
+        The weight for each corresponding accuracy entry. Can sum to any positive value – they will be normalised internally.
+    display_na_if_category_missing : bool, default True
+        If True and any of the input categories has ``display_accuracy`` equal to "N/A", the returned ``display_accuracy`` will also be "N/A".
+
+    Returns
+    -------
+    dict
+        A dict with the same schema as other helper functions in this module (``accuracy``, ``total_count``, ``display_accuracy``).
+    """
+    assert len(accuracy_dict_list) == len(
+        weights
+    ), "Weights length must match accuracy list"
+
+    has_na = False
+    total_count = 0
+    total_accuracy = 0.0
+    weight_sum = sum(weights)
+    if weight_sum == 0:
+        raise ValueError("Sum of weights must be greater than 0")
+
+    # Normalise weights so that they sum to 1.0
+    weights_norm = [w / weight_sum for w in weights]
+
+    for accuracy_dict, weight in zip(accuracy_dict_list, weights_norm):
+        accuracy = accuracy_dict["accuracy"]
+        count = accuracy_dict["total_count"]
+        if accuracy_dict["display_accuracy"] == "N/A":
+            has_na = True
+
+        total_count += count
+        total_accuracy += accuracy * weight
+
+    result = {"accuracy": total_accuracy, "total_count": total_count}
 
     if has_na and display_na_if_category_missing:
         result["display_accuracy"] = "N/A"
@@ -151,8 +203,11 @@ def get_category_score(score_dict: dict, test_category: str) -> dict:
         score["display_accuracy"] = score["accuracy"]
         return score
     else:
-        test_file_path = TEST_FILE_MAPPING[test_category]
-        num_entry = len(load_file(PROMPT_PATH / test_file_path))
+        num_entry = len(
+            load_dataset_entry(
+                test_category, include_prereq=False, include_language_specific_hint=False
+            )
+        )
         # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
         # It will still be considered 0 in the overall score calculation though
         # We use `display_accuracy` to special handle
@@ -197,6 +252,7 @@ def generate_leaderboard_csv(
     data_non_live = []
     data_live = []
     data_multi_turn = []
+    data_agentic = []
     data_combined = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -244,7 +300,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live,
                 parallel_ast_non_live,
                 parallel_multiple_ast_non_live,
-                irrelevance_non_live,
             ],
             display_na_if_category_missing=False,
         )
@@ -290,8 +345,6 @@ def generate_leaderboard_csv(
                 python_multiple_ast_live,
                 python_parallel_ast_live,
                 python_parallel_multiple_ast_live,
-                irrelevance_live,
-                relevance_live,
             ],
             display_na_if_category_missing=False,
         )
@@ -338,21 +391,62 @@ def generate_leaderboard_csv(
             ]
         )
 
-        # Total Score
-        single_turn_ast = calculate_unweighted_accuracy(
-            [overall_accuracy_live, overall_accuracy_non_live]
+        # Agentic Score
+        web_search_base = get_category_score(value, "web_search_base")
+        web_search_no_snippet = get_category_score(value, "web_search_no_snippet")
+        summary_web_search = calculate_unweighted_accuracy(
+            [
+                web_search_base,
+                web_search_no_snippet,
+            ]
         )
+        memory_kv = get_category_score(value, "memory_kv")
+        memory_vector = get_category_score(value, "memory_vector")
+        memory_rec_sum = get_category_score(value, "memory_rec_sum")
+        summary_memory = calculate_unweighted_accuracy(
+            [
+                memory_kv,
+                memory_vector,
+                memory_rec_sum,
+            ]
+        )
+        overall_accuracy_agentic = calculate_unweighted_accuracy(
+            [
+                summary_web_search,
+                summary_memory,
+            ],
+            display_na_if_category_missing=False,
+        )
+
+        data_agentic.append(
+            [
+                "N/A",
+                model_config.display_name,
+                overall_accuracy_agentic["display_accuracy"],
+                summary_web_search["display_accuracy"],
+                web_search_base["display_accuracy"],
+                web_search_no_snippet["display_accuracy"],
+                summary_memory["display_accuracy"],
+                memory_kv["display_accuracy"],
+                memory_vector["display_accuracy"],
+                memory_rec_sum["display_accuracy"],
+            ]
+        )
+
+        # Total Score
         total_irrelevance = calculate_unweighted_accuracy(
             [irrelevance_non_live, irrelevance_live]
         )
         total_relevance = relevance_live
 
-        total_overall_accuracy = calculate_unweighted_accuracy(
+        total_overall_accuracy = calculate_percentage_weighted_accuracy(
             [
-                overall_accuracy_live,
                 overall_accuracy_non_live,
+                overall_accuracy_live,
                 overall_accuracy_multi_turn,
+                overall_accuracy_agentic,
             ],
+            [10, 10, 30, 50],
             display_na_if_category_missing=False,
         )
 
@@ -381,6 +475,13 @@ def generate_leaderboard_csv(
                 multi_turn_miss_func["display_accuracy"],
                 multi_turn_miss_param["display_accuracy"],
                 multi_turn_long_context["display_accuracy"],
+                summary_web_search["display_accuracy"],
+                web_search_base["display_accuracy"],
+                web_search_no_snippet["display_accuracy"],
+                summary_memory["display_accuracy"],
+                memory_kv["display_accuracy"],
+                memory_vector["display_accuracy"],
+                memory_rec_sum["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
                 model_config.org,
@@ -412,6 +513,14 @@ def generate_leaderboard_csv(
         sort_column_index=2,
     )
 
+    # Write Agentic Score File
+    write_score_csv_file(
+        data=data_agentic,
+        file_path=output_path / "data_agentic.csv",
+        header=COLUMNS_AGENTIC,
+        sort_column_index=2,
+    )
+
     # Write Total Score File
     write_score_csv_file(
         data=data_combined,
@@ -420,14 +529,6 @@ def generate_leaderboard_csv(
         sort_column_index=1,
         no_conversion_numeric_column_index=[4, 5, 6, 7],
     )
-
-    # TODO: Update and optimize the logic
-    # Check if all categories are present and evaluated for all models
-    # if eval_models:
-    #     category_status = check_model_category_status(score_path=output_path)
-    #     check_all_category_present(
-    #         category_status, eval_models=eval_models, eval_categories=eval_categories
-    #     )
 
     wandb_project = os.getenv("WANDB_BFCL_PROJECT")
     if wandb_project and wandb_project != "ENTITY:PROJECT":
@@ -438,7 +539,7 @@ def generate_leaderboard_csv(
             # wandb_project is 'entity:project'
             entity=wandb_project.split(":")[0],
             project=wandb_project.split(":")[1],
-            name=f"BFCL-v3-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
+            name=f"BFCL-v4-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
         )
 
         # Log CSV files to WandB

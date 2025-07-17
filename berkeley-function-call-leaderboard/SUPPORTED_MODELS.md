@@ -58,8 +58,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | GPT-4.1-mini-2025-04-14                | Prompt           | OpenAI         | gpt-4.1-mini-2025-04-14                                     |
 | GPT-4.1-nano-2025-04-14                | Function Calling | OpenAI         | gpt-4.1-nano-2025-04-14-FC                                  |
 | GPT-4.1-nano-2025-04-14                | Prompt           | OpenAI         | gpt-4.1-nano-2025-04-14                                     |
-| GPT-4.5-Preview-2025-02-27             | Function Calling | OpenAI         | gpt-4.5-preview-2025-02-27-FC                               |
-| GPT-4.5-Preview-2025-02-27             | Prompt           | OpenAI         | gpt-4.5-preview-2025-02-27                                  |
 | GPT-4o-2024-11-20                      | Function Calling | OpenAI         | gpt-4o-2024-11-20-FC                                        |
 | GPT-4o-2024-11-20                      | Prompt           | OpenAI         | gpt-4o-2024-11-20                                           |
 | GPT-4o-mini-2024-07-18                 | Function Calling | OpenAI         | gpt-4o-mini-2024-07-18-FC                                   |
@@ -128,7 +126,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
-| yi-large                               | Function Calling | 01.AI          | yi-large-fc                                                 |
 
 ---
 

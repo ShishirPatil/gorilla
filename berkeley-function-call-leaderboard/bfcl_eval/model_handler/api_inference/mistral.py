@@ -1,16 +1,16 @@
 import json
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
     ast_parse,
     convert_to_function_call,
     convert_to_tool,
     format_execution_results_prompting,
-    func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
 from mistralai import Mistral
@@ -84,16 +84,14 @@ class MistralHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         inference_data["tools"] = tools
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
@@ -177,15 +175,13 @@ class MistralHandler(BaseHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
 
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.choices[0].message.content,
             "model_responses_message_for_chat_history": api_response.choices[0].message,
