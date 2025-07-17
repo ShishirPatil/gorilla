@@ -61,6 +61,59 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
     return result
 
 
+def calculate_percentage_weighted_accuracy(
+    accuracy_dict_list, weights, display_na_if_category_missing=True
+):
+    """
+    Calculate accuracy using a fixed list of weights that sum to 1.0.
+
+    Parameters
+    ----------
+    accuracy_dict_list : list[dict]
+        Each element is a dict containing at least the keys ``accuracy``, ``total_count`` and ``display_accuracy``.
+    weights : list[float]
+        The weight for each corresponding accuracy entry. Can sum to any positive value – they will be normalised internally.
+    display_na_if_category_missing : bool, default True
+        If True and any of the input categories has ``display_accuracy`` equal to "N/A", the returned ``display_accuracy`` will also be "N/A".
+
+    Returns
+    -------
+    dict
+        A dict with the same schema as other helper functions in this module (``accuracy``, ``total_count``, ``display_accuracy``).
+    """
+    assert len(accuracy_dict_list) == len(
+        weights
+    ), "Weights length must match accuracy list"
+
+    has_na = False
+    total_count = 0
+    total_accuracy = 0.0
+    weight_sum = sum(weights)
+    if weight_sum == 0:
+        raise ValueError("Sum of weights must be greater than 0")
+
+    # Normalise weights so that they sum to 1.0
+    weights_norm = [w / weight_sum for w in weights]
+
+    for accuracy_dict, weight in zip(accuracy_dict_list, weights_norm):
+        accuracy = accuracy_dict["accuracy"]
+        count = accuracy_dict["total_count"]
+        if accuracy_dict["display_accuracy"] == "N/A":
+            has_na = True
+
+        total_count += count
+        total_accuracy += accuracy * weight
+
+    result = {"accuracy": total_accuracy, "total_count": total_count}
+
+    if has_na and display_na_if_category_missing:
+        result["display_accuracy"] = "N/A"
+    else:
+        result["display_accuracy"] = result["accuracy"]
+
+    return result
+
+
 def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
@@ -150,7 +203,11 @@ def get_category_score(score_dict: dict, test_category: str) -> dict:
         score["display_accuracy"] = score["accuracy"]
         return score
     else:
-        num_entry = len(load_dataset_entry(test_category, include_prereq=False, include_language_specific_hint=False))
+        num_entry = len(
+            load_dataset_entry(
+                test_category, include_prereq=False, include_language_specific_hint=False
+            )
+        )
         # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
         # It will still be considered 0 in the overall score calculation though
         # We use `display_accuracy` to special handle
@@ -362,8 +419,8 @@ def generate_leaderboard_csv(
                 summary_memory,
             ],
             display_na_if_category_missing=False,
-        ) 
-        
+        )
+
         data_agentic.append(
             [
                 "N/A",
@@ -377,7 +434,7 @@ def generate_leaderboard_csv(
                 memory_vector["display_accuracy"],
                 memory_rec_sum["display_accuracy"],
             ]
-        )       
+        )
 
         # Total Score
         total_irrelevance = calculate_unweighted_accuracy(
@@ -385,13 +442,14 @@ def generate_leaderboard_csv(
         )
         total_relevance = relevance_live
 
-        total_overall_accuracy = calculate_unweighted_accuracy(
+        total_overall_accuracy = calculate_percentage_weighted_accuracy(
             [
-                overall_accuracy_live,
                 overall_accuracy_non_live,
+                overall_accuracy_live,
                 overall_accuracy_multi_turn,
                 overall_accuracy_agentic,
             ],
+            [10, 10, 30, 50],
             display_na_if_category_missing=False,
         )
 
@@ -454,6 +512,14 @@ def generate_leaderboard_csv(
         sort_column_index=2,
     )
 
+    # Write Agentic Score File
+    write_score_csv_file(
+        data=data_agentic,
+        file_path=output_path / "data_agentic.csv",
+        header=COLUMNS_AGENTIC,
+        sort_column_index=2,
+    )
+
     # Write Total Score File
     write_score_csv_file(
         data=data_combined,
@@ -462,7 +528,6 @@ def generate_leaderboard_csv(
         sort_column_index=1,
         no_conversion_numeric_column_index=[4, 5, 6, 7],
     )
-
 
     wandb_project = os.getenv("WANDB_BFCL_PROJECT")
     if wandb_project and wandb_project != "ENTITY:PROJECT":
