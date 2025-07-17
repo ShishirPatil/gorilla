@@ -475,25 +475,28 @@ class VehicleControlAPI:
             currentSpeed (float): The current speed of the vehicle in km/h.
             distanceToNextVehicle (float): The distance to the next vehicle in meters.
         """
+        distanceToNextVehicle = float(distanceToNextVehicle)
+        speed = float(speed)
+
         if self.engine_state == "stopped":
             return {"error": "Start the engine before activating the cruise control."}
         if activate:
-            self.distanceToNextVehicle = float(distanceToNextVehicle)
+            self.distanceToNextVehicle = distanceToNextVehicle
             if speed < 0 or speed > 120 or speed % 5 != 0:
                 return {"error": "Invalid speed"}
             self.cruiseStatus = "active"
             return {
                 "cruiseStatus": "active",
-                "currentSpeed": float(speed),
-                "distanceToNextVehicle": float(distanceToNextVehicle),
+                "currentSpeed": speed,
+                "distanceToNextVehicle": distanceToNextVehicle,
             }
         else:
             self.cruiseStatus = "inactive"
-            self.distanceToNextVehicle = float(distanceToNextVehicle)
+            self.distanceToNextVehicle = distanceToNextVehicle
             return {
                 "cruiseStatus": "inactive",
-                "currentSpeed": float(speed),
-                "distanceToNextVehicle": float(distanceToNextVehicle),
+                "currentSpeed": speed,
+                "distanceToNextVehicle": distanceToNextVehicle,
             }
 
     def get_current_speed(self) -> Dict[str, float]:
