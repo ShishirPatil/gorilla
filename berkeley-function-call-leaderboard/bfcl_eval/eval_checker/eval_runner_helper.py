@@ -300,7 +300,6 @@ def generate_leaderboard_csv(
                 multiple_ast_non_live,
                 parallel_ast_non_live,
                 parallel_multiple_ast_non_live,
-                irrelevance_non_live,
             ],
             display_na_if_category_missing=False,
         )
@@ -346,8 +345,6 @@ def generate_leaderboard_csv(
                 python_multiple_ast_live,
                 python_parallel_ast_live,
                 python_parallel_multiple_ast_live,
-                irrelevance_live,
-                relevance_live,
             ],
             display_na_if_category_missing=False,
         )
