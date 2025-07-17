@@ -112,8 +112,8 @@
     <div class="navbar">
         <a href="/index.html">Home</a>
         <a href="/blog.html">Blogs</a>
-        <a href="/leaderboard.html">Leaderboard</a>
-        <a href="/apizoo/">API Zoo Index</a>
+        <a href="/leaderboard.html">BFCL Leaderboard</a>
+        <!-- <a href="/apizoo/">API Zoo Index</a> -->
     </div>
 
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
@@ -169,7 +169,7 @@
                 </div>
 
                 <b><i style="font-size: 1.0em;">Last updated: 2024-08-19 <a
-                            href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
+                            href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
                             Log]</a></i></b>
 
                 <div>
@@ -213,6 +213,10 @@
                         demand for making parallel function calls in a single turn (parallel functions). Further, this
                         dataset helps us pin-point contamination in different models!
                     </p>
+                    <P>
+                        On Sept 19th, we released the BFCL V3 dataset, featuring multi-turn & multi-step function calling evaluation.
+                        Checkout the <a href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html">BFCL V3 Blog Post</a> for more details!
+                    </P>
                     <p>
                         Quick Links:
                         <ul>
@@ -275,8 +279,8 @@
                     </p>
 
                     <p>
-                        <i>BFCL V2 • Live</i> comprises of 258 simple, 7 multiple, 16 parallel, 24 parallel
-                        multiple, 875 irrelevance detection, and 41 relevance detection entries. Each test category is
+                        <i>BFCL V2 • Live</i> comprises of 258 simple, 1053 multiple, 16 parallel, 24 parallel
+                        multiple, 882 irrelevance detection, and 18 relevance detection entries. Each test category is
                         detailed in the
                         <a
                             href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#categories">Evaluation
@@ -2461,12 +2465,12 @@
                     </p>
                     <pre id="citation_block" style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
                         <code>
-    @inproceedings{berkeley-function-calling-leaderboard,<br>
-        title={Berkeley Function Calling Leaderboard},<br>
-        author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
-        year={2024},<br>
-        howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
-    }
+@inproceedings{patil2025bfcl,
+title={The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models}, 
+author={Patil, Shishir G. and Mao, Huanzhi and Cheng-Jie Ji, Charlie and Yan, Fanjia and Suresh, Vishnu and Stoica, Ion and E. Gonzalez, Joseph},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+}
                         </code>
                     </pre>
                 </div>

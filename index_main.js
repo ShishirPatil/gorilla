@@ -359,17 +359,326 @@ PROMPTS = [
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
 ];
 
-const csvFilePath = "./data_combined.csv";
+// Fetch the header JSON data from the external file
+async function fetchHeaderData() {
+    try {
+        const response = await fetch('./data/forms/formHeaders.json'); // Replace with the path to your JSON file
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('There was a problem fetching the header data:', error);
+    }
+}
 
-fetch(csvFilePath)
-    .then((response) => response.text())
-    .then((csvText) => {
-        const leaderboard_data = parseCSV_leaderboard(csvText);
-        addToTable(leaderboard_data);
-    })
-    .catch((error) => console.error(error));
+// Function to build the table header dynamically
+function buildHeader(formKey, headerData) {
+    const tableHead = document.getElementById('leaderboard-head');
+    const form = headerData.forms[formKey];
+    form.rows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.columns.forEach(col => {
+            const th = document.createElement('th');
+            if (col.class) th.className = col.class;
+            if (col.colspan) th.colSpan = col.colspan;
+            if (col.id) th.id = col.id;
+            th.textContent = col.content;
 
-function parseCSV_leaderboard(text) {
+            if (col.canExpand) {
+                const button = document.createElement('button');
+                button.className = 'toggle-button';
+                button.setAttribute('data-target', col.id);
+                button.setAttribute('data-expanded', 'true');
+                // Add Font Awesome left arrow for collapse by default
+                button.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                th.appendChild(button);
+            }
+
+            tr.appendChild(th);
+        });
+        tableHead.appendChild(tr);
+    });
+}
+
+// Load the table header once the JSON data is fetched
+async function init(datasetName) {
+
+    const csvFilePath = `./data_${datasetName}.csv`;
+
+    const headerData = await fetchHeaderData();
+    if (headerData) {
+        buildHeader(datasetName, headerData); // Build the header for form1
+    }
+    fetch(csvFilePath)
+        .then((response) => response.text())
+        .then((csvText) => {
+            const leaderboard_data = parseCSV_leaderboard(csvText, datasetName);
+            addToTable(leaderboard_data);
+            document.querySelectorAll('.toggle-button').forEach(button =>
+                {
+                    button.click()
+                }
+            )
+            document.getElementById("rank-col").click(); // Sort by rank by default
+        })
+        .catch((error) => console.error(error));
+    fetch(csvFilePath)
+        .then((response) => response.text())
+        .then((csvText) => {
+            const chart_data = parseCSV_chart(csvText, datasetName);
+            generateChart(chart_data);
+        })
+        .catch((error) => console.error(error));
+    
+    document.getElementById("example-btn-1").addEventListener("click", function () {
+        populateInput(0);
+    });
+    document.getElementById("example-btn-2").addEventListener("click", function () {
+        populateInput(1);
+    });
+    document.getElementById("example-btn-3").addEventListener("click", function () {
+        populateInput(2);
+    });
+
+    document
+        .getElementById("submit-btn")
+        .addEventListener("click", async function () {
+            var inputText = document.getElementById("input-text").value;
+            var inputFunction = document.getElementById("input-function").value; // Assuming you have an input field with this id for the function
+            var temperatureValue = document.getElementById("temperatureSlider").value;
+            var model = document.getElementById("model-dropdown").value;
+
+            if (inputText === "" || inputFunction === "") {
+                alert("Please provide input and function definition.");
+                return;
+            }
+
+            document.getElementById("code-output").innerText =
+                "Loading Model Response...";
+            document.getElementById("json-output").innerText =
+                "Loading Model Response...";
+
+            const requestData = {
+                model: model,
+                messages: [{ role: "user", content: inputText }],
+                functions: [inputFunction],
+                temperature: parseFloat(temperatureValue),
+            };
+
+            const response = await fetch(
+                "https://luigi.millennium.berkeley.edu:443/v1/chat/completions",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "EMPTY",
+                    },
+                    body: JSON.stringify(requestData),
+                }
+            );
+
+            if (!response.ok) {
+                document.getElementById("code-output").innerText =
+                    "Error: " + response.status;
+                return;
+            }
+
+            const jsonResponse = await response.json();
+
+            if (model === "gorilla-openfunctions-v2") {
+                directCode = jsonResponse.choices[0].message.content;
+                jsonCode = jsonResponse.choices[0].message.function_call;
+                document.getElementById("code-output").innerText = directCode;
+                if (jsonCode) {
+                    jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
+                    document.getElementById("json-output").innerText = jsonCode;
+                } else {
+                    document.getElementById("json-output").innerText =
+                        "Error parsing JSON output.";
+                }
+            } else {
+                jsonCode = jsonResponse.choices[0].message.function_call;
+                jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
+                document.getElementById("json-output").innerText = jsonCode;
+                document.getElementById("code-output").innerText =
+                    "Model does not support direct code output.";
+            }
+
+            // const executeButton = document.getElementById('exec-btn');
+            // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
+            // executeButton.addEventListener('click', function () {
+            //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
+            // });
+            document.getElementById("thumbs-up-btn").style.display = "block";
+            document.getElementById("thumbs-down-btn").style.display = "block";
+            document.getElementById("report-issue-btn").style.display = "block";
+        });
+
+    document
+        .getElementById("report-issue-btn")
+        .addEventListener("click", function () {
+            var inputText = document.getElementById("input-text").value;
+            var funcDef = document.getElementById("input-function").value;
+            var temperatureValue = document.getElementById("temperatureSlider").value;
+            var model = document.getElementById("model-dropdown").value;
+            var codeOutputText = document.getElementById("code-output").innerText;
+            var jsonOutputText = document.getElementById("json-output").innerText;
+            if (inputText === "" || funcDef === "") {
+                alert("Please provide input and function definition to send feedback.");
+                return;
+            }
+            var issueTitle = "[bug] OpenFunctions-v2: ";
+            var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
+            window.open(
+                `https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`,
+                "_blank"
+            );
+        });
+
+    document.querySelectorAll("th.column-header").forEach(function (header, index) {
+
+        var sortIndicator = document.createElement("span");
+        header.appendChild(sortIndicator);
+
+        header.addEventListener("click", function () {
+            var table = header.closest("table");
+            var tbody = table.querySelector("tbody");
+            var columnIndex = Array.from(header.parentNode.children).indexOf(header);
+            var isAscending = (header.asc = !header.asc);
+
+            sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
+
+            document.querySelectorAll("th span").forEach(function (otherIndicator) {
+                if (otherIndicator !== sortIndicator) {
+                    otherIndicator.textContent = ""; // Clear other indicators
+                }
+            });
+
+            var rowsArray = Array.from(tbody.querySelectorAll("tr"));
+            rowsArray
+                .sort(createComparer(columnIndex, isAscending))
+                .forEach(function (row) {
+                    tbody.appendChild(row);
+                });
+            
+            updateStickyColumnsLeft()
+        });
+    });
+
+    // Add Expand/Collapse Event Click Listener to All Expandable Buttons
+    document.querySelectorAll('.toggle-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const target = button.getAttribute('data-target');
+            const isExpanded = button.getAttribute('data-expanded') === 'true';
+            
+            // Get the target subheaders and the main header
+            const subHeaderRows = document.getElementsByClassName(`${target}-sub-header`);
+            const mainHeaders = document.getElementsByClassName(`${target}-header`);
+            
+            // Ensure there are elements found
+            if (mainHeaders.length === 0 || subHeaderRows.length === 0) {
+                console.error('No elements found for target:', target);
+                return;
+            }
+
+            // Access the first element from the collections
+            const mainHeader = mainHeaders[0];
+            
+            if (isExpanded) {
+                // Collapse: Reduce colspan and hide subheaders
+                mainHeader.setAttribute('colspan', 1);
+
+                // Select all sub headers
+                const allSubheaders = document.querySelectorAll(`.${target}-sub-header`);
+                
+                // Select all sub cells
+                const allSubCells = document.querySelectorAll(`.${target}-sub-cell`);
+                
+                // Combine the NodeLists into a single array
+                const allElements = [...allSubheaders, ...allSubCells];
+                
+                // Set display to 'none' for each element
+                allElements.forEach(element => {
+                    if (!element.className.includes("stay")) {
+                        element.style.display = 'none';
+                    }
+                });
+
+                const topHeader = document.querySelectorAll(`.${target}-top-header`)[0];
+
+                // Get the current colspan value (returns a string, so we need to convert it to a number)
+                let currentColspan = parseInt(topHeader.getAttribute('colspan'));
+                
+                // Modify the colspan by adding or subtracting the change value
+                const newColspan = currentColspan - (allSubheaders.length - 1);
+                
+                // Ensure the colspan is not less than 1 (colspan cannot be zero or negative)
+                topHeader.setAttribute('colspan', Math.max(1, newColspan));
+
+                // Collapse: change icon to right arrow
+                button.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            } else {
+                // Expand: Set colspan and show subheaders
+                const originalColspan = subHeaderRows.length;
+                mainHeader.setAttribute('colspan', originalColspan);
+                
+
+                // Select all sub headers
+                const allSubheaders = document.querySelectorAll(`.${target}-sub-header`);
+                
+                // Select all sub cells
+                const allSubCells = document.querySelectorAll(`.${target}-sub-cell`);
+                
+                // Combine the NodeLists into a single array
+                const allElements = [...allSubheaders, ...allSubCells];
+                
+                // Set display to 'true' for each element
+                allElements.forEach(element => {
+                    element.style.display = '';
+                });
+
+
+                const topHeader = document.querySelectorAll(`.${target}-top-header`)[0];
+
+                // Get the current colspan value (returns a string, so we need to convert it to a number)
+                let currentColspan = parseInt(topHeader.getAttribute('colspan'));
+                
+                // Modify the colspan by adding or subtracting the change value
+                const newColspan = currentColspan + (allSubheaders.length - 1);
+                
+                // Ensure the colspan is not less than 1 (colspan cannot be zero or negative)
+                topHeader.setAttribute('colspan', Math.max(1, newColspan));
+
+                // Expand: change icon to left arrow
+                button.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            }
+
+            // Toggle the state
+            button.setAttribute('data-expanded', !isExpanded);
+        });
+    });
+
+    document.getElementById("search-btn").addEventListener("click", () => {
+        const keyword = document.getElementById("search-input").value.trim();
+        filterTableByModelName(keyword);
+    });
+
+    document.getElementById("search-input").addEventListener("input", () => {
+        const keyword = document.getElementById("search-input").value.trim();
+        filterTableByModelName(keyword);
+        // if (keyword === "") {
+        //     filterTableByModelName(""); // Show all rows when input is cleared
+        // }
+    });
+}
+
+// Initialize the table header creation when the page loads
+document.addEventListener('DOMContentLoaded', init("overall"));
+
+
+function parseCSV_leaderboard(text, datasetName) {
     result = text.split("\n");
     // Skip the first row of the CSV (headers)
     for (let i = 1; i < result.length; i += 1) {
@@ -380,29 +689,10 @@ function parseCSV_leaderboard(text) {
             }
             return value;
         });
-        result[i].splice(result[i].length, 0, result[i][4]);
-        result[i].splice(result[i].length, 0, result[i][5]);
-        result[i].splice(4, 2);
-        result[i].splice(4, 0, result[i][result[i].length - 6]);
-        result[i].splice(5, 0, result[i][result[i].length - 5]);
-        result[i].splice(8, 0, result[i][result[i].length - 8]);
-        result[i].splice(9, 0, result[i][result[i].length - 7]);
-        result[i].splice(10, 0, result[i][result[i].length - 6]);
-        result[i].splice(11, 0, result[i][result[i].length - 5]);
-        result[i].splice(12, 0, result[i][result[i].length - 4]);
-        result[i].splice(13, 0, result[i][result[i].length - 3]);
-        result[i].splice(result[i].length - 6, 4);
     }
+    console.log(result)
     return result;
 }
-
-fetch(csvFilePath)
-    .then((response) => response.text())
-    .then((csvText) => {
-        const chart_data = parseCSV_chart(csvText);
-        generateChart(chart_data);
-    })
-    .catch((error) => console.error(error));
 
 function parseCSV_chart(text) {
     result = text.split("\n");
@@ -441,14 +731,19 @@ function addToTable(dataArray) {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 4 && cellIndex <= 9) {
-                    // summary-row class for specific columns
-                    td.className = "summary-row";
-                } else if (cellIndex >= 10 && cellIndex <= 23) {
-                    // detail-row class for specific columns
-                    td.className = "detail-row";
-                }
-
+                if (cellIndex >= 6 && cellIndex <= 7) {
+                    // class for specific columns
+                    td.className = "latency-sub-cell";
+                } else if (cellIndex >= 9 && cellIndex <= 12) {
+                    // class for specific columns
+                    td.className = "nonliveast-sub-cell";
+                } else if (cellIndex >= 14 && cellIndex <= 17) {
+                    // class for specific columns
+                    td.className = "liveast-sub-cell";
+                } else if (cellIndex >= 19 && cellIndex <= 22) {
+                    // class for specific columns
+                    td.className = "multiturn-sub-cell";
+                } 
                 tr.appendChild(td);
             }
 
@@ -465,111 +760,6 @@ function populateInput(index) {
         2
     );
 }
-
-document.getElementById("example-btn-1").addEventListener("click", function () {
-    populateInput(0);
-});
-document.getElementById("example-btn-2").addEventListener("click", function () {
-    populateInput(1);
-});
-document.getElementById("example-btn-3").addEventListener("click", function () {
-    populateInput(2);
-});
-
-document
-    .getElementById("submit-btn")
-    .addEventListener("click", async function () {
-        var inputText = document.getElementById("input-text").value;
-        var inputFunction = document.getElementById("input-function").value; // Assuming you have an input field with this id for the function
-        var temperatureValue = document.getElementById("temperatureSlider").value;
-        var model = document.getElementById("model-dropdown").value;
-
-        if (inputText === "" || inputFunction === "") {
-            alert("Please provide input and function definition.");
-            return;
-        }
-
-        document.getElementById("code-output").innerText =
-            "Loading Model Response...";
-        document.getElementById("json-output").innerText =
-            "Loading Model Response...";
-
-        const requestData = {
-            model: model,
-            messages: [{ role: "user", content: inputText }],
-            functions: [inputFunction],
-            temperature: parseFloat(temperatureValue),
-        };
-
-        const response = await fetch(
-            "https://luigi.millennium.berkeley.edu:443/v1/chat/completions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "EMPTY",
-                },
-                body: JSON.stringify(requestData),
-            }
-        );
-
-        if (!response.ok) {
-            document.getElementById("code-output").innerText =
-                "Error: " + response.status;
-            return;
-        }
-
-        const jsonResponse = await response.json();
-
-        if (model === "gorilla-openfunctions-v2") {
-            directCode = jsonResponse.choices[0].message.content;
-            jsonCode = jsonResponse.choices[0].message.function_call;
-            document.getElementById("code-output").innerText = directCode;
-            if (jsonCode) {
-                jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
-                document.getElementById("json-output").innerText = jsonCode;
-            } else {
-                document.getElementById("json-output").innerText =
-                    "Error parsing JSON output.";
-            }
-        } else {
-            jsonCode = jsonResponse.choices[0].message.function_call;
-            jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
-            document.getElementById("json-output").innerText = jsonCode;
-            document.getElementById("code-output").innerText =
-                "Model does not support direct code output.";
-        }
-
-        // const executeButton = document.getElementById('exec-btn');
-        // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
-        // executeButton.addEventListener('click', function () {
-        //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
-        // });
-        document.getElementById("thumbs-up-btn").style.display = "block";
-        document.getElementById("thumbs-down-btn").style.display = "block";
-        document.getElementById("report-issue-btn").style.display = "block";
-    });
-
-document
-    .getElementById("report-issue-btn")
-    .addEventListener("click", function () {
-        var inputText = document.getElementById("input-text").value;
-        var funcDef = document.getElementById("input-function").value;
-        var temperatureValue = document.getElementById("temperatureSlider").value;
-        var model = document.getElementById("model-dropdown").value;
-        var codeOutputText = document.getElementById("code-output").innerText;
-        var jsonOutputText = document.getElementById("json-output").innerText;
-        if (inputText === "" || funcDef === "") {
-            alert("Please provide input and function definition to send feedback.");
-            return;
-        }
-        var issueTitle = "[bug] OpenFunctions-v2: ";
-        var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
-        window.open(
-            `https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`,
-            "_blank"
-        );
-    });
 
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec";
@@ -591,45 +781,46 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.5-Sonnet-20240620 (FC)",
-    "Gorilla-OpenFunctions-v2 (FC)",
+    "Claude-3.7-Sonnet-20250219 (FC)",
+    "GPT-4o-2024-11-20 (FC)",
+    "Gemini-2.5-Pro-Preview-05-06 (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
     "rgb(54, 162, 235)",
+    "rgb(255, 215, 0)",
+    "rgb(153, 102, 255)",
+    "rgb(85, 207, 47)",
+    "rgb(0, 0, 255)",
+    "rgb(64, 224, 208)",
+    "rgb(192, 0, 0)",
+    "rgb(47, 79, 79)",   
+    "rgb(255, 140, 0)",  
     "rgb(75, 192, 192)",
     "rgb(255, 206, 86)",
     "rgb(54, 162, 235)",
     "rgb(255, 165, 0)",
     "rgb(65, 105, 225)",
-    "rgb(153, 102, 255)",
     "rgb(75, 192, 192)",
     "rgb(255, 206, 86)",
     "rgb(128, 0, 0)",
-    "rgb(85, 207, 47)",
     "rgb(185, 157, 47)",
     "rgb(163, 73, 164)",
     "rgb(255, 105, 180)",
-    "rgb(0, 0, 255)",
     "rgb(60, 179, 113)",
-    "rgb(255, 215, 0)",
     "rgb(218, 112, 214)",
     "rgb(85, 157, 147)",
     "rgb(255, 99, 132)",
     "rgb(0, 255, 255)",
-    "rgb(64, 224, 208)",
     "rgb(85, 107, 47)",
-    "rgb(192, 0, 0)",
     "rgb(0, 128, 128)",
     "rgb(255, 0, 255)",
     "rgb(0, 100, 0)",    
     "rgb(139, 0, 139)",  
     "rgb(255, 69, 0)",   
     "rgb(0, 191, 255)",  
-    "rgb(255, 20, 147)", 
-    "rgb(47, 79, 79)",   
+    "rgb(255, 20, 147)",  
     "rgb(210, 105, 30)", 
-    "rgb(255, 140, 0)",  
     "rgb(144, 238, 144)",
     "rgb(70, 130, 180)", 
     "rgb(244, 164, 96)", 
@@ -667,12 +858,84 @@ const color = [
     "rgb(127, 255, 212)",
     "rgb(219, 112, 147)",
     "rgb(188, 143, 143)",
-
+    "rgb(233, 30, 99)",
+    "rgb(255, 87, 34)",
+    "rgb(76, 175, 80)",
+    "rgb(255, 193, 7)",
+    "rgb(96, 125, 139)",
+    "rgb(103, 58, 183)",
+    "rgb(3, 169, 244)",
+    "rgb(0, 188, 212)",
+    "rgb(205, 220, 57)",
+    "rgb(139, 195, 74)",
+    "rgb(0, 150, 136)",
+    "rgb(33, 150, 243)",
+    "rgb(63, 81, 181)",
+    "rgb(121, 85, 72)",
+    "rgb(156, 39, 176)",
+    "rgb(255, 235, 59)",
+    "rgb(158, 158, 158)",
+    "rgb(224, 64, 251)",
+    "rgb(244, 67, 54)",
+    "rgb(255, 152, 0)",
+    "rgb(233, 30, 99)",
+    "rgb(124, 179, 66)",
+    "rgb(255, 238, 88)",
+    "rgb(230, 126, 34)",
+    "rgb(93, 64, 55)",
+    "rgb(233, 30, 99)",
+    "rgb(76, 175, 80)",
+    "rgb(63, 81, 181)",
+    "rgb(255, 87, 34)",
+    "rgb(96, 125, 139)",
+    "rgb(158, 158, 158)",
+    "rgb(230, 74, 25)",
+    "rgb(0, 77, 64)",
+    "rgb(156, 39, 176)",
+    "rgb(123, 31, 162)",
+    "rgb(255, 193, 7)",
+    "rgb(245, 0, 87)",
+    "rgb(128, 128, 128)",
+    "rgb(0, 0, 0)",
+    "rgb(255, 255, 255)",
+    "rgb(220, 20, 60)",
+    "rgb(0, 255, 0)",
+    "rgb(255, 0, 0)",
+    "rgb(0, 128, 0)",
+    "rgb(192, 192, 192)",
+    "rgb(255, 228, 181)",
+    "rgb(218, 165, 32)",
+    "rgb(255, 127, 80)",
+    "rgb(106, 90, 205)",
+    "rgb(255, 240, 245)",
+    "rgb(250, 250, 210)",
+    "rgb(255, 245, 238)",
+    "rgb(240, 255, 240)",
+    "rgb(245, 245, 220)",
+    "rgb(154, 205, 50)",
+    "rgb(152, 251, 152)",
+    "rgb(72, 209, 204)",
 ];
 
 function convertRGBtoRGBA(rgbString) {
     const rgbValues = rgbString.match(/\d+/g);
     return `rgba(${rgbValues.join(", ")}, 0.1)`;
+}
+
+let availableDatasets = [];
+let myChart = null;
+const datasetDropdown = $('#dataset-dropdown');
+
+// Function to determine font size based on screen width
+function getFontSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 480) {
+        return 8.5;  // Small font size for small screens
+    } else if (screenWidth < 768) {
+        return 10;  // Medium font size for medium screens
+    } else {
+        return 15;  // Default font size for larger screens
+    }
 }
 
 function generateChart(csvData) {
@@ -684,16 +947,11 @@ function generateChart(csvData) {
         var dataPoint = {
             label: model_name,
             data: [
+                csvData[i][1],
                 csvData[i][8],
-                csvData[i][9],
-                csvData[i][10],
-                csvData[i][11],
-                csvData[i][12],
                 csvData[i][13],
-                csvData[i][14],
-                csvData[i][15],
-                csvData[i][16],
-                csvData[i][17],
+                csvData[i][18],
+                csvData[i][24],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -702,36 +960,34 @@ function generateChart(csvData) {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
-            hidden: true,
         };
-        if (shown_model_list.includes(model_name)) {
-            dataPoint.hidden = false;
-        }
         dataset.push(dataPoint);
     }
 
     const data = {
         labels: [
-            "Simple (AST)",
-            "Multiple (AST)",
-            "Parallel (AST)",
-            "Parallel Multiple (AST)",
-            "Simple (Exec)",
-            "Multiple (Exec)",
-            "Parallel (Exec)",
-            "Parallel Multiple (Exec)",
-            "Irrelevance Detection",
-            "Relevance Detection",
+            "Overall Accuracy",
+            "Non-live AST Summary",
+            "Live Summary",
+            "Multi Turn Summary",
+            "Hallucination Measurement",
         ],
         datasets: dataset,
     };
 
+    availableDatasets = [...data.datasets];
+
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    new Chart(ctx, {
-        type: "radar",
-        data: data,
+    myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: data.labels,
+            datasets: []
+        },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,  // Allow the chart to adjust its aspect ratio
             elements: {
                 line: {
                     borderWidth: 3,
@@ -740,32 +996,120 @@ function generateChart(csvData) {
             scales: {
                 r: {
                     beginAtZero: true,
-                    min: 0,
                     pointLabels: {
                         font: {
-                            size: 13 // column font
+                            size: getFontSize()  // Adjust font size dynamically
                         }
                     },
                     ticks: {
+                        display: true,
                         font: {
-                            size: 10 // scale font
+                            size: getFontSize()  // Adjust ticks font size dynamically
                         }
                     }
                 }
             },
             plugins: {
                 legend: {
+                    display: true,
+                    position: 'top', // Ensure legend is at the top
                     labels: {
                         boxWidth: 15,
                         font: {
-                            size: 13 // legend labels font
-                        }
-                    }
+                            size: Math.min(getFontSize() + 3.5, 15) // Allow labels to adjust in size if needed
+                        },
+                        padding: 20, // Provide padding around labels to avoid crowding
+                        usePointStyle: true, // Use point style to differentiate items
+                    },
+                    fullSize: true // Allow legend to take full width if needed
                 }
-            },
-        },
+            }
+        }
+    });
+
+    // Initialize Semantic UI dropdown
+    datasetDropdown.dropdown({
+        onChange: function (value, text, $selectedItem) {
+            handleDatasetSelection(value);
+        }
+    });
+
+    // Populate the dropdown menu with datasets initially
+    populateDropdown();
+
+    // Resize chart font size on window resize
+    window.addEventListener('resize', function () {
+        // Update font sizes dynamically on screen resize
+        myChart.options.scales.r.pointLabels.font.size = getFontSize();
+        myChart.options.scales.r.ticks.font.size = getFontSize();
+        myChart.options.plugins.legend.labels.font.size = getFontSize();
+        myChart.update();  // Update the chart to reflect changes
     });
 }
+
+// Handle Clear All button click
+$('#clear-all-btn').on('click', function () {
+    // Clear the chart datasets
+    myChart.data.datasets = [];
+    myChart.update();
+
+    // Clear the dropdown selection
+    datasetDropdown.dropdown('clear');
+});
+
+// Populate the dropdown with dataset options
+function populateDropdown() {
+    availableDatasets.forEach((dataset, index) => {
+        const item = `<div class="item" data-value="${index}">${dataset.label}</div>`;
+        datasetDropdown.find('.menu').append(item);
+    });
+
+    // Initialize the dropdown and trigger change event
+    datasetDropdown.dropdown({
+        fullTextSearch: 'exact',  // Enables full substring matching
+        onChange: function (value) {
+            handleDatasetSelection(value);
+        },
+        // Custom search function for substring matching
+        filterRemoteData: true,
+        matcher: function (searchTerm, item) {
+            return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+        }
+    });
+    
+    // Pre-select datasets by label (finding the correct indices)
+    const defaultSelectedIndices = availableDatasets
+        .map((dataset, index) => shown_model_list.includes(dataset.label) ? index.toString() : null)
+        .filter(index => index !== null);
+
+    // Set the selected datasets in the dropdown
+    datasetDropdown.dropdown('set exactly', defaultSelectedIndices);
+}
+
+// Handle dataset selection and removal
+function handleDatasetSelection(value) {
+    // Get the currently selected datasets
+    const selectedIndices = datasetDropdown.dropdown('get value').split(',');
+
+    // Clear the current datasets in the chart.
+    myChart.data.datasets = [];
+
+    // Add the selected datasets to the chart
+    selectedIndices.forEach((index, count) => {
+        if (index) {
+            const dataset = availableDatasets[parseInt(index)];
+            dataset.backgroundColor = convertRGBtoRGBA(color[count]);
+            dataset.borderColor = color[count];
+            dataset.pointBackgroundColor = color[count];
+            dataset.pointHoverBorderColor = color[count];
+            myChart.data.datasets.push(dataset);
+        }
+    });
+
+    // Update the chart with the new datasets
+    myChart.update();
+}
+
 
 // Note: If we have too many models, we can use the following code to add a plugin to automatically color the radar chart, but the color quality is not as good as the current one.
 
@@ -923,6 +1267,7 @@ function getCellValue(row, columnIndex) {
 }
 
 function createComparer(columnIndex, isAscending) {
+
     return function (rowA, rowB) {
         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
@@ -935,31 +1280,68 @@ function createComparer(columnIndex, isAscending) {
     };
 }
 
-document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
-    var sortIndicator = document.createElement("span");
-    header.appendChild(sortIndicator);
-
-    header.addEventListener("click", function () {
-        var table = header.closest("table");
-        var tbody = table.querySelector("tbody");
-        var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-        var isAscending = (header.asc = !header.asc);
-
-        sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
-
-        document.querySelectorAll("th span").forEach(function (otherIndicator) {
-            if (otherIndicator !== sortIndicator) {
-                otherIndicator.textContent = ""; // Clear other indicators
-            }
-        });
-
-        var rowsArray = Array.from(tbody.querySelectorAll("tr"));
-        rowsArray
-            .sort(createComparer(columnIndex, isAscending))
-            .forEach(function (row) {
-                tbody.appendChild(row);
+$(document).ready(function() {
+    // Initialize the dropdown with a focus on proper search input handling
+    $('#dataset-dropdown').dropdown({
+        fullTextSearch: true, // Enables substring search
+        onShow: function() {
+            // Attach event listener to the input field to dynamically adjust width
+            const searchInput = $('.ui.dropdown .menu .search input');
+            searchInput.off('input'); // Remove existing listeners to avoid duplication
+            searchInput.on('input', function() {
+                console.log('Input event triggered'); // Debug to ensure event fires
+                $(this).css('width', 'auto'); // Reset width to calculate based on content
+                const inputWidth = this.scrollWidth; // Calculate necessary width
+                $(this).css('width', inputWidth + 'px'); // Adjust to new width
             });
+        },
+        onChange: function(value, text, $selectedItem) {
+            console.log('Dropdown value changed: ', value); // Debug to ensure changes are detected
+        }
     });
 });
 
-document.getElementById("rank-col").click(); // Sort by rank by default
+function updateStickyColumnsLeft() {
+    
+    const firstColumn = document.querySelector('#leaderboard tbody td:nth-child(1)');
+    const secondColumn = document.querySelector('#leaderboard tbody td:nth-child(2)');
+    
+    if (firstColumn && secondColumn) {
+        console.log("called")
+        const firstColumnWidth = firstColumn.getBoundingClientRect().width;
+        const secondColumnWidth = secondColumn.getBoundingClientRect().width;
+
+        const secondColumnCells = document.querySelectorAll('#leaderboard tbody td:nth-child(2), #leaderboard thead .sticky-second-column:nth-child(2)');
+        const thirdColumnCells = document.querySelectorAll('#leaderboard tbody td:nth-child(3), #leaderboard thead .sticky-second-column:nth-child(3)');
+        
+        // Update the left position of the second column
+        secondColumnCells.forEach(cell => {
+            cell.style.left = `${firstColumnWidth}px`;
+        });
+
+        // Update the left position of the third column
+        thirdColumnCells.forEach(cell => {
+            cell.style.left = `${firstColumnWidth + secondColumnWidth}px`;
+        });
+    }
+}
+
+// Function to filter table rows based on search input
+function filterTableByModelName(keyword) {
+    const tableRows = document.querySelectorAll("#leaderboard-table tbody tr");
+    const searchTerm = keyword.toLowerCase();
+
+    tableRows.forEach(row => {
+        const modelNameCell = row.querySelector("td:nth-child(3)"); // Assuming the model name is in the 3rd column
+        if (modelNameCell) {
+            const modelName = modelNameCell.textContent.toLowerCase();
+            if (modelName.includes(searchTerm)) {
+                row.style.display = ""; // Show row if it matches
+            } else {
+                row.style.display = "none"; // Hide row if it doesn't match
+            }
+        }
+    });
+
+    console.log("called function")
+}

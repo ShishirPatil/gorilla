@@ -1,42 +1,41 @@
 #leaderboard {
     width: 100%;
-    border-collapse: collapse;
+    /* border-collapse: separate; */
 }
-
-#leaderboard th,
-#leaderboard td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
 
 /* Ensure the table uses the full width of its container */
 table {
     table-layout: auto;
-    border-collapse: collapse; 
+    border-collapse: separate; 
+    border-spacing: 0px;
     width: auto; /* Allows the table to expand naturally based on content */
-    border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
     align-items: center;
     justify-content: center;
 }
 
-
-
-#leaderboard td, #leaderboard th {
+#leaderboard td {
     word-wrap: break-word; /* Allows words to break and wrap to the next line */
     overflow-wrap: break-word; /* Ensures wrapping at break points */
     padding: 8px; /* Adjust padding as needed */
     text-align: center; /* Keeps text centered, adjust as needed */
-    border: 1px solid #ddd; 
+    border-right: 1.25px solid #ddd;
+    border-bottom: 1.25px solid #ddd; 
 }
 
+#leaderboard th {
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    padding: 4px 20px;
+    text-align: center; /* Keeps text centered, adjust as needed */
+    border-right: 1.25px solid #ddd;
+    border-bottom: 1.25px solid #ddd; 
+}
 
 th:not(.detail-header)  {
     cursor: pointer;
 }
-
 
 
 .table-container {
@@ -47,13 +46,16 @@ th:not(.detail-header)  {
     max-width: 100%; /* Ensure the container does not exceed the width of the parent */
     max-height: 600px; /* Set the maximum height of the table to 8 rows */
     display: block;
-    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+    border: 1.5px solid #ddd; /* Optional: Adds a border for better visibility */
     align-items: center;
     justify-content: center;
 }
 
-
-
+#myChart-container{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
 
 
 .group1 col {
@@ -66,15 +68,9 @@ th:not(.detail-header)  {
 }
 
 
-
 #myChart {
-    display: block;
-    margin: auto; 
-    width: 100%; 
-    height: auto; /* This will maintain the aspect ratio */
-    max-height: 100vh;
-    align-items: center;
-    justify-content: center;
+    width: 100% !important;  /* Canvas should expand to full width of the container */
+    height: auto !important;  /* Allow height to adjust automatically */
 }
 
 
@@ -145,4 +141,196 @@ th:not(.detail-header)  {
 #v1-btn:hover, #v2-btn:hover, #main-btn:hover {
     background-color: #000000; /* Darker shade of blue on hover */
     transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #f1f8ff; /* Background for better visibility */
+    background-clip: border-box;
+    z-index: 100; /* Ensure the header stays above other content */
+    margin: 0;
+}
+
+#leaderboard thead th{
+    z-index: 100; /* Ensure the header stays above other content */
+    /* border-bottom: 1px solid black;  */
+    background-color: #f1f8ff; /* Background for better visibility */
+}
+
+.sticky-rank-col {
+    position: sticky;
+    left: 0;
+    z-index: 30;
+    background-color: #f1f8ff;
+}
+
+#leaderboard tbody td:first-child,
+#leaderboard thead .sticky-second-column:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 30;
+    background-color: #f1f8ff;
+}
+
+@media only screen and (min-width: 1025px) {
+
+    #myChart-container{
+        width: 65%;
+        height: auto;
+        margin: auto;
+    }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+/* Sticky left columns */
+
+  #leaderboard  thead .sticky-top-column,
+  #leaderboard thead .sticky-second-column:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 30;
+    background-color: #f1f8ff;
+  }
+
+  #leaderboard tbody td:nth-child(2),
+  #leaderboard thead .sticky-second-column:nth-child(2) {
+    position: sticky;
+    left: 94px;
+    z-index: 29;
+  }
+
+  tbody td:nth-child(3),
+  #leaderboard thead .sticky-second-column:nth-child(3) {
+    position: sticky;
+    left: 208.5px;
+    z-index: 29;
+    background-color: #f1f8ff;
+  }
+
+    tbody tr:nth-child(1) td:nth-child(3) {
+    background-color: #fff176;
+    }
+
+    tbody tr:nth-child(2) td:nth-child(3) {
+    background-color: #fff59d;
+    }
+
+    tbody tr:nth-child(3) td:nth-child(3) {
+    background-color: #fff9c4;
+    }
+
+}
+
+/* Ensure the chart scales responsively */
+#chart-container {
+    width: 100%;  /* Take up full width */
+    height: fit-content;
+    max-width: 1000px;  /* Optional: Set a max-width for large screens */
+    margin: 0 auto;  /* Center the chart */
+}
+
+canvas {
+    width: 100% !important;  /* Allow the canvas to resize with the container */
+    height: auto !important;
+}
+
+/* Flexbox to align the label and button */
+.dropdown-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    margin-bottom: 10px;
+}
+
+.chart-inner-container {
+    width: 100%;
+    height: auto;
+    padding: 3rem;
+}
+
+.dropdown-label {
+    font-size: large;
+    margin: 0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #clear-all-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .dropdown-container {
+        margin-bottom: 8px;
+    }
+
+    .dropdown-label {
+        font-size: medium;
+        margin: 0;
+    }
+
+    #chart-container {
+        max-width: 100%; /* Allow full width on smaller screens */
+    }
+
+    .chart-inner-container {
+        width: 100%;
+        padding: 0rem;
+    }
+
+    /* Reduce font sizes for labels and point labels on smaller screens */
+    canvas {
+        width: 100% !important;  /* Allow the canvas to resize with the container */
+        height: auto !important;
+    }
+
+    .ui.form .field label {
+        font-size: 1rem;
+    }
+
+    #myChart-container{
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+}
+
+.toggle-button {
+    background-color: transparent;   /* No background */
+    border: none;                    /* No border */
+    cursor: pointer;                 /* Pointer cursor */
+    padding: 0;                      /* Remove extra padding */
+    font-size: 0;                    /* Hide text content */
+    width: 24px;                     /* Small, fixed width for the button */
+    height: 24px;                    /* Small, fixed height */
+    margin: auto;
+    margin-left: 3px;
+}
+
+.toggle-button::before {
+    content: '\25B6';                /* Default arrow (right for expand) */
+    font-size: 16px;                 /* Set arrow size */
+    color: #333;                     /* Default arrow color */
+    transition: transform 0.3s ease, color 0.2s ease;  /* Smooth transitions */
+}
+
+.toggle-button[data-expanded="true"]::before {
+    content: '\25C0';                /* Left arrow for collapse */
+}
+
+.toggle-button:hover::before {
+    color: #007BFF;                  /* Change arrow color on hover */
+}
+
+.toggle-button:focus {
+    outline: none;                   /* Remove focus outline */
 }

@@ -1,0 +1,152 @@
+{
+  "forms": {
+    "overall": {
+        "rows": [
+            {
+                "columns": [
+                    { "content": "", "class": "sticky-top-column", "colspan": 3 },
+                    { "content": "", "class": "latency-top-header", "colspan": 4 },
+                    { "content": "Single Turn", "class": "nonliveast-top-header nonliveexec-top-header liveast-top-header", "colspan": 10 },
+                    { "content": "Multi Turn", "class": "multiturn-top-header", "colspan": 5 },
+                    { "content": "Hallucination Measurement", "class": "", "colspan": 2 },
+                    { "content": "", "class": "", "colspan": 2 }
+                ]
+            },
+            {
+                "columns": [
+                    { "content": "", "class": "sticky-top-column", "colspan": 3 },
+                    { "content": "", "class": "", "colspan": 1 },
+                    { "content": "Latency (s)", "id":"latency", "class": "latency-header", "colspan": 3, "canExpand": true },
+                    { "content": "Non-live (AST)", "id":"nonliveast", "class": "nonliveast-header", "colspan": 5, "canExpand": true },
+                    { "content": "Live (AST)", "id":"liveast", "class": "liveast-header", "colspan": 5, "canExpand": true },
+                    { "content": "Multi turn", "id":"multiturn", "class": "multiturn-header", "colspan": 5, "canExpand": true },
+                    { "content": "", "class": "", "colspan": 2 },
+                    { "content": "", "class": "", "colspan": 2 }
+                ]
+            },
+            {
+                "columns": [
+                    { "content": "Rank", "id": "rank-col", "class": "column-header sticky-second-column" },
+                    { "content": "Overall Acc", "class": "column-header sticky-second-column" },
+                    { "content": "Model", "class": "column-header sticky-second-column" },
+
+                    { "content": "Cost ($)", "class": "column-header" },
+
+                    { "content": "Mean", "class": "column-header latency-sub-header stay" },
+                    { "content": "SD", "class": "column-header latency-sub-header" },
+                    { "content": "P95", "class": "column-header latency-sub-header" },
+
+                    { "content": "Overall Acc", "class": "column-header nonliveast-sub-header stay" },
+                    { "content": "Simple", "class": "column-header nonliveast-sub-header" },
+                    { "content": "Multiple", "class": "column-header nonliveast-sub-header" },
+                    { "content": "Parallel", "class": "column-header nonliveast-sub-header" },
+                    { "content": "Multiple Parallel", "class": "column-header nonliveast-sub-header" },
+
+                    { "content": "Overall Acc", "class": "column-header liveast-sub-header stay" },
+                    { "content": "Simple", "class": "column-header liveast-sub-header" },
+                    { "content": "Multiple", "class": "column-header liveast-sub-header" },
+                    { "content": "Parallel", "class": "column-header liveast-sub-header" },
+                    { "content": "Multiple Parallel", "class": "column-header liveast-sub-header" },
+                    
+                    { "content": "Overall Acc", "class": "column-header multiturn-sub-header stay" },
+                    { "content": "Base", "class": "column-header multiturn-sub-header" },
+                    { "content": "Miss Func", "class": "column-header multiturn-sub-header" },
+                    { "content": "Miss Param", "class": "column-header multiturn-sub-header" },
+                    { "content": "Long Context", "class": "column-header multiturn-sub-header" },
+        
+                    { "content": "Relevance", "class": "column-header" },
+                    { "content": "Irrelevance", "class": "column-header" },
+                    { "content": "Organization", "class": "column-header" },
+                    { "content": "License", "class": "column-header" }
+                ]
+            }
+        ]
+    },
+    "combined": {
+        "rows": [
+            {
+                "columns": [
+                    { "content": "", "class": "detail-header sticky-top-column", "colspan": 3 },
+                    { "content": "", "class": "detail-header", "colspan": 1 },
+                    { "content": "Latency (s)", "class": "detail-header", "colspan": 3 },
+                    { "content": "Abstract Syntax Tree (AST) Evaluation", "class": "detail-header", "colspan": 4 },
+                    { "content": "Evaluation by Executing APIs", "class": "detail-header", "colspan": 4 },
+                    { "content": "Irrelevance Detection", "class": "detail-header", "colspan": 2 },
+                    { "content": "", "class": "detail-header", "colspan": 2 }
+                ]
+            },
+            {
+                "columns": [
+                    { "content": "Rank", "id": "rank-col", "class": "sticky-second-column" },
+                    { "content": "Overall Acc", "class": "sticky-second-column" },
+                    { "content": "Model", "class": "sticky-second-column" },
+                    { "content": "Cost ($)", "class": "summary-small-header" },
+                    { "content": "Average Latency (s)", "class": "summary-small-header" },
+                    { "content": "AST Summary", "class": "summary-small-header" },
+                    { "content": "Exec Summary", "class": "summary-small-header" },
+                    { "content": "Irrelevance", "class": "summary-small-header" },
+                    { "content": "Relevance", "class": "summary-small-header" },
+                    { "content": "Cost ($)", "class": "detail-small-header" },
+                    { "content": "Mean", "class": "detail-small-header" },
+                    { "content": "SD", "class": "detail-small-header" },
+                    { "content": "P95", "class": "detail-small-header" },
+                    { "content": "Simple", "class": "detail-small-header" },
+                    { "content": "Multiple", "class": "detail-small-header" },
+                    { "content": "Parallel", "class": "detail-small-header" },
+                    { "content": "Parallel", "class": "detail-small-header" },
+                    { "content": "Simple", "class": "detail-small-header" },
+                    { "content": "Multiple", "class": "detail-small-header" },
+                    { "content": "Parallel", "class": "detail-small-header" },
+                    { "content": "Parallel", "class": "detail-small-header" },
+                    { "content": "Irrelevance", "class": "detail-small-header" },
+                    { "content": "Relevance", "class": "detail-small-header" },
+                    { "content": "Organization", "class": "" },
+                    { "content": "License", "class": "" }
+                ]
+            }
+        ],
+        "summaryColumns": [4, 9],
+        "detailedColumns": [10, 13]
+    },
+    "live": {
+        "rows": [
+            {
+                "columns": [
+                    { "content": "", "class": "detail-header sticky-top-column", "colspan": 3 },
+                    { "content": "", "class": "detail-header", "colspan": 1 },
+                    { "content": "Latency (s)", "class": "detail-header", "colspan": 3 },
+                    { "content": "Abstract Syntax Tree (AST) Evaluation", "class": "detail-header", "colspan": 4 },
+                    { "content": "Irrelevance Detection", "class": "detail-header", "colspan": 2 },
+                    { "content": "", "class": "detail-header", "colspan": 2 }
+                ]
+            },
+            {
+                "columns": [
+                    { "content": "Rank", "id": "rank-col", "class": "sticky-second-column" },
+                    { "content": "Overall Acc", "class": "sticky-second-column" },
+                    { "content": "Model", "class": "sticky-second-column" },
+                    { "content": "Cost ($)", "class": "summary-small-header" },
+                    { "content": "Average Latency (s)", "class": "summary-small-header" },
+                    { "content": "AST Summary", "class": "summary-small-header" },
+                    { "content": "Irrelevance", "class": "summary-small-header" },
+                    { "content": "Relevance", "class": "summary-small-header" },
+                    { "content": "Cost ($)", "class": "detail-small-header" },
+                    { "content": "Mean", "class": "detail-small-header" },
+                    { "content": "SD", "class": "detail-small-header" },
+                    { "content": "P95", "class": "detail-small-header" },
+                    { "content": "Simple", "class": "detail-small-header" },
+                    { "content": "Multiple", "class": "detail-small-header" },
+                    { "content": "Parallel", "class": "detail-small-header" },
+                    { "content": "Parallel Multiple", "class": "detail-small-header" },
+                    { "content": "Irrelevance", "class": "detail-small-header" },
+                    { "content": "Relevance", "class": "detail-small-header" },
+                    { "content": "Organization", "class": "" },
+                    { "content": "License", "class": "" }
+                ]
+            }
+        ],
+        "summaryColumns": [4, 8],
+        "detailedColumns": [9, 18]
+    }
+  }
+}

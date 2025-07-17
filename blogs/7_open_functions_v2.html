@@ -29,8 +29,8 @@
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
         <a href="/index.html">Home</a>
         <a href="/blog.html">Blogs</a>
-        <a href="/leaderboard.html">Leaderboard</a>
-        <a href="/apizoo/">API Zoo Index</a>
+        <a href="/leaderboard.html">BFCL Leaderboard</a>
+        <!-- <a href="/apizoo/">API Zoo Index</a> -->
     </div>
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;">🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
@@ -374,15 +374,15 @@ wind speed, and precipitation for the next 10 days?"
                         </li>
                         <li style="margin-bottom: 5px;"><strong>Parallel Functions Transformation:</strong> To handle a more complex case where multiple functions will be selected to answer the user's request, we change the original question to ask for multiple outputs.  
                         <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
-<span style="color: #333;">query</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> <span style="color: #333;">ans1</span> => 
-<span style="color: #333;">query</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}, {'name': <span style="color: #d14;">'func2'</span>, 'description': <span style="color: #d14;">'get weather'</span>}] -> [<span style="color: #333;">ans1</span>]
+<span style="color: #333;">query1</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> <span style="color: #333;">ans1</span> => 
+<span style="color: #333;">query2</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> [<span style="color: #333;">ans1</span>, <span style="color: #333;">ans2</span>]
 </pre>
 
                         </li>
                         <li style="margin-bottom: 5px;"><strong>Multiple Functions Transformation:</strong> Transform the original function with multiple function calls included in the training, so that the model can learn to choose which function call to use.
                         <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
-<span style="color: #333;">query1</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> <span style="color: #333;">ans1</span> => 
-<span style="color: #333;">query2</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> [<span style="color: #333;">ans1</span>, <span style="color: #333;">ans2</span>]
+<span style="color: #333;">query</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> <span style="color: #333;">ans1</span> => 
+<span style="color: #333;">query</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}, {'name': <span style="color: #d14;">'func2'</span>, 'description': <span style="color: #d14;">'get weather'</span>}] -> [<span style="color: #333;">ans1</span>]
 </pre>
 
                         </li>

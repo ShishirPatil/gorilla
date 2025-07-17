@@ -24,6 +24,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
         content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately." />
+    
+    <!-- Include Semantic UI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
@@ -35,8 +39,13 @@
     <link rel="stylesheet" href="assets/css/treemap.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
     <title>
-        Berkeley Function Calling Leaderboard V2 (aka Berkeley Tool Calling Leaderboard V2)
+        Berkeley Function Calling Leaderboard V3 (aka Berkeley Tool Calling Leaderboard V3)
     </title>
 
 </head>
@@ -52,7 +61,7 @@
         font-size: 18px;
       ">
         <a href="index.html">Home</a>
-        <a href="blogs/8_berkeley_function_calling_leaderboard.html">Blog</a>
+        <a href="blogs/13_bfcl_v3_multi_turn.html">Blog</a>
         <a href="#api-explorer">Try it Out!</a>
         <a href="#leaderboard">Leaderboard</a>
     </div>
@@ -83,93 +92,74 @@
     <!-- Leaderboard Section -->
     <div class="container" id="leaderboard" style="background: #e5effc">
         <div class="col-md-12">
-            <h2>BFCL Leaderboard</h2>
+            <h2>BFCL: From Tool Use to Agentic Evaluation of Large Language Models</h2>
 
             <p class="text-center">
-                The Berkeley Function Calling Leaderboard V2 (also called Berkeley Tool Calling Leaderboard V2) evaluates the
+                The Berkeley Function Calling Leaderboard V3 (also called Berkeley Tool Calling Leaderboard V3) evaluates the
                 LLM's ability to call functions (aka tools) accurately. This
                 leaderboard consists of real-world data and will be updated periodically. For more information on the
-                evaluation dataset and methodology, please refer to our <a
-                    href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a
-                    href="https://github.com/ShishirPatil/gorilla">code release</a>.
+                evaluation dataset and methodology, please refer to our blogs: <a
+                    href="blogs/8_berkeley_function_calling_leaderboard.html">BFCL-v1</a> introducing AST as an evaluation metric, 
+                    <a
+                    href="blogs/12_bfcl_v2_live.html">BFCL-v2</a> introducing enterprise and OSS-contributed functions, and 
+                    <a
+                    href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions. Checkout <a
+                    href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">code and data</a>.
             </p>
-            <div>
-                <span style="margin-left: 10px; margin-bottom: 15px;"><b><i style="font-size: 1.0em;">Last Updated:
-                            2024-08-16 <a
-                                href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
-                                Log]</a></i></b></span>
+        
+            <div class="mb-3">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <!-- Last Updated Section -->
+                    <div>
+                        <span>
+                            <b><i style="font-size: 1.0em;">Last Updated:
+                                2025-06-14 &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change Log]</a>
+                            </i></b>
+                        </span>
+                    </div>
+
+                    <!-- Search Section -->
+                    <div class="d-flex ms-md-auto mt-3 mt-md-0 justify-content-end" style="gap: 5px; width: 100%; max-width: 360px;">
+                        <input type="text" id="search-input" class="form-control flex-grow-1" placeholder="Search model names..." />
+                        <button id="search-btn" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
             </div>
+
             <div style="margin-bottom: 15px;">
-                <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
-                <button id="v2-btn" onclick="window.location.href='leaderboard_live.html'">See Only Live Category</button>            
             </div>
             <div class="table-container">
                 <table id="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th class="detail-header" colspan="3"></th>
-                            <th class="detail-header" colspan="1"></th>
-                            <th class="detail-header" colspan="3">Latency (s)</th>
-                            <th class="detail-header" colspan="4">
-                                Abstract Syntax Tree (AST) Evaluation
-                            </th>
-                            <th class="detail-header" colspan="4">
-                                Evaluation by Executing APIs
-                            </th>
-                            <th class="detail-header" colspan="2">Irrelevance Detection</th>
-                            <th class="detail-header" colspan="2"></th>
-                        </tr>
-                        <tr>
-                            <th id="rank-col">Rank</th>
-                            <th>Overall Acc</th>
-                            <th>Model</th>
-                            <th class="summary-small-header">Cost ($)</th>
-                            <th class="summary-small-header">Average Latency (s)</th>
-                            <th class="summary-small-header">AST Summary</th>
-                            <th class="summary-small-header">Exec Summary</th>
-                            <th class="summary-small-header">Irrelevance</th>
-                            <th class="summary-small-header">Relevance</th>
-                            <th class="detail-small-header">Cost ($)</th>
-                            <th class="detail-small-header">Mean</th>
-                            <th class="detail-small-header">SD</th>
-                            <th class="detail-small-header">P95</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Irrelevance</th>
-                            <th class="detail-small-header">Relevance</th>
-                            <th>Organization</th>
-                            <th>License</th>
-                        </tr>
+                    <thead id="leaderboard-head">
                     </thead>
                     <tbody></tbody>
                 </table>
             </div>
             <p></p>
             <p>
-                FC = native support for function/tool calling.
+                <b>FC</b> = native support for function/tool calling.
+                <b>Prompt</b> = walk-around for function calling, using model's normal text generation capability.
             </p>
             <p>
                 <b>Cost</b> is calculated as an estimate of the cost per 1000 function calls, in USD.
                 <b>Latency</b> is measured in seconds.
-                For <b>Open-Source Models</b>, the cost and latency are calculated when serving with <a
-                    href="https://github.com/vllm-project/vllm">vLLM</a> using 8 V100 GPUs. The formula can be found in
-                the <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#cost">blog</a>.
             </p>
             <p>
-                <b>AST Summary</b> is the <b>unweighted</b> average of the four test categories under AST Evaluation.
-                <b>Exec Summary</b> is the <b>unweighted</b> average of the four test categories under Exec Evaluation.
                 <b>Overall Accuracy</b> is the <b>unweighted</b> average of all the sub-categories.
+                For details on score composition, please refer to our <a
+                    href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#leaderboard-composition">blog</a>.
             </p>
             <p>
                 Click on column header to sort. If you would like to add
                 your model or contribute test-cases, please contact us via <a
                     href="https://discord.gg/grXXvj9Whz">discord</a>.
+            </p>
+            <p>
+                Models are evaluated using commit <b>1bb65c9</b>. 
+                All the model response we obtained is available <a href="https://github.com/HuanzhiMao/BFCL-Result">here</a>. 
+                To reproduce the results, please either checkout our codebase at 
+                <a href="https://github.com/ShishirPatil/gorilla/tree/1bb65c95e6dd49286eb427b308e6c91001e98ae9">this checkpoint</a>,
+                or install the PyPI package <code>pip install bfcl-eval==2025.6.14</code>.
             </p>
         </div>
     </div>
@@ -178,7 +168,7 @@
     </div>
 
     <div class="container chart-container" style="background: white">
-        <div class="col-md-12">
+        <div class="chart-inner-container">
             <h2>Wagon Wheel</h2>
             <p class="text-center">
                 The following chart shows the comparison of the models based on a few
@@ -186,13 +176,29 @@
                 information on each metric can be found in the
                 <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
             </p>
-            <div>
+            <div class="ui container">
+                <div class="ui form">
+                    <div class="dropdown-container">
+                        <label class="dropdown-label">Select Models to Compare</label>
+                        <button id="clear-all-btn" class="btn btn-primary" type="button" >Clear All</button> <!-- Clear All Button -->
+                    </div>
+                    <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
+                        <input id="search-dropdown" type="hidden" name="datasets">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Search models...</div>
+                        <div class="menu"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart container to make the chart responsive -->
+            <div id="myChart-container">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="treemap-container" id="treemap" style="background: #e5effc">
+    <!-- <div class="treemap-container" id="treemap" style="background: #e5effc">
         <h2>Error Type Analysis</h2>
         <p class="text-center">
             This interactive treemap shows the distribution of error types across
@@ -207,8 +213,8 @@
             (coming soon).
         </p>
 
-        <div id="ce9db8d5-4929-41aa-b79e-3a9206ca7089" class="plotly-graph-div" style="height:100%; width:100%;"></div>
-    </div>
+        <div id="65eaa7cb-b38b-4e90-b8e2-7be2b3d11428" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+    </div> -->
 
     <!-- API Explorer Section -->
     <div id="api-explorer" class="container" style="background: #e5effc">
@@ -307,18 +313,23 @@
             <h2>Citation</h2>
             <pre>
                 <code>
-@misc{berkeley-function-calling-leaderboard,
-    title={Berkeley Function Calling Leaderboard}, 
-    author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji
-    and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E.
-    Gonzalez},
-    howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},
-    year={2024},
+@inproceedings{patil2025bfcl,
+title={The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models}, 
+author={Patil, Shishir G. and Mao, Huanzhi and Cheng-Jie Ji, Charlie and Yan, Fanjia and Suresh, Vishnu and Stoica, Ion and E. Gonzalez, Joseph},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
 }
           </code></pre>
         </div>
     </div>
 </body>
+
+<!-- Include jQuery first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Semantic UI JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="index_main.js"></script>
 <script type="text/javascript" src="treemap_main.js"></script>
