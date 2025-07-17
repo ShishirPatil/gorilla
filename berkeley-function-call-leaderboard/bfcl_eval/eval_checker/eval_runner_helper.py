@@ -535,7 +535,7 @@ def generate_leaderboard_csv(
             # wandb_project is 'entity:project'
             entity=wandb_project.split(":")[0],
             project=wandb_project.split(":")[1],
-            name=f"BFCL-v3-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
+            name=f"BFCL-v4-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
         )
 
         # Log CSV files to WandB

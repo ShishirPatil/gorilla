@@ -637,10 +637,10 @@ def main(model, test_categories, result_dir, score_dir):
     runner(model_names, all_test_categories, result_dir, score_dir)
 
     print(
-        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
+        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V4."
     )
     print(
-        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
+        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'}, {score_dir / 'data_multi_turn.csv'} and {score_dir / 'data_agentic.csv'} for detailed evaluation results on each sub-section categories respectively."
     )
 
 
