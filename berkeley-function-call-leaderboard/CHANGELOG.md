@@ -2,7 +2,15 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Jul 8, 2025] [#1098](https://github.com/ShishirPatil/gorilla/pull/1098):
+- [Jul 17, 2025] [#1019](https://github.com/ShishirPatil/gorilla/pull/1019): BFCL V4 release:
+  - Introduces the agentic domain with two categories: Web Search and Memory Management.
+  - Revised overall-accuracy formula to favor complex, multi-step agentic tasks.
+    - Old: equal (25% each) for Live, Non-Live, Multi-Turn, Agentic.
+    - New: Live 10%, Non-Live 10%, Multi-Turn 30%, Agentic 50%.
+  - `Non-Live Acc` and `Live Acc` score calculation now excludes the Irrelevance/Relevance category scores.
+  - Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
+  - Reorganizes the response-generation pipeline and related modules for easier maintenance.
+- [Jul 8, 2025] [#1098](https://github.com/Shishirtil/gorilla/pull/1098):
   - Re-introduce latency statistics for locally hosted models
   - Update cost calculation to cover the entire dataset batch, instead of the average cost per 1k function calls
 - [Jul 6, 2025] [#1100](https://github.com/ShishirPatil/gorilla/pull/1100): Add the following new models to the leaderboard:
