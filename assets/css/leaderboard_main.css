@@ -51,13 +51,13 @@
     background-color: #ffdf75;
 }
 
-#leaderboard td:nth-child(23),
+/* #leaderboard td:nth-child(23),
 #leaderboard td:nth-child(24),
 #leaderboard td:nth-child(25),
 #leaderboard td:nth-child(26),
 #leaderboard td:nth-child(27){
     background-color: #efabdf;
-}
+} */
 
 
 /* #leaderboard td:nth-child(8) {

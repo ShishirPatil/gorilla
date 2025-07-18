@@ -29,8 +29,8 @@
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
         <a href="/index.html">Home</a>
         <a href="/blog.html">Blogs</a>
-        <a href="/leaderboard.html">Leaderboard</a>
-        <a href="/apizoo/">API Zoo Index</a>
+        <a href="/leaderboard.html">BFCL Leaderboard</a>
+        <!-- <a href="/apizoo/">API Zoo Index</a> -->
     </div>
 
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
@@ -148,7 +148,7 @@
                 <div class="body">
                     <p>
                         If you are deploying LLMs in production today, you might be
-                        augmenting your model with retrievers such as in Retriever Augmented Generation (RAG) paradigms. Given, most LLMs today are used with retrievers, shouldn't the training recipe for the LLM consider this!! In Gorilla, we consider retrievers to be first class citizens, and train our models to be <em>retriever aware</em>. If you are thinking about integrating LLMs with llamaindex, vector databases such as Weviate, etc check out our blog post on <a class="continue-link" href="blogs/blog_post_2_rat.html"> Retrieval Aware Training (RAT)</a> where we teach LLMs to "work-together" with retrievers! 
+                        augmenting your model with retrievers such as in Retriever Augmented Generation (RAG) paradigms. Given, most LLMs today are used with retrievers, shouldn't the training recipe for the LLM consider this!! In Gorilla, we consider retrievers to be first class citizens, and train our models to be <em>retriever aware</em>. If you are thinking about integrating LLMs with llamaindex, vector databases such as Weviate, etc check out our blog post on <a class="continue-link" href="/blogs/3_retriever_aware_training.html"> Retrieval Aware Training (RAT)</a> where we teach LLMs to "work-together" with retrievers! 
                     </p>
                 </div>
 
@@ -167,7 +167,7 @@
                 <h4 id="hallucination">Reality Bytes: When LLMs See Things That Aren't There</h4>
                 <div class="body">
                     <p>
-                        Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but at least not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
+                        Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but at least not made up (noh-hallucinated). In our <a href="/blogs/2_hallucination.html">blog on hallucination measurement</a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
                         Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
 
                     </p>
@@ -175,7 +175,7 @@
                 <h4 id="try-gorilla">How to use Gorilla?</h4>
                 <div class="body">
                     <p>
-                        Gorilla is a open-source artifact from UC Berkeley! You can try Gorilla in a few different ways. The easiest is through our <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing" >Colab notebook</a>. Our hosted Gorilla model can be a drop in replacement for your OpenAI Chatcompletion API calls. Here is a <a href="https://colab.research.google.com/drive/11HJWR3ylG1HSE2v78W1gRK-dKkSA0pHe?usp=sharing">Colab notebook</a> notebook, demonstrating how you could use Gorilla along with Langchain agents. For those of you who are interested in playing around with our models, or would like to host it yourself, the Gorilla models are open-sourced and available on <a href="https://huggingface.co/gorilla-llm">HuggingFace</a>. You can also try Gorilla in your CLI - the most popular way to use Gorilla! Just <em>pip install gorilla-cli</em> to talk to your command line in plane english and  have Gorilla come up with the right CLI command for you!
+                        Gorilla is a open-source artifact from UC Berkeley! You can try Gorilla in a few different ways. The easiest is through our <a href="https://colab.research.google.com/drive/1y78Zj7xHysX0xMpr9S468HYs12Mj6X1F?usp=sharing" >Colab notebook</a>. Our hosted Gorilla model can be a drop in replacement for your OpenAI Chatcompletion API calls. Here is a <a href="https://colab.research.google.com/drive/1jyRIHQkfI8lnEi2rjJYoUQ2sV4PC1Gfz?usp=sharing">Colab notebook</a> notebook, demonstrating how you could use Gorilla along with Langchain agents. For those of you who are interested in playing around with our models, or would like to host it yourself, the Gorilla models are open-sourced and available on <a href="https://huggingface.co/gorilla-llm">HuggingFace</a>. You can also try Gorilla in your CLI - the most popular way to use Gorilla! Just <em>pip install gorilla-cli</em> to talk to your command line in plane english and  have Gorilla come up with the right CLI command for you!
                     </p>
                     <hr class="post-separator">
 
@@ -186,11 +186,11 @@
                     </p>
                     <p id="gorilla-bibtex">
                         If you would like to cite Gorilla:<br>
-                        @inproceedings{patil2023gorilla,
+                        @inproceedings{patil2024gorilla,
                         &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs},
-                        &nbsp; 	author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
-                        &nbsp; 	year={2023},
-                        &nbsp;	journal={arXiv preprint arXiv:2305.15334}
+                        &nbsp; 	author={Patil, Shishir G. and Zhang, Tianjun and Wang, Xin and Gonzalez, Joseph E.},
+                        &nbsp; 	year={2024},
+                        &nbsp;	journal={Advances in Neural Information Processing Systems}
                     }</p>
                 </div>
             </div>

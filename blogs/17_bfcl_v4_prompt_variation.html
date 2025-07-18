@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <title>BFCL V4 • Format Sensitivity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../assets/css/blog.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="../assets/css/api-explorer.css" />
+    <link rel="stylesheet" href="../assets/css/common-styles.css" />
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
+    <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css">
+
+    <style>
+        .category-container {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .plots-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .plot {
+            width: 49%;
+            height: 450px;
+            aspect-ratio: 1 / 1;
+        }
+
+        @media (max-width: 1000px) {
+            .plots-container {
+                flex-direction: column;
+            }
+
+            .plot {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+
+        .code-toggle {
+            font-weight: bold;
+            color: #0056b3;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        pre:not(#citation_block) {
+            display: none;
+            /* Initially hide the code */
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f4f4f4;
+            border-left: 5px solid #0056b3;
+            /* Add a colored border to the left for style */
+            padding: 15px;
+            margin-top: 5px;
+            overflow: auto;
+            /* Ensures the code wraps inside the box */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Adds subtle shadow for depth */
+            transition: all 0.5s ease-in-out;
+            /* Smooth transition for expanding and collapsing */
+        }
+
+        /* Improved visibility on hover for interactive elements */
+        .code-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .level-1 {
+            background-color: #E2E2E2;
+            /* Darkest gray for top level */
+            font-weight: bold;
+        }
+
+        .level-2 {
+            background-color: #E8E8E8;
+            /* Slightly lighter gray */
+        }
+
+        .level-3 {
+            background-color: #EFEFEF;
+            /* Medium gray */
+        }
+
+        .level-4 {
+            background-color: #F5F5F5;
+            /* Light gray */
+        }
+
+        .level-5 {
+            background-color: #FFFFFF;
+            /* Pure white */
+        }
+
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+            border: 1px solid #ddd;
+        }
+
+        .scoring-table th,
+        .scoring-table td {
+            word-wrap: break-word;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .scoring-table th,
+            .scoring-table td {
+                padding: 1px;
+            }
+        }
+
+        .note {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .na {
+            color: #999;
+            font-style: italic;
+        }
+
+        .emoji {
+            display: block;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" integrity="sha384-..."
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blogs</a>
+        <a href="/leaderboard.html">BFCL Leaderboard</a>
+        <!-- <a href="/apizoo/">API Zoo Index</a> -->
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive
+            APIs</h1>
+
+        <div class="box-index">
+            <h3>BFCL V4: Format Sensitivity</h3>
+            <ul>
+                <ul>
+                    <li><a href="16_bfcl_prompt_variation.html#intro">Introduction</a></li>
+                    <li><a href="16_bfcl_prompt_variation.html#construction">Prompt variation construction</a></li>
+                    <li><a href="16_bfcl_prompt_variation.html#selection">Test entry selection</a></li>
+                    <li><a href="16_bfcl_prompt_variation.html#insights">Insights</a></li>
+                    <li><a href="16_bfcl_prompt_variation.html#failure">Discussion of failure modes</a></li>
+                    <li class="more-blogs">
+                        <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span
+                                class="caret">&#9654;</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="15_bfcl_v4_web_search.html">BFCL V4 • Web Search</a></li>
+                            <li><a href="13_bfcl_v3_multi_turn.html">BFCL V3 • Multi-Turn</a></li>
+                            <li><a href="8_berkeley_function_calling_leaderboard.html">Berkeley Function-Calling
+                                    Leaderboard</a>
+                            </li>
+                            <li><a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough
+                            <li><a href="4_open_functions.html">Gorilla OpenFunctions</a></li>
+                            </a>
+                    </li>
+                    <!-- Add more blog entries as needed -->
+                </ul>
+                </li>
+            </ul>
+            <!-- Add more entries as needed -->
+            </ul>
+        </div>
+
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">BFCL V4 • Format Sensitivity</h2>
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin: 0;">
+                        <br>
+                        <div class="authors-container">
+                            <a class="author" href="https://gorilla.cs.berkeley.edu/">BFCL Team</a>
+                        </div>
+                        <br>
+                    </h4>
+                </div>
+
+                <style>
+                    .authors-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                    }
+
+                    .authors-container .author {
+                        display: inline-block;
+                        margin: 5px 10px;
+                        /* Adjust margins for spacing */
+                        text-align: center;
+                        white-space: nowrap;
+                    }
+
+                    @media (max-width: 768px) {
+                        .authors-container .author {
+                            font-size: 14px;
+                            /* Adjust font size for mobile */
+                        }
+                    }
+                </style>
+
+                <br>
+                <b><i style="font-size: 1.0em;">Release date: 2025-07-17. Last updated: 2025-07-17. <a
+                            href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
+                            Log]</a></i></b>
+
+                <div>
+                    <br>
+                    <h2 id="intro">Introduction</h2>
+                    <p>
+                        <strong>With function-calling being the building blocks of Agents, the Berkeley Function-Calling
+                            Leaderboard (BFCL) V4 presents a holistic agentic evaluation for LLMs.</strong> BFCL V4
+                        includes web search (part-1) memory (part-2), and format sensitivity (detailed in this blog).
+                        Together, the ability to web search, read and write from memory, and the ability to invoke
+                        functions in different languages present the building blocks for the exciting and extremely
+                        challenging avenues that power agentic LLMs today from deep-research, to agents for coding and
+                        law.
+                    </p>
+                    <p>
+                        If you're new to function calling, be sure to check out our <a
+                            href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">earlier
+                            blog posts</a> for more background. In <a
+                            href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL
+                            V1</a>, we introduced expert-curated single-turn, simple, parallel, and multiple function
+                        calling. <a href="https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html">BFCL V2</a>
+                        introduced community - hobbyists and enterprise - contributed functions. <a
+                            href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html">BFCL V3</a>
+                        introduced multi-turn and multi-step function calling that let models interact with the user,
+                        including ability to go back-and-forth asking clarifying questions and refining the approach.
+                        Throughout, BFCL relies on AST (Abstract Syntax Tree) based, or state-transition based
+                        verification ensuring determinism and minimal fluctuations as you evaluate your models and
+                        applications.
+                    </p>
+                    <p>
+                        Quick Links:
+                    <ul>
+                        <li>BFCL Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
+                        <li>BFCL Dataset: <a
+                                href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard/data">HuggingFace
+                                Dataset 🤗</a></li>
+                        <li>Reproducibility: <a
+                                href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
+                                Code</a></li>
+                        <li>BFCL v1: <a href="8_berkeley_function_calling_leaderboard.html">Simple, Parallel, and
+                                Multiple Function Call eval with AST</a></li>
+                        <li>BFCL v2: <a href="12_bfcl_v2_live.html">Enterprise and OSS-contributed Live Data</a></li>
+                        <li>BFCL v3: <a href="13_bfcl_v3_multi_turn.html">Multi-Turn & Multi-Step Function Call
+                                Evaluation</a></li>
+                        <li>BFCL v4 Agentic: Part 1 Web Search</li>
+                        <li>BFCL v4 Agentic: Part 2 Memory</li>
+                        <li>BFCL v4 Agentic: Part 3 Format Sensitivity</li>
+                    </ul>
+                    </p>
+                    <p>
+                        In our past releases, we are encouraged by the community's deep appreciation of the insights
+                        across different models. So, this time we have divided our BFCL V4 release blogs into three
+                        parts to address the technical complexities, and more importantly share many more interesting
+                        insights.
+                    </p>
+                    <p>
+                        Function calling, or tool use, has emerged as a prominent area of research with widespread
+                        practical applications. Furthermore, agentic tasks that require function calls in real-world
+                        scenarios often come with many variations in format - whether the model is expected to make
+                        function calls in Python or JSON, available functions are described in Python or XML, or other
+                        variations. As format conversions can be hard to implement and intractable for large-scale
+                        agentic applications, assessing the format sensitivity of LLMs' function calling capabilities
+                        becomes an essential task for evaluation. However, current benchmarks on function calling use a
+                        single prompt format for all models and queries, that is, with the same language, same
+                        requirements for syntax, same format of provided functions, etc. To address this gap, the BFCL
+                        V4 Agentic Format Sensitivity provides a systematic evaluation framework for assessing the
+                        format sensitivity of the function calling capabilities of large language models.
+                    </p>
+                    <p>
+                        The core premise of BFCL V4 Agentic Format Sensitivity is this: for any given query, a model
+                        should produce the correct output regardless of variations in input format—
+                    </p>
+                    <p>
+                        To systematically explore model behaviors and assess their format sensitivity under this
+                        premise, we create variations of prompts based on the following five key dimensions (detailed in
+                        the following section):
+                    </p>
+                    <ul>
+                        <li><strong>Return format:</strong> syntax requirements which the model should follow when
+                            giving function calls, (e.g., Python, JSON).</li>
+                        <li><strong>Function documentation format:</strong> the syntax used to describe available
+                            functions (e.g., Python, XML).</li>
+                        <li><strong>Tool calling tag:</strong> whether the model should use an additional, XML-style tag
+                            to enclose the outputted function calls.</li>
+                        <li><strong>Prompt format:</strong> presentation of prompts in plain text vs. Markdown.</li>
+                        <li><strong>Prompt style:</strong> variations in tone and instructional phrasing</li>
+                    </ul>
+                    <p>
+                        In this blog, we explain the construction of prompt variations and the selection of test
+                        entries. We then present comprehensive results on 39 evaluated models. Additionally, we discuss
+                        common trends of performance, common failure modes across models, and specific failure modes by
+                        model.
+                    </p>
+                </div>
+                <br>
+                <div>
+                    <h2 id="construction">Prompt variation construction</h2>
+                    <p>
+                        To construct the prompt variations, we build upon the original Berkeley Function Calling
+                        Leaderboard (BFCL V1) default system prompt by parameterizing key components as listed below:
+                    </p>
+                    <table class="scoring-table">
+                        <thead>
+                            <tr>
+                                <th>Component Name</th>
+                                <th>Possible Values</th>
+                                <th>Descriptions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>return_format</td>
+                                <td>"python", "json", "verbose_xml", "concise_xml"</td>
+                                <td>Specifies the syntax the model should use to format the function call outputs.</td>
+                            </tr>
+                            <tr>
+                                <td>function_doc_format</td>
+                                <td>"python", "xml", "json"</td>
+                                <td>Controls how function documentation is presented to the model.</td>
+                            </tr>
+                            <tr>
+                                <td>has_tool_call_tag</td>
+                                <td>True, False</td>
+                                <td>Whether to wrap function outputs in &lt;TOOLCALL&gt;...&lt;/TOOLCALL&gt; tags.</td>
+                            </tr>
+                            <tr>
+                                <td>prompt_format</td>
+                                <td>"plaintext", "markdown"</td>
+                                <td>Determines the overall format of the system prompt (plain text or structured with
+                                    headers).</td>
+                            </tr>
+                            <tr>
+                                <td>prompt_style</td>
+                                <td>"classic", "experimental"</td>
+                                <td>Defines the tone and instruction style.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>These elements were dynamically assembled, allowing us to precisely control variations across all
+                    combinations of the parameters. For our experiments, we consider all possible combinations of
+                    <code>return_format</code>, <code>has_tool_call_tag</code>, and <code>function_doc_format</code>.
+                    Additionally, we vary the original system prompt by independently setting
+                    <code>prompt_format="markdown"</code> and <code>prompt_style="experimental"</code>, resulting in a
+                    total of 26 distinct variations. We show the detailed prompt variations below:</p>
+
+                <h3>Variations of return_format</h3>
+                <p>To assess model behavior when prompted to give function calls in different formats, we vary
+                    <code>return_format</code> to include Python syntax (same as the original BFCL prompt), JSON syntax,
+                    and two kinds of XML-style syntax (verbose_xml and concise_xml), with details shown below.</p>
+
+                <div
+                    style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                    <p
+                        style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                        Python:
+                        "[func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]"
+
+                        JSON:
+                        "```json
+                        [{\"function\":\"func_name1\",\"parameters\":{\"param1\":\"value1\",\"param2\":\"value2\"...}},{\"function\":\"func_name2\",\"parameters\":{\"param\":\"value\"}}]
+                        ```"
+
+                        verbose_xml:
+                        "&lt;functions&gt;&lt;function name=\"func_name1\"&gt;&lt;params&gt;&lt;param name=\"param1\"
+                        value=\"value1\" type=\"type1\"/&gt;&lt;param name=\"param2\" value=\"value2\"
+                        type=\"type2\"/&gt;...&lt;/params&gt;&lt;/function&gt;&lt;function
+                        name=\"func_name2\"&gt;&lt;param name=\"param3\" value=\"value3\"
+                        type=\"type3\"/&gt;&lt;/function&gt;&lt;/functions&gt;"
+
+                        concise_xml:
+                        "&lt;functions&gt;&lt;function name=\"func_name1\"&gt;&lt;param name=\"param1\"
+                        type=\"type1\"&gt;value1&lt;/param&gt;&lt;param name=\"param2\"
+                        type=\"type2\"&gt;value2&lt;/param&gt;...&lt;/function&gt;&lt;function
+                        name=\"func_name2\"&gt;&lt;param name=\"param3\"
+                        type=\"type3\"&gt;value&lt;/param&gt;&lt;/function&gt;&lt;/functions&gt;"</p>
+                </div>
+
+                <h3>Variations of function_doc_format</h3>
+                <p>In agentic tasks, it may occur that the provided functions are not always in a single format, yet the
+                    model is expected to recognize and use the provided functions regardless of the format in which they
+                    are presented. To address this, we vary <code>function_doc_format</code> by adding Python format and
+                    XML format, in addition to the original JSON format in BFCL.</p>
+
+                <div
+                    style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                    <p
+                        style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                        JSON：
+                        [{'name': 'math.factorial', 'description': 'Calculate the factorial of a given number. Note that
+                        the provided function is in Python 3 syntax.', 'parameters': {'type': 'dict', 'properties':
+                        {'number': {'type': 'integer', 'description': 'The number for which factorial needs to be
+                        calculated.'}}, 'required': ['number']}}]
+
+                        Python:
+                        # Function: math.factorial
+                        """
+                        Calculate the factorial of a given number.
+
+                        Args:
+                        number (int): The number for which factorial needs to be calculated.
+                        """
+
+                        XML:
+                        &lt;function name="math.factorial"&gt;
+                        &lt;desc&gt;Calculate the factorial of a given number.&lt;/desc&gt;
+                        &lt;params&gt;
+                        &lt;param name="number" type="integer" required="true"&gt;
+                        &lt;desc&gt;The number for which factorial needs to be calculated.&lt;/desc&gt;
+                        &lt;/param&gt;
+                        &lt;/params&gt;
+                        &lt;/function&gt;</p>
+                </div>
+
+                <h3>Variations of has_tool_call_tag</h3>
+                <p>It is common for modern LLMs to mark function calls with special tokens such as
+                    &lt;tool_call&gt;&lt;/tool_call&gt; or &lt;|assistant|&gt;func_name, we also consider this aspect
+                    when assessing the format sensitivity of models. Specifically, for
+                    <code>has_tool_call_tag=True</code>, we ask the model to enclose all function calls in
+                    &lt;TOOLCALL&gt;&lt;/TOOLCALL&gt; tags.</p>
+
+                <div
+                    style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                    <p
+                        style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                        has_tool_call_tag=True:
+                        "You should only return the function calls in your response.\n\nIf you decide to invoke any of
+                        the function(s), you MUST put it in the format of {output_format}. {param_types} You SHOULD NOT
+                        include any other text in the response."
+
+                        has_tool_call_tag=False:
+                        "You should only return the function calls in the &lt;TOOLCALL&gt; section. If you decide to
+                        invoke any of the function(s), you MUST put it in the format of
+                        &lt;TOOLCALL&gt;{output_format}&lt;/TOOLCALL&gt;. {param_types} You SHOULD NOT include any other
+                        text in the response."</p>
+                </div>
+
+                <h3>Variations of prompt_format</h3>
+                <p>Here we show two kinds of prompt formats, namely plaintext and markdown, that are used to further
+                    assess the sensitivity to prompt format.</p>
+
+                <div
+                    style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                    <p
+                        style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                        plaintext:
+                        {persona}{task}
+
+                        {tool_call}
+
+                        {multiturn}
+
+                        {available_tools}"
+
+                        markdown:
+                        {persona}
+                        ## Task
+                        {task}
+
+                        ## Tool Call Format
+                        {tool_call}
+
+                        ## Multi-turn Behavior
+                        {multiturn}
+
+                        ## Available Tools
+                        {available_tools}"</p>
+                </div>
+
+                <h3>Variations of prompt_style</h3>
+                <p>Finally, we assess models' sensitivity to prompt wording by rephrasing the original prompt in BFCL.
+                    As presented below, <code>classic</code> represents the original BFCL prompt, while
+                    <code>experimental</code> is the rephrased version.</p>
+
+                <div
+                    style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                    <p
+                        style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                        PROMPT_STYLE_MAPPING = {
+                        "classic": {
+                        "persona": "You are an expert in composing functions.",
+                        "task": "You are given a question and a set of possible functions. Based on the question, you
+                        will need to make one or more function/tool calls to achieve the purpose. If none of the
+                        functions can be used, point it out. If the given question lacks the parameters required by the
+                        function, also point it out.",
+                        "tool_call_no_tag": "You should only return the function calls in your response.\n\nIf you
+                        decide to invoke any of the function(s), you MUST put it in the format of {output_format}.
+                        {param_types} You SHOULD NOT include any other text in the response.",
+                        "tool_call_with_tag": "You should only return the function calls in the &lt;TOOLCALL&gt;
+                        section. If you decide to invoke any of the function(s), you MUST put it in the format of
+                        &lt;TOOLCALL&gt;{output_format}&lt;/TOOLCALL&gt;. {param_types} You SHOULD NOT include any other
+                        text in the response.",
+                        "multiturn": "At each turn, you should try your best to complete the tasks requested by the user
+                        within the current turn. Continue to output functions to call until you have fulfilled the
+                        user's request to the best of your ability. Once you have no more functions to call, the system
+                        will consider the current turn complete and proceed to the next turn or task.",
+                        "available_tools_no_tag": "Here is a list of functions in {format} format that you can
+                        invoke.\n{functions}\n",
+                        "available_tools_with_tag": "Here is a list of functions in {format} format that you can
+                        invoke.{functions}\n"
+                        },
+
+                        "experimental": {
+                        "persona": "You are an expert in generating structured function calls.",
+                        "task": "You are given a user query and a set of available functions. Your task is to produce
+                        one or more function/tool calls to fulfill the user's request. If no suitable function exists,
+                        or required parameters are missing, clearly indicate this.",
+                        "tool_call_no_tag": "Return only the function calls in your response.\nUse the following format:
+                        {output_format}. {param_types} Do not include any other text.",
+                        "tool_call_with_tag": "Return only the function calls enclosed in &lt;TOOLCALL&gt; tags.\nUse
+                        the following format: &lt;TOOLCALL&gt;{output_format}&lt;/TOOLCALL&gt;. {param_types} Do not
+                        include any other text.",
+                        "multiturn": "In each turn, do your best to fully address the user's request. Continue
+                        generating function calls until all tasks are complete. Once no more calls are needed, the
+                        system will proceed to the next turn.",
+                        "available_tools_no_tag": "Below is a list of functions in {format} format that you can
+                        use:\n{functions}\n",
+                        "available_tools_with_tag": "```{format}\n{functions}\n```"
+                        }
+                        }</p>
+                </div>
+
+                <br>
+                <div class="blog-section">
+                    <h2 id="test-entry-selection">3. Test entry selection</h2>
+                    <p>
+                        To assess model behaviors across prompt variations, we select a total of 200 single-turn test
+                        entries from the simple, multiple, parallel, and multiple parallel components of both
+                        expert-curated and live (i.e., community contributed) datasets of BFCL V2, which adds up to 2351
+                        entries. Test entries from the multi-turn, java, javascript, and hallucination measurement
+                        categories are not considered for this study, as model behaviors under prompt and format
+                        variations should already be demonstrable on more basic single-turn test settings.
+                    </p>
+                    <p>
+                        To demonstrate the validity of our test entry selection, we further test 20 models both on all
+                        the 2351 entries and on the selected entries across all constructed prompt variations. (We could
+                        not test all models on all entries due to budget constraints. All our code is open-sourced!). As
+                        shown in Figure 1, model performance on all test entries and on selected entries show strong
+                        linear relationship, which implies that the selected 200 entries are sufficient for evaluating
+                        the format sensitivity of models' function calling capabilities.
+                    </p>
+                    <p>
+                        Additionally, we give the breakdown of the selected 200 entries in the following table:
+                    </p>
+                    <div class="table-container" style="margin: 20px 0; overflow-x: auto;">
+                        <table style="border-collapse: collapse; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">Test
+                                        category</th>
+                                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">Number
+                                        of selected entries</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">simple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">30</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">parallel</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">15</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">multiple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">15</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">parallel_multiple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">15</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">live_simple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">24</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">live_parallel</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">86</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">live_multiple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">6</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">live_parallel_multiple</td>
+                                    <td style="border: 1px solid #ccc; padding: 8px;">9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="image-placeholder" style="margin: 20px 0;">
+                        <img src="../assets/img/blog_post_17_fig1.png" alt="Figure 1" style="width: 70%; height: auto;">
+                        Figure 1. Comparison of model accuracy on 200 selected entries versus all entries. Each dot
+                        represents a specific model and a specific prompt variation. Results indicate a strong
+                        correlation between performance on the sampled subset and the full dataset.
+                    </div>
+                </div>
+                <br>
+                <div class="blog-section">
+                    <h2 id="insights">Insights</h2>
+                    <p>We present the complete heatmap of tested models in Figure 2. We also discuss in this section
+                        some general trends across models regarding the prompt variations.</p>
+
+                    <div class="image-placeholder" style="margin: 20px 0;">
+                        <img src="../assets/img/blog_post_17_fig2.png" alt="Figure 2" style="width: 80%; height: auto;">
+                        Figure 2. Heatmap for all tested models across all prompt variation configurations. The
+                        notations of prompt variations are in the format of
+                        `{function_doc_format}-&gt;{return_format},{has_tool_call_tag}`. For the variations with
+                        `prompt_format="markdown"` or `prompt_style="experimental"`, we append in the end `"md"` or
+                        `"exp"`.
+                    </div>
+
+                    <h3>4.1 Changing function call return format</h3>
+                    <p>Averaged across all test categories and prompt variation settings for each return format, we
+                        observe a general trend—particularly for smaller models—where performance is higher when the
+                        model is prompted to return function calls in Python or JSON format, compared to either of the
+                        XML formats. Notably, for the Claude family models and some function-calling models like
+                        watt-tool and CoALM, even large LLMs (watt-tool-70B, claude-3.7-sonnet) show significant
+                        performance drops when return format is in XML format.</p>
+
+                    <div class="image-placeholder" style="margin: 20px 0;">
+                        <img src="../assets/img/blog_post_17_fig3.png" alt="Figure 3" style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig4.png" alt="Figure 4" style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig5.png" alt="Figure 5" style="width: 80%; height: auto;">
+                        <br>
+                        Comparison of model performance across return format configurations. For each return format, we
+                        averaged accuracies from all prompt variations with that format, excluding those with
+                        `prompt_format="markdown"` or `prompt_style="experimental"`. Results indicate that Python and
+                        JSON return formats generally outperform both XML formats.
+                    </div>
+
+                    <h3>4.2 Changing function document format provided to model</h3>
+                    <p>When comparing different function formats provided in the system prompt, we observe a consistent
+                        trend across nearly all tested models: performance is highest with functions in JSON format,
+                        lower with XML, and lowest with Python.</p>
+
+                    <div class="image-placeholder">
+                        <img src="../assets/img/blog_post_17_fig6.png" alt="Figure 6" style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig7.png" alt="Figure 7" style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig8.png" alt="Figure 8" style="width: 80%; height: auto;">
+                        <br>
+                        Comparison of model performance across function doc format configurations. For each function doc
+                        format, we averaged accuracies from all prompt variations with that format, excluding those with
+                        `prompt_format="markdown"` or `prompt_style="experimental"`. Results indicate a general trend of
+                        JSON > Python > XML.
+                    </div>
+
+                    <h3>4.3 Adding tool call tags</h3>
+                    <p>We only observe a slight performance drop when adding an extra requirement of outputting tool
+                        call tags with function calls (`&lt;TOOLCALL&gt;&lt;/TOOLCALL&gt;`). However, some small models
+                        (e.g. Llama-3.1-8B-Instruct, BitAgent-8B) demonstrate significant performance drops due to low
+                        capabilities to generate correct XML style syntax, which is also shown in their lower
+                        performance when return format is in XML (see 4.1).</p>
+
+                    <div class="image-placeholder">
+                        <img src="../assets/img/blog_post_17_fig9.png" alt="Figure 9" style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig10.png" alt="Figure 10"
+                            style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig11.png" alt="Figure 11"
+                            style="width: 80%; height: auto;">
+                        Comparison of model performance with and without the tool call tags. For each bar, we averaged
+                        accuracies from all prompt variations with or without tool call tags, excluding those with
+                        `prompt_format="markdown"` or `prompt_style="experimental"`. Results indicate that models
+                        generally perform slightly better without tool call tags.
+                    </div>
+
+                    <h3>4.4 Prompt format and prompt style</h3>
+                    <p>We observe no consistent performance trends when changing the prompt format from plaintext to
+                        Markdown or when paraphrasing the system prompt. Overall, the tested models demonstrate robust
+                        behavior across these prompt variations.</p>
+
+                    <div class="image-placeholder">
+                        <img src="../assets/img/blog_post_17_fig12.png" alt="Figure 12"
+                            style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig13.png" alt="Figure 13"
+                            style="width: 80%; height: auto;">
+                        <br>
+                        <img src="../assets/img/blog_post_17_fig14.png" alt="Figure 14"
+                            style="width: 80%; height: auto;">
+                        <br>
+                        Comparison of model performance across prompt formats and styles. For "original", we use the
+                        original prompt configuration in BFCL, with function_doc_format=json, return_format=Python, and
+                        has no tool call tags; "markdown" shows the performance with `prompt_format="markdown"`, and
+                        "experimental" represents the performance with `prompt_style="experimental"`. Results show that
+                        tested models are generally robust to prompt format and style variations, with no general trends
+                        observed.
+                    </div>
+
+                    <h3>4.5 Other findings</h3>
+                    <p>Additionally, we observed that several models that are trained specifically for tool use show
+                        significant drops (even to 0 accuracies) when we change the return format or ask for tool call
+                        tags. For instance, watt-tool-70B is unable to correctly output JSON format function calls, and
+                        gives Python style function calls instead; CoALM-70B cannot correctly use tool call tags, and
+                        show near-zero performance even if we simply add tool call tag requirements to the original BFCL
+                        system prompt. More details of specific failure cases can be found in Section 5.2.</p>
+                </div>
+                <br>
+                <div class="blog-section">
+                    <h2 id="failure">Discussion of failure modes</h2>
+
+                    <h3>5.1 Common Failure Modes</h3>
+
+                    * Return format xml + function doc format python: fail to adhere to parameter type instructions.
+                    Models are asked to write "integer", but they give "int" instead.
+
+                    <div
+                        style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                        <p
+                            style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                            id and variation: simple_19, py->verbose_xml, has tool tag
+
+                            Prompt:
+                            system:
+                            You are an expert in composing functions.You are given a question and a set of possible
+                            functions. Based on the question, you will need to make one or more function/tool calls to
+                            achieve the purpose. If none of the functions can be used, point it out. If the given
+                            question lacks the parameters required by the function, also point it out.
+
+                            You should only return the function calls in the &lt;TOOLCALL&gt; section. If you decide to
+                            invoke any of the function(s), you MUST put it in the format of
+                            &lt;TOOLCALL&gt;&lt;functions&gt;&lt;function name="func_name1"&gt;&lt;params&gt;&lt;param
+                            name="param1" value="value1" type="type1"/&gt;&lt;param name="param2" value="value2"
+                            type="type2"/&gt;...&lt;/params&gt;&lt;/function&gt;&lt;function
+                            name="func_name2"&gt;&lt;param name="param3" value="value3"
+                            type="type3"/&gt;&lt;/function&gt;&lt;/functions&gt;&lt;/TOOLCALL&gt;. The type fields of
+                            the parameters in your function calls must be one of: string, integer, float, boolean,
+                            array, dict, or tuple. You SHOULD NOT include any other text in the response.
+
+                            At each turn, you should try your best to complete the tasks requested by the user within
+                            the current turn. Continue to output functions to call until you have fulfilled the user's
+                            request to the best of your ability. Once you have no more functions to call, the system
+                            will consider the current turn complete and proceed to the next turn or task.
+
+                            Here is a list of functions in python format that you can invoke.
+                            # Function: math.gcd
+                            """
+                            Compute the greatest common divisor of two numbers
+
+                            Args:
+                            num1 (int): The first number.
+                            num2 (int): The second number.
+                            """
+
+                            user:
+                            Calculate the greatest common divisor of two numbers: 40 and 50
+
+                            Incorrect output: (from claude-3.7-sonnet-20250219)
+                            Incorrect output: (from claude-3.7-sonnet-20250219)
+                            &lt;TOOLCALL&gt;\n&lt;functions&gt;\n&lt;function
+                            name="math.gcd"&gt;\n&lt;params&gt;\n&lt;param name="num1" value="40"
+                            type="int"/&gt;\n&lt;param name="num2" value="50"
+                            type="int"/&gt;\n&lt;/params&gt;\n&lt;/function&gt;\n&lt;/functions&gt;\n&lt;/TOOLCALL&gt;
+
+                            Correct output example: (from DeepSeek-R1)
+                            &lt;TOOLCALL&gt;&lt;functions&gt;&lt;function name="math.gcd"&gt;&lt;params&gt;&lt;param
+                            name="num1" value="40" type="integer"/&gt;&lt;param name="num2" value="50"
+                            type="integer"/&gt;&lt;/params&gt;&lt;/function&gt;&lt;/functions&gt;&lt;/TOOLCALL&gt;
+
+                        </p>
+                        <br>
+                    </div>
+
+                    Return format xml: asked model to put all function calls within &lt;functions&gt;&lt;/functions&gt;,
+                    but model output wraps each function call with &lt;functions&gt;&lt;/functions&gt; (also a similar
+                    case, if has tool call tag, wraps each function call with &lt;TOOLCALL&gt;&lt;/TOOLCALL&gt;)
+
+                    <div
+                        style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                        <p
+                            style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                            Example#1
+                            id and variation: parallel_36, {json}->{verbose}, False
+
+                            Prompt:
+                            system:
+                            You are an expert in composing functions.You are given a question and a set of possible
+                            functions. Based on the question, you will need to make one or more function/tool calls to
+                            achieve the purpose. If none of the functions can be used, point it out. If the given
+                            question lacks the parameters required by the function, also point it out.
+
+                            You should only return the function calls in your response.
+
+                            If you decide to invoke any of the function(s), you MUST put it in the format of
+                            &lt;functions&gt;&lt;function name="func_name1"&gt;&lt;params&gt;&lt;param name="param1"
+                            value="value1" type="type1"/&gt;&lt;param name="param2" value="value2"
+                            type="type2"/&gt;...&lt;/params&gt;&lt;/function&gt;&lt;function
+                            name="func_name2"&gt;&lt;param name="param3" value="value3"
+                            type="type3"/&gt;&lt;/function&gt;&lt;/functions&gt;. The type fields of the parameters in
+                            your function calls must be one of: string, integer, float, boolean, array, dict, or tuple.
+                            You SHOULD NOT include any other text in the response.
+
+                            At each turn, you should try your best to complete the tasks requested by the user within
+                            the current turn. Continue to output functions to call until you have fulfilled the user's
+                            request to the best of your ability. Once you have no more functions to call, the system
+                            will consider the current turn complete and proceed to the next turn or task.
+
+                            Here is a list of functions in json format that you can invoke.
+
+                            [{'name': 'paint_color_mixture', 'description': 'Gives a combination of primary colors to
+                            mix for creating a certain color. This function requires type of paint and color. Note that
+                            the provided function is in Python 3 syntax.', 'parameters': {'type': 'dict', 'properties':
+                            {'paint_type': {'type': 'string', 'description': 'The type of paint (Watercolor, Oil,
+                            Acrylic).'}, 'color': {'type': 'string', 'description': 'The color to be produced from the
+                            mixture.'}}, 'required': ['paint_type', 'color']}}]
+
+
+                            user:
+                            Using watercolor, what combination of colors should I mix to get the color magenta and what
+                            quantity for each color? Also, I want to know how to get color navy by using acrylic paint
+                            and their respective quantities.
+
+
+                            Incorrect output example: (from claude-3.7-sonnect-20250219)
+                            &lt;functions&gt;\n&lt;function name="paint_color_mixture"&gt;\n&lt;params&gt;\n&lt;param
+                            name="paint_type" value="Watercolor" type="string"/&gt;\n&lt;param name="color"
+                            value="magenta"
+                            type="string"/&gt;\n&lt;/params&gt;\n&lt;/function&gt;\n&lt;/functions&gt;\n\n&lt;functions&gt;\n&lt;function
+                            name="paint_color_mixture"&gt;\n&lt;params&gt;\n&lt;param name="paint_type" value="Acrylic"
+                            type="string"/&gt;\n&lt;param name="color" value="navy"
+                            type="string"/&gt;\n&lt;/params&gt;\n&lt;/function&gt;\n&lt;/functions&gt;
+
+                            Correct output example: (from mistral-large-2411)
+                            &lt;functions&gt;\n&lt;function name="paint_color_mixture"&gt;\n&lt;params&gt;\n&lt;param
+                            name="paint_type" value="Watercolor" type="string"/&gt;\n&lt;param name="color"
+                            value="magenta" type="string"/&gt;\n&lt;/params&gt;\n&lt;/function&gt;\n&lt;function
+                            name="paint_color_mixture"&gt;\n&lt;params&gt;\n&lt;param name="paint_type" value="Acrylic"
+                            type="string"/&gt;\n&lt;param name="color" value="navy"
+                            type="string"/&gt;\n&lt;/params&gt;\n&lt;/function&gt;\n&lt;/functions&gt;
+                        </p>
+                    </div>
+
+                    <div
+                        style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+                        <p
+                            style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">
+                            Example#2
+                            id and variation: parallel_23, {xml}->{py}, True
+
+                            Prompt:
+                            system:
+                            You are an expert in composing functions.You are given a question and a set of possible
+                            functions. Based on the question, you will need to make one or more function/tool calls to
+                            achieve the purpose. If none of the functions can be used, point it out. If the given
+                            question lacks the parameters required by the function, also point it out.
+
+                            You should only return the function calls in the &lt;TOOLCALL&gt; section. If you decide to
+                            invoke any of the function(s), you MUST put it in the format of
+                            &lt;TOOLCALL&gt;[func_name1(params_name1=params_value1, params_name2=params_value2...),
+                            func_name2(params)]&lt;/TOOLCALL&gt;. You SHOULD NOT include any other text in the response.
+
+                            At each turn, you should try your best to complete the tasks requested by the user within
+                            the current turn. Continue to output functions to call until you have fulfilled the user's
+                            request to the best of your ability. Once you have no more functions to call, the system
+                            will consider the current turn complete and proceed to the next turn or task.
+
+                            Here is a list of functions in xml format that you can invoke.
+                            &lt;function name="alimony_calculator.ca.calculate"&gt;
+                            &lt;desc&gt;Calculate the amount of alimony one spouse would have to pay to the other spouse
+                            in the state of California.&lt;/desc&gt;
+                            &lt;params&gt;
+                            &lt;param name="payor_income" type="integer" required="true"&gt;
+                            &lt;desc&gt;The monthly gross income of the payor spouse.&lt;/desc&gt;
+                            &lt;/param&gt;
+                            &lt;param name="recipient_income" type="integer" required="true"&gt;
+                            &lt;desc&gt;The monthly gross income of the recipient spouse.&lt;/desc&gt;
+                            &lt;/param&gt;
+                            &lt;param name="duration" type="integer" required="true"&gt;
+                            &lt;desc&gt;The duration of the alimony in years.&lt;/desc&gt;
+                            &lt;/param&gt;
+                            &lt;/params&gt;
+                            &lt;/function&gt;
+
+                            user:
+
+                            Please calculate the amount of alimony the payor spouse would have to pay to the recipient
+                            spouse in California for the next 10 years and 20 years if the payor spouse's monthly gross
+                            income is $10,000 and the recipient spouse's monthly gross income is $3,000.
+
+
+                            Incorrect output example: (from gemini-2.0-flash-lite-001)
+                            &lt;TOOLCALL&gt;alimony_calculator.ca.calculate(payor_income=10000, recipient_income=3000,
+                            duration=10)&lt;/TOOLCALL&gt;\n&lt;TOOLCALL&gt;alimony_calculator.ca.calculate(payor_income=10000,
+                            recipient_income=3000, duration=20)&lt;/TOOLCALL&gt;
+
+                            Correct output example: (from gemini-2.5-pro-preview-05-06)
+                            &lt;TOOLCALL&gt;[alimony_calculator.ca.calculate(payor_income=10000, recipient_income=3000,
+                            duration=10), alimony_calculator.ca.calculate(payor_income=10000, recipient_income=3000,
+                            duration=20)]&lt;/TOOLCALL&gt;
+                        </p>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <br>
+
+            <div class="blog-post">
+                <p>
+                    We hope you enjoyed this blog post. We would love to hear from you on <a
+                        href="https://discord.gg/grXXvj9Whz">Discord</a>, <a
+                        href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>,
+                    and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+                </p>
+                <p style="margin: 10px 0;">
+                    If you would like to cite BFCL:
+                </p>
+                <pre id="citation_block"
+                    style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                        <code>
+@inproceedings{patil2025bfcl,
+title={The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models}, 
+author={Patil, Shishir G. and Mao, Huanzhi and Cheng-Jie Ji, Charlie and Yan, Fanjia and Suresh, Vishnu and Stoica, Ion and E. Gonzalez, Joseph},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+}
+                        </code>
+                    </pre>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            padding: 20px;
+        }
+
+        .centered-text {
+            text-align: center;
+            display: block;
+            /* Ensure the <i> element takes up the full width available */
+            margin: 0 auto;
+            /* Center the element horizontally */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .code-block {
+            width: 100%;
+            padding: 10px;
+            flex: 1;
+            /* This makes each code block take equal width */
+        }
+
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            width: auto;
+            max-width: 1000px;
+            justify-content: center;
+        }
+
+        .blog-post code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .blog-title {
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #1E90FF;
+            margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+            position: fixed;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 150px;
+        }
+
+        .box-index h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .box-index ul {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .box-index ul li {
+            margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-index ul li a:hover {
+            color: #1E90FF;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px;
+            /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px;
+            /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 1000px) {
+            .blog-post {
+                padding: 10px;
+                /* Adjust spacing for smaller screens */
+                max-width: 90%
+            }
+
+            .blog-post img {
+                max-width: 90%;
+            }
+
+            .box-index {
+                display: none;
+                /* Hide the index on smaller screens */
+            }
+        }
+    </style>
+
+    <script>
+        function toggleMoreBlogs() {
+            const moreBlogs = document.querySelector('.more-blogs');
+            const subMenu = document.querySelector('.sub-menu');
+            const caret = document.querySelector('.caret');
+
+            moreBlogs.classList.toggle('expanded');
+            subMenu.classList.toggle('expanded');
+        }
+    </script>
+</body>
+
+</html>

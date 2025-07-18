@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+  </script>
+
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
+  <title>BFCL V4 • Web Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  <link rel="stylesheet" href="../assets/css/blog.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+  <link rel="stylesheet" href="../assets/css/api-explorer.css" />
+  <link rel="stylesheet" href="../assets/css/common-styles.css" />
+  <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
+  <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
+  <link rel="stylesheet" href="../assets/css/contact.css">
+
+  <style>
+    .category-container {
+      margin-bottom: 60px;
+    }
+
+    .category-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .plots-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .plot {
+      width: 49%;
+      height: 450px;
+      aspect-ratio: 1 / 1;
+    }
+
+    @media (max-width: 1000px) {
+      .plots-container {
+        flex-direction: column;
+      }
+
+      .plot {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+    }
+
+    /* Bars to separate titles in nav bar */
+    .navbar a:not(:last-child)::after {
+      content: "|";
+      margin: 0 10px;
+      color: #000;
+    }
+
+    .code-toggle {
+      font-weight: bold;
+      color: #0056b3;
+      cursor: pointer;
+      margin: 20px 0;
+    }
+
+    pre:not(#citation_block) {
+      display: none;
+      /* Initially hide the code */
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f4f4f4;
+      border-left: 5px solid #0056b3;
+      /* Add a colored border to the left for style */
+      padding: 15px;
+      margin-top: 5px;
+      overflow: auto;
+      /* Ensures the code wraps inside the box */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      /* Adds subtle shadow for depth */
+      transition: all 0.5s ease-in-out;
+      /* Smooth transition for expanding and collapsing */
+    }
+
+    /* Improved visibility on hover for interactive elements */
+    .code-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .level-1 {
+      background-color: #E2E2E2;
+      /* Darkest gray for top level */
+      font-weight: bold;
+    }
+
+    .level-2 {
+      background-color: #E8E8E8;
+      /* Slightly lighter gray */
+    }
+
+    .level-3 {
+      background-color: #EFEFEF;
+      /* Medium gray */
+    }
+
+    .level-4 {
+      background-color: #F5F5F5;
+      /* Light gray */
+    }
+
+    .level-5 {
+      background-color: #FFFFFF;
+      /* Pure white */
+    }
+
+    .scoring-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    .scoring-table th,
+    .scoring-table td {
+      word-wrap: break-word;
+      padding: 5px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .scoring-table th,
+      .scoring-table td {
+        padding: 1px;
+      }
+    }
+
+    .note {
+      font-size: 0.8em;
+      color: #666;
+    }
+
+    .na {
+      color: #999;
+      font-style: italic;
+    }
+
+    .emoji {
+      display: block;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" integrity="sha384-..."
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/leaderboard.html">BFCL Leaderboard</a>
+    <!-- <a href="/apizoo/">API Zoo Index</a> -->
+  </div>
+
+  <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+    <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive
+      APIs</h1>
+
+    <div class="box-index">
+      <h3>BFCL V4: Web Search</h3>
+      <ul>
+        <ul>
+          <li><a href="15_bfcl_v4_web_search.html#intro">Introduction</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#multihop">What Makes Multihop Questions Interesting?</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#duckduckgo">The DuckDuckGo Search API</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#data">Web Search Data Generation</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#evaluation">Evaluation Metric</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#results">Result and Error Analysis</a></li>
+          <li><a href="15_bfcl_v4_web_search.html#related">Related Work</a></li>
+          <li class="more-blogs">
+            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+            <ul class="sub-menu">
+              <li><a href="13_bfcl_v3_multi_turn.html">BFCL V3 • Multi-Turn</a></li>
+              <li><a href="8_berkeley_function_calling_leaderboard.html">Berkeley Function-Calling Leaderboard</a>
+              </li>
+              <li><a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough
+              <li><a href="4_open_functions.html">Gorilla OpenFunctions</a></li>
+              </a>
+          </li>
+          <!-- Add more blog entries as needed -->
+        </ul>
+        </li>
+      </ul>
+      <!-- Add more entries as needed -->
+      </ul>
+    </div>
+
+
+    <div class="blog-container">
+      <div class="blog-post">
+        <h2 class="blog-title">BFCL V4 • Web Search</h2>
+        <div class="col-md-12">
+          <h4 class="text-center" style="margin: 0;">
+            <br>
+            <div class="authors-container">
+              <a class="author" href="https://gorilla.cs.berkeley.edu/">BFCL Team</a>
+            </div>
+            <br>
+          </h4>
+        </div>
+
+        <style>
+          .authors-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .authors-container .author {
+            display: inline-block;
+            margin: 5px 10px;
+            /* Adjust margins for spacing */
+            text-align: center;
+            white-space: nowrap;
+          }
+
+          @media (max-width: 768px) {
+            .authors-container .author {
+              font-size: 14px;
+              /* Adjust font size for mobile */
+            }
+          }
+        </style>
+
+        <br>
+        <b><i style="font-size: 1.0em;">Release date: 2025-07-17. Last updated: 2025-07-17. <a
+              href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
+              Log]</a></i></b>
+
+        <div>
+          <br>
+          <h2 id="intro">Introduction</h2>
+          <p>
+            <strong>With function-calling being the building blocks of Agents, the Berkeley Function-Calling Leaderboard (BFCL) V4 presents a holistic agentic evaluation for LLMs.</strong> BFCL V4 Agentic includes web search (detailed in this blog), memory (part-2), and format sensitivity (part-3). Together, the ability to web search, read and write from memory, and the ability to invoke functions in different languages present the building blocks for the exciting and extremely challenging avenues that power agentic LLMs today from deep-research, to agents for coding and law.
+          </p>
+          <p>
+            If you're new to function calling, be sure to check out our <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">earlier blog posts</a> for more background. In <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL V1</a>, we introduced expert-curated single-turn, simple, parallel, and multiple function calling. <a href="https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html">BFCL V2</a> introduced community - hobbyists and enterprise - contributed functions. <a href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html">BFCL V3</a> introduced multi-turn and multi-step function calling that let models interact with the user, including ability to go back-and-forth asking clarifying questions and refining the approach. Throughout, BFCL relies on AST (Abstract Syntax Tree) based, or state-transition based verification ensuring determinism and minimal fluctuations as you evaluate your models and applications.
+          </p>
+          <p>
+            Quick Links:
+          <ul>
+            <li>BFCL Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
+            <li>BFCL Dataset: <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard/data">HuggingFace Dataset 🤗</a></li>
+            <li>Reproducibility: <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github Code</a></li>
+            <li>BFCL v1: <a href="8_berkeley_function_calling_leaderboard.html">Simple, Parallel, and Multiple Function Call eval with AST</a></li>
+            <li>BFCL v2: <a href="12_bfcl_v2_live.html">Enterprise and OSS-contributed Live Data</a></li>
+            <li>BFCL v3: <a href="13_bfcl_v3_multi_turn.html">Multi-Turn & Multi-Step Function Call Evaluation</a></li>
+            <li>
+              BFCL v4 Agentic:
+              <a
+                href="https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html"
+                >Part 1 Web Search</a
+              >
+            </li>
+            <li>
+              BFCL v4 Agentic:
+              <a
+                href="https://gorilla.cs.berkeley.edu/blogs/16_bfcl_v4_memory.html"
+                >Part 2 Memory</a
+              >
+            </li>
+            <li>
+              BFCL v4 Agentic:
+              <a
+                href="https://gorilla.cs.berkeley.edu/blogs/17_bfcl_v4_prompt_variation.html"
+                >Part 3 Format Sensitivity</a
+              >
+            </li>
+          </ul>
+          </p>
+          <p>
+            In our past releases, we are encouraged by the community's deep appreciation of the insights across different models. So, this time we have divided our BFCL V4 release blogs into three parts to address the technical complexities, and more importantly share many more interesting insights. This blog BFCL V4 Part-1 talks about Web search, we look at Memory in BFCL V4 Part-2, and Format Sensitivity in BFCL V4 Part-3.
+          </p>
+          <p>
+            LLM agents often rely on static knowledge bases with a fixed cutoff date, which makes them less effective when handling queries about recent events or information beyond their training scope. Allowing these agents to use a browser can help them access and integrate new data from the internet, bridging the gap between outdated knowledge and real-time information.
+          </p>
+          <p>
+            Web search plays a pivotal role in enhancing LLM agents. In many practical setups, these agents receive a browser tool combining a search engine with the ability to visit websites and view their content. This setup empowers them to retrieve, evaluate, and synthesize online information to answer complex questions. Unlike traditional question-answering models that rely on static datasets, web search agents can dynamically issue multiple queries, gather snippets of information, and refine their reasoning over several steps before arriving at a final answer. Such capabilities have gained significant attention in both industry and academia.
+          </p>
+          <p>
+            In the latest version of the Berkeley Function Calling Leaderboard (BFCL v4), we introduce a dedicated web search dataset to assess how effectively models can answer multihop questions, using the provided web search tools. To contextualize this, let's define what we mean by multihop questions.
+          </p>
+        </div>
+        <br>
+        <div>
+          <h2 id="multihop">What Makes Multihop Questions Interesting?</h2>
+          <p>
+            Multihop questions are those that require retrieving and integrating information from multiple sources before arriving at a final answer. For example, consider the question:
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; font-family: 'Roboto Mono', monospace; display: flex; align-items: center; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">Who is the founder of the US business that experiences the most growth during 2024?</p>
+          </div>
+          <p>
+            Answering this question demands two steps: first, identifying which business sees the greatest growth in 2024, then determining its founder. We use multihop questions because simple, single-hop queries are often too easy for current state-of-the-art models to solve by issuing a single search query. By incorporating multiple steps, this benchmark better assesses a model's ability to gather, synthesize, and reason over information from various sources.
+          </p>
+          <h4>About the Benchmark</h4>
+          <p>
+            This category contains 100 human-crafted multihop questions spanning various domains. The chart below illustrates the final mix of categories and the distribution of hop counts across the dataset.
+          </p>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_data_composition.png" alt="Data Composition" style="max-width: 80%; height: auto;">
+            <p><i>BFCL V4 • Web Search Data Composition</i></p>
+          </div>
+          <p>
+            During evaluation, models are equipped with a DuckDuckGo Search API and a function to retrieve webpage content.
+          </p>
+          <p>
+            We designed the benchmark according to the following principles:
+          </p>
+          <ul>
+            <li><strong>Standardised search interface.</strong> All queries go through the DuckDuckGo Search API, so every model operates under the same, privacy‑preserving search surface.</li>
+            <li><strong>Multihop reasoning.</strong> Each question demands multiple reasoning steps, requiring models to break it down into sub‑questions and gather information from multiple sources.</li>
+            <li><strong>Model‑agnostic setup.</strong> Any instruction‑following language model can be integrated into this pipeline without task‑specific fine‑tuning or custom tooling.</li>
+          </ul>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_method_comparisons.png" alt="Benchmark Overview" style="max-width: 70%; height: auto;">
+            <p><i>BFCL V4 • Web Search Benchmark Overview</i></p>
+          </div>
+          <p>
+            Comparison with other existing benchmarks is discussed in detail in the related works section at the end. In the next section, we walk through the backend, data generation pipeline, and evaluation methodology for this category.
+          </p>
+        </div>
+        <br>
+        <div>
+          <h2 id="duckduckgo">The DuckDuckGo Search API</h2>
+          <p>
+            To enable the model to emulate human-like web search behaviors, we have integrated the DuckDuckGo Search API, allowing it to retrieve information from the internet. Our choice of DuckDuckGo is deliberate and guided by two main considerations:
+          </p>
+          <ol>
+            <li><strong>Privacy and Objectivity:</strong> DuckDuckGo is a privacy-centric search engine that does not track user data or personalize search results. This ensures more neutral and unbiased search outcomes.</li>
+            <li><strong>Robustness and Generalization:</strong> Although DuckDuckGo is popular, it doesn't necessarily outperform dominant search engines like Google or Bing in delivering optimal results. While Google may produce marginally "better" hits, using DuckDuckGo ensures the model can excel with <em>any</em> search backend, including those considered less optimal.</li>
+          </ol>
+          <p>
+            The search backend consists of two functions:
+          </p>
+          <h4>1. duckduckgo_search</h4>
+          <p>
+            This function performs a keyword-based search on DuckDuckGo. It supports querying across different regions and returns a list of search results, each containing a title and URL. The model autonomously determines the number of search results to retrieve based on its immediate needs.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">def duckduckgo_search(
+              &nbsp;&nbsp;&nbsp;self,
+              &nbsp;&nbsp;&nbsp;keywords: str,
+              &nbsp;&nbsp;&nbsp;max_results: Optional[int] = 10,
+              &nbsp;&nbsp;&nbsp;region: Optional[str] = "wt-wt",
+          ) -> list:</p>
+          </div>
+          <h4>2. fetch_url_content</h4>
+          <p>
+            This function retrieves the content from a specified URL and offers three distinct modes for content retrieval:
+          </p>
+          <ul>
+            <li><strong>Raw</strong> (default): Returns raw HTML content.</li>
+            <li><strong>Markdown:</strong> Converts HTML content to Markdown format for improved readability, potentially increasing token usage.</li>
+            <li><strong>Truncate:</strong> Cleans and extracts essential textual content by removing scripts, styles, and extraneous whitespace, optimizing token usage at the potential cost of losing original formatting.</li>
+          </ul>
+          <p>
+            The model should intelligently select the appropriate retrieval mode based on its context length and needs.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">def fetch_url_content(
+              &nbsp;&nbsp;&nbsp;self,
+              &nbsp;&nbsp;&nbsp;url: str,
+              &nbsp;&nbsp;&nbsp;mode: str = "raw",
+          ) -> str:</p>
+          </div>
+          <p>
+            These two functions simulate a realistic search workflow: initiating searches with relevant keywords, examining search results, and retrieving useful content from selected URLs.
+          </p>
+          <p>
+            Furthermore, to closely replicate real-world scenarios where internet connectivity or server reliability is not guaranteed, we intentionally introduced probabilistic request failures. Each fetch request has a randomized chance to simulate one of six common errors: 503 Server Error, 429 Too Many Requests, 403 Forbidden, ConnectTimeout, ReadTimeout, and ConnectionError. These encompass both HTTP status-code failures and network disruptions. In such cases, the model can either retry the request or select an alternative URL, mirroring the adaptive strategies people use when dealing with real-world internet instability.
+          </p>
+        </div>
+        <br>
+        <div>
+          <h2 id="data">Web Search Data Generation</h2>
+          <p>
+            Designing effective benchmarks for web search is challenging because state-of-the-art language models are trained extensively on web content. If benchmark queries reference older information within the model's knowledge cutoff, the model can directly retrieve answers from memory, bypassing the search API. Conversely, queries about rapidly changing information, such as current stock prices, can have unstable ground-truth answers, complicating validation.
+          </p>
+          <p>
+            To address this, we focus on a balanced approach: crafting questions about recent events, which are beyond most models' training data yet stable enough that their answers will likely remain unchanged. For instance, the question "What city received the most international tourists in 2024?" meets these criteria.
+          </p>
+          <p>
+            However, questions like this can typically be answered using a single web query. To create more challenging benchmarks, we design multi-hop questions requiring several interconnected searches. An example of a multi-hop question is:
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">"How many floors does the tallest building have in the city that received the most international tourists in 2024?"</p>
+          </div>
+          <p>
+            Answering this involves three separate searches:
+          </p>
+          <ol>
+            <li>Identify the city with the most international tourists in 2024 (Answer: Bangkok).</li>
+            <li>Determine the tallest building in Bangkok (Answer: Magnolias Waterfront Residences at Iconsiam).</li>
+            <li>Find the number of floors in Magnolias Waterfront Residences at Iconsiam (Answer: 70).</li>
+          </ol>
+          <p>
+            We generate multi-hop questions by exploiting their recursive nature. Starting with a simple, single-hop query, we use the retrieved answer as a basis for creating a subsequent, related question. Iteratively repeating this step allows us to incrementally build more complex, multi-hop queries. The following figure shows how this procedure converts an <em>n</em>‑hop question into an <em>(n + 1)</em>‑hop question.
+          </p>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_data_generation_pipeline.png" alt="Generation Scheme" style="max-width: 40%; height: auto;">
+            <p><i>Sample generation scheme starting with a single-hop question (n=1).</i></p>
+          </div>
+          <p>
+            Following this principle, we generated a batch of questions and removed low-quality questions that were:
+          </p>
+          <ol>
+            <li><strong>Duplicates:</strong> questions that were overly similar to one another.</li>
+            <li><strong>Common knowledge:</strong> questions that could be answered without performing web searches.</li>
+            <li><strong>Ambiguous:</strong> questions with inconsistent or unverifiable answers across multiple sources. For example: "How many GitHub repositories were created in 2024?" returns vague figures online—such as "over 330 million" or "around 200 million"—and is therefore unsuitable for evaluation.</li>
+            <li><strong>Yes/No questions:</strong> These were excluded to avoid scenarios where the model could guess the correct answer.</li>
+          </ol>
+          <p>
+            For the remaining 100 questions, each sub-question answer was manually verified and documented along with its source. Additionally, multiple human experts independently verified each answer using standard Chrome browsers, confirming consistency with our established ground truth. This ensures that ground-truth answers accurately reflect reliable human findings.
+          </p>
+          <p>
+            Finally, to simulate real-world user queries that often include extra context and to evaluate the model's keyword extraction capabilities, we added brief "persona" sentences as context to each question. For example:
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">"Cities that attract the most international tourists often boast impressive skylines with towering landmarks. How many floors are in the tallest building in the city that received the most international tourists in 2024?"</p>
+          </div>
+        </div>
+        <br>
+        <div>
+          <h2 id="evaluation">Evaluation Metric</h2>
+          <p>
+            During evaluation, the model receives explicit instructions for response formatting (via system prompt):
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">For your final answer to the user, you must respond in this format: 
+{'answer': A short and precise answer to the question, 'context': A brief explanation of how you arrived at this answer or why it is correct}. 
+If you do not know the answer, respond with {'answer': 'I do not know', 'context': 'I do not know'}. 
+If you think the question cannot be properly answered, response with {'answer': 'I cannot answer this question', 'context': A short reason explaining why this question cannot be answered}.</p>
+          </div>
+          <p>
+            Our evaluation pipeline uses an exact-match metric focusing specifically on the "answer" field. This prevents false positives that could occur if the ground-truth phrase appears incidentally within longer sentences. For example, a model responding ambiguously to a yes/no question could inadvertently trigger a match—the unstructured response: "I am not sure because no relevant information was found" would contain the word "no" and thus count as a match even though the model did not commit to the correct answer. By isolating the answer, we ensure that only the intended response is evaluated.
+          </p>
+          <p>
+            Prior to evaluation, answers undergo normalization that converts text to lowercase and removes punctuation marks (e.g., ,./-\_\*^()) to ensure superficial differences (e.g., "eiffel-tower" vs "Eiffel Tower") do not affect scoring. An answer is marked correct if the normalized ground-truth phrase exactly matches the provided response. This is similar to the string matching logic we previously employed in BFCL V1 AST categories.
+          </p>
+        </div>
+        <br>
+        <div>
+          <h2 id="results">Result and Error Analysis</h2>
+          <h3>Does Hop Count Reflect Question Difficulty?</h3>
+          <p>
+            We investigate whether hop count effectively indicates question difficulty, defined by the number of steps models require to reach correct answers. The figure below illustrates the distribution of average steps taken by models for two-, three-, and four-hop questions. The top panel (a) aggregates data from all models (flagship models from each provider), whereas the bottom panel (b) includes only those models that successfully completed the tasks. Both panels clearly demonstrate that a higher hop count is associated with more model steps, supporting hop count as a measure of question complexity.
+          </p>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_hop_analysis.png" alt="Hop Count vs Difficulty" style="max-width: 80%; height: auto;">
+            <p><i>Distribution of average steps taken by models for different hop counts.</i></p>
+          </div>
+          <h3>Common Failure Modes</h3>
+          <p>
+            A closer look at each question's responses reveals several recurring failure modes:
+          </p>
+          <h4>Failure mode: Avoids Tool Usage</h4>
+          <p>
+            Some models, despite having access to search tools, rely solely on their internal knowledge. This often leads to outdated or incomplete information.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin: 20px 0;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Question:</strong> Some countries are renowned for producing luxury goods, like the world's most expensive tea, and they are also home to some of the world's wealthiest billionaires. In 2024, who is the richest billionaire (according to Forbes) from the country that produces the most expensive tea?</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Model Response:</strong> {answer: i cannot answer this question, context: the question requires specific and current information about the richest billionaire from a country known for producing the world"s most expensive tea in 2024 which is not available through the provided tools}</p>
+          </div>
+          <h4>Failure mode: Incorrect Assumptions About Future Events</h4>
+          <p>
+            In other cases, the model assumes that an event has not happened yet and thus omits searching altogether.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin: 20px 0;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Question:</strong> The Super Bowl halftime show is one of the most anticipated performances each year, often featuring globally renowned artists. In 2024, how many games did the NFL team from the birthplace of the performer at the 2024 Super Bowl halftime show win?</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Model Response:</strong> {answer: 0, context: The 2024 Super Bowl halftime performer was Usher, born in Dallas, Texas. The Dallas Cowboys did not win any games in 2024 as their 2023 season ended with a playoff loss in January 2024, and the 2024 season had not yet started.}</p>
+          </div>
+          <h4>Failure mode: Poor Keyword Selection</h4>
+          <p>
+            Some models fail to break down multi-hop queries into manageable parts. Instead, they paste the entire question into a single search, hoping to find an all-in-one webpage.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin: 20px 0;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Question:</strong> 'Authors' birthplaces can influence their storytelling, and natural landmarks often play a role in their narratives. What is the largest lake in the birth state of the author whose novel won the 2024 Goodreads Choice Award for Fiction?</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Model function calling response:</strong> duckduckgo_search(keywords="author birth state of 2024 Goodreads Choice Award Fiction winner", max_results=5)</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>After seeing the tool execution result, model's final response:</strong> {answer: I do not know, context: The search results indicate Alison Espach won the 2024 Goodreads Choice Award for Fiction with The Wedding People, but no information about her birth state was found in the provided data. Without knowing her birth state, the largest lake cannot be determined.}</p>
+          </div>
+          <h4>Failure mode: Misinterpreting Website Content</h4>
+          <p>
+            Even when the correct webpages are retrieved, the models can still misread their contents and produce incorrect answers.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin: 20px 0;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Question:</strong> Cities that attract the most international tourists often boast impressive skylines with towering landmarks. How many floors are in the tallest building in the city that received the most international tourists in 2024?</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>Model function calling response:</strong></p>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">fetch_url_content(url = https://en.wikipedia.org/wiki/List_of_tallest_structures_in_Thailand)</p>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">fetch_url_content(url = https://www.skyscrapercenter.com/building/baiyoke-tower-ii/487)</p>
+            <br>
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;"><strong>After seeing the tool execution result, model's final response:</strong> {answer: 78 floors, context': According to multiple sources, Bangkok is the most visited city by international tourists in 2024 with 32.4 million international arrivals. The tallest building in Bangkok is currently the Baiyoke Tower II...}</p>
+          </div>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_thailand_example.png" alt="Misinterpretation Example" style="max-width: 80%; height: auto;">
+            <p><i>Example of model misinterpreting website content.</i></p>
+          </div>
+          <h3>Are the Models Actually Searching?</h3>
+          <p>
+            Finally, we tested whether models truly rely on the search API or default to their parametric memory. By rerunning evaluations with the search tools disabled, if a model were primarily relying on its internal knowledge, we would expect similar performance in both conditions. Instead, accuracy drops dramatically without tool usage, indicating that most models do indeed need external search to succeed. The figure below contrasts the average accuracy of the models with and without tool access in the 2-hop, 3-hop, and 4-hop entries, respectively.
+          </p>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/img/blog_post_15_tool_usage.png" alt="Tool Usage Analysis" style="max-width: 80%; height: auto;">
+            <p><i>Model accuracy with and without tool access.</i></p>
+          </div>
+          <p>
+            However, a few newer models (for example, gpt-4.1-2025-04-14-FC and claude-3.7-sonnet-20250219-FC) still managed to answer a few specific questions correctly, likely because their more recent knowledge cutoff date and their training data already contained the necessary information. We plan to address this limitation by periodically updating our question sets.
+          </p>
+        </div>
+        <br>
+        <div>
+          <h2 id="missing-snippets">Missing Snippets and Failing URLs</h2>
+          <p>
+            From the model traces, we observed that some models primarily rely on the duckduckgo_search function and use only the returned snippet to infer the answer. For example, consider the search query:
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">duckduckgo_search(keywords='2024 Nobel Prize in Literature winner',max_results=5)</p>
+          </div>
+          <p>
+            One of the returned results is:
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 80px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">{title: 2024 Nobel Prize in Literature - Wikipedia, href: https://en.wikipedia.org/wiki/2024_Nobel_Prize_in_Literature, body: The 2024 Nobel Prize in Literature was awarded to the South Korean author Han Kang (born 1970)...}</p>
+          </div>
+          <p>
+            This snippet alone is sufficient for the model to infer that Han Kang won the 2024 Nobel Prize in Literature, without visiting the linked webpage. To evaluate the role of the snippet, we additionally experimented with two modified generation setups:
+          </p>
+          <ul>
+            <li><strong>Removing Snippets:</strong> We removed the snippets returned by the duckduckgo_search function so that the model only gets the site URL and title.</li>
+            <li><strong>Fetch URL Errors:</strong> With a deterministic failure chance (0%, 50%, 100%), we simulated failures in the fetch_url function to test robustness. The failures are randomly sampled from the following sets:</li>
+          </ul>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: flex; align-items: center; min-height: 120px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;">"503 Server Error: Service Unavailable for url: {url}",
+"429 Client Error: Too Many Requests for url: {url}",
+"403 Client Error: Forbidden for url: {url}",
+"HTTPSConnectionPool(host='{host}', port=443): Max retries exceeded with url: {path}",
+"HTTPSConnectionPool(host='{host}', port=443): Read timed out. (read timeout=5)"</p>
+          </div>
+          <h4>Removing Snippets</h4>
+          <p>
+            The model accuracy with and without snippets is shown in the figure below. When snippets are removed, some models repeatedly call the duckduckgo_search function without ever choosing to visit the actual website.
+            <div style="text-align: center; margin: 20px 0;">
+              <img src="../assets/img/blog_post_15_remove_snippets.png" alt="Model accuracy with and without snippets" style="max-width: 80%; height: auto;">
+              <p><i>Model accuracy comparison: with snippets vs. without snippets.</i></p>
+            </div>
+          </p>
+          <p>
+            Interestingly, in some cases, the model gets certain entries correct only after the snippet is removed. This can happen when the snippet contains misleading or ambiguous information. For example, when asked about the tallest building in Bangkok, the model finds the correct website, but the snippet includes both the tallest and the second-tallest buildings. Without visiting the site, the model selects the wrong answer (without visiting the URL to double-check). However, when the snippet is removed and the model is forced to fetch the URL, it identifies the correct answer.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Question:</strong> Cities that attract the most international tourists often boast impressive skylines with towering landmarks. How many floors are in the tallest building in the city that received the most international tourists in 2024? Format your answer as a single number.
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>With snippet:</strong><br>
+              <strong>Model trace:</strong><br>
+              duckduckgo_search(keywords="tallest building in Bangkok number of floors",max_results=3)<br>
+              <strong>Returns:</strong><br>
+              <span style="white-space: pre-line;">{title: List of tallest structures in Thailand - Wikipedia, href: https://en.wikipedia.org/wiki/List_of_tallest_structures_in_Thailand, body: Building Image Height Floors Year Location Notes 1 Magnolias Waterfront Residences Iconsiam: 317.95 m 1,043.1 ft 70 2018 Bangkok: Tallest building in Bangkok and Thailand. [8] [9] 2 King Power MahaNakhon: 314 m 1,030 ft 78 2016 Bangkok}</span><br>
+              <strong>Model final response:</strong><br>
+              {answer: 78, context: Bangkok was the city that received the most international tourists in 2024. The tallest building in Bangkok is King Power MahaNakhon, which has 78 floors.}
+            </p>
+          </div>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Without snippet:</strong><br>
+              <strong>Model trace:</strong><br>
+              <span style="white-space: pre-line;">duckduckgo_search(keywords=tallest building in Bangkok number of floors, max_results=5)
+fetch_url_content(url="https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_Bangkok", mode=truncate)</span><br>
+              <strong>Model final response:</strong><br>
+              {answer: 70, context: Bangkok was the city with the most international tourists in 2024. The tallest building in Bangkok is the Magnolias Waterfront Residences at Iconsiam, which has 70 floors.}
+            </p>
+          </div>
+          <p>
+            Another benefit observed when removing the snippet is that the model is forced to choose a single source from which to fetch information. When using duckduckgo_search, some of the returned sources may contain irrelevant or outdated information. The additional fetching step helps the model filter out these lower-quality entries.
+          </p>
+          <p>
+            In the example below, although the search query is suboptimal in both cases, the model behaves differently depending on the presence of the snippet. With the snippet provided, the model chooses the Wikipedia page, which contains outdated 2023 data. Without the snippet, the model filters out the Wikipedia page and fetches the 2025 population report, leading to the correct answer.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Question:</strong> Badminton has seen countries dominate world championships, with their cities playing a major role in their success. Who is the current mayor (as of April 2025) of the most populated city in 2024 of the country that holds the most triumphant titles in the Women's World Badminton Team Championships according to the Guinness World Records 2024?
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>With snippet:</strong><br>
+              <strong>Model trace:</strong><br>
+              duckduckgo_search(keywords='most populated city in China 2024',max_results=3)<br>
+              <strong>Returns:</strong><br>
+              <span style="white-space: pre-line;">{title: 'List of cities in China by population - Wikipedia', href: https://en.wikipedia.org/wiki/List_of_cities_in_China_by_population, body: "As of 2023, the five largest cities in China by population are Chongqing (31.91 million), Shanghai (24.87 million), Beijing (21.86 million), Chengdu (21.403 million) and Guangzhou (18.827 million)..."}</span>
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Without snippet:</strong><br>
+              <strong>Model trace:</strong><br>
+              <span style="white-space: pre-line;">duckduckgo_search(keywords='most populated city in China 2024',max_results=3)
+fetch_url_content(url="https://worldpopulationreview.com/cities/china",mode="truncate)</span>
+            </p>
+          </div>
+          <h4>URL Blockers</h4>
+          <p>
+            In the following setup, we study the effect of introducing URL blockers with varying probabilities. The figure below shows model accuracy at 100%, 50%, and 0% fetch success rates when the snippet is not provided. Model accuracy generally decreases when URL blockers are present.
+          </p>
+          <p>
+            A common failure mode occurs when the model initially identifies the correct website but, due to the blocker, fails to fetch it and instead switches to a different site containing incorrect or ambiguous information. In the example below, the model locates the correct website, but when the URL fetch fails, it defaults to an alternative source with ambiguous content, resulting in an incorrect response.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Question:</strong> Airports play a crucial role in global connectivity, often reflecting a city's significance through their infrastructure. How many gates does the main airport in the birthplace of the actor most searched on Google in 2024 have? Format your answer as a single number.
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Model trace:</strong><br>
+              <span style="white-space: pre-line;">duckduckgo_search(keywords="most searched actor on Google 2024", max_results=5)
+fetch_url_content(url='https://www.imdb.com/list/ls590687031', mode='truncate')</span>
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Returns:</strong><br>
+              {"error": "403 Client Error: Forbidden for url: https://www.imdb.com/list/ls590687031"}<br>
+              <br>
+              fetch_url_content(url="https://www.moneycontrol.com/entertainment/googles-most-searched-actors-globally-visual-story-2679674.html", mode="truncate")
+            </p>
+          </div>
+          <p>
+            Interestingly, some models are still able to answer a decent number of questions correctly even when the fetch function is completely disabled. For certain questions, the answers can be inferred from the website headers or URLs. However, we occasionally observe that the model, despite attempting to search and fetch the URL, ultimately produces the correct answer even when neither the header nor the link contains the necessary information. We posit that this is due to the model relying on its internal knowledge, or a form of hallucination.
+          </p>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Question:</strong> The Super Bowl halftime show is one of the most anticipated performances each year, often featuring globally renowned artists. In 2024, how many games did the NFL team from the birthplace of the performer at the 2024 Super Bowl halftime show win? Format your answer as a number.
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Model trace:</strong><br>
+              <span style="white-space: pre-line;">duckduckgo_search(keywords="2024 Super Bowl halftime show performer birthplace", max_results=5)
+duckduckgo_search(keywords='Usher birthplace',max_results=3)
+fetch_url_content(url="https://en.wikipedia.org/wiki/Usher_(musician)",mode=truncate)</span>
+            </p>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; display: block; min-height: 60px;">
+            <p style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px;">
+              <strong>Returns:</strong><br>
+              {"error": "403 Client Error": Forbidden for url: https://en.wikipedia.org/wiki/Usher_(musician)}<br>
+              <br>
+              <strong>Final answer:</strong><br>
+              {'answer': 7, 'context': "The performer at the 2024 Super Bowl halftime show was Usher. Usher was born in Dallas, Texas. The NFL team from Dallas is the Dallas Cowboys. In the 2023 NFL regular season, the Dallas Cowboys won 12 games. However, if the question refers to the 2023 season (which culminates in the 2024 Super Bowl), the correct answer is 12. If it refers to the 2024 season (which starts after the Super Bowl), no games have been played yet. Based on standard interpretation, the answer is 12."}
+            </p>
+          </div>
+        </div>
+        <br>
+        <div class="blog-post">
+          <h2 id="related">Related Work</h2>
+          <p>
+            Search augmented benchmarks can be broadly categorized into three categories:
+          </p>
+          <h4>Simulated or Static Web Environments</h4>
+          <p>
+            Early search‑augmented benchmarks restricted agents to fixed corpora (e.g., Wikipedia). HotpotQA (2018) provides 113K multihop questions that require combining facts from two or more articles. Follow‑up datasets such as FEVER (2018) for fact verification and QASC (2020) for elementary‑science reasoning follow a similar setup, measuring retrieval and reasoning within a fixed knowledge base.
+          </p>
+          <h4>Closed‑Book Factuality Evaluation</h4>
+          <p>
+            A complementary line of work removes external search altogether and scores a model on what it can recall from its parameters alone. Popular examples include TriviaQA (2017) and Natural Questions (open‑domain setting), where the model must generate short facts without consulting references. Recent SimpleQA (2024) streamlines this idea into <30‑token fact‑seeking queries, providing a lightweight probe of memorised knowledge. Such tasks isolate parametric memory, but by definition, they cannot measure retrieval skill.
+          </p>
+          <h4>Open Web Environment</h4>
+          <p>
+            More recent benchmarks evaluate agents under real-time, open-web conditions. Search Arena (2024) pits models against each other in real‑time Bing and Google‑backed searches, while BrowseComp (2025) evaluates full browsing agents that navigate hyperlinks and fill structured forms. These frameworks capture the unpredictability of real information seeking, but only invoke the model's built-in web browsing capabilities and thus are limited to only a few models supported (OpenAI, perplexity, and Google, etc). The different implementations in search backends from each model provider can confound direct model comparisons. On top of that, while entries in BrowseComp are hard for human experts to find, those queries are far different from the common ones that users ask in daily interactions, as they admitted in their tech report.
+          </p>
+        </div>
+        <br>
+        <div class="blog-post">
+          <p>
+            We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+          </p>
+          <p style="margin: 10px 0;">
+            If you would like to cite BFCL:
+          </p>
+          <pre id="citation_block"
+            style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                        <code>
+@inproceedings{patil2025bfcl,
+title={The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models}, 
+author={Patil, Shishir G. and Mao, Huanzhi and Cheng-Jie Ji, Charlie and Yan, Fanjia and Suresh, Vishnu and Stoica, Ion and E. Gonzalez, Joseph},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+}
+                        </code>
+                    </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      padding: 20px;
+    }
+
+    .centered-text {
+      text-align: center;
+      display: block;
+      /* Ensure the <i> element takes up the full width available */
+      margin: 0 auto;
+      /* Center the element horizontally */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    .code-block {
+      width: 100%;
+      padding: 10px;
+      flex: 1;
+      /* This makes each code block take equal width */
+    }
+
+    .blog-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blog-post {
+      margin: 20px;
+      padding: 20px;
+      width: auto;
+      max-width: 1000px;
+      justify-content: center;
+    }
+
+    .blog-post code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .blog-post img {
+      display: block;
+      margin: 0 auto;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    .blog-title {
+      color: #055ada;
+      text-align: center;
+    }
+
+    .author {
+      font-size: 16px;
+      color: #1E90FF;
+      margin-right: 20px;
+    }
+
+    .date {
+      font-size: 16px;
+      color: #7e8790;
+    }
+
+    .preview {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .highlight-clean-blog {
+      color: #313437;
+      background-color: #fff;
+      padding: 50px 0;
+    }
+
+    .box-index {
+      position: fixed;
+      top: 50%;
+      left: 0px;
+      transform: translateY(-50%);
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 150px;
+    }
+
+    .box-index h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .box-index ul {
+      list-style-type: disc;
+      padding: 0;
+    }
+
+    .box-index ul li {
+      margin-bottom: 10px;
+    }
+
+    .box-index ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .box-index ul li a:hover {
+      color: #1E90FF;
+    }
+
+    .more-blogs .sub-menu {
+      display: none;
+    }
+
+    .more-blogs .sub-menu.expanded {
+      display: block;
+      max-height: 200px;
+      /* Adjust the max height as needed */
+      overflow-y: auto;
+    }
+
+    .more-blogs .sub-menu li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .more-blogs .sub-menu li:last-child {
+      border-bottom: none;
+    }
+
+    .more-blogs .caret {
+      transition: transform 0.3s ease-in-out;
+      display: inline-block;
+      transform: rotate(0deg);
+      font-size: 12px;
+      /* Adjust the font size to change the caret size */
+    }
+
+    .more-blogs.expanded .caret {
+      transform: rotate(90deg);
+    }
+
+    @media screen and (max-width: 1000px) {
+      .blog-post {
+        padding: 10px;
+        /* Adjust spacing for smaller screens */
+        max-width: 90%
+      }
+
+      .blog-post img {
+        max-width: 90%;
+      }
+
+      .box-index {
+        display: none;
+        /* Hide the index on smaller screens */
+      }
+    }
+  </style>
+
+  <script>
+    function toggleMoreBlogs() {
+      const moreBlogs = document.querySelector('.more-blogs');
+      const subMenu = document.querySelector('.sub-menu');
+      const caret = document.querySelector('.caret');
+      
+      moreBlogs.classList.toggle('expanded');
+      subMenu.classList.toggle('expanded');
+    }
+  </script>
+</body>
+
+</html> 

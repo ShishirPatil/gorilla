@@ -739,15 +739,11 @@ function addToTable(dataArray) {
                     td.className = "nonliveast-sub-cell";
                 } else if (cellIndex >= 14 && cellIndex <= 17) {
                     // class for specific columns
-                    td.className = "nonliveexec-sub-cell";
+                    td.className = "liveast-sub-cell";
                 } else if (cellIndex >= 19 && cellIndex <= 22) {
                     // class for specific columns
-                    td.className = "liveast-sub-cell";
-                } else if (cellIndex >= 24 && cellIndex <= 27) {
-                    // class for specific columns
                     td.className = "multiturn-sub-cell";
-                }
-
+                } 
                 tr.appendChild(td);
             }
 
@@ -785,9 +781,9 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.5-Sonnet-20241022 (FC)",
+    "Claude-3.7-Sonnet-20250219 (FC)",
     "GPT-4o-2024-11-20 (FC)",
-    "Gemini-1.5-Pro-002 (FC)",
+    "Gemini-2.5-Pro-Preview-05-06 (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
@@ -899,6 +895,26 @@ const color = [
     "rgb(123, 31, 162)",
     "rgb(255, 193, 7)",
     "rgb(245, 0, 87)",
+    "rgb(128, 128, 128)",
+    "rgb(0, 0, 0)",
+    "rgb(255, 255, 255)",
+    "rgb(220, 20, 60)",
+    "rgb(0, 255, 0)",
+    "rgb(255, 0, 0)",
+    "rgb(0, 128, 0)",
+    "rgb(192, 192, 192)",
+    "rgb(255, 228, 181)",
+    "rgb(218, 165, 32)",
+    "rgb(255, 127, 80)",
+    "rgb(106, 90, 205)",
+    "rgb(255, 240, 245)",
+    "rgb(250, 250, 210)",
+    "rgb(255, 245, 238)",
+    "rgb(240, 255, 240)",
+    "rgb(245, 245, 220)",
+    "rgb(154, 205, 50)",
+    "rgb(152, 251, 152)",
+    "rgb(72, 209, 204)",
 ];
 
 function convertRGBtoRGBA(rgbString) {
@@ -935,8 +951,7 @@ function generateChart(csvData) {
                 csvData[i][8],
                 csvData[i][13],
                 csvData[i][18],
-                csvData[i][23],
-                csvData[i][29],
+                csvData[i][24],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -953,7 +968,6 @@ function generateChart(csvData) {
         labels: [
             "Overall Accuracy",
             "Non-live AST Summary",
-            "Non-live Exec Summary",
             "Live Summary",
             "Multi Turn Summary",
             "Hallucination Measurement",
