@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
         content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately." />
-    
+
     <!-- Include Semantic UI CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
 
@@ -43,7 +43,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    
+
     <title>
         Berkeley Function Calling Leaderboard V3 (aka Berkeley Tool Calling Leaderboard V3)
     </title>
@@ -61,7 +61,7 @@
         font-size: 18px;
       ">
         <a href="index.html">Home</a>
-        <a href="blogs/13_bfcl_v3_multi_turn.html">Blog</a>
+        <a href="blogs/15_bfcl_v4_web_search.html">Blog</a>
         <a href="#api-explorer">Try it Out!</a>
         <a href="#leaderboard">Leaderboard</a>
     </div>
@@ -90,37 +90,52 @@
     </div>
 
     <!-- Leaderboard Section -->
+    <div style="background-color: #ffeb3b; padding: 20px; text-align: center; margin-bottom: 20px;">
+        <h3 style="margin: 0;">
+            🦍 Announcement: We're excited to release <a href="https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html">BFCL V4 Agentic</a>! We're currently sprinting to integrate all models
+            into the new benchmark. Once generation is complete, the leaderboard will migrate from v3 to v4.
+            <br>
+            Hang tight — big updates incoming!
+        </h3>
+    </div>
+
     <div class="container" id="leaderboard" style="background: #e5effc">
         <div class="col-md-12">
             <h2>BFCL: From Tool Use to Agentic Evaluation of Large Language Models</h2>
 
             <p class="text-center">
-                The Berkeley Function Calling Leaderboard V3 (also called Berkeley Tool Calling Leaderboard V3) evaluates the
+                The Berkeley Function Calling Leaderboard V3 (also called Berkeley Tool Calling Leaderboard V3)
+                evaluates the
                 LLM's ability to call functions (aka tools) accurately. This
                 leaderboard consists of real-world data and will be updated periodically. For more information on the
                 evaluation dataset and methodology, please refer to our blogs: <a
-                    href="blogs/8_berkeley_function_calling_leaderboard.html">BFCL-v1</a> introducing AST as an evaluation metric, 
-                    <a
-                    href="blogs/12_bfcl_v2_live.html">BFCL-v2</a> introducing enterprise and OSS-contributed functions, and 
-                    <a
-                    href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions. Checkout <a
-                    href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">code and data</a>.
+                    href="blogs/8_berkeley_function_calling_leaderboard.html">BFCL-v1</a> introducing AST as an
+                evaluation metric,
+                <a href="blogs/12_bfcl_v2_live.html">BFCL-v2</a> introducing enterprise and OSS-contributed functions,
+                and
+                <a href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions. Checkout <a
+                    href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">code and
+                    data</a>.
             </p>
-        
+
             <div class="mb-3">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <!-- Last Updated Section -->
                     <div>
                         <span>
                             <b><i style="font-size: 1.0em;">Last Updated:
-                                2025-06-14 &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change Log]</a>
-                            </i></b>
+                                    2025-06-14 &nbsp;&nbsp;&nbsp;&nbsp; <a
+                                        href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
+                                        Log]</a>
+                                </i></b>
                         </span>
                     </div>
 
                     <!-- Search Section -->
-                    <div class="d-flex ms-md-auto mt-3 mt-md-0 justify-content-end" style="gap: 5px; width: 100%; max-width: 360px;">
-                        <input type="text" id="search-input" class="form-control flex-grow-1" placeholder="Search model names..." />
+                    <div class="d-flex ms-md-auto mt-3 mt-md-0 justify-content-end"
+                        style="gap: 5px; width: 100%; max-width: 360px;">
+                        <input type="text" id="search-input" class="form-control flex-grow-1"
+                            placeholder="Search model names..." />
                         <button id="search-btn" class="btn btn-primary">Search</button>
                     </div>
                 </div>
@@ -155,10 +170,12 @@
                     href="https://discord.gg/grXXvj9Whz">discord</a>.
             </p>
             <p>
-                Models are evaluated using commit <b>1bb65c9</b>. 
-                All the model response we obtained is available <a href="https://github.com/HuanzhiMao/BFCL-Result">here</a>. 
-                To reproduce the results, please either checkout our codebase at 
-                <a href="https://github.com/ShishirPatil/gorilla/tree/1bb65c95e6dd49286eb427b308e6c91001e98ae9">this checkpoint</a>,
+                Models are evaluated using commit <b>1bb65c9</b>.
+                All the model response we obtained is available <a
+                    href="https://github.com/HuanzhiMao/BFCL-Result">here</a>.
+                To reproduce the results, please either checkout our codebase at
+                <a href="https://github.com/ShishirPatil/gorilla/tree/1bb65c95e6dd49286eb427b308e6c91001e98ae9">this
+                    checkpoint</a>,
                 or install the PyPI package <code>pip install bfcl-eval==2025.6.14</code>.
             </p>
         </div>
@@ -180,7 +197,8 @@
                 <div class="ui form">
                     <div class="dropdown-container">
                         <label class="dropdown-label">Select Models to Compare</label>
-                        <button id="clear-all-btn" class="btn btn-primary" type="button" >Clear All</button> <!-- Clear All Button -->
+                        <button id="clear-all-btn" class="btn btn-primary" type="button">Clear All</button>
+                        <!-- Clear All Button -->
                     </div>
                     <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
                         <input id="search-dropdown" type="hidden" name="datasets">
