@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
@@ -49,13 +50,18 @@
         }
 
         .blog-post {
-            flex-basis: calc(33.33% - 20px); /* Set the width of each blog post (one-third of the container with spacing) */
+            flex-basis: calc(33.33% - 20px);
+            /* Set the width of each blog post (one-third of the container with spacing) */
             background: #fff;
             border: 3px solid #e8e8e8;
             padding: 10px;
             transition: transform 0.2s;
-            margin-bottom: 20px; /* Add margin at the bottom for spacing */
-            cursor: pointer; /* Change cursor to a pointer to indicate clickability */
+            margin-bottom: 20px;
+            margin-left: 20%;
+            margin-right: 20%;
+            /* Add margin at the bottom for spacing */
+            cursor: pointer;
+            /* Change cursor to a pointer to indicate clickability */
         }
 
         .blog-post:hover {
@@ -140,70 +146,78 @@
             }
         }
 
-.highlighted-blog {
-    flex-basis: calc(33.33% - 20px);
-    background: #fff;
-    border: 3px solid #e8e8e8;
-    padding: 20px;
-    transition: transform 0.2s;
-    margin-bottom: 20px;
-    cursor: pointer;
-    position: relative; /* Ensure the banner is positioned relative to this element */
-}
+        .highlighted-blog {
+            flex-basis: calc(33.33% - 20px);
+            background: #fff;
+            border: 3px solid #e8e8e8;
+            padding: 20px;
+            transition: transform 0.2s;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+            /* Ensure the banner is positioned relative to this element */
+        }
 
-.highlighted-tall-blog {
-    flex-basis: calc(50% - 20px);
-    background: #fff;
-    border: 3px solid #e8e8e8;
-    padding: 10px;
-    transition: transform 0.2s;
-    margin-bottom: 20px;
-    cursor: pointer;
-    position: relative; /* Ensure the banner is positioned relative to this element */
-}
+        .highlighted-tall-blog {
+            flex-basis: calc(50% - 20px);
+            background: #fff;
+            border: 3px solid #e8e8e8;
+            padding: 10px;
+            transition: transform 0.2s;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+            /* Ensure the banner is positioned relative to this element */
+        }
 
-.highlighted-blogs{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-    justify-content: center;
-}
-
-
-@media only screen and (max-width: 768px) {
-    .highlighted-blog {
-        flex-basis: auto;
-    }
-}
+        .highlighted-blogs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            justify-content: center;
+        }
 
 
-.highlighted-blog,
-.highlighted-tall-blog {
-    position: relative;
-}
-
-.highlighted-blog::before,
-.highlighted-tall-blog::before {
-    content: "New";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 18px; /* Adjust the height of the banner */
-    line-height: 18px; /* Center the text vertically */
-
-    background-color: #ffd700; /* Yellow color */
-    text-align: center; /* Center the text horizontally */
-    color: black; /* Text color */
-    font-weight: bold; /* Optionally, make the text bold */
-}
+        @media only screen and (max-width: 768px) {
+            .highlighted-blog {
+                flex-basis: auto;
+            }
+        }
 
 
-.highlighted-blog:hover,
-.highlighted-tall-blog:hover {
-    transform: scale(1.05);
-}
+        .highlighted-blog,
+        .highlighted-tall-blog {
+            position: relative;
+        }
+
+        .highlighted-blog::before,
+        .highlighted-tall-blog::before {
+            content: "New";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 18px;
+            /* Adjust the height of the banner */
+            line-height: 18px;
+            /* Center the text vertically */
+
+            background-color: #ffd700;
+            /* Yellow color */
+            text-align: center;
+            /* Center the text horizontally */
+            color: black;
+            /* Text color */
+            font-weight: bold;
+            /* Optionally, make the text bold */
+        }
+
+
+        .highlighted-blog:hover,
+        .highlighted-tall-blog:hover {
+            transform: scale(1.05);
+        }
     </style>
 
     <div class="highlight-clean-blog">
@@ -214,9 +228,16 @@
         <div class="intro">
             <p>
 
-                Since the initial release of Gorilla LLM in May, we're incredibly grateful for your overwhelming response. The Gorilla project is loved by developers worldwide. Through our integrations with an ever-growing set of API calls, we've served ~500k requests, all from our small node at UC Berkeley. Some of you have gone ahead to train your own Gorilla models for your custom use-cases, and we love to see the community growing.
-    
-                To enhance the support for individual developers, and enterprises looking to adopt or train their own Gorilla models, we're collaborating with our users and colleagues to launch a comprehensive blog series. In this series, we will delve deeper into the intricacies of Gorilla and outline Berkeley's vision and roadmap for the future of LLMs interacting with the world. 
+                Since the initial release of Gorilla LLM in May, we're incredibly grateful for your overwhelming
+                response. The Gorilla project is loved by developers worldwide. Through our integrations with an
+                ever-growing set of API calls, we've served ~500k requests, all from our small node at UC Berkeley. Some
+                of you have gone ahead to train your own Gorilla models for your custom use-cases, and we love to see
+                the community growing.
+
+                To enhance the support for individual developers, and enterprises looking to adopt or train their own
+                Gorilla models, we're collaborating with our users and colleagues to launch a comprehensive blog series.
+                In this series, we will delve deeper into the intricacies of Gorilla and outline Berkeley's vision and
+                roadmap for the future of LLMs interacting with the world.
 
             </p>
             <br>
@@ -225,24 +246,77 @@
 
     <div class="highlighted-blogs">
 
-        
+
         <!-- Wider Highlighted Blog -->
         <div class="highlighted-blog">
-            <a href="blogs/14_agent_arena.html">
+            <a href="blogs/15_bfcl_v4_web_search.html">
                 <div class="blog-content">
-                    <h2 class="blog-title">Agent Arena: A Platform for Evaluating and Comparing LLM Agents</h2>
+                    <h2 class="blog-title">BFCL V4 Agentic [Part 1 – Web Search]</h2>
                     <div class="author-date">
-                        <p class="author"><a href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu et al.</a></p>
-                        <p class="date">October 3, 2024</p>
+                        <p class="author">BFCL Team</p>
+                        <p class="date">July 17, 2025</p>
                     </div>
-                    <a href="blogs/11_agent_marketplace.html">
-                        <img src="assets/img/blog_post_14_agent_arena.png" alt="Agent Arena Image" style="width: 100%;">
+                    <a href="blogs/15_bfcl_v4_web_search.html">
+                        <img src="assets/img/blog_post_15_data_generation_pipeline.png" alt="BFCL V4 Part 1" style="width: 100%;">
                     </a>
                 </div>
             </a>
         </div>
 
         <div class="highlighted-blog">
+            <a href="blogs/16_bfcl_v4_memory.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">BFCL V4 Agentic [Part 2 – Memory]</h2>
+                    <div class="author-date">
+                        <p class="author">BFCL Team</p>
+                        <p class="date">July 17, 2025</p>
+                    </div>
+                    <a href="blogs/16_bfcl_v4_memory.html">
+                        <img src="assets/img/blog_post_16_memory8.png" alt="BFCL V4 Part 2" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+
+        <div class="highlighted-blog">
+            <a href="blogs/17_bfcl_v4_prompt_variation.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">BFCL V4 Agentic [Part 3 – Prompt Variation]</h2>
+                    <div class="author-date">
+                        <p class="author">BFCL Team</p>
+                        <p class="date">July 17, 2025</p>
+                    </div>
+                    <a href="blogs/17_bfcl_v4_prompt_variation.html">
+                        <img src="assets/img/blog_post_17_front_image.png" alt="BFCL V4 Part 3" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+
+        <!-- Taller but Narrower Highlighted Blog Post 8-->
+
+        <!-- Add more posts using the same structure as above -->
+    </div>
+
+    <div class="blog-container">
+
+        <div class="blog-post">
+            <a href="blogs/14_agent_arena.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">Agent Arena: A Platform for Evaluating and Comparing LLM Agents</h2>
+                    <div class="author-date">
+                        <p class="author"><a href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu
+                                et al.</a></p>
+                        <p class="date">October 3, 2024</p>
+                    </div>
+                    <a href="blogs/14_agent_arena.html">
+                        <img src="assets/img/blog_post_14_agent_arena.png" alt="Agent Arena Image" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+
+        <div class="blog-post">
             <a href="blogs/13_bfcl_v3_multi_turn.html">
                 <div class="blog-content">
                     <h2 class="blog-title">BFCL V3 - Multi-turn Dataset</h2>
@@ -251,20 +325,29 @@
                         <p class="date">September 19, 2024</p>
                     </div>
                     <a href="blogs/13_bfcl_v3_multi_turn.html">
-                        <img src="./assets/img/blog_post_13_cover.png" alt="BFCL-Live" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
-                    </a> 
+                        <img src="./assets/img/blog_post_13_cover.png" alt="BFCL-Live"
+                            style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    </a>
                 </div>
             </a>
         </div>
-        <!-- Wider Highlighted Blog -->
 
-
-        <!-- Taller but Narrower Highlighted Blog Post 8-->
-
-    <!-- Add more posts using the same structure as above -->
-    </div>
-
-    <div class="blog-container">
+        <div class="blog-post">
+            <a href="blogs/11_agent_marketplace.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">Agent Marketplace: Centralized Platform to Create and Use LLM Agents</h2>
+                    <div class="author-date">
+                        <p class="author"><a href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu
+                                et al.</a></p>
+                        <p class="date">July 17, 2024</p>
+                    </div>
+                    <a href="blogs/11_agent_marketplace.html">
+                        <img src="assets/img/blog_post_11_agent_marketplace_landing.png" alt="Agent Marketplace Image"
+                            style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
 
         <div class="blog-post">
             <a href="blogs/12_bfcl_v2_live.html">
@@ -275,22 +358,8 @@
                         <p class="date">Aug 14, 2024</p>
                     </div>
                     <a href="blogs/12_bfcl_v2_live.html">
-                        <img src="./assets/img/blog_post_12_cover.png" alt="BFCL-Live" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
-                    </a> 
-                </div>
-            </a>
-        </div>
-
-        <div class="blog-post">
-            <a href="blogs/11_agent_marketplace.html">
-                <div class="blog-content">
-                    <h2 class="blog-title">Agent Marketplace: Centralized Platform to Create and Use LLM Agents</h2>
-                    <div class="author-date">
-                        <p class="author"><a href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu et al.</a></p>
-                        <p class="date">July 17, 2024</p>
-                    </div>
-                    <a href="blogs/11_agent_marketplace.html">
-                        <img src="assets/img/blog_post_11_agent_marketplace_landing.png" alt="Agent Marketplace Image" style="width: 100%;">
+                        <img src="./assets/img/blog_post_12_cover.png" alt="BFCL-Live"
+                            style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
                     </a>
                 </div>
             </a>
@@ -320,8 +389,10 @@
                         <p class="date">Mar 15, 2024</p>
                     </div>
                     <a href="blogs/9_raft.html">
-                        <img src="assets/img/blog_post_9_raft_openbook.png" alt="Open Book (VS) Closed Book (VS) RAFT Image" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
-                    </a> 
+                        <img src="assets/img/blog_post_9_raft_openbook.png"
+                            alt="Open Book (VS) Closed Book (VS) RAFT Image"
+                            style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    </a>
                 </div>
             </a>
         </div>
@@ -335,8 +406,9 @@
                         <p class="date">Feb 26, 2024</p>
                     </div>
                     <a href="blogs/8_berkeley_function_calling_leaderboard.html">
-                        <img src="assets/img/blog_post_8_Wagon.gif" alt="The API Zoo Image" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
-                    </a> 
+                        <img src="assets/img/blog_post_8_Wagon.gif" alt="The API Zoo Image"
+                            style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+                    </a>
                 </div>
             </a>
         </div>
@@ -350,14 +422,15 @@
                         <p class="date">Feb 26, 2024</p>
                     </div>
                     <a href="blogs/7_open_functions_v2.html">
-                        <img src="assets/img/blog_post_7_open_function_v2_summary.png" alt="Openfunctions-v2-summary" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                        <img src="assets/img/blog_post_7_open_function_v2_summary.png" alt="Openfunctions-v2-summary"
+                            style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
                     </a>
                 </div>
             </a>
         </div>
-        
+
         <!-- Blog Post 6-->
-         <div class="blog-post">
+        <div class="blog-post">
             <a href="blogs/6_api_zoo.html">
                 <div class="blog-content">
                     <h2 class="blog-title">The API Zoo: A Keystone for Building API-connected LLMs</h2>
@@ -366,12 +439,13 @@
                         <p class="date">Feb 16, 2024</p>
                     </div>
                     <a href="blogs/6_api_zoo.html">
-                        <img src="assets/img/blog_post_6_apizoo_functionality.gif" alt="The API Zoo Image" style="width: 100%;">
+                        <img src="assets/img/blog_post_6_apizoo_functionality.gif" alt="The API Zoo Image"
+                            style="width: 100%;">
                     </a>
                 </div>
             </a>
         </div>
-        
+
         <!-- Blog Post 5-->
         <div class="blog-post">
             <a href="blogs/5_how_to_gorilla.html">
@@ -382,12 +456,13 @@
                         <p class="date">Feb 15, 2024</p>
                     </div>
                     <a href="blogs/5_how_to_gorilla.html">
-                        <img src="assets/img/blog_post_5_main_image.png" alt="How to Use Gorilla Image" style="width: 100%;">
+                        <img src="assets/img/blog_post_5_main_image.png" alt="How to Use Gorilla Image"
+                            style="width: 100%;">
                     </a>
                 </div>
             </a>
         </div>
-        
+
         <!-- Blog Post 4-->
         <div class="blog-post">
             <a href="blogs/4_open_functions.html">
@@ -398,7 +473,8 @@
                         <p class="date">Nov 17, 2023</p>
                     </div>
                     <a href="blogs/4_open_functions.html">
-                        <img src="assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Blog Post 4 Image" style="width: 100%;">
+                        <img src="assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Blog Post 4 Image"
+                            style="width: 100%;">
                     </a>
                 </div>
             </a>
@@ -435,7 +511,7 @@
                 </div>
             </a>
         </div>
-        
+
         <!-- Blog Post 1 -->
         <div class="blog-post">
             <a href="blogs/1_gorilla_intro.html">
@@ -446,15 +522,16 @@
                         <p class="date">Oct 4, 2023</p>
                     </div>
                     <a href="blogs/1_gorilla_intro.html">
-                        <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
+                        <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image"
+                            style="width: 100%;">
                     </a>
                 </div>
             </a>
         </div>
-    
+
 
         <!-- Add more posts using the same structure as above -->
     </div>
 </body>
-</html>
 
+</html>
