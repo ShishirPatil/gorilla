@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-NRZJLJCSH6");
+    </script>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+    <title>BFCL V4 Agentic [Part 2 – Evaluating Tool-Calling for Memory]</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+    />
+    <link rel="stylesheet" href="../assets/css/blog.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+    />
+    <link rel="stylesheet" href="../assets/css/api-explorer.css" />
+    <link rel="stylesheet" href="../assets/css/common-styles.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/css/Highlight-Clean-leaderboard.css"
+    />
+    <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css" />
+
+    <style>
+      .category-container {
+        margin-bottom: 60px;
+      }
+
+      .category-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .plots-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .plot {
+        width: 49%;
+        height: 450px;
+        aspect-ratio: 1 / 1;
+      }
+
+      @media (max-width: 1000px) {
+        .plots-container {
+          flex-direction: column;
+        }
+
+        .plot {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+      }
+
+      /* Bars to separate titles in nav bar */
+      .navbar a:not(:last-child)::after {
+        content: "|";
+        margin: 0 10px;
+        color: #000;
+      }
+
+      .code-toggle {
+        font-weight: bold;
+        color: #0056b3;
+        cursor: pointer;
+        margin: 20px 0;
+      }
+
+      pre:not(#citation_block) {
+        font-family: "Courier New", Courier, monospace;
+        background-color: #f4f4f4;
+        border-left: 5px solid #0056b3;
+        padding: 15px;
+        margin-top: 5px;
+        overflow: auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .code-toggle:hover {
+        text-decoration: underline;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      .scenario-box {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .scenario-title {
+        font-weight: bold;
+        color: #495057;
+        margin-bottom: 10px;
+      }
+
+      .analysis-section {
+        background-color: #e9ecef;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 15px;
+      }
+
+      .takeaway-section {
+        background-color: #d1ecf1;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+        border-left: 4px solid #bee5eb;
+      }
+
+      .memory-backend-table {
+        font-size: 0.9em;
+      }
+
+      .backend-section {
+        margin: 30px 0;
+      }
+
+      .image-container {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      figcaption {
+        font-style: italic;
+        color: #666;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .box-index {
+        position: fixed;
+        top: 50%;
+        left: 0px;
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 150px;
+      }
+
+      .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+      }
+
+      .box-index ul li {
+        margin-bottom: 10px;
+      }
+
+      .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .box-index ul li a:hover {
+        color: #1e90ff;
+      }
+
+      .more-blogs .sub-menu {
+        display: none;
+      }
+
+      .more-blogs .sub-menu.expanded {
+        display: block;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .more-blogs .sub-menu li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .more-blogs .sub-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .more-blogs .caret {
+        transition: transform 0.3s ease-in-out;
+        display: inline-block;
+        transform: rotate(0deg);
+        font-size: 12px;
+      }
+
+      .more-blogs.expanded .caret {
+        transform: rotate(90deg);
+      }
+
+      @media screen and (max-width: 1000px) {
+        .box-index {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <a href="/index.html">Home</a>
+      <a href="/blog.html">Blogs</a>
+      <a href="/leaderboard.html">BFCL Leaderboard</a>
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px">
+      <h1 class="text-center" style="padding-bottom: 10px">
+        🦍 Gorilla: Large Language Model Connected with Massive APIs
+      </h1>
+
+      <div class="box-index">
+        <h3>BFCL V4 Agentic [Part 2 – Memory]</h3>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#memory-dataset">Memory Dataset</a></li>
+          <li><a href="#memory-backend">Memory Backend Implementation</a></li>
+          <li><a href="#pipeline-flow">Memory Pipeline Flow</a></li>
+          <li><a href="#results">Result and Error Analysis</a></li>
+          <li><a href="#failure-examples">Specific Failure Examples</a></li>
+          <li class="more-blogs">
+            <a href="javascript:void(0);" onclick="toggleMoreBlogs()"
+              >More Blogs <span class="caret">&#9654;</span></a
+            >
+            <ul class="sub-menu">
+              <li>
+                <a href="13_bfcl_v3_multi_turn.html">BFCL V3 Multi-Turn</a>
+              </li>
+              <li><a href="12_bfcl_v2_live.html">BFCL V2 Live Dataset</a></li>
+              <li>
+                <a href="8_berkeley_function_calling_leaderboard.html"
+                  >BFCL V1</a
+                >
+              </li>
+              <li>
+                <a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a>
+              </li>
+              <li><a href="6_api_zoo.html">The API Zoo</a></li>
+              <li><a href="5_how_to_gorilla.html">How to Use Gorilla</a></li>
+              <li><a href="4_open_functions.html">Gorilla OpenFunctions</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="blog-container">
+        <div class="blog-post">
+          <h2 class="blog-title">
+            BFCL V4 Agentic [Part 2 – Evaluating Tool-Calling for Memory]
+          </h2>
+
+          <div class="col-md-12">
+            <h4 class="text-center" style="margin: 0px">
+              <p></p>
+              <a class="author" href="https://gorilla.cs.berkeley.edu/">BFCL Team</a>
+              <p></p>
+            </h4>
+          </div>
+
+          <b
+            ><i style="font-size: 1em"
+              >Release date: 2025-07-17. Last updated: 2025-07-17.
+              <a
+                href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md"
+                >[Change Log]</a
+              ></i
+            ></b
+          >
+
+          <div>
+            <br />
+            <p>
+              <strong>
+                With function-calling being the building blocks of Agents, the
+                Berkeley Function-Calling Leaderboard (BFCL) V4 presents a
+                holistic agentic evaluation for LLMs. BFCL V4 Agentic includes
+                web search (part‑1), memory (detailed in this blog), and format
+                sensitivity (part‑3). Together, the ability to web search, read
+                and write from memory, and the ability to invoke functions in
+                different languages present the building blocks for the exciting
+                and extremely challenging avenues that power agentic LLMs
+                today—from deep research to agents for coding and law.
+              </strong>
+            </p>
+
+            <p>
+              <strong>
+                If you're new to function calling, be sure to check out our
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+                  >earlier blog posts</a
+                >
+                for more background. In
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+                  >BFCL V1</a
+                >, we introduced expert‑curated single‑turn, simple, parallel,
+                and multiple function calling.
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html"
+                  >BFCL V2</a
+                >
+                introduced community–hobbyists and enterprise–contributed
+                functions.
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html"
+                  >BFCL V3</a
+                >
+                introduced multi‑turn and multi‑step function calling that let
+                models interact with the user, including the ability to go
+                back‑and‑forth asking clarifying questions and refining the
+                approach. Throughout, BFCL relies on AST (Abstract Syntax
+                Tree)‑based, or state‑transition based verification ensuring
+                determinism and minimal fluctuations as you evaluate your models
+                and applications.
+              </strong>
+            </p>
+
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                BFCL Leaderboard:
+                <a href="https://gorilla.cs.berkeley.edu/leaderboard.html"
+                  >Website</a
+                >
+              </li>
+              <li>
+                BFCL Dataset:
+                <a
+                  href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard/data"
+                  >HuggingFace Dataset 🤗</a
+                >
+              </li>
+              <li>
+                Reproducibility:
+                <a
+                  href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
+                  >GitHub Code</a
+                >
+              </li>
+              <li>
+                BFCL v1:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+                  >Simple, Parallel, and Multiple Function Call eval with AST</a
+                >
+              </li>
+              <li>
+                BFCL v2:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html"
+                  >Enterprise and OSS‑contributed Live Data</a
+                >
+              </li>
+              <li>
+                BFCL v3:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html"
+                  >Multi‑Turn & Multi‑Step Function Calling Evaluation</a
+                >
+              </li>
+              <li>
+                BFCL v4 Agentic:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html"
+                  >Part 1 Web Search</a
+                >
+              </li>
+              <li>
+                BFCL v4 Agentic:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/16_bfcl_v4_memory.html"
+                  >Part 2 Memory</a
+                >
+              </li>
+              <li>
+                BFCL v4 Agentic:
+                <a
+                  href="https://gorilla.cs.berkeley.edu/blogs/17_bfcl_v4_prompt_variation.html"
+                  >Part 3 Format Sensitivity</a
+                >
+              </li>
+            </ul>
+
+            <p>
+              In our past releases, we are encouraged by the community's deep
+              appreciation of the insights across different models. So, this
+              time we have divided our BFCL V4 release blogs into three parts to
+              address the technical complexities, and more importantly share
+              many more interesting insights.
+            </p>
+
+            <hr />
+
+            <h3 id="intro">Introduction</h3>
+            <p>
+              Humans naturally recall past conversations, preferences, and
+              relevant details, enabling continuity and personalization in
+              ongoing interactions. Granting LLM-based agents the capacity to
+              remember and build upon prior exchanges is therefore pivotal for
+              creating richer, more context-aware user experiences. For
+              instance, ChatGPT's memory system enhances personalized chatbot
+              experiences by remembering user preferences and previous
+              interactions, both through explicit memories saved by the user and
+              by referencing prior conversations. This allows the model to
+              tailor suggestions, maintain natural continuity, and adapt its
+              responses over time, all while giving users control over what's
+              remembered.
+            </p>
+            <p>
+              To enable this deeper level of agentic functionality, BFCL v4
+              provides structured memory testing backends. These systems allow
+              agents to store and retrieve information during a conversation by
+              using a set of dedicated memory tools. With these capabilities,
+              models can keep track of important details, reference past
+              interactions, and provide a much more seamless, context-aware
+              experience for users. In designing the memory dataset, we focused
+              on five practical domains: customer support, healthcare, student
+              advising, finance, and personal productivity. Each domain features
+              complex, multi-turn conversations designed to stress‑test a
+              model's ability to maintain conversational coherence, recall
+              previously stated facts, and continuously adapt as the context
+              evolves.
+            </p>
+            <p>
+              We have divided our BFCL v4 release blogs into two parts to
+              address the technical complexities, and more importantly share the
+              interesting insights. This blog BFCL V4 part-1 talks about Web
+              search, and here we talk about Memory.
+            </p>
+            <hr />
+
+            <h3 id="memory-dataset">Memory Dataset</h3>
+            <p>
+              To rigorously evaluate the memory capabilities introduced in BFCL
+              v4, we designed a comprehensive dataset that captures realistic
+              scenarios where memory use is critical. This dataset emphasizes
+              practical applications, thorough testing, and real-world relevance
+              across multiple domains. The dataset consists of 3 components:
+            </p>
+            <ol>
+              <li>
+                <strong>Context:</strong> Multi-turn conversations that reflect
+                realistic user-agent interactions and evolving needs over time.
+                <ul>
+                  <li>
+                    <em>Curation:</em> We selected five high-impact domains,
+                    illustrated below, based on where AI assistants are already
+                    used or show strong potential. We drafted the conversations
+                    by researching publicly available conversations in each
+                    domain and manually crafting realistic, multi-turn
+                    dialogues.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Tool Integration:</strong> A set of tools that enable
+                the model to communicate with the memory backends.
+                <ul>
+                  <li>
+                    <em>Curation:</em> Each conversation was paired with
+                    custom-made function-calling APIs for memory operations
+                    covering basic means of handling memory including adding,
+                    removing, searching, and clearing memory. These APIs
+                    simulate how LLMs interact with structured memory backends
+                    in real-world settings.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Question:</strong> After context sessions, we created
+                targeted follow-up questions to test whether the model could
+                retrieve specific information only available via memory,
+                mimicking real users revisiting past topics or checking on prior
+                details.
+                <ul>
+                  <li>
+                    <em>Curation:</em> Each question was manually written to
+                    align with prior user multi-turn conversations, requiring
+                    models to retrieve specific facts via memory APIs.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+
+            <p>The below are the chosen 5 domains:</p>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory1.png"
+                alt="The five categories"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              The five categories are derived from frequent use cases from the
+              community and over the web where memory is critical to answering
+              the question with the right content.
+            </p>
+
+            <ul>
+              <li>
+                <strong>College Student Advising:</strong> Tests whether models
+                can retain academic and personal context to support short and
+                long‑term student advising.
+              </li>
+              <li>
+                <strong>Customer Support:</strong> Evaluates continuity in
+                handling user issues, preferences, and prior interactions for
+                effective service.
+              </li>
+              <li>
+                <strong>Personal To‑Do List:</strong> Assesses the model's
+                ability to manage evolving daily tasks and routines with
+                consistent recall.
+              </li>
+              <li>
+                <strong>Healthcare Patient:</strong> Measures accuracy in
+                tracking medical histories, lifestyle changes, and ongoing
+                treatment plans.
+              </li>
+              <li>
+                <strong>Finance Managing Director:</strong> Examines memory use
+                in complex financial advising scenarios involving long‑term
+                strategy.
+              </li>
+            </ul>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory2.png"
+                alt="Example memory across domains 1"
+                style="
+                  max-width: 30%;
+                  height: auto;
+                  margin: 0 1.5%;
+                  display: inline-block;
+                "
+              />
+              <img
+                src="../assets/img/blog_post_16_memory3.png"
+                alt="Example memory across domains 2"
+                style="
+                  max-width: 30%;
+                  height: auto;
+                  margin: 0 1.5%;
+                  display: inline-block;
+                "
+              />
+              <img
+                src="../assets/img/blog_post_16_memory4.png"
+                alt="Example memory across domains 3"
+                style="
+                  max-width: 30%;
+                  height: auto;
+                  margin: 0 1.5%;
+                  display: inline-block;
+                "
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Three examples illustrating how models manage memory across
+              different dataset domains.
+            </p>
+
+            <hr />
+
+            <h3 id="memory-backend">Memory Backend Implementation</h3>
+            <p>
+              BFCL V4's memory backend enables a model to
+              <strong>store</strong>, <strong>retrieve</strong>, and
+              <strong>manage</strong> context. We've implemented three distinct
+              memory architectures: Key Value Store, Vector Store, and Recursive
+              Summarization. Each memory backend features core and archival
+              memory segments as explained above, inspired from existing agents
+              with memory such as
+              <a href="https://arxiv.org/abs/2310.08560">MemGPT</a>,
+              <a href="https://github.com/mem0ai/mem0">Mem0</a>, and
+              <a
+                href="https://www.llamaindex.ai/blog/improved-long-and-short-term-memory-for-llamaindex-agents"
+                >Memory for Llama-Index</a
+              >. The architectures evaluate diverse memory behaviors, from
+              precise key‑based recall to semantic retrieval and narrative
+              summarization.
+            </p>
+
+            <table class="memory-backend-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th style="background-color: #90caf9">Key Value Store</th>
+                  <th style="background-color: #ffcc80">Vector Store</th>
+                  <th style="background-color: #a5d6a7">
+                    Recursive Summarization
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Definition</strong></td>
+                  <td>
+                    A structured memory that stores data as key value pairs for
+                    exact lookups.
+                  </td>
+                  <td>
+                    A semantic memory that stores vector embeddings for
+                    similarity‑based retrieval.
+                  </td>
+                  <td>
+                    A running text buffer that accumulates and compresses
+                    conversation history.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>API Interface</strong></td>
+                  <td>
+                    <pre><code>memory_add()
+memory_remove()
+memory_clear()
+memory_search()</code></pre>
+                  </td>
+                  <td>
+                    <pre><code>memory_add()
+memory_remove()
+memory_clear()
+memory_search()</code></pre>
+                  </td>
+                  <td>
+                    <pre><code>memory_append()
+memory_update()
+memory_replace()
+memory_clear()
+memory_retrieve()</code></pre>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Search Methodology</strong></td>
+                  <td>BM25+ keyword search over keys</td>
+                  <td>
+                    Embedding-based nearest neighbor search using cosine
+                    similarity
+                  </td>
+                  <td>
+                    No search; model must recall from condensed buffer via
+                    summarization
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Cost</strong></td>
+                  <td>
+                    Low: Fast and deterministic, relies on structured key naming
+                  </td>
+                  <td>
+                    Medium: Flexible retrieval with moderate overhead due to
+                    search
+                  </td>
+                  <td>
+                    High: Model‑managed compression over long text buffers
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory5.png"
+                alt="Comparison of memory backends"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Direct comparison between the different memory backends and their
+              most effective use cases.
+            </p>
+
+            <div class="backend-section">
+              <h4>Key Value Store</h4>
+              <p>
+                A classic dictionary‑style memory for interpretable, structured
+                recall.
+              </p>
+              <p>
+                <em>Entry format:</em> <code>(key, value)</code> where keys
+                follow strict snake_case naming (no spaces, lowercase).
+              </p>
+              <p>API:</p>
+              <pre><code>memory_add(key, value)
+memory_remove(key)
+memory_clear()
+memory_search(query, k)  # BM25+ over keys</code></pre>
+              <p>
+                <strong>Design note.</strong> We favoured an in‑memory store
+                over SQLite/TinyDB for speed, transparency, and deterministic
+                snapshot‑and‑reload during benchmarking.
+              </p>
+
+              <div style="text-align: center; margin: 20px 0">
+                <img
+                  src="../assets/img/blog_post_16_memory6.png"
+                  alt="Key Value Store API flow"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <p
+                style="
+                  text-align: center;
+                  font-style: italic;
+                  color: #666;
+                  margin-top: 10px;
+                "
+              >
+                Graphical representation of flow of function-calling APIs for
+                Key Value Store.
+              </p>
+            </div>
+
+            <div class="backend-section">
+              <h4>Vector Store</h4>
+              <p>
+                A similarity‑based memory that feels closer to human "gist"
+                recall.
+              </p>
+              <ul>
+                <li>
+                  <strong>Embedding model:</strong>
+                  <code>all‑MiniLM‑L6‑v2</code>
+                </li>
+                <li><strong>Index:</strong> FAISS (in‑memory)</li>
+                <li>
+                  <strong>Usage:</strong>
+                  <code>memory_search(query, k)</code> embeds the query and
+                  returns the top‑k nearest vectors.
+                </li>
+              </ul>
+
+              <div style="text-align: center; margin: 20px 0">
+                <img
+                  src="../assets/img/blog_post_16_memory7.png"
+                  alt="Vector Store API flow"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <p
+                style="
+                  text-align: center;
+                  font-style: italic;
+                  color: #666;
+                  margin-top: 10px;
+                "
+              >
+                Graphical representation of flow of function-calling APIs for
+                Vector Store.
+              </p>
+            </div>
+
+            <div class="backend-section">
+              <h4>Recursive Summarization</h4>
+              <p>A single, ever‑growing text buffer: think "running diary".</p>
+              <p>API:</p>
+              <pre><code>memory_append(text)
+memory_update(text)     # overwrite entire buffer
+memory_replace(old, new)
+memory_clear()
+memory_retrieve()       # return full buffer</code></pre>
+              <p>
+                <strong>Limit:</strong> 10 000 characters (forces compression).
+              </p>
+            </div>
+
+            <hr />
+
+            <h3 id="pipeline-flow">
+              Memory Pipeline Flow: Snapshot-and-Reload
+            </h3>
+            <p>Each domain‑specific dataset contains three parts:</p>
+            <ol>
+              <li>
+                <strong
+                  >Prefilling Memory with Prerequisite Conversations</strong
+                >
+                <p>
+                  This phase comprises multiple conversational sessions, each
+                  covering distinct subtopics within realistic dialogues. For
+                  example, a college student might discuss coursework in one
+                  session, extracurricular activities in another, and career
+                  advice later.
+                </p>
+                <ul>
+                  <li>
+                    Initially, the memory starts empty. As conversations unfold,
+                    the model populates the memory backend using provided APIs.
+                  </li>
+                  <li>
+                    After each session, a memory snapshot—a serialized state—is
+                    saved to preserve the memory state across sessions.
+                  </li>
+                  <li>
+                    Before starting each new session, the relevant snapshot is
+                    reloaded to ensure continuity.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Evaluating Questions on Prefilled Memory</strong>
+                <p>
+                  During the evaluation phase, the final memory snapshot is
+                  loaded, and the model is presented with targeted follow-up
+                  questions (e.g., "Where am I traveling next weekend for a
+                  small freelance gig?").
+                </p>
+                <ul>
+                  <li>
+                    Each evaluation question begins with the same snapshot to
+                    maintain isolation between questions.
+                  </li>
+                  <li>
+                    The primary goal is assessing memory retrieval: the model
+                    must explicitly query the memory backend rather than relying
+                    on prior dialogue context.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Verifier</strong>
+                <ul>
+                  <li>
+                    Responses are evaluated against ground truth to determine
+                    correctness, verifying that models accurately store and
+                    retrieve relevant information via memory tools.
+                  </li>
+                  <li>
+                    No dialogue history is provided during evaluation to mimic
+                    real-world assistant behavior.
+                  </li>
+                  <li>
+                    We vary question phrasing, topic progression, and style to
+                    ensure models rely on explicit memory queries rather than
+                    recent conversational context. This method robustly tests
+                    genuine memory management capabilities over time.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+
+            <p>A diagram of the entire process is provided below:</p>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory8.png"
+                alt="End-to-end memory pipeline flow"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Entire end-to-end flow of the memory pipeline used for testing
+              memory.
+            </p>
+
+            <hr />
+
+            <h3 id="results">Insights</h3>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory9.png"
+                alt="Key Value Store accuracies"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Key Value Store accuracies for each model in order from highest to
+              lowest.
+            </p>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory10.png"
+                alt="Vector Store accuracies"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Vector Store accuracies for each model in order from highest to
+              lowest.
+            </p>
+
+            <div style="text-align: center; margin: 20px 0">
+              <img
+                src="../assets/img/blog_post_16_memory11.png"
+                alt="Recursive Summarization accuracies"
+                style="max-width: 100%; height: auto"
+              />
+            </div>
+            <p
+              style="
+                text-align: center;
+                font-style: italic;
+                color: #666;
+                margin-top: 10px;
+              "
+            >
+              Recursive Summarization accuracies for each model in order from
+              highest to lowest.
+            </p>
+
+            <p>
+              Our memory evaluation framework identified three distinct
+              behavioral patterns in how LLMs store and retrieve user
+              information. These findings emerge from model accuracy metrics
+              across three memory backends, namely Key Value Store, Vector
+              Store, and Recursive Summarization. Overall, models that
+              demonstrated accurate memory use exhibited consistent alignment
+              between user queries and stored memory entries. In contrast,
+              models with low accuracy frequently struggled due to failed
+              retrievals, excessive deletion, or semantic mismatches.
+            </p>
+
+            <h4>Key Success Patterns</h4>
+            <p>
+              From our evaluation of 150+ questions, we identified three
+              dominant memory behaviors. Each behavior reveals how models store,
+              retrieve and balance information across core and archival memory.
+            </p>
+
+            <p>
+              <strong>1. Complementary Core and Archival Use:</strong> High
+              performing models displayed a clear separation of concerns across
+              memory types. Specifically, core memory that was used for
+              persistent, identity facts such as "user_name", or "user_major",
+              were successful. Archival memory that was used to store dynamic
+              details such as recent orders or travel updates led to successful
+              retrieval.
+            </p>
+
+            <p>
+              <strong>2. Archival-Only Reliance with Sparse Core Use:</strong>
+              Some models avoided core memory entirely and instead relied
+              exclusively on archival memory to answer user queries. This
+              approach worked well when queries closely mirrored more
+              descriptive content.
+            </p>
+
+            <p>
+              <strong>3. Contextual Consolidation Across Turns:</strong> Certain
+              models succeeded by summarizing or grouping related facts across
+              dialogue turns. This enabled accurate recall even for abstract or
+              indirect queries as it efficiently stored the most important
+              details across a user conversation.
+            </p>
+
+            <h4>Notable Failure Pattern: Aggressive Memory Deletion</h4>
+            <p>
+              A notable pattern was models' aggressive removal of memory
+              entries, even when memory storage was not constrained. Models
+              frequently prioritized newly deemed urgent information, discarding
+              previously stored details prematurely. Consequently, when queried
+              later, these models failed to recall information they had recently
+              purged, undermining continuity. This behavior suggests that models
+              tend to overly prioritize recent, dense data over historically
+              significant yet precise information, potentially weakening
+              long-term conversational coherence.
+            </p>
+
+            <h4>Backend Trade‑offs</h4>
+            <p>
+              Our evaluation also reveals trade-offs among memory backend
+              implementations:
+            </p>
+            <p>
+              <strong>Key Value Stores:</strong>
+            </p>
+            <p>
+              Top Model: Claude 3 Sonnet – 53.55%<br />
+              Lowest Model: Command A – 7.74%<br />
+              Difference: 45.81 Percentage Points
+            </p>
+            <p>
+              KV Store excelled at exact, deterministic lookups, particularly
+              for structured identifiers like names, metrics, or static
+              preferences. However, they struggled when user queries were
+              rephrased or semantically drifted from the original key. For
+              instance, multiple models failed to retrieve correct responses
+              when the query deviated slightly from stored phrasing, despite
+              memory presence.
+            </p>
+            <p>
+              <strong>Vector Stores:</strong>
+            </p>
+            <p>
+              Top Model: Claude 3 Sonnet – 63.87%<br />
+              Lowest Model: Command A – 5.16%<br />
+              Difference: 58.71 Percentage Points
+            </p>
+            <p>
+              Vector store retrieval supported semantic generalization, enabling
+              models to locate related concepts even when the user used new or
+              abstract phrasing. However, this flexibility came at a cost:
+              hallucinated answers were common. For example, some models
+              returned plausible-sounding but incorrect memory entries due to
+              weak relevance scoring.
+            </p>
+            <p>
+              <strong>Recursive Summarization Stores</strong>
+            </p>
+            <p>
+              Top Model: Claude 3 Sonnet – 67.74%<br />
+              Lowest Model: Lama 4 Maverick – 1.29%<br />
+              Difference: 66.45 Percentage Points
+            </p>
+            <p>
+              Recursive summarization yielded the highest peak performance,
+              especially for models like Claude and Gemini. These models
+              maintained a coherent narrative across turns, supporting long-term
+              context integration. However, they sometimes over-summarized,
+              leading to the loss of precise details needed for accurate recall.
+            </p>
+
+            <h3 id="failure-examples">Specific Failure Examples</h3>
+            <p>
+              To understand the failure cases, we include the following for each
+              scenario:
+            </p>
+
+            <p>
+              <strong>Relevant Prerequisite Conversation:</strong> This is from
+              the user's conversation and is given to the model to decide what
+              to do with the information. The model uses explicit function calls
+              such as memory_retrieve, core_memory_add, and memory_remove to
+              control its memory in a way the model sees fit.
+            </p>
+
+            <p>
+              <strong>User Question:</strong> This is the question that is asked
+              from the "user" to the model and tests whether the model is able
+              to retrieve the answer to the question accurately.
+            </p>
+
+            <p><strong>Model Response:</strong> This is two fold:</p>
+            <ul>
+              <li>
+                <strong>Answer:</strong> The model's response to the user
+                question
+              </li>
+              <li>
+                <strong>Context:</strong> What information the model was able to
+                retrieve via API call to answer the question
+              </li>
+            </ul>
+
+            <p>
+              <strong>Ground Truth:</strong> The expected correct answer, used
+              as the reference to evaluate whether the model's response is
+              accurate.
+            </p>
+
+            <p>
+              <strong>Model Memory Snapshot:</strong> Shows the relevant part of
+              what the model's self-managed memory looks like. If the answer is
+              not found in memory, the reason for why it isn't found is
+              specified here instead.
+            </p>
+
+            <div class="scenario-box">
+              <h4>
+                Scenario 1 (Overwriting Core Information in Urgent Contexts)
+              </h4>
+              <pre><code>Relevant Pre-Req Conversation:
+"Work-related: Finalize quarterly budget. Review vendor contract before signing. Finish security compliance training module."
+
+User Question:
+I completely forgot. What training module did I have to finish?
+
+Model Response:
+{
+  'answer': 'You need to prep materials this weekend for Monday.',
+  'context': 'This information was retrieved from your archival memory under the key "training_session_prep".'
+}
+
+Ground Truth:
+["Security Compliance"]
+
+Model Memory Snapshot:
+The model had just deleted this item using memory_remove.</code></pre>
+
+              <div class="analysis-section">
+                <strong>Analysis:</strong> Despite plenty of free memory, the
+                model purged a key fact prematurely, choosing recency over
+                relevance. This aggressive pruning caused a critical recall
+                failure.
+              </div>
+
+              <div class="takeaway-section">
+                <strong>Takeaway:</strong> Some LLMs over‑prioritize new
+                information, sacrificing still‑needed long‑term memories and
+                breaking follow‑up interactions.
+              </div>
+            </div>
+
+            <div class="scenario-box">
+              <h4>Scenario 2 (Failure to Capture & Retrieve Nuanced Intent)</h4>
+              <pre><code>Relevant Pre-Req Conversation:
+"On the grad school front: part of me is really intrigued by the idea of continuing my research in immersive analytics or even branching into human-computer interaction for large datasets."
+
+User Question:
+If I do grad school, what do I want to do research in?
+
+Model Response:
+{
+  'answer': 'You might want to consider research in areas like quantum computing, machine learning applications, or the intersection of AI and philosophy.',
+  'context': 'Based on your current interests and coursework, you are deeply engaged in quantum computing, machine learning, and the philosophical implications of AI.'
+}
+
+Ground Truth:
+["Immersive analytics", "Human computer interaction"]
+
+Model Memory Snapshot:
+"archival_memory": {
+  "next_id": 44,
+  "store": {
+    "36": "User has formed a friendly circle at the gym [...] interests in machine learning and hardware acceleration."
+  }
+}</code></pre>
+
+              <div class="analysis-section">
+                <strong>Analysis:</strong> The model never stored the user’s
+                stated research goals, so it substituted plausible‑sounding but
+                unrelated topics. It failed both to recognize a high‑level
+                aspiration and to distinguish it from trivial background
+                details.
+              </div>
+
+              <div class="takeaway-section">
+                <strong>Takeaway:</strong> LLMs can overlook nuanced aims unless
+                those aims are explicitly tagged. Without robust salience
+                heuristics, even clearly articulated goals may be ignored or
+                overwritten.
+              </div>
+            </div>
+
+            <div class="scenario-box">
+              <h4>Scenario 3 (Hallucination During Open‑Ended Recall)</h4>
+              <pre><code>Relevant Pre-Req Conversation:
+"My lattes are consistently delicious, and I'm sure they could be even better with the right steam wand."
+
+User Question:
+What could make my lattes even better?
+
+Model Response:
+{
+  'answer': 'To enhance your lattes, consider experimenting with high-quality espresso beans, frothing techniques [...] properly calibrated.',
+  'context': 'This answer is based on general best practices for improving lattes'
+}
+
+Ground Truth:
+["steam wand"]
+
+Model Memory Snapshot:
+(memory contents unrelated to coffee steam wand)</code></pre>
+
+              <div class="analysis-section">
+                <strong>Analysis:</strong> Unable to retrieve the correct fact,
+                the model defaulted to generic coffee advice: an overconfident
+                hallucination rather than an admission of uncertainty or a
+                deeper memory search.
+              </div>
+
+              <div class="takeaway-section">
+                <strong>Takeaway:</strong> When recall fails, many models fill
+                the gap with confident generalities instead of signaling “I
+                don’t know.” Robust memory systems should prefer uncertainty –
+                or a secondary retrieval attempt – over hallucination.
+              </div>
+            </div>
+
+            <hr />
+
+            <p>
+              We hope you enjoyed this blog post. We would love to hear from you
+              on <a href="https://discord.gg/grXXvj9Whz">Discord</a>,
+              <a
+                href="https://twitter.com/shishirpatil_/status/1661780076277678082"
+                >Twitter (#GorillaLLM)</a
+              >, and
+              <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.
+            </p>
+
+            <h4>If you would like to cite BFCL:</h4>
+            <div
+              style="
+                background-color: #f5f5f5;
+                padding: 15px;
+                border-radius: 5px;
+              "
+            >
+              <pre id="citation_block"><code>@inproceedings{patil2025bfcl,
+  title={The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models},
+  author={Patil, Shishir G. and Mao, Huanzhi and Cheng-Jie Ji, Charlie and Yan, Fanjia and Suresh, Vishnu and Stoica, Ion and E. Gonzalez, Joseph},
+  booktitle={Forty-second International Conference on Machine Learning},
+  year={2025},
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleMoreBlogs() {
+        var submenu = document.querySelector(".sub-menu");
+        var caret = document.querySelector(".caret");
+        if (submenu.style.display === "none" || submenu.style.display === "") {
+          submenu.style.display = "block";
+          caret.innerHTML = "&#9660;";
+        } else {
+          submenu.style.display = "none";
+          caret.innerHTML = "&#9654;";
+        }
+      }
+
+      // Initially hide the submenu
+      document.addEventListener("DOMContentLoaded", function () {
+        var submenu = document.querySelector(".sub-menu");
+        if (submenu) {
+          submenu.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
