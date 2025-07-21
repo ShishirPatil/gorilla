@@ -196,6 +196,25 @@ class QwenFCHandler(OSSHandler):
                         formatted_prompt += f"<|im_start|>{role}\n{content}"
                 else:
                     formatted_prompt += f"<|im_start|>{role}\n{content}"
+                    
+                if "tool_calls" in message:
+                    for tool_call in message["tool_calls"]:
+                        if (tool_call == message["tool_calls"][0] and content) or tool_call != message["tool_calls"][0]:
+                            formatted_prompt += "\n"
+                        
+                        if "function" in tool_call:
+                            tool_call = tool_call["function"]
+                        
+                        formatted_prompt += '<tool_call>\n{"name": "'
+                        formatted_prompt += tool_call["name"]
+                        formatted_prompt += '", "arguments": '
+                        
+                        if isinstance(tool_call["arguments"], str):
+                            formatted_prompt += tool_call["arguments"]
+                        else:
+                            formatted_prompt += str(tool_call["arguments"])
+                        
+                        formatted_prompt += "}\n</tool_call>"
 
                 formatted_prompt += "<|im_end|>\n"
 
@@ -248,6 +267,8 @@ class QwenFCHandler(OSSHandler):
                 "role": "assistant",
                 "content": cleaned_response,
             }
+            
+        model_responses_message_for_chat_history["reasoning_content"] = reasoning_content
 
         return {
             "model_responses": cleaned_response,
