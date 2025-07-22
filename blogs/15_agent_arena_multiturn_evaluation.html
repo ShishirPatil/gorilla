@@ -368,10 +368,10 @@
                         <p></p>
                         <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
                             Yekollu</a>
-                        <a class="author" href="https://www.linkedin.com/in/arthbohra/">Arth Bohra</a>
-                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Ashwin Chirumamilla</a>
+                        <a class="author" href="https://www.linkedin.com/in/ranashreyas/">Shreyas Rana</a>
+                        <a class="author" href="https://www.linkedin.com/in/kchilaka/">Kireeti Chilakamarry</a>
+                        <a class="author" href="https://www.linkedin.com/in/vikram-iyer-489437169/">Vikram Iyer</a>
                         <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
-                        <a class="author" href="https://www.linkedin.com/in/saikolasani/">Sai Kolasani</a>
                         <a class="author" href="https://infwinston.github.io/">Wei-Lin Chiang</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~angelopoulos//">Anastasios Angelopoulos</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
@@ -398,11 +398,11 @@
                 <div class="preview">
                     <h2 id="introduction">Introduction</h2>
                     <p>
-                        Building on our previous work with <strong>🤖 Agent Arena</strong>, we are excited to announce a significant enhancement to our multi-turn evaluation system. The key innovation in this update is our improved ranking methodology that better accounts for the varying complexity and reliability of different conversation lengths in agent battles.
+                        Building on our previous work with <strong>🤖 Agent Arena</strong>, we are excited to announce a significant enhancement to our multi-turn evaluation system. The key innovation in this update is our improved ranking methodology that better accounts for the varying complexity and reliability of different conversation lengths in agent battles. It is important to note that the single and multi-turn evaluation algorithms are extremely similar, the difference being that the multi-turn evaluation also takes in the number of turns it took for a user to report model A is better than B or vice versa. 
                     </p>
 
                     <p>
-                        This post focuses specifically on the enhanced <strong>Extended Bradley-Terry Model</strong> with sophisticated multi-turn weighting that provides more accurate rankings for agents across different conversation complexities. The primary change is in our logistic regression system, which now applies variable weights to each ranking based on conversation length, rather than treating all battles equally.
+                        This post focuses specifically on the enhanced <strong>Extended Bradley-Terry Model</strong> with sophisticated multi-turn weighting that provides more accurate rankings for agents across varying conversation lengths. Rather than treating all battles equally, our logistic regression system weighs each ranking based on conversation length, with the weight and conversation length being inversely related.
                     </p>
                     
                     <p><strong>Quick Links:</strong></p>
@@ -427,10 +427,7 @@
                     
                     <div class="body">
                         <p>
-                            Agent Arena employs a comprehensive ranking system that evaluates agents based on their performance in head-to-head comparisons. The leaderboard ranks agents not only based on their overall performance but also by breaking down the performance of individual components such as LLM models, tools, and frameworks. The ranking process is informed by both user evaluations and an ELO-based rating system, commonly used in competitive ranking environments, where agent performance is dynamically adjusted after each task or comparison.
-                        </p>
-                        <p>
-                            The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
+                            Agent Arena employs a comprehensive ranking system that evaluates agents based on their performance in head-to-head comparisons. The leaderboard ranks agents based on their overall performance and the performance of their individual components (LLM model, tool, and framework). The ranking process is informed by both user evaluations and an ELO-based rating system, commonly used in competitive ranking environments, where agent performance is dynamically adjusted after each task or comparison.
                         </p>
                         <figure style="margin-right: 10px; text-align: center;">
                             <img src="../assets/img/blog_post_14_leaderboard1.png" style="width: 80%;">
@@ -445,7 +442,9 @@
                             The leaderboards analyzing the subcomponents of the agents
                         </i>
                     </p>
-
+                    <p>
+                        The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
+                    </p>
                         <ul>
                             <li>
                                 <strong>Model performance:</strong> Evaluating the effectiveness of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
@@ -463,7 +462,7 @@
                             <div class="body">
                               <h3>The Extended Bradley-Terry Model</h3>
                               <p>
-                                Agent Arena uses the <a href="https://blog.lmarena.ai/blog/2024/extended-arena/">Bradley-Terry extension</a>, which allows us to compare different agents based on their subcomponents, including tools, models, and frameworks. Instead of just evaluating the agents atomically, we also assess the performance of each individual subcomponent. This allows us to more accurately pinpoint where an agent's strength lies. For example, our first agent could be a combination of LangChain, Brave-Search, and GPT-4o-2024-08-06, while the second agent could be LlamaIndex, Wikipedia, and Claude-3-5-Sonnet-20240620.
+                                Agent Arena uses the <a href="https://blog.lmarena.ai/blog/2024/extended-arena/">Bradley-Terry extension</a> to compare agents based on their subcomponents, including tools, models, and frameworks. In addition to atomically evaluating the agents, we also assess each subcomponent's performance to accurately pinpoint where the agent's strength lies. For example, supposed our first agent is a combination of LangChain, Brave-Search, and GPT-4o-2024-08-06, while the second agent is a combination of LlamaIndex, Wikipedia, and Claude-3-5-Sonnet-20240620.
 
                                 Therefore, we propose the following observation model for the Extended Bradley-Terry Model. Given <code>P_1</code>, 
 
@@ -485,7 +484,7 @@
                                 <li><code>Agent B</code> is the LlamaIndex Wikipedia Agent, with the subcomponents: <code>{Wikipedia (B_T), LlamaIndex (B_F), and Claude-3-5-Sonnet-20240620 (B_M)}</code> and an Elo of 1500.</li>
                               </ul>
                               <p>
-                                In a traditional Elo system, we would have calculated the probability of the Brave-Search agent winning 64% of the time. Then given the actual outcome of the battle, <code>Y_1</code>, assuming that the Brave-Search agent wins, the new rating of the agents would be 1601.44 and 1498.56, respectively.
+                                In a traditional Elo system, the Brave-Search agent would win 64% of the time. Then given the actual outcome of the battle, <code>Y_1</code>, assuming that the Brave-Search agent wins, the new rating of the agents would be 1601.44 and 1498.56, respectively.
                               </p>
                               <p>In the Bradley-Terry model, however, we calculate the ratings by minimizing the following loss function given the real-world battle outcome: <code>Y_i</code>:
                               </p>
@@ -493,15 +492,15 @@
                                     \[L = -\sum_{i=1}^{n} Y_i \cdot log(\frac{1}{1 + e^{E_A - E_B}}) + (1 - Y_i) \cdot log(\frac{1}{1 + e^{E_B - E_A}})\]
                                 </p>
                                 <p>
-                                Finally, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved. Here, let's assume that A, the Brave-Search agent, wins the battle; in that case the design matrix would look like this:
+                                Finally, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved. Here, let's assume that A, the Brave-Search agent, wins the battle. In that case, the design matrix would look like this:
                             </p>
                                 <p>
                                     \[X = [ +log(A_T), +log(A_M), +log(A_F), -log(B_T), -log(B_M), -log(B_F) ]\]
                                 </p>
-                                <p>This allows us to evaluate the collective contribution of the subcomponents (tools, models, frameworks) in a single calculation. We then apply logistic regression with L2 regularization to control for overfitting and confounding effects caused by frequent pairings. </p>
+                                <p>Using this design matrix, we can evaluate the collective contribution of the subcomponents with a single calculation. To determine the regresion coefficients, we use logistic regression with L2 regularization to control for overfitting and confounding effects caused by frequent pairings. </p>
                                 
                                 <h4>🎯 Multi-Turn Evaluation Weighting</h4>
-                                <p>For multi-turn evaluations, we apply a sophisticated weighting scheme that accounts for the varying complexity and reliability of different conversation lengths. Instead of treating all battles equally, we weight each evaluation based on the number of turns in the conversation using a logistic taper function:</p>
+                                <p>For multi-turn evaluations, we apply a sophisticated weighting scheme that accounts for the varying complexity and reliability of different conversation lengths. The idea is that longer conversations are less reliable than shorter ones because they take longer to achieve a desired outcome. We weight each evaluation accordingly — we use a logistic taper function that's inversely proportional to the number of turns:</p>
                                 
                                 <p>
                                     \[w(x) = \frac{2}{1 + e^{k(x-1)}}\]
@@ -513,15 +512,16 @@
                                 <p>During the logistic regression fitting process, we apply these weights as follows:</p>
                                 
                                 <pre><code>Y[cur_row] = 1.0 if row['rating'] == 'A is better' else 0.0
-# sample_weights.append(1)  # Original approach: uniform weighting
-sample_weights.append(logistic_taper(numTurns))  # New approach: turn-based weighting
+                                    # sample_weights.append(1)  # Original approach: uniform weighting
+                                    sample_weights.append(logistic_taper(numTurns))  # New approach: turn-based weighting
 
-...
+                                    ...
 
-lr = LogisticRegression(fit_intercept=False, tol=1e-6, penalty='l2', C=1.0, solver='liblinear')
-lr.fit(X, Y, sample_weight=sample_weights)</code></pre>
+                                    lr = LogisticRegression(fit_intercept=False, tol=1e-6, penalty='l2', C=1.0, solver='liblinear')
+                                    lr.fit(X, Y, sample_weight=sample_weights)
+                                </code></pre>
                                 
-                                <p>This weighting approach ensures that the Bradley-Terry model accurately reflects agent performance across different conversation complexities, providing more nuanced and reliable rankings for multi-turn agent evaluations.</p>
+                                <p>This weighting approach ensures that the Bradley-Terry model accurately reflects agent performance across different conversation lengths and complexities, providing more nuanced and reliable rankings for multi-turn agent evaluations.</p>
                             
 
                             <p>By using this combined approach, Agent Arena ensures more accurate rankings across agents and their subcomponents. 🔄 This method provides clearer insights into each agent's performance and contributions, preventing the bias that can occur from frequent pairings or overused configurations.</p>
@@ -545,7 +545,7 @@ lr.fit(X, Y, sample_weight=sample_weights)</code></pre>
                                 This enhanced version of Agent Arena represents a significant step forward in multi-turn agent evaluation. By implementing our improved Bradley-Terry model with sophisticated turn-based weighting, we provide more nuanced and reliable rankings that better reflect agent performance across different conversation complexities.
                             </p>
                             <p>
-                                The key innovation - our logistic taper function that weights evaluations based on conversation length - ensures that our ranking system accurately accounts for the varying reliability of different interaction patterns. This advancement helps users make more informed decisions about agent selection for their specific use cases.
+                                The key innovation - our logistic taper function that weighs evaluations based on conversation length - ensures that our ranking system accurately accounts for the varying reliability of different interaction patterns. This advancement helps users make more informed decisions about agent selection for their specific use cases.
                             </p>
                             <p>
                                 We invite researchers, developers, and AI enthusiasts to explore the enhanced Agent Arena and contribute to the ongoing development of better evaluation methodologies for multi-turn agent interactions.
@@ -569,10 +569,10 @@ lr.fit(X, Y, sample_weight=sample_weights)</code></pre>
             </p>
             <pre class="citation-block"><code>@inproceedings{agent-arena,
             title={Agent Arena},
-            author={Nithik Yekollu and Arth Bohra and Ashwin Chirumamilla and Kai Wen and Sai Kolasani
+            author={Nithik Yekollu and Shreyas Rana and Kireeti Chilakamarry and Vikram Iyer and Kai Wen
                     Wei-Lin Chiang and Anastasios Angelopoulos and Joseph E. Gonzalez and
                     Ion Stoica and Shishir G. Patil},
-            year={2024},
+            year={2025},
             howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/15_agent_arena_multiturn_evaluation.html}},
 }
        </code></pre>
