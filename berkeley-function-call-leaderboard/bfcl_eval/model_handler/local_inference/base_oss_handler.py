@@ -287,13 +287,14 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     test_case, include_input_log
                 )
         except Exception as e:
-            print("-" * 100)
-            print(
-                "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
+            error_block = (
+                "-" * 100
+                + "\n❗️❗️ Error occurred during inference. Continuing to next test case.\n"
+                + f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}\n"
+                + traceback.format_exc(limit=10)
+                + "-" * 100
             )
-            print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
-            traceback.print_exc(limit=10)
-            print("-" * 100)
+            print(error_block)
 
             model_responses = f"Error during inference: {str(e)}"
             metadata = {

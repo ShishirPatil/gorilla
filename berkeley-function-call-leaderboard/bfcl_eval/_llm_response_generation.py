@@ -20,10 +20,6 @@ from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.utils import *
 from tqdm import tqdm
 
-RETRY_LIMIT = 3
-# 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
-RETRY_DELAY = 65  # Delay in seconds
-
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -169,39 +165,26 @@ def multi_threaded_inference(
         if dependency_id in events:
             events[dependency_id].wait()  # Wait until the dependent task sets its event
 
-    retry_count = 0
+    try:
+        result, metadata = handler.inference(
+            deepcopy(test_case), include_input_log, exclude_state_log
+        )
+    except Exception as e:
+        # This is usually the case when the model getting stuck on one particular test case.
+        # For example, timeout error or FC model returning invalid JSON response.
+        # Since temperature is already set to 0.001, retrying the same test case will not help.
+        # So we continue the generation process and record the error message as the model response
+        error_block = (
+            "-" * 100
+            + "\n❗️❗️ Error occurred during inference. Continuing to next test case.\n"
+            + f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}\n"
+            + traceback.format_exc(limit=10)
+            + "-" * 100
+        )
+        print(error_block)
 
-    while True:
-        try:
-            result, metadata = handler.inference(
-                deepcopy(test_case), include_input_log, exclude_state_log
-            )
-            break  # Success, exit the loop
-        except Exception as e:
-            if retry_count < RETRY_LIMIT and (
-                "rate limit reached" in str(e).lower()
-                or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
-            ):
-                print(
-                    f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
-                )
-                time.sleep(RETRY_DELAY)
-                retry_count += 1
-            else:
-                # This is usually the case when the model getting stuck on one particular test case.
-                # For example, timeout error or FC model returning invalid JSON response.
-                # Since temperature is already set to 0.001, retrying the same test case will not help.
-                # So we continue the generation process and record the error message as the model response
-                print("-" * 100)
-                print(
-                    "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
-                )
-                print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
-                traceback.print_exc(limit=10)
-                print("-" * 100)
-
-                result = f"Error during inference: {str(e)}"
-                metadata = {"traceback": traceback.format_exc()}
+        result = f"Error during inference: {str(e)}"
+        metadata = {"traceback": traceback.format_exc()}
 
     # Signal that the current task is complete
     events[test_case["id"]].set()
