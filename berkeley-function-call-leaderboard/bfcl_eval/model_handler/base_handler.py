@@ -744,7 +744,6 @@ class BaseHandler:
     def write(self, result, result_dir, update_mode=False):
         model_name_dir = self.model_name.replace("/", "_")
         model_result_dir = result_dir / model_name_dir
-        model_result_dir.mkdir(parents=True, exist_ok=True)
 
         if isinstance(result, dict):
             result = [result]
@@ -755,9 +754,13 @@ class BaseHandler:
         # Group entries by their `test_category` for efficient file handling
         file_entries = {}
         for entry in entries_to_write:
-            test_category = entry["id"].rsplit("_", 1)[0]
-            file_name = f"{VERSION_PREFIX}_{test_category}_result.json"
-            file_path = model_result_dir / file_name
+            test_category = extract_test_category_from_id(entry["id"])
+            # Determine the high-level grouping folder (non_live, live, etc.)
+            group_dir_name = get_general_category(test_category)
+            group_dir_path = model_result_dir / group_dir_name
+            group_dir_path.mkdir(parents=True, exist_ok=True)
+
+            file_path = group_dir_path / f"{VERSION_PREFIX}_{test_category}_result.json"
             file_entries.setdefault(file_path, []).append(entry)
 
         for file_path, entries in file_entries.items():

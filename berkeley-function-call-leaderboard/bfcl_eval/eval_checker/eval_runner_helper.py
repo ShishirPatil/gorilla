@@ -5,15 +5,11 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from bfcl_eval.constants.category_mapping import VERSION_PREFIX
 from bfcl_eval.constants.column_headers import *
 from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
-from bfcl_eval.utils import (
-    extract_test_category,
-    load_dataset_entry,
-    load_file,
-    write_list_of_dicts_to_file,
-)
+from bfcl_eval.utils import *
 
 
 def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
@@ -182,7 +178,7 @@ def save_eval_results(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
+    output_file_dir = score_dir / model_name / get_general_category(test_category)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -625,8 +621,9 @@ def update_leaderboard_table_with_local_score_file(
     # Traverse each subdirectory
     for subdir in subdirs:
         model_name = subdir.relative_to(score_path).name
-        # Find and process all JSON files in the subdirectory
-        for model_score_json in subdir.glob("*.json"):
+        # Find and process all score JSON files recursively in the subdirectory
+        pattern = f"{VERSION_PREFIX}_*_score.json"
+        for model_score_json in subdir.rglob(pattern):
             metadata = load_file(model_score_json)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
             test_category = extract_test_category(model_score_json)

@@ -7,7 +7,11 @@ from typing import Dict, List, Tuple
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
     MemoryAPI,
 )
-from bfcl_eval.utils import extract_test_category_from_id, is_first_memory_prereq_entry
+from bfcl_eval.utils import (
+    extract_test_category_from_id,
+    get_general_category,
+    is_first_memory_prereq_entry,
+)
 from rank_bm25 import BM25Plus
 
 # https://lilianweng.github.io/posts/2023-06-23-agent/#component-two-memory
@@ -37,7 +41,7 @@ class MemoryAPI_kv(MemoryAPI):
         test_category: str = extract_test_category_from_id(self.test_id, remove_prereq=True)
 
         # TODO: use helper function to assemble the path
-        self.snapshot_folder = model_result_dir / "memory_snapshot" / test_category
+        self.snapshot_folder = model_result_dir / get_general_category(test_category) / "memory_snapshot" / test_category
         self.snapshot_folder.mkdir(parents=True, exist_ok=True)
         self.latest_snapshot_file = self.snapshot_folder / f"{self.scenario}_final.json"
 

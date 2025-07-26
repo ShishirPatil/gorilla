@@ -69,15 +69,9 @@ def build_handler(model_name, temperature):
 def get_involved_test_entries(test_category_args, run_ids):
     all_test_categories, all_test_entries_involved = [], []
     if run_ids:
-        with open(TEST_IDS_TO_GENERATE_PATH) as f:
-            test_ids_to_generate = json.load(f)
-        for category, test_ids in test_ids_to_generate.items():
-            if len(test_ids) == 0:
-                continue
-            all_test_entries_involved.extend(
-                [entry for entry in load_dataset_entry(category) if entry["id"] in test_ids]
-            )
-            all_test_categories.append(category)
+        all_test_categories, all_test_entries_involved = load_test_entries_from_id_file(
+            TEST_IDS_TO_GENERATE_PATH
+        )
 
     else:
         all_test_categories = parse_test_category_argument(test_category_args)
@@ -99,12 +93,15 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
 
         # TODO: Simplify the handling of memory prerequisite entries/categories
         result_file_paths = [
-            model_result_dir / get_file_name_by_category(test_category, is_result_file=True)
+            model_result_dir
+            / get_general_category(test_category)
+            / get_file_name_by_category(test_category, is_result_file=True)
         ]
         if is_memory(test_category):
             # Memory test cases have the pre-requisite entries in a separate file
             result_file_paths.append(
                 model_result_dir
+                / get_general_category(test_category)
                 / get_file_name_by_category(f"{test_category}_prereq", is_result_file=True)
             )
 

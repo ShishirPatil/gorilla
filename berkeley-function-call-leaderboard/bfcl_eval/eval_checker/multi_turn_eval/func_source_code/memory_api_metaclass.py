@@ -1,7 +1,11 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from bfcl_eval.utils import extract_test_category_from_id, is_first_memory_prereq_entry
+from bfcl_eval.utils import (
+    extract_test_category_from_id,
+    get_general_category,
+    is_first_memory_prereq_entry,
+)
 
 
 class MemoryAPI(ABC):
@@ -23,7 +27,7 @@ class MemoryAPI(ABC):
         test_category: str = extract_test_category_from_id(self.test_id)
 
         # TODO: use helper function to assemble the path
-        self.snapshot_folder = model_result_dir / "memory_snapshot" / test_category
+        self.snapshot_folder = model_result_dir / get_general_category(test_category) / "memory_snapshot" / test_category
         self.snapshot_folder.mkdir(parents=True, exist_ok=True)
         self.latest_snapshot_file = self.snapshot_folder / f"{self.scenario}_final.json"
 

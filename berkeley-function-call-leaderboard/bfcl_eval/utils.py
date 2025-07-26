@@ -5,30 +5,26 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Union
 
-from bfcl_eval.constants.category_mapping import (
-    ALL_CATEGORIES,
-    MEMORY_SCENARIO_NAME,
-    TEST_COLLECTION_MAPPING,
-    VERSION_PREFIX,
-)
+from bfcl_eval.constants.category_mapping import *
 from bfcl_eval.constants.default_prompts import (
     ADDITIONAL_SYSTEM_PROMPT_FOR_AGENTIC_RESPONSE_FORMAT,
 )
 from bfcl_eval.constants.eval_config import (
     MEMORY_PREREQ_CONVERSATION_PATH,
     MULTI_TURN_FUNC_DOC_PATH,
-    PROMPT_PATH,
     POSSIBLE_ANSWER_PATH,
+    PROMPT_PATH,
 )
-from bfcl_eval.constants.executable_backend_config import MULTI_TURN_FUNC_DOC_FILE_MAPPING
-
+from bfcl_eval.constants.executable_backend_config import (
+    MULTI_TURN_FUNC_DOC_FILE_MAPPING,
+)
 
 #### Helper functions to extract/parse/complete test category from different formats ####
 
 
-def extract_test_category(input_string: Union[str, Path]) -> str:
+def extract_test_category(input_string: Union[str, Path], raise_error: bool = True) -> str:
     """
-    Extract the test category from a given file name.
+    Extract the test category from a given file name. If category cannot be extracted, and the flag is not set, then raise an error.
     """
     input_string = str(input_string)
     pattern = rf".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.json"
@@ -37,10 +33,12 @@ def extract_test_category(input_string: Union[str, Path]) -> str:
     # Check if there's a match and extract the captured group
     if match:
         return match.group(1)  # the first captured group (\w+)
-    else:
+    elif raise_error:
         raise ValueError(
             f"Could not extract the test category from the input string: {input_string}"
         )
+    else:
+        return None
 
 
 def extract_test_category_from_id(test_entry_id: str, remove_prereq: bool = False) -> str:
@@ -88,8 +86,8 @@ def find_file_by_category(
     else:
         suffix = ".json"
 
-    for json_file in folder_path.glob(f"*{suffix}"):
-        if extract_test_category(json_file) == test_category:
+    for json_file in folder_path.rglob(f"*{suffix}"):
+        if extract_test_category(json_file, raise_error=False) == test_category:
             return json_file
     raise FileNotFoundError(f"No JSON file found with category: {test_category}")
 
@@ -133,7 +131,31 @@ def parse_test_category_argument(test_category_args: list[str]) -> list[str]:
     return sorted(list(test_name_total))
 
 
+def load_test_entries_from_id_file(id_file_path: Path) -> tuple[list[str], list[dict]]:
+    """
+    Helper function to load the test entries from the id file (e.g. `test_case_ids_to_generate.json.example`)
+    """
+    with open(id_file_path) as f:
+        test_ids_to_generate = json.load(f)
+
+    categories: list[str] = []
+    entries: list[dict] = []
+    for category, test_ids in test_ids_to_generate.items():
+        # Skip categories that have an empty ID list
+        if not test_ids:
+            continue
+        # Extend the entries list with only those whose id is present in the ID list
+        entries.extend(
+            [entry for entry in load_dataset_entry(category) if entry["id"] in test_ids]
+        )
+        categories.append(category)
+
+    return categories, entries
+
+
 #### Predicate functions to check the test category ####
+def is_format_sensitivity(test_category: str) -> bool:
+    return "format_sensitivity" in test_category
 
 
 def is_web_search(test_category):
@@ -158,6 +180,22 @@ def is_agentic(test_category):
 
 def is_multi_turn(test_category):
     return "multi_turn" in test_category
+
+
+def is_live(test_category):
+    return "live" in test_category
+
+
+def is_non_live(test_category: str) -> bool:
+    # “Non-live” ⇔ it is NOT in any of the other three groups
+    return not any(
+        (
+            is_live(test_category),
+            is_multi_turn(test_category),
+            is_agentic(test_category),
+            is_format_sensitivity(test_category),
+        )
+    )
 
 
 def is_sql(test_category):
@@ -200,6 +238,31 @@ def contain_multi_turn_interaction(test_category):
     return is_multi_turn(test_category) or is_agentic(test_category)
 
 
+def get_general_category(test_category: str) -> str:
+    """
+    Map a specific test category (e.g. "simple", "live_simple", "multi_turn_base")
+    to one of the 5 high-level groups used for organizing result / score files:
+
+    • non_live: categories in NON_LIVE_CATEGORY
+    • live: categories in LIVE_CATEGORY
+    • multi_turn: categories in MULTI_TURN_CATEGORY
+    • agentic: categories in AGENTIC_CATEGORY
+    • format_sensitivity: the format sensitivity test categories
+    """
+    if is_non_live(test_category):
+        return "non_live"
+    elif is_live(test_category):
+        return "live"
+    elif is_multi_turn(test_category):
+        return "multi_turn"
+    elif is_agentic(test_category):
+        return "agentic"
+    elif is_format_sensitivity(test_category):
+        return "format_sensitivity"
+    else:
+        raise ValueError(f"Invalid test category: {test_category}")
+
+
 #### Helper functions to load/write the dataset files ####
 
 
@@ -226,20 +289,28 @@ def load_dataset_entry(
     If `contain_prereq` is True, it will include the pre-requisite entries for the memory test categories.
     If `include_language_specific_hint` is True, it will include the language-specific hint for the function description (for Java, JavaScript, and Python).
     """
-    if not is_memory(test_category) and not is_web_search(test_category):
-        file_name = f"{VERSION_PREFIX}_{test_category}.json"
-        all_entries = load_file(PROMPT_PATH / file_name)
+    if is_format_sensitivity(test_category):
+        # Format sensitivity categories
+        all_entries = load_format_sensitivity_test_cases()
+
     elif is_web_search(test_category):
+        # Web search categories
         file_name = f"{VERSION_PREFIX}_web_search.json"
         all_entries = load_file(PROMPT_PATH / file_name)
         all_entries = process_web_search_test_case(all_entries, test_category)
-    else:
+
+    elif is_memory(test_category):
         # Memory categories
         all_entries = load_file(PROMPT_PATH / f"{VERSION_PREFIX}_memory.json")
         for scenario in MEMORY_SCENARIO_NAME:
             all_entries = process_memory_test_case(
                 all_entries, test_category, scenario, include_prereq=include_prereq
             )
+
+    else:
+        # All other categories, we don't need any special handling
+        file_name = f"{VERSION_PREFIX}_{test_category}.json"
+        all_entries = load_file(PROMPT_PATH / file_name)
 
     all_entries = process_agentic_test_case(all_entries)
     all_entries = populate_test_cases_with_predefined_functions(all_entries)
@@ -268,11 +339,16 @@ def load_ground_truth_entry(test_category: str) -> list[dict]:
 
 def write_list_of_dicts_to_file(filename, data, subdir=None):
     if subdir:
-        # Ensure the subdirectory exists
+        # Determine the general category subfolder based on the filename, if possible
+        test_category = extract_test_category(filename)
+        group_dir_name = get_general_category(test_category)
+        subdir = os.path.join(subdir, group_dir_name)
+
+        # Ensure the (possibly nested) subdirectory exists
         os.makedirs(subdir, exist_ok=True)
 
         # Construct the full path to the file
-        filename = os.path.join(subdir, filename)
+        filename = os.path.join(subdir, os.path.basename(filename))
 
     # Write the list of dictionaries to the file in JSON format
     with open(filename, "w", encoding="utf-8") as f:
@@ -642,3 +718,10 @@ def populate_initial_settings_for_web_search_test_cases(
             }
             entry["initial_config"] = init_config
     return test_cases
+
+
+# Utils for Format Sensitivity
+
+
+def load_format_sensitivity_test_cases() -> list[dict]:
+    pass
