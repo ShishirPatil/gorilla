@@ -8,9 +8,9 @@ ALL_AVAILABLE_MEMORY_BACKENDS = [
 ]
 
 NON_LIVE_CATEGORY = [
-    "simple",
-    "java",
-    "javascript",
+    "simple_python",
+    "simple_java",
+    "simple_javascript",
     "multiple",
     "parallel",
     "parallel_multiple",
@@ -65,11 +65,11 @@ TEST_COLLECTION_MAPPING = {
     "live": LIVE_CATEGORY,
     "non_live": NON_LIVE_CATEGORY,
     "non_python": [
-        "java",
-        "javascript",
+        "simple_java",
+        "simple_javascript",
     ],
     "python": [
-        "simple",
+        "simple_python",
         "irrelevance",
         "parallel",
         "multiple",
