@@ -140,20 +140,7 @@ def agentic_runner(
         else:
             correct_count += 1
 
-    accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
-    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
-    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
-
-    return accuracy, len(model_result)
+    return save_eval_results(result, correct_count, model_result, test_category, model_name, score_dir)
 
 
 def multi_turn_runner(
@@ -273,20 +260,7 @@ def multi_turn_runner(
         else:
             correct_count += 1
 
-    accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
-    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
-    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
-
-    return accuracy, len(model_result)
+    return save_eval_results(result, correct_count, model_result, test_category, model_name, score_dir)
 
 
 def relevance_file_runner(
@@ -348,20 +322,7 @@ def relevance_file_runner(
 
             result.append(temp)
 
-    accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
-    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
-    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
-
-    return accuracy, len(model_result)
+    return save_eval_results(result, correct_count, model_result, test_category, model_name, score_dir)
 
 
 def ast_file_runner(
@@ -450,20 +411,7 @@ def ast_file_runner(
             temp["possible_answer"] = possible_answer_item
             result.append(temp)
 
-    accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
-    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name
-    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
-
-    return accuracy, len(model_result)
+    return save_eval_results(result, correct_count, model_result, test_category, model_name, score_dir)
 
 
 #### Main runner function ####
@@ -567,8 +515,9 @@ def runner(model_names, test_categories, result_dir, score_dir):
 
         print(f"🦍 Model: {model_name}")
 
-        # Find and process all JSON files in the subdirectory
-        for model_result_json in subdir.glob("*.json"):
+        # Find and process all result JSON files recursively in the subdirectory
+        pattern = f"{VERSION_PREFIX}_*_result.json"
+        for model_result_json in subdir.rglob(pattern):
             test_category = extract_test_category(model_result_json)
             if test_category not in test_categories:
                 continue
