@@ -293,14 +293,14 @@ def generate_leaderboard_csv(
         )
 
         # Non-Live Score
-        python_simple_ast_non_live = get_category_score(value, "simple")
+        python_simple_ast_non_live = get_category_score(value, "simple_python")
         python_multiple_ast_non_live = get_category_score(value, "multiple")
         python_parallel_ast_non_live = get_category_score(value, "parallel")
         python_parallel_multiple_ast_non_live = get_category_score(
             value, "parallel_multiple"
         )
-        java_simple_ast_non_live = get_category_score(value, "java")
-        javascript_simple_ast_non_live = get_category_score(value, "javascript")
+        java_simple_ast_non_live = get_category_score(value, "simple_java")
+        javascript_simple_ast_non_live = get_category_score(value, "simple_javascript")
         irrelevance_non_live = get_category_score(value, "irrelevance")
 
         simple_ast_non_live = calculate_unweighted_accuracy(
