@@ -20,7 +20,7 @@ class KimiHandler(OSSHandler):
             self.temperature = 0.6
 
     @override
-    def _format_prompt(self, messages: list[dict], function: dict) -> str:
+    def _format_prompt(self, messages, function):
         """
         Manually apply the chat template to construct the formatted prompt.
         This way, we can have full control over the final formatted prompt and is generally recommended for advanced use cases.

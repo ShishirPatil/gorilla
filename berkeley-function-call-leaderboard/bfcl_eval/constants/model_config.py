@@ -1911,18 +1911,6 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "moonshotai/Kimi-K2-Instruct-FC": ModelConfig(
-        model_name="moonshotai/Kimi-K2-Instruct-FC",
-        display_name="moonshotai/Kimi-K2-Instruct (FC)",
-        url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
-        org="MoonshotAI",
-        license="modified-mit",
-        model_handler=KimiHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=True,
-        underscore_to_dot=False,
-    ),
     "moonshotai/Kimi-K2-Instruct": ModelConfig(
         model_name="moonshotai/Kimi-K2-Instruct",
         display_name="moonshotai/Kimi-K2-Instruct (Prompt)",
