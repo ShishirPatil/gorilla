@@ -9,12 +9,7 @@ from bfcl_eval.constants.category_mapping import *
 from bfcl_eval.constants.default_prompts import (
     ADDITIONAL_SYSTEM_PROMPT_FOR_AGENTIC_RESPONSE_FORMAT,
 )
-from bfcl_eval.constants.eval_config import (
-    MEMORY_PREREQ_CONVERSATION_PATH,
-    MULTI_TURN_FUNC_DOC_PATH,
-    POSSIBLE_ANSWER_PATH,
-    PROMPT_PATH,
-)
+from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.executable_backend_config import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
 )
@@ -50,6 +45,10 @@ def extract_test_category_from_id(test_entry_id: str, remove_prereq: bool = Fals
     """
     if remove_prereq:
         test_entry_id = test_entry_id.replace("_prereq", "")
+    # For format sensitivity test cases, the test entry id is in the form of "format_sensitivity_0:live_simple_23-5-1", where the second part is the original test entry id
+    if ":" in test_entry_id:
+        test_entry_id = test_entry_id.split(":")[0]
+
     return test_entry_id.rsplit("_", 1)[0]
 
 
@@ -278,6 +277,29 @@ def load_file(file_path, sort_by_id=False):
     return result
 
 
+def sort_file_content_by_id(file_path: Path) -> None:
+    """
+    Sort the content of a file by the id of the entries. The file is only rewritten
+    when the ordering actually changes to avoid unnecessary disk writes.
+    """
+    # Load the current content preserving original order (and potential duplicates)
+    original_entries = load_file(file_path)
+
+    # Desired final ordering (sorted, unique)
+    sorted_entries = sorted(original_entries, key=sort_key)
+
+    assert len(original_entries) == len(
+        sorted_entries
+    ), "There should be no duplicates in the file"
+
+    # Check if the write is necessary by comparing id sequences
+    original_ids = [entry["id"] for entry in original_entries]
+    sorted_ids = [entry["id"] for entry in sorted_entries]
+
+    if original_ids != sorted_ids:
+        write_list_of_dicts_to_file(file_path, sorted_entries)
+
+
 def load_dataset_entry(
     test_category: str,
     include_prereq: bool = True,
@@ -326,15 +348,17 @@ def load_ground_truth_entry(test_category: str) -> list[dict]:
     This function retrieves the ground truth entry for a given test category.
     The input should not be a test category goup, but a specific test category.
     """
-    if not is_memory(test_category) and not is_web_search(test_category):
-        file_name = f"{VERSION_PREFIX}_{test_category}.json"
-    elif is_web_search(test_category):
-        file_name = f"{VERSION_PREFIX}_web_search.json"
-    else:
-        # Memory categories
-        file_name = f"{VERSION_PREFIX}_memory.json"
+    if is_format_sensitivity(test_category):
+        return load_format_sensitivity_ground_truth_entry()
 
-    return load_file(POSSIBLE_ANSWER_PATH / file_name)
+    elif is_memory(test_category):
+        return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_memory.json")
+
+    elif is_web_search(test_category):
+        return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_web_search.json")
+
+    else:
+        return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_{test_category}.json")
 
 
 def write_list_of_dicts_to_file(filename, data, subdir=None):
@@ -391,7 +415,8 @@ def sort_key(entry):
 
     In either case, the universal index is enough to sort the entries.
     """
-    parts = entry["id"].rsplit("_", 1)
+    entry_id = entry["id"].split(":")[0]
+    parts = entry_id.rsplit("_", 1)
     test_category, index = parts[0], parts[1]
     # This handles the case where the index is in the form TestCategory_Index-FuncDocSubIndex-PromptSubIndex
     if "-" in index:
@@ -399,19 +424,21 @@ def sort_key(entry):
         index = index.split("-")[0]
 
     # Make sure the memory prereq entries are inferenced first to avoid the memory entries being blocked due to dependencies.
-    # Single-turn happen first
-    if not is_multi_turn(test_category) and not is_agentic(test_category):
+
+    # Memory prereq happen first
+    if is_memory_prereq(test_category):
         priority = 0
-    # Multi-turn happen second
-    elif is_multi_turn(test_category):
+    # Web search happen second
+    elif is_web_search(test_category):
         priority = 1
-    # Prereq happen third
-    elif is_memory_prereq(test_category):
+    # Single-turn happen third
+    elif not contain_multi_turn_interaction(test_category):
         priority = 2
-    # Agentic (web search) happen third
-    elif is_agentic(test_category) and not is_memory(test_category):
+    # Multi-turn happen fourth
+    elif is_multi_turn(test_category):
         priority = 3
     # Memory happen last
+    # Hopefully the prereq entries are done by now
     elif is_memory(test_category):
         priority = 4
 
@@ -724,4 +751,21 @@ def populate_initial_settings_for_web_search_test_cases(
 
 
 def load_format_sensitivity_test_cases() -> list[dict]:
-    pass
+    _, all_test_entries_involved = load_test_entries_from_id_file(
+        FORMAT_SENSITIVITY_IDS_PATH
+    )
+    for entry, index in enumerate(all_test_entries_involved):
+        entry["id"] = f"format_sensitivity_{index}:{entry['id']}"
+
+    return all_test_entries_involved
+
+
+def load_format_sensitivity_ground_truth_entry() -> list[dict]:
+    all_categories, all_test_entries_involved = load_test_entries_from_id_file(
+        FORMAT_SENSITIVITY_IDS_PATH
+    )
+    for category, test_entries in all_categories.items():
+        for test_entry in test_entries:
+            test_entry["id"] = test_entry["id"].split(":")[1]
+
+    return all_test_entries_involved

@@ -1,13 +1,11 @@
 import argparse
-import json
 import multiprocessing as mp
 import os
 import shutil
-import threading
-import time
-from concurrent.futures import ThreadPoolExecutor
-from copy import deepcopy
 import traceback
+from collections import defaultdict, deque
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait, Future
+from copy import deepcopy
 
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
@@ -150,17 +148,9 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
     return sorted(test_cases_to_generate, key=sort_key)
 
 
-def multi_threaded_inference(
-    handler, test_case, events, include_input_log, exclude_state_log
-):
+def multi_threaded_inference(handler, test_case, include_input_log, exclude_state_log):
 
     assert type(test_case["function"]) is list
-
-    # Wait for all dependencies to complete
-    for dependency_id in test_case.get("depends_on", []):
-        # TODO: Improve the dependency handling, when prereq doesn't need to be re-run
-        if dependency_id in events:
-            events[dependency_id].wait()  # Wait until the dependent task sets its event
 
     try:
         result, metadata = handler.inference(
@@ -183,15 +173,11 @@ def multi_threaded_inference(
         result = f"Error during inference: {str(e)}"
         metadata = {"traceback": traceback.format_exc()}
 
-    # Signal that the current task is complete
-    events[test_case["id"]].set()
-
     result_to_write = {
         "id": test_case["id"],
         "result": result,
+        **metadata,
     }
-
-    result_to_write.update(metadata)
 
     return result_to_write
 
@@ -214,33 +200,77 @@ def generate_results(args, model_name, test_cases_total):
             result_dir=args.result_dir,
             update_mode=update_mode,
         )
+        return
 
-    else:
-        futures = []
-        events = {test_case["id"]: threading.Event() for test_case in test_cases_total}
-        with ThreadPoolExecutor(max_workers=args.num_threads) as executor:
-            with tqdm(
-                total=len(test_cases_total), desc=f"Generating results for {model_name}"
-            ) as pbar:
+    # ───── dependency bookkeeping ──────────────────────────────
+    dependencies = {
+        test_case["id"]: set(test_case.get("depends_on", []))
+        for test_case in test_cases_total
+    }
+    children_of = defaultdict(list)
+    for test_case in test_cases_total:
+        for dependency_id in test_case.get("depends_on", []):
+            children_of[dependency_id].append(test_case["id"])
 
-                for test_case in test_cases_total:
-                    future = executor.submit(
-                        multi_threaded_inference,
-                        handler,
-                        test_case,
-                        events,
-                        args.include_input_log,
-                        args.exclude_state_log,
-                    )
-                    futures.append(future)
+    id_to_test_case = {test_case["id"]: test_case for test_case in test_cases_total}
 
-                for future in futures:
-                    # This will wait for the task to complete, so that we are always writing in order
-                    result = future.result()
-                    handler.write(
-                        result, result_dir=args.result_dir, update_mode=args.run_ids
-                    )  # Only when we run specific test ids, we will need update_mode=True to keep entries in the same order
-                    pbar.update()
+    ready_queue = deque(
+        [
+            test_case_id
+            for test_case_id, dependency_ids in dependencies.items()
+            if not dependency_ids
+        ]
+    )
+    in_flight: dict[Future, str] = {}  # future -> test_case_id
+    completed = set()
+
+    with ThreadPoolExecutor(max_workers=args.num_threads) as pool, tqdm(
+        total=len(test_cases_total), desc=f"Generating results for {model_name}"
+    ) as pbar:
+
+        # seed initial ready tasks
+        while ready_queue and len(in_flight) < args.num_threads:
+            test_case_id = ready_queue.popleft()
+            test_case = id_to_test_case[test_case_id]
+            future = pool.submit(
+                multi_threaded_inference,
+                handler,
+                test_case,
+                args.include_input_log,
+                args.exclude_state_log,
+            )
+            in_flight[future] = test_case_id
+
+        # main scheduler loop
+        while in_flight:
+            done, _ = wait(in_flight, return_when=FIRST_COMPLETED)
+            for future in done:
+                test_case_id = in_flight.pop(future)
+                result_dict = future.result()
+                handler.write(
+                    result_dict, result_dir=args.result_dir, update_mode=args.run_ids
+                )
+                pbar.update()
+                completed.add(test_case_id)
+
+                # unlock children
+                for child_id in children_of[test_case_id]:
+                    dependencies[child_id].discard(test_case_id)
+                    if not dependencies[child_id]:
+                        ready_queue.append(child_id)
+
+            # refill the pool up to max_workers
+            while ready_queue and len(in_flight) < args.num_threads:
+                test_case_id = ready_queue.popleft()
+                test_case = id_to_test_case[test_case_id]
+                future = pool.submit(
+                    multi_threaded_inference,
+                    handler,
+                    test_case,
+                    args.include_input_log,
+                    args.exclude_state_log,
+                )
+                in_flight[future] = test_case_id
 
 
 def main(args):
@@ -297,3 +327,4 @@ def main(args):
             )
         else:
             generate_results(args, model_name, test_cases_total)
+            # FIXME: Sort the result files by id at the end

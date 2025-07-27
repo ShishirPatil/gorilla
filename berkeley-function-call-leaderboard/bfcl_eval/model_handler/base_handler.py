@@ -783,7 +783,8 @@ class BaseHandler:
                         f.write(json.dumps(entry) + "\n")
 
             else:
-                # Normal mode: Append in sorted order
+                # Normal mode: Append to the end of the file
+                # Note: We will sort all the entries at the end of the generation pipeline to ensure the order is consistent
                 entries.sort(key=sort_key)
                 with open(file_path, "a") as f:
                     for entry in entries:
