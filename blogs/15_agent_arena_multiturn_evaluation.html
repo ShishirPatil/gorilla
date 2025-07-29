@@ -366,17 +366,13 @@
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px">
                         <p></p>
-                        <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
-                            Yekollu</a>
                         <a class="author" href="https://www.linkedin.com/in/ranashreyas/">Shreyas Rana</a>
                         <a class="author" href="https://www.linkedin.com/in/kchilaka/">Kireeti Chilakamarry</a>
                         <a class="author" href="https://www.linkedin.com/in/vikram-iyer-489437169/">Vikram Iyer</a>
-                        <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
-                        <a class="author" href="https://infwinston.github.io/">Wei-Lin Chiang</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~angelopoulos//">Anastasios Angelopoulos</a>
+                        <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                        <a class="author" href="https://www.linkedin.com/in/shishirpatil/">Shishir G. Patil</a>
                         <p></p>
                     </h4>
                 </div>
@@ -513,13 +509,13 @@
                                 <p>During the logistic regression fitting process, we apply these weights as follows:</p>
                                 
                                 <pre><code>Y[cur_row] = 1.0 if row['rating'] == 'A is better' else 0.0
-                                    # sample_weights.append(1)  # Original approach: uniform weighting
-                                    sample_weights.append(logistic_taper(numTurns))  # New approach: turn-based weighting
+# sample_weights.append(1)  # Original approach: uniform weighting
+sample_weights.append(logistic_taper(numTurns))  # New approach: turn-based weighting
 
-                                    ...
+...
 
-                                    lr = LogisticRegression(fit_intercept=False, tol=1e-6, penalty='l2', C=1.0, solver='liblinear')
-                                    lr.fit(X, Y, sample_weight=sample_weights)
+lr = LogisticRegression(fit_intercept=False, tol=1e-6, penalty='l2', C=1.0, solver='liblinear')
+lr.fit(X, Y, sample_weight=sample_weights)
                                 </code></pre>
                                 
                                 <p>This weighting approach ensures that the Bradley-Terry model accurately reflects agent performance across different conversation lengths and complexities, providing more nuanced and reliable rankings for multi-turn agent evaluations.</p>
@@ -570,9 +566,7 @@
             </p>
             <pre class="citation-block"><code>@inproceedings{agent-arena,
             title={Agent Arena},
-            author={Nithik Yekollu and Shreyas Rana and Kireeti Chilakamarry and Vikram Iyer and Kai Wen
-                    Wei-Lin Chiang and Anastasios Angelopoulos and Joseph E. Gonzalez and
-                    Ion Stoica and Shishir G. Patil},
+            author={Shreyas Rana and Kireeti Chilakamarry and Vikram Iyer and Nithik Yekollu and Joseph E. Gonzalez and Ion Stoica and Shishir G. Patil},
             year={2025},
             howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/15_agent_arena_multiturn_evaluation.html}},
 }
