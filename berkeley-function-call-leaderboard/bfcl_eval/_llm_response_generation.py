@@ -4,8 +4,9 @@ import os
 import shutil
 import traceback
 from collections import defaultdict, deque
-from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait, Future
+from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from copy import deepcopy
+from typing import TYPE_CHECKING
 
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
@@ -17,6 +18,10 @@ from bfcl_eval.eval_checker.eval_runner_helper import load_file
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.utils import *
 from tqdm import tqdm
+
+if TYPE_CHECKING:
+    from bfcl_eval.model_handler.base_handler import BaseHandler
+    from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 
 
 def get_args():
@@ -194,83 +199,51 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 
 def generate_results(args, model_name, test_cases_total):
-    update_mode = args.allow_overwrite
     handler = build_handler(model_name, args.temperature)
+    if isinstance(handler, OSSHandler):
+        is_oss_model = True
+        handler: OSSHandler
+    else:
+        is_oss_model = False
+        handler: BaseHandler
 
-    if handler.model_style == ModelStyle.OSSMODEL:
-        # batch_inference will handle the writing of results
-        handler.batch_inference(
-            test_entries=test_cases_total,
-            num_gpus=args.num_gpus,
-            gpu_memory_utilization=args.gpu_memory_utilization,
-            backend=args.backend,
-            skip_server_setup=args.skip_server_setup,
-            local_model_path=args.local_model_path,
-            include_input_log=args.include_input_log,
-            exclude_state_log=args.exclude_state_log,
-            result_dir=args.result_dir,
-            update_mode=update_mode,
-        )
-        return
-
-    # ───── dependency bookkeeping ──────────────────────────────
-    dependencies = {
-        test_case["id"]: set(test_case.get("depends_on", []))
-        for test_case in test_cases_total
-    }
-    children_of = defaultdict(list)
-    for test_case in test_cases_total:
-        for dependency_id in test_case.get("depends_on", []):
-            children_of[dependency_id].append(test_case["id"])
-
-    id_to_test_case = {test_case["id"]: test_case for test_case in test_cases_total}
-
-    ready_queue = deque(
-        [
-            test_case_id
-            for test_case_id, dependency_ids in dependencies.items()
-            if not dependency_ids
-        ]
-    )
-    in_flight: dict[Future, str] = {}  # future -> test_case_id
-    completed = set()
-
-    with ThreadPoolExecutor(max_workers=args.num_threads) as pool, tqdm(
-        total=len(test_cases_total), desc=f"Generating results for {model_name}"
-    ) as pbar:
-
-        # seed initial ready tasks
-        while ready_queue and len(in_flight) < args.num_threads:
-            test_case_id = ready_queue.popleft()
-            test_case = id_to_test_case[test_case_id]
-            future = pool.submit(
-                multi_threaded_inference,
-                handler,
-                test_case,
-                args.include_input_log,
-                args.exclude_state_log,
+    try:
+        if is_oss_model:
+            handler.spin_up_local_server(
+                num_gpus=args.num_gpus,
+                gpu_memory_utilization=args.gpu_memory_utilization,
+                backend=args.backend,
+                skip_server_setup=args.skip_server_setup,
+                local_model_path=args.local_model_path,
             )
-            in_flight[future] = test_case_id
 
-        # main scheduler loop
-        while in_flight:
-            done, _ = wait(in_flight, return_when=FIRST_COMPLETED)
-            for future in done:
-                test_case_id = in_flight.pop(future)
-                result_dict = future.result()
-                handler.write(
-                    result_dict, result_dir=args.result_dir, update_mode=args.run_ids
-                )
-                pbar.update()
-                completed.add(test_case_id)
+        # ───── dependency bookkeeping ──────────────────────────────
+        dependencies = {
+            test_case["id"]: set(test_case.get("depends_on", []))
+            for test_case in test_cases_total
+        }
+        children_of = defaultdict(list)
+        for test_case in test_cases_total:
+            for dependency_id in test_case.get("depends_on", []):
+                children_of[dependency_id].append(test_case["id"])
 
-                # unlock children
-                for child_id in children_of[test_case_id]:
-                    dependencies[child_id].discard(test_case_id)
-                    if not dependencies[child_id]:
-                        ready_queue.append(child_id)
+        id_to_test_case = {test_case["id"]: test_case for test_case in test_cases_total}
 
-            # refill the pool up to max_workers
+        ready_queue = deque(
+            [
+                test_case_id
+                for test_case_id, dependency_ids in dependencies.items()
+                if not dependency_ids
+            ]
+        )
+        in_flight: dict[Future, str] = {}  # future -> test_case_id
+        completed = set()
+
+        with ThreadPoolExecutor(max_workers=args.num_threads) as pool, tqdm(
+            total=len(test_cases_total), desc=f"Generating results for {model_name}"
+        ) as pbar:
+
+            # seed initial ready tasks
             while ready_queue and len(in_flight) < args.num_threads:
                 test_case_id = ready_queue.popleft()
                 test_case = id_to_test_case[test_case_id]
@@ -282,6 +255,41 @@ def generate_results(args, model_name, test_cases_total):
                     args.exclude_state_log,
                 )
                 in_flight[future] = test_case_id
+
+            # main scheduler loop
+            while in_flight:
+                done, _ = wait(in_flight, return_when=FIRST_COMPLETED)
+                for future in done:
+                    test_case_id = in_flight.pop(future)
+                    result_dict = future.result()
+                    handler.write(
+                        result_dict, result_dir=args.result_dir, update_mode=args.run_ids
+                    )
+                    pbar.update()
+                    completed.add(test_case_id)
+
+                    # unlock children
+                    for child_id in children_of[test_case_id]:
+                        dependencies[child_id].discard(test_case_id)
+                        if not dependencies[child_id]:
+                            ready_queue.append(child_id)
+
+                # refill the pool up to max_workers
+                while ready_queue and len(in_flight) < args.num_threads:
+                    test_case_id = ready_queue.popleft()
+                    test_case = id_to_test_case[test_case_id]
+                    future = pool.submit(
+                        multi_threaded_inference,
+                        handler,
+                        test_case,
+                        args.include_input_log,
+                        args.exclude_state_log,
+                    )
+                    in_flight[future] = test_case_id
+
+    finally:
+        if is_oss_model:
+            handler.shutdown_local_server()
 
 
 def main(args):

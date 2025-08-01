@@ -2,8 +2,6 @@ import os
 import subprocess
 import threading
 import time
-import traceback
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Optional
 
@@ -16,10 +14,9 @@ from bfcl_eval.model_handler.utils import (
     default_decode_execute_prompting,
     system_prompt_pre_processing_chat_model,
 )
-from bfcl_eval.utils import is_agentic, is_multi_turn
+from bfcl_eval.utils import contain_multi_turn_interaction
 from openai import OpenAI
 from overrides import EnforceOverrides, final, override
-from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
@@ -41,16 +38,19 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
 
     @override
-    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
-        """
-        OSS models have a different inference method.
-        They needs to spin up a server first and then send requests to it.
-        It is more efficient to spin up the server once for the whole batch, instead of for each individual entry.
-        So we implement batch_inference method instead.
-        """
-        raise NotImplementedError(
-            "OSS Models should call the batch_inference method instead."
-        )
+    def inference(
+        self,
+        test_entry: dict,
+        include_input_log: bool,
+        exclude_state_log: bool,
+    ):
+        # TODO: Let oss model support FC methods as well, depends on their model type
+        if contain_multi_turn_interaction(test_entry["id"]):
+            return self.inference_multi_turn_prompting(
+                test_entry, include_input_log, exclude_state_log
+            )
+        else:
+            return self.inference_single_turn_prompting(test_entry, include_input_log)
 
     @override
     def decode_ast(self, result, language="Python"):
@@ -61,21 +61,17 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         return default_decode_execute_prompting(result)
 
     @final
-    def batch_inference(
+    def spin_up_local_server(
         self,
-        test_entries: list[dict],
         num_gpus: int,
         gpu_memory_utilization: float,
         backend: str,
         skip_server_setup: bool,
         local_model_path: Optional[str],
-        include_input_log: bool,
-        exclude_state_log: bool,
-        update_mode: bool,
-        result_dir: Path = RESULT_PATH,
     ):
         """
-        Batch inference for OSS models.
+        Spin up a local server for the model.
+        If the server is already running, skip the setup.
         """
         from transformers import AutoConfig, AutoTokenizer
 
@@ -121,77 +117,87 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 )
         print(f"Max context length: {self.max_context_length}")
 
-        if not skip_server_setup:
-            if backend == "vllm":
-                process = subprocess.Popen(
-                    [
-                        "vllm",
-                        "serve",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tensor-parallel-size",
-                        str(num_gpus),
-                        "--gpu-memory-utilization",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
-                    stdout=subprocess.PIPE,  # Capture stdout
-                    stderr=subprocess.PIPE,  # Capture stderr
-                    text=True,  # To get the output as text instead of bytes
-                )
-            elif backend == "sglang":
-
-                process = subprocess.Popen(
-                    [
-                        "python",
-                        "-m",
-                        "sglang.launch_server",
-                        "--model-path",
-                        str(self.model_path_or_id),
-                        "--port",
-                        str(self.vllm_port),
-                        "--dtype",
-                        str(self.dtype),
-                        "--tp",
-                        str(num_gpus),
-                        "--mem-fraction-static",
-                        str(gpu_memory_utilization),
-                        "--trust-remote-code",
-                    ],
-                    stdout=subprocess.PIPE,  # Capture stdout
-                    stderr=subprocess.PIPE,  # Capture stderr
-                    text=True,  # To get the output as text instead of bytes
-                )
-            else:
-                raise ValueError(f"Backend {backend} is not supported.")
-
-            stop_event = threading.Event()
-            # Event to signal threads to stop; no need to see logs after server is ready
-
-            def log_subprocess_output(pipe, stop_event):
-                # Read lines until stop event is set
-                for line in iter(pipe.readline, ""):
-                    if stop_event.is_set():
-                        break
-                    else:
-                        print(line, end="")
-                pipe.close()
-                print("server log tracking thread stopped successfully.")
-
-            # Start threads to read and print stdout and stderr
-            stdout_thread = threading.Thread(
-                target=log_subprocess_output, args=(process.stdout, stop_event)
-            )
-            stderr_thread = threading.Thread(
-                target=log_subprocess_output, args=(process.stderr, stop_event)
-            )
-            stdout_thread.start()
-            stderr_thread.start()
-
+        self._server_process = process = None
+        self._stdout_thread = stdout_thread = None
+        self._stderr_thread = stderr_thread = None
+        # Event to signal threads to stop; no need to see logs after server is ready
+        # declare early so it always exists
+        self._stop_event = threading.Event()
         try:
+            if not skip_server_setup:
+                if backend == "vllm":
+                    process = subprocess.Popen(
+                        [
+                            "vllm",
+                            "serve",
+                            str(self.model_path_or_id),
+                            "--port",
+                            str(self.vllm_port),
+                            "--dtype",
+                            str(self.dtype),
+                            "--tensor-parallel-size",
+                            str(num_gpus),
+                            "--gpu-memory-utilization",
+                            str(gpu_memory_utilization),
+                            "--trust-remote-code",
+                        ],
+                        stdout=subprocess.PIPE,  # Capture stdout
+                        stderr=subprocess.PIPE,  # Capture stderr
+                        text=True,  # To get the output as text instead of bytes
+                    )
+                elif backend == "sglang":
+
+                    process = subprocess.Popen(
+                        [
+                            "python",
+                            "-m",
+                            "sglang.launch_server",
+                            "--model-path",
+                            str(self.model_path_or_id),
+                            "--port",
+                            str(self.vllm_port),
+                            "--dtype",
+                            str(self.dtype),
+                            "--tp",
+                            str(num_gpus),
+                            "--mem-fraction-static",
+                            str(gpu_memory_utilization),
+                            "--trust-remote-code",
+                        ],
+                        stdout=subprocess.PIPE,  # Capture stdout
+                        stderr=subprocess.PIPE,  # Capture stderr
+                        text=True,  # To get the output as text instead of bytes
+                    )
+                else:
+                    raise ValueError(f"Backend {backend} is not supported.")
+
+                def log_subprocess_output(pipe, stop_event):
+                    # Read lines until stop event is set
+                    while not stop_event.is_set():
+                        line = pipe.readline()
+                        if line:
+                            print(line, end="")
+                        else:
+                            break
+                    pipe.close()
+                    print("server log tracking thread stopped successfully.")
+
+                # Start threads to read and print stdout and stderr
+                stdout_thread = threading.Thread(
+                    target=log_subprocess_output, args=(process.stdout, self._stop_event)
+                )
+                stderr_thread = threading.Thread(
+                    target=log_subprocess_output, args=(process.stderr, self._stop_event)
+                )
+                stdout_thread.setDaemon(True)
+                stderr_thread.setDaemon(True)
+                stdout_thread.start()
+                stderr_thread.start()
+
+            self._server_process = process
+            self._stdout_thread = stdout_thread
+            self._stderr_thread = stderr_thread
+
             # Wait for the server to be ready
             server_ready = False
             while not server_ready:
@@ -214,103 +220,43 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     # If the connection is not ready, wait and try again
                     time.sleep(1)
 
-            if not skip_server_setup:
-                # Signal threads to stop reading output
-                stop_event.set()
-
-            # Once the server is ready, make the completion requests
-            futures = []
-            events = {test_case["id"]: threading.Event() for test_case in test_entries}
-            with ThreadPoolExecutor(max_workers=100) as executor:
-                with tqdm(
-                    total=len(test_entries),
-                    desc=f"Generating results for {self.model_name}",
-                ) as pbar:
-
-                    for test_case in test_entries:
-                        future = executor.submit(
-                            self._multi_threaded_inference,
-                            test_case,
-                            events,
-                            include_input_log,
-                            exclude_state_log,
-                        )
-                        futures.append(future)
-
-                    for future in futures:
-                        # This will wait for the task to complete, so that we are always writing in order
-                        result = future.result()
-                        self.write(result, result_dir, update_mode=update_mode)
-                        pbar.update()
+            # Signal threads to stop reading output
+            self._stop_event.set()
 
         except Exception as e:
+            # Clean-up everything we already started, then re-raise
+            if self._server_process and self._server_process.poll() is None:
+                self._server_process.terminate()
+            if self._stop_event:
+                self._stop_event.set()
+            if self._stdout_thread:
+                self._stdout_thread.join(timeout=2)
+            if self._stderr_thread:
+                self._stderr_thread.join(timeout=2)
             raise e
 
-        finally:
-            if not skip_server_setup:
-                # Ensure the server process is terminated properly
-                process.terminate()
-                try:
-                    # Wait for the process to terminate fully
-                    process.wait(timeout=15)
-                    print("Process terminated successfully.")
-                except subprocess.TimeoutExpired:
-                    process.kill()
-                    process.wait()  # Wait again to ensure it's fully terminated
-                    print("Process killed.")
+    def shutdown_local_server(self):
+        """Terminate the locally launched OSS model server if it is still running."""
+        # Ensure the server process is terminated properly
+        process = getattr(self, "_server_process", None)
+        if process and process.poll() is None:
+            process.terminate()
+            try:
+                # Wait for the process to terminate fully
+                process.wait(timeout=15)
+                print("Process terminated successfully.")
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()  # Wait again to ensure it's fully terminated
+                print("Process killed.")
 
-                # Wait for the output threads to finish
-                stop_event.set()
-                stdout_thread.join()
-                stderr_thread.join()
-
-    @final
-    def _multi_threaded_inference(
-        self, test_case, events, include_input_log: bool, exclude_state_log: bool
-    ):
-        """
-        This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
-        """
-        assert type(test_case["function"]) is list
-
-        # Wait for all dependencies to complete
-        for dependency_id in test_case.get("depends_on", []):
-            events[dependency_id].wait()  # Wait until the dependent task sets its event
-
-        try:
-            if is_multi_turn(test_case["id"]) or is_agentic(test_case["id"]):
-                model_responses, metadata = self.inference_multi_turn_prompting(
-                    test_case, include_input_log, exclude_state_log
-                )
-            else:
-                model_responses, metadata = self.inference_single_turn_prompting(
-                    test_case, include_input_log
-                )
-        except Exception as e:
-            error_block = (
-                "-" * 100
-                + "\n❗️❗️ Error occurred during inference. Continuing to next test case.\n"
-                + f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}\n"
-                + traceback.format_exc(limit=10)
-                + "-" * 100
-            )
-            print(error_block)
-
-            model_responses = f"Error during inference: {str(e)}"
-            metadata = {
-                "traceback": traceback.format_exc(),
-            }
-
-        # Signal that the current task is complete
-        events[test_case["id"]].set()
-
-        result_to_write = {
-            "id": test_case["id"],
-            "result": model_responses,
-        }
-        result_to_write.update(metadata)
-
-        return result_to_write
+        # Tell the log-reader threads to stop and wait for them
+        if getattr(self, "_stop_event", None):
+            self._stop_event.set()
+        if getattr(self, "_stdout_thread", None):
+            self._stdout_thread.join(timeout=2)
+        if getattr(self, "_stderr_thread", None):
+            self._stderr_thread.join(timeout=2)
 
     #### Prompting methods ####
 
