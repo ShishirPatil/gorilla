@@ -756,7 +756,7 @@ class BaseHandler:
         for entry in entries_to_write:
             test_category = extract_test_category_from_id(entry["id"])
             # Determine the high-level grouping folder (non_live, live, etc.)
-            group_dir_name = get_general_category(test_category)
+            group_dir_name = get_category_directory_structure_by_id(entry["id"])
             group_dir_path = model_result_dir / group_dir_name
             group_dir_path.mkdir(parents=True, exist_ok=True)
 

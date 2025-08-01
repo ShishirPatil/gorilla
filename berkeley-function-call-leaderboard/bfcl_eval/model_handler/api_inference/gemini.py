@@ -257,7 +257,7 @@ class GeminiHandler(BaseHandler):
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+        test_entry_id: str = test_entry["id"]
 
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = self._substitute_prompt_role(
@@ -265,7 +265,7 @@ class GeminiHandler(BaseHandler):
             )
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
         # Gemini has system prompt in a specific field
         system_prompt = extract_system_prompt(test_entry["question"][0])
@@ -296,6 +296,7 @@ class GeminiHandler(BaseHandler):
 
         else:
             model_responses = "The model did not return any response."
+            reasoning_content = ""
 
         return {
             "model_responses": model_responses,

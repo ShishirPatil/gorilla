@@ -1,15 +1,9 @@
 import json
-from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
     MemoryAPI,
-)
-from bfcl_eval.utils import (
-    extract_test_category_from_id,
-    get_general_category,
-    is_first_memory_prereq_entry,
 )
 
 # isort: off
@@ -45,27 +39,12 @@ class MemoryAPI_vector(MemoryAPI):
         self.snapshot_folder = None
 
     def _load_scenario(self, initial_config: dict, long_context: bool = False):
-        # We don't care about the long_context parameter here
-        # It's there to match the signature of functions in the multi-turn evaluation code
-        model_result_dir: Path = initial_config["model_result_dir"]
-        self.test_id: str = initial_config["test_id"]
-        self.scenario: str = initial_config["scenario"]
-        test_category: str = extract_test_category_from_id(self.test_id, remove_prereq=True)
+        # Set up paths & load snapshots
+        memory_data = self._prepare_snapshot(initial_config)
 
-        # TODO: use helper function to assemble the path
-        self.snapshot_folder = model_result_dir / get_general_category(test_category) / "memory_snapshot" / test_category
-        self.snapshot_folder.mkdir(parents=True, exist_ok=True)
-        self.latest_snapshot_file = self.snapshot_folder / f"{self.scenario}_final.json"
-
-        if not is_first_memory_prereq_entry(self.test_id):
-            assert (
-                self.latest_snapshot_file.exists()
-            ), f"Not first memory entry, but no snapshot file found in this path: {self.latest_snapshot_file}"
-
-            with open(self.latest_snapshot_file, "r") as f:
-                memory_data = json.load(f)
-                self.core_memory.load_from_snapshot(memory_data["core_memory"])
-                self.archival_memory.load_from_snapshot(memory_data["archival_memory"])
+        if memory_data:
+            self.core_memory.load_from_snapshot(memory_data["core_memory"])
+            self.archival_memory.load_from_snapshot(memory_data["archival_memory"])
 
     def _flush_memory_to_local_file(self):
         """

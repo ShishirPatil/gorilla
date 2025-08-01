@@ -85,21 +85,21 @@ def get_involved_test_entries(test_category_args, run_ids):
 def collect_test_cases(args, model_name, all_test_categories, all_test_entries_involved):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = args.result_dir / model_name_dir
+    print(all_test_categories)
 
     existing_result = []
     for test_category in all_test_categories:
-
         # TODO: Simplify the handling of memory prerequisite entries/categories
         result_file_paths = [
             model_result_dir
-            / get_general_category(test_category)
+            / get_category_directory_structure_by_id(test_category)
             / get_file_name_by_category(test_category, is_result_file=True)
         ]
         if is_memory(test_category):
             # Memory test cases have the pre-requisite entries in a separate file
             result_file_paths.append(
                 model_result_dir
-                / get_general_category(test_category)
+                / get_category_directory_structure_by_id(test_category)
                 / get_file_name_by_category(f"{test_category}_prereq", is_result_file=True)
             )
 
@@ -135,6 +135,17 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
         for test_case in all_test_entries_involved
         if test_case["id"] not in existing_ids
     ]
+
+    # Skip format sensitivity test cases for FC models
+    if (
+        any(is_format_sensitivity(test_category) for test_category in all_test_categories)
+        and MODEL_CONFIG_MAPPING[model_name].is_fc_model
+    ):
+        test_cases_to_generate = [
+            test_case
+            for test_case in test_cases_to_generate
+            if not is_format_sensitivity(test_case["id"])
+        ]
 
     test_cases_to_generate = clean_up_memory_prereq_entries(test_cases_to_generate)
     # TODO: Should we move these to the load_dataset_entry function?
@@ -307,6 +318,14 @@ def main(args):
         print("Running specific test cases. Ignoring `--test-category` argument.")
     else:
         print(f"Running full test cases for categories: {all_test_categories}.")
+
+    if any(is_format_sensitivity(test_category) for test_category in all_test_categories):
+        for model_name in args.model:
+            if MODEL_CONFIG_MAPPING[model_name].is_fc_model:
+                print(
+                    "⚠️ Warning: Format sensitivity test cases are only supported for prompting (non-FC) models. "
+                    f"Since {model_name} is a FC model based on its config, the format sensitivity test cases will be skipped."
+                )
 
     if args.result_dir is not None:
         args.result_dir = PROJECT_ROOT / args.result_dir

@@ -376,10 +376,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+        test_entry_id: str = test_entry["id"]
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
 
         return {"message": [], "function": functions}

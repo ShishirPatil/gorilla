@@ -7,12 +7,8 @@ import re
 from functools import reduce
 from typing import TYPE_CHECKING, Callable, List, Optional, Type, Union
 
-from bfcl_eval.constants.default_prompts import (
-    DEFAULT_SYSTEM_PROMPT,
-    MEMORY_AGENT_SETTINGS,
-    MEMORY_BACKEND_INSTRUCTION_CORE_ARCHIVAL,
-    MEMORY_BACKEND_INSTRUCTION_UNIFIED,
-)
+from bfcl_eval.constants.default_prompts import *
+from bfcl_eval.utils import *
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.parser.java_parser import parse_java_function_call
@@ -185,13 +181,15 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
-        elif model_style in [
-            ModelStyle.OpenAI_Responses
-        ]:
-            oai_tool.append({"type": "function", 
-                             "name": item["name"], 
-                             "description": item["description"], 
-                             "parameters": item["parameters"]})
+        elif model_style in [ModelStyle.OpenAI_Responses]:
+            oai_tool.append(
+                {
+                    "type": "function",
+                    "name": item["name"],
+                    "description": item["description"],
+                    "parameters": item["parameters"],
+                }
+            )
         elif model_style in [
             ModelStyle.COHERE,
             ModelStyle.OpenAI_Completions,
@@ -248,7 +246,7 @@ def convert_value(value, type_str):
         return value
 
 
-def ast_parse(input_str: str, language: str="Python") -> list[dict]:
+def ast_parse(input_str: str, language: str = "Python") -> list[dict]:
     if language == "Python":
         cleaned_input = input_str.strip("[]'")
         parsed = ast.parse(cleaned_input, mode="eval")
@@ -334,16 +332,20 @@ def resolve_ast_by_type(value):
 
 
 # TODO: consider moving this step to pipeline instead of in each model handler
-def system_prompt_pre_processing_chat_model(prompts, function_docs, test_category):
+def system_prompt_pre_processing_chat_model(
+    prompts: list[dict], function_docs: list[dict], test_entry_id: str
+) -> list[dict]:
     """
     Add a system prompt to the chat model to instruct the model on the available functions and the expected response format.
     If the prompts list already contains a system prompt, append the additional system prompt content to the existing system prompt.
     """
     assert type(prompts) == list
 
-    system_prompt_template = DEFAULT_SYSTEM_PROMPT
+    prompt_format = extract_prompt_format_from_id(test_entry_id)
 
-    system_prompt = system_prompt_template.format(functions=function_docs)
+    system_prompt = formulate_system_prompt(
+        format_sensitivity_config=prompt_format, functions=function_docs
+    )
 
     # System prompt must be in the first position
     # If the question comes with a system prompt, append its content at the end of the chat template.
@@ -425,7 +427,7 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result: str, language: str="Python") -> list[dict]:
+def default_decode_ast_prompting(result: str, language: str = "Python") -> list[dict]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -598,3 +600,182 @@ def add_memory_instruction_system_prompt(
         )
 
     return prompts
+
+
+#### Utils for Format Sensitivity ####
+
+
+def formulate_system_prompt(format_sensitivity_config: str, functions: list[dict]) -> str:
+    """
+    Formulate the default system prompt based on the provided parameters.
+    """
+    (
+        return_format,
+        has_tool_call_tag,
+        function_doc_format,
+        prompt_format,
+        prompt_style,
+    ) = parse_prompt_variation_params(format_sensitivity_config)
+
+    formatted_function_doc = format_function_doc(functions, function_doc_format)
+
+    prompt_template = PROMPT_TEMPLATE_MAPPING[prompt_format]
+    style_template = PROMPT_STYLE_TEMPLATES[prompt_style]
+
+    persona = style_template["persona"]
+    task = style_template["task"]
+    if has_tool_call_tag:
+        tool_call_format = style_template["tool_call_with_tag"].format(
+            output_format=OUTPUT_FORMAT_MAPPING[return_format],
+            param_types=PARAM_TYPE_MAPPING[return_format],
+        )
+    else:
+        tool_call_format = style_template["tool_call_no_tag"].format(
+            output_format=OUTPUT_FORMAT_MAPPING[return_format],
+            param_types=PARAM_TYPE_MAPPING[return_format],
+        )
+    multiturn_behavior = style_template["multiturn_behavior"]
+    available_tools = style_template["available_tools"].format(
+        format=function_doc_format,
+        functions=formatted_function_doc,
+    )
+
+    system_prompt = prompt_template.format(
+        persona=persona,
+        task=task,
+        tool_call_format=tool_call_format,
+        multiturn_behavior=multiturn_behavior,
+        available_tools=available_tools,
+    )
+
+    return system_prompt
+
+
+def format_function_doc(functions: list[dict], function_doc_format: str) -> str:
+    """
+    Format the function documentation based on the specified format.
+    """
+
+    if function_doc_format == "xml":
+        functions = _generate_function_doc_xml(functions)
+
+    elif function_doc_format == "python":
+        functions = _generate_function_doc_python(functions)
+
+    elif function_doc_format == "json":
+        functions = json.dumps(functions, indent=4)
+
+    else:
+        raise ValueError(f"Invalid function doc format: {function_doc_format}")
+
+    return functions
+
+
+def _generate_function_doc_xml(functions: list[dict]) -> str:
+    """
+    Generate the function documentation in XML format.
+    """
+    xml_blocks = []
+    for fn in functions:
+        name = fn["name"]
+        desc = fn.get("description", "")
+        props = fn["parameters"]["properties"]
+        required = set(fn["parameters"].get("required", []))
+
+        xml = f'<function name="{name}">\n'
+        xml += f"  <desc>{desc}</desc>\n"
+        xml += f"  <params>\n"
+        for param_name, meta in props.items():
+            param_type = meta.get("type", "string")
+            param_desc = meta.get("description", "")
+            is_required = "true" if param_name in required else "false"
+            xml += f'    <param name="{param_name}" type="{param_type}" required="{is_required}">\n'
+            xml += f"      <desc>{param_desc}</desc>\n"
+            xml += f"    </param>\n"
+        xml += f"  </params>\n"
+        xml += f"</function>\n"
+        xml_blocks.append(xml)
+    return "\n".join(xml_blocks)
+
+
+def _generate_function_doc_python(functions: list[dict]) -> str:
+    """
+    Generate the function documentation in Pythonic format.
+    """
+    docs = []
+    for fn in functions:
+        full_name = fn["name"]
+        desc = fn.get("description", "")
+        params = fn["parameters"]["properties"]
+
+        doc = f"# Function: {full_name}\n"
+        doc += f'    """\n'
+        doc += f"    {desc}\n\n"
+
+        if params:
+            doc += f"    Args:\n"
+            for name, meta in params.items():
+                typ = meta.get("type", "string")
+                py_type = (
+                    typ.replace("string", "str")
+                    .replace("number", "float")
+                    .replace("integer", "int")
+                    .replace("object", "dict")
+                    .replace("array", "list")
+                    .replace("boolean", "bool")
+                )
+                docstring_desc = meta.get("description", "").strip()
+                default = meta.get("default")
+                default_note = f", default={repr(default)}" if default is not None else ""
+                doc += f"        {name} ({py_type}{default_note}): {docstring_desc}\n"
+
+        doc += f'    """\n'
+        docs.append(doc)
+
+    functions = "\n\n".join(docs)
+    return functions
+
+
+def parse_prompt_variation_params(input_str: str) -> tuple[str, bool, str, str, str]:
+    """
+    Parse a query string of the form:
+      ret_fmt=…&tool_call_tag=…&func_doc_fmt=…&prompt_fmt=…&style=…
+
+    Returns a 5-tuple containing, **in order**:
+        1. return_format (str)
+        2. has_tool_call_tag (bool)
+        3. function_doc_format (str)
+        4. prompt_format (str)
+        5. prompt_style (str)
+
+    Raises:
+        ValueError: If the input string does not conform to the expected format.
+    """
+    _PATTERN = re.compile(
+        r"^"
+        r"ret_fmt=(?P<return_format>python|json|verbose_xml|concise_xml)"
+        r"&tool_call_tag=(?P<has_tool_call_tag>True|False)"
+        r"&func_doc_fmt=(?P<function_doc_format>python|xml|json)"
+        r"&prompt_fmt=(?P<prompt_format>plaintext|markdown)"
+        r"&style=(?P<prompt_style>classic|experimental)"
+        r"$"
+    )
+
+    match = _PATTERN.match(input_str)
+    if not match:
+        raise ValueError(f"Invalid query format: {input_str!r}")
+
+    # Extract named groups
+    return_format = match.group("return_format")
+    has_tool_call_tag = match.group("has_tool_call_tag") == "True"
+    function_doc_format = match.group("function_doc_format")
+    prompt_format = match.group("prompt_format")
+    prompt_style = match.group("prompt_style")
+
+    return (
+        return_format,
+        has_tool_call_tag,
+        function_doc_format,
+        prompt_format,
+        prompt_style,
+    )

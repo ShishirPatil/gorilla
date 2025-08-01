@@ -297,7 +297,7 @@ class ClaudeHandler(BaseHandler):
         test_category: str = test_entry_id.rsplit("_", 1)[0]
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
         # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
         system_prompt = extract_system_prompt(test_entry["question"][0])

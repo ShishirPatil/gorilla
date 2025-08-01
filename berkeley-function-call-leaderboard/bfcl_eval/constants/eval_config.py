@@ -27,6 +27,7 @@ MULTI_TURN_FUNC_DOC_PATH = PROMPT_PATH / "multi_turn_func_doc"
 POSSIBLE_ANSWER_PATH = PROMPT_PATH / "possible_answer"
 MEMORY_PREREQ_CONVERSATION_PATH = PROMPT_PATH / "memory_prereq_conversation"
 UTILS_PATH = PACKAGE_ROOT / "scripts"
+FORMAT_SENSITIVITY_IDS_PATH = PROMPT_PATH / "BFCL_v4_format_sensitivity.json"
 
 
 RED_FONT = "\033[91m"

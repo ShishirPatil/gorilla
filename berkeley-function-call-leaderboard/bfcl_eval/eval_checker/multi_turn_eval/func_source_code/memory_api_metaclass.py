@@ -1,10 +1,13 @@
+import json
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import Optional
+from overrides import final
 
 from bfcl_eval.utils import (
-    extract_test_category_from_id,
-    get_general_category,
+    get_category_directory_structure_by_id,
     is_first_memory_prereq_entry,
+    is_memory_prereq,
 )
 
 
@@ -18,23 +21,56 @@ class MemoryAPI(ABC):
         self.archival_memory = {}
         self.snapshot_folder: Path | None = None
 
-    def _load_scenario(self, initial_config: dict, long_context: bool = False):
-        # We don't care about the long_context parameter here
-        # It's there to match the signature of functions in the multi-turn evaluation code
+    @final
+    def _prepare_snapshot(self, initial_config: dict) -> Optional[dict]:
+        """Helper to prepare snapshot folders/files and load previous memory data.
+
+        Sub-classes should call this method and then load the specific portions of the snapshot
+        they are interested in (e.g. `core_memory` or `archival_memory`) into their own in-memory
+        representation.
+
+        Args:
+            initial_config (dict): The configuration dict passed from the evaluation harness.
+
+        Returns:
+            Optional[dict]: The previously saved memory snapshot if it exists, otherwise `None`.
+        """
+        # We don't care about the ``long_context`` parameter here – subclasses keep that
         model_result_dir: Path = initial_config["model_result_dir"]
         self.test_id: str = initial_config["test_id"]
         self.scenario: str = initial_config["scenario"]
-        test_category: str = extract_test_category_from_id(self.test_id)
 
-        # TODO: use helper function to assemble the path
-        self.snapshot_folder = model_result_dir / get_general_category(test_category) / "memory_snapshot" / test_category
+        memory_snapshot_folder = (
+            model_result_dir
+            / get_category_directory_structure_by_id(self.test_id)
+            / "memory_snapshot"
+        )
+
+        # Keep prerequisite checkpoints in a dedicated sub-folder so that multiple prerequisite
+        # entries for the same scenario do not overwrite each other.
+        if is_memory_prereq(self.test_id):
+            self.snapshot_folder = memory_snapshot_folder / "prereq_checkpoints"
+        else:
+            self.snapshot_folder = memory_snapshot_folder
+
         self.snapshot_folder.mkdir(parents=True, exist_ok=True)
-        self.latest_snapshot_file = self.snapshot_folder / f"{self.scenario}_final.json"
+        self.latest_snapshot_file = memory_snapshot_folder / f"{self.scenario}_final.json"
 
-        if not is_first_memory_prereq_entry(self.test_id):
-            assert (
-                self.latest_snapshot_file.exists()
-            ), f"Not first memory entry, but no snapshot file found in this path: {self.latest_snapshot_file}"
+        if is_first_memory_prereq_entry(self.test_id):
+            # The very first entry of a prerequisite chain should start with a clean state.
+            return None
+
+        # For non-first entries we MUST have a snapshot to load from.
+        assert (
+            self.latest_snapshot_file.exists()
+        ), f"Not first memory entry, but no snapshot file found in this path: {self.latest_snapshot_file}"
+
+        with open(self.latest_snapshot_file, "r") as f:
+            return json.load(f)
+
+    @abstractmethod
+    def _load_scenario(self, initial_config: dict, long_context: bool = False):
+        pass
 
     @abstractmethod
     def _flush_memory_to_local_file(self):

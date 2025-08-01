@@ -8,6 +8,7 @@ from typing import Union
 from bfcl_eval.constants.category_mapping import *
 from bfcl_eval.constants.default_prompts import (
     ADDITIONAL_SYSTEM_PROMPT_FOR_AGENTIC_RESPONSE_FORMAT,
+    DEFAULT_SYSTEM_PROMPT_FORMAT,
 )
 from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.executable_backend_config import (
@@ -45,11 +46,24 @@ def extract_test_category_from_id(test_entry_id: str, remove_prereq: bool = Fals
     """
     if remove_prereq:
         test_entry_id = test_entry_id.replace("_prereq", "")
-    # For format sensitivity test cases, the test entry id is in the form of "format_sensitivity_0:live_simple_23-5-1", where the second part is the original test entry id
+    # For format sensitivity test cases, the test entry id is in the form of "format_sensitivity_0:prompt_format:live_simple_23-5-1", where the second part is the original test entry id
     if ":" in test_entry_id:
         test_entry_id = test_entry_id.split(":")[0]
 
     return test_entry_id.rsplit("_", 1)[0]
+
+
+def extract_prompt_format_from_id(test_entry_id: str) -> str:
+    """
+    Extract the prompt format from the test entry ID.
+    """
+    if ":" not in test_entry_id:
+        return DEFAULT_SYSTEM_PROMPT_FORMAT
+    else:
+        assert (
+            len(test_entry_id.split(":")) == 3
+        ), f"Test entry ID {test_entry_id} should contain exactly two colons, since they are supposed to be the format sensitivity ids."
+        return test_entry_id.split(":")[1]
 
 
 def extract_memory_backend_type(test_category):
@@ -186,13 +200,13 @@ def is_live(test_category):
 
 
 def is_non_live(test_category: str) -> bool:
-    # “Non-live” ⇔ it is NOT in any of the other three groups
+    # Be careful that format sensitivity entry id are in the format of "format_sensitivity_0:prompt_format:live_simple_23-5-1", which might be misclassified if not checked first
     return not any(
         (
+            is_format_sensitivity(test_category),
             is_live(test_category),
             is_multi_turn(test_category),
             is_agentic(test_category),
-            is_format_sensitivity(test_category),
         )
     )
 
@@ -237,7 +251,7 @@ def contain_multi_turn_interaction(test_category):
     return is_multi_turn(test_category) or is_agentic(test_category)
 
 
-def get_general_category(test_category: str) -> str:
+def get_general_grouping(test_id: str) -> str:
     """
     Map a specific test category (e.g. "simple", "live_simple", "multi_turn_base")
     to one of the 5 high-level groups used for organizing result / score files:
@@ -248,18 +262,44 @@ def get_general_category(test_category: str) -> str:
     • agentic: categories in AGENTIC_CATEGORY
     • format_sensitivity: the format sensitivity test categories
     """
-    if is_non_live(test_category):
-        return "non_live"
-    elif is_live(test_category):
-        return "live"
-    elif is_multi_turn(test_category):
-        return "multi_turn"
-    elif is_agentic(test_category):
-        return "agentic"
-    elif is_format_sensitivity(test_category):
+    if is_format_sensitivity(test_id):
         return "format_sensitivity"
+    elif is_non_live(test_id):
+        return "non_live"
+    elif is_live(test_id):
+        return "live"
+    elif is_multi_turn(test_id):
+        return "multi_turn"
+    elif is_agentic(test_id):
+        return "agentic"
     else:
-        raise ValueError(f"Invalid test category: {test_category}")
+        raise ValueError(f"Invalid test category: {test_id}")
+
+
+def get_sub_grouping(test_id: str) -> str:
+    """
+    Get the sub-grouping of a test category.
+    For memory test categories, it returns the memory backend type.
+    For all other test categories, it returns None.
+    """
+    if is_memory(test_id):
+        return os.path.join("memory", extract_memory_backend_type(extract_test_category_from_id(test_id, remove_prereq=True)))
+    else:
+        return None
+
+
+def get_category_directory_structure_by_id(test_id: str) -> str:
+    """
+    Get the directory structure for a test entry.
+    For memory test categories, it returns the general grouping and sub-grouping. Eg. "agentic/memory_kv"
+    For all other test categories, it returns the general grouping only. Eg. "non_live"
+    """
+    group = get_general_grouping(test_id)
+    sub_group = get_sub_grouping(test_id)
+    if sub_group:
+        return os.path.join(group, sub_group)
+    else:
+        return group
 
 
 #### Helper functions to load/write the dataset files ####
@@ -338,7 +378,7 @@ def load_dataset_entry(
     all_entries = populate_test_cases_with_predefined_functions(all_entries)
 
     if include_language_specific_hint:
-        all_entries = process_func_doc(all_entries)
+        all_entries = add_language_specific_hint_to_function_doc(all_entries)
 
     return all_entries
 
@@ -361,13 +401,12 @@ def load_ground_truth_entry(test_category: str) -> list[dict]:
         return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_{test_category}.json")
 
 
-def write_list_of_dicts_to_file(filename, data, subdir=None):
+def write_list_of_dicts_to_file(filename, data, subdir=None) -> None:
+    """
+    Write a list of dictionaries to a file.
+    If `subdir` is provided, the file will be written to the subdirectory.
+    """
     if subdir:
-        # Determine the general category subfolder based on the filename, if possible
-        test_category = extract_test_category(filename)
-        group_dir_name = get_general_category(test_category)
-        subdir = os.path.join(subdir, group_dir_name)
-
         # Ensure the (possibly nested) subdirectory exists
         os.makedirs(subdir, exist_ok=True)
 
@@ -443,6 +482,19 @@ def sort_key(entry):
         priority = 4
 
     return (priority, test_category, int(index))
+
+
+def filter_entries_by_id(
+    reference_entries: list[dict],
+    candidate_entries: list[dict],
+) -> list[dict]:
+    """
+    Return all entries in `candidate_entries` whose ``"id"`` *matches*
+    at least one entry in `reference_entries`.
+    """
+
+    reference_ids = {entry["id"] for entry in reference_entries}
+    return [entry for entry in candidate_entries if entry["id"] in reference_ids]
 
 
 #### Helper functions to check the output format ####
@@ -569,7 +621,7 @@ def _func_doc_language_specific_pre_processing(
     return function
 
 
-def process_func_doc(test_cases: list[dict]) -> list[dict]:
+def add_language_specific_hint_to_function_doc(test_cases: list[dict]) -> list[dict]:
     """
     This function adds language-specific hints to the function description and processes the parameters accordingly.
     """
@@ -747,25 +799,80 @@ def populate_initial_settings_for_web_search_test_cases(
     return test_cases
 
 
-# Utils for Format Sensitivity
+#### Utils for Format Sensitivity ####
 
 
 def load_format_sensitivity_test_cases() -> list[dict]:
+    """
+    Loads all the format sensitivity test cases. 26 configs x 200 test cases = 5200 test cases.
+    """
     _, all_test_entries_involved = load_test_entries_from_id_file(
         FORMAT_SENSITIVITY_IDS_PATH
     )
-    for entry, index in enumerate(all_test_entries_involved):
-        entry["id"] = f"format_sensitivity_{index}:{entry['id']}"
+    all_configs = get_all_format_sensitivity_configs()
 
-    return all_test_entries_involved
+    all_format_sensitivity_test_cases = []
+    index = 0
+    for entry in all_test_entries_involved:
+        for config in all_configs:
+            entry_copy = deepcopy(entry)
+            entry_copy["id"] = f"format_sensitivity_{index}:{config}:{entry_copy['id']}"
+
+            all_format_sensitivity_test_cases.append(entry_copy)
+            index += 1
+
+    return all_format_sensitivity_test_cases
 
 
 def load_format_sensitivity_ground_truth_entry() -> list[dict]:
     all_categories, all_test_entries_involved = load_test_entries_from_id_file(
         FORMAT_SENSITIVITY_IDS_PATH
     )
-    for category, test_entries in all_categories.items():
-        for test_entry in test_entries:
-            test_entry["id"] = test_entry["id"].split(":")[1]
+    all_ground_truth_entries = []
+    for category in all_categories:
+        all_ground_truth_entries.extend(load_ground_truth_entry(category))
 
-    return all_test_entries_involved
+    return filter_entries_by_id(
+        reference_entries=all_test_entries_involved,
+        candidate_entries=all_ground_truth_entries,
+    )
+
+
+def get_all_format_sensitivity_configs() -> list[str]:
+    """
+    Get all the format sensitivity configs.
+    The format sensitivity configs are used to generate the default system prompt for prompting models.
+    """
+
+    RETURN_FORMAT = [
+        "python",
+        "json",
+        "verbose_xml",
+        "concise_xml",
+    ]
+    HAS_TOOL_CALL_TAG = ["True", "False"]
+    FUNCTION_DOC_FORMAT = [
+        "python",
+        "xml",
+        "json",
+    ]
+
+    all_configs = []
+    # 4 × 2 × 3 = 24 base combinations
+    for return_format in RETURN_FORMAT:
+        for has_tool_call_tag in HAS_TOOL_CALL_TAG:
+            for function_doc_format in FUNCTION_DOC_FORMAT:
+                all_configs.append(
+                    f"ret_fmt={return_format}&tool_call_tag={has_tool_call_tag}&func_doc_fmt={function_doc_format}&prompt_fmt=plaintext&style=classic"
+                )
+
+    # Add one config with markdown format
+    all_configs.append(
+        f"ret_fmt=python&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=markdown&style=classic"
+    )
+    # Add one config with experimental prompt style
+    all_configs.append(
+        f"ret_fmt=python&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=experimental"
+    )
+
+    return all_configs
