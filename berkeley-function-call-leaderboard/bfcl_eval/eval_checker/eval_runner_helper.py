@@ -178,7 +178,7 @@ def save_eval_results(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name / get_category_directory_structure_by_id(test_category)
+    output_file_dir = score_dir / model_name / get_directory_structure_by_category(test_category)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)

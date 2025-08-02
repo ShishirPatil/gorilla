@@ -12,6 +12,7 @@ from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
     RESULT_PATH,
     TEST_IDS_TO_GENERATE_PATH,
+    RESULT_FILE_PATTERN,
 )
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.eval_checker.eval_runner_helper import load_file
@@ -19,9 +20,8 @@ from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.utils import *
 from tqdm import tqdm
 
-if TYPE_CHECKING:
-    from bfcl_eval.model_handler.base_handler import BaseHandler
-    from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
+from bfcl_eval.model_handler.base_handler import BaseHandler
+from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 
 
 def get_args():
@@ -90,21 +90,20 @@ def get_involved_test_entries(test_category_args, run_ids):
 def collect_test_cases(args, model_name, all_test_categories, all_test_entries_involved):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = args.result_dir / model_name_dir
-    print(all_test_categories)
 
     existing_result = []
     for test_category in all_test_categories:
         # TODO: Simplify the handling of memory prerequisite entries/categories
         result_file_paths = [
             model_result_dir
-            / get_category_directory_structure_by_id(test_category)
+            / get_directory_structure_by_category(test_category)
             / get_file_name_by_category(test_category, is_result_file=True)
         ]
         if is_memory(test_category):
             # Memory test cases have the pre-requisite entries in a separate file
             result_file_paths.append(
                 model_result_dir
-                / get_category_directory_structure_by_id(test_category)
+                / get_directory_structure_by_category(test_category)
                 / get_file_name_by_category(f"{test_category}_prereq", is_result_file=True)
             )
 
@@ -129,11 +128,11 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
                 elif not args.run_ids:
                     shutil.rmtree(snapshot_folder)
                 else:
-                    # TODO: If running id and id involes prereq entries, we should just delete those snapshot files
+                    # TODO: If run_ids and id involes prereq entries, we should just delete those snapshot files
                     # It's not implemented yet, but it won't affect the accuracy, as those files will be overwritten anyway (assume generation success)
                     pass
 
-        existing_ids = [entry["id"] for entry in existing_result]
+    existing_ids = [entry["id"] for entry in existing_result]
 
     test_cases_to_generate = [
         test_case
@@ -354,4 +353,6 @@ def main(args):
             )
         else:
             generate_results(args, model_name, test_cases_total)
-            # FIXME: Sort the result files by id at the end
+            # Sort the result files by id at the end
+            for model_result_json in args.result_dir.rglob(RESULT_FILE_PATTERN):
+                sort_file_content_by_id(model_result_json)

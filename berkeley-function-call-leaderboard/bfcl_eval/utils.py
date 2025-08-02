@@ -276,6 +276,7 @@ def get_general_grouping(test_id: str) -> str:
         raise ValueError(f"Invalid test category: {test_id}")
 
 
+# not used currently
 def get_sub_grouping(test_id: str) -> str:
     """
     Get the sub-grouping of a test category.
@@ -283,21 +284,46 @@ def get_sub_grouping(test_id: str) -> str:
     For all other test categories, it returns None.
     """
     if is_memory(test_id):
-        return os.path.join("memory", extract_memory_backend_type(extract_test_category_from_id(test_id, remove_prereq=True)))
+        return os.path.join(
+            "memory",
+            extract_memory_backend_type(
+                extract_test_category_from_id(test_id, remove_prereq=True)
+            ),
+        )
     else:
         return None
 
 
-def get_category_directory_structure_by_id(test_id: str) -> str:
+def get_directory_structure_by_id(test_id: str) -> str:
     """
     Get the directory structure for a test entry.
     For memory test categories, it returns the general grouping and sub-grouping. Eg. "agentic/memory_kv"
     For all other test categories, it returns the general grouping only. Eg. "non_live"
     """
     group = get_general_grouping(test_id)
-    sub_group = get_sub_grouping(test_id)
-    if sub_group:
-        return os.path.join(group, sub_group)
+
+    if is_memory(test_id):
+        return os.path.join(
+            group,
+            "memory",
+            extract_memory_backend_type(
+                extract_test_category_from_id(test_id, remove_prereq=True)
+            ),
+        )
+    else:
+        return group
+
+
+def get_directory_structure_by_category(test_category: str) -> str:
+    """
+    Get the directory structure for a test category.
+    For memory test categories, it returns the general grouping and sub-grouping. Eg. "agentic/memory_kv"
+    For all other test categories, it returns the general grouping only. Eg. "non_live"
+    """
+    group = get_general_grouping(test_category)
+
+    if is_memory(test_category):
+        return os.path.join(group, "memory", extract_memory_backend_type(test_category))
     else:
         return group
 
@@ -737,8 +763,8 @@ def populate_test_cases_with_predefined_functions(test_cases: list[dict]) -> lis
 
 def clean_up_memory_prereq_entries(test_cases: list[dict]) -> list[dict]:
     """
-    Remove memory-prerequisite test cases when their corresponding
-    non-prerequisite memory cases are absent.
+    Remove memory-prerequisite test cases when their corresponding non-prerequisite memory cases are absent.
+    If all memory questions have been generated, but the pre-requisite entries are not there (maybe deleted), there is no point to generate the pre-requisite entries again.
     """
     memory_entries = [entry for entry in test_cases if is_memory(entry["id"])]
 

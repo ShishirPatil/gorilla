@@ -5,7 +5,7 @@ from typing import Optional
 from overrides import final
 
 from bfcl_eval.utils import (
-    get_category_directory_structure_by_id,
+    get_directory_structure_by_id,
     is_first_memory_prereq_entry,
     is_memory_prereq,
 )
@@ -42,7 +42,7 @@ class MemoryAPI(ABC):
 
         memory_snapshot_folder = (
             model_result_dir
-            / get_category_directory_structure_by_id(self.test_id)
+            / get_directory_structure_by_id(self.test_id)
             / "memory_snapshot"
         )
 
