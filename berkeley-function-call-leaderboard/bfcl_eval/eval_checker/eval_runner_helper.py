@@ -178,7 +178,9 @@ def save_eval_results(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = score_dir / model_name / get_directory_structure_by_category(test_category)
+    output_file_dir = (
+        score_dir / model_name / get_directory_structure_by_category(test_category)
+    )
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -269,9 +271,7 @@ def write_score_csv_file(
                 f.write(",".join(row))
 
 
-def generate_leaderboard_csv(
-    leaderboard_table, output_path, eval_models=None, eval_categories=None
-):
+def generate_leaderboard_csv(leaderboard_table, output_path):
     print("📈 Aggregating data to generate leaderboard score table...")
     data_non_live = []
     data_live = []

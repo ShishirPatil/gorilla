@@ -8,7 +8,7 @@ from typing import Any, Optional
 import requests
 from bfcl_eval.constants.eval_config import RESULT_PATH, VLLM_PORT
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     default_decode_ast_prompting,
     default_decode_execute_prompting,

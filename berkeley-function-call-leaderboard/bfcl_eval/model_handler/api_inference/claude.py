@@ -5,11 +5,10 @@ from typing import Any
 
 from anthropic import Anthropic, RateLimitError
 from anthropic.types import TextBlock, ToolUseBlock
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import (
-    ast_parse,
     combine_consecutive_user_prompts,
     convert_to_function_call,
     convert_to_tool,
@@ -26,7 +25,7 @@ from bfcl_eval.utils import contain_multi_turn_interaction
 class ClaudeHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.Anthropic
+        self.model_style = ModelStyle.ANTHROPIC
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
     def decode_ast(self, result, language, has_tool_call_tag):

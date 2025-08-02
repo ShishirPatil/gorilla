@@ -16,7 +16,7 @@ from bfcl_eval.constants.eval_config import (
 )
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.eval_checker.eval_runner_helper import load_file
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.utils import *
 from tqdm import tqdm
 

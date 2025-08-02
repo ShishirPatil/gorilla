@@ -3,7 +3,7 @@ import os
 from bfcl_eval.model_handler.api_inference.openai_completion import (
     OpenAICompletionsHandler,
 )
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     default_decode_ast_prompting,
@@ -16,7 +16,7 @@ from openai import OpenAI
 class NvidiaHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.client = OpenAI(
             base_url="https://integrate.api.nvidia.com/v1",
             api_key=os.getenv("NVIDIA_API_KEY"),

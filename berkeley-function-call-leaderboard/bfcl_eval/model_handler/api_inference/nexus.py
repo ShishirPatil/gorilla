@@ -3,7 +3,7 @@ from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import ast_parse
 
 

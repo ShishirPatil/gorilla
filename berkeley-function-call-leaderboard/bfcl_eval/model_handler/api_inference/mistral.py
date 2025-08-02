@@ -5,7 +5,7 @@ from typing import Any
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     ast_parse,
     convert_to_function_call,
@@ -21,7 +21,7 @@ from mistralai import Mistral
 class MistralHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.Mistral
+        self.model_style = ModelStyle.MISTRAL
 
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 

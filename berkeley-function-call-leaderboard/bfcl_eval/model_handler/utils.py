@@ -8,8 +8,8 @@ from functools import reduce
 from typing import TYPE_CHECKING, Callable, List, Optional, Type, Union
 
 from bfcl_eval.constants.default_prompts import *
+from bfcl_eval.constants.enums import ModelStyle, ReturnFormat
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.parser.java_parser import parse_java_function_call
 from bfcl_eval.model_handler.parser.js_parser import parse_javascript_function_call
 from bfcl_eval.model_handler.parser.json_parser import parse_json_function_call
@@ -81,12 +81,12 @@ def convert_to_tool(functions, mapping, model_style):
     oai_tool = []
     for item in functions:
         if "." in item["name"] and model_style in [
-            ModelStyle.OpenAI_Completions,
-            ModelStyle.OpenAI_Responses,
-            ModelStyle.Mistral,
+            ModelStyle.OPENAI_COMPLETIONS,
+            ModelStyle.OPENAI_RESPONSES,
+            ModelStyle.MISTRAL,
             ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
-            ModelStyle.Anthropic,
+            ModelStyle.ANTHROPIC,
             ModelStyle.COHERE,
             ModelStyle.AMAZON,
             ModelStyle.NOVITA_AI,
@@ -99,7 +99,7 @@ def convert_to_tool(functions, mapping, model_style):
             item["parameters"]["properties"], mapping
         )
 
-        if model_style == ModelStyle.Anthropic:
+        if model_style == ModelStyle.ANTHROPIC:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
 
@@ -168,7 +168,7 @@ def convert_to_tool(functions, mapping, model_style):
         # Process the return field
         if "response" in item:
             if model_style in [
-                ModelStyle.Anthropic,
+                ModelStyle.ANTHROPIC,
                 ModelStyle.GOOGLE,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.WRITER,
@@ -181,12 +181,12 @@ def convert_to_tool(functions, mapping, model_style):
                 del item["response"]
 
         if model_style in [
-            ModelStyle.Anthropic,
+            ModelStyle.ANTHROPIC,
             ModelStyle.GOOGLE,
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
-        elif model_style in [ModelStyle.OpenAI_Responses]:
+        elif model_style in [ModelStyle.OPENAI_RESPONSES]:
             oai_tool.append(
                 {
                     "type": "function",
@@ -197,8 +197,8 @@ def convert_to_tool(functions, mapping, model_style):
             )
         elif model_style in [
             ModelStyle.COHERE,
-            ModelStyle.OpenAI_Completions,
-            ModelStyle.Mistral,
+            ModelStyle.OPENAI_COMPLETIONS,
+            ModelStyle.MISTRAL,
             ModelStyle.FIREWORK_AI,
             ModelStyle.WRITER,
             ModelStyle.NOVITA_AI,
@@ -252,7 +252,7 @@ def convert_value(value, type_str):
 
 
 def ast_parse(
-    input_str: str, language: str = "python", has_tool_call_tag: bool = False
+    input_str: str, language: ReturnFormat = ReturnFormat.PYTHON, has_tool_call_tag: bool = False
 ) -> list[dict]:
     if has_tool_call_tag:
         match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", input_str, re.DOTALL)
@@ -261,7 +261,7 @@ def ast_parse(
         else:
             raise ValueError(f"No tool call tag found in input string: {input_str}")
 
-    if language == "python":
+    if language == ReturnFormat.PYTHON:
         # We only want to remove wrapping quotes that could have been added by the model.
         cleaned_input = input_str.strip().strip("'")
         parsed = ast.parse(cleaned_input, mode="eval")
@@ -274,16 +274,16 @@ def ast_parse(
                 extracted.append(resolve_ast_call(elem))
         return extracted
 
-    elif language == "java":
+    elif language == ReturnFormat.JAVA:
         # Remove the [ and ] from the string
         # Note: This is due to legacy reasons, we should fix this in the future.
         return parse_java_function_call(input_str[1:-1])
 
-    elif language == "javascript":
+    elif language == ReturnFormat.JAVASCRIPT:
         # Note: Same as above, we should fix this in the future.
         return parse_javascript_function_call(input_str[1:-1])
 
-    elif language == "verbose_xml":
+    elif language == ReturnFormat.VERBOSE_XML:
         # Remove ```xml and anything before/after XML
         match = re.search(r"<functions>(.*?)</functions>", input_str, re.DOTALL)
         if not match:
@@ -292,7 +292,7 @@ def ast_parse(
             )
         return parse_verbose_xml_function_call(match.group(0))
 
-    elif language == "concise_xml":
+    elif language == ReturnFormat.CONCISE_XML:
         # Remove anything before/after <functions> and </functions>
         match = re.search(r"<functions>(.*?)</functions>", input_str, re.DOTALL)
         if not match:
@@ -301,7 +301,7 @@ def ast_parse(
             )
         return parse_concise_xml_function_call(match.group(0))
 
-    elif language == "json":
+    elif language == ReturnFormat.JSON:
         json_match = re.search(r"\[.*\]", input_str, re.DOTALL)
         if json_match:
             input_str = json_match.group(0)
@@ -470,7 +470,7 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result: str, language: str = "python", has_tool_call_tag: bool = False) -> list[dict]:
+def default_decode_ast_prompting(result: str, language: ReturnFormat = ReturnFormat.PYTHON, has_tool_call_tag: bool = False) -> list[dict]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -487,7 +487,7 @@ def default_decode_execute_prompting(result: str, has_tool_call_tag: bool = Fals
         result = "[" + result
     if not result.endswith("]"):
         result = result + "]"
-    decoded_output = ast_parse(result, language="python", has_tool_call_tag=has_tool_call_tag)
+    decoded_output = ast_parse(result, language=ReturnFormat.PYTHON, has_tool_call_tag=has_tool_call_tag)
     return decoded_output_to_execution_list(decoded_output)
 
 

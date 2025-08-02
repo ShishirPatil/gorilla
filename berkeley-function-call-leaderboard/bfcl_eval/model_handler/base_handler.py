@@ -8,6 +8,7 @@ from bfcl_eval.constants.default_prompts import (
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
     MAXIMUM_STEP_LIMIT,
 )
+from bfcl_eval.constants.enums import ModelStyle, ReturnFormat
 from bfcl_eval.constants.eval_config import RESULT_PATH
 from bfcl_eval.constants.executable_backend_config import (
     OMIT_STATE_INFO_CLASSES,
@@ -17,7 +18,6 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,
 )
-from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.utils import add_memory_instruction_system_prompt
 from bfcl_eval.utils import *
 from overrides import final
@@ -238,7 +238,7 @@ class BaseHandler:
 
                 # Try decoding the model response
                 try:
-                    decoded_model_responses = self.decode_execute(model_responses)
+                    decoded_model_responses = self.decode_execute(model_responses, has_tool_call_tag=False)
                     current_step_inference_log.append(
                         {
                             "role": "handler_log",
@@ -527,7 +527,7 @@ class BaseHandler:
 
                 # Try decoding the model response
                 try:
-                    decoded_model_responses = self.decode_execute(model_responses)
+                    decoded_model_responses = self.decode_execute(model_responses, has_tool_call_tag=False)
                     current_step_inference_log.append(
                         {
                             "role": "handler_log",
@@ -728,13 +728,13 @@ class BaseHandler:
 
         return model_response_data["model_responses"], metadata
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language: ReturnFormat, has_tool_call_tag: bool):
         """
         This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard AST checker input.
         """
         raise NotImplementedError
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag: bool):
         """
         This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard execute checker input.
         """

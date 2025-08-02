@@ -6,7 +6,7 @@ from typing import Any
 from bfcl_eval.model_handler.api_inference.openai_completion import (
     OpenAICompletionsHandler,
 )
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     retry_with_backoff,
@@ -19,7 +19,7 @@ from overrides import override
 class LingAPIHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         api_url = "https://bailingchat.alipay.com"
         self.client = OpenAI(base_url=api_url, api_key=os.getenv("LING_API_KEY"))
 

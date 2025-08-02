@@ -236,7 +236,7 @@ def is_chatable(test_category):
 
 
 def is_java(test_category):
-    return "java" in test_category
+    return "java" in test_category and not is_js(test_category)
 
 
 def is_js(test_category):
@@ -601,7 +601,7 @@ def _func_doc_language_specific_pre_processing(
         )
         # Process the parameters
         properties = item["parameters"]["properties"]
-        if test_category == "java":
+        if is_java(test_category):
             for key, value in properties.items():
                 if value["type"] == "any":
                     properties[key][
@@ -619,7 +619,7 @@ def _func_doc_language_specific_pre_processing(
 
                 value["type"] = "string"
 
-        elif test_category == "javascript":
+        elif is_js(test_category):
             for key, value in properties.items():
                 if value["type"] == "any":
                     properties[key][

@@ -1,8 +1,8 @@
 import argparse
 
+from bfcl_eval.constants.enums import Language, ReturnFormat
 from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
-from bfcl_eval.model_handler.utils import parse_prompt_variation_params
 from bfcl_eval.eval_checker.agentic_eval.agentic_checker import agentic_checker
 from bfcl_eval.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl_eval.eval_checker.eval_runner_helper import *
@@ -13,34 +13,24 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_checker import (
 from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     is_empty_execute_response,
 )
+from bfcl_eval.model_handler.base_handler import BaseHandler
+from bfcl_eval.model_handler.utils import parse_prompt_variation_params
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
 
-def get_handler(model_name):
+def get_handler(model_name: str) -> BaseHandler:
     config = MODEL_CONFIG_MAPPING[model_name]
-    handler = config.model_handler(
+    handler: BaseHandler = config.model_handler(
         model_name, temperature=0
     )  # Temperature doesn't matter for evaluation
     handler.is_fc_model = config.is_fc_model
     return handler
 
 
-def _evaluate_single_format_sensitivity_entry(
-    handler,
-    index,
-    model_result_item,
-    prompt_entry,
-    model_name,
-    test_category,
-):
-    """Helper method to process a single format sensitivity entry."""
-    pass
-
-
 def _evaluate_single_agentic_entry(
-    handler,
+    handler: BaseHandler,
     index,
     model_result_list,
     possible_answer_item,
@@ -132,7 +122,7 @@ def _evaluate_single_agentic_entry(
 
 
 def _evaluate_single_multi_turn_entry(
-    handler,
+    handler: BaseHandler,
     test_entry_id,
     model_result_list,
     ground_truth_list,
@@ -227,7 +217,7 @@ def _evaluate_single_multi_turn_entry(
 
 
 def _evaluate_single_relevance_entry(
-    handler,
+    handler: BaseHandler,
     index,
     model_result_item,
     prompt_entry,
@@ -240,7 +230,9 @@ def _evaluate_single_relevance_entry(
     decode_error = None
 
     try:
-        decoded_result = handler.decode_ast(model_result_item, language="python", has_tool_call_tag=False)
+        decoded_result = handler.decode_ast(
+            model_result_item, language=ReturnFormat.PYTHON, has_tool_call_tag=False
+        )
         # Decode successfully, which means the model output is in valid function call format
         contain_func_call = True
         if is_empty_output(decoded_result):
@@ -281,14 +273,15 @@ def _evaluate_single_relevance_entry(
 
 
 def _evaluate_single_ast_entry(
-    handler,
+    handler: BaseHandler,
     index,
     model_result_item,
     possible_answer_item,
     prompt_entry,
     model_name,
     test_category,
-    language,
+    language: Language,
+    return_format: ReturnFormat,
     has_tool_call_tag=False,
 ):
     """Helper method to process a single AST entry."""
@@ -297,7 +290,7 @@ def _evaluate_single_ast_entry(
     try:
         model_result_item_raw = model_result_item
         model_result_item = handler.decode_ast(
-            model_result_item, language, has_tool_call_tag
+            model_result_item, return_format, has_tool_call_tag
         )
     except Exception as e:
         return {
@@ -355,7 +348,13 @@ def _evaluate_single_ast_entry(
 
 
 def format_sensitivity_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
+    handler: BaseHandler,
+    model_result,
+    prompt,
+    possible_answer,
+    model_name,
+    test_category,
+    score_dir,
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -384,6 +383,8 @@ def format_sensitivity_runner(
             prompt_style,
         ) = parse_prompt_variation_params(format_sensitivity_config)
 
+        return_format = ReturnFormat(return_format)
+
         entry_result = _evaluate_single_ast_entry(
             handler,
             index,
@@ -392,8 +393,10 @@ def format_sensitivity_runner(
             prompt_entry,
             model_name,
             test_category,
-            return_format,
-            has_tool_call_tag,
+            # Format sensitivity tests are all python tests
+            language=Language.PYTHON,
+            return_format=return_format,
+            has_tool_call_tag=has_tool_call_tag,
         )
 
         if entry_result["valid"]:
@@ -407,7 +410,13 @@ def format_sensitivity_runner(
 
 
 def agentic_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
+    handler: BaseHandler,
+    model_result,
+    prompt,
+    possible_answer,
+    model_name,
+    test_category,
+    score_dir,
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -443,7 +452,13 @@ def agentic_runner(
 
 
 def multi_turn_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
+    handler: BaseHandler,
+    model_result,
+    prompt,
+    possible_answer,
+    model_name,
+    test_category,
+    score_dir,
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -479,7 +494,7 @@ def multi_turn_runner(
 
 
 def relevance_file_runner(
-    handler, model_result, prompt, model_name, test_category, score_dir
+    handler: BaseHandler, model_result, prompt, model_name, test_category, score_dir
 ):
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call.
@@ -507,7 +522,7 @@ def relevance_file_runner(
 
 
 def ast_file_runner(
-    handler,
+    handler: BaseHandler,
     model_result,
     prompt,
     possible_answer,
@@ -519,11 +534,15 @@ def ast_file_runner(
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
 
-    language = "python"
     if is_java(test_category):
-        language = "java"
-    if is_js(test_category):
-        language = "javascript"
+        language = Language.JAVA
+        return_format = ReturnFormat.JAVA
+    elif is_js(test_category):
+        language = Language.JAVASCRIPT
+        return_format = ReturnFormat.JAVASCRIPT
+    else:
+        language = Language.PYTHON
+        return_format = ReturnFormat.PYTHON
 
     result = []
     correct_count = 0
@@ -541,7 +560,8 @@ def ast_file_runner(
             prompt_entry,
             model_name,
             test_category,
-            language,
+            language=language,
+            return_format=return_format,
             has_tool_call_tag=False,
         )
 
@@ -563,11 +583,11 @@ def evaluate_task(
     model_result,
     model_name,
     handler,
-    state,
+    leaderboard_table,
 ):
     print(f"🔍 Running test: {test_category}")
 
-    record_cost_latency(state["leaderboard_table"], model_name, model_result)
+    record_cost_latency(leaderboard_table, model_name, model_result)
 
     # Find the corresponding prompt entries
     prompt = load_dataset_entry(
@@ -627,24 +647,19 @@ def evaluate_task(
                 score_dir,
             )
 
-    record_result(
-        state["leaderboard_table"], model_name, test_category, accuracy, total_count
-    )
+    record_result(leaderboard_table, model_name, test_category, accuracy, total_count)
 
     print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy:.2%}")
 
-    return state
+    return leaderboard_table
 
 
 def runner(model_names, test_categories, result_dir, score_dir):
 
-    # State udpated by each eval subtask.
-    state = dict(
-        # A dictionary to store the evaluation scores.
-        # Key is model name, value is a dictionary with keys as test category
-        # and values as a dictionary with accuracy and total count.
-        leaderboard_table={},
-    )
+    # A dictionary to store the evaluation scores.
+    # Key is model name, value is a dictionary with keys as test category
+    # and values as a dictionary with accuracy and total count.
+    leaderboard_table = {}
 
     # Get a list of all entries in the folder
     entries = result_dir.iterdir()
@@ -682,24 +697,22 @@ def runner(model_names, test_categories, result_dir, score_dir):
 
             model_result = load_file(model_result_json, sort_by_id=True)
 
-            state = evaluate_task(
+            leaderboard_table = evaluate_task(
                 test_category,
                 result_dir,
                 score_dir,
                 model_result,
                 model_name,
                 handler,
-                state,
+                leaderboard_table,
             )
 
     # This function reads all the score files from local folder and updates the
     # leaderboard table. This is helpful when you only want to run the
     # evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_local_score_file(state["leaderboard_table"], score_dir)
+    update_leaderboard_table_with_local_score_file(leaderboard_table, score_dir)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(
-        state["leaderboard_table"], score_dir, model_names, test_categories
-    )
+    generate_leaderboard_csv(leaderboard_table, score_dir)
 
 
 def main(model, test_categories, result_dir, score_dir):
