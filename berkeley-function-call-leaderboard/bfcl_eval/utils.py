@@ -854,14 +854,23 @@ def load_format_sensitivity_ground_truth_entry() -> list[dict]:
     all_categories, all_test_entries_involved = load_test_entries_from_id_file(
         FORMAT_SENSITIVITY_IDS_PATH
     )
-    all_ground_truth_entries = []
-    for category in all_categories:
-        all_ground_truth_entries.extend(load_ground_truth_entry(category))
+    all_configs = get_all_format_sensitivity_configs()
 
-    return filter_entries_by_id(
+    ground_truth_entries = []
+    for category in all_categories:
+        ground_truth_entries.extend(load_ground_truth_entry(category))
+
+    ground_truth_entries = filter_entries_by_id(
         reference_entries=all_test_entries_involved,
-        candidate_entries=all_ground_truth_entries,
+        candidate_entries=ground_truth_entries,
     )
+
+    all_ground_truth_entries = []
+    for entry in ground_truth_entries:
+        for _ in all_configs:
+            all_ground_truth_entries.append(deepcopy(entry))
+
+    return all_ground_truth_entries
 
 
 def get_all_format_sensitivity_configs() -> list[str]:

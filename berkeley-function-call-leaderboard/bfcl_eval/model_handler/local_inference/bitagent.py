@@ -59,7 +59,7 @@ class BitAgentHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
 
         # Parse the JSON array of function calls
         function_calls = json.loads(result)
@@ -75,7 +75,7 @@ class BitAgentHandler(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
 
         # Parse the JSON array of function calls
         function_calls = json.loads(result)

@@ -35,7 +35,7 @@ class OpenAIResponsesHandler(BaseHandler):
 
         return prompts
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
@@ -44,13 +44,13 @@ class OpenAIResponsesHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
         else:
-            return default_decode_ast_prompting(result, language)
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if "FC" in self.model_name or self.is_fc_model:
             return convert_to_function_call(result)
         else:
-            return default_decode_execute_prompting(result)
+            return default_decode_execute_prompting(result, has_tool_call_tag)
 
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):

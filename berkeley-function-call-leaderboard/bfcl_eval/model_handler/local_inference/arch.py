@@ -13,17 +13,17 @@ class ArchHandler(OSSHandler):
         self.is_fc_model = True
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     @override

@@ -181,7 +181,7 @@ class LlamaHandler_3_1(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:
@@ -207,7 +207,7 @@ class LlamaHandler_3_1(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:

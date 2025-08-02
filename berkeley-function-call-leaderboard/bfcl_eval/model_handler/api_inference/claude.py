@@ -13,6 +13,8 @@ from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     convert_to_function_call,
     convert_to_tool,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     extract_system_prompt,
     format_execution_results_prompting,
     retry_with_backoff,
@@ -27,17 +29,9 @@ class ClaudeHandler(BaseHandler):
         self.model_style = ModelStyle.Anthropic
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if "FC" not in self.model_name:
-            func = result
-            if " " == func[0]:
-                func = func[1:]
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            decode_output = ast_parse(func, language)
-            return decode_output
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
         else:
             decoded_output = []
@@ -47,23 +41,9 @@ class ClaudeHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if "FC" not in self.model_name:
-            func = result
-            if " " == func[0]:
-                func = func[1:]
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            decode_output = ast_parse(func)
-            execution_list = []
-            for function_call in decode_output:
-                for key, value in function_call.items():
-                    execution_list.append(
-                        f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                    )
-            return execution_list
+            return default_decode_execute_prompting(result, has_tool_call_tag)
 
         else:
             function_call = convert_to_function_call(result)

@@ -58,7 +58,6 @@ SUPPORTED_MODELS = [
     "gemini-2.5-pro",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-medium-v3.1-FC",
-    "databricks-dbrx-instruct",
     "command-r-plus-FC",
     "command-r7b-12-2024-FC",
     "command-a-03-2025-FC",

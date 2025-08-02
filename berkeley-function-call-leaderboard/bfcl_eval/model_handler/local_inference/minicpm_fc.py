@@ -47,7 +47,7 @@ class MiniCPMFCHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         msg = fc2dict(result)
         if (
             "tool_calls" in msg
@@ -62,7 +62,7 @@ class MiniCPMFCHandler(OSSHandler):
             return msg["content"]
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         msg = fc2dict(result)
         if (
             "tool_calls" in msg

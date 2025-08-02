@@ -27,14 +27,14 @@ class NovaHandler(BaseHandler):
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     @retry_with_backoff(error_message_pattern=r".*\(ThrottlingException\).*")

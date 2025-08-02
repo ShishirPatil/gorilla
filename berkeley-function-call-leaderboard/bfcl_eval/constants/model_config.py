@@ -3,7 +3,6 @@ from typing import Optional
 
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
-from bfcl_eval.model_handler.api_inference.databricks import DatabricksHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
 from bfcl_eval.model_handler.api_inference.dm_cito import DMCitoHandler
 from bfcl_eval.model_handler.api_inference.fireworks import FireworksHandler
@@ -16,7 +15,6 @@ from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
 from bfcl_eval.model_handler.api_inference.mistral import MistralHandler
 from bfcl_eval.model_handler.api_inference.nemotron import NemotronHandler
-from bfcl_eval.model_handler.api_inference.nexus import NexusHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
@@ -544,18 +542,6 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Nexusflow-Raven-v2": ModelConfig(
-        model_name="Nexusflow-Raven-v2",
-        display_name="Nexusflow-Raven-v2 (FC)",
-        url="https://huggingface.co/Nexusflow/NexusRaven-V2-13B",
-        org="Nexusflow",
-        license="Apache 2.0",
-        model_handler=NexusHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
     "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
         model_name="gemini-2.5-flash-lite-preview-06-17-FC",
         display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
@@ -652,18 +638,6 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "databricks-dbrx-instruct": ModelConfig(
-        model_name="databricks-dbrx-instruct",
-        display_name="DBRX-Instruct (Prompt)",
-        url="https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm",
-        org="Databricks",
-        license="Databricks Open Model",
-        model_handler=DatabricksHandler,
-        input_price=2.25,
-        output_price=6.75,
-        is_fc_model=False,
-        underscore_to_dot=False,
-    ),
     "command-r-plus-FC": ModelConfig(
         model_name="command-r-plus-FC",
         display_name="Command-R-Plus (FC)",
@@ -699,18 +673,6 @@ api_inference_model_map = {
         output_price=10,
         is_fc_model=True,
         underscore_to_dot=True,
-    ),
-    "snowflake/arctic": ModelConfig(
-        model_name="snowflake/arctic",
-        display_name="Snowflake/snowflake-arctic-instruct (Prompt)",
-        url="https://huggingface.co/Snowflake/snowflake-arctic-instruct",
-        org="Snowflake",
-        license="apache-2.0",
-        model_handler=NvidiaHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=False,
-        underscore_to_dot=False,
     ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
         model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
@@ -1373,7 +1335,7 @@ local_inference_model_map = {
         model_handler=GraniteFunctionCallingHandler,
         input_price=None,
         output_price=None,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=True,
     ),
     "MadeAgents/Hammer2.1-7b": ModelConfig(

@@ -1,10 +1,13 @@
 import os
 
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from bfcl_eval.model_handler.utils import (
-    ast_parse,
     combine_consecutive_user_prompts,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI
@@ -19,41 +22,11 @@ class NvidiaHandler(OpenAICompletionsHandler):
             api_key=os.getenv("NVIDIA_API_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
-        result = result.replace("\n", "")
-        if not result.startswith("["):
-            result = "[" + result
-        if not result.endswith("]"):
-            result = result + "]"
-        if result.startswith("['"):
-            result = result.replace("['", "[")
-            result = result.replace("', '", ", ")
-            result = result.replace("','", ", ")
-        if result.endswith("']"):
-            result = result.replace("']", "]")
-        decode_output = ast_parse(result, language)
-        return decode_output
+    def decode_ast(self, result, language, has_tool_call_tag):
+        return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
-    def decode_execute(self, result, language="Python"):
-        result = result.replace("\n", "")
-        if not result.startswith("["):
-            result = "[" + result
-        if not result.endswith("]"):
-            result = result + "]"
-        if result.startswith("['"):
-            result = result.replace("['", "[")
-            result = result.replace("', '", ", ")
-            result = result.replace("','", ", ")
-        if result.endswith("']"):
-            result = result.replace("']", "]")
-        decode_output = ast_parse(result, language)
-        execution_list = []
-        for function_call in decode_output:
-            for key, value in function_call.items():
-                execution_list.append(
-                    f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                )
-        return execution_list
+    def decode_execute(self, result, has_tool_call_tag):
+        return default_decode_execute_prompting(result, has_tool_call_tag)
 
     #### Prompting methods ####
 

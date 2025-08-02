@@ -48,7 +48,7 @@ class GraniteFunctionCallingHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_outputs = []
         result = [
             call.strip()
@@ -74,7 +74,7 @@ class GraniteFunctionCallingHandler(OSSHandler):
         return decoded_outputs
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         decoded_outputs = []
         result = [
             call.strip()

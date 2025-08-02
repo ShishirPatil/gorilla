@@ -53,12 +53,12 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             return self.inference_single_turn_prompting(test_entry, include_input_log)
 
     @override
-    def decode_ast(self, result, language="Python"):
-        return default_decode_ast_prompting(result, language)
+    def decode_ast(self, result, language, has_tool_call_tag):
+        return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
     @override
-    def decode_execute(self, result):
-        return default_decode_execute_prompting(result)
+    def decode_execute(self, result, has_tool_call_tag):
+        return default_decode_execute_prompting(result, has_tool_call_tag)
 
     @final
     def spin_up_local_server(

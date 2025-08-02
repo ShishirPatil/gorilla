@@ -2,6 +2,7 @@ import argparse
 
 from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
+from bfcl_eval.model_handler.utils import parse_prompt_variation_params
 from bfcl_eval.eval_checker.agentic_eval.agentic_checker import agentic_checker
 from bfcl_eval.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl_eval.eval_checker.eval_runner_helper import *
@@ -15,6 +16,27 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
+
+
+def get_handler(model_name):
+    config = MODEL_CONFIG_MAPPING[model_name]
+    handler = config.model_handler(
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
+    handler.is_fc_model = config.is_fc_model
+    return handler
+
+
+def _evaluate_single_format_sensitivity_entry(
+    handler,
+    index,
+    model_result_item,
+    prompt_entry,
+    model_name,
+    test_category,
+):
+    """Helper method to process a single format sensitivity entry."""
+    pass
 
 
 def _evaluate_single_agentic_entry(
@@ -218,7 +240,7 @@ def _evaluate_single_relevance_entry(
     decode_error = None
 
     try:
-        decoded_result = handler.decode_ast(model_result_item, language="Python")
+        decoded_result = handler.decode_ast(model_result_item, language="python", has_tool_call_tag=False)
         # Decode successfully, which means the model output is in valid function call format
         contain_func_call = True
         if is_empty_output(decoded_result):
@@ -267,13 +289,16 @@ def _evaluate_single_ast_entry(
     model_name,
     test_category,
     language,
+    has_tool_call_tag=False,
 ):
     """Helper method to process a single AST entry."""
     prompt_function = prompt_entry["function"]
 
     try:
         model_result_item_raw = model_result_item
-        model_result_item = handler.decode_ast(model_result_item, language)
+        model_result_item = handler.decode_ast(
+            model_result_item, language, has_tool_call_tag
+        )
     except Exception as e:
         return {
             "id": index,
@@ -329,13 +354,56 @@ def _evaluate_single_ast_entry(
     return {"valid": True}
 
 
-def get_handler(model_name):
-    config = MODEL_CONFIG_MAPPING[model_name]
-    handler = config.model_handler(
-        model_name, temperature=0
-    )  # Temperature doesn't matter for evaluation
-    handler.is_fc_model = config.is_fc_model
-    return handler
+def format_sensitivity_runner(
+    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
+):
+    assert (
+        len(model_result) == len(prompt) == len(possible_answer)
+    ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
+
+    # The format sensitivity tests are all single-turn tests, so we use a similar logic to the ast_file_runner to evaluate them.
+
+    result = []
+    correct_count = 0
+    for i in range(len(model_result)):
+        index = model_result[i]["id"]
+        model_result_item = model_result[i]["result"]
+        prompt_entry = prompt[i]
+        possible_answer_item = possible_answer[i]["ground_truth"]
+
+        assert (
+            ":" in index and len(index.split(":")) == 3
+        ), f"Test entry ID {index} should contain exactly two colons, since they are supposed to be the format sensitivity ids."
+
+        format_sensitivity_config = index.split(":")[1]
+        (
+            return_format,
+            has_tool_call_tag,
+            function_doc_format,
+            prompt_format,
+            prompt_style,
+        ) = parse_prompt_variation_params(format_sensitivity_config)
+
+        entry_result = _evaluate_single_ast_entry(
+            handler,
+            index,
+            model_result_item,
+            possible_answer_item,
+            prompt_entry,
+            model_name,
+            test_category,
+            return_format,
+            has_tool_call_tag,
+        )
+
+        if entry_result["valid"]:
+            correct_count += 1
+        else:
+            result.append(entry_result)
+
+    return save_eval_results(
+        result, correct_count, model_result, test_category, model_name, score_dir
+    )
 
 
 def agentic_runner(
@@ -451,11 +519,11 @@ def ast_file_runner(
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
 
-    language = "Python"
+    language = "python"
     if is_java(test_category):
-        language = "Java"
+        language = "java"
     if is_js(test_category):
-        language = "JavaScript"
+        language = "javascript"
 
     result = []
     correct_count = 0
@@ -474,6 +542,7 @@ def ast_file_runner(
             model_name,
             test_category,
             language,
+            has_tool_call_tag=False,
         )
 
         if entry_result["valid"]:
@@ -505,11 +574,6 @@ def evaluate_task(
         test_category, include_prereq=False, include_language_specific_hint=False
     )
 
-    # FIXME @HuanzhiMao
-    if is_format_sensitivity(test_category):
-        accuracy, total_count = 0, 0
-        return state
-
     if is_relevance_or_irrelevance(test_category):
         accuracy, total_count = relevance_file_runner(
             handler, model_result, prompt, model_name, test_category, score_dir
@@ -519,7 +583,18 @@ def evaluate_task(
         # Find the corresponding possible answer entries
         possible_answer = load_ground_truth_entry(test_category)
 
-        if is_multi_turn(test_category):
+        if is_format_sensitivity(test_category):
+            accuracy, total_count = format_sensitivity_runner(
+                handler,
+                model_result,
+                prompt,
+                possible_answer,
+                model_name,
+                test_category,
+                score_dir,
+            )
+
+        elif is_multi_turn(test_category):
             accuracy, total_count = multi_turn_runner(
                 handler,
                 model_result,

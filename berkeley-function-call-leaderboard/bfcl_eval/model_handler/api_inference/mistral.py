@@ -10,6 +10,8 @@ from bfcl_eval.model_handler.utils import (
     ast_parse,
     convert_to_function_call,
     convert_to_tool,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     format_execution_results_prompting,
     system_prompt_pre_processing_chat_model,
 )
@@ -23,7 +25,7 @@ class MistralHandler(BaseHandler):
 
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if "FC" in self.model_name:
             decoded_output = []
             for invoked_function in result:
@@ -32,30 +34,14 @@ class MistralHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
         else:
-            func = result
-            func = func.replace("\\_", "_")
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            decoded_output = ast_parse(func, language)
-            return decoded_output
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if "FC" in self.model_name:
             function_call = convert_to_function_call(result)
             return function_call
         else:
-            func = result
-            func = func.replace("\\_", "_")
-            decode_output = ast_parse(func)
-            execution_list = []
-            for function_call in decode_output:
-                for key, value in function_call.items():
-                    execution_list.append(
-                        f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                    )
-            return execution_list
+            return default_decode_execute_prompting(result, has_tool_call_tag)
 
     #### FC methods ####
 

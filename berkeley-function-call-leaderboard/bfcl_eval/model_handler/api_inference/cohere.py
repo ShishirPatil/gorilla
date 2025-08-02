@@ -25,7 +25,7 @@ class CohereHandler(BaseHandler):
         self.is_fc_model = True
         self.client = cohere.ClientV2(api_key=os.getenv("COHERE_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_output = []
         if isinstance(result, list):
             for tool_call in result:
@@ -34,7 +34,7 @@ class CohereHandler(BaseHandler):
                 decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         execution_list = []
         if isinstance(result, list):
             for tool_call in result:

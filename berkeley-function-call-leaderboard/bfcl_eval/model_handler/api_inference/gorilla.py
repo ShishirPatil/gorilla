@@ -14,14 +14,14 @@ class GorillaHandler(BaseHandler):
         self.model_style = ModelStyle.Gorilla
         self.is_fc_model = True
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         func = "[" + result + "]"
-        decoded_output = ast_parse(func, language)
+        decoded_output = ast_parse(func, language, has_tool_call_tag)
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         func = "[" + result + "]"
-        decoded_output = ast_parse(func)
+        decoded_output = ast_parse(func, has_tool_call_tag)
         execution_list = []
         for function_call in decoded_output:
             for key, value in function_call.items():

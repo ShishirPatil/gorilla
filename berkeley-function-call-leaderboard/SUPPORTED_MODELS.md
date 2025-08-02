@@ -33,7 +33,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Command A                              | Function Calling | Cohere         | command-a-03-2025-FC                                        |
 | Command R7B                            | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
 | Command-R-Plus                         | Function Calling | Cohere         | command-r-plus-FC                                           |
-| DBRX-Instruct                          | Prompt           | Databricks     | databricks-dbrx-instruct                                    |
 | DeepSeek-R1                            | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
 | DeepSeek-R1-0528                       | Prompt           | DeepSeek       | DeepSeek-R1-0528                                            |
 | DeepSeek-R1-0528                       | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
@@ -92,7 +91,6 @@ For model names containing `{...}`, multiple versions are available. For example
 | Mistral-small-2503                     | Function Calling | Mistral AI     | mistral-small-2503-FC                                       |
 | Mistral-Small-2503                     | Prompt           | Mistral AI     | mistral-small-2503                                          |
 | Nemotron-4-340b-instruct               | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
-| Nexusflow-Raven-v2                     | Function Calling | Nexusflow      | Nexusflow-Raven-v2                                          |
 | O3-2025-04-16                          | Prompt           | OpenAI         | o3-2025-04-16                                               |
 | O3-2025-04-16                          | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |
 | O4-mini-2025-04-16                     | Prompt           | OpenAI         | o4-mini-2025-04-16                                          |

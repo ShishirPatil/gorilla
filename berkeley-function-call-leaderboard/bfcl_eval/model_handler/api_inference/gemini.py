@@ -15,7 +15,6 @@ from bfcl_eval.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from google import genai
-from google.genai import errors as genai_errors
 from google.genai.types import (
     AutomaticFunctionCallingConfig,
     Content,
@@ -48,19 +47,19 @@ class GeminiHandler(BaseHandler):
 
         return prompts
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if "FC" not in self.model_name:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
-            return default_decode_ast_prompting(result, language)
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
         else:
             if type(result) is not list:
                 result = [result]
             return result
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if "FC" not in self.model_name:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
-            return default_decode_execute_prompting(result)
+            return default_decode_execute_prompting(result, has_tool_call_tag)
         else:
             func_call_list = []
             for function_call in result:

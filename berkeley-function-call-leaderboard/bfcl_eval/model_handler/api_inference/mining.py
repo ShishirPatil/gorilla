@@ -19,7 +19,7 @@ class MiningHandler(OpenAICompletionsHandler):
             api_key=os.getenv("MINING_API_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_output = []
         for invoked_function in result:
             name = invoked_function["name"]
@@ -27,7 +27,7 @@ class MiningHandler(OpenAICompletionsHandler):
             decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         too_call_format = []
         for tool_call in result:
             if isinstance(tool_call, dict):

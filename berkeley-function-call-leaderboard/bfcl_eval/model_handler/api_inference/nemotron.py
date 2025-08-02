@@ -76,7 +76,7 @@ Here is a list of functions in JSON format that you can invoke.
         return {"message": []}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         """Extract function calls from the Nemotron XML format."""
         # Extract content between TOOLCALL tags
         toolcall_match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", result, re.DOTALL)
@@ -86,10 +86,10 @@ Here is a list of functions in JSON format that you can invoke.
         # Get the function call string
         func_call_str = toolcall_match.group(1)
 
-        return default_decode_ast_prompting(func_call_str, language)
+        return default_decode_ast_prompting(func_call_str, language, has_tool_call_tag)
 
     @override
-    def decode_execute(self, result, language="Python"):
+    def decode_execute(self, result, has_tool_call_tag):
         """Convert Nemotron response to executable function calls."""
         # Extract content between TOOLCALL tags
         toolcall_match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", result, re.DOTALL)
@@ -99,4 +99,4 @@ Here is a list of functions in JSON format that you can invoke.
         # Get the function call string
         func_call_str = toolcall_match.group(1)
 
-        return default_decode_execute_prompting(func_call_str, language)
+        return default_decode_execute_prompting(func_call_str, has_tool_call_tag)

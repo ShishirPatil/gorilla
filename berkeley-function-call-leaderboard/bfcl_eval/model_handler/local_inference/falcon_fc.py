@@ -22,11 +22,11 @@ class Falcon3FCHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         """Decode the model's response into AST format."""
         try:
             if "<tool_call>" not in result:
-                return []
+                raise ValueError(f"No <tool_call> found in the model's response: {result}")
 
             tool_calls_str = result.split("<tool_call>")[1].split("</tool_call>")[0].strip()
 
@@ -48,14 +48,14 @@ class Falcon3FCHandler(OSSHandler):
 
             return decoded_output
         except (json.JSONDecodeError, KeyError, IndexError):
-            return []
+            raise ValueError(f"Failed to decode the model's response: {result}")
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         """Convert the model's response into executable function calls."""
         try:
             if "<tool_call>" not in result:
-                return []
+                raise ValueError(f"No <tool_call> found in the model's response: {result}")
 
             tool_calls_str = result.split("<tool_call>")[1].split("</tool_call>")[0].strip()
 
@@ -77,7 +77,7 @@ class Falcon3FCHandler(OSSHandler):
 
             return execution_list
         except (json.JSONDecodeError, KeyError, IndexError):
-            return []
+            raise ValueError(f"Failed to decode the model's response: {result}")
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:

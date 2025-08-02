@@ -40,7 +40,7 @@ class GLMHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         args = result.split("\n")
         if len(args) == 1:
             func = [args[0]]
@@ -49,7 +49,7 @@ class GLMHandler(OSSHandler):
         return func
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         args = result.split("\n")
         if len(args) == 1:
             func = args[0]

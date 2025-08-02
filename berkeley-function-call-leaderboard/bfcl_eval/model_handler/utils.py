@@ -8,11 +8,16 @@ from functools import reduce
 from typing import TYPE_CHECKING, Callable, List, Optional, Type, Union
 
 from bfcl_eval.constants.default_prompts import *
-from bfcl_eval.utils import *
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.parser.java_parser import parse_java_function_call
 from bfcl_eval.model_handler.parser.js_parser import parse_javascript_function_call
+from bfcl_eval.model_handler.parser.json_parser import parse_json_function_call
+from bfcl_eval.model_handler.parser.xml_parser import (
+    parse_concise_xml_function_call,
+    parse_verbose_xml_function_call,
+)
+from bfcl_eval.utils import *
 from tenacity import (
     retry,
     retry_if_exception_message,
@@ -246,9 +251,19 @@ def convert_value(value, type_str):
         return value
 
 
-def ast_parse(input_str: str, language: str = "Python") -> list[dict]:
-    if language == "Python":
-        cleaned_input = input_str.strip("[]'")
+def ast_parse(
+    input_str: str, language: str = "python", has_tool_call_tag: bool = False
+) -> list[dict]:
+    if has_tool_call_tag:
+        match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", input_str, re.DOTALL)
+        if match:
+            input_str = match.group(1).strip()
+        else:
+            raise ValueError(f"No tool call tag found in input string: {input_str}")
+
+    if language == "python":
+        # We only want to remove wrapping quotes that could have been added by the model.
+        cleaned_input = input_str.strip().strip("'")
         parsed = ast.parse(cleaned_input, mode="eval")
         extracted = []
         if isinstance(parsed.body, ast.Call):
@@ -258,12 +273,40 @@ def ast_parse(input_str: str, language: str = "Python") -> list[dict]:
                 assert isinstance(elem, ast.Call)
                 extracted.append(resolve_ast_call(elem))
         return extracted
-    elif language == "Java":
-        return parse_java_function_call(
-            input_str[1:-1]
-        )  # Remove the [ and ] from the string
-    elif language == "JavaScript":
+
+    elif language == "java":
+        # Remove the [ and ] from the string
+        # Note: This is due to legacy reasons, we should fix this in the future.
+        return parse_java_function_call(input_str[1:-1])
+
+    elif language == "javascript":
+        # Note: Same as above, we should fix this in the future.
         return parse_javascript_function_call(input_str[1:-1])
+
+    elif language == "verbose_xml":
+        # Remove ```xml and anything before/after XML
+        match = re.search(r"<functions>(.*?)</functions>", input_str, re.DOTALL)
+        if not match:
+            raise ValueError(
+                f"No XML function call found in input string: {input_str}. Missing <functions> tag."
+            )
+        return parse_verbose_xml_function_call(match.group(0))
+
+    elif language == "concise_xml":
+        # Remove anything before/after <functions> and </functions>
+        match = re.search(r"<functions>(.*?)</functions>", input_str, re.DOTALL)
+        if not match:
+            raise ValueError(
+                f"No XML function call found in input string: {input_str}. Missing <functions> tag."
+            )
+        return parse_concise_xml_function_call(match.group(0))
+
+    elif language == "json":
+        json_match = re.search(r"\[.*\]", input_str, re.DOTALL)
+        if json_match:
+            input_str = json_match.group(0)
+        return parse_json_function_call(input_str)
+
     else:
         raise NotImplementedError(f"Unsupported language: {language}")
 
@@ -427,23 +470,24 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result: str, language: str = "Python") -> list[dict]:
+def default_decode_ast_prompting(result: str, language: str = "python", has_tool_call_tag: bool = False) -> list[dict]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
         result = result + "]"
-    decoded_output = ast_parse(result, language)
+    decoded_output = ast_parse(result, language, has_tool_call_tag)
     return decoded_output
 
 
-def default_decode_execute_prompting(result: str) -> list[str]:
+def default_decode_execute_prompting(result: str, has_tool_call_tag: bool = False) -> list[str]:
+    # Note: For execute, there are only Python entries, so we don't need to check the language.
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
         result = result + "]"
-    decoded_output = ast_parse(result)
+    decoded_output = ast_parse(result, language="python", has_tool_call_tag=has_tool_call_tag)
     return decoded_output_to_execution_list(decoded_output)
 
 

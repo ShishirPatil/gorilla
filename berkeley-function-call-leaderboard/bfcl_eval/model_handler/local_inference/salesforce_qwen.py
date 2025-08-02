@@ -60,7 +60,7 @@ class SalesforceQwenHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # result = result.replace("<|python_tag|>", "")
         try:
             # Parse the JSON array of function calls
@@ -80,7 +80,7 @@ class SalesforceQwenHandler(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         try:
             function_calls = json.loads(result)
             if not isinstance(function_calls, list):

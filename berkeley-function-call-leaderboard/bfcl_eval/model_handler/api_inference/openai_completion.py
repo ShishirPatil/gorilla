@@ -24,7 +24,7 @@ class OpenAICompletionsHandler(BaseHandler):
         self.model_style = ModelStyle.OpenAI_Completions
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
@@ -33,9 +33,9 @@ class OpenAICompletionsHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
         else:
-            return default_decode_ast_prompting(result, language)
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if "FC" in self.model_name or self.is_fc_model:
             return convert_to_function_call(result)
         else:
