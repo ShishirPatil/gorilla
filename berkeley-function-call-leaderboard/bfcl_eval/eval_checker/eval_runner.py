@@ -367,7 +367,9 @@ def format_sensitivity_runner(
     result = []
     correct_count = 0
     # Track stats per format sensitivity configuration
-    config_stats: dict[str, dict[str, int]] = defaultdict(lambda: {"correct": 0, "total": 0})
+    config_stats: dict[str, dict[str, int]] = defaultdict(
+        lambda: {"correct": 0, "total": 0}
+    )
 
     for i in range(len(model_result)):
         index = model_result[i]["id"]
@@ -425,9 +427,11 @@ def format_sensitivity_runner(
     # Calculate statistics across different prompt configurations
     config_accuracies = [v["accuracy"] for v in accuracy_by_config.values()]
     if len(config_accuracies) > 1:
-        accuracy_variance = statistics.variance(config_accuracies)
-        accuracy_std = statistics.stdev(config_accuracies)
-        accuracy_max_delta = max(config_accuracies) - min(config_accuracies)
+        accuracy_variance = round(statistics.variance(config_accuracies) * 100**2, 2)
+        accuracy_std = round(statistics.stdev(config_accuracies) * 100, 2)
+        accuracy_max_delta = round(
+            (max(config_accuracies) - min(config_accuracies)) * 100, 2
+        )
     else:
         accuracy_variance = 0.0
         accuracy_std = 0.0
@@ -701,6 +705,7 @@ def runner(model_names, test_categories, result_dir, score_dir):
     # A dictionary to store the evaluation scores.
     # Key is model name, value is a dictionary with keys as test category
     # and values as a dictionary with accuracy and total count.
+    # TODO: use defaultdict to initialize the leaderboard table
     leaderboard_table = {}
 
     # Get a list of all entries in the folder
@@ -791,7 +796,7 @@ def main(model, test_categories, result_dir, score_dir):
         f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V4."
     )
     print(
-        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'}, {score_dir / 'data_multi_turn.csv'} and {score_dir / 'data_agentic.csv'} for detailed evaluation results on each sub-section categories respectively."
+        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'}, {score_dir / 'data_multi_turn.csv'}, {score_dir / 'data_agentic.csv'} and {score_dir / 'data_format_sensitivity.csv'} for detailed evaluation results on each sub-section categories respectively."
     )
 
 

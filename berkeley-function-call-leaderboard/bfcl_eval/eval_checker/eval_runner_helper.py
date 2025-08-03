@@ -280,10 +280,14 @@ def write_score_csv_file(
 
 def generate_leaderboard_csv(leaderboard_table, output_path):
     print("📈 Aggregating data to generate leaderboard score table...")
+    # Prepare format sensitivity configuration list once
+    all_format_configs = get_all_format_sensitivity_configs()
+
     data_non_live = []
     data_live = []
     data_multi_turn = []
     data_agentic = []
+    data_format_sensitivity = []
     data_combined = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -470,14 +474,40 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         )
         total_relevance = relevance_live
 
+        # Format Sensitivity statistics
+        format_sensitivity_metadata = value.get("format_sensitivity", {})
+        format_sensitivity_max_delta = format_sensitivity_metadata.get(
+            "accuracy_max_delta", "N/A"
+        )
+        format_sensitivity_std = format_sensitivity_metadata.get("accuracy_std", "N/A")
+
+        # Prepare row for format sensitivity CSV
+        config_accuracy_values = []
+        for cfg in all_format_configs:
+            cfg_stats = format_sensitivity_metadata.get(cfg, {})
+            cfg_acc = cfg_stats.get("accuracy", "N/A")
+            config_accuracy_values.append(cfg_acc)
+
+        data_format_sensitivity.append(
+            [
+                "N/A",
+                model_config.display_name,
+                format_sensitivity_max_delta,
+                format_sensitivity_std,
+                *config_accuracy_values,
+            ]
+        )
+
+        # TODO: @HuanzhiMao adjust the weights
         total_overall_accuracy = calculate_percentage_weighted_accuracy(
             [
                 overall_accuracy_non_live,
                 overall_accuracy_live,
+                total_irrelevance,
                 overall_accuracy_multi_turn,
                 overall_accuracy_agentic,
             ],
-            [10, 10, 30, 50],
+            [10, 10, 10, 30, 40],
             display_na_if_category_missing=False,
         )
 
@@ -515,6 +545,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 memory_rec_sum["display_accuracy"],
                 total_relevance["display_accuracy"],
                 total_irrelevance["display_accuracy"],
+                format_sensitivity_max_delta,
+                format_sensitivity_std,
                 model_config.org,
                 model_config.license,
             ]
@@ -552,13 +584,26 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         sort_column_index=2,
     )
 
+    # Write Format Sensitivity Score File
+    COLUMNS_FORMAT_SENS = COLUMNS_FORMAT_SENS_PREFIX + [
+        f"Config {cfg}" for cfg in all_format_configs
+    ]
+
+    write_score_csv_file(
+        data=data_format_sensitivity,
+        file_path=output_path / "data_format_sensitivity.csv",
+        header=COLUMNS_FORMAT_SENS,
+        sort_column_index=2,
+        no_conversion_numeric_column_index=[2, 3],
+    )
+
     # Write Total Score File
     write_score_csv_file(
         data=data_combined,
         file_path=output_path / "data_overall.csv",
         header=COLUMNS_OVERALL,
         sort_column_index=1,
-        no_conversion_numeric_column_index=[4, 5, 6, 7],
+        no_conversion_numeric_column_index=[4, 5, 6, 7, 32, 33],
     )
 
     wandb_project = os.getenv("WANDB_BFCL_PROJECT")
@@ -637,12 +682,8 @@ def update_leaderboard_table_with_local_score_file(
         pattern = f"{VERSION_PREFIX}_*_score.json"
         for model_score_json in subdir.rglob(pattern):
             metadata = load_file(model_score_json)[0]
-            accuracy, total_count = metadata["accuracy"], metadata["total_count"]
             test_category = extract_test_category(model_score_json)
             if model_name not in leaderboard_table:
                 leaderboard_table[model_name] = {}
-            if test_category not in leaderboard_table[model_name]:
-                leaderboard_table[model_name][test_category] = {
-                    "accuracy": accuracy,
-                    "total_count": total_count,
-                }
+            # Store the full metadata to retain additional statistics (e.g. format sensitivity breakdown)
+            leaderboard_table[model_name][test_category] = metadata

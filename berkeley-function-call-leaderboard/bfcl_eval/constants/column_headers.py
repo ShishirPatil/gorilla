@@ -51,6 +51,13 @@ COLUMNS_AGENTIC = [
     "Memory Recursive Summarization",
 ]
 
+# Format Sensitivity columns are not scored but informative
+COLUMNS_FORMAT_SENS_PREFIX = [
+    "Rank",
+    "Model",
+    "Format Sensitivity Max Delta",
+    "Format Sensitivity Standard Deviation",
+]
 
 COLUMNS_OVERALL = [
     "Rank",
@@ -85,6 +92,8 @@ COLUMNS_OVERALL = [
     "Memory Recursive Summarization",
     "Relevance Detection",
     "Irrelevance Detection",
+    "Format Sensitivity Max Delta",
+    "Format Sensitivity Standard Deviation",
     "Organization",
     "License",
 ]
