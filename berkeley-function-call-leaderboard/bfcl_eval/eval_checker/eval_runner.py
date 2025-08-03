@@ -1,4 +1,6 @@
 import argparse
+import statistics
+from collections import defaultdict
 
 from bfcl_eval.constants.enums import Language, ReturnFormat
 from bfcl_eval.constants.eval_config import *
@@ -364,6 +366,9 @@ def format_sensitivity_runner(
 
     result = []
     correct_count = 0
+    # Track stats per format sensitivity configuration
+    config_stats: dict[str, dict[str, int]] = defaultdict(lambda: {"correct": 0, "total": 0})
+
     for i in range(len(model_result)):
         index = model_result[i]["id"]
         model_result_item = model_result[i]["result"]
@@ -399,13 +404,50 @@ def format_sensitivity_runner(
             has_tool_call_tag=has_tool_call_tag,
         )
 
+        # Update stats for this configuration
+        config_stats[format_sensitivity_config]["total"] += 1
         if entry_result["valid"]:
             correct_count += 1
+            config_stats[format_sensitivity_config]["correct"] += 1
         else:
             result.append(entry_result)
 
+    # Compute accuracy per configuration
+    accuracy_by_config = {
+        cfg: {
+            "accuracy": stats["correct"] / stats["total"],
+            "correct_count": stats["correct"],
+            "total_count": stats["total"],
+        }
+        for cfg, stats in config_stats.items()
+    }
+
+    # Calculate statistics across different prompt configurations
+    config_accuracies = [v["accuracy"] for v in accuracy_by_config.values()]
+    if len(config_accuracies) > 1:
+        accuracy_variance = statistics.variance(config_accuracies)
+        accuracy_std = statistics.stdev(config_accuracies)
+        accuracy_max_delta = max(config_accuracies) - min(config_accuracies)
+    else:
+        accuracy_variance = 0.0
+        accuracy_std = 0.0
+        accuracy_max_delta = 0.0
+
+    extra_header_fields = {
+        "accuracy_max_delta": accuracy_max_delta,
+        "accuracy_variance": accuracy_variance,
+        "accuracy_std": accuracy_std,
+        **accuracy_by_config,
+    }
+
     return save_eval_results(
-        result, correct_count, model_result, test_category, model_name, score_dir
+        result,
+        correct_count,
+        model_result,
+        test_category,
+        model_name,
+        score_dir,
+        extra_header_fields=extra_header_fields,
     )
 
 

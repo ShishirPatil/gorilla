@@ -162,21 +162,28 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 
 def save_eval_results(
-    result, correct_count, model_result, test_category, model_name, score_dir
+    result,
+    correct_count,
+    model_result,
+    test_category,
+    model_name,
+    score_dir,
+    extra_header_fields: dict = None,
 ) -> tuple[float, int]:
     """
     Compute accuracy, finalize evaluation results and write them to disk.
     Return the accuracy and the total number of test cases.
     """
     accuracy = correct_count / len(model_result)
-    result.insert(
-        0,
-        {
-            "accuracy": accuracy,
-            "correct_count": correct_count,
-            "total_count": len(model_result),
-        },
-    )
+    header = {
+        "accuracy": accuracy,
+        "correct_count": correct_count,
+        "total_count": len(model_result),
+    }
+    if extra_header_fields:
+        header.update(extra_header_fields)
+
+    result.insert(0, header)
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
     output_file_dir = (
         score_dir / model_name / get_directory_structure_by_category(test_category)
@@ -571,12 +578,14 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         non_live_df = pd.read_csv(output_path / "data_non_live.csv")
         live_df = pd.read_csv(output_path / "data_live.csv")
         multi_turn_df = pd.read_csv(output_path / "data_multi_turn.csv")
+        agentic_df = pd.read_csv(output_path / "data_agentic.csv")
         overall_df = pd.read_csv(output_path / "data_overall.csv")
 
         # Convert DataFrames to WandB Tables
         non_live_table = wandb.Table(dataframe=non_live_df)
         live_table = wandb.Table(dataframe=live_df)
         multi_turn_table = wandb.Table(dataframe=multi_turn_df)
+        agentic_table = wandb.Table(dataframe=agentic_df)
         overall_table = wandb.Table(dataframe=overall_df)
 
         # Create artifacts
@@ -586,12 +595,14 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         bfcl_artifact.add(non_live_table, "non_live_results")
         bfcl_artifact.add(live_table, "live_results")
         bfcl_artifact.add(multi_turn_table, "multi_turn_results")
+        bfcl_artifact.add(agentic_table, "agentic_results")
         bfcl_artifact.add(overall_table, "overall_results")
 
         # Add raw CSV files to artifact
         bfcl_artifact.add_file(str(output_path / "data_non_live.csv"))
         bfcl_artifact.add_file(str(output_path / "data_live.csv"))
         bfcl_artifact.add_file(str(output_path / "data_multi_turn.csv"))
+        bfcl_artifact.add_file(str(output_path / "data_agentic.csv"))
         bfcl_artifact.add_file(str(output_path / "data_overall.csv"))
 
         # Log tables directly
@@ -600,6 +611,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 "Non-Live Results": non_live_table,
                 "Live Results": live_table,
                 "Multi-Turn Results": multi_turn_table,
+                "Agentic Results": agentic_table,
                 "Overall Results": overall_table,
             }
         )

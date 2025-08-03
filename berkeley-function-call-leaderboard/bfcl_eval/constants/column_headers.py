@@ -1,7 +1,7 @@
 COLUMNS_NON_LIVE = [
     "Rank",
     "Model",
-    "Non_Live Overall Acc",
+    "Non-Live Overall Acc",
     "AST Summary",
     "Simple AST",
     "Python Simple AST",
