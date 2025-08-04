@@ -167,4 +167,9 @@ SUPPORTED_MODELS = [
     "katanemo/Arch-Agent-3B",
     "katanemo/Arch-Agent-7B",
     "katanemo/Arch-Agent-32B"
+    "accounts/fireworks/models/qwen3-30b-a3b",
+    "accounts/fireworks/models/qwen3-30b-a3b-instruct-2507",
+    "rlor_model",
+    "rlor/model",
+    "rlor-model",
 ]

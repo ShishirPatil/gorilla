@@ -1,20 +1,29 @@
 import os
 import time
 
-from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from openai import OpenAI
+
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+from bfcl_eval.model_handler.model_style import ModelStyle
 
 
 class FireworksHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.FIREWORK_AI
+        self.is_fc_model = True
 
         self.client = OpenAI(
             base_url="https://api.fireworks.ai/inference/v1",
             api_key=os.getenv("FIREWORKS_API_KEY"),
         )
+        if model_name in ["rlor_model", "rlor/model", "rlor-model"]:
+            self.client = OpenAI(
+                base_url="http://localhost:81/v1",
+                api_key=os.getenv("FIREWORKS_API_KEY"),
+            )
 
     #### FC methods ####
 
@@ -27,14 +36,14 @@ class FireworksHandler(OpenAICompletionsHandler):
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
+                model=self.model_name,
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
+                model=self.model_name,
                 temperature=self.temperature,
             )
         end_time = time.time()
