@@ -192,6 +192,10 @@ class QwenHandler(OSSHandler):
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
         inference_data["message"].append(
-            {"role": "assistant", "content": model_response_data["model_responses"], "reasoning_content": model_response_data.get("reasoning_content", "")}
+            {
+                "role": "assistant",
+                "content": model_response_data["model_responses"],
+                "reasoning_content": model_response_data.get("reasoning_content", ""),
+            }
         )
         return inference_data

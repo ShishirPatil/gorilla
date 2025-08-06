@@ -212,7 +212,7 @@ class QwenFCHandler(OSSHandler):
                         if isinstance(tool_call["arguments"], str):
                             formatted_prompt += tool_call["arguments"]
                         else:
-                            formatted_prompt += str(tool_call["arguments"])
+                            formatted_prompt += json.dumps(tool_call["arguments"])
                         
                         formatted_prompt += "}\n</tool_call>"
 
