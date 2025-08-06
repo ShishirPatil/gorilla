@@ -31,6 +31,7 @@ from bfcl_eval.model_handler.api_inference.qwen import (
 )
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.api_inference.yi import YiHandler
+from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
 from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
@@ -1076,6 +1077,30 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "glm-4.5-FC": ModelConfig(
+        model_name="glm-4.5-FC",
+        display_name="GLM-4.5 (FC)",
+        url="https://huggingface.co/zai-org/GLM-4.5",
+        org="zai-org",
+        license="MIT",
+        model_handler=GLMAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "glm-4.5-air-FC": ModelConfig(
+        model_name="glm-4.5-air-FC",
+        display_name="GLM-4.5-Air (FC)",
+        url="https://huggingface.co/zai-org/GLM-4.5-Air",
+        org="zai-org",
+        license="MIT",
+        model_handler=GLMAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
 }
 
