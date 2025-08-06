@@ -186,3 +186,16 @@ class QwenHandler(OSSHandler):
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
         }
+
+    @override
+    def _add_assistant_message_prompting(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            {
+                "role": "assistant",
+                "content": model_response_data["model_responses"],
+                "reasoning_content": model_response_data.get("reasoning_content", ""),
+            }
+        )
+        return inference_data
