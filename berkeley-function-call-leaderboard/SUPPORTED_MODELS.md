@@ -113,6 +113,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Qwen3-{30B-A3B,235B-A22B}              | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}                              |
 | Qwen3-{30B-A3B,235B-A22B}              | Function Calling | Alibaba Cloud  | qwen3-{30b-a3b, 235b-a22b}-FC                               |
 | Qwen3-{30B-A3B,235B-A22B}              | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{30B-A3B,235B-A22B}-FC                           |
+| Qwen2.5-14B-Instruct-APIGen-MT-5k      | Prompt           | Self-hosted 💻 | miazhao/Qwen2.5-14B-Instruct-APIGen-MT-5k                   |
 | QwQ-32B                                | Function Calling | Alibaba Cloud  | qwq-32b-FC                                                  |
 | QwQ-32B                                | Function Calling | Novita AI      | qwen/qwq-32b-FC-novita                                      |
 | QwQ-32B                                | Prompt           | Alibaba Cloud  | qwq-32b                                                     |
