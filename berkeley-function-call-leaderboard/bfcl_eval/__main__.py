@@ -105,6 +105,11 @@ def generate(
         help="A list of test categories to run the evaluation on. Use commas to separate multiple test categories.",
         callback=handle_multiple_input
     ),
+    custom_path: List[str] = typer.Option(
+        None,
+        "--custom-path",
+        help="Optional path(s) to custom JSON test files. Used only if test_category includes 'custom'.",
+    ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
     ),
@@ -156,6 +161,7 @@ def generate(
     args = SimpleNamespace(
         model=model,
         test_category=test_category,
+        custom_path=custom_path,
         temperature=temperature,
         include_input_log=include_input_log,
         exclude_state_log=exclude_state_log,

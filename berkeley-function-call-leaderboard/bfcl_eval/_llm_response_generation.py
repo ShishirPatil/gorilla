@@ -3,6 +3,7 @@ import json
 import time
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
+from pathlib import Path
 import traceback
 
 from bfcl_eval.constants.category_mapping import (
@@ -34,6 +35,8 @@ def get_args():
     # Refer to test_categories for supported categories.
     parser.add_argument("--test-category", type=str, default="all", nargs="+")
 
+    #Argument for the file path of a custom file when the --test-category flag is 'custom'
+    parser.add_argument("--custom-path", type=str, default=None, nargs="+", help="Set the path of your custom file. Only used when --test-category is custom")
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
     parser.add_argument("--include-input-log", action="store_true", default=False)
@@ -72,7 +75,7 @@ def build_handler(model_name, temperature):
     return handler
 
 
-def get_involved_test_entries(test_category_args, run_ids):
+def get_involved_test_entries(test_category_args, run_ids, custom_path=None):
     all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
     if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
@@ -80,24 +83,37 @@ def get_involved_test_entries(test_category_args, run_ids):
         for category, test_ids in test_ids_to_generate.items():
             if len(test_ids) == 0:
                 continue
-            test_file_path = TEST_FILE_MAPPING[category]
-            all_test_entries_involved.extend(
-                [
-                    entry
-                    for entry in load_file(PROMPT_PATH / test_file_path)
-                    if entry["id"] in test_ids
-                ]
-            )
+            elif category == 'custom':
+                test_file_path = custom_path
+            else:
+                test_file_path = TEST_FILE_MAPPING[category]
+                all_test_entries_involved.extend(
+                    [
+                        entry
+                        for entry in load_file(PROMPT_PATH / test_file_path)
+                        if entry["id"] in test_ids
+                    ]
+                )
             all_test_categories.append(category)
             all_test_file_paths.append(test_file_path)
-
     else:
-        all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
-        # Make a copy here since we are removing list elemenets inside the for loop
-        for test_category, file_to_open in zip(
-            all_test_categories[:], all_test_file_paths[:]
-        ):
-            all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
+        if custom_path is not None:
+            all_test_file_paths = custom_path
+            _, all_test_categories = parse_test_category_argument(test_category_args)
+            for test_category, file_to_open in zip(
+                all_test_categories[:], all_test_file_paths[:]
+            ):
+                all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
+
+        else:
+            all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
+            print("BOOOOOM", all_test_file_paths)
+            print("DICKKKKKK", all_test_categories)
+            # Make a copy here since we are removing list elemenets inside the for loop
+            for test_category, file_to_open in zip(
+                all_test_categories[:], all_test_file_paths[:]
+            ):
+                all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
 
     return (
         all_test_file_paths,
@@ -275,12 +291,14 @@ def main(args):
         args.model = [args.model]
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
+    if type(args.custom_path) is not list:
+        args.custom_path = [args.custom_path]
 
     (
         all_test_file_paths,
         all_test_categories,
         all_test_entries_involved,
-    ) = get_involved_test_entries(args.test_category, args.run_ids)
+    ) = get_involved_test_entries(args.test_category, args.run_ids, args.custom_path)
 
     for model_name in args.model:
         if model_name not in MODEL_CONFIG_MAPPING:
