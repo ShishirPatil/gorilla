@@ -131,7 +131,6 @@ class WebSearchAPI:
             - 'href' (str): The URL of the search result.
             - 'body' (str): A brief description or snippet from the search result.
         """
-
         backoff = 2  # initial back-off in seconds
         params = {
             "engine": "duckduckgo",
@@ -207,17 +206,6 @@ class WebSearchAPI:
                 )
 
         return results
-
-        # Note: Un-comment the following section to use the DuckDuckGo API
-        # This API is free, but is rate limited.
-        # Need to first `pip install duckduckgo_search`
-
-        # from duckduckgo_search import DDGS
-        # try:
-        #     time.sleep(1)
-        #     return DDGS().text(keywords=keywords, region=region, max_results=max_results)
-        # except Exception as e:
-        #     return {"error": str(e)}
 
     def fetch_url_content(self, url: str, mode: str = "raw") -> str:
         """

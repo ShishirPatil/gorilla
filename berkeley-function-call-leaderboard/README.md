@@ -11,6 +11,7 @@
     - [Extra Dependencies for Self-Hosted Models](#extra-dependencies-for-self-hosted-models)
     - [Configuring Project Root Directory](#configuring-project-root-directory)
     - [Setting up Environment Variables](#setting-up-environment-variables)
+      - [Configuring SerpAPI for Web Search Category](#configuring-serpapi-for-web-search-category)
   - [Running Evaluations](#running-evaluations)
     - [Generating LLM Responses](#generating-llm-responses)
       - [Selecting Models and Test Categories](#selecting-models-and-test-categories)
@@ -134,6 +135,10 @@ cp $(python -c "import bfcl_eval; print(bfcl_eval.__path__[0])")/.env.example $B
 If you are running any proprietary models, make sure the model API keys are included in your `.env` file. Models like GPT, Claude, Mistral, Gemini, Nova, will require them.
 
 The library looks for the `.env` file in the project root, i.e. `$BFCL_PROJECT_ROOT/.env`.
+
+#### Configuring SerpAPI for Web Search Category
+
+For the `web_search` test category, we use the [SerpAPI](https://serpapi.com/) service to perform web search. You need to sign up for an API key and add it to your `.env` file. You can also switch to other web search APIs by changing the `search_engine_query` function in `bfcl_eval/eval_checker/multi_turn_eval/func_source_code/web_search.py`.
 
 ---
 
@@ -312,9 +317,9 @@ For detailed steps, please see the [Contributing Guide](./CONTRIBUTING.md).
 
 ## Additional Resources
 
-- [Gorilla Discord](https://discord.gg/grXXvj9Whz) (`#leaderboard` channel)
-- [Project Website](https://gorilla.cs.berkeley.edu/)
+- [Discord](https://discord.gg/grXXvj9Whz) (`#leaderboard` channel)
+- [Project Website](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
 All the leaderboard statistics, and data used to train the models are released under Apache 2.0.
-Gorilla is an open source effort from UC Berkeley and we welcome contributors.
-Please email us your comments, criticisms, and questions. More information about the project can be found at [https://gorilla.cs.berkeley.edu/](https://gorilla.cs.berkeley.edu/)
+BFCL is an open source effort from UC Berkeley and we welcome contributors.
+For any comments, criticisms, or questions, please feel free to raise an issue or a PR. You can also reach us via [email](mailto:huanzhimao@berkeley.edu).
