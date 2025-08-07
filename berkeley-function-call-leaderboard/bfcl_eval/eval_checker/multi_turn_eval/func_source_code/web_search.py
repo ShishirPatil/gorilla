@@ -1,12 +1,13 @@
 import os
+import random
+import time
+from typing import Optional
+from urllib.parse import urlparse
 
 import html2text
 import requests
 from bs4 import BeautifulSoup
 from serpapi import GoogleSearch
-from typing import Optional
-import random
-from urllib.parse import urlparse
 
 ERROR_TEMPLATES = [
     "503 Server Error: Service Unavailable for url: {url}",
@@ -131,44 +132,81 @@ class WebSearchAPI:
             - 'body' (str): A brief description or snippet from the search result.
         """
 
-        try:
-            params = {
-                "engine": "duckduckgo",
-                "q": keywords,
-                "kl": region,
-                "api_key": os.getenv("SERPAPI_API_KEY"),
+        backoff = 2  # initial back-off in seconds
+        params = {
+            "engine": "duckduckgo",
+            "q": keywords,
+            "kl": region,
+            "api_key": os.getenv("SERPAPI_API_KEY"),
+        }
+
+        # Infinite retry loop with exponential backoff
+        while True:
+            try:
+                search = GoogleSearch(params)
+                search_results = search.get_dict()
+            except Exception as e:
+                # If the underlying HTTP call raised a 429 we retry, otherwise propagate
+                if "429" in str(e):
+                    error_block = (
+                        "*" * 100
+                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {backoff} seconds…"
+                        + "*" * 100
+                    )
+                    print(error_block)
+                    time.sleep(backoff)
+                    backoff = min(backoff * 2, 120)  # cap the back-off
+                    continue
+                else:
+                    error_block = (
+                        "*" * 100
+                        + f"\n❗️❗️ [WebSearchAPI] Error from SerpAPI: {str(e)}. This is not a rate-limit error, so it will not be retried."
+                        + "*" * 100
+                    )
+                    print(error_block)
+                    return {"error": str(e)}
+
+            # SerpAPI sometimes returns the error in the payload instead of raising
+            if "error" in search_results and "429" in str(search_results["error"]):
+                error_block = (
+                    "*" * 100
+                    + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {backoff} seconds…"
+                    + "*" * 100
+                )
+                print(error_block)
+                time.sleep(backoff)
+                backoff = min(backoff * 2, 120)
+                continue
+
+            break  # Success – no rate-limit error detected
+
+        if "organic_results" not in search_results:
+            return {
+                "error": "Failed to retrieve the search results from server. Please try again later."
             }
 
-            search = GoogleSearch(params)
-            search_results = search.get_dict()
-            if "error" in search_results:
-                return search_results
+        search_results = search_results["organic_results"]
 
-            search_results = search_results["organic_results"]
+        # Convert the search results to the desired format
+        results = []
+        for result in search_results[:max_results]:
+            if self.show_snippet:
+                results.append(
+                    {
+                        "title": result["title"],
+                        "href": result["link"],
+                        "body": result["snippet"],
+                    }
+                )
+            else:
+                results.append(
+                    {
+                        "title": result["title"],
+                        "href": result["link"],
+                    }
+                )
 
-            # Convert the search results to the desired format
-            results = []
-            for result in search_results[:max_results]:
-                if self.show_snippet:
-                    results.append(
-                        {
-                            "title": result["title"],
-                            "href": result["link"],
-                            "body": result["snippet"],
-                        }
-                    )
-                else:
-                    results.append(
-                        {
-                            "title": result["title"],
-                            "href": result["link"],
-                        }
-                    )
-
-            return results
-
-        except Exception as e:
-            return {"error": str(e)}
+        return results
 
         # Note: Un-comment the following section to use the DuckDuckGo API
         # This API is free, but is rate limited.
