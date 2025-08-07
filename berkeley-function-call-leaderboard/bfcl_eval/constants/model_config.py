@@ -8,9 +8,11 @@ from bfcl_eval.model_handler.api_inference.dm_cito import DMCitoHandler
 from bfcl_eval.model_handler.api_inference.fireworks import FireworksHandler
 from bfcl_eval.model_handler.api_inference.functionary import FunctionaryHandler
 from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
+from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
+from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
 from bfcl_eval.model_handler.api_inference.mistral import MistralHandler
@@ -28,7 +30,6 @@ from bfcl_eval.model_handler.api_inference.qwen import (
     QwenAPIHandler,
 )
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
-from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
 from bfcl_eval.model_handler.local_inference.bitagent import BitAgentHandler
@@ -62,7 +63,6 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
-from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -640,18 +640,6 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "command-r-plus-FC": ModelConfig(
-        model_name="command-r-plus-FC",
-        display_name="Command-R-Plus (FC)",
-        url="https://txt.cohere.com/command-r-plus-microsoft-azure",
-        org="Cohere For AI",
-        license="cc-by-nc-4.0",
-        model_handler=CohereHandler,
-        input_price=3,
-        output_price=15,
-        is_fc_model=True,
-        underscore_to_dot=True,
-    ),
     "command-r7b-12-2024-FC": ModelConfig(
         model_name="command-r7b-12-2024-FC",
         display_name="Command R7B (FC)",
@@ -892,10 +880,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "qwen3-30b-a3b-FC": ModelConfig(
-        model_name="qwen3-30b-a3b-FC",
-        display_name="Qwen3-30B-A3B (FC)",
-        url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
+    "qwen3-30b-a3b-instruct-2507-FC": ModelConfig(
+        model_name="qwen3-30b-a3b-instruct-2507",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenAPIHandler,
@@ -904,10 +892,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "qwen3-30b-a3b": ModelConfig(
-        model_name="qwen3-30b-a3b",
-        display_name="Qwen3-30B-A3B (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
+    "qwen3-30b-a3b-instruct-2507": ModelConfig(
+        model_name="qwen3-30b-a3b-instruct-2507",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenAPIHandler,
@@ -1004,7 +992,7 @@ api_inference_model_map = {
         model_name="glm-4.5-FC",
         display_name="GLM-4.5 (FC)",
         url="https://huggingface.co/zai-org/GLM-4.5",
-        org="zai-org",
+        org="Zhipu AI",
         license="MIT",
         model_handler=GLMAPIHandler,
         input_price=None,
@@ -1016,7 +1004,7 @@ api_inference_model_map = {
         model_name="glm-4.5-air-FC",
         display_name="GLM-4.5-Air (FC)",
         url="https://huggingface.co/zai-org/GLM-4.5-Air",
-        org="zai-org",
+        org="Zhipu AI",
         license="MIT",
         model_handler=GLMAPIHandler,
         input_price=None,
@@ -1472,10 +1460,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen3-4B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-4B-FC",
-        display_name="Qwen3-4B (FC)",
-        url="https://huggingface.co/Qwen/Qwen3-4B",
+    "Qwen/Qwen3-4B-Instruct-2507-FC": ModelConfig(
+        model_name="Qwen/Qwen3-4B-Instruct-2507-FC",
+        display_name="Qwen3-4B-Instruct-2507 (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1484,10 +1472,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen3-4B": ModelConfig(
-        model_name="Qwen/Qwen3-4B",
-        display_name="Qwen3-4B (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen3-4B",
+    "Qwen/Qwen3-4B-Instruct-2507": ModelConfig(
+        model_name="Qwen/Qwen3-4B-Instruct-2507",
+        display_name="Qwen3-4B-Instruct-2507 (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1568,10 +1556,10 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen3-30B-A3B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-30B-A3B-FC",
-        display_name="Qwen3-30B-A3B (FC)",
-        url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
+    "Qwen/Qwen3-30B-A3B-Instruct-2507-FC": ModelConfig(
+        model_name="Qwen/Qwen3-30B-A3B-Instruct-2507-FC",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (FC)",
+        url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenFCHandler,
@@ -1580,10 +1568,10 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "Qwen/Qwen3-30B-A3B": ModelConfig(
-        model_name="Qwen/Qwen3-30B-A3B",
-        display_name="Qwen3-30B-A3B (Prompt)",
-        url="https://huggingface.co/Qwen/Qwen3-30B-A3B",
+    "Qwen/Qwen3-30B-A3B-Instruct-2507": ModelConfig(
+        model_name="Qwen/Qwen3-30B-A3B-Instruct-2507",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (Prompt)",
+        url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
         model_handler=QwenHandler,
@@ -1593,7 +1581,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-235B-A22B-Instruct-2507-FC": ModelConfig(
-        model_name="Qwen/Qwen3-235B-A22B-Instruct-2507-FC",
+        model_name="Qwen/Qwen3-235B-A22B-Instruct-2507",
         display_name="Qwen3-235B-A22B-Instruct-2507 (FC)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
         org="Qwen",
@@ -2002,3 +1990,6 @@ MODEL_CONFIG_MAPPING = {
     **local_inference_model_map,
     **third_party_inference_model_map,
 }
+
+# Uncomment to get the supported_models.py file contents
+# print(repr(list(MODEL_CONFIG_MAPPING.keys())))
