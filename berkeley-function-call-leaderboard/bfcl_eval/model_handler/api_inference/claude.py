@@ -60,7 +60,7 @@ class ClaudeHandler(BaseHandler):
         """
         max_tokens is required to be set when querying, so we default to the model's max tokens
         """
-        if "claude-opus-4-20250514" in self.model_name:
+        if "claude-opus-4-1-20250805" in self.model_name:
             return 32000
         elif "claude-sonnet-4-20250514" in self.model_name:
             return 64000
@@ -140,15 +140,8 @@ class ClaudeHandler(BaseHandler):
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         if inference_data["caching_enabled"] and len(tools) > 0:
-            # First time compiling tools, so adding cache control flag to the last tool
-            if "tools" not in inference_data:
-                tools[-1]["cache_control"] = {"type": "ephemeral"}
-            # This is the situation where the tools are already compiled and we are adding more tools to the existing tools (in miss_func category)
-            # We add the cache control flag to the last tool in the previous existing tools and the last tool in the new tools to maximize cache hit
-            else:
-                existing_tool_len = len(inference_data["tools"])
-                tools[existing_tool_len - 1]["cache_control"] = {"type": "ephemeral"}
-                tools[-1]["cache_control"] = {"type": "ephemeral"}
+            # Add the cache control flag to the last tool
+            tools[-1]["cache_control"] = {"type": "ephemeral"}
 
         inference_data["tools"] = tools
 
@@ -169,6 +162,12 @@ class ClaudeHandler(BaseHandler):
         model_responses = tool_call_outputs if tool_call_outputs else text_outputs
 
         model_responses_message_for_chat_history = api_response.content
+
+        # Prompt caching statistics (Anthropic specific)
+        cache_creation_tokens = getattr(api_response.usage, "cache_creation_input_tokens", None)
+        cache_read_tokens = getattr(api_response.usage, "cache_read_input_tokens", None)
+        # Print out caching stats for quick inspection when running experiments
+        print("Prompt caching stats -> creation_tokens:", cache_creation_tokens, ", read_tokens:", cache_read_tokens)
 
         return {
             "model_responses": model_responses,

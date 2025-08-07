@@ -326,9 +326,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-opus-4-20250514": ModelConfig(
-        model_name="claude-opus-4-20250514",
-        display_name="Claude-Opus-4-20250514 (Prompt)",
+    "claude-opus-4-1-20250805": ModelConfig(
+        model_name="claude-opus-4-1-20250805",
+        display_name="Claude-Opus-4-1-20250805 (Prompt)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
@@ -338,9 +338,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-opus-4-20250514-FC": ModelConfig(
-        model_name="claude-opus-4-20250514",
-        display_name="Claude-Opus-4-20250514 (FC)",
+    "claude-opus-4-1-20250805-FC": ModelConfig(
+        model_name="claude-opus-4-1-20250805",
+        display_name="Claude-Opus-4-1-20250805 (FC)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
