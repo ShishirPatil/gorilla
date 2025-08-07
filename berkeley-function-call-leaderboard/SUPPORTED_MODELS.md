@@ -48,7 +48,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Gemini-2.5-Flash-Lite-Preview-06-17    | Prompt           | Google         | gemini-2.5-flash-lite-preview-06-17                         |
 | Gemini-2.5-Pro                         | Function Calling | Google         | gemini-2.5-pro-FC                                           |
 | Gemini-2.5-Pro                         | Prompt           | Google         | gemini-2.5-pro                                              |
-| Gemma-3-{1b,4b,12b,27b}-it             | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
+| Gemma-3-{1b,4b,12b,27b}-it             | Prompt           | Google         | gemma-3-{1b,4b,12b,27b}-it                            |
+| Gemma-3n-{E2B,E4B}-it                  | Prompt           | Google         | gemma-3n-e{2b,4b}-it                                  |
 | GLM-4-9b-Chat                          | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
 | GoGoAgent                              | Prompt           | BitAgent       | BitAgent/GoGoAgent                                          |
 | Gorilla-OpenFunctions-v2               | Function Calling | Gorilla LLM    | gorilla-openfunctions-v2                                    |
@@ -134,8 +135,8 @@ For model names containing `{...}`, multiple versions are available. For example
 
 ## Additional Requirements for Certain Models
 
-- **Gemini Models:**
-  For `Gemini` models, we use the Google AI Studio API for inference. Ensure you have set the `GOOGLE_API_KEY` in your `.env` file.
+- **Gemini and Gemma Models:**
+  For `Gemini` and `Gemma` models, we use the Google AI Studio API for inference. Ensure you have set the `GOOGLE_API_KEY` in your `.env` file.
 
 - **Databricks Models:**
   For `databrick-dbrx-instruct`, you must create an Azure Databricks workspace and set up a dedicated inference endpoint. Provide the endpoint URL via `DATABRICKS_AZURE_ENDPOINT_URL` in `.env`.
