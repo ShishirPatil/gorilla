@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-NRZJLJCSH6");
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <title>
+        Agent Arena: A Platform for Evaluating and Comparing LLM Agents
+    </title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="../assets/css/blog.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        body {
+            font-family: "Source Sans Pro", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            justify-content: center;
+        }
+
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .blog-title {
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+            display: flex;
+            margin-bottom: 0px;
+            justify-content: center;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #1e90ff;
+            margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .box-index {
+            position: fixed;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 150px;
+        }
+
+        .box-index h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .box-index ul {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .box-index ul li {
+            margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-index ul li a:hover {
+            color: #1e90ff;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px;
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        
+
+        @media screen and (max-width: 1000px) {
+            .blog-post {
+                padding: 10px;
+                /* Adjust spacing for smaller screens */
+                max-width: 90%
+            }
+
+            .blog-post img {
+                max-width: 90%;
+            }
+
+            .box-index {
+                display: none;
+                /* Hide the index on smaller screens */
+            }
+            
+        }
+        
+
+    .citation-container {
+        font-family: Arial, sans-serif;
+    }
+    .citation-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .citation-intro {
+        color: #444;
+        margin-bottom: 20px;
+    }
+    .citation-block {
+        white-space: pre-wrap;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #f4f4f4;
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-family: Courier, monospace;
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .author-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .author {
+        white-space: nowrap;
+        color: #1e90ff;
+        text-decoration: none;
+    }
+
+    .code-toggle {
+        font-weight: bold;
+        color: #0056b3;
+        cursor: pointer;
+        margin: 20px 0;
+    }
+
+    .code-toggle:hover {
+        text-decoration: underline;
+    }
+
+    .quote-block {
+        border-left: 4px solid #d3d3d3;  /* Light gray left border */
+        padding-left: 16px;              /* Indent the text */
+        margin: 12px 0;                  /* Add some spacing above and below */
+        font-style: italic;              /* Italicize the text */
+        background-color: #f7f7f7;       /* Light background color */
+        color: #333;                     /* Slightly dark text color */
+        border-radius: 4px;              /* Optional: rounded corners */
+        padding-top: 8px;                /* Optional: top padding */
+        padding-bottom: 8px;             /* Optional: bottom padding */
+    }
+
+
+    #ranking-methodology {
+        font-family: "Source Sans Pro", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    #ranking-methodology h3, 
+    #ranking-methodology h4, 
+    #ranking-methodology h5 {
+        color: #2c3e50;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    #ranking-methodology p {
+        margin-bottom: 1em;
+    }
+
+    #ranking-methodology ul {
+        padding-left: 20px;
+        margin-bottom: 1em;
+    }
+
+    #ranking-methodology .equation-block {
+        background-color: #f8f8f8;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px auto;
+        max-width: 80%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow-x: auto;
+    }
+
+    #ranking-methodology .equation-block pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    @media (max-width: 768px) {
+        #ranking-methodology .equation-block {
+            max-width: 95%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .equation-block {
+            max-width: 95%;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="
+        position: absolute;
+        top: 0;
+        right: 20px;
+        padding: 10px;
+        z-index: 100;
+        font-size: 18px;
+      ">
+        <a href="https://www.agent-arena.com/">Arena</a>
+        <a href="https://www.agent-arena.com/users">Prompt Hub</a>
+        <a href="https://www.agent-arena.com/leaderboard">Arena Leaderboard</a>
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px">
+        <h1 class="text-center" style="padding-bottom: 10px">
+            🦍 Gorilla X LMSYS Chatbot Arena 
+        </h1>
+        <div class="box-index">
+            <h3>Agent Arena Multi-Turn Evaluation</h3>
+            <ul>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#evaluation-ranking">Evaluation and Ranking</a></li>
+                    <li><a href="#ranking-methodology">Ranking Methodology</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li class="more-blogs">
+                        <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span
+                                class="caret">&#9654;</span></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a>
+                            </li>
+                            <li>
+                                <a href="6_api_zoo.html">The API Zoo: A Keystone for Building API-connected LLMs</a>
+                            </li>
+                            <li>
+                                <a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough</a>
+                            </li>
+                            <li>
+                                <a href="4_open_functions.html">Gorilla OpenFunctions</a>
+                            </li>
+                            <!-- Add more blog entries as needed -->
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h1 class="blog-title" style="font-size: 2.2em; text-align: center;
+                font-size: 2.5rem;
+                margin: 10px 0 10px 0;
+                color: #007bff;
+                font-family: 'Arial';
+                font-weight:570;">
+                    <a href="https://www.agent-arena.com" style="text-decoration: none; color: inherit;">Agent Arena</a>
+                </h1>                
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin: 0px">
+                        <p></p>
+                        <a class="author" href="https://www.linkedin.com/in/ranashreyas/">Shreyas Rana</a>
+                        <a class="author" href="https://www.linkedin.com/in/kchilaka/">Kireeti Chilakamarry</a>
+                        <a class="author" href="https://www.linkedin.com/in/vikram-iyer-489437169/">Vikram Iyer</a>
+                        <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>
+                        <a class="author" href="https://www.linkedin.com/in/shishirpatil/">Shishir G. Patil</a>
+                        <p></p>
+                    </h4>
+                </div>
+                <video src = "../assets/vid/blog_post_15_multiturn_demo.mp4" alt="Agent Arena Introductory Video" style="width: 100%" controls loop>
+                    <source>
+                </video>
+
+                <p width="80%" style="
+                    text-align: center;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    padding-bottom: -10px;
+                ">
+                    <i style="font-size: 0.9em">
+                        Agent Arena: Evaluating and Comparing LLM Agents Across Models,
+                        Tools, and Frameworks
+                    </i>
+                </p>
+
+                <div class="preview">
+                    <h2 id="introduction">Introduction</h2>
+                    <p>
+                        Building on our previous work with <strong>🤖 Agent Arena</strong>, we are excited to announce a significant enhancement to our multi-turn evaluation system. The key innovation in this update is our improved ranking methodology that better accounts for the varying complexity and reliability of different conversation lengths in agent battles. It is important to note that the single and multi-turn evaluation algorithms are extremely similar, the difference being that the multi-turn evaluation also takes in the number of turns it took for a user to report model A is better than B or vice versa. 
+                    </p>
+
+                    <p>
+                        This post focuses specifically on the enhanced <strong>Extended Bradley-Terry Model</strong> with sophisticated multi-turn weighting that provides more accurate rankings for agents across varying conversation lengths. Rather than treating all battles equally, our logistic regression system weighs each ranking based on conversation length, with the weight and conversation length being inversely related.
+                    </p>
+                    
+                    <p><strong>Quick Links:</strong></p>
+                    <ul>
+                        <li>
+                            <strong>Arena: </strong> <a href="https://www.agent-arena.com/">Agent-Arena</a>
+                        </li>
+                        <li>
+                            <strong>Leaderboard: </strong> <a href="https://www.agent-arena.com/leaderboard">Agent Leaderboard</a>
+                        </li>
+                        <li>
+                            <strong>Agent Battle Data: </strong><a href="https://github.com/ShishirPatil/gorilla/blob/main/agent-arena/evalutation/agent_ratings_V0.json">Agent Battle Data</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+             
+                    <h2 id="evaluation-ranking">
+                        Evaluation and Ranking System
+                    </h2>
+                    
+                    <div class="body">
+                        <p>
+                            Agent Arena employs a comprehensive ranking system that evaluates agents based on their performance in head-to-head comparisons. The leaderboard ranks agents based on their overall performance and the performance of their individual components (LLM model, tool, and framework). The ranking process is informed by both user evaluations and an ELO-based rating system, commonly used in competitive ranking environments, where agent performance is dynamically adjusted after each task or comparison.
+                        </p>
+                        <figure style="margin-right: 10px; text-align: center;">
+                            <img src="../assets/img/blog_post_14_leaderboard1.png" style="width: 80%;">
+                        </figure>
+                        <p width="80%" style="
+                        text-align: center;
+                        margin-left: 10%;
+                        margin-right: 10%;
+                        padding-bottom: -10px;
+                    ">
+                        <i style="font-size: 0.9em">
+                            The leaderboards analyzing the subcomponents of the agents
+                        </i>
+                    </p>
+                    <p>
+                        The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
+                    </p>
+                        <ul>
+                            <li>
+                                <strong>Model performance:</strong> Evaluating the effectiveness of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
+                            </li>
+                            <li>
+                                <strong>Tool efficiency:</strong> Ranking the tools agents use to complete tasks (e.g., code interpreters, APIs like Brave Search or Yahoo Finance).
+                            </li>
+                            <li>
+                                <strong>Framework functionality:</strong> Assessing the broader frameworks that support agents, such as LangChain, LlamaIndex, and CrewAI.
+                            </li>
+                        </ul>
+                    <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
+                        <div id="ranking-methodology">
+                            <h3>⚖️ Evaluating Agents with the Extended Bradley-Terry Model</h3>
+                            <div class="body">
+                              <h3>The Extended Bradley-Terry Model</h3>
+                              <p>
+                                Agent Arena uses the <a href="https://blog.lmarena.ai/blog/2024/extended-arena/">Bradley-Terry extension</a> to compare agents based on their subcomponents, including tools, models, and frameworks. In addition to atomically evaluating the agents, we also assess each subcomponent's performance to accurately pinpoint where the agent's strength lies. For example, supposed our first agent is a combination of LangChain, Brave-Search, and GPT-4o-2024-08-06, while the second agent is a combination of LlamaIndex, Wikipedia, and Claude-3-5-Sonnet-20240620.
+
+                                Therefore, we propose the following observation model for the Extended Bradley-Terry Model. Given <code>P_1</code>, 
+
+                              <p>
+                                For each battle \(i \in [n]\), let we have a a prompt and two agents, encoded as the following:
+                                </p>
+                                <ul>
+                                    <li><code>Agent A</code>: The first agent being compared with an elo of <code>E_A</code> and with the subcomponents <code>(A_T, A_M, A_F)</code></li>
+                                    <li><code>Agent B</code>: The second agent being compared, having an elo of <code>E_B</code> and with the subcomponents <code>(B_T, B_M, B_F)</code></li>
+                                    <li><code>Y_i</code>: Outcome of the battle (1 for win, 0 for loss)</li>
+                                </ul>
+                              </p>
+
+
+                              <h4>🧑‍💻 Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h4>
+                              Let's walk through an example to illustrate how the Extended Bradley-Terry Model works in practice. Take the following agents and their subcomponents:
+                              <ul>
+                                <li><code>Agent_A</code> is the Langchain Brave-Search Agent, using the following subcomponents: <code>{ Brave-Search (A_T), LangChain (A_F), and GPT-4o-2024-08-06 (A_M) }</code> and an Elo of 1600.</li>
+                                <li><code>Agent B</code> is the LlamaIndex Wikipedia Agent, with the subcomponents: <code>{Wikipedia (B_T), LlamaIndex (B_F), and Claude-3-5-Sonnet-20240620 (B_M)}</code> and an Elo of 1500.</li>
+                              </ul>
+                              <p>
+                                In a traditional Elo system, the Brave-Search agent would win 64% of the time. Then given the actual outcome of the battle, <code>Y_1</code>, assuming that the Brave-Search agent wins, the new rating of the agents would be 1601.44 and 1498.56, respectively.
+                              </p>
+                              <p>In the Bradley-Terry model, however, we calculate the ratings by minimizing the following loss function given the real-world battle outcome: <code>Y_i</code>:
+                              </p>
+                                <p>
+                                    \[L = -\sum_{i=1}^{n} Y_i \cdot log(\frac{1}{1 + e^{E_A - E_B}}) + (1 - Y_i) \cdot log(\frac{1}{1 + e^{E_B - E_A}})\]
+                                </p>
+                                <p>
+                                Finally, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved. Here, let's assume that A, the Brave-Search agent, wins the battle. In that case, the design matrix would look like this:
+                            </p>
+                                <p>
+                                    \[X = [ +log(A_T), +log(A_M), +log(A_F), -log(B_T), -log(B_M), -log(B_F) ]\]
+                                </p>
+                                <p>Using this design matrix, we can evaluate the collective contribution of the subcomponents with a single calculation. To determine the regresion coefficients, we use logistic regression with L2 regularization to control for overfitting and confounding effects caused by frequent pairings. </p>
+                                
+                                <h4>🎯 Multi-Turn Evaluation Weighting</h4>
+                                <p>For multi-turn evaluations, we apply a sophisticated weighting scheme that accounts for the varying complexity and reliability of different conversation lengths. The idea is that longer conversations are less reliable than shorter ones because they take longer to achieve a desired outcome. We weight each evaluation accordingly — we use a logistic taper function that's inversely proportional to the number of turns:</p>
+                                
+                                <p>
+                                    \[w(x) = \frac{2}{1 + e^{k(x-1)}}\]
+                                </p>
+                                <p>where \(x\) is the number of turns and \(k = 0.4\) is the decay parameter.</p>
+                                
+                                <p>This function assigns higher weights to shorter conversations (which tend to be more reliable) while gradually reducing the weight for longer conversations. The parameter <code>k = 0.4</code> controls the rate of decay, ensuring that extremely long conversations don't dominate the ranking system.</p>
+                                
+                                <p>During the logistic regression fitting process, we apply these weights as follows:</p>
+                                
+                                <pre><code>Y[cur_row] = 1.0 if row['rating'] == 'A is better' else 0.0
+# sample_weights.append(1)  # Original approach: uniform weighting
+sample_weights.append(logistic_taper(numTurns))  # New approach: turn-based weighting
+
+...
+
+lr = LogisticRegression(fit_intercept=False, tol=1e-6, penalty='l2', C=1.0, solver='liblinear')
+lr.fit(X, Y, sample_weight=sample_weights)
+                                </code></pre>
+                                
+                                <p>This weighting approach ensures that the Bradley-Terry model accurately reflects agent performance across different conversation lengths and complexities, providing more nuanced and reliable rankings for multi-turn agent evaluations.</p>
+                            
+
+                            <p>By using this combined approach, Agent Arena ensures more accurate rankings across agents and their subcomponents. 🔄 This method provides clearer insights into each agent's performance and contributions, preventing the bias that can occur from frequent pairings or overused configurations.</p>
+
+                            <p>
+                                🎉 As a result, our system generates a real-time, continuously updating leaderboard that not only reflects the agents' overall performance but also their specific subcomponent strengths. 🏆
+                            </p>
+
+
+                          
+                              <p>
+                                Check out our live leaderboards for agents, tools, models, and frameworks <a href="https://www.agent-arena.com/leaderboard" target="_blank">here</a>!
+                              </p>
+                            </div>
+                          </div>  
+
+                  
+                        <h2 id="conclusion">Conclusion</h2>
+                        <div class="body">
+                            <p>
+                                This enhanced version of Agent Arena represents a significant step forward in multi-turn agent evaluation. By implementing our improved Bradley-Terry model with sophisticated turn-based weighting, we provide more nuanced and reliable rankings that better reflect agent performance across different conversation complexities.
+                            </p>
+                            <p>
+                                The key innovation - our logistic taper function that weighs evaluations based on conversation length - ensures that our ranking system accurately accounts for the varying reliability of different interaction patterns. This advancement helps users make more informed decisions about agent selection for their specific use cases.
+                            </p>
+                            <p>
+                                We invite researchers, developers, and AI enthusiasts to explore the enhanced Agent Arena and contribute to the ongoing development of better evaluation methodologies for multi-turn agent interactions.
+                            </p>
+
+                            <hr class="post-separator" />
+                            <div>
+                                <p>
+                                    We hope you enjoyed this blog post. We would love to hear from you on <a
+                                        href="https://discord.gg/grXXvj9Whz">Discord</a>, <a
+                                        href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter
+                                        (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+                                </p>
+                            </div>
+                </div>
+        </div>
+        <div class="citation-container">
+            <h4 class="citation-title">Citation</h4>
+            <p class="citation-intro">
+                If you would like to cite Agent Arena:
+            </p>
+            <pre class="citation-block"><code>@inproceedings{agent-arena,
+            title={Agent Arena},
+            author={Shreyas Rana and Kireeti Chilakamarry and Vikram Iyer and Nithik Yekollu and Joseph E. Gonzalez and Ion Stoica and Shishir G. Patil},
+            year={2025},
+            howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/15_agent_arena_multiturn_evaluation.html}},
+}
+       </code></pre>
+        </div>
+    </div>
+
+        <script>
+            function toggleMoreBlogs() {
+                var subMenu = document.querySelector(".more-blogs .sub-menu");
+                var parentItem = document.querySelector(".more-blogs");
+                subMenu.classList.toggle("expanded");
+                parentItem.classList.toggle("expanded");
+            }
+        </script>
+</body>
+
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+
+    function toggleCode(elementId) {
+        var x = document.getElementById(elementId);
+        var toggleText = document.querySelector('[onclick="toggleCode(\'' + elementId + '\')"]');
+        if (x.style.display === "none") {
+            x.style.display = "block"; // Show the code section
+            toggleText.textContent = toggleText.textContent.replace('+ Show', '- Hide');
+        } else {
+            x.style.display = "none"; // Hide the code section
+            toggleText.textContent = toggleText.textContent.replace('- Hide', '+ Show');
+        }
+    }
+</script>
