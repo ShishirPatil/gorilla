@@ -23,6 +23,7 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_exe
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
+import pathlib
 from tqdm import tqdm
 
 
@@ -36,8 +37,14 @@ def get_handler(model_name):
 
 
 def multi_turn_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
-):
+    handler: str,
+    model_result: list[dict],
+    prompt: list[dict],
+    possible_answer: list[dict],
+    model_name: str,
+    test_category: str,
+    score_dir: pathlib.Path,
+) -> tuple[float, int]:
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
@@ -169,8 +176,13 @@ def multi_turn_runner(
 
 
 def relevance_file_runner(
-    handler, model_result, prompt, model_name, test_category, score_dir
-):
+    handler: str,
+    model_result: list[dict],
+    prompt: list[dict],
+    model_name: str,
+    test_category: str,
+    score_dir: pathlib.Path,
+) -> tuple[float, int]:
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call.
     # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
@@ -244,15 +256,15 @@ def relevance_file_runner(
 
 
 def ast_file_runner(
-    handler,
-    model_result,
-    prompt,
-    possible_answer,
-    language,
-    test_category,
-    model_name,
-    score_dir,
-):
+    handler: str,
+    model_result: list[dict],
+    prompt: list[dict],
+    possible_answer: list[dict],
+    language: str,
+    test_category: str,
+    model_name: str,
+    score_dir: pathlib.Path,
+) -> tuple[float, int]:
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
     ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
@@ -346,7 +358,7 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, result_dir, score_dir):
+def runner(model_names: list[str], test_categories: list[str], result_dir: pathlib.Path, score_dir: pathlib.Path):
 
     # State udpated by each eval subtask.
     state = dict(
