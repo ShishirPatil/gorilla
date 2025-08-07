@@ -3,13 +3,56 @@
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
 - [Jul 17, 2025] [#1019](https://github.com/ShishirPatil/gorilla/pull/1019): BFCL V4 release:
-  - Introduces the agentic domain with two categories: Web Search and Memory Management.
-  - Revised overall-accuracy formula to favor complex, multi-step agentic tasks.
-    - Old: equal (25% each) for Live, Non-Live, Multi-Turn, Agentic.
-    - New: Live 10%, Non-Live 10%, Multi-Turn 30%, Agentic 50%.
-  - `Non-Live Acc` and `Live Acc` score calculation now excludes the Irrelevance/Relevance category scores.
-  - Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
-  - Reorganizes the response-generation pipeline and related modules for easier maintenance.
+
+  1. **New agentic domain**
+     - Introduces the agentic domain with two categories: Web Search and Memory Management.
+     - For more information, please see our accompanying [blog posts](https://gorilla.cs.berkeley.edu/blog.html).
+  2. **Revised overall-accuracy formula**
+
+     - As single-turn tasks approach saturation, weighting now favors complex, multi-step agentic tasks.
+
+     | Segment     | Old % |  New % |
+     | ----------- | ----: | -----: |
+     | Live        |    25 | **10** |
+     | Non-Live    |    25 | **10** |
+     | Irrelevance |     0 | **10** |
+     | Multi-Turn  |    25 | **30** |
+     | Agentic     |    25 | **40** |
+
+  3. **Leaderboard / model cleanup**
+     - Retires several deprecated models from the leaderboard.
+     - Removes unused model handlers to improve maintainability.
+     - Adds support for new model`claude-opus-4-1-20250805`
+  4. **Address #602**
+     - `Non-Live Acc` and `Live Acc` score calculation now excludes the Irrelevance/Relevance category scores.
+  5. **Resolve #1094.**
+  6. **Codebase refactor**
+     - Reorganizes the response-generation pipeline and related modules for easier maintenance.
+     - Simplify the response-generation pipeline logic for locally-hosted models.
+     - Introduce `enums.py`
+  7. **Test category rename**
+     The following categories have been renamed to avoid confusion. This applies to both dataset file names and leaderboard website columns.
+     - `simple` --> `simple_python`
+     - `java` --> `simple_java`
+     - `javascript` --> `simple_javascript`
+  8. **Directory layout overhaul**
+     Results and scores now use a _two-level_ hierarchy:
+
+     ```text
+     result/<model>/<general_category>/<category>.json
+     score/<model>/<general_category>/<category>.json
+     ```
+
+     `general_category` ∈ { **non_live**, **live**, **multi_turn**, **agentic**, **format_sensitivity** }
+
+     • For _agentic-memory_ tasks, an extra level distinguishes the memory backend:
+
+     ```text
+     result/<model>/agentic/<memory_backend>/<category>.json
+     ```
+
+     Migrate existing outputs to this structure before upgrading, otherwise the evaluation pipeline will fail to locate files.
+
 - [Jul 8, 2025] [#1098](https://github.com/Shishirtil/gorilla/pull/1098):
   - Re-introduce latency statistics for locally hosted models
   - Update cost calculation to cover the entire dataset batch, instead of the average cost per 1k function calls
@@ -233,11 +276,11 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 - [Nov 18, 2024] [#768](https://github.com/ShishirPatil/gorilla/pull/768), [#770](https://github.com/ShishirPatil/gorilla/pull/770): Resolve issues in Gemini models (FC mode) related to handling scenarios with no tools available and cases where the model output is empty.
 - [Nov 17, 2024] [#767](https://github.com/ShishirPatil/gorilla/pull/767): Fix price and latency calculation. A merge conflict results in a duplicate line, and counting the input and output token for each entry multiple times.
 - [Nov 15, 2024] [#762](https://github.com/ShishirPatil/gorilla/pull/762): Supply `data_multi_turn.csv` for multi-turn evaluation results
-- [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream  `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
+- [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
 - [Nov 14, 2024] [#747](https://github.com/ShishirPatil/gorilla/pull/747): Minor Grammatical Corrections to `DEFAULT_SYSTEM_PROMPT` that is supplied to all prompting models.
 - [Nov 13, 2024] [#737](https://github.com/ShishirPatil/gorilla/pull/737), [#739](https://github.com/ShishirPatil/gorilla/pull/739), [#740](https://github.com/ShishirPatil/gorilla/pull/740), [#763](https://github.com/ShishirPatil/gorilla/pull/763), [#772](https://github.com/ShishirPatil/gorilla/pull/772), [#789](https://github.com/ShishirPatil/gorilla/pull/789), [#804](https://github.com/ShishirPatil/gorilla/pull/804): Bug fix in the dataset and possible answers for the live and multi-turn categories.
 - [Nov 11, 2024] [#746](https://github.com/ShishirPatil/gorilla/pull/746): Improve inference log readability; inference log is now included as part of the model result file. For details on how to interpret the inference log, please refer to the [LOG_GUIDE.md](https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/LOG_GUIDE.md).
-- [Nov 9, 2024] [#749](https://github.com/ShishirPatil/gorilla/pull/749): Remove `Llama-3.2-3B-Instruct-FC` and `Llama-3.2-1B-Instruct-FC` from the leaderboard. According to the [official Llama documentation](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_2#-tool-calling-(1b/3b)-), these models perform function calling using the prompt-style chat template rather than the specialized function-calling format.
+- [Nov 9, 2024] [#749](https://github.com/ShishirPatil/gorilla/pull/749): Remove `Llama-3.2-3B-Instruct-FC` and `Llama-3.2-1B-Instruct-FC` from the leaderboard. According to the [official Llama documentation](<https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_2#-tool-calling-(1b/3b)->), these models perform function calling using the prompt-style chat template rather than the specialized function-calling format.
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
   - Introduce a new response-based checker, which works alongside with the existing state-based checker.
@@ -285,7 +328,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `microsoft/Phi-3-small-8k-instruct`
   - `microsoft/Phi-3-mini-128k-instruct`
   - `microsoft/Phi-3-mini-4k-instruct`
-- [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
+- [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly.
 - [Sept 24, 2024] [#657](https://github.com/ShishirPatil/gorilla/pull/657): Add the following new models to the leaderboard:
   - `meta-llama/Llama-3.2-1B-Instruct`
   - `meta-llama/Llama-3.2-1B-Instruct-FC`
