@@ -254,7 +254,14 @@ def write_score_csv_file(
     sort_column_index: int,
     no_conversion_numeric_column_index: list[int] = [],
 ) -> None:
-    data.sort(key=lambda x: x[sort_column_index], reverse=True)
+    # Sort the data by the target column. Any row that contains "N/A" in the sort
+    # column should always be placed at the end of the list. We achieve this by
+    # returning -1 for such rows (all valid accuracy values are in the range [0, 1]),
+    # and then performing a regular descending sort.
+    data.sort(
+        key=lambda x: x[sort_column_index] if x[sort_column_index] != "N/A" else -1,
+        reverse=True,
+    )
     for i in range(len(data)):
         # Add the ranking column, start from 0
         data[i][0] = str(i + 1)
