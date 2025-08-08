@@ -2,7 +2,6 @@ import json
 from typing import List, Optional
 
 import numpy as np
-import torch
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
     MemoryAPI,
 )
@@ -23,11 +22,7 @@ MAX_ARCHIVAL_MEMORY_ENTRY_LENGTH = 2000
 
 
 # Use a global SentenceTransformer model for all vector stores.
-if torch.cuda.is_available():
-    _device = "cuda"
-else:
-    _device = "cpu"
-ENCODER = SentenceTransformer("all-MiniLM-L6-v2", device=_device)
+ENCODER = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 ENCODER_DIM = ENCODER.get_sentence_embedding_dimension()
 
 

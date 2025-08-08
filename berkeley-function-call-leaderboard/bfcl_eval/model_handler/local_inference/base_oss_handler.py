@@ -6,9 +6,9 @@ from pathlib import Path
 from typing import Any, Optional
 
 import requests
-from bfcl_eval.constants.eval_config import RESULT_PATH, VLLM_PORT
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.enums import ModelStyle
+from bfcl_eval.constants.eval_config import LOCAL_SERVER_PORT
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.utils import (
     default_decode_ast_prompting,
     default_decode_execute_prompting,
@@ -31,10 +31,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.model_path_or_id = None
 
         # Read from env vars with fallbacks
-        self.vllm_host = os.getenv("VLLM_ENDPOINT", "localhost")
-        self.vllm_port = os.getenv("VLLM_PORT", VLLM_PORT)
+        self.local_server_endpoint = os.getenv("LOCAL_SERVER_ENDPOINT", "localhost")
+        self.local_server_port = os.getenv("LOCAL_SERVER_PORT", LOCAL_SERVER_PORT)
 
-        self.base_url = f"http://{self.vllm_host}:{self.vllm_port}/v1"
+        self.base_url = f"http://{self.local_server_endpoint}:{self.local_server_port}/v1"
         self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
 
     @override
@@ -132,7 +132,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                             "serve",
                             str(self.model_path_or_id),
                             "--port",
-                            str(self.vllm_port),
+                            str(self.local_server_port),
                             "--dtype",
                             str(self.dtype),
                             "--tensor-parallel-size",
@@ -155,7 +155,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                             "--model-path",
                             str(self.model_path_or_id),
                             "--port",
-                            str(self.vllm_port),
+                            str(self.local_server_port),
                             "--dtype",
                             str(self.dtype),
                             "--tp",

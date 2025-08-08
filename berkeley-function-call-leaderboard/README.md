@@ -79,7 +79,7 @@ pip install bfcl-eval  # Be careful not to confuse with the unrelated `bfcl` pro
 
 For locally hosted models, choose one of the following backends, ensuring you have the right GPU and OS setup:
 
-`sglang` is *much faster* than `vllm` but only supports newer GPUs with SM 80+ (Ampere etc).
+`sglang` is *much faster* than `vllm` in our specific multi-turn use case, but it only supports newer GPUs with SM 80+ (Ampere etc).
 If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
 
 **Using `vllm`:**
@@ -217,13 +217,13 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 bfcl generate \
   --model MODEL_NAME \
   --test-category TEST_CATEGORY \
-  --backend {vllm|sglang} \
+  --backend {sglang|vllm} \
   --num-gpus 1 \
   --gpu-memory-utilization 0.9 \
   --local-model-path /path/to/local/model   # ← optional
 ```
 
-- Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
+- Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `sglang`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 - `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
 
@@ -235,11 +235,11 @@ If you have a server already running (e.g., vLLM in a SLURM cluster), you can by
 bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --skip-server-setup
 ```
 
-In addition, you should specify the endpoint and port used by the server. By default, the endpoint is `localhost` and the port is `1053`. These can be overridden by the `VLLM_ENDPOINT` and `VLLM_PORT` environment variables in the `.env` file:
+In addition, you should specify the endpoint and port used by the local server. By default, the endpoint is `localhost` and the port is `1053`. These can be overridden by the `LOCAL_SERVER_ENDPOINT` and `LOCAL_SERVER_PORT` environment variables in the `.env` file:
 
 ```bash
-VLLM_ENDPOINT=localhost
-VLLM_PORT=1053
+LOCAL_SERVER_ENDPOINT=localhost
+LOCAL_SERVER_PORT=1053
 ```
 
 #### (Alternate) Script Execution for Generation
