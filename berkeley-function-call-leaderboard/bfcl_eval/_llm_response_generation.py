@@ -199,12 +199,18 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature)
+    num_threads = args.num_threads
+    
     if isinstance(handler, OSSHandler):
-        is_oss_model = True
         handler: OSSHandler
+        is_oss_model = True
+        # For OSS models, if the user didn't explicitly set the number of threads,
+        # we default to 100 threads to speed up the inference.
+        if num_threads == 1:
+            num_threads = 100
     else:
-        is_oss_model = False
         handler: BaseHandler
+        is_oss_model = False
 
     try:
         if is_oss_model:
@@ -238,12 +244,12 @@ def generate_results(args, model_name, test_cases_total):
         in_flight: dict[Future, str] = {}  # future -> test_case_id
         completed = set()
 
-        with ThreadPoolExecutor(max_workers=args.num_threads) as pool, tqdm(
+        with ThreadPoolExecutor(max_workers=num_threads) as pool, tqdm(
             total=len(test_cases_total), desc=f"Generating results for {model_name}"
         ) as pbar:
 
             # seed initial ready tasks
-            while ready_queue and len(in_flight) < args.num_threads:
+            while ready_queue and len(in_flight) < num_threads:
                 test_case_id = ready_queue.popleft()
                 test_case = id_to_test_case[test_case_id]
                 future = pool.submit(
@@ -274,7 +280,7 @@ def generate_results(args, model_name, test_cases_total):
                             ready_queue.append(child_id)
 
                 # refill the pool up to max_workers
-                while ready_queue and len(in_flight) < args.num_threads:
+                while ready_queue and len(in_flight) < num_threads:
                     test_case_id = ready_queue.popleft()
                     test_case = id_to_test_case[test_case_id]
                     future = pool.submit(
