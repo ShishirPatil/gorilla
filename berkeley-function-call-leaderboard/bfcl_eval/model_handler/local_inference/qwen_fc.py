@@ -293,7 +293,7 @@ class QwenFCHandler(OSSHandler):
         for match in matches:
             try:
                 match = json.loads(match)
+                result.append(match)
             except Exception as e:
                 pass
-            result.append(match)
         return result

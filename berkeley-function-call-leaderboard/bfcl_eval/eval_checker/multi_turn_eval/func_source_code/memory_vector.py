@@ -2,6 +2,7 @@ import json
 from typing import List, Optional
 
 import numpy as np
+import torch
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.memory_api_metaclass import (
     MemoryAPI,
 )
@@ -19,6 +20,15 @@ MAX_CORE_MEMORY_SIZE = 7
 MAX_CORE_MEMORY_ENTRY_LENGTH = 300
 MAX_ARCHIVAL_MEMORY_SIZE = 50
 MAX_ARCHIVAL_MEMORY_ENTRY_LENGTH = 2000
+
+
+# Use a global SentenceTransformer model for all vector stores.
+if torch.cuda.is_available():
+    _device = "cuda"
+else:
+    _device = "cpu"
+ENCODER = SentenceTransformer("all-MiniLM-L6-v2", device=_device)
+ENCODER_DIM = ENCODER.get_sentence_embedding_dimension()
 
 
 class MemoryAPI_vector(MemoryAPI):
@@ -233,12 +243,9 @@ class VectorStore:
     def __init__(self, max_size, max_entry_length):
         self.max_size = max_size
         self.max_entry_length = max_entry_length
-        # Initialize the vector store with a SentenceTransformer model and FAISS index.
-        self._encoder = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
-        self._dim = self._encoder.get_sentence_embedding_dimension()
 
         # Cosine similarity via inner product on L2‑normalised vectors.
-        index_flat = faiss.IndexFlatIP(self._dim)
+        index_flat = faiss.IndexFlatIP(ENCODER_DIM)
         self._index = faiss.IndexIDMap(index_flat)
 
         self._store: dict[int, str] = {}
@@ -247,7 +254,7 @@ class VectorStore:
 
     def _embed(self, text: str | List[str]) -> np.ndarray:
         """Return an L2-normalised NumPy array suitable for FAISS."""
-        vecs = self._encoder.encode(
+        vecs = ENCODER.encode(
             text if isinstance(text, list) else [text], normalize_embeddings=True
         )
         return np.asarray(vecs, dtype=np.float32)
