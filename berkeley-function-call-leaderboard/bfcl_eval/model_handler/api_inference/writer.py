@@ -1,7 +1,7 @@
 import os
 import time
 
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 from writerai import Writer
 

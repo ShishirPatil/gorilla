@@ -7,11 +7,11 @@ from typing import Any
 import cohere
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_tool,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
+    extract_system_prompt,
 )
 from tenacity.stop import stop_after_attempt
 
@@ -25,7 +25,7 @@ class CohereHandler(BaseHandler):
         self.is_fc_model = True
         self.client = cohere.ClientV2(api_key=os.getenv("COHERE_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_output = []
         if isinstance(result, list):
             for tool_call in result:
@@ -34,7 +34,7 @@ class CohereHandler(BaseHandler):
                 decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         execution_list = []
         if isinstance(result, list):
             for tool_call in result:
@@ -123,7 +123,7 @@ class CohereHandler(BaseHandler):
         turns = []
         for turn_idx, turn in enumerate(test_entry["question"]):
             if turn_idx == 0:  # we only extract system message from the first turn
-                system_message = load_system_message(turn)
+                system_message = extract_system_prompt(turn)
                 if system_message:
                     inference_data["system_message"] = system_message  # we log system message if necessary
             if len(turn) > 0:
@@ -136,9 +136,7 @@ class CohereHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
         inference_data["tools"] = tools
 
@@ -255,18 +253,9 @@ class CohereHandler(BaseHandler):
         return inference_data
 
 
-def load_system_message(all_messages: list[dict]):
-    for message in all_messages:
-        if message["role"] == "system":
-            return message["content"]
-    return None
-
-
 def preprocess_chat_turns(all_messages: list[dict]) -> list[dict]:
     processed_messages: list[dict] = []
     for message in all_messages:
-        if message["role"] == "system":
-            continue  # skip system message, it has been logged in inference_data
         processed_messages.append(message)
     return processed_messages
 
