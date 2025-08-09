@@ -5,6 +5,8 @@ import shutil
 import traceback
 from collections import defaultdict, deque
 from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
+import threading
+import queue
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
@@ -199,7 +201,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature)
     num_threads = args.num_threads
-    
+
     if isinstance(handler, OSSHandler):
         handler: OSSHandler
         is_oss_model = True
@@ -210,6 +212,21 @@ def generate_results(args, model_name, test_cases_total):
     else:
         handler: BaseHandler
         is_oss_model = False
+
+    # Use a separate thread to write the results to the file to avoid concurrent IO issues
+    def _writer():
+        """Consume result dicts from the queue and write them with exclusive access."""
+        while True:
+            item = write_queue.get()
+            if item is None:
+                break
+            handler.write(item, result_dir=args.result_dir, update_mode=args.run_ids)
+            write_queue.task_done()
+
+    write_queue: queue.Queue = queue.Queue()
+
+    writer_thread = threading.Thread(target=_writer, daemon=True)
+    writer_thread.start()
 
     try:
         if is_oss_model:
@@ -266,9 +283,11 @@ def generate_results(args, model_name, test_cases_total):
                 for future in done:
                     test_case_id = in_flight.pop(future)
                     result_dict = future.result()
-                    handler.write(
-                        result_dict, result_dir=args.result_dir, update_mode=args.run_ids
-                    )
+
+                    # Enqueue the result for the writer thread to handle file IO
+                    write_queue.put(result_dict)
+
+                    # Update progress bar right after inference completes
                     pbar.update()
                     completed.add(test_case_id)
 
@@ -292,6 +311,10 @@ def generate_results(args, model_name, test_cases_total):
                     in_flight[future] = test_case_id
 
     finally:
+        # Signal writer thread to finish and wait for it
+        write_queue.put(None)
+        writer_thread.join()
+
         if is_oss_model:
             handler.shutdown_local_server()
 

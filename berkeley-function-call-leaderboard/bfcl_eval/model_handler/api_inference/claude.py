@@ -163,12 +163,6 @@ class ClaudeHandler(BaseHandler):
 
         model_responses_message_for_chat_history = api_response.content
 
-        # Prompt caching statistics (Anthropic specific)
-        cache_creation_tokens = getattr(api_response.usage, "cache_creation_input_tokens", None)
-        cache_read_tokens = getattr(api_response.usage, "cache_read_input_tokens", None)
-        # Print out caching stats for quick inspection when running experiments
-        print("Prompt caching stats -> creation_tokens:", cache_creation_tokens, ", read_tokens:", cache_read_tokens)
-
         return {
             "model_responses": model_responses,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
