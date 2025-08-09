@@ -3,16 +3,16 @@ import os
 import time
 from typing import Any
 
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
-    ast_parse,
     convert_to_function_call,
     convert_to_tool,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
     format_execution_results_prompting,
+    retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
 from mistralai import Mistral
@@ -43,6 +43,14 @@ class MistralHandler(BaseHandler):
         else:
             return default_decode_execute_prompting(result, has_tool_call_tag)
 
+    @retry_with_backoff(error_message_pattern=r".*Status 429.*")
+    def generate_with_backoff(self, **kwargs):
+        start_time = time.time()
+        api_response = self.client.chat.complete(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
+
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -53,16 +61,12 @@ class MistralHandler(BaseHandler):
             "tools": tool,
         }
 
-        start_time = time.time()
-        api_response = self.client.chat.complete(
+        return self.generate_with_backoff(
             model=self.model_name.replace("-FC", ""),
             messages=message,
             tools=tool,
             temperature=self.temperature,
         )
-        end_time = time.time()
-
-        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -147,15 +151,11 @@ class MistralHandler(BaseHandler):
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": message}
 
-        start_time = time.time()
-        api_response = self.client.chat.complete(
+        return self.generate_with_backoff(
             model=self.model_name,
             messages=message,
             temperature=self.temperature,
         )
-        end_time = time.time()
-
-        return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
