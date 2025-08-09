@@ -74,7 +74,7 @@ def _evaluate_single_agentic_entry(
     for model_result_item in model_result_list[0]:
         # model_result_item is per step
         try:
-            decoded_result: list[str] = handler.decode_execute(model_result_item)
+            decoded_result: list[str] = handler.decode_execute(model_result_item, has_tool_call_tag=False)
             if is_empty_execute_response(decoded_result):
                 last_unsuccessful_decoding_message = model_result_item
                 continue
@@ -182,7 +182,7 @@ def _evaluate_single_multi_turn_entry(
         for model_result_item in single_turn_model_result_list:
             # model_result_item is per step
             try:
-                decoded_result: list[str] = handler.decode_execute(model_result_item)
+                decoded_result: list[str] = handler.decode_execute(model_result_item, has_tool_call_tag=False)
                 if is_empty_execute_response(decoded_result):
                     # Empty output is not considered as a valid function call
                     continue
