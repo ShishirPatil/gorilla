@@ -20,12 +20,10 @@ class NovaHandler(BaseHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.AMAZON
         self.is_fc_model = True
-        self.client = boto3.client(
-            service_name="bedrock-runtime",
-            region_name="us-east-1",  # Currently only available in us-east-1
-            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        _session = boto3.Session(
+            profile_name=os.getenv("AWS_SSO_PROFILE_NAME"), region_name="us-east-1"
         )
+        self.client = _session.client(service_name="bedrock-runtime")
 
     def decode_ast(self, result, language, has_tool_call_tag):
         if type(result) != list:

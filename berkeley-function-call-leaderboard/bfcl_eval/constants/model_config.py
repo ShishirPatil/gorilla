@@ -409,7 +409,7 @@ api_inference_model_map = {
         model_handler=NovaHandler,
         input_price=0.8,
         output_price=3.2,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=True,
     ),
     "nova-lite-v1.0": ModelConfig(
@@ -421,7 +421,7 @@ api_inference_model_map = {
         model_handler=NovaHandler,
         input_price=0.06,
         output_price=0.24,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=True,
     ),
     "nova-micro-v1.0": ModelConfig(
@@ -433,7 +433,7 @@ api_inference_model_map = {
         model_handler=NovaHandler,
         input_price=0.035,
         output_price=0.14,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=True,
     ),
     "open-mistral-nemo-2407": ModelConfig(
