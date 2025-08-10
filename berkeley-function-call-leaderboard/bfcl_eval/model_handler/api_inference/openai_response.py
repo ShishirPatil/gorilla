@@ -81,7 +81,7 @@ class OpenAIResponsesHandler(BaseHandler):
         }
 
         # OpenAI reasoning models don't support temperature parameter
-        if "o3" in self.model_name or "o4-mini" in self.model_name:
+        if "o3" in self.model_name or "o4-mini" in self.model_name or "gpt-5" in self.model_name:
             del kwargs["temperature"]
 
         # Non-reasoning models don't support reasoning parameter
@@ -196,7 +196,7 @@ class OpenAIResponsesHandler(BaseHandler):
         }
 
         # OpenAI reasoning models don't support temperature parameter
-        if "o3" in self.model_name or "o4-mini" in self.model_name:
+        if "o3" in self.model_name or "o4-mini" in self.model_name or "gpt-5" in self.model_name:
             del kwargs["temperature"]
 
         # Non-reasoning models don't support reasoning parameter

@@ -444,10 +444,8 @@ def write_list_of_dicts_to_file(filename, data, subdir=None) -> None:
         for i, entry in enumerate(data):
             # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
             entry = make_json_serializable(entry)
-            json_str = json.dumps(entry, ensure_ascii=False)
+            json_str = json.dumps(entry, ensure_ascii=False) + "\n"
             f.write(json_str)
-            if i < len(data) - 1:
-                f.write("\n")
 
 
 def make_json_serializable(value):
