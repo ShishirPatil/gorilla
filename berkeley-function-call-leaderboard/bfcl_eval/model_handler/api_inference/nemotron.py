@@ -1,16 +1,20 @@
+import os
 import re
 
-from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     convert_system_prompt_into_user_prompt,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
 )
+from openai import OpenAI
 from overrides import override
 
 
-class NemotronHandler(NvidiaHandler):
+class NemotronHandler(OpenAICompletionsHandler):
     """Handler for the LLaMA 3.1 Nemotron Ultra 253B v1 model.
 
     This handler extends NvidiaHandler to support the Nemotron model's XML-based
@@ -18,6 +22,17 @@ class NemotronHandler(NvidiaHandler):
     - <TOOLCALL>[function_calls]</TOOLCALL> for function calls
     - <AVAILABLE_TOOLS>{functions}</AVAILABLE_TOOLS> for function documentation
     """
+
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
+        self.client = OpenAI(
+            base_url="https://integrate.api.nvidia.com/v1",
+            api_key=os.getenv("NVIDIA_API_KEY"),
+        )
+
+    # Although Nemotron is a FC model, its endpoint does not take in function docs, but instead have them as part of the system prompt.
+    # So we use the _query_prompting method for FC inference.
+    _query_FC = OpenAICompletionsHandler._query_prompting
 
     def _format_system_prompt(self, prompts, function_docs, test_category):
         """Format the system prompt in the Nemotron-specific XML format."""
@@ -55,7 +70,7 @@ Here is a list of functions in JSON format that you can invoke.
         return prompts
 
     @override
-    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+    def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         """Process the input query and format it for the Nemotron model."""
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -72,8 +87,8 @@ Here is a list of functions in JSON format that you can invoke.
             test_entry["question"][0], functions, test_category
         )
 
-        # Return empty message list - messages will be added incrementally
-        return {"message": []}
+        inference_data["message"] = []
+        return inference_data
 
     @override
     def decode_ast(self, result, language, has_tool_call_tag):

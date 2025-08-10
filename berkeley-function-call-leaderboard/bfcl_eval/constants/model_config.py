@@ -121,7 +121,7 @@ api_inference_model_map = {
         model_handler=GorillaHandler,
         input_price=None,
         output_price=None,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
     "DeepSeek-R1-0528": ModelConfig(
@@ -709,7 +709,7 @@ api_inference_model_map = {
         model_handler=WriterHandler,
         input_price=5,
         output_price=12,
-        is_fc_model=False,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
     "grok-4-0709-FC": ModelConfig(

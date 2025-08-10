@@ -11,7 +11,6 @@ class WriterHandler(OpenAICompletionsHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.WRITER
         self.client = Writer(api_key=os.getenv("WRITER_API_KEY"))
-        self.is_fc_model = True
 
     #### FC methods ####
 

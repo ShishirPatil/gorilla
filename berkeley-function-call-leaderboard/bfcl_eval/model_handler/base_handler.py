@@ -780,7 +780,8 @@ class BaseHandler:
                 sorted_entries = sorted(existing_entries.values(), key=sort_key)
                 with open(file_path, "w") as f:
                     for entry in sorted_entries:
-                        f.write(json.dumps(entry) + "\n")
+                        content = json.dumps(entry) + "\n"
+                        f.write(content)
 
             else:
                 # Normal mode: Append to the end of the file
@@ -788,7 +789,8 @@ class BaseHandler:
                 entries.sort(key=sort_key)
                 with open(file_path, "a") as f:
                     for entry in entries:
-                        f.write(json.dumps(entry) + "\n")
+                        content = json.dumps(entry) + "\n"
+                        f.write(content)
 
     #### FC methods ####
 

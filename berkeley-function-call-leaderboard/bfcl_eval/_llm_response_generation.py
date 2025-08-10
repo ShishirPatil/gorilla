@@ -377,7 +377,7 @@ def main(args):
 
         if len(test_cases_total) == 0:
             print(
-                f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
+                f"✅ All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
         else:
             generate_results(args, model_name, test_cases_total)
