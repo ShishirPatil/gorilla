@@ -763,8 +763,8 @@ def populate_test_cases_with_predefined_functions(test_cases: list[dict]) -> lis
 
 def clean_up_memory_prereq_entries(test_cases: list[dict]) -> list[dict]:
     """
-    Remove memory-prerequisite test cases when their corresponding non-prerequisite memory cases are absent.
-    If all memory questions have been generated, but the pre-requisite entries are not there (maybe deleted), there is no point to generate the pre-requisite entries again.
+    1. Remove memory-prerequisite test cases when their corresponding non-prerequisite memory cases are absent. If all memory questions have been generated, but the pre-requisite entries are not there (maybe deleted), there is no point to generate the pre-requisite entries again.
+    2. If, for some reason, some of the pre-req enries have been genrated, then they should be removed from the dependency list. Otherwise, the dependency list will block forever.
     """
     memory_entries = [entry for entry in test_cases if is_memory(entry["id"])]
 
@@ -780,6 +780,16 @@ def clean_up_memory_prereq_entries(test_cases: list[dict]) -> list[dict]:
                 # Remove the memory pre-requisite entries from the test cases
                 for entry in category_test_cases:
                     test_cases.remove(entry)
+
+    # Remove already-generated entries from dependency lists to prevent blocking
+    test_case_ids_to_generate = {entry["id"] for entry in test_cases}
+    for test_case in test_cases:
+        if "depends_on" in test_case:
+            test_case["depends_on"] = [
+                dep_id
+                for dep_id in test_case["depends_on"]
+                if dep_id in test_case_ids_to_generate
+            ]
 
     return test_cases
 

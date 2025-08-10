@@ -782,6 +782,7 @@ class BaseHandler:
                     for entry in sorted_entries:
                         content = json.dumps(entry) + "\n"
                         f.write(content)
+                        f.flush()
 
             else:
                 # Normal mode: Append to the end of the file
@@ -791,6 +792,7 @@ class BaseHandler:
                     for entry in entries:
                         content = json.dumps(entry) + "\n"
                         f.write(content)
+                        f.flush()
 
     #### FC methods ####
 
