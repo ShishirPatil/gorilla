@@ -13,16 +13,15 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 
      | Segment     | Old % |  New % |
      | ----------- | ----: | -----: |
-     | Live        |    25 | **10** |
-     | Non-Live    |    25 | **10** |
+     | Live        |    33 | **10** |
+     | Non-Live    |    33 | **10** |
      | Irrelevance |     0 | **10** |
-     | Multi-Turn  |    25 | **30** |
-     | Agentic     |    25 | **40** |
+     | Multi-Turn  |    33 | **30** |
+     | Agentic     |     0 | **40** |
 
   3. **Leaderboard / model cleanup**
      - Retires several deprecated models from the leaderboard.
      - Removes unused model handlers to improve maintainability.
-     - Adds support for new model`claude-opus-4-1-20250805`
   4. **Address #602**
      - `Non-Live Acc` and `Live Acc` score calculation now excludes the Irrelevance/Relevance category scores.
   5. **Resolve #1094.**
@@ -52,6 +51,15 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
      ```
 
      Migrate existing outputs to this structure before upgrading, otherwise the evaluation pipeline will fail to locate files.
+  9. **New model support**
+     Adds support for the following models:
+     - `claude-opus-4-1-20250805`
+     - `gpt-5-2025-08-07`
+     - `gpt-5-mini-2025-08-07`
+     - `gpt-5-nano-2025-08-07`
+     - `Qwen/Qwen3-30B-A3B-Instruct-2507`
+     - `Qwen/Qwen3-235B-A22B-Instruct-2507`
+     - `Qwen/Qwen3-4B-Instruct-2507`
 
 - [Jul 8, 2025] [#1098](https://github.com/Shishirtil/gorilla/pull/1098):
   - Re-introduce latency statistics for locally hosted models

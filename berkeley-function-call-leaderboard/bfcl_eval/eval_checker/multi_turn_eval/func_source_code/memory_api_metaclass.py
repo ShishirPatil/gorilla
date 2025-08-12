@@ -61,9 +61,16 @@ class MemoryAPI(ABC):
             return None
 
         # For non-first entries we MUST have a snapshot to load from.
-        assert (
-            self.latest_snapshot_file.exists()
-        ), f"Not first memory entry, but no snapshot file found in this path: {self.latest_snapshot_file}"
+        # But if the first entry got a error during inference, then there will be no snapshot file
+        if not self.latest_snapshot_file.exists():
+            msg = (
+                "⚠️" * 100
+                + f"\nWarning: Not first memory entry, but no snapshot file found in this path: {self.latest_snapshot_file}. The memory will start empty for {initial_config['test_id']}.\n"
+                + "⚠️" * 100
+            )
+            print(msg)
+
+            return None
 
         with open(self.latest_snapshot_file, "r") as f:
             return json.load(f)
