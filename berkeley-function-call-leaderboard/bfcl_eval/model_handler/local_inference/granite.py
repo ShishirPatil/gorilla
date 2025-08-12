@@ -1,12 +1,9 @@
 import json
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_tool,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.constants.enums import ModelStyle
+from bfcl_eval.model_handler.utils import convert_to_tool
 from overrides import override
 
 
@@ -45,16 +42,13 @@ class GraniteFunctionCallingHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Granite use its own system prompt
 
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_outputs = []
         result = [
             call.strip()
@@ -80,7 +74,7 @@ class GraniteFunctionCallingHandler(OSSHandler):
         return decoded_outputs
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         decoded_outputs = []
         result = [
             call.strip()
