@@ -1,0 +1,2338 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single  script tag",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/script_tags/373484.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single  script tag."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: update a script tag",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/script_tags/108074126.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a script tag."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all script tags",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/script_tags/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all script tags."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Mark a comment as Spam",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470/spam.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Mark a comment as spam."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Remove a comment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470/remove.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Remove a comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Approve a comment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470/approve.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Approve a comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Mark a comment as not spam",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470/not_spam.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Mark a comment as not spam."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: restore a comment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470/restore.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Restore a comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a comment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/2941387470.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single comment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/#<post>.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all comments",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all comments."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single collection",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/smart_collections/401912846.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all collections",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/smart_collections/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Delete a single collection",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/smart_collections/408154574.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Delete a single collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all metafields that belong to a product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/metafields/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all metafields that belong to a product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single product metafield using the metafield's nested resource path",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/metafields/33058305934.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single product metafield using the metafield's nested resource path."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of variants for a product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/variants/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of variants for a product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Delete a product variant",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/variants/34705478094.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Delete a product variant."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single product image by id",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/images/19489404942.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single product image by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all product images",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/images/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all product images."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all product images",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/images.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all product images."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all variants for a product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/variants.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all variants for a product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all metafields that belong to a product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/metafields.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all metafields that belong to a product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all the events from a particular product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555/events.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all the events from a particular product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a product and one of its variants",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/9579007950.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a product and one of its variants."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Count all products",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Count all products."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single product",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products/7990943555.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single product."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Calculate a refund for a line item and shipping",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/refunds/calculate.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Calculate a refund for a line item and shipping."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a representation of a single refund",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/refunds/646546.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a representation of a single refund."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of transactions for an order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/transactions/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of transactions for an order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a specific transaction",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/transactions/5016037966.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a specific transaction."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Canceling an Order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/cancel.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Canceling an order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Close a processed order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/close.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Close a processed order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all the events from a particular order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/events.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all the events from a particular order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all refunds from a specific order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/refunds.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all refunds from a specific order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Re-opening a closed Order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/open.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Re-opening a closed order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all transactions for an order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422/transactions.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all transactions for an order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all Order Risks for an Order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4602125518/risks.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all order risks for an order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single Order Risk",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4602125518/risks/8609858574.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single order risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Delete a fulfillment event.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4495703502/fulfillments/3763917198/events/9519874062.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Delete a fulfillment event.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Create a fulfillment event.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4495703502/fulfillments/3763917198/events.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Create a fulfillment event.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all fulfillments for an order.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4495703502/fulfillments.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all fulfillments for an order.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Cancel a fulfillment.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678/cancel.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Cancel a fulfillment.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Complete a fulfillment.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678/complete.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Complete a fulfillment.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Fetch a fulfillment event.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678/events/#<>.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Fetch a fulfillment event.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Transition a fulfillment from pending to open.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678/open.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Transition a fulfillment from pending to open.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all fulfillment events for a fulfillment",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678/events.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all fulfillment events for a fulfillment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get the Representation of a specific fulfillment.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/3770145678.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get the representation of a specific fulfillment.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Count all the total number of fulfillments for an order.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4528049998/fulfillments/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Count all the total number of fulfillments for an order.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a representation of a single order",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/4554953422.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a representation of a single order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Count all orders",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Count all orders."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: List all collects",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/collects.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "List all collects."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Add a product to a collection",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/collects.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Add a product to a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single article by its ID and the ID of the parent blog",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/62581763/articles/196805774.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single article by its id and the id of the parent blog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all articles from a certain blog",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/62581763/articles/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all articles from a certain blog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Delete an article of a blog tags of articles",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/62581763/articles/197247246.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Delete an article of a blog tags of articles."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all articles from a certain blog",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/62581763/articles.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all articles from a certain blog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a blog",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/92408974.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a blog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single blog by its ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/62581763.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single blog by its id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all blogs",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all blogs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Disable a gift card",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards/61810574/disable.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Disable a gift card."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Show a specific gift card's details",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards/61466894.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Show a specific gift card's details."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Retrieve a count of all gift cards",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Retrieve a count of all gift cards."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update the expiry date of a gift card",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards/61810574.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update the expiry date of a gift card."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all gift cards that matches the query",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards/search.json?query=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all gift cards that matches the query."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a Webhook",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/webhooks/503738446.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a webhook."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all webhooks for your shop.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/webhooks/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all webhooks for your shop.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single webhook by its id.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/webhooks/93838927.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single webhook by its id.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single store metafield by ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/metafields/33145232974.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single store metafield by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all metafields for a store",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/metafields/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all metafields for a store."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Count all pages for a shop",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/pages/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Count all pages for a shop."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: update a page",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/pages/216307854.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a page."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single page by its ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/pages/169722563.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single page by its id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Updating a customers postal code",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651/addresses/5484465742.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Updating a customers postal code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: assigning a new default address to a customer",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651/addresses/5436816654/default.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Assigning a new default address to a customer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: destroying multiple customer addresses",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651/addresses/set.json?address_ids[]=<>&operation=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Destroying multiple customer addresses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single customers address",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651/addresses/5436816654.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single customers address."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all of a customer's addresses",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651/addresses.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all of a customer's addresses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all customers with an address in the Brazil",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/search.json?query=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all customers with an address in the brazil."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Add metafield to an existing customer",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/5438892686.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Add metafield to an existing customer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single customer by ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/3989659651.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single customer by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all customers",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all customers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single custom collections",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/custom_collections/246409795.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single custom collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all custom collections",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/custom_collections/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all custom collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Create a new comment for an article",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Create a new comment for an article."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all comments",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/comments.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all comments."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all the tags of articles",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/articles/tags.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all the tags of articles."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all the authors of articles",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/articles/authors.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all the authors of articles."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update an existing product variant",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/variants/34705478094.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update an existing product variant."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a product variant by id",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin//variants/25831837123.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a product variant by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all customers who match the criteria",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customer_saved_searches/1189248515/customers.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all customers who match the criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all customer saved searches",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customer_saved_searches/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all customer saved searches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update an existing Customer Saved Search",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customer_saved_searches/2029905294.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update an existing customer saved search."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get one customer saved search by ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customer_saved_searches/1189248515.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get one customer saved search by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Shows the same fields as the list action.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/events/58706658318.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Shows the same fields as the list action.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Count all the events",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/events/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Count all the events."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all provinces",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/261414723/provinces/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all provinces."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: get a single province",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/261414723/provinces/4003640003.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single province."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all provinces",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/261414723/provinces.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all provinces."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: update a country",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/444574734.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a country."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Show Country",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/261414723.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Show country."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all countries",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all countries."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Return a collect with a certain id",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/collects/20713233987.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Return a collect with a certain id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Remove a product from a collection",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/collects/921728736.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Remove a product from a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of all collects",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/collects/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of all collects."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Disable a discount",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/discounts/2951196163/disable.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Disable a discount."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Enable a discount",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/discounts/2951196163/enable.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Enable a discount."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Retrieve a discount",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/discounts/2951196163.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Retrieve a discount."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all theme assets",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/themes/110163843/assets.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all theme assets."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single theme",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/themes/110163843.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single theme."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a theme's attributes",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/themes/164593742.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a theme's attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a countt of all URL redirect",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/redirects/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a countt of all url redirect."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a redirect",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/redirects/293743566.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a redirect."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single URL redirect",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/redirects/count/7376372.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single url redirect."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Activate a one-time charge",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/application_charges/675931192/activate.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Activate a one-time charge."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Retrieve one-time application charge",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/application_charges/1.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Retrieve one-time application charge."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all custom collections",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/custom_collections.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all custom collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all metafields that belong to a store",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/metafields.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all metafields that belong to a store."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all blogs",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/blogs.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all blogs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: getting the shops policies",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/policies.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Getting the shops policies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all countries",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/countries.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all countries."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: List your app's fulfillment services",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/fulfillment_services.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "List your app's fulfillment services."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Retrieving all one-time charges since a specified ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/application_charges.json?since_id=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Retrieving all one-time charges since a specified id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all gift cards",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/gift_cards.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all gift cards."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all collection",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/smart_collections.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single location",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/locations/8790723.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single location."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all webhooks for your shop.",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/webhooks.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all webhooks for your shop.."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all orders from a customer",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/orders.json?customer_id=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all orders from a customer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: List carrier services",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/carrier_services.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "List carrier services."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a single fulfillment service by its ID",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/fulfillment_services/1357646.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a single fulfillment service by its id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all pages",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/pages.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all pages."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: List all discounts",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/discounts.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "List all discounts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all locations for a shop",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/locations.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all locations for a shop."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Update a carrier service",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/carrier_services/13841038.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Update a carrier service."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: List all abandoned checkouts",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/checkouts.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "List all abandoned checkouts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all customer saved searches for a shop",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customer_saved_searches.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all customer saved searches for a shop."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all URL redirect",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/redirects.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all url redirect."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a list of all script tags",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/script_tags.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a list of all script tags."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get the configuration of the shop account",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/shop.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get the configuration of the shop account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all products",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/products.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all products."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Create a new charge",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/recurring_application_charges.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Create a new charge."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Retrieve all customers",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/customers.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Retrieve all customers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get all shop themes",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/themes.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get all shop themes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Show list of shipping zones",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/shipping_zones.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Show list of shipping zones."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Get a count of checkouts",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//admin/checkouts/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Get a count of checkouts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shopify: Hack Authentication",
+        "api_call": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com//account/login",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content",
+                    "value": "<>"
+                }
+            ]
+        },
+        "functionality": "Hack authentication."
+    }
+]

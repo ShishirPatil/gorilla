@@ -1,0 +1,816 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: GET Request",
+        "api_call": "https://postman-echo.com/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The HTTP `GET` request method is meant to retrieve data from a server. The data\nis identified by a unique URI"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: POST Raw Text",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"test\": \"value\"\n}"
+            }
+        },
+        "functionality": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: POST Form Data",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "foo1",
+                        "value": "bar1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "foo2",
+                        "value": "bar2",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: PUT Request",
+        "api_call": "https://postman-echo.com/put",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `PUT` request method is similar to HTTP `POST`. It too is meant to \ntransfer data to a server"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: PATCH Request",
+        "api_call": "https://postman-echo.com/patch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `PATCH` method is used to update resources on a server. The exact\nuse of `PATCH` requests depends on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: DELETE Request",
+        "api_call": "https://postman-echo.com/delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `DELETE` method is used to delete resources on a server. The exact\nuse of `DELETE` requests depends on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Request Headers",
+        "api_call": "https://postman-echo.com/headers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "my-sample-header",
+                    "value": "Lorem ipsum dolor sit amet"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A `GET` request to this endpoint returns the list of all request headers as part of the response JSON.\nIn Postman,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Response Headers",
+        "api_call": "https://postman-echo.com/response-headers?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint causes the server to send custom set of response headers. Providing header values as part of the URL"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Basic Auth",
+        "api_call": "https://postman-echo.com/basic-auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "type": "any"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint simulates a **basic-auth** protected endpoint. \nThe endpoint accepts a default username and password and returns a status code"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: DigestAuth Success",
+        "api_call": "https://postman-echo.com/digest-auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "digest",
+                "digest": [
+                    {
+                        "key": "algorithm",
+                        "value": "MD5",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "postman",
+                        "type": "string"
+                    },
+                    {
+                        "key": "realm",
+                        "value": "{{echo_digest_realm}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "password",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "{{echo_digest_nonce}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonceCount",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientNonce",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "opaque",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "qop",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "disableRetryRequest",
+                        "type": "any"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Digest username=\"postman\", realm=\"Users\", nonce=\"ni1LiL0O37PRRhofWdCLmwFsnEtH1lew\", uri=\"/digest-auth\", response=\"254679099562cf07df9b6f5d8d15db44\", opaque=\"\""
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint sends a hashed Digest Authorization header to gain access to a valid `200 Ok` response code. In Postman,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Hawk Auth",
+        "api_call": "https://postman-echo.com/auth/hawk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "hawk",
+                "hawk": [
+                    {
+                        "key": "authId",
+                        "value": "dh37fgj492je",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authKey",
+                        "value": "werxhqb98rpaxn39848xrunpaw3489ruxnpa98w4rxn",
+                        "type": "string"
+                    },
+                    {
+                        "key": "algorithm",
+                        "value": "sha256",
+                        "type": "string"
+                    },
+                    {
+                        "key": "user",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "type": "any"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "RZKGNz",
+                        "type": "string"
+                    },
+                    {
+                        "key": "extraData",
+                        "type": "any"
+                    },
+                    {
+                        "key": "appId",
+                        "type": "any"
+                    },
+                    {
+                        "key": "delegation",
+                        "type": "any"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is a Hawk Authentication protected endpoint. [Hawk authentication](https://github.com/hueniverse/hawk) is a widely used protocol for protecting API endpoints. One"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: OAuth1.0 (verify signature)",
+        "api_call": "https://postman-echo.com/oauth1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "consumerKey",
+                        "value": "RKCGzna7bv9YD57c",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "D+EdQ-gs$-%@2Nu7",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "realm",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "autoAddParam",
+                        "type": "any"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "code",
+                        "value": "xWnkliVQJURqB2x1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.getpostman.com/oauth2/callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "abc123",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "ssh-secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "OAuth1.0a is a specification that defines a protocol that can be used by one\nservice to access \"protected\" resources (endpoints) on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Set Cookies",
+        "api_call": "https://postman-echo.com/cookies/set?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "The cookie setter endpoint accepts a list of cookies and their values as part of URL parameters of a `GET`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Get Cookies",
+        "api_call": "https://postman-echo.com/cookies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Use this endpoint to get a list of all cookies that are stored with respect to this domain. Whatever key-value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Delete Cookies",
+        "api_call": "https://postman-echo.com/cookies/delete?foo1&foo2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "One or more cookies that has been set for this domain can be deleted by providing the cookie names as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Response Status Code",
+        "api_call": "https://postman-echo.com/status/200",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint allows one to instruct the server which status code to respond with.\n\nEvery response is accompanied by a status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Streamed Response",
+        "api_call": "https://postman-echo.com/stream/5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint allows one to recieve streaming http response using [chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) of a configurable length.\n\nA streaming response does"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Delay Response",
+        "api_call": "https://postman-echo.com/delay/2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Using this endpoint one can configure how long it takes for the server to come back with a response. Appending"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Get UTF8 Encoded Response",
+        "api_call": "https://postman-echo.com/encoding/utf8",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "If a response of an endpoint requires to send data beyond the basic English / ASCII character set, the `charset`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: GZip Compressed Response",
+        "api_call": "https://postman-echo.com/gzip",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint returns the response using [gzip compression algoritm](https://en.wikipedia.org/wiki/Gzip).\nThe uncompressed response is a JSON string containing the details of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Deflate Compressed Response",
+        "api_call": "https://postman-echo.com/deflate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint returns the response using [deflate compression algoritm](https://en.wikipedia.org/wiki/DEFLATE). \nThe uncompressed response is a JSON string containing the details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: IP address in JSON format",
+        "api_call": "https://postman-echo.com/ip",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to return the IP address of the source request in the following `JSON` format:\n\n```json\n{\n  ip:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Current UTC time",
+        "api_call": "https://postman-echo.com/time/now",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/now` to return the current timestamp as a UTC string.\n\n```\nFri, 04 Nov 2016 09:00:46 GMT\n```"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Timestamp validity",
+        "api_call": "https://postman-echo.com/time/valid?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/valid` to determine the validity of the timestamp, (current by default).\nThis endpoint accepts `timestamp`, `locale`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Format timestamp",
+        "api_call": "https://postman-echo.com/time/format?timestamp=2016-10-10&format=mm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/format` to convert the timestamp to any desired valid format.\n\nThis endpoint accepts `timestamp`, `locale`, `format`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Extract timestamp unit",
+        "api_call": "https://postman-echo.com/time/unit?timestamp=2016-10-10&unit=day",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/unit` to extract the specified timestamp unit (as provided in the `unit` query parameter). The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Time addition",
+        "api_call": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/add` to add units of time to the specified / current timestamp (as provided in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Time subtraction",
+        "api_call": "https://postman-echo.com/time/subtract?timestamp=2016-10-10&years=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/subtract` to subtract units of time from the specified / current timestamp (as provided in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Start of time",
+        "api_call": "https://postman-echo.com/time/start?timestamp=2016-10-10&unit=month",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/start` to return a relative timstamp in the past from the specified / current timestamp"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Object representation",
+        "api_call": "https://postman-echo.com/time/object?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/object` to return the current / provided timestamp as a JSON object.\n\nFor instance, if the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Before comparisons",
+        "api_call": "https://postman-echo.com/time/before?timestamp=2016-10-10&target=2017-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/before` to check if the provided timestamps is before a comparison `target` (query parameter).\n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: After comparisons",
+        "api_call": "https://postman-echo.com/time/after?timestamp=2016-10-10&target=2017-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/after` to check if the provided timestamps is after a comparison `target` (query parameter).\n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Between timestamps",
+        "api_call": "https://postman-echo.com/time/between?timestamp=2016-10-10&start=2017-10-10&end=2019-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/between` to check if the provided timestamp is between a range specified by the `start`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: Leap year check",
+        "api_call": "https://postman-echo.com/time/leap?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/leap` to check if the provided/current timestamp belongs to a leap year.\n\nThis endpoint also accepts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: DigestAuth Request",
+        "api_call": "https://postman-echo.com/digest-auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "code",
+                        "value": "xWnkliVQJURqB2x1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.getpostman.com/oauth2/callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "abc123",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "ssh-secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Performing a simple `GET` request to this endpoint returns status code `401 Unauthorized` with `WWW-Authenticate` header containing information to successfully"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: GET Server events",
+        "api_call": "https://postman-echo.com/server-events/:numberOfEvents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Echo: POST Server events",
+        "api_call": "postman-echo.com/server-events/:numberOfEvents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event\": \"message\",\n    \"request\": \"POST\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
