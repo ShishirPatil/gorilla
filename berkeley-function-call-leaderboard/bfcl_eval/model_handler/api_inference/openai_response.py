@@ -79,11 +79,12 @@ class OpenAIResponsesHandler(BaseHandler):
         }
 
         if self._is_reasoning_model():
-            # OpenAI reasoning models don't support temperature parameter
-            kwargs["temperature"] = self.temperature
             # Add reasoning related parameters
             kwargs["include"] = ["reasoning.encrypted_content"]
             kwargs["reasoning"] = {"summary": "auto"}
+        else:
+            # OpenAI reasoning models don't support temperature parameter
+            kwargs["temperature"] = self.temperature
 
         if len(tools) > 0:
             kwargs["tools"] = tools
@@ -191,11 +192,12 @@ class OpenAIResponsesHandler(BaseHandler):
         }
 
         if self._is_reasoning_model():
-            # OpenAI reasoning models don't support temperature parameter
-            kwargs["temperature"] = self.temperature
             # Add reasoning related parameters
             kwargs["include"] = ["reasoning.encrypted_content"]
             kwargs["reasoning"] = {"summary": "auto"}
+        else:
+            # OpenAI reasoning models don't support temperature parameter
+            kwargs["temperature"] = self.temperature
 
         return self.generate_with_backoff(**kwargs)
 
@@ -269,4 +271,4 @@ class OpenAIResponsesHandler(BaseHandler):
         return inference_data
 
     def _is_reasoning_model(self) -> bool:
-        return "o3" not in self.model_name and "o4-mini" not in self.model_name
+        return "o3" in self.model_name or "o4-mini" in self.model_name
