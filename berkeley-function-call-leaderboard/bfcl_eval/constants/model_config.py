@@ -9,6 +9,7 @@ from bfcl_eval.model_handler.api_inference.dm_cito import DMCitoHandler
 from bfcl_eval.model_handler.api_inference.fireworks import FireworksHandler
 from bfcl_eval.model_handler.api_inference.functionary import FunctionaryHandler
 from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
+from bfcl_eval.model_handler.api_inference.gemma import GemmaHandler as GemmaAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
@@ -659,6 +660,68 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+
+    # Added Gemma-3 models Api Inference
+    "gemma-3-1b-it": ModelConfig(
+        model_name="google/gemma-3-1b-it",
+        display_name="Gemma-3-1b-it (Prompt)",
+        url="https://blog.google/technology/developers/gemma-3/",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=GemmaAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "gemma-3-4b-it": ModelConfig(
+        model_name="gemma-3-4b-it",
+        display_name="Gemma-3-4b-it (Prompt)",
+        url="https://blog.google/technology/developers/gemma-3/",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=GemmaAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "gemma-3-12b-it": ModelConfig(
+        model_name="gemma-3-12b-it",
+        display_name="Gemma-3-12b-it (Prompt)",
+        url="https://blog.google/technology/developers/gemma-3/",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=GemmaAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "gemma-3-27b-it": ModelConfig(
+        model_name="gemma-3-27b-it",
+        display_name="Gemma-3-27b-it (Prompt)",
+        url="https://blog.google/terms-of-use/",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=GemmaAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),   
+    "gemma-3n-e4b-it": ModelConfig(
+        model_name="gemma-3n-e4b-it",
+        display_name="Gemma-3n-E4B(prompt)",
+        url="https://deepmind.google/technologies/gemmma/pro/",
+        org="Google",
+        license="Proprietary",
+        model_handler=GemmaAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "meetkai/functionary-small-v3.1-FC": ModelConfig(
         model_name="meetkai/functionary-small-v3.1-FC",
         display_name="Functionary-Small-v3.1 (FC)",
@@ -1182,7 +1245,7 @@ local_inference_model_map = {
     "google/gemma-3-27b-it": ModelConfig(
         model_name="google/gemma-3-27b-it",
         display_name="Gemma-3-27b-it (Prompt)",
-        url="https://blog.google/technology/developers/gemma-3/",
+        url="https://blog.google/terms-of-use/",
         org="Google",
         license="gemma-terms-of-use",
         model_handler=GemmaHandler,
