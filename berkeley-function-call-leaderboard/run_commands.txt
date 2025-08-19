@@ -1,0 +1,7 @@
+bfcl generate --model gemini-2.5-pro-FC --test-category simple,parallel,multiple,multi_turn
+bfcl generate --model  googleopen/gemma-3-1b-it --test-category simple
+
+gemma-3n-e4b-it
+
+
+bfcl generate --model  gemma-3-27b-it --result-dir '/Users/yashdeepprasad/Desktop/GSOC_2025/gorilla/berkeley-function-call-leaderboard/gemma_results'

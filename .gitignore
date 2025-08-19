@@ -41,3 +41,5 @@ berkeley-function-call-leaderboard/bfcl_eval/scripts/ground_truth_conversation/
 
 # Ignore the wandb cache:
 **/wandb/
+berkeley-function-call-leaderboard/gemma_results/
+berkeley-function-call-leaderboard/gemma_score/
