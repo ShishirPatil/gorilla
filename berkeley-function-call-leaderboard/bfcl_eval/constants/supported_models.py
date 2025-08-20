@@ -73,7 +73,7 @@ SUPPORTED_MODELS = [
     "grok-3-beta",
     "grok-3-mini-beta-FC",
     "grok-3-mini-beta",
-    "Humanoid/PelicanVLM-72B-Instruct-wrc",
+    "Humanoid/PelicanVLM-72B-Instruct",
     "Qwen/Qwen2.5-vl-7B-FC",
     "Qwen/Qwen2.5-vl-32B-FC",
     "Qwen/Qwen2.5-vl-72B-FC",
