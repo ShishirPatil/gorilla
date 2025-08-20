@@ -20,6 +20,7 @@ from bfcl_eval.model_handler.api_inference.nexus import NexusHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
+from bfcl_eval.model_handler.local_inference.pelicanVLM_fc import PelicanVLMFCHandler
 from bfcl_eval.model_handler.api_inference.openai_completion import (
     OpenAICompletionsHandler,
 )
@@ -1294,6 +1295,54 @@ local_inference_model_map = {
         org="Meta",
         license="Meta Llama 4 Community",
         model_handler=LlamaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Humanoid/PelicanVLM-72B-Instruct-wrc": ModelConfig(
+        model_name="Humanoid/PelicanVLM-72B-Instruct-wrc",
+        display_name="PelicanVLM-72B-Instruct-wrc(FC)",
+        url="https://huggingface.co/rxc205/test-model/tree/main",
+        org="Humanoid",
+        license="apache-2.0",
+        model_handler=PelicanVLMFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Qwen/Qwen2.5-vl-7B-FC-SFT": ModelConfig(
+        model_name="Qwen/Qwen2.5-vl-7B-FC-SFT",
+        display_name="Qwen2.5-vl-7B (FC-SFT)",
+        url="https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=PelicanVLMFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Qwen/Qwen2.5-vl-32B-FC": ModelConfig(
+        model_name="Qwen/Qwen2.5-vl-32B-FC",
+        display_name="Qwen2.5-vl-32B (FC)",
+        url="https://huggingface.co/Qwen/Qwen2.5-VL-32B-Instruct",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=PelicanVLMFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Qwen/Qwen2.5-vl-72B-FC": ModelConfig(
+        model_name="Qwen/Qwen2.5-vl-72B-FC",
+        display_name="Qwen2.5-vl-72B (FC)",
+        url="https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=PelicanVLMFCHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
