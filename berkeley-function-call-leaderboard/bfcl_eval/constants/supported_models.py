@@ -138,6 +138,7 @@ SUPPORTED_MODELS = [
     "Qwen/Qwen3-30B-A3B",
     "Qwen/Qwen3-235B-A22B-FC",
     "Qwen/Qwen3-235B-A22B",
+    "Team-ACE/ToolACE-2.5-8B",
     "Team-ACE/ToolACE-2-8B",
     "openbmb/MiniCPM3-4B",
     "openbmb/MiniCPM3-4B-FC",
