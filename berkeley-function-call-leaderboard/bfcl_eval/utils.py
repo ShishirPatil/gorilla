@@ -211,10 +211,6 @@ def is_non_live(test_category: str) -> bool:
     )
 
 
-def is_sql(test_category):
-    return "sql" in test_category
-
-
 def contain_multi_turn_irrelevance(test_category):
     return "miss_func" in test_category or "miss_param" in test_category
 

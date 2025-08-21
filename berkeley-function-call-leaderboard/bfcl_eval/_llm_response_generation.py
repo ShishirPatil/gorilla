@@ -208,7 +208,7 @@ def generate_results(args, model_name, test_cases_total):
         # For OSS models, if the user didn't explicitly set the number of threads,
         # we default to 100 threads to speed up the inference.
         if num_threads == 1:
-            num_threads = 100
+            num_threads = LOCAL_SERVER_MAX_CONCURRENT_REQUEST
     else:
         handler: BaseHandler
         is_oss_model = False
