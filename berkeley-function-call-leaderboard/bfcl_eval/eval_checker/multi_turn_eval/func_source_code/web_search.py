@@ -147,13 +147,14 @@ class WebSearchAPI:
             except Exception as e:
                 # If the underlying HTTP call raised a 429 we retry, otherwise propagate
                 if "429" in str(e):
+                    wait_time = backoff + random.uniform(0, backoff)
                     error_block = (
                         "*" * 100
-                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {backoff} seconds…"
+                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {wait_time:.1f} seconds…"
                         + "*" * 100
                     )
                     print(error_block)
-                    time.sleep(backoff)
+                    time.sleep(wait_time)
                     backoff = min(backoff * 2, 120)  # cap the back-off
                     continue
                 else:
@@ -167,13 +168,14 @@ class WebSearchAPI:
 
             # SerpAPI sometimes returns the error in the payload instead of raising
             if "error" in search_results and "429" in str(search_results["error"]):
+                wait_time = backoff + random.uniform(0, backoff)
                 error_block = (
                     "*" * 100
-                    + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {backoff} seconds…"
+                    + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {wait_time:.1f} seconds…"
                     + "*" * 100
                 )
                 print(error_block)
-                time.sleep(backoff)
+                time.sleep(wait_time)
                 backoff = min(backoff * 2, 120)
                 continue
 
