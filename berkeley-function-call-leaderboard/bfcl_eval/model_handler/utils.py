@@ -252,7 +252,9 @@ def convert_value(value, type_str):
 
 
 def ast_parse(
-    input_str: str, language: ReturnFormat = ReturnFormat.PYTHON, has_tool_call_tag: bool = False
+    input_str: str,
+    language: ReturnFormat = ReturnFormat.PYTHON,
+    has_tool_call_tag: bool = False,
 ) -> list[dict]:
     if has_tool_call_tag:
         match = re.search(r"<TOOLCALL>(.*?)</TOOLCALL>", input_str, re.DOTALL)
@@ -470,7 +472,11 @@ def format_execution_results_prompting(
     return repr(tool_results)
 
 
-def default_decode_ast_prompting(result: str, language: ReturnFormat = ReturnFormat.PYTHON, has_tool_call_tag: bool = False) -> list[dict]:
+def default_decode_ast_prompting(
+    result: str,
+    language: ReturnFormat = ReturnFormat.PYTHON,
+    has_tool_call_tag: bool = False,
+) -> list[dict]:
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
@@ -480,14 +486,18 @@ def default_decode_ast_prompting(result: str, language: ReturnFormat = ReturnFor
     return decoded_output
 
 
-def default_decode_execute_prompting(result: str, has_tool_call_tag: bool = False) -> list[str]:
+def default_decode_execute_prompting(
+    result: str, has_tool_call_tag: bool = False
+) -> list[str]:
     # Note: For execute, there are only Python entries, so we don't need to check the language.
     result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
         result = result + "]"
-    decoded_output = ast_parse(result, language=ReturnFormat.PYTHON, has_tool_call_tag=has_tool_call_tag)
+    decoded_output = ast_parse(
+        result, language=ReturnFormat.PYTHON, has_tool_call_tag=has_tool_call_tag
+    )
     return decoded_output_to_execution_list(decoded_output)
 
 
@@ -719,26 +729,77 @@ def _generate_function_doc_xml(functions: list[dict]) -> str:
     """
     Generate the function documentation in XML format.
     """
-    xml_blocks = []
+
+    def _param_xml(
+        name: str, meta: dict, required_set: Optional[list[str]], indent_lvl: int = 2
+    ) -> str:
+        """Recursively render a param and its nested structure to XML."""
+        indent = " " * indent_lvl * 2  # 2 spaces per logical indent level
+
+        p_type = meta.get("type", "string")
+        p_desc = meta.get("description", "")
+        # If there is no required set, then all parameters are required by default.
+        if required_set is None:
+            is_required = "true"
+        else:
+            is_required = "true" if name in required_set else "false"
+
+        # Handle enum values
+        if "enum" in meta:
+            p_desc += f" Enum values: {meta['enum']}."
+
+        # Handling for array/tuple/list types
+        if "items" in meta and "type" in meta["items"]:
+            inner_type = meta["items"]["type"]
+            p_type = f"{p_type}[{inner_type}]"
+
+        elif "additionalProperties" in meta:
+            inner_type = meta["additionalProperties"].get("type", "string")
+            p_type = f"{p_type}[{inner_type}]"
+
+        # Build opening tag (include default attr if exists)
+        attrs = [f'name="{name}", type="{p_type}", required="{is_required}"']
+        if "default" in meta:
+            attrs.append(f'default="{repr(meta["default"])}"')
+        open_tag = f"{indent}<param " + " ".join(attrs).replace(",", "") + ">\n"
+
+        xml_parts = [open_tag]
+        xml_parts.append(f"{indent}  <desc>{p_desc}</desc>\n")
+
+        # Recursive handling for object/dict types
+        if "properties" in meta:
+            child_required = meta.get("required", None)
+            xml_parts.append(f"{indent}  <params>\n")
+            for child_name, child_meta in meta["properties"].items():
+                xml_parts.append(
+                    _param_xml(child_name, child_meta, child_required, indent_lvl + 2)
+                )
+            xml_parts.append(f"{indent}  </params>\n")
+
+        # closing tag
+        xml_parts.append(f"{indent}</param>\n")
+        return "".join(xml_parts)
+
+    xml_blocks: list[str] = []
     for fn in functions:
         name = fn["name"]
         desc = fn.get("description", "")
-        props = fn["parameters"]["properties"]
-        required = set(fn["parameters"].get("required", []))
+
+        params_schema = fn["parameters"]
+        top_props = params_schema.get("properties", {})
+        top_required = params_schema.get("required", None)
 
         xml = f'<function name="{name}">\n'
         xml += f"  <desc>{desc}</desc>\n"
         xml += f"  <params>\n"
-        for param_name, meta in props.items():
-            param_type = meta.get("type", "string")
-            param_desc = meta.get("description", "")
-            is_required = "true" if param_name in required else "false"
-            xml += f'    <param name="{param_name}" type="{param_type}" required="{is_required}">\n'
-            xml += f"      <desc>{param_desc}</desc>\n"
-            xml += f"    </param>\n"
+
+        for param_name, meta in top_props.items():
+            xml += _param_xml(param_name, meta, top_required, indent_lvl=2)
+
         xml += f"  </params>\n"
         xml += f"</function>\n"
         xml_blocks.append(xml)
+
     return "\n".join(xml_blocks)
 
 
@@ -746,38 +807,79 @@ def _generate_function_doc_python(functions: list[dict]) -> str:
     """
     Generate the function documentation in Pythonic format.
     """
-    docs = []
+
+    def _to_py_type(meta: dict) -> str:
+        t = meta.get("type", "string")
+        primitive_map = {
+            "string": "str",
+            "number": "float",
+            "integer": "int",
+            "boolean": "bool",
+        }
+
+        if t in primitive_map:
+            return primitive_map[t]
+
+        if t in {"array", "list", "tuple"} and "items" in meta:
+            return f"list[{_to_py_type(meta['items'])}]"
+
+        if t in {"object", "dict"}:
+            if "additionalProperties" in meta:
+                return f"dict[str, {_to_py_type(meta['additionalProperties'])}]"
+            # If specific properties, treat as dict
+            return "dict"
+
+        # Fallback
+        return t
+
+    INDENT_BASE = " " * 8  # 8 spaces inside the docstring block
+
+    def _param_doc(name: str, meta: dict, depth: int = 0) -> list[str]:
+        """Recursively build docstring lines for a parameter schema."""
+        lines: list[str] = []
+        indent = INDENT_BASE + (" " * 4 * depth)
+
+        py_type = _to_py_type(meta)
+        desc = meta.get("description", "")
+        if "enum" in meta:
+            desc += f" Enum values: {meta['enum']}."
+
+        if "default" in meta:
+            default_note = f", default={repr(meta['default'])}"
+        else:
+            default_note = ""
+        lines.append(f"{indent}{name} ({py_type}{default_note}): {desc}\n")
+
+        # Handle nested object properties
+        if "properties" in meta:
+            for child_name, child_meta in meta["properties"].items():
+                lines.extend(_param_doc(f"{child_name}", child_meta, depth + 1))
+
+        return lines
+
+    docs: list[str] = []
     for fn in functions:
         full_name = fn["name"]
         desc = fn.get("description", "")
-        params = fn["parameters"]["properties"]
 
-        doc = f"# Function: {full_name}\n"
-        doc += f'    """\n'
-        doc += f"    {desc}\n\n"
+        doc_lines: list[str] = []
+        doc_lines.append(f"# Function: {full_name}\n")
+        doc_lines.append('    """\n')
+        doc_lines.append(f"    {desc}\n\n")
 
-        if params:
-            doc += f"    Args:\n"
-            for name, meta in params.items():
-                typ = meta.get("type", "string")
-                py_type = (
-                    typ.replace("string", "str")
-                    .replace("number", "float")
-                    .replace("integer", "int")
-                    .replace("object", "dict")
-                    .replace("array", "list")
-                    .replace("boolean", "bool")
-                )
-                docstring_desc = meta.get("description", "").strip()
-                default = meta.get("default")
-                default_note = f", default={repr(default)}" if default is not None else ""
-                doc += f"        {name} ({py_type}{default_note}): {docstring_desc}\n"
+        params_schema = fn.get("parameters", {})
+        top_props = params_schema.get("properties", {})
 
-        doc += f'    """\n'
-        docs.append(doc)
+        if top_props:
+            doc_lines.append("    Args:\n")
+            for param_name, meta in top_props.items():
+                doc_lines.extend(_param_doc(param_name, meta))
 
-    functions = "\n\n".join(docs)
-    return functions
+        doc_lines.append('    """\n')
+        docs.append("".join(doc_lines))
+        docs.append("\n")
+
+    return "\n\n".join(docs)
 
 
 def parse_prompt_variation_params(input_str: str) -> tuple[str, bool, str, str, str]:
