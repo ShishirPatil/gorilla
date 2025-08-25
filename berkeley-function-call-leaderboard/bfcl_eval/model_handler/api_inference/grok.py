@@ -1,9 +1,11 @@
 import os
+from typing import Any
 
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
 from openai import OpenAI
 from overrides import override
-from typing import Any
 
 
 class GrokHandler(OpenAICompletionsHandler):

@@ -1,11 +1,9 @@
 import json
 import re
+from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_function_call,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from overrides import override
 
 
@@ -83,31 +81,28 @@ class PhiFCHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # FC models use its own system prompt, so no need to add any message
-
         return {"message": [], "function": functions}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         """
         Parses the raw response from the model API to extract the result, input token count, and output token count.
 
@@ -156,7 +151,7 @@ class PhiFCHandler(OSSHandler):
         return inference_data
 
     @staticmethod
-    def _extract_tool_calls(input_string: str) -> list[any]:
+    def _extract_tool_calls(input_string: str) -> list:
         """
         Given some input response, attempt to parse out the tool calls made by the model.
 
@@ -200,7 +195,7 @@ class PhiFCHandler(OSSHandler):
         return result
 
     @staticmethod
-    def _is_tool_call_response_format(input: str) -> bool:
+    def _is_tool_call_response_format(input: list) -> bool:
         """
         This is a helper method to detect if the tool call extracted by `_extract_tool_calls` is actually a tool call.
         This is important because the model might return a dictionary that looks like a tool call, but is not. It sometimes returns the function document.

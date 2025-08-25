@@ -1,24 +1,13 @@
+import copy
 import importlib
 import inspect
 import json
 import re
-import copy
 
-CLASS_FILE_PATH_MAPPING = {
-    "GorillaFileSystem": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.gorilla_file_system",
-    "MathAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.math_api",
-    "MessageAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.message_api",
-    "TwitterAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.posting_api",
-    "TicketAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.ticket_api",
-    "TradingBot": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.trading_bot",
-    "TravelAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.travel_booking",
-    "VehicleControlAPI": "bfcl_eval.eval_checker.multi_turn_eval.func_source_code.vehicle_control",
-}
-
-# These classes are stateless and do not require any initial configuration
-STATELESS_CLASSES = [
-    "MathAPI",
-]
+from bfcl_eval.constants.executable_backend_config import (
+    CLASS_FILE_PATH_MAPPING,
+    STATELESS_CLASSES,
+)
 
 
 def execute_multi_turn_func_call(
@@ -42,8 +31,9 @@ def execute_multi_turn_func_call(
         module_name = CLASS_FILE_PATH_MAPPING[class_name]
         # TODO: Handler the model name issue from handler more elegantly
         instance_name = (
-            f"{model_name.replace('-', '_').replace('.', '_').replace('/', '_')}_{test_entry_id}_{class_name.lower()}_instance"
+            f"{model_name}_{test_entry_id}_{class_name}_instance"
         )
+        instance_name = re.sub(r'[-./]', '_', instance_name)
         if instance_name not in globals():
             module = importlib.import_module(module_name)
             class_ = getattr(module, class_name)

@@ -1,26 +1,26 @@
 import json
 import time
+from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import ast_parse
 
 
 class GorillaHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.Gorilla
-        self.is_fc_model = True
+        self.model_style = ModelStyle.GORILLA
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         func = "[" + result + "]"
-        decoded_output = ast_parse(func, language)
+        decoded_output = ast_parse(func, language, has_tool_call_tag)
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         func = "[" + result + "]"
-        decoded_output = ast_parse(func)
+        decoded_output = ast_parse(func, has_tool_call_tag)
         execution_list = []
         for function_call in decoded_output:
             for key, value in function_call.items():
@@ -67,7 +67,7 @@ class GorillaHandler(BaseHandler):
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
 
         return {
             "model_responses": api_response["choices"][0]["message"]["content"],

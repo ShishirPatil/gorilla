@@ -1,7 +1,7 @@
 COLUMNS_NON_LIVE = [
     "Rank",
     "Model",
-    "Non_Live Overall Acc",
+    "Non-Live Overall Acc",
     "AST Summary",
     "Simple AST",
     "Python Simple AST",
@@ -38,6 +38,27 @@ COLUMNS_MULTI_TURN = [
 ]
 
 
+COLUMNS_AGENTIC = [
+    "Rank",
+    "Model",
+    "Agentic Overall Acc",
+    "Web Search Summary",
+    "Web Search Base",
+    "Web Search No Snippet",
+    "Memory Summary",
+    "Memory KV",
+    "Memory Vector",
+    "Memory Recursive Summarization",
+]
+
+# Format Sensitivity columns are not scored but informative
+COLUMNS_FORMAT_SENS_PREFIX = [
+    "Rank",
+    "Model",
+    "Format Sensitivity Max Delta",
+    "Format Sensitivity Standard Deviation",
+]
+
 COLUMNS_OVERALL = [
     "Rank",
     "Overall Acc",
@@ -62,8 +83,17 @@ COLUMNS_OVERALL = [
     "Multi Turn Miss Func",
     "Multi Turn Miss Param",
     "Multi Turn Long Context",
+    "Web Search Acc",
+    "Web Search Base",
+    "Web Search No Snippet",
+    "Memory Acc",
+    "Memory KV",
+    "Memory Vector",
+    "Memory Recursive Summarization",
     "Relevance Detection",
     "Irrelevance Detection",
+    "Format Sensitivity Max Delta",
+    "Format Sensitivity Standard Deviation",
     "Organization",
     "License",
 ]

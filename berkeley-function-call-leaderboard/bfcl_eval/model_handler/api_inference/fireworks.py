@@ -1,8 +1,11 @@
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+from bfcl_eval.constants.enums import ModelStyle
 from openai import OpenAI
 
 
@@ -47,7 +50,7 @@ class FireworksHandler(OpenAICompletionsHandler):
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         return super()._compile_tools(inference_data, test_entry)
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
