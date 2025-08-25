@@ -1,10 +1,7 @@
 import json
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_system_prompt_into_user_prompt,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_system_prompt_into_user_prompt
 from overrides import override
 
 TASK_INSTRUCTION = """You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:
@@ -88,7 +85,7 @@ class HammerHandler(OSSHandler):
         return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n{user_query}<|im_start|>assistant\n"
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         result = result.replace("```", "")
         try:
             result = json.loads(result)
@@ -129,7 +126,7 @@ class HammerHandler(OSSHandler):
         return python_format
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         result = result.replace("```", "")
         try:
             result = json.loads(result)
@@ -148,9 +145,6 @@ class HammerHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Convert all system prompts to user prompts, as Hammer doesn't take system prompts
         test_entry["question"][0] = convert_system_prompt_into_user_prompt(

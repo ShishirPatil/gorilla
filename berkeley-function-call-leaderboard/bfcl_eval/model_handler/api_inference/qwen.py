@@ -2,7 +2,7 @@ import os
 from typing import Any
 
 from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from openai import OpenAI
 from overrides import override
 from qwen_agent.llm import get_chat_model
@@ -19,7 +19,7 @@ class QwenAPIHandler(OpenAICompletionsHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.client = OpenAI(
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             api_key=os.getenv("QWEN_API_KEY"),
@@ -207,7 +207,7 @@ class QwenAgentThinkHandler(OpenAICompletionsHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         """
         Note: Need to start vllm server first with command:
         vllm serve xxx \
@@ -263,7 +263,7 @@ class QwenAgentThinkHandler(OpenAICompletionsHandler):
         return responses, end_time-start_time
     
     @override
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call['function']['name']: func_call['function']['arguments']}
@@ -306,7 +306,7 @@ class QwenAgentNoThinkHandler(QwenAgentThinkHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         """
         Note: Need to start vllm server first with command:
         vllm serve xxx \

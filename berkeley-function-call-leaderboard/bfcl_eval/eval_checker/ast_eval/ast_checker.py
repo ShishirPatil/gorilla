@@ -1,11 +1,14 @@
-from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
-from bfcl_eval.constants.type_mappings import (
-    JAVA_TYPE_CONVERSION,
-    JS_TYPE_CONVERSION,
-)
-from bfcl_eval.eval_checker.ast_eval.type_convertor.java_type_converter import java_type_converter
-from bfcl_eval.eval_checker.ast_eval.type_convertor.js_type_converter import js_type_converter
 import re
+
+from bfcl_eval.constants.enums import Language
+from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
+from bfcl_eval.constants.type_mappings import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
+from bfcl_eval.eval_checker.ast_eval.type_convertor.java_type_converter import (
+    java_type_converter,
+)
+from bfcl_eval.eval_checker.ast_eval.type_convertor.js_type_converter import (
+    js_type_converter,
+)
 
 #### Constants ####
 PYTHON_TYPE_MAPPING = {
@@ -28,18 +31,23 @@ NESTED_CONVERSION_TYPE_LIST = ["Array", "ArrayList", "array"]
 
 #### Main function ####
 def ast_checker(
-    func_description, model_output, possible_answer, language, test_category, model_name
+    func_description,
+    model_output,
+    possible_answer,
+    language: Language,
+    test_category: str,
+    model_name: str,
 ):
     if "parallel" in test_category:
         return parallel_function_checker_no_order(
             func_description, model_output, possible_answer, language, model_name
         )
-        
+
     elif "multiple" in test_category:
         return multiple_function_checker(
             func_description, model_output, possible_answer, language, model_name
         )
-        
+
     else:
         if len(model_output) != 1:
             return {
@@ -164,10 +172,12 @@ def type_checker(
 
 
 def standardize_string(input_string: str):
-    # This function standardizes the string by removing all the spaces, ",./-_*^" punctuation, and converting it to lowercase
-    # It will also convert all the single quotes to double quotes
-    # This is used to compare the model output with the possible answers
-    # We don't want to punish model for answer like April 1, 2024 vs April 1,2024, vs April 1 2024
+    """
+    This function standardizes the string by removing all the spaces, ",./-_*^" punctuation, and converting it to lowercase
+    It will also convert all the single quotes to double quotes
+    This is used to compare the model output with the possible answers
+    We don't want to punish model for answer like April 1, 2024 vs April 1,2024, vs April 1 2024
+    """
     regex_string = r"[ \,\.\/\-\_\*\^]"
     return re.sub(regex_string, "", input_string).lower().replace("'", '"')
 
@@ -241,7 +251,7 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
 
         possible_answer = possible_answers[i]
         # possible_anwer is a single dictionary
-        
+
         for key, value in model_output.items():
             if key not in possible_answer:
                 result["valid"] = False
@@ -254,7 +264,7 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
             # If the value is a string, we need to standardize it
             if type(value) == str:
                 standardize_value = standardize_string(value)
-                
+
             # We also need to standardize the possible answers if they are string
             standardize_possible_answer = []
             for i in range(len(possible_answer[key])):
@@ -273,7 +283,7 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
                 result["error_type"] = "value_error:dict_value"
                 flag = False
                 break
-        
+
         for key, value in possible_answer.items():
             if key not in model_output and "" not in value:
                 result["valid"] = False
@@ -281,7 +291,7 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
                 result["error_type"] = "value_error:dict_key"
                 flag = False
                 break
-            
+
         if flag:
             return {"valid": True, "error": []}
 
@@ -324,7 +334,7 @@ def simple_function_checker(
     func_description: dict,
     model_output: dict,
     possible_answer: dict,
-    language: str,
+    language: Language,
     model_name: str,
 ):
     possible_answer = list(possible_answer.values())[0]
@@ -374,7 +384,7 @@ def simple_function_checker(
         is_variable = False
         nested_type_converted = None
 
-        if language == "Java":
+        if language == Language.JAVA:
             expected_type_converted = JAVA_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JAVA_TYPE_CONVERSION:
@@ -395,7 +405,7 @@ def simple_function_checker(
                 else:
                     value = java_type_converter(value, expected_type_description)
 
-        elif language == "JavaScript":
+        elif language == Language.JAVASCRIPT:
             expected_type_converted = JS_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JS_TYPE_CONVERSION:
@@ -410,17 +420,18 @@ def simple_function_checker(
                 if expected_type_description in NESTED_CONVERSION_TYPE_LIST:
                     nested_type = param_details[param]["items"]["type"]
                     nested_type_converted = JS_TYPE_CONVERSION[nested_type]
-                    value = js_type_converter(
-                        value, expected_type_description, nested_type
-                    )
+                    value = js_type_converter(value, expected_type_description, nested_type)
                 else:
                     value = js_type_converter(value, expected_type_description)
 
-        elif language == "Python":
+        elif language == Language.PYTHON:
             expected_type_converted = PYTHON_TYPE_MAPPING[expected_type_description]
             if expected_type_description in PYTHON_NESTED_TYPE_CHECK_LIST:
                 nested_type = param_details[param]["items"]["type"]
                 nested_type_converted = PYTHON_TYPE_MAPPING[nested_type]
+
+        else:
+            raise ValueError(f"Unsupported language: {language}")
 
         # We convert all tuple value to list when the expected type is tuple.
         # The conversion is necessary because any tuple in the possible answer would become a list after being processed through json.dump() and json.load().
@@ -430,7 +441,7 @@ def simple_function_checker(
 
         # Allow python auto conversion from int to float
         if (
-            language == "Python"
+            language == Language.PYTHON
             and expected_type_description == "float"
             and type(value) == int
         ):
@@ -508,7 +519,7 @@ def parallel_function_checker_enforce_order(
     func_descriptions: list,
     model_output: list,
     possible_answers: dict,
-    language: str,
+    language: Language,
     model_name: str,
 ):
     if len(model_output) != len(possible_answers):
@@ -526,7 +537,7 @@ def parallel_function_checker_enforce_order(
 
     for i in range(len(possible_answers_list)):
         func_description = find_description(func_descriptions, func_name_list[i])
-        
+
         result = simple_function_checker(
             func_description,
             model_output[i],
@@ -544,7 +555,7 @@ def parallel_function_checker_no_order(
     func_descriptions: list,
     model_output: list,
     possible_answers: list,
-    language: str,
+    language: Language,
     model_name: str,
 ):
     if len(model_output) != len(possible_answers):
@@ -562,7 +573,6 @@ def parallel_function_checker_no_order(
         # possible_answers[i] is a dictionary with only one key
         func_name_expected = list(possible_answers[i].keys())[0]
         func_description = find_description(func_descriptions, func_name_expected)
-
 
         all_errors = []
 
@@ -614,7 +624,7 @@ def multiple_function_checker(
     func_descriptions: list,
     model_output: list,
     possible_answers: list,
-    language: str,
+    language: Language,
     model_name: str,
 ):
     if len(model_output) != len(possible_answers):

@@ -1,0 +1,100 @@
+{"id": "simple_java_0", "ground_truth": [{"GeometryPresentation.createPresentation": {"controller": ["mapController"], "parent": ["mapArea"]}}]}
+{"id": "simple_java_1", "ground_truth": [{"SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": [50], "schemaFilter": ["public"]}]}}]}
+{"id": "simple_java_2", "ground_truth": [{"FireBirdUtils.getViewSourceWithHeader": {"monitor": ["dbMonitor"], "view": ["EmployeeView"], "source": ["SELECT * FROM Employee WHERE status = 'active'"]}}]}
+{"id": "simple_java_3", "ground_truth": [{"DB2Tablespace.resolveTablespaceReference": {"monitor": ["dbMonitor"], "dataSource": ["db2DataSource"], "reference": ["USERSPACE1"]}}]}
+{"id": "simple_java_4", "ground_truth": [{"DB2ViewBaseDepCache.prepareObjectsStatement": {"session": ["jdbcSession"], "db2ViewBase": ["EmployeeView"]}}]}
+{"id": "simple_java_5", "ground_truth": [{"PlainTextPresentation.createPresentation": {"controller": ["dataController"], "parent": ["compositeParent"]}}]}
+{"id": "simple_java_6", "ground_truth": [{"SpreadsheetPresentation.refreshData": {"refreshMetadata": [true], "append": [true], "keepState": [true]}}]}
+{"id": "simple_java_7", "ground_truth": [{"EFSNIOResource.copy": {"destination": ["new Path('/backup/data.txt')"], "force": [true], "monitor": ["progressTracker"]}}]}
+{"id": "simple_java_8", "ground_truth": [{"EFSNIOFile.setContents": {"source": ["fileStream"], "force": [true], "keepHistory": [false], "monitor": ["progressMonitor"]}}]}
+{"id": "simple_java_9", "ground_truth": [{"writeMultiPoint": {"multiPoint": ["new MultiPoint(new Point[]{new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10)})"], "xyzmMode": ["XyzmMode.XYZ"], "buffer": ["ByteBuffer.allocate(1024)"]}}]}
+{"id": "simple_java_10", "ground_truth": [{"JNIBridge.setLauncherInfo": {"launcher": ["/usr/local/bin/dbeaver"], "name": ["DBeaverLauncher"]}}]}
+{"id": "simple_java_11", "ground_truth": [{"BasePolicyDataProvider.getRegistryPolicyValue": {"root": ["WinReg.HKEY_LOCAL_MACHINE"], "property": ["EnableExtensions"]}}]}
+{"id": "simple_java_12", "ground_truth": [{"ExasolExecutionContext.setCurrentSchema": {"monitor": ["progressMonitor"], "schemaName": ["AnalyticsDB"]}}]}
+{"id": "simple_java_13", "ground_truth": [{"AltibaseGrantee.prepareObjectsStatement": {"session": ["JDBC_session"], "owner": ["JohnDoe"]}}]}
+{"id": "simple_java_14", "ground_truth": [{"FunGameBase.onFinish": {"layout": ["gameLayout"], "success": [true]}}]}
+{"id": "simple_java_15", "ground_truth": [{"Res9patchStreamDecoder.decode": {"input": ["imageInputStream"], "out": ["imageOutputStream"]}}]}
+{"id": "simple_java_16", "ground_truth": [{"InsnDecoder.invokePolymorphic": {"insn": ["instructionData"], "isRange": [true]}}]}
+{"id": "simple_java_17", "ground_truth": [{"GenericTypesVisitor.attachGenericTypesInfo": {"mth": ["initMethod"], "insn": ["newConstructorInsn"]}}]}
+{"id": "simple_java_18", "ground_truth": [{"SysRoleController.queryPageRoleCount": {"pageNo": [3], "pageSize": [20]}}]}
+{"id": "simple_java_19", "ground_truth": [{"PersonController.personal": {"model": ["webModel"], "request": ["userRequest"]}}]}
+{"id": "simple_java_20", "ground_truth": [{"HbaseAdapter.updateConfig": {"fileName": ["user-mapping.yml"], "config": ["newMappingConfig"]}}]}
+{"id": "simple_java_21", "ground_truth": [{"SessionHandler.exceptionCaught": {"ctx": ["nettyChannelContext"], "e": ["ioExceptionEvent"]}}]}
+{"id": "simple_java_22", "ground_truth": [{"PmsProductServiceImpl.updateNewStatus": {"ids": [[101, 202, 303]], "newStatus": [2]}}]}
+{"id": "simple_java_23", "ground_truth": [{"SmsHomeNewProductServiceImpl.list": {"productName": ["LED TV"], "recommendStatus": [1], "pageSize": [20], "pageNum": [3]}}]}
+{"id": "simple_java_24", "ground_truth": [{"PmsProductCategoryController.updateShowStatus": {"ids": [[101, 102, 103]], "showStatus": [0]}}]}
+{"id": "simple_java_25", "ground_truth": [{"SmsHomeRecommendSubjectController.updateSort": {"id": [42], "sort": [5]}}]}
+{"id": "simple_java_26", "ground_truth": [{"ProxyConnection.prepareCall": {"sql": ["CALL totalSales(?)"], "resultSetType": ["ResultSet.TYPE_SCROLL_INSENSITIVE"], "concurrency": ["ResultSet.CONCUR_READ_ONLY"], "holdability": ["ResultSet.CLOSE_CURSORS_AT_COMMIT"]}}]}
+{"id": "simple_java_27", "ground_truth": [{"TwoSum.twoSum": {"nums": [[2, 7, 11, 15]], "target": [9]}}]}
+{"id": "simple_java_28", "ground_truth": [{"configStorage.dynamicCredentialsScheduledExecutorService": {"credentialsFile": ["es_credentials.properties"], "credentialsRefreshInterval": [30], "basicCredentials": ["basicAuthCredentials"]}}]}
+{"id": "simple_java_29", "ground_truth": [{"propertyTransferredToCollectorBuilder": {"property": ["zipkin.collector.activemq.concurrency"], "value": ["10"], "builderExtractor": ["ActiveMQCollector.Builder::getConcurrency"]}}]}
+{"id": "simple_java_30", "ground_truth": [{"RedissonAsyncCache.putIfAbsent": {"key": ["answer"], "value": ["42"]}}]}
+{"id": "simple_java_31", "ground_truth": [{"RedissonRx.getQueue": {"name": ["taskQueue"], "codec": ["jsonCodec"]}}]}
+{"id": "simple_java_32", "ground_truth": [{"RedissonPermitExpirableSemaphore.tryAcquireAsync": {"waitTime": [5], "leaseTime": [120], "unit": ["SECONDS"]}}]}
+{"id": "simple_java_33", "ground_truth": [{"RedissonMapCache.putOperationAsync": {"key": ["employee:1234"], "value": ["John Doe"]}}]}
+{"id": "simple_java_34", "ground_truth": [{"ServiceManager.newTimeout": {"task": ["cleanupTask"], "delay": [5], "unit": ["TimeUnit.MINUTES"]}}]}
+{"id": "simple_java_35", "ground_truth": [{"RedissonConnection.bitOp": {"op": ["BitOperation.AND"], "destination": ["user:online:both"], "keys": [["user:online:today", "user:online:yesterday"]]}}]}
+{"id": "simple_java_36", "ground_truth": [{"ObjectMapEntryReplayDecoder.decode": {"parts": [["userID", 42, "username", "johndoe", "isActive", true]], "state": ["processingState"]}}]}
+{"id": "simple_java_37", "ground_truth": [{"ConsoleAnnotator.annotate": {"context": ["jenkinsBuild"], "text": ["buildOutput"]}}]}
+{"id": "simple_java_38", "ground_truth": [{"NestedValueFetcher.createSourceMapStub": {"filteredSource": ["docFields"]}}]}
+{"id": "simple_java_39", "ground_truth": [{"NodeIdConverter.format": {"event": ["logEvent"], "toAppendTo": ["logBuilder"]}}]}
+{"id": "simple_java_40", "ground_truth": [{"RoutingNodesChangedObserver.shardInitialized": {"unassignedShard": ["shardA"], "initializedShard": ["shardB"]}}]}
+{"id": "simple_java_41", "ground_truth": [{"SearchHit.declareInnerHitsParseFields": {"parser": ["searchHitParser"]}}]}
+{"id": "simple_java_42", "ground_truth": [{"TermQueryBuilderTests.termQuery": {"mapper": ["usernameField"], "value": ["JohnDoe"], "caseInsensitive": [true]}}]}
+{"id": "simple_java_43", "ground_truth": [{"SecureMockMaker.createSpy": {"settings": ["mockSettings"], "handler": ["mockHandler"], "object": ["testObject"]}}]}
+{"id": "simple_java_44", "ground_truth": [{"DesAPITest.init": {"crypt": ["DESede"], "mode": ["CBC"], "padding": ["PKCS5Padding"]}}]}
+{"id": "simple_java_45", "ground_truth": [{"Basic.checkSizes": {"environ": ["envVariables"], "size": [5]}}]}
+{"id": "simple_java_46", "ground_truth": [{"MethodInvokeTest.checkInjectedInvoker": {"csm": ["csmInstance"], "expected": ["MyExpectedClass.class"]}}]}
+{"id": "simple_java_47", "ground_truth": [{"LargeHandshakeTest.format": {"name": ["CERTIFICATE"], "value": ["MIIFdTCCBF2gAwIBAgISESG"]}}]}
+{"id": "simple_java_48", "ground_truth": [{"CookieHeaderTest.create": {"sa": ["new InetSocketAddress(\"192.168.1.10\", 8080)"], "sslContext": ["testSSLContext"]}}]}
+{"id": "simple_java_49", "ground_truth": [{"Http2TestExchangeImpl.sendResponseHeaders": {"rCode": [404], "responseLength": [1500]}}]}
+{"id": "simple_java_50", "ground_truth": [{"TransformIndexerStateTests.doDeleteByQuery": {"deleteByQueryRequest": ["deleteQueryRequest"], "responseListener": ["testListener"]}}]}
+{"id": "simple_java_51", "ground_truth": [{"CCRUsageTransportAction.masterOperation": {"task": ["usageTask"], "request": ["usageRequest"], "state": ["clusterState"], "listener": ["actionListener"]}}]}
+{"id": "simple_java_52", "ground_truth": [{"SamlObjectSignerTests.getChildren": {"node": ["SAMLAssertionNode"], "node_type": ["Element.class"]}}]}
+{"id": "simple_java_53", "ground_truth": [{"VotingOnlyNodePlugin.fullMasterWithOlderState": {"localAcceptedTerm": [42], "localAcceptedVersion": [7]}}]}
+{"id": "simple_java_54", "ground_truth": [{"AbstractTransportSearchableSnapshotsAction.shardOperation": {"request": ["snapshotRequest"], "shardRouting": ["shardRouteInfo"], "task": ["snapshotTask"], "listener": ["operationListener"]}}]}
+{"id": "simple_java_55", "ground_truth": [{"SearchableSnapshotDirectory.create": {"repositories": ["repositoriesService"], "cache": ["cacheService"], "indexSettings": ["indexSettingsForLogs"], "shardPath": ["/data/nodes/0/indices/logs/5"], "currentTimeNanosSupplier": ["currentTimeNanos"], "threadPool": ["threadPool"], "blobStoreCacheService": ["blobStoreCacheService"], "sharedBlobCacheService": ["sharedBlobCacheService"]}}]}
+{"id": "simple_java_56", "ground_truth": [{"CCSDuelIT.parseEntity": {"entity": ["httpResponseEntity"], "entityParser": ["responseParser"], "parserConfig": ["defaultParserConfig"]}}]}
+{"id": "simple_java_57", "ground_truth": [{"Booleans.parseBooleanLenient": {"value": ["yes"], "defaultValue": [false]}}]}
+{"id": "simple_java_58", "ground_truth": [{"XContentBuilder.map": {"values": ["userProfile"], "ensureNoSelfReferences": [true], "writeStartAndEndHeaders": [true]}}]}
+{"id": "simple_java_59", "ground_truth": [{"TruncateTranslogAction.execute": {"terminal": ["terminalInterface"], "shardPath": ["new ShardPath(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard'))"], "indexDirectory": ["FSDirectory.open(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard/index'))"]}}]}
+{"id": "simple_java_60", "ground_truth": [{"NestedQueryBuilder.doBuild": {"parentSearchContext": ["mainSearchContext"], "innerHitsContext": ["hitsContext"]}}]}
+{"id": "simple_java_61", "ground_truth": [{"ScoreFunctionBuilders.exponentialDecayFunction": {"fieldName": ["timestamp"], "origin": ["now"], "scale": ["10d"], "offset": ["2d"], "decay": [0.5]}}]}
+{"id": "simple_java_62", "ground_truth": [{"dvRangeQuery": {"field": ["temperature"], "queryType": ["FLOAT"], "from": [20.5, "20.5"], "to": [30.0, "30.0"], "includeFrom": [true], "includeTo": [false]}}]}
+{"id": "simple_java_63", "ground_truth": [{"withinQuery": {"field": ["age"], "from": [30], "to": [40], "includeFrom": [true], "includeTo": [false]}}]}
+{"id": "simple_java_64", "ground_truth": [{"DateScriptFieldType.createFieldType": {"name": ["timestamp"], "factory": ["dateFactory"], "script": ["dateScript"], "meta": [{"format": "epoch_millis"}], "onScriptError": ["FAIL"]}}]}
+{"id": "simple_java_65", "ground_truth": [{"RootObjectMapper.doXContent": {"builder": ["xContentBuilderInstance"], "params": [["include_defaults", true, "TOXCONTENT_SKIP_RUNTIME", true]]}}]}
+{"id": "simple_java_66", "ground_truth": [{"CompositeRuntimeField.createChildRuntimeField": {"parserContext": ["mappingParserContext"], "parent": ["compositeField1"], "parentScriptFactory": ["compositeScriptFactory"], "onScriptError": ["onScriptError.IGNORE"]}}]}
+{"id": "simple_java_67", "ground_truth": [{"MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": [{"APP_NAME": ["PhotoEditor"]}, {"IMAGES_ROOT": ["/path/to/images"]}, {"BACKGROUND_IMAGE_FOLDER": ["background"]}, {"BACKGROUND_IMAGE": ["custom-bg.png"]}]}}]}
+{"id": "simple_java_68", "ground_truth": [{"MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": [{"/Applications/MyApp.app": ["MyApp"]}]}}]}
+{"id": "simple_java_69", "ground_truth": [{"DurationImpl.alignSigns": {"buf": ["durations"], "start": [2], "end": [5]}}]}
+{"id": "simple_java_70", "ground_truth": [{"XMLNamespaceBinder.endElement": {"element": ["new QName('http://www.example.com', 'item', 'ex')"], "augs": ["augmentations"]}}]}
+{"id": "simple_java_71", "ground_truth": [{"CoroutineManager.co_exit_to": {"arg_object": ["resultData"], "thisCoroutine": [5], "toCoroutine": [10]}}]}
+{"id": "simple_java_72", "ground_truth": [{"ToTextStream.characters": {"ch": ["textBuffer"], "start": [5], "length": [10]}}]}
+{"id": "simple_java_73", "ground_truth": [{"Encodings.getEncodingInfo": {"encoding": ["UTF-8"], "allowJavaNames": [true]}}]}
+{"id": "simple_java_74", "ground_truth": [{"BaseMarkupSerializer.surrogates": {"high": [55357], "low": [56832], "inContent": [false]}}]}
+{"id": "simple_java_75", "ground_truth": [{"JdkXmlFeatures.getSystemProperty": {"feature": ["XML_SECURITY"], "sysPropertyName": ["enableXmlSecurityFeature"]}}]}
+{"id": "simple_java_76", "ground_truth": [{"Intro.step": {"w": [800], "h": [600]}}]}
+{"id": "simple_java_77", "ground_truth": [{"JndiLoginModule.verifyPassword": {"encryptedPassword": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], "password": ["P@ssw0rd!"]}}]}
+{"id": "simple_java_78", "ground_truth": [{"OptionSpecBuilder.requiredUnless": {"dependent": ["quiet"], "otherDependents": [["verbose"]]}}]}
+{"id": "simple_java_79", "ground_truth": [{"SAXFilterFactoryImpl.resolveEntity": {"publicid": ["1234"], "sysId": ["http://astro.com/stylesheets/toptemplate"]}}]}
+{"id": "simple_java_80", "ground_truth": [{"RegexConstraint.initIRPattern": {"category": ["failOn"], "ruleIdx": [42]}}]}
+{"id": "simple_java_81", "ground_truth": [{"TestObjectGraphAfterGC.doTesting": {"testcaseData": ["humongous-test-case.json"], "doGC": ["customGarbageCollector"], "checker": ["referenceChecker"], "gcLogName": ["gc-analysis.log"], "shouldContain": [["GC pause"]], "shouldNotContain": [["OutOfMemoryError"]]}}]}
+{"id": "simple_java_82", "ground_truth": [{"clear001a.runIt": {"args": ["testArgs"], "out": ["System.out"]}}]}
+{"id": "simple_java_83", "ground_truth": [{"thrcputime002.runIt": {"argv": [["-waitTime", "2", "-iterations", "500"]], "out": ["System.out"]}}]}
+{"id": "simple_java_84", "ground_truth": [{"checkInnerFields": {"redefCls": ["myRedefClass"], "expValue": [100]}}]}
+{"id": "simple_java_85", "ground_truth": [{"classfloadhk005.runIt": {"argv": [["/path/to/classes", "60"]], "out": ["logStream"]}}]}
+{"id": "simple_java_86", "ground_truth": [{"argumenttypes001.runThis": {"argv": [["-v", "--no-strict"]], "out": ["debugOutput"]}}]}
+{"id": "simple_java_87", "ground_truth": [{"suspendpolicy017.settingVMDeathRequest": {"suspendPolicy": ["EVENT_THREAD"], "property": ["deathEvent001"]}}]}
+{"id": "simple_java_88", "ground_truth": [{"filter_s002.setting22MethodEntryRequest": {"thread": ["mainThread"], "testedClass": ["com.example.MainClass"], "suspendPolicy": ["EventRequest.SUSPEND_ALL"], "property": ["testProperty"]}}]}
+{"id": "simple_java_89", "ground_truth": [{"runThis": {"argv": [["-waitTime", "2", "-debuggeeName", "TestDebuggee"]], "out": ["testLogStream"]}}]}
+{"id": "simple_java_90", "ground_truth": [{"sourcepaths002.runIt": {"args": [["-v", "-p"]], "out": ["System.out"]}}]}
+{"id": "simple_java_91", "ground_truth": [{"invokemethod007.runIt": {"args": [["suspend", "log"]], "out": ["debugLog"]}}]}
+{"id": "simple_java_92", "ground_truth": [{"ClassFileFinder.findClassFile": {"name": ["com.example.MyClass"], "classPath": ["/usr/local/classes:/home/user/java/libs"]}}]}
+{"id": "simple_java_93", "ground_truth": [{"AbstractJarAgent.runJarAgent": {"options": ["trace log"], "inst": ["appInstrumentation"]}}]}
+{"id": "simple_java_94", "ground_truth": [{"NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": ["", "null"]}}]}
+{"id": "simple_java_95", "ground_truth": [{"ExportNodeTest.doGeneric": {"receiver": ["ExportInlinedObject1Instance"], "argument": ["HelloWorld"], "node": ["InlinableNodeInstance"], "library": ["NodeLibraryInstance"]}}]}
+{"id": "simple_java_96", "ground_truth": [{"InstrumentableProcessor.createCallConverter": {"converterMethod": ["convertValue"], "frameParameterName": ["frameVar"], "returnName": ["returnValueCode"]}}]}
+{"id": "simple_java_97", "ground_truth": [{"FlatNodeGenFactory.generateIntrospectionInfo": {"clazz": ["NodeClass"], "inlined": [false]}}]}
+{"id": "simple_java_98", "ground_truth": [{"LoopConditionProfile.calculateProbability": {"trueCountLocal": [150], "falseCountLocal": [50]}}]}
+{"id": "simple_java_99", "ground_truth": [{"LibraryExport.createDelegate": {"factory": ["myFactory"], "delegate": ["existingDelegate"]}}]}

@@ -11,6 +11,7 @@
     - [Extra Dependencies for Self-Hosted Models](#extra-dependencies-for-self-hosted-models)
     - [Configuring Project Root Directory](#configuring-project-root-directory)
     - [Setting up Environment Variables](#setting-up-environment-variables)
+      - [Configuring SerpAPI for Web Search Category](#configuring-serpapi-for-web-search-category)
   - [Running Evaluations](#running-evaluations)
     - [Generating LLM Responses](#generating-llm-responses)
       - [Selecting Models and Test Categories](#selecting-models-and-test-categories)
@@ -78,7 +79,7 @@ pip install bfcl-eval  # Be careful not to confuse with the unrelated `bfcl` pro
 
 For locally hosted models, choose one of the following backends, ensuring you have the right GPU and OS setup:
 
-`sglang` is *much faster* than `vllm` but only supports newer GPUs with SM 80+ (Ampere etc).
+`sglang` is *much faster* than `vllm` in our specific multi-turn use case, but it only supports newer GPUs with SM 80+ (Ampere etc).
 If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
 
 **Using `vllm`:**
@@ -134,6 +135,10 @@ cp $(python -c "import bfcl_eval; print(bfcl_eval.__path__[0])")/.env.example $B
 If you are running any proprietary models, make sure the model API keys are included in your `.env` file. Models like GPT, Claude, Mistral, Gemini, Nova, will require them.
 
 The library looks for the `.env` file in the project root, i.e. `$BFCL_PROJECT_ROOT/.env`.
+
+#### Configuring SerpAPI for Web Search Category
+
+For the `web_search` test category, we use the [SerpAPI](https://serpapi.com/) service to perform web search. You need to sign up for an API key and add it to your `.env` file. You can also switch to other web search APIs by changing the `search_engine_query` function in `bfcl_eval/eval_checker/multi_turn_eval/func_source_code/web_search.py`.
 
 ---
 
@@ -212,13 +217,13 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 bfcl generate \
   --model MODEL_NAME \
   --test-category TEST_CATEGORY \
-  --backend {vllm|sglang} \
+  --backend {sglang|vllm} \
   --num-gpus 1 \
   --gpu-memory-utilization 0.9 \
   --local-model-path /path/to/local/model   # ← optional
 ```
 
-- Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
+- Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `sglang`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 - `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
 
@@ -230,11 +235,11 @@ If you have a server already running (e.g., vLLM in a SLURM cluster), you can by
 bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --skip-server-setup
 ```
 
-In addition, you should specify the endpoint and port used by the server. By default, the endpoint is `localhost` and the port is `1053`. These can be overridden by the `VLLM_ENDPOINT` and `VLLM_PORT` environment variables in the `.env` file:
+In addition, you should specify the endpoint and port used by the local server. By default, the endpoint is `localhost` and the port is `1053`. These can be overridden by the `LOCAL_SERVER_ENDPOINT` and `LOCAL_SERVER_PORT` environment variables in the `.env` file:
 
 ```bash
-VLLM_ENDPOINT=localhost
-VLLM_PORT=1053
+LOCAL_SERVER_ENDPOINT=localhost
+LOCAL_SERVER_PORT=1053
 ```
 
 #### (Alternate) Script Execution for Generation
@@ -312,9 +317,9 @@ For detailed steps, please see the [Contributing Guide](./CONTRIBUTING.md).
 
 ## Additional Resources
 
-- [Gorilla Discord](https://discord.gg/grXXvj9Whz) (`#leaderboard` channel)
-- [Project Website](https://gorilla.cs.berkeley.edu/)
+- [Discord](https://discord.gg/grXXvj9Whz) (`#leaderboard` channel)
+- [Project Website](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
 All the leaderboard statistics, and data used to train the models are released under Apache 2.0.
-Gorilla is an open source effort from UC Berkeley and we welcome contributors.
-Please email us your comments, criticisms, and questions. More information about the project can be found at [https://gorilla.cs.berkeley.edu/](https://gorilla.cs.berkeley.edu/)
+BFCL is an open source effort from UC Berkeley and we welcome contributors.
+For any comments, criticisms, or questions, please feel free to raise an issue or a PR. You can also reach us via [email](mailto:huanzhimao@berkeley.edu).

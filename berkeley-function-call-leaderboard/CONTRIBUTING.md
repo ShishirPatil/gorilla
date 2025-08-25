@@ -142,7 +142,7 @@ Regardless of mode or model type, you should implement the following methods to 
 
 ## Join Our Community
 
-- Have questions or need help? Join the [Gorilla Discord](https://discord.gg/grXXvj9Whz) and visit the `#leaderboard` channel.
+- Have questions or need help? Join the [Discord](https://discord.gg/grXXvj9Whz) and visit the `#leaderboard` channel.
 - Feel free to reach out if you have any questions, concerns, or would like guidance while adding your new model. We’re happy to assist!
 
 ---
