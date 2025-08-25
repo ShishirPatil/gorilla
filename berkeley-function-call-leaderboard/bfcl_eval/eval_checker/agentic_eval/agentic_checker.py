@@ -1,4 +1,3 @@
-# from bfcl_eval.eval_checker.ast_eval.ast_checker import standardize_string
 import re
 
 #### Main functions ####

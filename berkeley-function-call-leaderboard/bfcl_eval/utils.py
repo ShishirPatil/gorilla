@@ -919,6 +919,7 @@ def get_all_format_sensitivity_configs() -> list[str]:
     """
     Get all the format sensitivity configs.
     The format sensitivity configs are used to generate the default system prompt for prompting models.
+    For a detailed explanation of what each config represents, please refer to our blog post: https://gorilla.cs.berkeley.edu/blogs/17_bfcl_v4_prompt_variation.html#construction
     """
 
     RETURN_FORMAT = [
