@@ -45,7 +45,7 @@
 
 
     <title>
-        Berkeley Function Calling Leaderboard V3 (aka Berkeley Tool Calling Leaderboard V3)
+        Berkeley Function Calling Leaderboard (BFCL) V4
     </title>
 
 </head>
@@ -90,21 +90,12 @@
     </div>
 
     <!-- Leaderboard Section -->
-    <div style="background-color: #ffeb3b; padding: 20px; text-align: center; margin-bottom: 20px;">
-        <h3 style="margin: 0;">
-            🦍 Announcement: We're excited to release <a href="https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html">BFCL V4 Agentic</a>! We're currently sprinting to integrate all models
-            into the new benchmark. Once generation is complete, the leaderboard will migrate from v3 to v4.
-            <br>
-            Hang tight — big updates incoming!
-        </h3>
-    </div>
-
     <div class="container" id="leaderboard" style="background: #e5effc">
         <div class="col-md-12">
             <h2>BFCL: From Tool Use to Agentic Evaluation of Large Language Models</h2>
 
             <p class="text-center">
-                The Berkeley Function Calling Leaderboard V3 (also called Berkeley Tool Calling Leaderboard V3)
+                The Berkeley Function Calling Leaderboard (BFCL) V4
                 evaluates the
                 LLM's ability to call functions (aka tools) accurately. This
                 leaderboard consists of real-world data and will be updated periodically. For more information on the
@@ -112,8 +103,8 @@
                     href="blogs/8_berkeley_function_calling_leaderboard.html">BFCL-v1</a> introducing AST as an
                 evaluation metric,
                 <a href="blogs/12_bfcl_v2_live.html">BFCL-v2</a> introducing enterprise and OSS-contributed functions,
-                and
-                <a href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions. Checkout <a
+                <a href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions, and
+                <a href="blogs/15_bfcl_v4_web_search.html">BFCL-v4</a> introducing holistic agentic evaluation. Checkout <a
                     href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">code and
                     data</a>.
             </p>
@@ -124,7 +115,7 @@
                     <div>
                         <span>
                             <b><i style="font-size: 1.0em;">Last Updated:
-                                    2025-06-14 &nbsp;&nbsp;&nbsp;&nbsp; <a
+                                    2025-08-26 &nbsp;&nbsp;&nbsp;&nbsp; <a
                                         href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
                                         Log]</a>
                                 </i></b>
@@ -156,7 +147,7 @@
                 <b>Prompt</b> = walk-around for function calling, using model's normal text generation capability.
             </p>
             <p>
-                <b>Cost</b> is calculated as an estimate of the cost per 1000 function calls, in USD.
+                <b>Cost</b> is calculated as an estimate of the cost for the entire benchmark, in USD.
                 <b>Latency</b> is measured in seconds.
             </p>
             <p>
@@ -165,18 +156,21 @@
                     href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#leaderboard-composition">blog</a>.
             </p>
             <p>
+                <b>Format sensitivity</b> test cases are only supported for prompt (non-FC) models.
+            </p>
+            <p>
                 Click on column header to sort. If you would like to add
                 your model or contribute test-cases, please contact us via <a
                     href="https://discord.gg/grXXvj9Whz">discord</a>.
             </p>
             <p>
-                Models are evaluated using commit <b>1bb65c9</b>.
+                Models are evaluated using commit <b>58f57e9</b>.
                 All the model response we obtained is available <a
                     href="https://github.com/HuanzhiMao/BFCL-Result">here</a>.
                 To reproduce the results, please either checkout our codebase at
-                <a href="https://github.com/ShishirPatil/gorilla/tree/1bb65c95e6dd49286eb427b308e6c91001e98ae9">this
+                <a href="https://github.com/ShishirPatil/gorilla/commit/58f57e9124ea981403792dd51e00a6577e621fae">this
                     checkpoint</a>,
-                or install the PyPI package <code>pip install bfcl-eval==2025.6.14</code>.
+                or install the PyPI package <code>pip install bfcl-eval==2025.8.25</code>.
             </p>
         </div>
     </div>

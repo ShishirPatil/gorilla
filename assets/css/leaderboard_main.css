@@ -18,13 +18,13 @@
 }
 
 #leaderboard td:nth-child(4) {
-    background-color: #f09194;
+    background-color: #ff9999;
 }
 
 #leaderboard td:nth-child(5),
 #leaderboard td:nth-child(6),
 #leaderboard td:nth-child(7) {
-    background-color: #8f8fff;
+    background-color: #9eb3ff;
 }
 
 #leaderboard td:nth-child(8),
@@ -32,7 +32,7 @@
 #leaderboard td:nth-child(10),
 #leaderboard td:nth-child(11),
 #leaderboard td:nth-child(12) {
-    background-color: #88ffc4;
+    background-color: #97e5b8;
 }
 
 #leaderboard td:nth-child(13),
@@ -40,7 +40,7 @@
 #leaderboard td:nth-child(15),
 #leaderboard td:nth-child(16),
 #leaderboard td:nth-child(17) {
-    background-color: #75f1ff;
+    background-color: #7dd9e8;
 }
 
 #leaderboard td:nth-child(18),
@@ -48,54 +48,25 @@
 #leaderboard td:nth-child(20),
 #leaderboard td:nth-child(21),
 #leaderboard td:nth-child(22) {
-    background-color: #ffdf75;
+    background-color: #ffd97a;
 }
 
-/* #leaderboard td:nth-child(23),
+#leaderboard td:nth-child(23),
 #leaderboard td:nth-child(24),
 #leaderboard td:nth-child(25),
 #leaderboard td:nth-child(26),
-#leaderboard td:nth-child(27){
-    background-color: #efabdf;
-} */
-
-
-/* #leaderboard td:nth-child(8) {
-    background-color: #c0ff73;
-}
-#leaderboard td:nth-child(9) {
-    background-color: #ffdf75;
+#leaderboard td:nth-child(27),
+#leaderboard td:nth-child(28),
+#leaderboard td:nth-child(29){
+    background-color: #d9a8ff;
 }
 
-#leaderboard td:nth-child(10) {
-    background-color: #d8787b;
+#leaderboard td:nth-child(30),
+#leaderboard td:nth-child(31){
+    background-color: #ffb8d1;
 }
 
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(12),
-#leaderboard td:nth-child(13) {
-    background-color: #8f8fff;
+#leaderboard td:nth-child(32),
+#leaderboard td:nth-child(33){
+    background-color: #ffcba4;
 }
-
-
-#leaderboard td:nth-child(14),
-#leaderboard td:nth-child(15),
-#leaderboard td:nth-child(16),
-#leaderboard td:nth-child(17) {
-    background-color: #75f1ff;
-}
-
-
-#leaderboard td:nth-child(18),
-#leaderboard td:nth-child(19),
-#leaderboard td:nth-child(20),
-#leaderboard td:nth-child(21) {
-    background-color: #88ffc4;
-}
-
-#leaderboard td:nth-child(22) {
-    background-color: #c0ff73;
-}
-#leaderboard td:nth-child(23) {
-    background-color: #ffdf75;
-} */

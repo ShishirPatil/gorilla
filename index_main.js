@@ -743,7 +743,13 @@ function addToTable(dataArray) {
                 } else if (cellIndex >= 19 && cellIndex <= 22) {
                     // class for specific columns
                     td.className = "multiturn-sub-cell";
-                } 
+                } else if (cellIndex >= 24 && cellIndex <= 25) {
+                    // class for specific columns
+                    td.className = "websearch-sub-cell";
+                } else if (cellIndex >= 27 && cellIndex <= 29) {
+                    // class for specific columns
+                    td.className = "memory-sub-cell";
+                }
                 tr.appendChild(td);
             }
 
@@ -781,9 +787,9 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.7-Sonnet-20250219 (FC)",
-    "GPT-4o-2024-11-20 (FC)",
-    "Gemini-2.5-Pro-Preview-05-06 (FC)",
+    "Claude-Sonnet-4-20250514 (FC)",
+    "GPT-5-2025-08-07 (FC)",
+    "Gemini-2.5-Pro (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
