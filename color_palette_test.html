@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-top: 30px;
+        }
+        .palette {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .color-block {
+            width: 120px;
+            height: 100px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .color-label {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .description {
+            margin-top: 2px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .analysis {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leaderboard Color Palette Analysis</h1>
+        
+        <h2>Current Color Palette</h2>
+        <div class="palette">
+            <div class="color-block" style="background-color: #f09194;">
+                <span class="color-label">#f09194</span>
+                <span class="description">Cost</span>
+            </div>
+            <div class="color-block" style="background-color: #8f8fff;">
+                <span class="color-label">#8f8fff</span>
+                <span class="description">Latency</span>
+            </div>
+            <div class="color-block" style="background-color: #88ffc4;">
+                <span class="color-label">#88ffc4</span>
+                <span class="description">Non-live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #75f1ff;">
+                <span class="color-label">#75f1ff</span>
+                <span class="description">Live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #ffdf75;">
+                <span class="color-label">#ffdf75</span>
+                <span class="description">Multi Turn</span>
+            </div>
+            <div class="color-block" style="background-color: #efabdf;">
+                <span class="color-label">#efabdf</span>
+                <span class="description">Agentic</span>
+            </div>
+            <div class="color-block" style="background-color: #BBD4FF;">
+                <span class="color-label">#BBD4FF</span>
+                <span class="description">Hallucination</span>
+            </div>
+            <div class="color-block" style="background-color: #FFD9B3;">
+                <span class="color-label">#FFD9B3</span>
+                <span class="description">Format Sensitivity</span>
+            </div>
+        </div>
+
+        <div class="analysis">
+            <h3>Issues with Current Palette:</h3>
+            <ul>
+                <li>Two similar blues: #8f8fff (Latency) and #BBD4FF (Hallucination) - confusing</li>
+                <li>Two pinkish colors: #f09194 (Cost) and #efabdf (Agentic) - lacks distinction</li>
+                <li>Colors don't follow a logical progression or grouping</li>
+            </ul>
+        </div>
+
+        <h2>Suggested Improved Palette</h2>
+        <div class="palette">
+            <div class="color-block" style="background-color: #ff9999;">
+                <span class="color-label">#ff9999</span>
+                <span class="description">Cost</span>
+            </div>
+            <div class="color-block" style="background-color: #9eb3ff;">
+                <span class="color-label">#9eb3ff</span>
+                <span class="description">Latency</span>
+            </div>
+            <div class="color-block" style="background-color: #97e5b8;">
+                <span class="color-label">#97e5b8</span>
+                <span class="description">Non-live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #7dd9e8;">
+                <span class="color-label">#7dd9e8</span>
+                <span class="description">Live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #ffd97a;">
+                <span class="color-label">#ffd97a</span>
+                <span class="description">Multi Turn</span>
+            </div>
+            <div class="color-block" style="background-color: #d9a8ff;">
+                <span class="color-label">#d9a8ff</span>
+                <span class="description">Agentic</span>
+            </div>
+            <div class="color-block" style="background-color: #ffb8d1;">
+                <span class="color-label">#ffb8d1</span>
+                <span class="description">Hallucination</span>
+            </div>
+            <div class="color-block" style="background-color: #ffcba4;">
+                <span class="color-label">#ffcba4</span>
+                <span class="description">Format Sensitivity</span>
+            </div>
+        </div>
+
+        <div class="analysis">
+            <h3>Improvements in Suggested Palette:</h3>
+            <ul>
+                <li>Better distinction between all colors</li>
+                <li>Related metrics have related colors (e.g., Live/Non-live AST in green-cyan range)</li>
+                <li>More harmonious overall - all pastels with similar saturation</li>
+                <li>No duplicate or overly similar colors</li>
+            </ul>
+        </div>
+
+        <h2>Alternative Palette (More Vibrant)</h2>
+        <div class="palette">
+            <div class="color-block" style="background-color: #ff6b6b;">
+                <span class="color-label">#ff6b6b</span>
+                <span class="description">Cost</span>
+            </div>
+            <div class="color-block" style="background-color: #4ecdc4;">
+                <span class="color-label">#4ecdc4</span>
+                <span class="description">Latency</span>
+            </div>
+            <div class="color-block" style="background-color: #95e77e;">
+                <span class="color-label">#95e77e</span>
+                <span class="description">Non-live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #6eb5ff;">
+                <span class="color-label">#6eb5ff</span>
+                <span class="description">Live AST</span>
+            </div>
+            <div class="color-block" style="background-color: #ffd93d;">
+                <span class="color-label">#ffd93d</span>
+                <span class="description">Multi Turn</span>
+            </div>
+            <div class="color-block" style="background-color: #a685e2;">
+                <span class="color-label">#a685e2</span>
+                <span class="description">Agentic</span>
+            </div>
+            <div class="color-block" style="background-color: #ffb6c1;">
+                <span class="color-label">#ffb6c1</span>
+                <span class="description">Hallucination</span>
+            </div>
+            <div class="color-block" style="background-color: #ffa500;">
+                <span class="color-label">#ffa500</span>
+                <span class="description">Format Sensitivity</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

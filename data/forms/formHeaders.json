@@ -10,6 +10,7 @@
                     { "content": "Multi Turn", "class": "multiturn-top-header", "colspan": 5 },
                     { "content": "Agentic", "class": "websearch-top-header memory-top-header", "colspan": 7 },
                     { "content": "Hallucination Measurement", "class": "", "colspan": 2 },
+                    { "content": "Format Sensitivity", "class": "", "colspan": 2 },
                     { "content": "", "class": "", "colspan": 2 }
                 ]
             },
@@ -23,6 +24,7 @@
                     { "content": "Multi turn", "id":"multiturn", "class": "multiturn-header", "colspan": 5, "canExpand": true },
                     { "content": "Web Search", "id":"websearch", "class": "websearch-header", "colspan": 3, "canExpand": true },
                     { "content": "Memory", "id":"memory", "class": "memory-header", "colspan": 4, "canExpand": true },
+                    { "content": "", "class": "", "colspan": 2 },
                     { "content": "", "class": "", "colspan": 2 },
                     { "content": "", "class": "", "colspan": 2 }
                 ]
@@ -68,6 +70,8 @@
         
                     { "content": "Relevance", "class": "column-header" },
                     { "content": "Irrelevance", "class": "column-header" },
+                    { "content": "Max Delta", "class": "column-header" },
+                    { "content": "SD", "class": "column-header" },
                     { "content": "Organization", "class": "column-header" },
                     { "content": "License", "class": "column-header" }
                 ]
