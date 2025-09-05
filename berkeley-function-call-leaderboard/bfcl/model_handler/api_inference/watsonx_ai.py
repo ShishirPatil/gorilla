@@ -31,6 +31,11 @@ fc_models = [
     "mistralai/mistral-small-3-1-24b-instruct-2503",
 ]
 
+try_cast_models = [
+    "meta-llama/llama-3-3-70b-instruct",
+    "meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
+]
+
 
 class WatsonxAIHandler(BaseHandler):
     def __init__(self, model_name: str, temperature: float) -> None:
@@ -53,6 +58,7 @@ class WatsonxAIHandler(BaseHandler):
         )
 
         self.is_fc_model = model_id in fc_models
+        self.try_cast = model_id in try_cast_models
 
     @staticmethod
     def read_wx_credentials() -> dict[str, str]:
@@ -241,9 +247,30 @@ class WatsonxAIHandler(BaseHandler):
         inference_data["tools"] = tools
 
         return inference_data
+    
+    def try_cast_number(self, value):
+        if isinstance(value, str):
+            try:
+                if '.' in value:
+                    return float(value)
+                return int(value)
+            except ValueError:
+                return value
+        return value
 
     def decode_ast(self, result, language="Python"):
-        if self.is_fc_model:
+        if self.is_fc_model and self.try_cast:
+            tool_calls = []
+            for tool_call in result:
+                arguments = json.loads(tool_call["function"]["arguments"])
+                arguments_cast = {}
+                for key, value in arguments.items():
+                    value = self.try_cast_number(value)
+                    arguments_cast[key] = value
+                
+                tool_calls.append({tool_call["function"]["name"]: arguments_cast})
+            return tool_calls
+        elif self.is_fc_model:
             return [
                 {
                     tool_call["function"]["name"]: json.loads(

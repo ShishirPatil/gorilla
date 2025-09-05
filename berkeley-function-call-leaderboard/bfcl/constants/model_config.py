@@ -825,7 +825,7 @@ api_inference_model_map = {
         input_price=0.2,
         output_price=0.2,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-ibm/granite-3-2-8b-instruct": ModelConfig(
         model_name="ibm/granite-3-2-8b-instruct",
@@ -837,7 +837,7 @@ api_inference_model_map = {
         input_price=0.2,
         output_price=0.2,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-ibm/granite-3-8b-instruct": ModelConfig(
         model_name="ibm/granite-3-8b-instruct",
@@ -849,7 +849,7 @@ api_inference_model_map = {
         input_price=0.2,
         output_price=0.2,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-meta-llama/llama-4-maverick-17b-128e-instruct-fp8": ModelConfig(
         model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
@@ -861,7 +861,7 @@ api_inference_model_map = {
         input_price=0.35,
         output_price=1.4,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-meta-llama/llama-3-3-70b-instruct": ModelConfig(
         model_name="meta-llama/llama-3-3-70b-instruct",
@@ -873,7 +873,7 @@ api_inference_model_map = {
         input_price=0.71,
         output_price=0.71,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-mistralai/mistral-large": ModelConfig(
         model_name="mistralai/mistral-large",
@@ -885,7 +885,7 @@ api_inference_model_map = {
         input_price=3.0,
         output_price=10.0,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-mistralai/mistral-medium-2505": ModelConfig(
         model_name="mistralai/mistral-medium-2505",
@@ -897,7 +897,7 @@ api_inference_model_map = {
         input_price=3.0,
         output_price=10.0,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
     "ibm-mistralai/mistral-small-3-1-24b-instruct-2503": ModelConfig(
         model_name="mistralai/mistral-small-3-1-24b-instruct-2503",
@@ -909,7 +909,7 @@ api_inference_model_map = {
         input_price=0.1,
         output_price=0.3,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
 }
 
