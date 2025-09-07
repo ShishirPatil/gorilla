@@ -39,6 +39,9 @@ We introduce the Berkeley Function Calling Leaderboard (BFCL), the **first compr
 - [BFCL v1 (original) Blog Post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)
 - [BFCL v2 (live dataset) Blog Post](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html)
 - [BFCL v3 (multi-turn) Blog Post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)
+- [BFCL V4 • Agentic Part 1: Web Search](https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html)
+- [BFCL V4 • Agentic Part 2: Evaluating Tool Calling for Memory](https://gorilla.cs.berkeley.edu/blogs/16_bfcl_v4_memory.html)
+- [BFCL V4 • Agentic Part 3: Evaluating Format Sensitivity for Tool Calls](https://gorilla.cs.berkeley.edu/blogs/17_bfcl_v4_prompt_variation.html)
 
 🦍 See the live leaderboard at [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
