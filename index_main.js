@@ -713,45 +713,68 @@ function addToTable(dataArray) {
     const tbody = document
         .getElementById("leaderboard-table")
         .getElementsByTagName("tbody")[0];
+    
     dataArray.forEach((row, index) => {
         // Assuming the first row of the CSV is headers and skipping it
         if (index > 0) {
             const tr = document.createElement("tr");
+            
+            // Create array for reordered columns from original CSV data
+            
+            const reorderedRow = [
+                row[0],  // Rank
+                row[1],  // Overall Acc
+                row[2],  // Model 
+                row[4],  // Cost
+                row[23], row[24], row[25],     // WebSearch
+                row[26], row[27], row[28], row[29], // Memory
+                row[18], row[19], row[20], row[21], row[22], // MultiTurn
+                row[8], row[9], row[10], row[11], row[12],   // NonLive
+                row[13], row[14], row[15], row[16], row[17], // Live
+                row[30], // Relevance
+                row[31], // Irrelevance
+                row[32], row[33], // Format Sensitivity
+                row[5], row[6], row[7],    // Latency
+                row[34], // Organization
+                row[35]  // License
+            ];
 
-            for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
-                let cell = row[cellIndex];
+            reorderedRow.forEach((cell, cellIndex) => {
                 const td = document.createElement("td");
+                
+                // Handle model link special case
                 if (cellIndex === 2) {
                     const a = document.createElement("a");
-                    a.href = row[3];
-                    cellIndex += 1;
+                    a.href = row[3]; // Link is at original CSV index 3
                     a.textContent = cell;
                     td.appendChild(a);
                 } else {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 6 && cellIndex <= 7) {
-                    // class for specific columns
-                    td.className = "latency-sub-cell";
-                } else if (cellIndex >= 9 && cellIndex <= 12) {
-                    // class for specific columns
-                    td.className = "nonliveast-sub-cell";
-                } else if (cellIndex >= 14 && cellIndex <= 17) {
-                    // class for specific columns
-                    td.className = "liveast-sub-cell";
-                } else if (cellIndex >= 19 && cellIndex <= 22) {
-                    // class for specific columns
-                    td.className = "multiturn-sub-cell";
-                } else if (cellIndex >= 24 && cellIndex <= 25) {
-                    // class for specific columns
+                // Apply CSS classes based on new column positions
+                if (cellIndex >= 5 && cellIndex <= 6) {
+                    // WebSearch sub-columns (skip Overall Acc at position 4)
                     td.className = "websearch-sub-cell";
-                } else if (cellIndex >= 27 && cellIndex <= 29) {
-                    // class for specific columns
+                } else if (cellIndex >= 8 && cellIndex <= 10) {
+                    // Memory sub-columns (skip Overall Acc at position 7)
                     td.className = "memory-sub-cell";
+                } else if (cellIndex >= 12 && cellIndex <= 15) {
+                    // MultiTurn sub-columns (skip Overall Acc at position 11)
+                    td.className = "multiturn-sub-cell";
+                } else if (cellIndex >= 17 && cellIndex <= 20) {
+                    // NonLive sub-columns (skip Overall Acc at position 16)
+                    td.className = "nonliveast-sub-cell";
+                } else if (cellIndex >= 22 && cellIndex <= 25) {
+                    // Live sub-columns (skip Overall Acc at position 21)
+                    td.className = "liveast-sub-cell";
+                } else if (cellIndex >= 31 && cellIndex <= 32) {
+                    // Latency sub-columns (skip Mean at position 30, show SD and P95)
+                    td.className = "latency-sub-cell";
                 }
+                
                 tr.appendChild(td);
-            }
+            });
 
             tbody.appendChild(tr);
         }
