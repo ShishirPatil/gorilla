@@ -301,12 +301,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         # See
         # https://github.com/guidance-ai/llguidance/blob/main/docs/syntax.md#special-tokens
-        extra_body["guided_grammar"] = """
-start: "Tool call 1" | "Tool call 2"
-"""
+
         
-        temp = """
-start: TEXT | fun_call
+        sample_grammar = """
+start: (TEXT | fun_call) <|end|>
 fun_call: <|tool_call|> json_body <|/tool_call|>
 TEXT: /[^{](.|\\n)*/
 json_body: %json {
@@ -318,12 +316,16 @@ json_body: %json {
       "properties": {
         "city": { "type": "string" }
       },
-      "required": ["city"]
+      "required": ["city"],
+      "additionalProperties": false
     }
   },
-  "required": ["name", "parameters"]
+  "required": ["name", "parameters"],
+  "additionalProperties": false
 }
     """
+        extra_body["guided_grammar"] = sample_grammar
+
 
         start_time = time.time()
         if len(extra_body) > 0:
