@@ -5,12 +5,13 @@
             {
                 "columns": [
                     { "content": "", "class": "sticky-top-column", "colspan": 3 },
-                    { "content": "", "class": "latency-top-header", "colspan": 4 },
-                    { "content": "Single Turn", "class": "nonliveast-top-header nonliveexec-top-header liveast-top-header", "colspan": 10 },
-                    { "content": "Multi Turn", "class": "multiturn-top-header", "colspan": 5 },
+                    { "content": "", "class": "", "colspan": 1 },
                     { "content": "Agentic", "class": "websearch-top-header memory-top-header", "colspan": 7 },
+                    { "content": "Multi Turn", "class": "multiturn-top-header", "colspan": 5 },
+                    { "content": "Single Turn", "class": "nonliveast-top-header nonliveexec-top-header liveast-top-header", "colspan": 10 },
                     { "content": "Hallucination Measurement", "class": "", "colspan": 2 },
                     { "content": "Format Sensitivity", "class": "", "colspan": 2 },
+                    { "content": "", "class": "latency-top-header", "colspan": 3 },
                     { "content": "", "class": "", "colspan": 2 }
                 ]
             },
@@ -18,14 +19,14 @@
                 "columns": [
                     { "content": "", "class": "sticky-top-column", "colspan": 3 },
                     { "content": "", "class": "", "colspan": 1 },
-                    { "content": "Latency (s)", "id":"latency", "class": "latency-header", "colspan": 3, "canExpand": true },
-                    { "content": "Non-live (AST)", "id":"nonliveast", "class": "nonliveast-header", "colspan": 5, "canExpand": true },
-                    { "content": "Live (AST)", "id":"liveast", "class": "liveast-header", "colspan": 5, "canExpand": true },
-                    { "content": "Multi turn", "id":"multiturn", "class": "multiturn-header", "colspan": 5, "canExpand": true },
                     { "content": "Web Search", "id":"websearch", "class": "websearch-header", "colspan": 3, "canExpand": true },
                     { "content": "Memory", "id":"memory", "class": "memory-header", "colspan": 4, "canExpand": true },
+                    { "content": "Multi turn", "id":"multiturn", "class": "multiturn-header", "colspan": 5, "canExpand": true },
+                    { "content": "Non-live (AST)", "id":"nonliveast", "class": "nonliveast-header", "colspan": 5, "canExpand": true },
+                    { "content": "Live (AST)", "id":"liveast", "class": "liveast-header", "colspan": 5, "canExpand": true },
                     { "content": "", "class": "", "colspan": 2 },
                     { "content": "", "class": "", "colspan": 2 },
+                    { "content": "Latency (s)", "id":"latency", "class": "latency-header", "colspan": 3, "canExpand": true },
                     { "content": "", "class": "", "colspan": 2 }
                 ]
             },
@@ -37,9 +38,20 @@
 
                     { "content": "Cost ($)", "class": "column-header" },
 
-                    { "content": "Mean", "class": "column-header latency-sub-header stay" },
-                    { "content": "SD", "class": "column-header latency-sub-header" },
-                    { "content": "P95", "class": "column-header latency-sub-header" },
+                    { "content": "Overall Acc", "class": "column-header websearch-sub-header stay" },
+                    { "content": "Base", "class": "column-header websearch-sub-header" },
+                    { "content": "No Snippet", "class": "column-header websearch-sub-header" },
+
+                    { "content": "Overall Acc", "class": "column-header memory-sub-header stay" },
+                    { "content": "KV", "class": "column-header memory-sub-header" },
+                    { "content": "Vector", "class": "column-header memory-sub-header" },
+                    { "content": "Recursive Sum", "class": "column-header memory-sub-header" },
+
+                    { "content": "Overall Acc", "class": "column-header multiturn-sub-header stay" },
+                    { "content": "Base", "class": "column-header multiturn-sub-header" },
+                    { "content": "Miss Func", "class": "column-header multiturn-sub-header" },
+                    { "content": "Miss Param", "class": "column-header multiturn-sub-header" },
+                    { "content": "Long Context", "class": "column-header multiturn-sub-header" },
 
                     { "content": "Overall Acc", "class": "column-header nonliveast-sub-header stay" },
                     { "content": "Simple", "class": "column-header nonliveast-sub-header" },
@@ -52,26 +64,16 @@
                     { "content": "Multiple", "class": "column-header liveast-sub-header" },
                     { "content": "Parallel", "class": "column-header liveast-sub-header" },
                     { "content": "Multiple Parallel", "class": "column-header liveast-sub-header" },
-                    
-                    { "content": "Overall Acc", "class": "column-header multiturn-sub-header stay" },
-                    { "content": "Base", "class": "column-header multiturn-sub-header" },
-                    { "content": "Miss Func", "class": "column-header multiturn-sub-header" },
-                    { "content": "Miss Param", "class": "column-header multiturn-sub-header" },
-                    { "content": "Long Context", "class": "column-header multiturn-sub-header" },
-
-                    { "content": "Overall Acc", "class": "column-header websearch-sub-header stay" },
-                    { "content": "Base", "class": "column-header websearch-sub-header" },
-                    { "content": "No Snippet", "class": "column-header websearch-sub-header" },
-
-                    { "content": "Overall Acc", "class": "column-header memory-sub-header stay" },
-                    { "content": "KV", "class": "column-header memory-sub-header" },
-                    { "content": "Vector", "class": "column-header memory-sub-header" },
-                    { "content": "Recursive Sum", "class": "column-header memory-sub-header" },
         
                     { "content": "Relevance", "class": "column-header" },
                     { "content": "Irrelevance", "class": "column-header" },
                     { "content": "Max Delta", "class": "column-header" },
                     { "content": "SD", "class": "column-header" },
+
+                    { "content": "Mean", "class": "column-header latency-sub-header stay" },
+                    { "content": "SD", "class": "column-header latency-sub-header" },
+                    { "content": "P95", "class": "column-header latency-sub-header" },
+
                     { "content": "Organization", "class": "column-header" },
                     { "content": "License", "class": "column-header" }
                 ]
