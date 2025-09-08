@@ -21,63 +21,59 @@
     background-color: #ff9999;
 }
 
-/* Agentic - Web Search (positions 5-7) */
+/* Agentic - Web Search + Memory (positions 4-10) - 1st color in original sequence: blue */
 #leaderboard td:nth-child(5),
 #leaderboard td:nth-child(6),
-#leaderboard td:nth-child(7) {
-    background-color: #d9a8ff;
-}
-
-/* Agentic - Memory (positions 8-11) */
+#leaderboard td:nth-child(7),
 #leaderboard td:nth-child(8),
 #leaderboard td:nth-child(9),
 #leaderboard td:nth-child(10),
 #leaderboard td:nth-child(11) {
-    background-color: #d9a8ff;
+    background-color: #9eb3ff;
 }
 
-/* Multi Turn (positions 12-16) */
+/* Multi Turn (positions 11-15) - 2nd color in original sequence: green */
 #leaderboard td:nth-child(12),
 #leaderboard td:nth-child(13),
 #leaderboard td:nth-child(14),
 #leaderboard td:nth-child(15),
 #leaderboard td:nth-child(16) {
-    background-color: #ffd97a;
+    background-color: #97e5b8;
 }
 
-/* Single Turn - Non-live AST (positions 17-21) */
+/* Single Turn - Non-live AST (positions 16-20) - 3rd color in original sequence: cyan */
 #leaderboard td:nth-child(17),
 #leaderboard td:nth-child(18),
 #leaderboard td:nth-child(19),
 #leaderboard td:nth-child(20),
 #leaderboard td:nth-child(21) {
-    background-color: #97e5b8;
+    background-color: #7dd9e8;
 }
 
-/* Single Turn - Live AST (positions 22-26) */
+/* Single Turn - Live AST (positions 21-25) - 4th color in original sequence: yellow */
 #leaderboard td:nth-child(22),
 #leaderboard td:nth-child(23),
 #leaderboard td:nth-child(24),
 #leaderboard td:nth-child(25),
 #leaderboard td:nth-child(26) {
-    background-color: #7dd9e8;
+    background-color: #ffd97a;
 }
 
-/* Hallucination Measurement (positions 27-28) */
+/* Hallucination Measurement (positions 26-27) - 5th color in original sequence: purple */
 #leaderboard td:nth-child(27),
 #leaderboard td:nth-child(28) {
+    background-color: #d9a8ff;
+}
+
+/* Format Sensitivity (positions 28-29) - 6th color in original sequence: pink */
+#leaderboard td:nth-child(29),
+#leaderboard td:nth-child(30) {
     background-color: #ffb8d1;
 }
 
-/* Format Sensitivity (positions 29-30) */
-#leaderboard td:nth-child(29),
-#leaderboard td:nth-child(30) {
-    background-color: #ffcba4;
-}
-
-/* Latency (positions 31-33) */
+/* Latency (positions 30-32) - 7th color in original sequence: orange */
 #leaderboard td:nth-child(31),
 #leaderboard td:nth-child(32),
 #leaderboard td:nth-child(33) {
-    background-color: #9eb3ff;
+    background-color: #ffcba4;
 }
