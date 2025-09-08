@@ -302,7 +302,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         # See
         # https://github.com/guidance-ai/llguidance/blob/main/docs/syntax.md#special-tokens
         extra_body["guided_grammar"] = """
-start: "A" | "B"
+start: "Tool call 1" | "Tool call 2"
 """
         
         temp = """
