@@ -223,7 +223,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     time.sleep(1)
 
             # Signal threads to stop reading output
-            self._stop_event.set()
+            # self._stop_event.set()
 
         except Exception as e:
             # Clean-up everything we already started, then re-raise
@@ -299,6 +299,32 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         if hasattr(self, "skip_special_tokens"):
             extra_body["skip_special_tokens"] = self.skip_special_tokens
 
+        # See
+        # https://github.com/guidance-ai/llguidance/blob/main/docs/syntax.md#special-tokens
+        extra_body["guided_grammar"] = """
+start: "A" | "B"
+"""
+        
+        temp = """
+start: TEXT | fun_call
+fun_call: <|tool_call|> json_body <|/tool_call|>
+TEXT: /[^{](.|\\n)*/
+json_body: %json {
+  "type": "object",
+  "properties": {
+    "name": { "const": "get_weather" },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "city": { "type": "string" }
+      },
+      "required": ["city"]
+    }
+  },
+  "required": ["name", "parameters"]
+}
+    """
+
         start_time = time.time()
         if len(extra_body) > 0:
             api_response = self.client.completions.create(
@@ -319,6 +345,8 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             )
         end_time = time.time()
 
+        print(f"Prompt sent: {formatted_prompt}")
+        print(f"API response: {api_response.choices[0].text}")
         return api_response, end_time - start_time
 
     @override
