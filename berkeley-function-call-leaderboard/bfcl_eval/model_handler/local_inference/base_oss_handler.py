@@ -279,27 +279,73 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "int": "integer",
             "float": "number",
             "bool": "boolean",
-            "list": "array",
-            "dict": "object",
         }
         if param_type not in type_mapping:
             return param_type
         return type_mapping[param_type]
+    
+    def convert_argument_to_json_schema(self, argument_def:dict) -> dict:
+        result = {}
+
+        if argument_def["type"] == "list" or argument_def["type"] == "tuple":
+            result["type"] = "array"
+            if "items" in argument_def:
+                result["items"] = self.convert_argument_to_json_schema(argument_def["items"])
+            else:
+                result["items"] = {}
+        elif argument_def["type"] == "dict":
+            result["type"] = "object"
+            if "properties" in argument_def:
+                result["properties"] = {}
+                for param, param_def in argument_def["properties"].items():
+                    result["properties"][param] = self.convert_argument_to_json_schema(param_def)
+                result["required"] = argument_def["required"] if "required" in argument_def else []
+                result["additionalProperties"] = False
+            else:
+                result["properties"] = {}
+        elif argument_def["type"] == "any":
+            result["type"] = {}
+        else:
+            result["type"] = self.convert_param_type_to_json_schema(argument_def["type"])
+            if "enum" in argument_def:
+                result["enum"] = argument_def["enum"]
+            if "description" in argument_def:
+                result["description"] = argument_def["description"]
+            if "default" in argument_def:
+                result["default"] = argument_def["default"]
+            if "minimum" in argument_def:
+                result["minimum"] = argument_def["minimum"]
+            if "maximum" in argument_def:
+                result["maximum"] = argument_def["maximum"]
+            if "minLength" in argument_def:
+                result["minLength"] = argument_def["minLength"]
+            if "maxLength" in argument_def:
+                result["maxLength"] = argument_def["maxLength"]
+            if "pattern" in argument_def:
+                result["pattern"] = argument_def["pattern"]
+            if "format" in argument_def:
+                result["format"] = argument_def["format"]
+
+        return result
+
 
     def convert_function_to_schema(self, function_def:dict) -> dict:
         """Converts the function definition into the schema for its invocation."""
         result = {}
         result["type"] = "object"
+
+        arguments = {}
+        arguments["type"] = "object"
+        arguments["properties"] = {}
+        arguments["required"] = function_def["parameters"]["required"] if "required" in function_def["parameters"] else []
+        arguments["additionalProperties"] = False
+        for param, param_def in function_def["parameters"]["properties"].items():
+            arguments["properties"][param] = self.convert_argument_to_json_schema(param_def)
+
         result["properties"] = {
             "name": {"const": function_def["name"]},
-            "arguments": function_def["parameters"],
+            "arguments": arguments,
         }
-        # The BFCL inputs like to have 'dict' and a 'type'
-        result["properties"]["arguments"]["type"] = "object"
-        result["properties"]["arguments"]["additionalProperties"] = False
-        for param in result["properties"]["arguments"]["properties"]:
-            param_type = result["properties"]["arguments"]["properties"][param].get("type", "string")
-            result["properties"]["arguments"]["properties"][param]["type"] = self.convert_param_type_to_json_schema(param_type)
 
         result["required"] = ["name", "arguments"]
         result["additionalProperties"] = False
