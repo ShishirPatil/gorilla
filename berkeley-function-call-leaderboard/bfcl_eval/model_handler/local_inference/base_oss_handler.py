@@ -304,7 +304,8 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             else:
                 result["properties"] = {}
         elif argument_def["type"] == "any":
-            result["type"] = {}
+            # Nothing to do, any type is allowed so schema is empty
+            pass
         else:
             result["type"] = self.convert_param_type_to_json_schema(argument_def["type"])
             if "enum" in argument_def:
