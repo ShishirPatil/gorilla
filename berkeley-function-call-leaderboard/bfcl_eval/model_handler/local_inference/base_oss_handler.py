@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 import threading
@@ -271,6 +272,19 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "OSS Models should implement their own prompt formatting."
         )
 
+    def convert_function_to_schema(self, function_def:dict) -> dict:
+        """Converts the function definition into the schema for its invocation."""
+        result = {}
+        result["type"] = "object"
+        result["properties"] = {
+            "name": {"const": function_def["name"]},
+            "parameters": function_def["parameters"],
+        }
+        result["required"] = ["name", "parameters"]
+        result["additionalProperties"] = False
+        return {}
+
+
     @override
     def _query_prompting(self, inference_data: dict):
         # We use the OpenAI Completions API
@@ -302,30 +316,19 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         # See
         # https://github.com/guidance-ai/llguidance/blob/main/docs/syntax.md#special-tokens
 
+        tool_call_list = [self.convert_function_to_schema(f) for f in function]
+        tool_call_schema = {
+            "type": "array",
+            "items": {"anyOf": tool_call_list},
+            "minItems": 1,
+        }
         
         sample_grammar = """
 start: (TEXT | fun_call) <|end|>
 fun_call: <|tool_call|> json_body <|/tool_call|>
 TEXT: /[^{](.|\\n)*/
-json_body: %json {
-  "type": "object",
-  "properties": {
-    "name": { "const": "get_weather" },
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "city": { "type": "string" }
-      },
-      "required": ["city"],
-      "additionalProperties": false
-    }
-  },
-  "required": ["name", "parameters"],
-  "additionalProperties": false
-}
-    """
+json_body: %json """ + json.dumps(tool_call_schema)
         extra_body["guided_grammar"] = sample_grammar
-
 
         start_time = time.time()
         if len(extra_body) > 0:
