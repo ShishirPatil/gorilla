@@ -284,7 +284,6 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         }
         if param_type not in type_mapping:
             return param_type
-            return param_type
         return type_mapping[param_type]
 
     def convert_function_to_schema(self, function_def:dict) -> dict:
@@ -293,9 +292,16 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         result["type"] = "object"
         result["properties"] = {
             "name": {"const": function_def["name"]},
-            "parameters": function_def["parameters"]["properties"],
+            "arguments": function_def["parameters"],
         }
-        result["required"] = ["name", "parameters"]
+        # The BFCL inputs like to have 'dict' and a 'type'
+        result["properties"]["arguments"]["type"] = "object"
+        result["properties"]["arguments"]["additionalProperties"] = False
+        for param in result["properties"]["arguments"]["properties"]:
+            param_type = result["properties"]["arguments"]["properties"][param].get("type", "string")
+            result["properties"]["arguments"]["properties"][param]["type"] = self.convert_param_type_to_json_schema(param_type)
+
+        result["required"] = ["name", "arguments"]
         result["additionalProperties"] = False
         return result
 
@@ -366,9 +372,9 @@ json_body: %json """ + json.dumps(tool_call_schema)
             )
         end_time = time.time()
 
-        print(f"Prompt sent: {formatted_prompt}")
-        print(f"sample_grammar: {sample_grammar}")
-        print(f"API response: {api_response.choices[0].text}")
+        # print(f"Prompt sent: {formatted_prompt}")
+        # print(f"sample_grammar: {sample_grammar}")
+        # print(f"API response: {api_response.choices[0].text}")
         return api_response, end_time - start_time
 
     @override
