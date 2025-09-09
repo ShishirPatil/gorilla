@@ -272,17 +272,32 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "OSS Models should implement their own prompt formatting."
         )
 
+    def convert_param_type_to_json_schema(self, param_type: str) -> str:
+        """Converts the parameter type to a JSON schema type."""
+        assert isinstance(param_type, str)
+        type_mapping = {
+            "int": "integer",
+            "float": "number",
+            "bool": "boolean",
+            "list": "array",
+            "dict": "object",
+        }
+        if param_type not in type_mapping:
+            return param_type
+            return param_type
+        return type_mapping[param_type]
+
     def convert_function_to_schema(self, function_def:dict) -> dict:
         """Converts the function definition into the schema for its invocation."""
         result = {}
         result["type"] = "object"
         result["properties"] = {
             "name": {"const": function_def["name"]},
-            "parameters": function_def["parameters"],
+            "parameters": function_def["parameters"]["properties"],
         }
         result["required"] = ["name", "parameters"]
         result["additionalProperties"] = False
-        return {}
+        return result
 
 
     @override
@@ -328,6 +343,7 @@ start: (TEXT | fun_call) <|end|>
 fun_call: <|tool_call|> json_body <|/tool_call|>
 TEXT: /[^{](.|\\n)*/
 json_body: %json """ + json.dumps(tool_call_schema)
+
         extra_body["guided_grammar"] = sample_grammar
 
         start_time = time.time()
@@ -351,6 +367,7 @@ json_body: %json """ + json.dumps(tool_call_schema)
         end_time = time.time()
 
         print(f"Prompt sent: {formatted_prompt}")
+        print(f"sample_grammar: {sample_grammar}")
         print(f"API response: {api_response.choices[0].text}")
         return api_response, end_time - start_time
 
