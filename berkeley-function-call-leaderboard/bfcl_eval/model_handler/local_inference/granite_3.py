@@ -3,10 +3,7 @@ import re
 from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_function_call,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from overrides import override
 
 
@@ -27,9 +24,6 @@ class Granite3FCHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Granite use its own system prompt
 
@@ -37,7 +31,7 @@ class Granite3FCHandler(OSSHandler):
 
     # copied from phi_fc.py
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         """
         Parses the raw response from the model API to extract the result, input token count, and output token count.
 
@@ -130,17 +124,17 @@ class Granite3FCHandler(OSSHandler):
         return result
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list or any(type(item) != dict for item in result):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     # copied from phi_fc.py

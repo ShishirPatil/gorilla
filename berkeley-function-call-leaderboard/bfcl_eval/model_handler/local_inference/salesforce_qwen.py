@@ -1,7 +1,6 @@
 import json
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
@@ -61,7 +60,7 @@ class SalesforceQwenHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # result = result.replace("<|python_tag|>", "")
         try:
             # Parse the JSON array of function calls
@@ -81,7 +80,7 @@ class SalesforceQwenHandler(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         try:
             function_calls = json.loads(result)
             if not isinstance(function_calls, list):
@@ -102,7 +101,6 @@ class SalesforceQwenHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
         # override the default bfcl system prompt, xLAM uses its own system prompt
         return {"message": [], "function": functions}

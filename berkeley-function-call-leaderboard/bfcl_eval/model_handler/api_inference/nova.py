@@ -1,16 +1,16 @@
 import os
 import time
+from typing import Any
 
 import boto3
-from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.model_handler.base_handler import BaseHandler
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     convert_to_function_call,
     convert_to_tool,
     extract_system_prompt,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
 )
 
@@ -20,21 +20,19 @@ class NovaHandler(BaseHandler):
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.AMAZON
         self.is_fc_model = True
-        self.client = boto3.client(
-            service_name="bedrock-runtime",
-            region_name="us-east-1",  # Currently only available in us-east-1
-            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        _session = boto3.Session(
+            profile_name=os.getenv("AWS_SSO_PROFILE_NAME"), region_name="us-east-1"
         )
+        self.client = _session.client(service_name="bedrock-runtime")
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     @retry_with_backoff(error_message_pattern=r".*\(ThrottlingException\).*")
@@ -95,16 +93,14 @@ class NovaHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         inference_data["tools"] = tools
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         model_responses_message_for_chat_history = api_response["output"]["message"]
 
         if api_response["stopReason"] == "tool_use":

@@ -1,11 +1,9 @@
 import json
 import re
+from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_function_call,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from overrides import override
 
 
@@ -16,22 +14,22 @@ class QwenFCHandler(OSSHandler):
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # Model response is of the form:
         # "<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Taylor Swift\", \"duration\": 20}}\n</tool_call>\n<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Maroon 5\", \"duration\": 15}}\n</tool_call>"?
         tool_calls = self._extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return [
             {call["name"]: {k: v for k, v in call["arguments"].items()}}
             for call in tool_calls
         ]
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         tool_calls = self._extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         decoded_result = []
         for item in tool_calls:
             if type(item) == str:
@@ -236,15 +234,13 @@ class QwenFCHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # FC models use its own system prompt, so no need to add any message
 
         return {"message": [], "function": functions}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         model_response = api_response.choices[0].text
         extracted_tool_calls = self._extract_tool_calls(model_response)
 
@@ -297,7 +293,7 @@ class QwenFCHandler(OSSHandler):
         for match in matches:
             try:
                 match = json.loads(match)
+                result.append(match)
             except Exception as e:
                 pass
-            result.append(match)
         return result
