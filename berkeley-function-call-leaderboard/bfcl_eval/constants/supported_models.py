@@ -91,6 +91,7 @@ SUPPORTED_MODELS = [
     "qwq-32b",
     "xiaoming-14B",
     "DM-Cito-8B-v2",
+    "DM-Cito-8B-v3",
     "Ling/ling-lite-v1.5",
     "glm-4.5-FC",
     "glm-4.5-air-FC",

@@ -1048,6 +1048,18 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "DM-Cito-8B-v3": ModelConfig(
+        model_name="DM-Cito-8B-v3",
+        display_name="DM-Cito-8B-v3 (Prompt)",
+        url="https://www.mininglamp.com/",
+        org="Mininglamp",
+        license="Proprietary",
+        model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "Ling/ling-lite-v1.5": ModelConfig(
         model_name="Ling/ling-lite-v1.5",
         display_name="ling-lite-v1.5 (Prompt)",
