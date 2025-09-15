@@ -130,6 +130,7 @@
       width: 100%;
       border-collapse: collapse;
       table-layout: auto;
+      border: 1px solid #000;
     }
 
     .scoring-table th,
@@ -137,6 +138,7 @@
       word-wrap: break-word;
       padding: 5px;
       text-align: center;
+      border: 1px solid #000;
     }
 
     @media screen and (max-width: 768px) {
@@ -155,6 +157,15 @@
     .na {
       color: #999;
       font-style: italic;
+    }
+
+    .format-sensitivity-empty {
+      background-color: white;
+      border: none !important;
+      border-top: none !important;
+      border-bottom: none !important;
+      border-left: none !important;
+      border-right: none !important;
     }
 
     .emoji {
@@ -311,6 +322,280 @@
             technical complexities, and more importantly share many more interesting insights. This blog BFCL V4 Part-1
             talks about Web search, we look at Memory in BFCL V4 Part-2, and Format Sensitivity in BFCL V4 Part-3.
           </p>
+          <h3 id="leaderboard-composition"> Full Leaderboard Score Composition</h3>
+          <p> The full bfcl v4 leaderboard score is composed of the following components. Number in the parenthesis
+            indicates the number of entries in each category. </p>
+          <div class="table-responsive">
+            <table class="scoring-table">
+              <!-- Row 1: Overall Score and Non-Scoring -->
+              <tr>
+                <th colspan="21" class="level-1">
+                  <span class="emoji">🏆</span> Overall Score
+                  <div class="note">Percentage Weighted Average</div>
+                  <div class="note">(5288)</div>
+                </th>
+                <th colspan="17" class="level-1">
+                  <span class="emoji">📝</span> Non-Scoring
+                  <div class="note">No Score Impact</div>
+                  <div class="note">(200)</div>
+                </th>
+              </tr>
+
+              <!-- Row 2: Main Categories -->
+              <tr>
+                <th colspan="5" class="level-2">
+                  <span class="emoji">🤖</span> Agentic
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(665) - 40%</div>
+                </th>
+                <th colspan="4" class="level-2">
+                  <span class="emoji">🔄</span> Multi-Turn
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(800) - 30%</div>
+                </th>
+                <th colspan="4" class="level-2 section-live">
+                  <span class="emoji">💡</span> Live
+                  <div class="note">Weighted Average</div>
+                  <div class="note">(1351) - 10%</div>
+                </th>
+                <th colspan="6" class="level-2 section-non-live">
+                  <span class="emoji">📂</span> Non-Live
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(1390) - 10%</div>
+                </th>
+                <th colspan="2" class="level-2">
+                  <span class="emoji">🧐</span> Hallucination Measurement
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(1122) - 10%</div>
+                </th>
+                <th colspan="4" class="level-2">
+                  <span class="emoji">📝</span> Format Sensitivity
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(200)</div>
+                </th>
+                <th class="level-2">
+                  <span class="emoji">✅</span> Relevance
+                  <div class="note">(18)</div>
+                </th>
+              </tr>
+
+              <!-- Row 3: Sub-Categories -->
+              <tr>
+                <!-- Agentic Section -->
+                <th colspan="2" class="level-3">
+                  <span class="emoji">🔍</span> Web Search
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(200)</div>
+                </th>
+                <th colspan="3" class="level-3">
+                  <span class="emoji">🧠</span> Memory
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(465)</div>
+                </th>
+
+                <!-- Multi-Turn Section -->
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📝</span> Base Case
+                  <div class="note">(200)</div>
+                </th>
+                <th colspan="3" class="level-3">
+                  <span class="emoji">🔍</span> Augmented Cases
+                  <div class="note">Independent Categories</div>
+                  <div class="note">(600)</div>
+                </th>
+
+                <!-- Live Section -->
+                <th colspan="1" class="level-3">
+                  <span class="emoji">🤏</span> Simple
+                  <div class="note">(258)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📦</span> Multiple
+                  <div class="note">(1053)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">🔀</span> Parallel
+                  <div class="note">(15)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📦🔀</span> Parallel Multiple
+                  <div class="note">(15)</div>
+                </th>
+
+                <!-- Non-Live Section -->
+                <th colspan="3" class="level-3">
+                  <span class="emoji">🤏</span> Simple
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(550)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📦</span> Multiple
+                  <div class="note">(200)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">🔀</span> Parallel
+                  <div class="note">(200)</div>
+                </th>
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📦🔀</span> Parallel Multiple
+                  <div class="note">(200)</div>
+                </th>
+
+                <!-- Hallucination Measurement Section -->
+                <th colspan="2" class="level-3">
+                  <span class="emoji">❌</span> Irrelevance
+                  <div class="note">Unweighted Average</div>
+                  <div class="note">(1122)</div>
+                </th>
+
+                <!-- Non-Scoring Section -->
+                <th class="level-3">
+                  <span class="emoji">🐍</span> Simple Python
+                  <div class="note">(30)</div>
+                </th>
+                <th class="level-3">
+                  <span class="emoji">🔀</span> Parallel
+                  <div class="note">(15)</div>
+                </th>
+                <th class="level-3">
+                  <span class="emoji">📦</span> Multiple
+                  <div class="note">(15)</div>
+                </th>
+                <th class="level-3">
+                  <span class="note">...</span>
+                </th>
+                <th class="level-3">
+                  <span class="emoji">✅</span> Live Relevance
+                  <div class="note">(18)</div>
+                </th>
+              </tr>
+
+              <!-- Row 4: Detailed Categories -->
+              <tr>
+                <!-- Agentic > Web Search -->
+                <th class="level-4">
+                  <span class="emoji">🔍</span> Snippet
+                  <div class="note">(100)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🔍</span> No Snippet
+                  <div class="note">(100)</div>
+                </th>
+
+                <!-- Agentic > Memory -->
+                <th class="level-4">
+                  <span class="emoji">🗃️</span> Vector Store
+                  <div class="note">(155)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🗃️</span> Key Value Store
+                  <div class="note">(155)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🗃️</span> Rec Sum
+                  <div class="note">(155)</div>
+                </th>
+
+                <!-- Multi-Turn > Base Case -->
+                <th class="level-4">
+                  <span class="emoji">📝</span> Python Multi Turn Base
+                  <div class="note">(200)</div>
+                </th>
+
+                <!-- Multi-Turn > Augmented Cases -->
+                <th class="level-4">
+                  <span class="emoji">🔍</span> Python Multi Turn Missing Function
+                  <div class="note">(200)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">⚠️</span> Python Multi Turn Missing Parameter
+                  <div class="note">(200)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📜</span> Python Multi Turn Long Context
+                  <div class="note">(200)</div>
+                </th>
+
+                <!-- Live > Simple -->
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Live Simple AST
+                  <div class="note">(258)</div>
+                </th>
+
+                <!-- Live > Multiple -->
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Live Multiple AST
+                  <div class="note">(1053)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Live Parallel AST
+                  <div class="note">(16)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Live Parallel Multiple AST
+                  <div class="note">(24)</div>
+                </th>
+
+                <!-- Non-Live > Simple -->
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Simple AST
+                  <div class="note">(400)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">☕</span> Java Simple AST
+                  <div class="note">(100)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">💻</span> JavaScript Simple AST
+                  <div class="note">(50)</div>
+                </th>
+
+                <!-- Non-Live > Multiple -->
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Multiple AST
+                  <div class="note">(200)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Parallel AST
+                  <div class="note">(200)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🐍</span> Python Parallel Multiple AST
+                  <div class="note">(440)</div>
+                </th>
+
+                <!-- Hallucination Measurement > Irrelevance -->
+                <th class="level-4">
+                  <span class="emoji">❌</span> Non-Live Irrelevance
+                  <div class="note">(240)</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">❌</span> Live Irrelevance
+                  <div class="note">(882)</div>
+                </th>
+
+                <!-- Non-Scoring > Format Sensitivity -->
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+
+                <!-- Non-Scoring > Relevance -->
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+              </tr>
+
+            </table>
+          </div>
           <br>
           <h2 id="intro">1. Introduction</h2>
           <p>
