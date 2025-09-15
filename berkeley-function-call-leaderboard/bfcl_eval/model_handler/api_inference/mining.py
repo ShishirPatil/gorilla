@@ -79,8 +79,7 @@ Here are the available tools:
 {}  
 </tools>
 """
-        system_suffix = """
-Use the following pydantic model json schema for each tool call you will make:  
+        system_suffix = """Use the following pydantic model json schema for each tool call you will make:  
 {"title": "FunctionCalls", "type": "array", "properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"]}
 
 # Output Format & Constraints
@@ -109,6 +108,9 @@ You FIRST think about the reasoning process as an internal monologue, and then p
 - All outputs must strictly follow the above format.  
 - Do not insert any additional explanation or commentary outside the specified tags.  
 - When using <tool_calls></tool_calls>, the JSON array must not be empty and must strictly conform to the schema above.
+- Tool Invocation Priority: If the final answer cannot be derived from the model’s current knowledge and context, you must continue invoking tools until sufficient information is obtained. Do not stop at "I do not know" or provide an incomplete answer.
+- Double-check Requirement: Before producing the final <answer>, you must perform a double-check step to verify correctness, consistency, and reliability of the result.
+- Dynamic Plan Update: During double-check, if issues or inconsistencies are found, you must update the plan in <think> and continue invoking tools until the problem is resolved, only then output the final answer.
 
 **Example:**
 
