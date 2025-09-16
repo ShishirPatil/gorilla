@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
@@ -26,12 +27,31 @@ class SeedOSSHandler(OSSHandler):
         """
         formatted_prompt = ""
 
-        # Process system message if present
+        # Process system message and add function calling instructions if functions are present
         if messages and messages[0]["role"] == "system":
-            formatted_prompt += f"<seed:bos>system\n{messages[0]['content']}<seed:eos>"
+            formatted_prompt += f"<seed:bos>system\n{messages[0]['content']}"
             message_start_idx = 1
         else:
+            formatted_prompt += "<seed:bos>system\nYou are a helpful assistant."
             message_start_idx = 0
+
+        # Add function calling instructions if functions are provided
+        if function and len(function) > 0:
+            formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\n"
+            formatted_prompt += "You are provided with function signatures within <tools></tools> XML tags:\n<tools>\n"
+            for func in function:
+                formatted_prompt += f"{json.dumps(func, indent=2)}\n"
+            formatted_prompt += "</tools>\n\n"
+            
+            formatted_prompt += "For each function call, return the function call in the exact format:\n"
+            formatted_prompt += "[function_name(parameter1=value1, parameter2=value2)]\n\n"
+            formatted_prompt += "IMPORTANT:\n"
+            formatted_prompt += "- Use the EXACT function name from the tools above\n"
+            formatted_prompt += "- Do not use variables or placeholders like 'func_name1'\n"
+            formatted_prompt += "- Use the actual parameter names as specified\n"
+            formatted_prompt += "- Format: [actual_function_name(param1=value1, param2=value2)]\n"
+        
+        formatted_prompt += "<seed:eos>"
 
         # Process conversation messages
         for idx in range(message_start_idx, len(messages)):
