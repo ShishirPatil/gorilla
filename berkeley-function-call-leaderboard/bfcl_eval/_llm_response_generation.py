@@ -37,7 +37,7 @@ def get_args():
     parser.add_argument("--temperature", type=float, default=0.001)
     parser.add_argument("--include-input-log", action="store_true", default=False)
     parser.add_argument("--exclude-state-log", action="store_true", default=False)
-    parser.add_argument("--num-threads", default=1, type=int)
+    parser.add_argument("--num-threads", required=False, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="sglang", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
@@ -200,18 +200,17 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature)
-    num_threads = args.num_threads
 
     if isinstance(handler, OSSHandler):
         handler: OSSHandler
         is_oss_model = True
         # For OSS models, if the user didn't explicitly set the number of threads,
         # we default to 100 threads to speed up the inference.
-        if num_threads == 1:
-            num_threads = LOCAL_SERVER_MAX_CONCURRENT_REQUEST
+        num_threads = args.num_threads if args.num_threads is not None else LOCAL_SERVER_MAX_CONCURRENT_REQUEST
     else:
         handler: BaseHandler
         is_oss_model = False
+        num_threads = args.num_threads if args.num_threads is not None else 1
 
     # Use a separate thread to write the results to the file to avoid concurrent IO issues
     def _writer():
