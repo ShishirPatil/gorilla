@@ -19,7 +19,7 @@ and our release blogs:
 
 [BFCL V3](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#composition): Introduces multi-turn and multi-step function calling scenarios
 
-[BFCL V4 Agentic](https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html): BFCL V4 Agentic benchmark focuses on tool-calling in real-world agentic settings. Featuring web search with multi-hop reasoning, memory evaluation, and format sensitivity testing.
+[BFCL V4 Agentic](https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html): BFCL V4 Agentic benchmark focuses on tool-calling in real-world agentic settings, featuring web search with multi-hop reasoning and error recovery, agent memory management, and format sensitivity evaluation.
 
 **_Latest Version Release Date_**: 07/17/2025
 
@@ -192,7 +192,7 @@ Each memory backend presents unique challenges in how agents must structure, sto
 
 #### Format Sensitivity Evaluation
 
-**Format Sensitivity (200)**: This non-scoring category specifically tests how sensitive models are to different prompt formats and system message variations. The evaluation uses 26 different configurations across multiple dimensions:
+**Format Sensitivity (5200)**: This non-scoring category specifically tests how sensitive models are to different prompt formats and system message variations. The evaluation uses 26 different configurations across multiple dimensions:
 
 - **Return Format Variations**: Testing Python, JSON, verbose XML, and concise XML output formats
 - **Tool Call Tag Presence**: Evaluating with and without explicit tool call tags
