@@ -31,6 +31,30 @@ def get_handler(model_name: str) -> BaseHandler:
     return handler
 
 
+def _align_entries_to_model_results(
+    model_result: list[dict],
+    entries: list[dict],
+    entry_label: str,
+    test_category: str,
+) -> list[dict]:
+    """Match dataset metadata (prompt/ground truth) to the subset of IDs we actually generated."""
+    if not entries:
+        return entries
+    entry_by_id = {entry["id"]: entry for entry in entries}
+    missing_ids = [
+        result_entry["id"]
+        for result_entry in model_result
+        if result_entry["id"] not in entry_by_id
+    ]
+    if missing_ids:
+        missing_ids_str = ", ".join(sorted(missing_ids))
+        raise ValueError(
+            f"Missing {entry_label} entries for IDs {missing_ids_str} in '{test_category}'."
+            " Confirm your `--run-ids` list matches the benchmark dataset."
+        )
+    return [entry_by_id[result_entry["id"]] for result_entry in model_result]
+
+
 def _evaluate_single_agentic_entry(
     handler: BaseHandler,
     index,
@@ -639,6 +663,9 @@ def evaluate_task(
     prompt = load_dataset_entry(
         test_category, include_prereq=False, include_language_specific_hint=False
     )
+    prompt = _align_entries_to_model_results(
+        model_result, prompt, "prompt", test_category
+    )
 
     if is_relevance_or_irrelevance(test_category):
         accuracy, total_count = relevance_file_runner(
@@ -648,6 +675,9 @@ def evaluate_task(
     else:
         # Find the corresponding possible answer entries
         possible_answer = load_ground_truth_entry(test_category)
+        possible_answer = _align_entries_to_model_results(
+            model_result, possible_answer, "ground truth", test_category
+        )
 
         if is_format_sensitivity(test_category):
             accuracy, total_count = format_sensitivity_runner(
