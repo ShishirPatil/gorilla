@@ -1,0 +1,1233 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Test Connectivity",
+        "api_call": "{{url}}/fapi/v1/ping",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Test connectivity to the Rest API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Check Server Time",
+        "api_call": "{{url}}/fapi/v1/time",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Exchange Information (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/exchangeInfo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Order Book (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/depth?symbol=BTCUSDT&limit=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Recent Trades List (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/trades?symbol=BTCUSDT&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Old Trades Lookup (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/historicalTrades?symbol=BTCUSDT&limit=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "This endpoint need your API key only, not the secret key."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Compressed/Aggregate Trades List (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/aggTrades?symbol=BTCUSDT&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Kline/Candlestick Data (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/klines?symbol=BTCUSDT&limit=500&interval=1h",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Continuous Contract Kline/Candlestick Data",
+        "api_call": "{{url}}/fapi/v1/continuousKlines?pair=&contractType=&interval=&startTime=&endTime=&limit=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Index Price Kline/Candlestick Data",
+        "api_call": "{{url}}/fapi/v1/indexPriceKlines?pair=BTCUSDT&interval=1h&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Kline/candlestick bars for the index price of a pair. Klines are uniquely identified by their open time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Mark Price Kline/Candlestick Data",
+        "api_call": "{{url}}/fapi/v1/markPriceKlines?symbol=BTCUSDT&interval=1h&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Kline/candlestick bars for the mark price of a symbol. Klines are uniquely identified by their open time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Mark Price (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/premiumIndex?symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Mark Price and Funding Rate\n\nWeight: 1"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get Funding Rate History (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/fundingRate?symbol=BTCUSDT&limit=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Mark Price and Funding Rate\n\nWeight: 1"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: 24hr Ticker Price Change Statistics (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/ticker/24hr?symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "24 hour rolling window price change statistics.\n\nCareful when accessing this with no symbol.\n\nWeight:\n\n1 for a single symbol;\n\n40 when the symbol"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Symbol Price Ticker (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/ticker/24hr?symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Latest price for a symbol or symbols."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Symbol Order Book Ticker (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/ticker/bookTicker?symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Best price/qty on the order book for a symbol or symbols."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get all Liquidation Orders (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/allForceOrders?symbol=&startTime&endTime&limit=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Open Interest (MARKET_DATA)",
+        "api_call": "{{url}}/fapi/v1/openInterest?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Open Interest Statistics (MARKET_DATA)",
+        "api_call": "{{url}}/futures/data/openInterestHist?symbol=BTCUSDT&period=&limit=30&startTime=&endTime=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Top Trader Long/Short Ratio (Accounts) (MARKET_DATA)",
+        "api_call": "{{url}}/futures/data/topLongShortAccountRatio?symbol=BTCUSDT&period=&limit=30&startTime=&endTime=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Top Trader Long/Short Ratio (Positions) (MARKET_DATA)",
+        "api_call": "{{url}}/futures/data/topLongShortPositionRatio?symbol=BTCUSDT&period=&limit=30&startTime=&endTime=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Long/Short Ratio (MARKET_DATA)",
+        "api_call": "{{url}}/futures/data/globalLongShortAccountRatio?symbol=BTCUSDT&period=&limit=30&startTime=&endTime=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Taker Buy/Sell Volume (MARKET_DATA)",
+        "api_call": "{{url}}/futures/data/takerlongshortRatio?symbol=BTCUSDT&period=5m&limit=30&startTime=&endTime=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Historical BLVT NAV Kline/Candlestick",
+        "api_call": "{{url}}/fapi/v1/lvtKlines?symbol=&interval=&startTime=&endTime=&limit=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Composite Index Symbol Information",
+        "api_call": "{{url}}/fapi/v1/indexInfo?symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Account information",
+        "api_call": "{{url}}/fapi/v1/account?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get Income History",
+        "api_call": "{{url}}/fapi/v1/income?symbol=BTCUSDT&incomeType=REALIZED_PNL&limit=100&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Position Information",
+        "api_call": "{{url}}/fapi/v1/positionRisk?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Account Trade List",
+        "api_call": "{{url}}/fapi/v1/userTrades?symbol=BTCUSDT&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get Income History",
+        "api_call": "{{url}}/fapi/v1/income?symbol=BTCUSDT&incomeType=REALIZED_PNL&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: New Future Account Transfer",
+        "api_call": "{{url}}/fapi/v1/income?symbol=BTCUSDT&incomeType=REALIZED_PNL&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Future Account Balance",
+        "api_call": "{{url}}/fapi/v1/balance?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Notional and Leverage Brackets (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/leverageBracket?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get present open interest of a specific symbol."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Position ADL Quantile Estimation (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/adlQuantile?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: User Commission Rate (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/commissionRate?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: New Order (TRADE)",
+        "api_call": "{{url}}/fapi/v1/order?symbol=&side=&positionSide=&type=&timeInForce=&quantity=&reduceOnly=&price=&newClientOrderId=&stopPrice=&closePosition=&activationPrice=&callbackRate=&workingType=CONTRACT_PRICE&newOrderRespType=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "https://binance-docs.github.io/apidocs/futures/en/#new-order-trade"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Place Multiple Orders (TRADE)",
+        "api_call": "{{url}}/fapi/v1/batchOrders?batchOrders=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Query Order",
+        "api_call": "{{url}}/fapi/v1/order?symbol=BTCUSDT&orderId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Cancel Order",
+        "api_call": "{{url}}/fapi/v1/order?symbol=BTCUSDT&orderId=1192355366&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Cancel All Open Orders",
+        "api_call": "{{url}}/fapi/v1/allOpenOrders?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Auto-Cancel All Open Orders (TRADE)",
+        "api_call": "{{url}}/fapi/v1/countdownCancelAll?symbol=&countdownTime=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Cancel Multiple Orders (TRADE)",
+        "api_call": "{{url}}/fapi/v1/batchOrders?symbol=BTCUSDT&origClientOrderIdList=[IKDQAMirf7vElig8hTZHh0,HwJSQKA7drF37tqqAN6q6q]&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Current All Open Orders (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/openOrders?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Query Current Open Order (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/openOrder?symbol=&orderId=&origClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: All Orders",
+        "api_call": "{{url}}/fapi/v1/allOrders?symbol=&orderId=&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: User's Force Orders (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/forceOrders?symbol=&autoCloseType=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Change Margin Type",
+        "api_call": "{{url}}/fapi/v1/marginType?symbol=BTCUSDT&marginType=ISOLATED&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Change Initial Leverage",
+        "api_call": "{{url}}/fapi/v1/leverage?symbol=BTCUSDT&leverage=20&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Modify Isolated Position Margin",
+        "api_call": "{{url}}/fapi/v1/positionMargin?symbol=BTCUSDT&positionSide=&amount=100&type=1&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get Postion Margin Change History",
+        "api_call": "{{url}}/fapi/v1/positionMargin/history?symbol=BTCUSDT&type=1&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Change Position Mode\uff08TRADE\uff09",
+        "api_call": "{{url}}/fapi/v1/positionSide/dual?dualSidePosition=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Get Current Position Mode\uff08USER_DATA\uff09",
+        "api_call": "{{url}}/fapi/v1/positionSide/dual?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: User API Trading Quantitative Rules Indicators (USER_DATA)",
+        "api_call": "{{url}}/fapi/v1/apiTradingStatus?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Create New Listen Key",
+        "api_call": "{{url}}/fapi/v1/listenKey",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Renew Listen Key",
+        "api_call": "{{url}}/fapi/v1/listenKey",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Delete Listen Key",
+        "api_call": "{{url}}/fapi/v1/listenKey",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Position Information(USER_DATA)",
+        "api_call": "{{url}}/fapi/v2/positionRisk?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Account Balance",
+        "api_call": "{{url}}/fapi/v2/balance?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance perpetual future API: Account Information",
+        "api_call": "{{url}}/fapi/v2/account?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

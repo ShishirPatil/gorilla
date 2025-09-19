@@ -1,0 +1,3225 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Person",
+        "api_call": "{{baseUrl}}/v1/person",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"firstName\": \"John\",\n    \"middleName\": \"\",\n    \"lastName\": \"Doe\",\n    \"phone\": \"+12418401234\",\n    \"email\": \"john.doe.0331@gmail.com\",\n    \"dateOfBirth\": \"1974-01-25\",\n    \"idNumber\": \"223902234\",\n    \"idType\": \"ssn\",\n    \"address\": {\n        \"addressType\": \"mailing\",\n        \"line1\": \"1 Broadway\",\n        \"line2\": \"\",\n        \"city\": \"Los Gatos\",\n        \"state\": \"CA\",\n        \"country\": \"US\",\n        \"postalCode\": \"95030\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Person",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"johndoe@gmail.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Person",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Submit a KYC",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}/kyc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a KYC",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}/kyc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Submit an IDV",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}/idv",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve an IDV",
+        "api_call": "{{baseUrl}}/v1/person/{{personId}}/idv",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Business",
+        "api_call": "{{baseUrl}}/v1/business",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"legalName\": \"Acme LLC\",\n    \"entityType\": \"limitedLiabilityCompany\",\n    \"dba\": \"Acme Corp\",\n    \"email\": \"john@acme.com\",\n    \"idType\": \"ein\",\n    \"idNumber\": \"187654321\",\n    \"phone\": \"+16604491146\",\n    \"formationDate\": \"2018-02-18\",\n    \"website\": \"acme.com\",\n    \"about\": \"clinic for health issues\",\n    \"industry\": \"healthServices\",\n    \"address\": {\n        \"addressType\": \"mailing\",\n        \"line1\": \"456 Main St\",\n        \"line2\": \"\",\n        \"city\": \"New York\",\n        \"state\": \"NY\",\n        \"country\": \"US\",\n        \"postalCode\": \"10001\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Business",
+        "api_call": "{{baseUrl}}/v1/business/{{businessId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"legalName\": \"Acme Business LLC\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Business",
+        "api_call": "{{baseUrl}}/v1/business/{{businessId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Businesses",
+        "api_call": "{{baseUrl}}/v1/business?personId={{personId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Submit a KYB",
+        "api_call": "{{baseUrl}}/v1/business/{{businessId}}/kyb",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a KYB",
+        "api_call": "{{baseUrl}}/v1/business/{{businessId}}/kyb",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Family",
+        "api_call": "{{baseUrl}}/v1/family",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Doe Family\",\n    \"phone\": \"+14815220744\",\n    \"email\": \"test@solidfi.com\",\n    \"address\": {\n        \"addressType\": \"mailing\",\n        \"line1\": \"1 Broadway\",\n        \"line2\": \"\",\n        \"city\": \"Los Gatos\",\n        \"state\": \"CA\",\n        \"country\": \"US\",\n        \"postalCode\": \"00603\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Family",
+        "api_call": "{{baseUrl}}/v1/family/{{familyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Doe Fam\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Family",
+        "api_call": "{{baseUrl}}/v1/family/{{familyId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Families",
+        "api_call": "{{baseUrl}}/v1/family?personId={{personId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Member",
+        "api_call": "{{baseUrl}}/v1/member",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"businessId\": \"{{businessId}}\",\n    \"person\": {\n        \"firstName\": \"Jane\",\n        \"middleName\": \"\",\n        \"lastName\": \"Doe\",\n        \"phone\": \"+19418405939\",\n        \"email\": \"jane.doe@gmail.com\",\n        \"dateOfBirth\": \"1974-04-22\",\n        \"idType\": \"ssn\",\n        \"idNumber\": \"287654321\",\n        \"address\": {\n            \"addressType\": \"mailing\",\n            \"line1\": \"789 Main St\",\n            \"line2\": \"\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"country\": \"US\",\n            \"postalCode\": \"10001\"\n        }\n    },\n    \"ownership\": \"50\",\n    \"title\": \"manager\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Member",
+        "api_call": "{{baseUrl}}/v1/member/{{memberId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"businessId\": \"{{businessId}}\",\n    \"isControlPerson\": true,\n    \"ownership\": \"60\",\n    \"title\": \"Senior Manager\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Member",
+        "api_call": "{{baseUrl}}/v1/member/{{memberId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Members",
+        "api_call": "{{baseUrl}}/v1/member?businessId={{businessId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Submit a Member KYC",
+        "api_call": "{{baseUrl}}/v1/member/{{memberId}}/kyc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Member KYC",
+        "api_call": "{{baseUrl}}/v1/member/{{memberId}}/kyc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create an Account",
+        "api_call": "{{baseUrl}}/v1/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"businessId\": \"{{businessId}}\",\n    \"label\": \"Primary\",\n    \"acceptedTerms\": true,\n    \"type\": \"businessChecking\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update an Account",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"Main Account\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve an Account",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Accounts",
+        "api_call": "{{baseUrl}}/v1/account?personId={{personId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Statement",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}/statement/2021/12?export=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Statements",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}/statement",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Contact",
+        "api_call": "{{baseUrl}}/v1/contact",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"name\": \"Bright Light LLC\",\n    \"email\": \"dwightlight@gmail.com\",\n    \"phone\": \"+18467051332\",\n    \"intrabank\": {\n        \"accountNumber\": \"9990001149517700\"\n    },\n    \"ach\": {\n        \"accountNumber\": \"1098324502\",\n        \"routingNumber\": \"121042882\",\n        \"accountType\": \"businessChecking\",\n        \"bankName\": \"Wells Fargo\"\n    },\n    \"wire\": {\n        \"domestic\": {\n            \"accountNumber\": \"1098324502\",\n            \"routingNumber\": \"121042882\",\n            \"accountType\": \"businessChecking\",\n            \"bankName\": \"Wells Fargo\",\n            \"address\": {\n                \"addressType\": \"wire\",\n                \"line1\": \"123 Main St\",\n                \"line2\": \"\",\n                \"city\": \"New York\",\n                \"state\": \"NY\",\n                \"country\": \"US\",\n                \"postalCode\": \"10001\"\n            }\n        }\n    },\n    \"check\": {\n        \"address\": {\n            \"addressType\": \"check\",\n            \"line1\": \"123 Main St\",\n            \"line2\": \"\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"country\": \"US\",\n            \"postalCode\": \"10001\"\n        }\n    },\n    \"card\": {\n        \"address\": {\n            \"addressType\": \"card\",\n            \"line1\": \"123 Main St\",\n            \"line2\": \"\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"country\": \"US\",\n            \"postalCode\": \"10001\"\n        }\n    }\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Contact",
+        "api_call": "{{baseUrl}}/v1/contact/{{contactId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"name\": \"Bright Might LLC\",\n    \"email\": \"dwightmight@gmail.com\",\n    \"phone\": \"+18467051333\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Contact",
+        "api_call": "{{baseUrl}}/v1/contact/{{contactId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Contacts",
+        "api_call": "{{baseUrl}}/v1/contact?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Delete a Contact",
+        "api_call": "{{baseUrl}}/v1/contact/{{contactId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve Bank Info",
+        "api_call": "{{baseUrl}}/v1/contact/bank?type=aba&routingNumber=021214189",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Debit Card Token",
+        "api_call": "{{baseUrl}}/v1/contact/{{contactId}}/debitcard/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update Contact Debit Card",
+        "api_call": "https://verygoodproxy.com/v1/contact/{{contactId}}/debitcard",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-debitcard-token",
+                    "value": "{{sd-debitcard-token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-vgs-authorization",
+                    "value": "{{sd-vgs-authorization}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"debitCard\": {\n        \"expiryMonth\": \"10\",\n        \"expiryYear\": \"2024\",\n        \"cardNumber\": \"4517040030689990\",\n        \"cvv\": \"036\",\n        \"address\": {\n            \"addressType\": \"card\",\n            \"line1\": \"813 sir james bridge way\",\n            \"line2\": \"\",\n            \"city\": \"Las Vegas\",\n            \"state\": \"NV\",\n            \"country\": \"US\",\n            \"postalCode\": \"89145\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send an Intrabank Push",
+        "api_call": "{{baseUrl}}/v1/send/intrabank",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"25.00\",\n    \"description\": \"Fund\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Intrabanks Pushed",
+        "api_call": "{{baseUrl}}/v1/send/intrabank?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send an ACH Push",
+        "api_call": "{{baseUrl}}/v1/send/ach",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"500.00\",\n    \"description\": \"Rent Payment\",\n    \"type\": \"sameDay\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all ACHs Pushed",
+        "api_call": "{{baseUrl}}/v1/send/ach?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send a Wire Transfer",
+        "api_call": "{{baseUrl}}/v1/send/wire",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"type\": \"domestic\",\n    \"amount\": \"14.00\",\n    \"description\": \"Downpayment\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Wires Sent",
+        "api_call": "{{baseUrl}}/v1/send/wire?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send a Check",
+        "api_call": "{{baseUrl}}/v1/send/check",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"type\": \"physical\",\n    \"amount\": \"80.00\",\n    \"description\": \"Payment\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Checks Sent",
+        "api_call": "{{baseUrl}}/v1/send/check?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send a Card",
+        "api_call": "{{baseUrl}}/v1/send/card",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"type\": \"virtual\",\n    \"amount\": \"20.00\",\n    \"description\": \"Gift Card\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Cards Sent",
+        "api_call": "{{baseUrl}}/v1/send/card?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send a Debit Push",
+        "api_call": "{{baseUrl}}/v1/send/debitpush",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"0.90\",\n    \"description\": \"Debit Push\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Debit Pushes Sent",
+        "api_call": "{{baseUrl}}/v1/send/debitpush?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Send Transfer",
+        "api_call": "{{baseUrl}}/v1/send/intrabank/{{transferId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Receive an Intrabank Pull",
+        "api_call": "{{baseUrl}}/v1/receive/intrabank",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"10.00\",\n    \"description\": \"Intrabank Pull\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Intrabank Pulls",
+        "api_call": "{{baseUrl}}/v1/receive/intrabank?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Receive an ACH Pull",
+        "api_call": "{{baseUrl}}/v1/receive/ach",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"6.00\",\n    \"description\": \"ACH Pull\",\n    \"type\": \"sameDay\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all ACH Pulls",
+        "api_call": "{{baseUrl}}/v1/receive/ach?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Receive a Check Deposit",
+        "api_call": "{{baseUrl}}/v1/receive/check",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"28.00\",\n    \"description\": \"Payment\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Upload Check Files",
+        "api_call": "{{baseUrl}}/v1/receive/check/{{transferId}}/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "front",
+                        "type": "file",
+                        "src": "/Users/arjunthyagarajan/Downloads/front.png"
+                    },
+                    {
+                        "key": "back",
+                        "type": "file",
+                        "src": "/Users/arjunthyagarajan/Downloads/back.png"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Check Deposits",
+        "api_call": "{{baseUrl}}/v1/receive/check?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Receive a Debit Pull",
+        "api_call": "{{baseUrl}}/v1/send/debitpush",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"contactId\": \"{{contactId}}\",\n    \"amount\": \"0.90\",\n    \"description\": \"Debit Pull\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Debit Pulls",
+        "api_call": "{{baseUrl}}/v1/receive/debitpull?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Receive Transfer",
+        "api_call": "{{baseUrl}}/v1/receive/intrabank/{{transferId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Card",
+        "api_call": "{{baseUrl}}/v1/card",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"cardType\": \"physical\",\n    \"label\": \"Meal Card\",\n    \"accountId\": \"{{accountId}}\",\n    \"currency\": \"USD\",\n    \"limitAmount\": \"120.00\",\n    \"limitInterval\": \"allTime\",\n    \"billingAddress\": {\n        \"addressType\": \"billing\",\n        \"line1\": \"164 Sugarloaf Drive\",\n        \"line2\": \"\",\n        \"city\": \"San Mateo\",\n        \"state\": \"CA\",\n        \"country\": \"US\",\n        \"postalCode\": \"94403\"\n    },\n    \"shipping\": {\n        \"shippingAddress\": {\n            \"addressType\": \"shipping\",\n            \"line1\": \"164 Sugarloaf Drive\",\n            \"line2\": \"\",\n            \"city\": \"San Mateo\",\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"postalCode\": \"94403\"\n        }\n    },\n    \"allowedCategories\": [\n        \"1234\",\n        \"9878\"\n    ],\n    \"bin\": \"credit\",\n    \"embossingPerson\": \"John Doe\",\n    \"embossingBusiness\": \"Acme LLC\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Activate a Card",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"expiryMonth\": \"12\",\n    \"expiryYear\": \"2022\",\n    \"last4\": \"0387\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a PIN Token",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}/pintoken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Set a New PIN",
+        "api_call": "https://tntbevlgikb.sandbox.verygoodproxy.com/v1/card/{{cardId}}/pin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-pin-token",
+                    "value": "{{pinToken}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"pin\": \"6644\",\n    \"expiryMonth\": \"12\",\n    \"expiryYear\": \"2022\",\n    \"last4\": \"0387\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Card",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"Travel\",\n    \"limitAmount\": \"100.00\",\n    \"limitInterval\": \"daily\",\n    \"cardStatus\": \"active\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Card",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Show Token",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}/showtoken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Show a Card",
+        "api_call": "https://tntbevlgikb.sandbox.verygoodproxy.com/v1/card/{{cardId}}/show",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-show-token",
+                    "value": "{{showToken}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Cards",
+        "api_call": "{{baseUrl}}/v1/card?accountId={{accountId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all ATM",
+        "api_call": "{{baseUrl}}/v1/card/atm?cardId={{cardId}}&latitude=41.972424&longitude=-87.66022",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Delete a Card",
+        "api_call": "{{baseUrl}}/v1/card/{{cardId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Crypto Wallet",
+        "api_call": "{{baseUrl}}/v1/crypto",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"Jane's BTC Wallet\",\n    \"acceptedTerms\": true,\n    \"currency\": \"BTC\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Crypto Wallet",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"Jane Doe BTC Wallet One\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Crypto Wallet",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Crypto Wallets",
+        "api_call": "{{baseUrl}}/v1/crypto/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Get a Buy Quote",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/buy/quote?cryptoCurrency=BTC&amount=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Buy Crypto",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/buy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"quoteId\": \"{{quoteId}}\",\n    \"accountId\": \"{{accountId}}\",\n    \"description\": \"crypto buy one\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Get a Sell Quote",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/sell/quote?cryptoCurrency=BTC&amount=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Sell Crypto",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/sell",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"quoteId\": \"{{quoteId}}\",\n    \"accountId\": \"{{accountId}}\",\n    \"description\": \"crypto sell one\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Send Crypto",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"destinationCryptoAddress\": \"tb1qg93xuy65hxqrecz0fk7hfxr22y3ygluzald2yr\",\n  \"cryptoCurrency\": \"BTC\",\n  \"quantity\": \"0.0000001\",\n  \"description\": \"Rent Payment\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Crypto Transaction",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/transaction/{{transactionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Crypto Transactions",
+        "api_call": "{{baseUrl}}/v1/crypto/{{walletId}}/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Transaction",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}/transaction/{{transactionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Transactions",
+        "api_call": "{{baseUrl}}/v1/account/{{accountId}}/transaction?limit=500&offset&export=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Webhook Events",
+        "api_call": "{{baseUrl}}/v1/webhook/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Webhook",
+        "api_call": "{{baseUrl}}/v1/webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"url\": \"https://bc5cc9365df4e38d7bda89b7e8c8f568.m.pipedream.net\",\n    \"events\": [\n        \"person.kyc.approved\",\n        \"person.kyc.declined\",\n        \"person.kyc.review\",\n        \"business.kyb.approved\",\n        \"business.kyb.declined\",\n        \"business.kyb.review\",\n        \"card.refund\",\n        \"card.reversal\",\n        \"card.spend\",\n        \"card.spend.update\",\n        \"card.declined\",\n        \"intrabank.originated.credit\",\n        \"intrabank.originated.debit\",\n        \"intrabank.received.credit\",\n        \"intrabank.received.debit\",\n        \"ach.originated.credit\",\n        \"ach.originated.debit\",\n        \"ach.received.credit\",\n        \"ach.received.debit\",\n        \"wire.received.credit\",\n        \"wire.originated.debit\",\n        \"check.originated.debit\",\n        \"check.originated.credit\",\n        \"account.debit\",\n        \"account.credit\",\n        \"ach.reversal.credit\",\n        \"ach.reversal.debit\",\n        \"wire.reversal.debit\",\n        \"wire.reversal.credit\",\n        \"check.reversal.debit\",\n        \"check.reversal.credit\",\n        \"solidcard.originated.debit\",\n        \"solidcard.reversal.credit\"\n    ],\n    \"description\": \"Webhook Subsciption\",\n    \"status\": \"active\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Webhook",
+        "api_call": "{{baseUrl}}/v1/webhook/{{webhookId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"paused\",\n    \"description\": \"Webhook Paused\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Webhook",
+        "api_call": "{{baseUrl}}/v1/webhook/{{webhookId}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Webhook Secret",
+        "api_call": "{{baseUrl}}/v1/webhook/{{webhookId}}/secret",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Webhooks",
+        "api_call": "{{baseUrl}}/v1/webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Delete a Webhook",
+        "api_call": "{{baseUrl}}/v1/webhook/{{webhookId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{sd-person-id}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Program",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Stats",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/stats",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Persons",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/person",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Businesses",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/business",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Cards",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/card",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Accounts",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Contacts",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/contact",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Transactions",
+        "api_call": "{{baseUrl}}/v1/program/{{programId}}/transaction",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-person-id",
+                    "value": "{{personId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Create a Ticket",
+        "api_call": "{{baseUrl}}/v1/ticket",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subject\": \"Ticket Subject\",\n    \"description\": \"Ticket Description\",\n    \"type\": \"incidents\",\n    \"priority\": \"high\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Update a Ticket",
+        "api_call": "{{baseUrl}}/v1/ticket/{{ticketId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"status\": \"solved\",\n   \"comment\": {\n       \"body\": \"ticket update\"\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Retrieve a Ticket",
+        "api_call": "{{baseUrl}}/v1/ticket/{{ticketId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: List all Tickets",
+        "api_call": "{{baseUrl}}/v1/ticket/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Upload an Attachment",
+        "api_call": "{{baseUrl}}/v1/ticket/file",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "attachment",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Solid FinTech Platform APIs: Delete a Ticket",
+        "api_call": "{{baseUrl}}/v1/ticket/{{ticketId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "sd-api-key",
+                    "value": "{{sd-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "sd-dashboard-user-email",
+                    "value": "{{sd-dashboard-user-email}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

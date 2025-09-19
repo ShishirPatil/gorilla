@@ -1,0 +1,822 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdTestConnection",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"std:test-connection\",\r\n  \"input\": {},\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountList",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"std:account:list\",\r\n  \"input\": {\r\n      \"stateful\": true,\r\n      \"state\": {}\r\n  },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"std:account:read\",\r\n  \"input\": {\r\n    \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n    \"identity\": \"john.doe\"\r\n  },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountCreate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:create\",\r\n    \"input\": {\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountUpdate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:update\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\",\r\n        \"changes\": [\r\n            {\r\n                \"op\": \"Remove\",\r\n                \"attribute\": \"entitlements\",\r\n                \"value\": \"user\"\r\n            }\r\n        ]\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountDelete",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:delete\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdEntitlementList",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:entitlement:list\",\r\n    \"input\": {\r\n        \"type\": \"group\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdEntitlementRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:entitlement:read\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\",\r\n        \"type\": \"group\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountDisable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:disable\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountEnable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:enable\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountUnlock",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:unlock\",\r\n    \"input\": {\r\n        \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n        \"identity\": \"john.doe\"\r\n    },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdAccountDiscoverSchema",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:account:discover-schema\",\r\n    \"input\": {},\r\n    \"config\": {\r\n        \"token\": \"apikey\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdChangePassword",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"std:change-password\",\r\n  \"input\": {\r\n    \"key\": {\"simple\": { \"id\": \"john.doe\"}},\r\n    \"identity\": \"john.doe\",\r\n    \"password\": \"newPassword1234\"\r\n  },\r\n  \"config\": {\r\n    \"token\": \"apikey\"\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdSourceDataDiscover",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:source-data:discover\",\r\n    \"input\": {\r\n        \"queryInput\": {\r\n            \"query\": \"query\",\r\n            \"limit\": 10\r\n        }\r\n    },\r\n    \"config\": {\r\n        \"token\": \"apikey\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local stdSourceDataRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"std:source-data:read\",\r\n    \"input\": {\r\n        \"sourceDataKey\": \"id\",\r\n        \"queryInput\": {\r\n            \"query\": \"query\",\r\n            \"limit\": 10\r\n        }\r\n    },\r\n    \"config\": {\r\n        \"token\": \"apikey\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local BeforeStdTestConnection",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"before:std:test-connection\",\r\n  \"input\": {}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdTestConnection",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"after:std:test-connection\",\r\n  \"input\": {}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local BeforeStdAccountCreate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:create\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountCreate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:create\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local BeforeStdAccountRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:read\",\r\n    \"input\": {\r\n        \"identity\": \"1234\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:read\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdAccountList",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"type\": \"before:std:account:list\",\r\n  \"input\": {\r\n      \"stateful\": true,\r\n      \"state\": {}\r\n  }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdAccountUpdate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:update\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\",\r\n        \"changes\": [\r\n            {\r\n                \"op\": \"Remove\",\r\n                \"attribute\": \"entitlements\",\r\n                \"value\": \"user\"\r\n            }\r\n        ]\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountUpdate",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:update\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local BeforeStdAccountDelete",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:delete\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountDelete",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:delete\",\r\n    \"input\": {}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdAccountEnable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:enable\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountEnable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:enable\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdAccountDisable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:disable\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountDisable",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:disable\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdAccountUnlock",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:account:unlock\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdAccountUnlock",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:account:unlock\",\r\n    \"input\": {\r\n        \"identity\": \"1234\",\r\n        \"disabled\": false,\r\n        \"locked\": false,\r\n        \"attributes\": {\r\n            \"id\": \"suzie.baker\",\r\n            \"email\": \"suzie.baker@domain.com\",\r\n            \"department\": \"external\",\r\n            \"displayName\": \"Suzie Baker\",\r\n            \"password\": \"test\",\r\n            \"entitlements\": [\r\n                \"user\",\r\n                \"administrator\"\r\n            ]\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdEntitlementRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:entitlement:read\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\",\r\n        \"type\": \"group\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local AfterStdEntitlementRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:entitlement:read\",\r\n    \"input\": {\r\n        \"type\": \"group\",\r\n        \"identity\": \"1234\",\r\n        \"attributes\": {\r\n            \"name\": \"admin\",\r\n            \"description\": \"administrator\"\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdEntitlementList",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:entitlement:list\",\r\n    \"input\": {\r\n        \"type\": \"group\",\r\n        \"stateful\": true,\r\n        \"state\": {}\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdChangePassword",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:change-password\",\r\n    \"input\": {\r\n        \"identity\": \"john.doe\",\r\n        \"password\": \"password1234\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local afterStdChangePassword",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:change-password\",\r\n    \"input\": {}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdSourceDataDiscover",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:source-data:discover\",\r\n    \"input\": {\r\n        \"queryInput\": {\r\n            \"query\": \"query\",\r\n            \"limit\": 10\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local afterStdSourceDataDiscover",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:source-data:discover\",\r\n    \"input\": [\r\n            {\"key\": \"firstKey\", \"label\": \"first label\", \"subLabel\": \"first sub-label\"},\r\n            {\"key\": \"secondKey\", \"label\": \"second label\", \"subLabel\": \"second sub-label\"}\r\n    ]\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local beforeStdSourceDataRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"before:std:source-data:discover\",\r\n    \"input\": {\r\n        \"sourceDataKey\": \"dataKey\",\r\n        \"queryInput\": {\r\n            \"query\": \"query\",\r\n            \"excludeItems\": [\"item1\", \"item2\"],\r\n            \"limit\": 10\r\n        }\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaaS Connectivity: Test local afterStdSourceDataRead",
+        "api_call": "http://localhost:3000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"type\": \"after:std:source-data:read\",\r\n    \"input\": [\r\n            {\"key\": \"firstKey\", \"label\": \"first label\", \"subLabel\": \"first sub-label\"},\r\n            {\"key\": \"secondKey\", \"label\": \"second label\", \"subLabel\": \"second sub-label\"}\r\n    ]\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
