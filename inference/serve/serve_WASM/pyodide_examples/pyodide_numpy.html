@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  </head>
+  <body>
+    <input id="number" value="10" />
+    <button onclick="evaluatePython()">Run</button>
+
+    <div id="output"></div>
+    <script type="text/javascript">
+        const number = document.getElementById("number");
+    
+      async function main(){
+        let pyodide = await loadPyodide();
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+        try {
+            await pyodide.loadPackage("micropip");
+            await pyodide.loadPackage("numpy");
+            let python_output = pyodide.runPython("\nimport micropip \n'numpy' in micropip.list() \nimport numpy as np \nnp.arange(" + number.value + ")")
+            console.log(python_output);
+            var output_div = document.getElementById('output');
+            output_div.innerHTML = python_output;
+        } catch (err) {
+            console.log(err);
+        }
+      }
+
+    </script>
+  </body>
+</html>
