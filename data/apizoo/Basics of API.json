@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Basics of API: Get Data",
+        "api_call": "{{Add the URL here}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

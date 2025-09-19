@@ -1,0 +1,89 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Order Items",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/orderItems?NextToken=enim dolor",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Order Items Buyer Info",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/orderItems/buyerInfo?NextToken=enim dolor",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns buyer information in the order items of the order indicated by the specified order ID.\n\n**Usage Plan:**\n\n| Rate (requests per"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Order",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the order indicated by the specified order ID.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ----"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Order Buyer Info",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/buyerInfo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns buyer information for the order indicated by the specified order ID.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Order Address",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/address",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the shipping address for the order indicated by the specified order ID.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Selling Partner API for Orders: get Orders",
+        "api_call": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amzn-access-token",
+                    "value": "Atc|MQEBIKGDvnOjqLxT8eJtF2ufuVuCK2HXbGki-WvnBajA2Oil3DrA_z2mPugoIDOFxAoc3a6GcidLHSEMgnZL9PVIfC5jsjEWh_UIGDglfk3JuWinlv90390uk4DRuAtfikEC0v1V-bAQHNUfs14T_NywUiE02pfjI0KuFdoRoCrG0COGQkqSiBt1tBrke1b8cp45_e3I1CRh4kVcMlirATdGKtXwK-k3LSFgwuvrWa_NF6Qd9yIhF_ASf6Opcm6My9VN0exF0GhkHSM3DiCbdZ2d49PQ",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "AWS4-HMAC-SHA256 Credential=AKIAT43RB4THSYFUR4DL/20210902/us-east-1/execute-api/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=104f28e94d942ec54dcd97ecd0b0a00ceca4b8d9e07b807b2927cc9a02d3def8",
+                    "type": "text"
+                },
+                {
+                    "key": "x-amz-date",
+                    "value": "20210902T172435Z",
+                    "type": "text"
+                },
+                {
+                    "key": "content-type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range"
+    }
+]

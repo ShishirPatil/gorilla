@@ -1,0 +1,350 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Authorize Request",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http://localhost/myapp/&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A sign in request to begin the OAuth 2.0 code flow.  Be sure to copy & paste into a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Token Request - Auth Code",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-url-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "https://graph.microsoft.com/mail.read",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "http://localhost/myapp/",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "JqQX2PNo9bpM0uEihUPzyrh",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "{{replace-with-code-copied-from-browser}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "The POST request to exchange an auth code for an access token.  Be sure to replace the code with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Microsoft Graph Request",
+        "api_call": "https://graph.microsoft.com/v1.0/me/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{the-access-token-copied-from-postman}}"
+                }
+            ]
+        },
+        "functionality": "An example use of the access_token.  Note: it will only work for users with a valid mailbox.  Be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Token Request - Refresh Token",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-url-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "https://graph.microsoft.com/mail.read",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "http://localhost/myapp/",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "JqQX2PNo9bpM0uEihUPzyrh",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "{{replace-with-refresh-token-copied-from-postman}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "The POST request to exchange a refresh token for an access token.  Be sure to replace the refresh_token with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Sign-In Request",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token+token&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&scope=openid%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&response_mode=fragment&state=12345&nonce=678910",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A sign in request using OpenID Connect & response_mode=fragment, for use in javascript single page applications.  Be sure to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Token Request",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&response_mode=fragment&state=12345&nonce=678910&prompt=none&login_hint={{your-username}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A token request using the OAuth 2.0 implicit grant & response_mode=fragment, for use in javascript single page applications.  Be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Authorize Request - id_token",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&scope=openid&response_mode=form_post&state=12345&nonce=678910",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A sign in request to begin the OpenID Connect sign in flow.  Be sure to copy & paste into"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Authorize Request - code+id_token",
+        "api_call": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token+code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=form_post&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&nonce=678910",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A sign in request to begin the OpenID Connect sign in flow.  Be sure to copy & paste into"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Use Client Credential with shared secret",
+        "api_call": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "https://graph.microsoft.com/.default",
+                        "description": "Use the resource you want a token for plus `/.default` in order to get a token for the permissions that have been granted in the tenant for this app on that resource. ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "JqQX2PNo9bpM0uEihUPzyrh",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Make sure to use the admin consent flow first in order to grant the client permissions in your tenant. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Admin Consent request",
+        "api_call": "https://login.microsoftonline.com/{tenant}/adminconsent?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&state=12345&redirect_uri=http://localhost/myapp/permissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Replace {tenant} with either `common` or a tenant ID.  You should replace the client ID here as well as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Device Authorization Request",
+        "api_call": "https://login.microsoftonline.com/organizations/oauth2/v2.0/devicecode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "disabled": false
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "user.read offline_access openid profile email",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "At this time (4/4/19), the v2.0 endpoint only supports `organizations` or a tenant ID as an authority.  Check the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: Device Access Token Request",
+        "api_call": "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "urn:ietf:params:oauth:grant-type:device_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "BAQABAAEAAADCoMpjJXrxTq9VG9te-7FXpBHi0oa93TZY740-QhcafK5JQ9RaFCBlKDRLJZkk1IssvPxywInBsO9peSMuhpoQx1kLs9F5QPoMQ8-Oya5VHpSVkLvCy74egjeRgSm4o5pL_bgVcF7R9c653PxbFGgq28S1V5bQN6WESykjjqWgbiAA",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Azure AD v2.0 Protocols: OAuth 2.0 ROPC",
+        "api_call": "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "6731de76-14a6-49ae-97bc-6eba6914391e"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "user.read openid profile offline_access"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "JqQX2PNo9bpM0uEihUPzyrh"
+                    },
+                    {
+                        "key": "username",
+                        "value": "user@mytenant.com",
+                        "description": "The upn of the user that wants to log in. "
+                    },
+                    {
+                        "key": "password",
+                        "value": "S3cretP4ssword",
+                        "description": "The user's password.  Delete this as soon as the response is recieved. "
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "password"
+                    }
+                ]
+            }
+        },
+        "functionality": "[Documentation](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc)"
+    }
+]

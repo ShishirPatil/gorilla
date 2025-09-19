@@ -1,0 +1,2563 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Adverse Action",
+        "api_call": "https://api.checkr.com/v1/adverse_actions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Adverse Action with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Cancel an existing Adverse Action",
+        "api_call": "https://api.checkr.com/v1/adverse_actions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Cancels an existing Adverse Action.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve a Candidate Story",
+        "api_call": "https://api.checkr.com/v1/candidate_stories/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the existing Candidate Story corresponding to the input ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete a Candidate Story",
+        "api_call": "https://api.checkr.com/v1/candidate_stories/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the existing Candidate Story corresponding to the input ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List a Candidate's Documents",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/documents?types=driver_license_history&types=driver_license_history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an array of candidate-provided Documents for the input `candidate_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Upload a new Candidate Document",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "value": "anim sunt",
+                        "type": "text",
+                        "description": "(Required) Path to the document on your local file system.\n\nValid MIME types: `image/gif`, `image/jpg`, `image/jpeg`, `image/png`, `image/bmp`, `image/tiff`, `application/pdf`, `image/heic`.\n"
+                    },
+                    {
+                        "key": "type",
+                        "value": "passport",
+                        "type": "text",
+                        "description": "(Required)  (This can only be one of consent,driver_license,previous_driver_license,state_id_card,passport,ssn_card,selfie,education_proof,employment_proof)"
+                    }
+                ]
+            }
+        },
+        "functionality": "Uploads a new Candidate Document."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Driver License",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/driver_licenses/:driver_license_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a specific driver license for a given candidate.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update an existing Driver License",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/driver_licenses/:driver_license_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"number\": \"F1111111\",\n    \"state\": \"CA\",\n    \"issued_date\": \"2010-01-30\",\n    \"current\": false\n}"
+            }
+        },
+        "functionality": "Updates an existing Driver License for a given candidate.\n\n**Note**: Updating an existing license to `current: true` will set any existing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete an existing Driver License",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/driver_licenses/:driver_license_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a specific driver license for a given candidate.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Driver License",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/driver_licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"number\": \"F2222222\",\n    \"state\": \"CA\",\n    \"current\": true,\n    \"issued_date\": \"2010-01-30\"\n}"
+            }
+        },
+        "functionality": "Creates a new Driver License for a given candidate.\n\nIf a `current` driver license is created for a candidate with an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Driver Licenses",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/driver_licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Driver Licenses for the input Candidate ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete an existing Employer",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/employers/:employer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an existing Employer with the input `id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Employer",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/employers/:employer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Employer with the input `candidate_id` or `employer_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Employer",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/employers?page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Checkr\",\n    \"position\": \"Software Engineer\",\n    \"contract_type\": \"full_time\",\n    \"start_date\": \"2016-06-01\",\n    \"address\": {\n        \"street\": \"123 Main St.\",\n        \"unit\": \"qR%jWljk\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zipcode\": \"90401\",\n        \"country\": \"US\"\n    },\n    \"id\": \"e44aa283528e6fde7d542194\",\n    \"candidate_id\": \"xxx\",\n    \"type\": \"employer\",\n    \"salary\": 10000,\n    \"do_not_contact\": false,\n    \"end_date\": \"2017-05-01\",\n    \"employer_url\": \"www.employer.com\",\n    \"manager\": {\n        \"name\": \"Joe Smith\",\n        \"title\": \"Engineering Manager\",\n        \"email\": \"joesmith@checkr.co\",\n        \"phone\": \"212-555-1234\"\n    },\n    \"note\": \"Took time off to travel abroad.\"\n}"
+            }
+        },
+        "functionality": "Creates a new Employer resource.\n\nIf the country is not US, the following parameters will be required in addition to those"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Employers",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/employers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Employers for the input `candidate_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete an existing School",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/schools/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an existing School with the input `school_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing School",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/schools/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing School with the input `school_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new School",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/schools",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"College University\",\n    \"degree\": \"BA\",\n    \"major\": \"Russian Literature\",\n    \"id\": \"e44aa283528e6fde7d542194\",\n    \"candidate_id\": \"83ebeagdec0948690863766f792ead24d61fe3f9\",\n    \"year_awarded\": 2017,\n    \"phone\": \"415-111-1111\",\n    \"minor\": \"Background Checks\",\n    \"start_date\": \"2012-09-22\",\n    \"end_date\": \"2017-05-10\",\n    \"current\": false,\n    \"school_url\": \"www.collegeuniversity.com\",\n    \"address\": {\n        \"street\": \"123 Main St.\",\n        \"unit\": \"2o7Bd\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zipcode\": \"90401\",\n        \"country\": \"US\"\n    }\n}"
+            }
+        },
+        "functionality": "Creates a new School resource.\n\nValidation for `start_date` and `end_date` is performed to ensure logical dates are provided. `end_date` must be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Schools",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/schools",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Schools for the input `candidate_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Professional License",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/professional_licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"certification_organization_id\": \"295DB417-A9D7-41DD-BE4A-64F014DF1D49\",\n    \"id\": \"e44aa283528e6fde7d542194\",\n    \"business_name\": \"Bob's Construction Company Inc\"\n}"
+            }
+        },
+        "functionality": "Creates a new Professional License resource.\nBased on the `certification_organization_id` selected, additional parameters are required to create a Professional License resource."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Professional Licenses",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/professional_licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Professional Licenses for the input `candidate_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete existing Professional License(s)",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/professional_licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"e44aa283528e6fde7d542194\",\n    \"certification_organization_id\": \"295DB417-A9D7-41DD-BE4A-64F014DF1D49\"\n}"
+            }
+        },
+        "functionality": "Returns a list of existing Professional Licenses for the input `candidate_id` that were removed.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Continuous Check",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/continuous_checks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"criminal\",\n    \"node\": \"in irure\",\n    \"work_locations\": [\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        },\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Creates a new Continuous Check resource.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Continuous Checks",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/continuous_checks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Continuous Checks.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Get a candidate's encrypted SSN",
+        "api_call": "https://api.checkr.com/v1/candidates/:candidate_id/ssn",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an encrypted SSN for the input `candidate_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update an existing Candidate",
+        "api_call": "https://api.checkr.com/v1/candidates/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"e44aa283528e6fde7d542194\",\n    \"uri\": \"in id\",\n    \"first_name\": \"John\",\n    \"middle_name\": \"Alfred\",\n    \"no_middle_name\": false,\n    \"last_name\": \"Smith\",\n    \"mother_maiden_name\": \"Jones\",\n    \"email\": \"john.smith@gmail.com\",\n    \"phone\": \"ut dolor\",\n    \"zipcode\": \"Duis fugiat sint aliqua ullamco\",\n    \"dob\": \"1970-01-22\",\n    \"ssn\": \"XXX-XX-4645\",\n    \"driver_license_number\": \"F2111655\",\n    \"driver_license_state\": \"CA\",\n    \"previous_driver_license_number\": \"F1501739\",\n    \"previous_driver_license_state\": \"MD\",\n    \"copy_requested\": false,\n    \"custom_id\": \"anim deserunt Lorem nisi\",\n    \"geo_ids\": [\n        \"79f943e212cce7de21c054a8\",\n        \"79f943e212cce7de21c054a8\"\n    ],\n    \"adjudication\": \"post_adverse_action\",\n    \"metadata\": {}\n}"
+            }
+        },
+        "functionality": "Updates an existing Candidate.\n\nAttempts to update a field that cannot be updated will return a 400 error stating \"... cannot"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Candidate",
+        "api_call": "https://api.checkr.com/v1/candidates/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves an existing Candidate.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Request PII removal for a Candidate",
+        "api_call": "https://api.checkr.com/v1/candidates/:id/pii",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"deletion_contact_email_address\": \"john.smith@gmail.com\",\n    \"deletion_contact_first_name\": \"John\",\n    \"deletion_contact_last_name\": \"Smith\"\n}"
+            }
+        },
+        "functionality": "Requests the removal of PII from an existing Candidate\n\nRequesting the removal of PII from a candidate who has already had"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Candidate",
+        "api_call": "https://api.checkr.com/v1/candidates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Smith\",\n    \"email\": \"john.smith@gmail.com\",\n    \"middle_name\": \"Alfred\",\n    \"no_middle_name\": false,\n    \"mother_maiden_name\": \"Jones\",\n    \"phone\": \"pariatur m\",\n    \"zipcode\": \"dolore do fugiat\",\n    \"dob\": \"1970-01-22\",\n    \"ssn\": \"XXX-XX-4645\",\n    \"driver_license_number\": \"F2111655\",\n    \"driver_license_state\": \"CA\",\n    \"previous_driver_license_number\": \"F1501739\",\n    \"previous_driver_license_state\": \"MD\",\n    \"copy_requested\": false,\n    \"custom_id\": \"HRIS-27\",\n    \"geo_ids\": [\n        \"79f943e212cce7de21c054a8\",\n        \"79f943e212cce7de21c054a8\"\n    ],\n    \"metadata\": {},\n    \"work_locations\": [\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        },\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Creates a new Candidate resource.\n\n### Required attributes\n\nThe Candidate resource\u2019s required attributes vary depending on its intended use. If this resource"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Candidates",
+        "api_call": "https://api.checkr.com/v1/candidates?email=irure incididunt&full_name=irure incididunt&adjudication=irure incididunt&custom_id=irure incididunt&created_after=1977-01-12T02:52:59.927Z&created_before=1977-01-12T02:52:59.927Z&report_adjudicated_after=1977-01-12T02:52:59.927Z&report_adjudicated_before=1977-01-12T02:52:59.927Z&report_adjudicator_email=irure incididunt&report_revised_after=1977-01-12T02:52:59.927Z&report_revised_before=1977-01-12T02:52:59.927Z&driver_license_number=irure incididunt&geo_id=irure incididunt&program_id=irure incididunt&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists existing Candidates with the input parameters.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Geo",
+        "api_call": "https://api.checkr.com/v1/geos/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Geo with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete an existing Geo",
+        "api_call": "https://api.checkr.com/v1/geos/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an existing Geo.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update an existing Geo",
+        "api_call": "https://api.checkr.com/v1/geos/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"city\": \"San Francisco\"\n}"
+            }
+        },
+        "functionality": "Updates an existing Geo resource with the input `city`.\n`city` can only be added once.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Geo",
+        "api_call": "https://api.checkr.com/v1/geos",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"city\": \"San Francisco\"\n}"
+            }
+        },
+        "functionality": "Creates a new Geo resource.\n\n**Note**: Attempting to create a new Geo with the same name/state combination will result in an\n409"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Geos",
+        "api_call": "https://api.checkr.com/v1/geos?name=irure incididunt&state=irure incididunt&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Geos with the input `name` or `state`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create Hierarchy",
+        "api_call": "https://api.checkr.com/v1/hierarchy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"nodes\": [\n        {\n            \"name\": \"Acme Staffing\",\n            \"custom_id\": \"zpy8orej4r614ize\",\n            \"tier\": \"department\",\n            \"parent_custom_id\": \"parent custom id\"\n        },\n        {\n            \"name\": \"Acme Staffing\",\n            \"custom_id\": \"zpy8orej4r614ize\",\n            \"tier\": \"department\",\n            \"parent_custom_id\": \"parent custom id\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Creates a new or replaces an existing Account Hierarchy.\n\nThe Hierarchy endpoint performs ingestion asynchronously. Check the status\nof the ingestion by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve Hierarchy (Deprecated)",
+        "api_call": "https://api.checkr.com/v1/hierarchy?node_custom_ids=Lorem aliqua magna&node_custom_ids=nostrud ut anim voluptate&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "**Note:** This endpoint is _deprecated_ and will no longer be supported. Please use the new [List existing Nodes](#operation/nodesList) endpoint instead.\n\nRetrieves"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve Hierarchy update status",
+        "api_call": "https://api.checkr.com/v1/hierarchy/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the status of the latest Hierarchy ingestion request.\n\nThis call requires no input, and is provided as a means to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Invitation",
+        "api_call": "https://api.checkr.com/v1/invitations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Invitation with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Cancel an existing Invitation",
+        "api_call": "https://api.checkr.com/v1/invitations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Cancels an existing Invitation.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Invitation",
+        "api_call": "https://api.checkr.com/v1/invitations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"package\": \"driver_pro\",\n    \"candidate_id\": \"551564b7865af96a28b13f36\",\n    \"node\": \"do dolor\",\n    \"work_locations\": [\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        },\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        }\n    ],\n    \"tags\": [\n        \"occaecat consectetur nisi Duis\",\n        \"aute quis\"\n    ],\n    \"communication_types\": [\n        \"email\",\n        \"email\"\n    ]\n}"
+            }
+        },
+        "functionality": "Creates a new Invitation resource.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Invitations",
+        "api_call": "https://api.checkr.com/v1/invitations?candidate_id=irure incididunt&status=completed&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Invitations with the input `status` or `candidate_id`.\n\n* If no parameters are passed, returns all Invitations.\n\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Package",
+        "api_call": "https://api.checkr.com/v1/packages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Package with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete an existing Package",
+        "api_call": "https://api.checkr.com/v1/packages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an existing Package.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Packages",
+        "api_call": "https://api.checkr.com/v1/packages?page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of all existing Packages.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List Professional License Verification Requirements",
+        "api_call": "https://api.checkr.com/v1/professional_license_verifications/screening_requirements?package=plv_pro",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an array of input requirements for each professional license certification organization supported by Checkr.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Professional License Verification",
+        "api_call": "https://api.checkr.com/v1/professional_license_verifications/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Professional License Verification with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Programs",
+        "api_call": "https://api.checkr.com/v1/programs?name=irure incididunt&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Programs with the input `name`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Program",
+        "api_call": "https://api.checkr.com/v1/programs/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Program with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Adverse Action",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/adverse_actions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"adverse_item_ids\": [\n        \"sunt culpa proident\",\n        \"eu anim\"\n    ],\n    \"post_notice_scheduled_at\": \"2016-10-07T12:34:00Z\"\n}"
+            }
+        },
+        "functionality": "Creates a new Adverse Action.\n\n<b>Note: </b>Report must be in a `consider` status and cannot have any existing Adverse Actions that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Report addresses",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/addresses?page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request is used to retrieve addresses for a given Report."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Adverse Items",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/adverse_items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Adverse Items with the input `report_id`.\n\n<b>Note: </b>Report must be in a `consider` status and cannot"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Assessments",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/assessments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns Assessments for an existing Report.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Candidate Story",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/candidate_stories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"content\": \"Since my case, I have received the following certifications (see attachments)\",\n    \"documents\": [\n        {\n            \"filename\": \"evidence_of_rehab.pdf\",\n            \"tempfile\": \"https://tempfilebucket.aws.example.com/abYwtudnakfnafl\",\n            \"type\": \"application/pdf\"\n        },\n        {\n            \"filename\": \"evidence_of_rehab.pdf\",\n            \"tempfile\": \"https://tempfilebucket.aws.example.com/abYwtudnakfnafl\",\n            \"type\": \"application/pdf\"\n        }\n    ],\n    \"record_id\": \"af3393b7d751206c7c67b6e5\"\n}"
+            }
+        },
+        "functionality": "Create a new Candidate Story for the input `report_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Verifications",
+        "api_call": "https://api.checkr.com/v1/reports/:report_id/verifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Verifications for the input `report_id`.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Add a tag to a Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id/tags?page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tag\": \"To Review\"\n}"
+            }
+        },
+        "functionality": "This request is used to add a tag to a Report.\n<p><b>Note: </b>The <code>tag</code> value passed to <code>POST /v1/reports/{id}/tags</code> will match"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update tags for a Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tags\": [\n        \"To Review\",\n        \"To Review\"\n    ]\n}"
+            }
+        },
+        "functionality": "This request is used to define all tags for a Report.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve tags for a Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves tags for the input Report.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete a tag from a Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tag\": \"West Coast\"\n}"
+            }
+        },
+        "functionality": "This request is used to delete a tag from a Report.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update an existing Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"package\": \"driver_pro\",\n    \"adjudication\": \"engaged\"\n}"
+            }
+        },
+        "functionality": "Updates the `package` or `adjudication` for an existing Report resource.\n\nUse this endpoint to update reports which include the candidate's Social"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Report",
+        "api_call": "https://api.checkr.com/v1/reports/:id?include=personal_reference_verifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Report with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve a Report's ETA",
+        "api_call": "https://api.checkr.com/v1/reports/:id/eta",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Report ETA for the input Report ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Report",
+        "api_call": "https://api.checkr.com/v1/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"candidate_id\": \"e44aa283528e6fde7d542194\",\n    \"package\": \"ex fugiat\",\n    \"node\": \"quis incididunt ullamco dolor\",\n    \"self_disclosures\": [\n        {\n            \"description\": \"I made a mistake and grew from this experience.\",\n            \"date\": \"2019-11-01\",\n            \"location\": {\n                \"state\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"county\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"country\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            },\n            \"offense_level\": \"Misdemeanor\",\n            \"offense_category\": \"Insurance Fraud\",\n            \"sentence\": \"24 months probation\",\n            \"time_served\": \"20 months probation\"\n        },\n        {\n            \"description\": \"I made a mistake and grew from this experience.\",\n            \"date\": \"2019-11-01\",\n            \"location\": {\n                \"state\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"county\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"country\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            },\n            \"offense_level\": \"Misdemeanor\",\n            \"offense_category\": \"Insurance Fraud\",\n            \"sentence\": \"24 months probation\",\n            \"time_served\": \"20 months probation\"\n        }\n    ],\n    \"work_locations\": [\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        },\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        }\n    ],\n    \"tags\": [\n        \"Duis proident culpa\",\n        \"Lorem nostrud qui tempor\"\n    ]\n}"
+            }
+        },
+        "functionality": "Creates a new Report resource.\n\n<b>Notes: </b>\n- Credit Checks require a complete Candidate address, and may not be\ninitiated using the `/reports`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Subscription",
+        "api_call": "https://api.checkr.com/v1/subscriptions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves an existing Subscription.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Cancel an existing Subscription",
+        "api_call": "https://api.checkr.com/v1/subscriptions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Cancels an existing Subscription.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Subscription",
+        "api_call": "https://api.checkr.com/v1/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"package\": \"fugiat Duis ex incididunt\",\n    \"candidate_id\": \"deserunt d\",\n    \"start_date\": \"1980-10-14\",\n    \"interval_count\": -31488250,\n    \"interval_unit\": \"day\"\n}"
+            }
+        },
+        "functionality": "Creates a new Subscription.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Continuous Check",
+        "api_call": "https://api.checkr.com/v1/continuous_checks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Continuous Check with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Update an existing Continuous Check",
+        "api_call": "https://api.checkr.com/v1/continuous_checks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"node\": \"irure fugiat\",\n    \"work_locations\": [\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        },\n        {\n            \"state\": \"CA\",\n            \"country\": \"US\",\n            \"city\": \"San Francisco\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Updates the node and/or work locations of an existing Continuous Check.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Cancel an existing Continuous Check",
+        "api_call": "https://api.checkr.com/v1/continuous_checks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Cancels an existing Continuous Check.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve a Webhook",
+        "api_call": "https://api.checkr.com/v1/webhooks/$irure incididunt",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the existing Webhook corresponding to the input ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Delete a Webhook",
+        "api_call": "https://api.checkr.com/v1/webhooks/$irure incididunt",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the existing Webhook corresponding to the input ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Webhook",
+        "api_call": "https://api.checkr.com/v1/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"webhook_url\": \"https://example.com\",\n    \"include_object\": false,\n    \"live\": true\n}"
+            }
+        },
+        "functionality": "Creates a new Webhook resource. An account can have a maximum of 2 webhooks.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Webhooks",
+        "api_call": "https://api.checkr.com/v1/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Webhooks\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve authenticated account details",
+        "api_call": "https://api.checkr.com/v1/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns Account details for the authenticated account.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Create a new Account",
+        "api_call": "https://api.checkr.com/v1/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"56269e3411a549fd07ed8d92\",\n    \"name\": \"Acme Corporation\",\n    \"purpose\": \"employment\",\n    \"user\": {\n        \"full_name\": \"Jeanette Hughes\",\n        \"email\": \"user@example.com\"\n    },\n    \"company\": {\n        \"city\": \"San Francisco\",\n        \"dba_name\": \"Acme\",\n        \"industry\": \"72\",\n        \"state\": \"CA\",\n        \"street\": \"123 Main Street\",\n        \"tax_id\": \"123456789\",\n        \"zipcode\": \"94107\",\n        \"incorporation_state\": \"CA\",\n        \"incorporation_type\": \"non-profit\",\n        \"phone\": \"206-555-0100\",\n        \"website\": \"https://www.example.com\"\n    },\n    \"oauth_authorize\": false,\n    \"default_compliance_city\": \"San Francisco\",\n    \"default_compliance_state\": \"CA\"\n}"
+            }
+        },
+        "functionality": "Creates a customer Account associated with your [Partner Application](#section/Checkr-Partners).\nOnly Checkr Partners are authorized to use this endpoint.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Get Counties by State(s)",
+        "api_call": "https://api.checkr.com/v1/counties?states=irure incididunt",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of all counties for the input state(s). If no state is provided with the query, returns a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing County Criminal Search",
+        "api_call": "https://api.checkr.com/v1/county_criminal_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing County Criminal Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve a Document",
+        "api_call": "https://api.checkr.com/v1/documents/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Document with the input ID.\n\nReport Document IDs can be retrieved from the [Retrieve an existing Report](#operation/getReport)\nendpoint. Candidate"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Education Verification",
+        "api_call": "https://api.checkr.com/v1/education_verifications/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Education Verification with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Employment Verification",
+        "api_call": "https://api.checkr.com/v1/employment_verifications/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Employment Verification with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Federal Criminal Search",
+        "api_call": "https://api.checkr.com/v1/federal_criminal_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Federal Criminal Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Global Watchlist Search",
+        "api_call": "https://api.checkr.com/v1/global_watchlist_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Global Watchlist Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Motor Vehicle Report",
+        "api_call": "https://api.checkr.com/v1/motor_vehicle_reports/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Motor Vehicle Report with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing National Criminal Search",
+        "api_call": "https://api.checkr.com/v1/national_criminal_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing National Criminal Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: List existing Nodes",
+        "api_call": "https://api.checkr.com/v1/nodes?include=packages&page=65335862.67224315&per_page=65335862.67224315",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of existing Nodes that make up the current Account Hierarchy.\n\n* If `include=packages` is passed, each Node object"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing Sex Offender Registry Search",
+        "api_call": "https://api.checkr.com/v1/sex_offender_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Sex Offender Registry Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing SSN Trace",
+        "api_call": "https://api.checkr.com/v1/ssn_traces/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing SSN Trace with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve an existing State Criminal Search",
+        "api_call": "https://api.checkr.com/v1/state_criminal_searches/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing State Criminal Search with the input ID.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Checkr.com API Docs: Retrieve a Verification",
+        "api_call": "https://api.checkr.com/v1/verifications/:verification_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an existing Verification with the input ID\n"
+    }
+]

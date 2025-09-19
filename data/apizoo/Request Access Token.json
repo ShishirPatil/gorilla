@@ -1,0 +1,51 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Request Access Token: Request access token",
+        "api_call": "https://demo-accounts.vivapayments.com/connect/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "9631J1BQg51gwWa2zH71d6XM8ceNyE",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "8ry19d2ucqjdbetfgd9vn97egp23vtiwmyccce9fuztt5.apps.vivapayments.com",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

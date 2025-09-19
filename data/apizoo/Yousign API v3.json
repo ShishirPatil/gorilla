@@ -1,0 +1,1580 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate SR",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Signature Request {{$randomAdjective}} #{{$randomBsNoun}}\",\n    \"delivery_mode\": \"email\",\n    \"ordered_signers\": false,\n    \"timezone\": \"Europe/Paris\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload Document in SR",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                        "filesNotInWorkingDirectory": [
+                            "/home/ju/Documents/document.pdf"
+                        ],
+                        "value": null
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    },
+                    {
+                        "key": "initials[alignment]",
+                        "value": "right",
+                        "contentType": "",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "initials[y]",
+                        "value": "70",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "password",
+                        "value": "1234",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "parse_anchors",
+                        "value": "true",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "insert_after_id",
+                        "value": "",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add Signer in SR",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer-{{$randomExampleEmail}}\",\n        \"locale\": \"fr\",\n        \"phone_number\": \"+33600000000\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"height\": 37,\n            \"width\": 85,\n            \"page\": 1,\n            \"x\": 0,\n            \"y\": 0\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"radio_group\",\n            \"page\": 1,\n            \"optional\": false,\n            \"radios\": [\n                {\n                    \"x\": 150,\n                    \"y\": 150\n                },\n                {\n                    \"x\": 250,\n                    \"y\": 250\n                }\n            ]\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"checkbox\",\n            \"name\": \"Checkbox 1\",\n            \"size\": 30,\n            \"optional\": true,\n            \"checked\": false,\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 700\n        }\n    ],\n    \"redirect_urls\": {\n        \"success\": \"{{$randomUrl}}/success\",\n        \"error\": \"{{$randomUrl}}/error\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate SR",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"email\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customExperienceId}}\",\n    \"external_id\": \"an-external-id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Anchors)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    },
+                    {
+                        "key": "parse_anchors",
+                        "value": "true",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"email\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customExperienceId}}\",\n    \"external_id\": \"an-external-id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Manual Fields)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file"
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"page\": 1,\n            \"width\": 180,\n            \"x\": 400,\n            \"y\": 650\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"none\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customExperienceId}}\",\n    \"external_id\": \"an-external-id\",\n    \"audit_trail_locale\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Anchors)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file"
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    },
+                    {
+                        "key": "parse_anchors",
+                        "value": "true",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33760047242\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"otp_sms\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"page\": 1,\n            \"width\": 180,\n            \"x\": 400,\n            \"y\": 650\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"mention\",\n            \"mention\": \"Signature date: %date%\",\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 700\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"text\",\n            \"max_length\": 100,\n            \"question\": \"What is your name?\",\n            \"optional\": true,\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 20\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"checkbox\",\n            \"name\": \"Checkbox 1\",\n            \"optional\": true,\n            \"checked\": false,\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 20\n        }\n    ],\n    \"redirect_urls\": {\n        \"success\": \"{{$randomUrl}}/success\",\n        \"error\": \"{{$randomUrl}}/error\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"none\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customExperienceId}}\",\n    \"external_id\": \"an-external-id\",\n    \"audit_trail_locale\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Manual Fields)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33760047242\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"otp_sms\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"page\": 1,\n            \"width\": 180,\n            \"x\": 400,\n            \"y\": 650\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"mention\",\n            \"mention\": \"Signature date: %date%\",\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 700\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"text\",\n            \"max_length\": 100,\n            \"question\": \"What is your name?\",\n            \"optional\": true,\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 20\n        },\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"checkbox\",\n            \"name\": \"Checkbox 1\",\n            \"optional\": true,\n            \"checked\": false,\n            \"page\": 1,\n            \"x\": 20,\n            \"y\": 20\n        }\n    ],\n    \"redirect_urls\": {\n        \"success\": \"{{$randomUrl}}/success\",\n        \"error\": \"{{$randomUrl}}/error\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"none\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customexperienceId}}\",\n    \"external_id\": \"an-external-id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Anchors)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file"
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    },
+                    {
+                        "key": "parse_anchors",
+                        "value": "true",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 1. Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"The name of your Signature Request #{{$randomInt}}\",\n    \"delivery_mode\": \"none\",\n    \"timezone\": \"Europe/Paris\",\n    \"custom_experience_id\": \"{{customexperienceId}}\",\n    \"external_id\": \"an-external-id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 2. Upload a Document (Manual Fields)",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file"
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 3. Add  a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"page\": 1,\n            \"width\": 180,\n            \"x\": 400,\n            \"y\": 650\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: 4. Activate the Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Initiate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"A Signature Request #{{$randomInt}}\",\n    \"ordered_signers\": false,\n    \"delivery_mode\": \"email\",\n    \"reminder_settings\": {\n        \"interval_in_days\": 7,\n        \"max_occurrences\": 5\n    },\n    \"timezone\": \"Europe/Paris\",\n    \"email_custom_note\": \"Please sign these documents as soon as possible. Thanks.\",\n    \"external_id\": \"an-external-id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Signature Requests",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Fetch a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Updated Signature Request #{{$randomInt}}\",\n    \"ordered_signers\": true,\n    \"delivery_mode\": \"email\",\n    \"timezone\": \"Europe/Paris\",\n    \"email_custom_note\": \"Please sign these documents as soon as possible.\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Activate a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/activate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update an ongoing Signature Request's expiration date",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"expiration_date\": \"{{expirationDate}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Cancel a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/cancel",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"reason\": \"contractualization_aborted\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Send manual reminder to Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}/send_reminder",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Reactivate an expired Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/reactivate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"expiration_date\": \"{{expirationDate}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Download Signature Request Audit Trails",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/audit_trails/download",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Add a Document to a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings."
+                    },
+                    {
+                        "key": "nature",
+                        "value": "signable_document",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List a Signature Request Documents",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get a Document",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents/{{documentId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Document",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents/{{documentId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"nature\": \"signable_document\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Document from a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents/{{documentId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Replace a Document",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents/{{documentId}}/replace",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Download Documents from a Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/documents/download?version=current",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Create Followers",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/followers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"email\": \"follower_{{$randomEmail}}\",\n        \"locale\": \"fr\"\n    },\n    {\n        \"email\": \"follower_{{$randomEmail}}\",\n        \"locale\": \"en\"\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Followers",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/followers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Create a new Approver",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/approvers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"approver_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Add a new Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"info\": {\n        \"first_name\": \"{{$randomFirstName}}\",\n        \"last_name\": \"{{$randomLastName}}\",\n        \"email\": \"signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n    },\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Add a User as Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"user_id\": \"{{userId}}\",\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"height\": 37,\n            \"width\": 85,\n            \"page\": 1,\n            \"x\": 0,\n            \"y\": 0\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Add a Contact as Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"contact_id\": \"{{contactId}}\",\n    \"signature_level\": \"electronic_signature\",\n    \"signature_authentication_mode\": \"no_otp\",\n    \"fields\": [\n        {\n            \"document_id\": \"{{documentId}}\",\n            \"type\": \"signature\",\n            \"height\": 37,\n            \"width\": 85,\n            \"page\": 1,\n            \"x\": 0,\n            \"y\": 0\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Signature Request Signers",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get a signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Signer",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"info\": {\n        \"first_name\": \"Updated {{$randomFirstName}}\",\n        \"last_name\": \"Updated {{$randomLastName}}\",\n        \"email\": \"update_signer_{{$randomEmail}}\",\n        \"phone_number\": \"+33730000000\",\n        \"locale\": \"fr\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Download Audit Trail PDF",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}/audit_trails/download",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get a Signer Audit Trail",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/signers/{{signerId}}/audit_trails",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Create a Custom Experience",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Custom Experience #{{$randomInt}}\",\n    \"landing_page_disabled\": true,\n    \"side_panel_disabled\": false,\n    \"text_color\": \"{{$randomHexColor}}\",\n    \"background_color\": \"{{$randomHexColor}}\",\n    \"button_color\": \"{{$randomHexColor}}\",\n    \"text_button_color\": \"{{$randomHexColor}}\",\n    \"disabled_notifications\": [\n        \"approver.expiration_date_reminder\",\n        \"approver.canceled\",\n        \"approver.expiration_date_updated\",\n        \"follower.approved\",\n        \"follower.canceled\",\n        \"follower.completed\",\n        \"follower.expired\",\n        \"follower.rejected\",\n        \"follower.signed\",\n        \"sender.approved\",\n        \"sender.canceled\",\n        \"sender.completed\",\n        \"sender.rejected\",\n        \"sender.signed\",\n        \"signer.expiration_date_reminder\",\n        \"signer.canceled\",\n        \"signer.completed\",\n        \"signer.signed\",\n        \"signer.expiration_date_updated\"\n    ],\n    \"email_logo_disabled\": true,\n    \"email_header_text_disabled\": false,\n    \"email_expiration_text_disabled\": true,\n    \"email_footer_signature_disabled\": true,\n    \"redirect_urls\": {\n        \"success\": \"{{$randomUrl}}/success\",\n        \"error\": \"{{$randomUrl}}/error\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Custom Experiences",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get a given Custom Experience",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences/{{customExperienceId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Custom Experience",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences/{{customExperienceId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"My First Updated Custom Experience\",\n    \"landing_page_disabled\": true,\n    \"side_panel_disabled\": false,\n    \"text_color\": \"{{$randomHexColor}}\",\n    \"background_color\": \"{{$randomHexColor}}\",\n    \"button_color\": \"{{$randomHexColor}}\",\n    \"text_button_color\": \"{{$randomHexColor}}\",\n    \"disabled_notifications\": [\n        \"approver.expiration_date_reminder\",\n        \"approver.canceled\",\n        \"approver.expiration_date_updated\",\n        \"follower.approved\",\n        \"follower.canceled\",\n        \"follower.completed\",\n        \"follower.expired\",\n        \"follower.rejected\",\n        \"follower.signed\",\n        \"sender.approved\",\n        \"sender.canceled\",\n        \"sender.completed\",\n        \"sender.rejected\",\n        \"sender.signed\",\n        \"signer.expiration_date_reminder\",\n        \"signer.canceled\",\n        \"signer.completed\",\n        \"signer.signed\",\n        \"signer.expiration_date_updated\"\n    ],\n    \"email_logo_disabled\": true,\n    \"email_header_text_disabled\": false,\n    \"email_expiration_text_disabled\": true,\n    \"email_footer_signature_disabled\": true,\n    \"redirect_urls\": {\n        \"success\": \"{{$randomUrl}}/success\",\n        \"error\": \"{{$randomUrl}}/error\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Custom Experience",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences/{{customExperienceId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Set a Custom Experience Logo",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences/{{customExperienceId}}/logo",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Custom Experience Logo",
+        "api_call": "https://api-sandbox.yousign.app/v3/custom_experiences/{{customExperienceId}}/logo",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Upload an Electronic Seal Image",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seal_images",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings."
+                    },
+                    {
+                        "key": "name",
+                        "value": "seal image name",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Upload an Electronic Seal Document",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seal_documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Create an Electronic Seal",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seals",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"document_id\": \"{{electronicSealDocumentId}}\",\n    \"image_id\": \"{{electronicSealImageId}}\",\n    \"timestamp\": false,\n    \"fields\": [\n        {\n            \"type\": \"seal\",\n            \"height\": 200,\n            \"width\": 250,\n            \"page\": 1,\n            \"x\": 0,\n            \"y\": 0\n        }\n    ]\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get an Electronic Seal",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seals/{{electronicSealId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Get an Electronic Seal Audit Trail",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seals/{{electronicSealId}}/audit_trails",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Download an Electronic Seal Audit Trail",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seals/{{electronicSealId}}/audit_trails/download",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Download an Electronic Seal Document",
+        "api_call": "https://api-sandbox.yousign.app/v3/electronic_seal_documents/{{electronicSealDocumentId}}/download",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Users",
+        "api_call": "https://api-sandbox.yousign.app/v3/users",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Configure a new Webhook",
+        "api_call": "https://api-sandbox.yousign.app/v3/webhooks",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"endpoint\": \"https://webhook.site/ecc1bbef-06b6-4df1-94e2-e28cb8af0ec7\",\n    \"description\": \"Webhook subscription description\",\n    \"sandbox\": false,\n    \"subscribed_events\": [\n        \"*\"\n    ],\n    \"secret_key\": null,\n    \"scopes\": [\n        \"*\"\n    ],\n    \"auto_retry\": false,\n    \"enabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Webhooks",
+        "api_call": "https://api-sandbox.yousign.app/v3/webhooks",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Fetch a Webhook",
+        "api_call": "https://api-sandbox.yousign.app/v3/webhooks/{{webhookId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Webhook",
+        "api_call": "https://api-sandbox.yousign.app/v3/webhooks/{{webhookId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"enabled\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Webhook",
+        "api_call": "https://api-sandbox.yousign.app/v3/webhooks/{{webhookId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Fetch Signature Request Metadata",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/metadata",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Add Metadata for Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/metadata",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"key\": \"value\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update Metadata of Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/metadata",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"key\": \"value\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete Metadata of Signature Request",
+        "api_call": "https://api-sandbox.yousign.app/v3/signature_requests/{{signatureRequestId}}/metadata",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Create a Contact",
+        "api_call": "https://api-sandbox.yousign.app/v3/contacts",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first_name\": \"{{$randomFirstName}}\",\n    \"last_name\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"locale\": \"fr\",\n    \"phone_number\": \"+33730000000\",\n    \"company_name\": \"{{$randomCompanyName}}\",\n    \"job_title\": \"{{$randomJobTitle}}\",\n    \"address_line_1\": \"{{$randomStreetAddress}}\",\n    \"address_line_2\": \"{{$randomNoun}}\",\n    \"address_city\": \"{{$randomCity}}\",\n    \"address_postal_code\": \"75009\",\n    \"address_country\": \"{{$randomCountry}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: List Contacts",
+        "api_call": "https://api-sandbox.yousign.app/v3/contacts",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Fetch a Contact",
+        "api_call": "https://api-sandbox.yousign.app/v3/contacts/{{contactId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Update a Contact",
+        "api_call": "https://api-sandbox.yousign.app/v3/contacts/{{contactId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first_name\": \"updated-{{$randomFirstName}}\",\n    \"last_name\": \"updated-{{$randomLastName}}\",\n    \"email\": \"updated-contact-{{$randomExampleEmail}}\",\n    \"locale\": \"en\",\n    \"phone_number\": \"+33760047243\",\n    \"company_name\": \"updated-{{$randomCompanyName}}\",\n    \"job_title\": \"updated-{{$randomJobTitle}}\",\n    \"address_line_1\": \"updated-{{$randomStreetAddress}}\",\n    \"address_line_2\": \"updated-{{$randomNoun}}\",\n    \"address_city\": \"updated-{{$randomCity}}\",\n    \"address_postal_code\": \"updated-75009\",\n    \"address_country\": \"updated-{{$randomCountry}}\",\n    \"workspace_id\": null\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Delete a Contact",
+        "api_call": "https://api-sandbox.yousign.app/v3/contacts/{{contactId}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Fetch consumption",
+        "api_call": "https://api-sandbox.yousign.app/v3/consumptions?from=2023-01-01&to=2023-12-17",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Yousign API v3: Export consumption",
+        "api_call": "https://api-sandbox.yousign.app/v3/consumptions/export?from=2023-01-01&to=2023-12-17",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

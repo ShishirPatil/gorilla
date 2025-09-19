@@ -1,0 +1,124 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Medical Network Eligibility v3: Check Eligibility",
+        "api_call": "https://{{url}}/medicalnetwork/eligibility/v3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{Bearer}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{Bearer}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"controlNumber\":\"123456789\",\n  \"tradingPartnerServiceId\": \"CMSMED\",\n  \"provider\":\n  {\n    \"organizationName\": \"provider_name\",\n    \"npi\": \"0123456789\",\n    \"serviceProviderNumber\": \"54321\",\n    \"providerCode\": \"AD\",\n    \"referenceIdentification\": \"54321g\"\n  },\n  \"subscriber\": {\n    \"memberId\": \"0000000000\",\n    \"firstName\": \"johnOne\",\n    \"lastName\": \"doeOne\",\n    \"gender\": \"M\",\n    \"dateOfBirth\": \"18800102\",\n    \"ssn\": \"555443333\",\n    \"idCard\": \"card123\"\n  },\n  \"dependents\": [\n    {\n      \"firstName\":\"janeOne\",\n      \"lastName\":\"doeone\",\n      \"gender\":\"F\",\n      \"dateOfBirth\":\"18160421\",\n      \"groupNumber\": \"1111111111\"\n    }\n  ],\n  \"encounter\": {\n    \"beginningDateOfService\": \"20100101\",\n    \"endDateOfService\": \"20100102\",\n    \"serviceTypeCodes\": [\n      \"98\"\n    ]\n  }\n}\n"
+            }
+        },
+        "functionality": "This endpoint checks if a patient has healthcare coverage with a specific insurance company (payer)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Medical Network Eligibility v3: Check Eligibility x12",
+        "api_call": "https://{{url}}/medicalnetwork/eligibility/v3/raw-x12",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{Bearer}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{Bearer}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\"x12\": \"ISA*00*          *01*password  *ZZ*something      *ZZ*EMDEON         *200708*0603*^*00501*123456789*0*P*:~GS*HS*LLX1210001*UHC*20200708*0603*123456789*X*005010X279A1~ST*270*123456789*005010X279A1~BHT*0022*13*123456789*20200708*0603~HL*1**20*1~NM1*PR*2*Unknown*****PI*serviceId~HL*2*1*21*1~NM1*1P*2*provider_name*****XX*0123456789~PRV*AD*PXC*54321g~HL*3*2*22*1~TRN*1*123456789*9EMDEON999~NM1*IL*1*doeOne*johnOne****MI*0000000000~REF*SY*555443333~REF*HJ*card123~DMG*D8*18800102*M~HL*4*3*23*0~TRN*1*123456789*9EMDEON999~NM1*03*1*doeone*janeOne~REF*6P*1111111111~DMG*D8*18160421*F~DTP*291*RD8*20100101-20100102~EQ*98~SE*21*123456789~GE*1*123456789~IEA*1*123456789~\"}"
+            }
+        },
+        "functionality": "This service uses the standard X12 EDI 270 Eligibility transaction, and\u00a0[formats it in JSON](https://developers.changehealthcare.com/eligibilityandclaims/docs/eligibility-json-to-edi-api-mapping)\u00a0for an HTTP request. Accepts JSON with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Medical Network Eligibility v3: Health Check",
+        "api_call": "https://{{url}}/medicalnetwork/eligibility/v3/healthcheck",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{Bearer}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint verifies that the operating status of the API is optimal and the API is accessible. For more information,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Medical Network Eligibility v3: Security Authorization Access Token",
+        "api_call": "https://{{url}}/apip/auth/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"Enter your client id here\",\n  \"client_secret\": \"Enter your client secret here\",\n  \"grant_type\": \"client_credentials\"\n}"
+            }
+        },
+        "functionality": "The Change Healthcare uses OAuth2 to create a secure connection with our API users, which requires a bearer authorization token"
+    }
+]
