@@ -1,6 +1,7 @@
 import json
 import os
 import time
+from typing import Any, Dict, List
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
@@ -15,7 +16,7 @@ from bfcl_eval.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI, RateLimitError
-from openai.types.responses import Response
+from openai.types.responses import Response, ResponseOutputMessage, ResponseFunctionToolCall
 
 
 class OpenAIResponsesHandler(BaseHandler):
@@ -104,6 +105,38 @@ class OpenAIResponsesHandler(BaseHandler):
 
         return inference_data
 
+    def _response_outputs_to_input_list(self, outputs: List[Any]) -> List[Dict[str, Any]]:
+        input_items: List[Dict[str, Any]] = []
+
+        for item in outputs:
+            if isinstance(item, ResponseOutputMessage):
+                input_items.append({
+                    "type": "message",
+                    "role": item.role,
+                    "content": [
+                        (
+                            {"type": "output_text", "text": c.text}
+                            if hasattr(c, "text") else
+                            {"type": "refusal", "refusal": c.refusal}
+                        )
+                        for c in item.content
+                    ]
+                })
+            elif isinstance(item, ResponseFunctionToolCall):
+                data = {
+                    "type": "function_call",
+                    "name": item.name,
+                    "arguments": item.arguments,
+                    "call_id": item.call_id,
+                }
+                if hasattr(item, "status"):
+                    data["status"] = item.status
+                input_items.append(data)
+            else:
+                continue
+
+        return input_items
+
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
 
@@ -133,9 +166,11 @@ class OpenAIResponsesHandler(BaseHandler):
                 for summary in item.summary:
                     reasoning_content += summary.text + "\n"
 
+        model_responses_message_for_chat_history = self._response_outputs_to_input_list(api_response.output)
+
         return {
             "model_responses": model_responses,
-            "model_responses_message_for_chat_history": api_response.output,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "tool_call_ids": tool_call_ids,
             "reasoning_content": reasoning_content,
             "input_token": api_response.usage.input_tokens,

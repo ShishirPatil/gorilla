@@ -81,6 +81,35 @@ class OpenAICompletionsHandler(BaseHandler):
 
         return inference_data
 
+    def _to_message_dict(self, msg) -> dict:
+        message = {
+            "role": msg.role,
+            "content": msg.content or "",
+            "tool_calls": None,
+            "function_call": None,
+        }
+
+        if getattr(msg, "tool_calls", None):
+            message["tool_calls"] = [
+                {
+                    "id": tc.id,
+                    "type": tc.type,
+                    "function": {
+                        "name": tc.function.name,
+                        "arguments": tc.function.arguments,
+                    },
+                }
+                for tc in msg.tool_calls
+            ]
+
+        if getattr(msg, "function_call", None):
+            message["function_call"] = {
+                "name": msg.function_call.name,
+                "arguments": msg.function_call.arguments,
+            }
+
+        return message
+
     def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
@@ -94,7 +123,7 @@ class OpenAICompletionsHandler(BaseHandler):
             model_responses = api_response.choices[0].message.content
             tool_call_ids = []
 
-        model_responses_message_for_chat_history = api_response.choices[0].message
+        model_responses_message_for_chat_history = self._to_message_dict(api_response.choices[0].message)
 
         return {
             "model_responses": model_responses,
