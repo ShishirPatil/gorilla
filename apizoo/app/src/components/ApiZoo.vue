@@ -8,7 +8,8 @@
       <a href="../leaderboard.html">Leaderboard</a>
       <span class="nav-separator">|</span>
       <a href="apizoo/">API Zoo Index</a>
-      
+      <span class="nav-separator">|</span>
+      <a href="../addapi/">Add Your API</a>
   </div>
   <div class="api-zoo-container">
     <h1>🦍 Gorilla: API Zoo Index 🚀</h1>
