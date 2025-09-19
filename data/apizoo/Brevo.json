@@ -1,0 +1,4366 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send a transactional email",
+        "api_call": "{{baseUrl}}/smtp/email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"sender\": {\n        \"name\": \"Mary from MyShop\",\n        \"email\": \"no-reply@myshop.com\"\n    },\n    \"to\": [\n        {\n            \"email\": \"jimmy98@example.com\",\n            \"name\": \"Jimmy\"\n        }\n    ],\n    \"bcc\": [\n        {\n            \"email\": \"helen9766@example.com\",\n            \"name\": \"Helen\"\n        },\n        {\n            \"email\": \"helen9766@example.com\",\n            \"name\": \"Helen\"\n        }\n    ],\n    \"cc\": [\n        {\n            \"email\": \"ann6533@example.com\",\n            \"name\": \"Ann\"\n        }\n    ],\n    \"htmlContent\": \"<!DOCTYPE html> <html> <body> <h1>This is sample HTML</h1> </html>\",\n    \"subject\": \"Login Email confirmation\",\n    \"replyTo\": {\n        \"email\": \"ann6533@example.com\",\n        \"name\": \"Ann\"\n    },\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of transactional emails on the basis of allowed filters",
+        "api_call": "{{baseUrl}}/smtp/emails?email=&templateId=&messageId=&startDate=&endDate=&sort=desc&limit=500&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will show the list of emails for past 30 days by default. To retrieve emails before that time,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete scheduled emails by batchId or messageId",
+        "api_call": "{{baseUrl}}/smtp/email/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete scheduled batch of emails by batchId or single scheduled email by messageId"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the personalized content of a sent transactional email",
+        "api_call": "{{baseUrl}}/smtp/emails/:uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Fetch scheduled emails by batchId or messageId",
+        "api_call": "{{baseUrl}}/smtp/emailStatus/:identifier?startDate=2022-02-02&endDate=2022-03-02&sort=desc&status=queued&limit=100&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetch scheduled batch of emails by batchId or single scheduled email by messageId (Can retrieve data upto 30 days old)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of email templates",
+        "api_call": "{{baseUrl}}/smtp/templates?templateStatus=false&limit=50&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create an email template",
+        "api_call": "{{baseUrl}}/smtp/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"sender\": {\n    \"name\": \"Mary from MyShop\",\n    \"email\": \"contact@myshop.com\",\n    \"id\": 3\n  },\n  \"subject\": \"Thanks for your purchase !\",\n  \"templateName\": \"Order Confirmation - EN\",\n  \"tag\": \"OrderConfirmation\",\n  \"htmlContent\": \"The order n\u00b0xxxxx has been confirmed. Thanks for your purchase\",\n  \"htmlUrl\": \"https://html.domain.com\",\n  \"replyTo\": \"support@myshop.com\",\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"attachmentUrl\": \"https://attachment.domain.com\",\n  \"isActive\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Returns the template information",
+        "api_call": "{{baseUrl}}/smtp/templates/:templateId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update an email template",
+        "api_call": "{{baseUrl}}/smtp/templates/:templateId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"tag\": \"OrderConfirmation\",\n  \"sender\": {\n    \"name\": \"Mary from MyShop\",\n    \"email\": \"contact@myshop.com\",\n    \"id\": 3\n  },\n  \"templateName\": \"Order Confirmation - EN\",\n  \"htmlContent\": \"The order n\u00b0xxxxx has been confirmed. Thanks for your purchase\",\n  \"htmlUrl\": \"https://html.domain.com\",\n  \"subject\": \"Thanks for your purchase !\",\n  \"replyTo\": \"support@myshop.com\",\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"attachmentUrl\": \"https://attachment.domain.com\",\n  \"isActive\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an inactive email template",
+        "api_call": "{{baseUrl}}/smtp/templates/:templateId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send a template to your test list",
+        "api_call": "{{baseUrl}}/smtp/templates/:templateId/sendTest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emailTo\": [\n    \"helen.jurger@example.com\",\n    \"helen.jurger@example.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your transactional email activity aggregated over a period of time",
+        "api_call": "{{baseUrl}}/smtp/statistics/aggregatedReport?startDate=&endDate=&days=7&tag=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will show the aggregated stats for past 90 days by default if `startDate` and `endDate` OR `days` is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your transactional email activity aggregated per day",
+        "api_call": "{{baseUrl}}/smtp/statistics/reports?limit=10&offset=0&startDate=&endDate=&days=7&tag=&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all your transactional email activity (unaggregated events)",
+        "api_call": "https://api.sendinblue.com/v3/smtp/statistics/events?days=11&messageId=202212281024.62341432715@smtp-relay.mailin.fr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{api-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "api-key",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will show the aggregated stats for past 30 days by default if `startDate` and `endDate` OR `days` is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of blocked or unsubscribed transactional contacts",
+        "api_call": "{{baseUrl}}/smtp/blockedContacts?startDate=&endDate=&limit=50&offset=0&senders=&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Unblock or resubscribe a transactional contact",
+        "api_call": "{{baseUrl}}/smtp/blockedContacts/:email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of blocked domains",
+        "api_call": "{{baseUrl}}/smtp/blockedDomains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the list of blocked domains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Add a new domain to the list of blocked domains",
+        "api_call": "{{baseUrl}}/smtp/blockedDomains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"domain\": \"example.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Blocks a new domain in order to avoid messages being sent to the same"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Unblock an existing domain from the list of blocked domains",
+        "api_call": "{{baseUrl}}/smtp/blockedDomains/:domain",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Unblocks an existing domain from the list of blocked domains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete hardbounces",
+        "api_call": "{{baseUrl}}/smtp/deleteHardbounces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"startDate\": \"nostrud magna\",\n  \"endDate\": \"incididunt\",\n  \"contactEmail\": \"alex76@example.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an SMTP transactional log",
+        "api_call": "{{baseUrl}}/smtp/log/:messageId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all the events for the received emails.",
+        "api_call": "{{baseUrl}}/inbound/events?sender=&startDate=1947-08-13&endDate=1947-08-13&limit=100&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will show the list of all the events for the received emails."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Fetch all events history for one particular received email.",
+        "api_call": "{{baseUrl}}/inbound/events/:uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will show the list of all events history for one particular received email."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Retrieve inbound attachment with download token.",
+        "api_call": "{{baseUrl}}/inbound/attachments/:downloadToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                }
+            ]
+        },
+        "functionality": "This endpoint will retrieve inbound attachment with download token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send SMS message to a mobile number",
+        "api_call": "{{baseUrl}}/transactionalSMS/sms",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"content\": \"Enter this code:CCJJG8 to validate your account\",\n  \"recipient\": \"33689965433\",\n  \"sender\": \"MyShop\",\n  \"type\": \"marketing\",\n  \"tag\": \"accountValidation\",\n  \"webUrl\": \"http://requestb.in/173lyyx1\",\n  \"unicodeEnabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your SMS activity aggregated over a period of time",
+        "api_call": "{{baseUrl}}/transactionalSMS/statistics/aggregatedReport?startDate=&endDate=&days=7&tag=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your SMS activity aggregated per day",
+        "api_call": "{{baseUrl}}/transactionalSMS/statistics/reports?startDate=&endDate=&days=7&tag=&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all your SMS activity (unaggregated events)",
+        "api_call": "{{baseUrl}}/transactionalSMS/statistics/events?limit=50&startDate=&endDate=&offset=0&days=7&phoneNumber=&event=bounces&tags=&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send a WhatsApp message",
+        "api_call": "{{baseUrl}}/v3/whatsapp/sendMessage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"contactNumbers\": [\n        \"919808240608\"\n    ],\n    \"senderNumber\": \"919900751564\",\n    \"xtext\": \"saranghe\",\n    \"templateId\": 744919760309407\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all your WhatsApp activity (unaggregated events) Copy",
+        "api_call": "{{baseUrl}}/v3/whatsapp/statistics/events?limit=1&offset=9&event=sent&startDate=&endDate=&sort=desc&contactNumber=918077039164&days=3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "api-key",
+                    "value": "{{api-key}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get an email campaign report",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update an email campaign",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"tag\": \"Newsletter\",\n  \"sender\": {\n    \"name\": \"Summer Deals\",\n    \"email\": \"newsletter@myshop.com\",\n    \"id\": 3\n  },\n  \"name\": \"Newsletter - May 2023\",\n  \"htmlContent\": \"<!DOCTYPE html> <html> <body> <h1>Hot summer deals have just dropped</h1> <p>Hit the link below to see what's new!</p> </body> </html>\",\n  \"htmlUrl\": \"https://html.domain.com\",\n  \"scheduledAt\": \"ipsum\",\n  \"subject\": \"Discover the New Collection !\",\n  \"replyTo\": \"support@myshop.com\",\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"recipients\": {\n    \"exclusionListIds\": [\n      8,\n      8\n    ],\n    \"listIds\": [\n      32,\n      32\n    ]\n  },\n  \"attachmentUrl\": \"https://attachment.domain.com\",\n  \"inlineImageActivation\": true,\n  \"mirrorActive\": true,\n  \"recurring\": false,\n  \"footer\": \"[DEFAULT_FOOTER]\",\n  \"header\": \"[DEFAULT_HEADER]\",\n  \"utmCampaign\": \"NL_05_2017\",\n  \"params\": {\n  },\n  \"sendAtBestTime\": true,\n  \"abTesting\": true,\n  \"subjectA\": \"Discover the New Collection!\",\n  \"subjectB\": \"Want to discover the New Collection?\",\n  \"splitRule\": 50,\n  \"winnerCriteria\": \"open\",\n  \"winnerDelay\": 50,\n  \"ipWarmupEnable\": true,\n  \"initialQuota\": 3000,\n  \"increaseRate\": 70\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an email campaign",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send an email campaign immediately, based on campaignId",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/sendNow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send an email campaign to your test list",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/sendTest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emailTo\": [\n    \"helen.jurger@example.com\",\n    \"helen.jurger2@example.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update an email campaign status",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"status\": \"suspended\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send the report of a campaign",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/sendReport",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": {\n    \"body\": \"Please find attached the report of our last email campaign.\",\n    \"to\": [\n      \"jim.suehan@example.com\",\n      \"jim.suehan@example.com\"\n    ]\n  },\n  \"language\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "A PDF will be sent to the specified email addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get an A/B test email campaign results",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/abTestCampaignResult",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Obtain winning version of an A/B test email campaign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a shared template url",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/sharedUrl",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get a unique URL to share & import an email template from one Sendinblue account to another."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Export the recipients of an email campaign",
+        "api_call": "{{baseUrl}}/emailCampaigns/:campaignId/exportRecipients",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"recipientsType\": \"openers\",\n  \"notifyURL\": \"http://requestb.in/173lyyx1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Return all your created email campaigns",
+        "api_call": "{{baseUrl}}/emailCampaigns?type=&status=&startDate=&endDate=&limit=50&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create an email campaign",
+        "api_call": "{{baseUrl}}/emailCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Newsletter - May 2017\",\n  \"sender\": {\n    \"name\": \"Mary from MyShop\",\n    \"email\": \"newsletter@myshop.com\",\n    \"id\": 3\n  },\n  \"tag\": \"Newsletter\",\n  \"htmlContent\": \"<!DOCTYPE html> <html> <body> <h1>Confirm you email</h1> <p>Please confirm your email address by clicking on the link below</p> </body> </html>\",\n  \"htmlUrl\": \"https://html.domain.com\",\n  \"templateId\": 71900287,\n  \"scheduledAt\": \"Excepteur molli\",\n  \"subject\": \"Discover the New Collection !\",\n  \"replyTo\": \"support@myshop.com\",\n  \"toField\": \"{FNAME} {LNAME}\",\n  \"recipients\": {\n    \"exclusionListIds\": [\n      8,\n      8\n    ],\n    \"listIds\": [\n      32,\n      32\n    ]\n  },\n  \"attachmentUrl\": \"https://attachment.domain.com\",\n  \"inlineImageActivation\": true,\n  \"mirrorActive\": true,\n  \"footer\": \"[DEFAULT_FOOTER]\",\n  \"header\": \"[DEFAULT_HEADER]\",\n  \"utmCampaign\": \"NL_05_2017\",\n  \"params\": {\n    \"veniam_8\": {},\n    \"nullac\": {},\n    \"cillum3c\": {}\n  },\n  \"sendAtBestTime\": true,\n  \"abTesting\": true,\n  \"subjectA\": \"Discover the New Collection!\",\n  \"subjectB\": \"Want to discover the New Collection?\",\n  \"splitRule\": 50,\n  \"winnerCriteria\": \"open\",\n  \"winnerDelay\": 50,\n  \"ipWarmupEnable\": true,\n  \"initialQuota\": 3000,\n  \"increaseRate\": 70,\n  \"unsubscriptionPageId\": \"62cbb7fabbe85021021aac52\",\n  \"updateFormId\": \"6313436b9ad40e23b371d095\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Upload an image to your account's image gallery",
+        "api_call": "{{baseUrl}}/emailCampaigns/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"imageUrl\": \"https://somedomain.com/image1.jpg\",\n  \"name\": \"nature.jpg\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Returns the information for all your created SMS campaigns",
+        "api_call": "{{baseUrl}}/smsCampaigns?status=archive&startDate=&endDate=&limit=500&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Creates an SMS campaign",
+        "api_call": "{{baseUrl}}/smsCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"content\": \"Get a discount by visiting our NY store and saying : Happy Spring!\",\n  \"name\": \"Spring Promo Code\",\n  \"sender\": \"MyShop\",\n  \"recipients\": {\n    \"listIds\": [\n      54,\n      54\n    ],\n    \"exclusionListIds\": [\n      15,\n      15\n    ]\n  },\n  \"scheduledAt\": \"YYYY-MM-DDTHH:mm:ss.SSSZ\",\n  \"unicodeEnabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get an SMS campaign",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update an SMS campaign",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Spring Promo Code\",\n  \"sender\": \"MyShop\",\n  \"content\": \"Get a discount by visiting our NY store and saying : Happy Spring!\",\n  \"recipients\": {\n    \"listIds\": [\n      54,\n      54\n    ],\n    \"exclusionListIds\": [\n      15,\n      15\n    ]\n  },\n  \"scheduledAt\": \"irure deserunt mollit dolore\",\n  \"unicodeEnabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an SMS campaign",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send your SMS campaign immediately",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId/sendNow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a campaign's status",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"status\": \"suspended\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send a test SMS campaign",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId/sendTest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"phoneNumber\": \"33689965433\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Export an SMS campaign's recipients",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId/exportRecipients",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"recipientsType\": \"answered\",\n  \"notifyURL\": \"http://requestb.in/173lyyx1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "It returns the background process ID which on completion calls the notify URL that you have set in the input."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send an SMS campaign's report",
+        "api_call": "{{baseUrl}}/smsCampaigns/:campaignId/sendReport",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": {\n    \"body\": \"Please find attached the report of our last email campaign.\",\n    \"to\": [\n      \"jim.suehan@example.com\",\n      \"jim.suehan@example.com\"\n    ]\n  },\n  \"language\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a WhatsApp campaign",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/?campaignId=12",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a WhatsApp campaign",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/?campaignId=12",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Return all your created WhatsApp campaigns",
+        "api_call": "{{baseUrl}}/whatsappCampaigns?startDate=&endDate=&limit=&offset=&sort=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Return all your created WhatsApp templates",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/template-list?startDate=&endDate=&limit=&offset=&sort=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a WhatsApp campaign",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/:campaignId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create and send a WhatsApp campaign",
+        "api_call": "{{baseUrl}}/whatsappCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a WhatsApp template",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/template",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send your WhatsApp template for approval",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/template/approval/:templateId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your WhatsApp API account information",
+        "api_call": "{{baseUrl}}/whatsappCampaigns/config",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all the contacts",
+        "api_call": "{{baseUrl}}/contacts?limit=50&offset=0&modifiedSince=YYYY-MM-DDTHH:mm:ss.SSSZ&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a contact",
+        "api_call": "{{baseUrl}}/contacts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{api-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "api-key",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"elly@example.com\",\n  \"attributes\": {\n    \"FNAME\": \"Elly\"\n  },\n  \"emailBlacklisted\": false,\n  \"smsBlacklisted\": false,\n  \"listIds\": [\n    21\n  ],\n  \"updateEnabled\": false,\n  \"smtpBlacklistSender\": [\n    \"info@sendinblue.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create Contact via DOI (Double-Opt-In) Flow",
+        "api_call": "{{baseUrl}}/contacts/doubleOptinConfirmation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{api-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "api-key",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"elly@example.com\",\n  \"includeListIds\": [\n    36\n  ],\n  \"redirectionUrl\": \"http://requestb.in/173lyyx1\",\n  \"templateId\": 2,\n  \"attributes\": {\n    \"FNAME\": \"John\",\n    \"LNANE\": \"Smith\"\n  },\n  \"excludeListIds\": [\n    6\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update multiple contacts",
+        "api_call": "{{baseUrl}}/contacts/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"contacts\": [\n    {\n      \"email\": \"john@example.com\",\n      \"id\": 31,\n      \"attributes\": {\n        \"FNAME\": \"John\",\n        \"LNAME\": \"Smith\"\n      },\n      \"emailBlacklisted\": false,\n      \"smsBlacklisted\": true,\n      \"listIds\": [\n        65\n      ],\n      \"unlinkListIds\": [\n        36\n      ],\n      \"smtpBlacklistSender\": [\n        \"KcV-PaFnJ@eS.qz\",\n        \"bbrb5LcqfbXwIx@rSlyeERMpQugHPvTXhPZo.zmg\"\n      ]\n    },\n    {\n      \"email\": \"Anna@example.com\",\n      \"id\": 31,\n      \"attributes\": {\n        \"FNAME\": \"Anna Louise\"\n      },\n      \"emailBlacklisted\": false,\n      \"smsBlacklisted\": true,\n      \"listIds\": [\n        65\n      ],\n      \"unlinkListIds\": [\n        36\n      ],\n      \"smtpBlacklistSender\": [\n        \"0f8VdF@RMbQgSGQHKuglhsPAzZSJcrVpq.njc\",\n        \"UZzlbOKm7qXU@mvJPCUvDwPNk.lhjd\"\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Export contacts",
+        "api_call": "{{baseUrl}}/contacts/export",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customContactFilter\": {\n    \"actionForContacts\": \"subscribed\",\n    \"actionForEmailCampaigns\": \"hardBounces\",\n    \"actionForSmsCampaigns\": \"softBounces\",\n    \"listId\": 2,\n    \"emailCampaignId\": 12,\n    \"smsCampaignId\": 12\n  },\n  \"exportAttributes\": [\n    \"NAME\",\n    \"LNAME\"\n  ],\n  \"notifyUrl\": \"http://requestb.in/173lyyx1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "It returns the background process ID which on completion calls the notify URL that you have set in the input."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Import contacts",
+        "api_call": "{{baseUrl}}/contacts/import",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"fileUrl\": \"https://importfile.domain.com\",\n  \"fileBody\": \"NAME;SURNAME;EMAIL\\nSmith;John;john.smith@example.com\\nRoger;Ellie;ellie36@example.com\",\n  \"jsonBody\": [\n    {\n      \"ut_7f\": \"Lorem\",\n      \"deserunt_df\": \"Lorem\"\n    },\n    {\n      \"exercitation_30\": \"consequat Lorem\"\n    }\n  ],\n  \"listIds\": [\n    76,\n    76\n  ],\n  \"notifyUrl\": \"http://requestb.in/173lyyx1\",\n  \"newList\": {\n    \"listName\": \"ContactImport - 2017-05\",\n    \"folderId\": 2\n  },\n  \"emailBlacklist\": false,\n  \"smsBlacklist\": false,\n  \"updateExistingContacts\": true,\n  \"emptyContactsAttributes\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "It returns the background process ID which on completion calls the notify URL that you have set in the input."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a contact's details",
+        "api_call": "{{baseUrl}}/contacts/:identifier?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Along with the contact details, this endpoint will show the statistics of contact for the recent 90 days by default."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a contact",
+        "api_call": "{{baseUrl}}/contacts/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a contact",
+        "api_call": "{{baseUrl}}/contacts/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"attributes\": {\n        \"EMAIL\": \"newemail@domain.com\",\n        \"FNAME\": \"Ellie\",\n        \"LNAME\": \"Roger\"\n    },\n    \"emailBlacklisted\": false,\n    \"smsBlacklisted\": true,\n    \"listIds\": [\n        65\n    ],\n    \"unlinkListIds\": [\n        36\n    ],\n    \"smtpBlacklistSender\": [\n        \"2tD@yHGSlOErIdPjXSRRCUPBPdlcwl.lkbz\",\n        \"IsBKLQFo@XuqjOjVDBfCmvxFMDtrmU.fogq\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get email campaigns' statistics for a contact",
+        "api_call": "{{baseUrl}}/contacts/:identifier/campaignStats?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all folders",
+        "api_call": "{{baseUrl}}/contacts/folders?limit=10&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a folder",
+        "api_call": "{{baseUrl}}/contacts/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Wordpress Contacts\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Returns a folder's details",
+        "api_call": "{{baseUrl}}/contacts/folders/:folderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a folder",
+        "api_call": "{{baseUrl}}/contacts/folders/:folderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Wordpress Contacts\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a folder (and all its lists)",
+        "api_call": "{{baseUrl}}/contacts/folders/:folderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get lists in a folder",
+        "api_call": "{{baseUrl}}/contacts/folders/:folderId/lists?limit=10&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all the lists",
+        "api_call": "{{baseUrl}}/contacts/lists?limit=10&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a list",
+        "api_call": "{{baseUrl}}/contacts/lists",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"folderId\": 2,\n  \"name\": \"Magento Customer - ES\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get contacts in a list",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId/contacts?modifiedSince=&limit=50&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Add existing contacts to a list",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId/contacts/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emails\": [\n    \"jeff32@example.com\",\n    \"jim56@example.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a contact from a list",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId/contacts/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"emails\": [\n    \"jeff32@example.com\",\n    \"jim56@example.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a list's details",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a list",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Magento Customer - ES\",\n  \"folderId\": 2\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a list",
+        "api_call": "{{baseUrl}}/contacts/lists/:listId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: List all attributes",
+        "api_call": "{{baseUrl}}/contacts/attributes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update contact attribute",
+        "api_call": "{{baseUrl}}/contacts/attributes/:attributeCategory/:attributeName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"value\": \"COUNT[BLACKLISTED,BLACKLISTED,<,NOW()]\",\n  \"enumeration\": [\n    {\n      \"label\": \"Men\",\n      \"value\": 1\n    },\n    {\n      \"label\": \"Men\",\n      \"value\": 1\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create contact attribute",
+        "api_call": "{{baseUrl}}/contacts/attributes/:attributeCategory/:attributeName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"value\": \"COUNT[BLACKLISTED,BLACKLISTED,<,NOW()]\",\n  \"enumeration\": [\n    {\n      \"label\": \"Women\",\n      \"value\": 1\n    },\n    {\n      \"label\": \"Women\",\n      \"value\": 1\n    }\n  ],\n  \"type\": \"text\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an attribute",
+        "api_call": "{{baseUrl}}/contacts/attributes/:attributeCategory/:attributeName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all webhooks",
+        "api_call": "{{baseUrl}}/webhooks?type=transactional&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a webhook",
+        "api_call": "{{baseUrl}}/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{api-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "api-key",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"events\": [\n        \"delivered\"\n    ],\n    \"url\": \"https://webhook.site/5ebc5d36-217f-4989-81fd-5f02cbb49c6d\",\n    \"description\": \"test for SMS\",\n    \"type\": \"marketing\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a webhook details",
+        "api_call": "{{baseUrl}}/webhooks/:webhookId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a webhook",
+        "api_call": "{{baseUrl}}/webhooks/:webhookId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"http://requestb.in/173lyyx1\",\n  \"description\": \"Webhook triggered on contact hardbounce\",\n  \"events\": [\n    \"hardBounce\",\n    \"hardBounce\"\n  ],\n  \"domain\": \"example.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a webhook",
+        "api_call": "{{baseUrl}}/webhooks/:webhookId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Add Email and/or SMS credits to a specific child account",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/credits/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"sms\": 450,\n  \"email\": 1200\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Remove Email and/or SMS credits from a specific child account",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/credits/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"sms\": 300,\n  \"email\": 500\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Associate a dedicated IP to the child",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/ips/associate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"ip\": \"123.65.8.22\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Dissociate a dedicated IP to the child",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/ips/dissociate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"ip\": \"123.65.8.22\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all sender domains for a specific child account",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/domains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a domain for a child account",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/domains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"domain\": \"mychilddomain.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update the sender domain of reseller's child based on the childIdentifier and domainName passed",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/domains/:domainName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"domain\": \"myupdateddomain.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete the sender domain of the reseller child based on the childIdentifier and domainName passed",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/domains/:domainName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a child account's details",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update info of reseller's child based on the child identifier supplied",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"josh.cruise@example.com\",\n  \"firstName\": \"Josh\",\n  \"lastName\": \"Cruise\",\n  \"companyName\": \"Your Company\",\n  \"password\": \"Pa55w0rd65\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a single reseller child based on the child identifier supplied",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update info of reseller's child account status based on the identifier supplied",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/accountStatus",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transactionalEmail\": false,\n  \"transactionalSms\": false,\n  \"marketingAutomation\": true,\n  \"smsCampaign\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the status of a reseller's child account creation, whether it is successfully created (exists) or not based on the childIdentifier supplied",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/accountCreationStatus",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get session token to access Sendinblue (SSO)",
+        "api_call": "{{baseUrl}}/reseller/children/:childIdentifier/auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "It returns a session [token] which will remain valid for a short period of time. A child account will be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all children accounts",
+        "api_call": "{{baseUrl}}/reseller/children?limit=10&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Creates a reseller child",
+        "api_call": "{{baseUrl}}/reseller/children",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"companyName\": \"Your Company\",\n  \"email\": \"josh.cruise@example.com\",\n  \"firstName\": \"Josh\",\n  \"lastName\": \"Cruise\",\n  \"password\": \"Pa55w0rd65\",\n  \"language\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Return all the processes for your account",
+        "api_call": "{{baseUrl}}/processes?limit=10&offset=0&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Return the informations for a process",
+        "api_call": "{{baseUrl}}/processes/:processId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the details of requested master account",
+        "api_call": "{{baseUrl}}/corporate/masterAccount",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will provide the details of the master account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all the sub-accounts of the master account.",
+        "api_call": "{{baseUrl}}/corporate/subAccount?offset=&limit=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will provide the list all the sub-accounts of the master account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a new sub-account under a master account.",
+        "api_call": "{{baseUrl}}/corporate/subAccount",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"companyName\": \"Test Sub-account\",\n  \"email\": \"test-sub@example.com\",\n  \"timezone\": \"Europe/Paris\",\n  \"language\": \"en\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint will create a new sub-account under a master account"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Generate SSO token to access Sendinblue",
+        "api_call": "{{baseUrl}}/corporate/subAccount/ssoToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": 3232323,\n  \"email\": \"vipin+subaccount@sendinblue.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint generates an sso token to authenticate and access a sub-account of the master using the account endpoint https://app.sendinblue.com/account/login/sub-account/sso/[token],"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get sub-account details",
+        "api_call": "{{baseUrl}}/corporate/subAccount/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will provide the details for the specified sub-account company"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a sub-account",
+        "api_call": "{{baseUrl}}/corporate/subAccount/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update sub-account plan",
+        "api_call": "{{baseUrl}}/corporate/subAccount/:id/plan",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"credits\": {\n    \"email\": 5000\n  },\n  \"features\": {\n    \"users\": 15,\n    \"landingPage\": 20,\n    \"inbox\": 10\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint will update the sub-account plan"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get your account information, plan and credits details",
+        "api_call": "{{baseUrl}}/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all your senders",
+        "api_call": "{{baseUrl}}/senders?ip=&domain=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a new sender",
+        "api_call": "{{baseUrl}}/senders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"newsletter@mycompany.com\",\n  \"name\": \"Newsletter\",\n  \"ips\": [\n    {\n      \"domain\": \"mycompany.com\",\n      \"ip\": \"123.98.689.7\",\n      \"weight\": 50\n    },\n    {\n      \"domain\": \"mycompany.com\",\n      \"ip\": \"123.98.689.7\",\n      \"weight\": 50\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all the dedicated IPs for your account",
+        "api_call": "{{baseUrl}}/senders/ips",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a sender",
+        "api_call": "{{baseUrl}}/senders/:senderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Newsletter\",\n  \"email\": \"newsletter@mycompany.com\",\n  \"ips\": [\n    {\n      \"domain\": \"mycompany.com\",\n      \"ip\": \"123.98.689.7\",\n      \"weight\": 50\n    },\n    {\n      \"domain\": \"mycompany.com\",\n      \"ip\": \"123.98.689.7\",\n      \"weight\": 50\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a sender",
+        "api_call": "{{baseUrl}}/senders/:senderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all the dedicated IPs for a sender",
+        "api_call": "{{baseUrl}}/senders/:senderId/ips",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all your domains",
+        "api_call": "{{baseUrl}}/senders/domains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a new domain",
+        "api_call": "{{baseUrl}}/senders/domains?name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"myfirstcompany.com\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a domain",
+        "api_call": "{{baseUrl}}/senders/domains/:domainName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Validate domain configuration",
+        "api_call": "https://api.sendinblue.com/v3/senders/domains/:domainName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Authenticate a domain",
+        "api_call": "{{baseUrl}}/senders/domains/:domainName/authenticate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get the list of all your users",
+        "api_call": "{{baseUrl}}/organization/invited/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Check user permission",
+        "api_call": "{{baseUrl}}/organization/user/:email/permissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Revoke user permission",
+        "api_call": "{{baseUrl}}/organization/user/invitation/revoke/:email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Resend / Cancel invitation",
+        "api_call": "{{baseUrl}}/organization/user/invitation/:action/:email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send invitation to user",
+        "api_call": "{{baseUrl}}/organization/user/invitation/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update permission for a user",
+        "api_call": "{{baseUrl}}/organization/user/update/permissions?all_features_access=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all Companies",
+        "api_call": "{{baseUrl}}/companies?filters=&linkedContactsIds=&linkedDealsIds=&page=0&limit=50&sort=desc&sortBy=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{api-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "api-key",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a company",
+        "api_call": "{{baseUrl}}/companies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"company\",\n  \"attributes\": {\n    \"domain\": \"https://example.com\",\n    \"industry\": \"Fabric\",\n    \"owner\": \"60e68d60582a3b006f524197\"\n  },\n  \"countryCode\": 91\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get company attributes",
+        "api_call": "{{baseUrl}}/companies/attributes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Link and Unlink company with contact and deal",
+        "api_call": "{{baseUrl}}/companies/link-unlink/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"linkContactIds\": [\n    1,\n    2,\n    3\n  ],\n  \"unlinkContactIds\": [\n    4,\n    5,\n    6\n  ],\n  \"linkDealsIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"unlinkDealsIds\": [\n    \"61a5ce58c5d4795761045994\",\n    \"61a5ce58c5d479576104595\",\n    \"61a5ce58c5d4795761045996\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a company",
+        "api_call": "{{baseUrl}}/companies/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a company",
+        "api_call": "{{baseUrl}}/companies/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a company",
+        "api_call": "{{baseUrl}}/companies/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"company\",\n  \"attributes\": {\n    \"category\": \"label_2\",\n    \"domain\": \"xyz\",\n    \"date\": \"2022-05-04T00:00:00+05:30\",\n    \"industry\": \"flipkart\",\n    \"number_of_contacts\": 1,\n    \"number_of_employees\": 100,\n    \"owner\": \"5b1a17d914b73d35a76ca0c7\",\n    \"phone_number\": \"81718441912\",\n    \"revenue\": 10000.34222\n  },\n  \"countryCode\": 91\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get pipeline stages",
+        "api_call": "{{baseUrl}}/crm/pipeline/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all deals",
+        "api_call": "{{baseUrl}}/crm/deals?filter[attributes]=&filter[linkedCompaniesIds]=&filter[linkedContactsIds]=&offset=0&limit=50&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a deal",
+        "api_call": "{{baseUrl}}/crm/deals",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Deal: Connect with company\",\n  \"attributes\": {\n    \"deal_owner\": \"6093d2425a9b436e9519d034\",\n    \"amount\": 12\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Link and Unlink a deal with contacts and companies",
+        "api_call": "{{baseUrl}}/crm/deals/link-unlink/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"linkContactIds\": [\n    1,\n    2,\n    3\n  ],\n  \"unlinkContactIds\": [\n    4,\n    5,\n    6\n  ],\n  \"linkCompanyIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"unlinkCompanyIds\": [\n    \"61a5ce58c5d4795761045994\",\n    \"61a5ce58c5d479576104595\",\n    \"61a5ce58c5d4795761045996\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get deal attributes",
+        "api_call": "{{baseUrl}}/crm/attributes/deals",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a deal",
+        "api_call": "{{baseUrl}}/crm/deals/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a deal",
+        "api_call": "{{baseUrl}}/crm/deals/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a deal",
+        "api_call": "{{baseUrl}}/crm/deals/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Deal: Connect with client\",\n  \"attributes\": {\n    \"deal_owner\": \"6093d2425a9b436e9519d034\",\n    \"amount\": 12\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all tasks",
+        "api_call": "{{baseUrl}}/crm/tasks?filter[type]=&filter[status]=&filter[date]=&filter[assignTo]=&filter[contacts]=&filter[deals]=&filter[companies]=&dateFrom=1677168398000&dateTo=1677168398000&offset=0&limit=50&sort=desc&sortBy=name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a task",
+        "api_call": "{{baseUrl}}/crm/tasks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Task: Connect with client\",\n  \"taskTypeId\": \"61a5cd07ca1347c82306ad09\",\n  \"date\": \"2021-11-01T17:44:54.668Z\",\n  \"duration\": 600000,\n  \"notes\": \"In communication with client for resolution of queries.\",\n  \"done\": false,\n  \"assignToId\": \"5faab4b7f195bb3c4c31e62a\",\n  \"contactsIds\": [\n    1,\n    2,\n    3\n  ],\n  \"dealsIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"companiesIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"reminder\": {\n    \"value\": 10,\n    \"unit\": \"days\",\n    \"types\": [\n      \"email\"\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all task types",
+        "api_call": "{{baseUrl}}/crm/tasktypes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a task",
+        "api_call": "{{baseUrl}}/crm/tasks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a task",
+        "api_call": "{{baseUrl}}/crm/tasks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a task",
+        "api_call": "{{baseUrl}}/crm/tasks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Task: Connect with client\",\n  \"duration\": 600000,\n  \"taskTypeId\": \"61a5cd07ca1347c82306ad09\",\n  \"date\": \"2021-11-01T17:44:54.668Z\",\n  \"notes\": \"In communication with client for resolution of queries.\",\n  \"done\": false,\n  \"assignToId\": \"5faab4b7f195bb3c4c31e62a\",\n  \"contactsIds\": [\n    1,\n    2,\n    3\n  ],\n  \"dealsIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"companiesIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\",\n    \"61a5ce58c5d4795761045992\"\n  ],\n  \"reminder\": {\n    \"value\": 10,\n    \"unit\": \"minutes\",\n    \"types\": [\n      \"email\"\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all notes",
+        "api_call": "{{baseUrl}}/crm/notes?entity=deals&entityIds=&dateFrom=1677168398000&dateTo=1677254798000&offset=0&limit=50&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a note",
+        "api_call": "{{baseUrl}}/crm/notes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"text\": \"In communication with client for resolution of queries.\",\n  \"contactIds\": [\n    247,\n    1,\n    2\n  ],\n  \"dealIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\"\n  ],\n  \"companyIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a note",
+        "api_call": "{{baseUrl}}/crm/notes/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a note",
+        "api_call": "{{baseUrl}}/crm/notes/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"text\": \"In communication with client for resolution of queries.\",\n  \"contactIds\": [\n    247,\n    1,\n    2\n  ],\n  \"dealIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\"\n  ],\n  \"companyIds\": [\n    \"61a5ce58c5d4795761045990\",\n    \"61a5ce58c5d4795761045991\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a note",
+        "api_call": "{{baseUrl}}/crm/notes/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all files",
+        "api_call": "{{baseUrl}}/crm/files?entity=deals&entityIds=&dateFrom=1677168398000&dateTo=1677254798000&offset=0&limit=50&sort=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Upload a file",
+        "api_call": "{{baseUrl}}/crm/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "description": "(Required) File data to create a file.",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "dealId",
+                        "value": "proident",
+                        "type": "text"
+                    },
+                    {
+                        "key": "contactId",
+                        "value": "27165486",
+                        "type": "text"
+                    },
+                    {
+                        "key": "companyId",
+                        "value": "271654863",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Download a file",
+        "api_call": "{{baseUrl}}/crm/files/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a file",
+        "api_call": "{{baseUrl}}/crm/files/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get file details",
+        "api_call": "{{baseUrl}}/crm/files/:id/data",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send a message as an agent",
+        "api_call": "{{baseUrl}}/conversations/messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"visitorId\": \"kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg\",\n  \"text\": \"Hello! How can I help you?\",\n  \"agentId\": \"d9nKoegKSjmCtyK78\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a message",
+        "api_call": "{{baseUrl}}/conversations/messages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a message sent by an agent",
+        "api_call": "{{baseUrl}}/conversations/messages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"text\": \"Good morning! How can I help you?\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Only agents\u2019 messages can be edited."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete a message sent by an agent",
+        "api_call": "{{baseUrl}}/conversations/messages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Only agents\u2019 messages can be deleted."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Sets agent\u2019s status to online for 2-3 minutes",
+        "api_call": "{{baseUrl}}/conversations/agentOnlinePing",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"agentId\": \"d9nKoegKSjmCtyK78\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "We recommend pinging this endpoint every minute for as long as the agent has to be considered online."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Send an automated message to a visitor",
+        "api_call": "{{baseUrl}}/conversations/pushedMessages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"visitorId\": \"kZMvWhf8npAu3H6qd57w2Hv6nh6rnxvg\",\n  \"text\": \"Your order has shipped! Here\u2019s your tracking number: 9114 5847 3325 9667 4328 88\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Example of automated messages: order status, announce new features in your web app, etc."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get an automated message",
+        "api_call": "{{baseUrl}}/conversations/pushedMessages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update an automated message",
+        "api_call": "{{baseUrl}}/conversations/pushedMessages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"text\": \"Your order has shipped! Here\u2019s your tracking number: 9114 5847 4668 7775 9233 54\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Delete an automated message",
+        "api_call": "{{baseUrl}}/conversations/pushedMessages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create/update an order",
+        "api_call": "{{baseUrl}}/orders/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"#109\",\n  \"status\": \"completed\",\n  \"amount\": 160.96,\n  \"createdAt\": \"2023-01-10T03:20:04Z\",\n  \"updatedAt\": \"2023-01-10T03:20:04Z\",\n  \"products\": [\n    {\n      \"productId\": \"41498620592335\",\n      \"quantity\": 2,\n      \"price\":200.89\n    },\n    {\n      \"productId\": \"41498620559567\",\n      \"quantity\": 2,\n      \"variantId\": \"76337-dvvkt\",\n      \"price\":400\n    }\n  ],\n  \"email\": \"patricia@tremblay.net\",\n  \"billing\": {\n    \"address\": \"43411 Braun Circle\",\n    \"city\": \"Gerrybury\",\n    \"countryCode\": \"GE\",\n    \"phone\": \"2901692763956\",\n    \"postcode\": \"07366-7886\",\n    \"paymentMethod\": \"Pay Pal\",\n    \"region\": \"Florida\"\n  },\n  \"coupons\": [\n    \"WINTER\",\n    \"15OFF\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create orders in batch",
+        "api_call": "{{baseUrl}}/orders/status/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"orders\": [\n    {\n      \"id\": \"14\",\n      \"createdAt\": \"2021-07-29T20:59:23.383Z\",\n      \"updatedAt\": \"2021-07-30T10:59:23.383Z\",\n      \"status\": \"completed\",\n      \"amount\": 308.42,\n      \"products\": [\n        {\n          \"value\": \"\"\n        },\n        {\n          \"value\": \"\"\n        }\n      ],\n      \"email\": \"example@sendinblue.com\",\n      \"billing\": {\n        \"address\": {\n          \"value\": \"\"\n        },\n        \"city\": {\n          \"value\": \"\"\n        },\n        \"countryCode\": {\n          \"value\": \"\"\n        },\n        \"phone\": {\n          \"value\": \"\"\n        },\n        \"postCode\": {\n          \"value\": \"\"\n        },\n        \"paymentMethod\": {\n          \"value\": \"\"\n        },\n        \"region\": {\n          \"value\": \"\"\n        }\n      },\n      \"coupons\": [\n        \"EASTER15OFF\"\n      ]\n    },\n    {\n      \"id\": \"14\",\n      \"createdAt\": \"2021-07-29T20:59:23.383Z\",\n      \"updatedAt\": \"2021-07-30T10:59:23.383Z\",\n      \"status\": \"completed\",\n      \"amount\": 308.42,\n      \"products\": [\n        {\n          \"value\": \"\"\n        },\n        {\n          \"value\": \"\"\n        }\n      ],\n      \"email\": \"example@sendinblue.com\",\n      \"billing\": {\n        \"address\": {\n          \"value\": \"\"\n        },\n        \"city\": {\n          \"value\": \"\"\n        },\n        \"countryCode\": {\n          \"value\": \"\"\n        },\n        \"phone\": {\n          \"value\": \"\"\n        },\n        \"postCode\": {\n          \"value\": \"\"\n        },\n        \"paymentMethod\": {\n          \"value\": \"\"\n        },\n        \"region\": {\n          \"value\": \"\"\n        }\n      },\n      \"coupons\": [\n        \"EASTER15OFF\"\n      ]\n    }\n  ],\n  \"notifyUrl\": \"https://en.wikipedia.org/wiki/Webhook\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all categories",
+        "api_call": "{{baseUrl}}/categories?limit=50&offset=0&sort=desc&ids= ",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create/update a category",
+        "api_call": "{{baseUrl}}/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"4ym78sfr8@VaAMB.xgn\",\n  \"name\": \"Electronics\",\n  \"url\": \"http://mydomain.com/category/electronics\",\n  \"updateEnabled\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create categories in batch",
+        "api_call": "{{baseUrl}}/categories/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"categories\": [\n    {\n      \"id\": \"cI5vQG@akAvYs.aakp\",\n      \"name\": \"Electronics\",\n      \"url\": \"http://mydomain.com/category/electronics\"\n    },\n    {\n      \"id\": \"lw76jTxBp@ZL.vlo\",\n      \"name\": \"Electronics\",\n      \"url\": \"http://mydomain.com/category/electronics\"\n    }\n  ],\n  \"updateEnabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a category details",
+        "api_call": "{{baseUrl}}/categories/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all products",
+        "api_call": "{{baseUrl}}/products?limit=50&offset=0&sort=desc&ids=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a product's details",
+        "api_call": "{{baseUrl}}/products/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create/update a product",
+        "api_call": "{{baseUrl}}/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"P11\",\n  \"name\": \"IPhone 11\",\n  \"url\": \"http://mydomain.com/product/electronics/product1\",\n  \"imageUrl\": \"http://mydomain.com/product-absoulte-url/img.jpeg\",\n  \"sku\": \"SKU523452235\",\n  \"price\": -48445562.575949855,\n  \"categories\": [\n    \"id\",\n    \"v\"\n  ],\n  \"parentId\": \"minim amet\",\n  \"metaInfo\": {\n    \"description\": \"Shoes for sports\",\n    \"brand\": \"addidas\"\n  },\n  \"updateEnabled\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create products in batch",
+        "api_call": "{{baseUrl}}/products/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"products\": [\n    {\n      \"id\": \"P11\",\n      \"name\": \"Iphone 11\",\n      \"url\": \"http://mydomain.com/product/electronics/product1\",\n      \"imageUrl\": \"http://mydomain.com/product-absoulte-url/img.jpeg\",\n      \"sku\": \"SKU5234522331\",\n      \"price\": 9965553.347645134,\n      \"categories\": [\n        {\n          \"value\": \"\"\n        },\n        {\n          \"value\": \"\"\n        }\n      ],\n      \"parentId\": \"GH56214\",\n      \"metaInfo\": {\n        \"description\": \"Shoes for sports\",\n        \"brand\": \"adidas\"\n      }\n    },\n    {\n      \"id\": \"P11\",\n      \"name\": \"Iphone 11\",\n      \"url\": \"http://mydomain.com/product/electronics/product1\",\n      \"imageUrl\": \"http://mydomain.com/product-absoulte-url/img.jpeg\",\n      \"sku\": \"SKU523452235\",\n      \"price\": -2971697.3335331976,\n      \"categories\": [\n        {\n          \"value\": \"\"\n        },\n        {\n          \"value\": \"\"\n        }\n      ],\n      \"parentId\": \"HG3561\",\n      \"metaInfo\": {\n        \"description\": \"Shoes for sports\",\n        \"brand\": \"addidas\"\n      }\n    }\n  ],\n  \"updateEnabled\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Activate eCommerce platform on your account",
+        "api_call": "{{baseUrl}}/v3/ecommerce/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get all your coupon collections",
+        "api_call": "{{baseUrl}}/couponCollections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create a coupon collection",
+        "api_call": "{{baseUrl}}/couponCollections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"SummerPromotions\",\n  \"defaultCoupon\": \"10 OFF\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Get a coupon collection by id",
+        "api_call": "{{baseUrl}}/couponCollections?id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Update a coupon collection by id",
+        "api_call": "{{baseUrl}}/couponCollections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"coupons\": [\n    \"udsfhds\",\n    \"asgr\",\n    \"sdg4iinas\",\n    \"asdgn4ou\"\n  ],\n  \"collectionId\": \"2620197b-505f-407f-9bd2-64e16f29fb53\"\n}\n'"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Create coupons for a coupon collection",
+        "api_call": "{{baseUrl}}/coupons",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Identify the user",
+        "api_call": "https://in-automate.sendinblue.com/api/v2/identifyUser",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "ma-key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{ma-key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Track event",
+        "api_call": "https://in-automate.sendinblue.com/api/v2/trackEvent",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "ma-key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{ma-key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"properties\": {\n        \"newKey\": \"New Value\"\n    },\n    \"eventdata\": {\n        \"newKey\": \"New Value\"\n    },\n    \"email\": \"example@brevo.com\",\n    \"event\": \"cart_updated\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Track link clicks",
+        "api_call": "https://in-automate.sendinblue.com/api/v2/trackLink",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "ma-key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{ma-key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Brevo: Track page views",
+        "api_call": "https://in-automate.sendinblue.com/api/v2/trackPage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "ma-key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{ma-key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
