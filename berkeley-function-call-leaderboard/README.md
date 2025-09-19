@@ -175,8 +175,8 @@ IDs to run:
 
 ```json
 {
-  "simple": ["simple_101", "simple_202"],
-  "multi_turn_base": ["multi_turn_base_14"]
+    "simple_python": ["simple_python_102", "simple_python_103"],
+    "multi_turn_base": ["multi_turn_base_15"]
 }
 ```
 
