@@ -1,0 +1,36 @@
+[ 
+  {
+    "user_name": "SolidEdgeUser",
+    "api_name": "Microsoft VB.Net GetObject function",
+    "api_call": "GetObject(pathname = null, class = 'SolidEdge.Application')", 
+    "api_version": 1.0, 
+    "api_arguments": {
+      "pathname": null, 
+      "class": "SolidEdge.Application"
+    },
+    "functionality": "Use the GetObject function to access an ActiveX object from a file and assign the object to an object variable. Use the Set statement to assign the object returned by GetObject to the object variable.",
+    "example_code": "Dim objApp As SolidEdge.Framework.Interop.Application \n objApp = GetObject( , 'SolidEdge.Application')",
+    "questions": [
+      "Get the Solid Edge application running.",
+      "obtain an instance of the running Solid Edge "
+    ]
+  },
+
+  {
+    "user_name": "SolidEdgeUser",
+    "api_name": "Microsoft VB.Net CreateObject function",
+    "api_call": "CreateObject(class, servername = null)", 
+    "api_version": 1.0, 
+    "api_arguments": { 
+      "class": "SolidEdge.Application",
+      "servername": null
+    },
+    "functionality": "Creates and returns a reference to an ActiveX object.",
+    "example_code": "Dim objApp As SolidEdge.Framework.Interop.Application \n objApp = CreateObject('SolidEdge.Application')",
+    "questions": [
+      "Create an instance of the Solid Edge application.",
+      "Create  Solid Edge application."
+    ]
+  }
+
+]
