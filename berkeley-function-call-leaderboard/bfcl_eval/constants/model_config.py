@@ -558,7 +558,7 @@ api_inference_model_map = {
     ),
     "mistral-small-2506": ModelConfig(
         model_name="mistral-small-2506",
-        display_name="Mistral-Small-2506 (Prompt)",
+        display_name="Mistral-Small-2506 (Prompt) (Reasoning)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -570,7 +570,7 @@ api_inference_model_map = {
     ),
     "mistral-small-2506-FC": ModelConfig(
         model_name="mistral-small-2506-FC",
-        display_name="Mistral-small-2506 (FC)",
+        display_name="Mistral-small-2506 (FC) (Reasoning)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -582,7 +582,7 @@ api_inference_model_map = {
     ),
     "mistral-medium-2505": ModelConfig(
         model_name="mistral-medium-2505",
-        display_name="Mistral-Medium-2505",
+        display_name="Mistral-Medium-2505 (Reasoning)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -594,7 +594,7 @@ api_inference_model_map = {
     ),
     "mistral-medium-2505-FC": ModelConfig(
         model_name="mistral-medium-2505-FC",
-        display_name="Mistral-Medium-2505 (FC)",
+        display_name="Mistral-Medium-2505 (FC) (Reasoning)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -618,7 +618,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
         model_name="gemini-2.5-flash-lite-preview-06-17-FC",
-        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC) (Reasoning)",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
@@ -642,7 +642,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-flash-FC": ModelConfig(
         model_name="gemini-2.5-flash-FC",
-        display_name="Gemini-2.5-Flash (FC) (Reasoning)",
+        display_name="Gemini-2.5-Flash (FC)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
@@ -654,7 +654,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-flash": ModelConfig(
         model_name="gemini-2.5-flash",
-        display_name="Gemini-2.5-Flash (Prompt) (Reasoning)",
+        display_name="Gemini-2.5-Flash (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
@@ -714,7 +714,7 @@ api_inference_model_map = {
     ),
     "command-r7b-12-2024-FC": ModelConfig(
         model_name="command-r7b-12-2024-FC",
-        display_name="Command R7B (FC)",
+        display_name="Command R7B (FC) (Reasoning)",
         url="https://cohere.com/blog/command-r7b",
         org="Cohere",
         license="cc-by-nc-4.0",
@@ -738,7 +738,7 @@ api_inference_model_map = {
     ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
         model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
-        display_name="Llama-3.1-Nemotron-Ultra-253B-v1 (FC)",
+        display_name="Llama-3.1-Nemotron-Ultra-253B-v1 (FC) (Reasoning)",
         url="https://huggingface.co/nvidia/Llama-3_1-Nemotron-Ultra-253B-v1",
         org="NVIDIA",
         license="nvidia-open-model-license",
@@ -774,7 +774,7 @@ api_inference_model_map = {
     ),
     "palmyra-x-004": ModelConfig(
         model_name="palmyra-x-004",
-        display_name="palmyra-x-004 (FC)",
+        display_name="palmyra-x-004 (FC) (Reasoning)",
         url="https://writer.com/engineering/actions-with-palmyra-x-004/",
         org="Writer",
         license="Proprietary",
@@ -786,7 +786,7 @@ api_inference_model_map = {
     ),
     "grok-4-0709-FC": ModelConfig(
         model_name="grok-4-0709-FC",
-        display_name="Grok-4-0709 (FC)",
+        display_name="Grok-4-0709 (FC) (Reasoning)",
         url="https://docs.x.ai/docs/models",
         org="xAI",
         license="Proprietary",
@@ -798,7 +798,7 @@ api_inference_model_map = {
     ),
     "grok-4-0709": ModelConfig(
         model_name="grok-4-0709",
-        display_name="Grok-4-0709 (Prompt)",
+        display_name="Grok-4-0709 (Prompt) (Reasoning)",
         url="https://docs.x.ai/docs/models",
         org="xAI",
         license="Proprietary",
@@ -810,7 +810,7 @@ api_inference_model_map = {
     ),
     "qwen3-0.6b-FC": ModelConfig(
         model_name="qwen3-0.6b-FC",
-        display_name="Qwen3-0.6B (FC)",
+        display_name="Qwen3-0.6B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
@@ -822,7 +822,7 @@ api_inference_model_map = {
     ),
     "qwen3-0.6b": ModelConfig(
         model_name="qwen3-0.6b",
-        display_name="Qwen3-0.6B (Prompt)",
+        display_name="Qwen3-0.6B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
@@ -834,7 +834,7 @@ api_inference_model_map = {
     ),
     "qwen3-1.7b-FC": ModelConfig(
         model_name="qwen3-1.7b-FC",
-        display_name="Qwen3-1.7B (FC)",
+        display_name="Qwen3-1.7B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -846,7 +846,7 @@ api_inference_model_map = {
     ),
     "qwen3-1.7b": ModelConfig(
         model_name="qwen3-1.7b",
-        display_name="Qwen3-1.7B (Prompt)",
+        display_name="Qwen3-1.7B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -858,7 +858,7 @@ api_inference_model_map = {
     ),
     "qwen3-4b-FC": ModelConfig(
         model_name="qwen3-4b-FC",
-        display_name="Qwen3-4B (FC)",
+        display_name="Qwen3-4B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
@@ -870,7 +870,7 @@ api_inference_model_map = {
     ),
     "qwen3-4b": ModelConfig(
         model_name="qwen3-4b",
-        display_name="Qwen3-4B (Prompt)",
+        display_name="Qwen3-4B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
@@ -882,7 +882,7 @@ api_inference_model_map = {
     ),
     "qwen3-8b-FC": ModelConfig(
         model_name="qwen3-8b-FC",
-        display_name="Qwen3-8B (FC)",
+        display_name="Qwen3-8B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -894,7 +894,7 @@ api_inference_model_map = {
     ),
     "qwen3-8b": ModelConfig(
         model_name="qwen3-8b",
-        display_name="Qwen3-8B (Prompt)",
+        display_name="Qwen3-8B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -906,7 +906,7 @@ api_inference_model_map = {
     ),
     "qwen3-14b-FC": ModelConfig(
         model_name="qwen3-14b-FC",
-        display_name="Qwen3-14B (FC)",
+        display_name="Qwen3-14B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -918,7 +918,7 @@ api_inference_model_map = {
     ),
     "qwen3-14b": ModelConfig(
         model_name="qwen3-14b",
-        display_name="Qwen3-14B (Prompt)",
+        display_name="Qwen3-14B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -930,7 +930,7 @@ api_inference_model_map = {
     ),
     "qwen3-32b-FC": ModelConfig(
         model_name="qwen3-32b-FC",
-        display_name="Qwen3-32B (FC)",
+        display_name="Qwen3-32B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -942,7 +942,7 @@ api_inference_model_map = {
     ),
     "qwen3-32b": ModelConfig(
         model_name="qwen3-32b",
-        display_name="Qwen3-32B (Prompt)",
+        display_name="Qwen3-32B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -954,7 +954,7 @@ api_inference_model_map = {
     ),
     "qwen3-30b-a3b-instruct-2507-FC": ModelConfig(
         model_name="qwen3-30b-a3b-instruct-2507",
-        display_name="Qwen3-30B-A3B-Instruct-2507 (FC)",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
@@ -966,7 +966,7 @@ api_inference_model_map = {
     ),
     "qwen3-30b-a3b-instruct-2507": ModelConfig(
         model_name="qwen3-30b-a3b-instruct-2507",
-        display_name="Qwen3-30B-A3B-Instruct-2507 (Prompt)",
+        display_name="Qwen3-30B-A3B-Instruct-2507 (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
@@ -978,7 +978,7 @@ api_inference_model_map = {
     ),
     "qwen3-235b-a22b-instruct-2507-FC": ModelConfig(
         model_name="qwen3-235b-a22b-instruct-2507-FC",
-        display_name="Qwen3-235B-A22B-Instruct-2507 (FC)",
+        display_name="Qwen3-235B-A22B-Instruct-2507 (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
@@ -990,7 +990,7 @@ api_inference_model_map = {
     ),
     "qwen3-235b-a22b-instruct-2507": ModelConfig(
         model_name="qwen3-235b-a22b-instruct-2507",
-        display_name="Qwen3-235B-A22B-Instruct-2507 (Prompt)",
+        display_name="Qwen3-235B-A22B-Instruct-2507 (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
         org="Qwen",
         license="apache-2.0",
@@ -1002,7 +1002,7 @@ api_inference_model_map = {
     ),
     "qwq-32b-FC": ModelConfig(
         model_name="qwq-32b-FC",
-        display_name="QwQ-32B (FC)",
+        display_name="QwQ-32B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1014,7 +1014,7 @@ api_inference_model_map = {
     ),
     "qwq-32b": ModelConfig(
         model_name="qwq-32b",
-        display_name="QwQ-32B (Prompt)",
+        display_name="QwQ-32B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1062,7 +1062,7 @@ api_inference_model_map = {
     ),
     "glm-4.5-FC": ModelConfig(
         model_name="glm-4.5-FC",
-        display_name="GLM-4.5 (FC)",
+        display_name="GLM-4.5 (FC) (Reasoning)",
         url="https://huggingface.co/zai-org/GLM-4.5",
         org="Zhipu AI",
         license="MIT",
@@ -1074,7 +1074,7 @@ api_inference_model_map = {
     ),
     "glm-4.5-air-FC": ModelConfig(
         model_name="glm-4.5-air-FC",
-        display_name="GLM-4.5-Air (FC)",
+        display_name="GLM-4.5-Air (FC) (Reasoning)",
         url="https://huggingface.co/zai-org/GLM-4.5-Air",
         org="Zhipu AI",
         license="MIT",
@@ -1086,7 +1086,7 @@ api_inference_model_map = {
     ),
     "kimi-k2-0711-preview-FC": ModelConfig(
         model_name="moonshotai/Kimi-K2-Instruct-FC",
-        display_name="Moonshotai-Kimi-K2-Instruct (FC)",
+        display_name="Moonshotai-Kimi-K2-Instruct (FC) (Reasoning)",
         url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
         org="MoonshotAI",
         license="modified-mit",
@@ -1098,7 +1098,7 @@ api_inference_model_map = {
     ),
     "kimi-k2-0711-preview": ModelConfig(
         model_name="moonshotai/Kimi-K2-Instruct",
-        display_name="Moonshotai-Kimi-K2-Instruct (Prompt)",
+        display_name="Moonshotai-Kimi-K2-Instruct (Prompt) (Reasoning)",
         url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
         org="MoonshotAI",
         license="modified-mit",
@@ -1114,7 +1114,7 @@ api_inference_model_map = {
 local_inference_model_map = {
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
-        display_name="DeepSeek-R1 (Prompt) (Local)",
+        display_name="DeepSeek-R1 (Prompt) (Local) (Reasoning)",
         url="https://huggingface.co/deepseek-ai/DeepSeek-R1",
         org="DeepSeek",
         license="MIT",
@@ -1174,7 +1174,7 @@ local_inference_model_map = {
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct-FC",
-        display_name="Llama-3.1-8B-Instruct (FC)",
+        display_name="Llama-3.1-8B-Instruct (FC) (Reasoning)",
         url="https://llama.meta.com/llama3",
         org="Meta",
         license="Meta Llama 3 Community",
@@ -1186,7 +1186,7 @@ local_inference_model_map = {
     ),
     "meta-llama/Llama-3.1-8B-Instruct": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct",
-        display_name="Llama-3.1-8B-Instruct (Prompt)",
+        display_name="Llama-3.1-8B-Instruct (Prompt) (Reasoning)",
         url="https://llama.meta.com/llama3",
         org="Meta",
         license="Meta Llama 3 Community",
@@ -1198,7 +1198,7 @@ local_inference_model_map = {
     ),
     "meta-llama/Llama-3.1-70B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-70B-Instruct-FC",
-        display_name="Llama-3.1-70B-Instruct (FC)",
+        display_name="Llama-3.1-70B-Instruct (FC) (Reasoning)",
         url="https://llama.meta.com/llama3",
         org="Meta",
         license="Meta Llama 3 Community",
@@ -1210,7 +1210,7 @@ local_inference_model_map = {
     ),
     "meta-llama/Llama-3.1-70B-Instruct": ModelConfig(
         model_name="meta-llama/Llama-3.1-70B-Instruct",
-        display_name="Llama-3.1-70B-Instruct (Prompt)",
+        display_name="Llama-3.1-70B-Instruct (Prompt) (Reasoning)",
         url="https://llama.meta.com/llama3",
         org="Meta",
         license="Meta Llama 3 Community",
@@ -1282,7 +1282,7 @@ local_inference_model_map = {
     ),
     "Salesforce/Llama-xLAM-2-70b-fc-r": ModelConfig(
         model_name="Salesforce/Llama-xLAM-2-70b-fc-r",
-        display_name="xLAM-2-70b-fc-r (FC)",
+        display_name="xLAM-2-70b-fc-r (FC) (Reasoning)",
         url="https://huggingface.co/Salesforce/Llama-xLAM-2-70b-fc-r",
         org="Salesforce",
         license="cc-by-nc-4.0",
@@ -1294,7 +1294,7 @@ local_inference_model_map = {
     ),
     "Salesforce/Llama-xLAM-2-8b-fc-r": ModelConfig(
         model_name="Salesforce/Llama-xLAM-2-8b-fc-r",
-        display_name="xLAM-2-8b-fc-r (FC)",
+        display_name="xLAM-2-8b-fc-r (FC) (Reasoning)",
         url="https://huggingface.co/Salesforce/Llama-xLAM-2-8b-fc-r",
         org="Salesforce",
         license="cc-by-nc-4.0",
@@ -1306,7 +1306,7 @@ local_inference_model_map = {
     ),
     "Salesforce/xLAM-2-32b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-32b-fc-r",
-        display_name="xLAM-2-32b-fc-r (FC)",
+        display_name="xLAM-2-32b-fc-r (FC) (Reasoning)",
         url="https://huggingface.co/Salesforce/xLAM-2-32b-fc-r",
         org="Salesforce",
         license="cc-by-nc-4.0",
@@ -1318,7 +1318,7 @@ local_inference_model_map = {
     ),
     "Salesforce/xLAM-2-3b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-3b-fc-r",
-        display_name="xLAM-2-3b-fc-r (FC)",
+        display_name="xLAM-2-3b-fc-r (FC) (Reasoning)",
         url="https://huggingface.co/Salesforce/xLAM-2-3b-fc-r",
         org="Salesforce",
         license="cc-by-nc-4.0",
@@ -1330,7 +1330,7 @@ local_inference_model_map = {
     ),
     "Salesforce/xLAM-2-1b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-1b-fc-r",
-        display_name="xLAM-2-1b-fc-r (FC)",
+        display_name="xLAM-2-1b-fc-r (FC) (Reasoning)",
         url="https://huggingface.co/Salesforce/xLAM-2-1b-fc-r",
         org="Salesforce",
         license="cc-by-nc-4.0",
@@ -1342,7 +1342,7 @@ local_inference_model_map = {
     ),
     "mistralai/Ministral-8B-Instruct-2410": ModelConfig(
         model_name="mistralai/Ministral-8B-Instruct-2410",
-        display_name="Ministral-8B-Instruct-2410 (FC)",
+        display_name="Ministral-8B-Instruct-2410 (FC) (Reasoning)",
         url="https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
         org="Mistral AI",
         license="Mistral AI Research License",
@@ -1354,7 +1354,7 @@ local_inference_model_map = {
     ),
     "microsoft/phi-4": ModelConfig(
         model_name="microsoft/phi-4",
-        display_name="Phi-4 (Prompt)",
+        display_name="Phi-4 (Prompt) (Reasoning)",
         url="https://huggingface.co/microsoft/phi-4",
         org="Microsoft",
         license="MIT",
@@ -1366,7 +1366,7 @@ local_inference_model_map = {
     ),
     "microsoft/Phi-4-mini-instruct": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct",
-        display_name="Phi-4-mini-instruct (Prompt)",
+        display_name="Phi-4-mini-instruct (Prompt) (Reasoning)",
         url="https://huggingface.co/microsoft/Phi-4-mini-instruct",
         org="Microsoft",
         license="MIT",
@@ -1378,7 +1378,7 @@ local_inference_model_map = {
     ),
     "microsoft/Phi-4-mini-instruct-FC": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct-FC",
-        display_name="Phi-4-mini-instruct (FC)",
+        display_name="Phi-4-mini-instruct (FC) (Reasoning)",
         url="https://huggingface.co/microsoft/Phi-4-mini-instruct",
         org="Microsoft",
         license="MIT",
@@ -1390,7 +1390,7 @@ local_inference_model_map = {
     ),
     "ibm-granite/granite-3.2-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.2-8b-instruct",
-        display_name="Granite-3.2-8B-Instruct (FC)",
+        display_name="Granite-3.2-8B-Instruct (FC) (Reasoning)",
         url="https://huggingface.co/ibm-granite/granite-3.2-8b-instruct",
         org="IBM",
         license="Apache-2.0",
@@ -1402,7 +1402,7 @@ local_inference_model_map = {
     ),
     "ibm-granite/granite-3.1-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.1-8b-instruct",
-        display_name="Granite-3.1-8B-Instruct (FC)",
+        display_name="Granite-3.1-8B-Instruct (FC) (Reasoning)",
         url="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
         org="IBM",
         license="Apache-2.0",
@@ -1498,7 +1498,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-0.6B": ModelConfig(
         model_name="Qwen/Qwen3-0.6B",
-        display_name="Qwen3-0.6B (Prompt)",
+        display_name="Qwen3-0.6B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
         license="apache-2.0",
@@ -1510,7 +1510,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-1.7B-FC": ModelConfig(
         model_name="Qwen/Qwen3-1.7B-FC",
-        display_name="Qwen3-1.7B (FC)",
+        display_name="Qwen3-1.7B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -1522,7 +1522,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-1.7B": ModelConfig(
         model_name="Qwen/Qwen3-1.7B",
-        display_name="Qwen3-1.7B (Prompt)",
+        display_name="Qwen3-1.7B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
         license="apache-2.0",
@@ -1558,7 +1558,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-8B-FC": ModelConfig(
         model_name="Qwen/Qwen3-8B-FC",
-        display_name="Qwen3-8B (FC)",
+        display_name="Qwen3-8B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -1570,7 +1570,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-8B": ModelConfig(
         model_name="Qwen/Qwen3-8B",
-        display_name="Qwen3-8B (Prompt)",
+        display_name="Qwen3-8B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
         license="apache-2.0",
@@ -1582,7 +1582,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-14B-FC": ModelConfig(
         model_name="Qwen/Qwen3-14B-FC",
-        display_name="Qwen3-14B (FC)",
+        display_name="Qwen3-14B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -1594,7 +1594,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-14B": ModelConfig(
         model_name="Qwen/Qwen3-14B",
-        display_name="Qwen3-14B (Prompt)",
+        display_name="Qwen3-14B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
         license="apache-2.0",
@@ -1606,7 +1606,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-32B-FC": ModelConfig(
         model_name="Qwen/Qwen3-32B-FC",
-        display_name="Qwen3-32B (FC)",
+        display_name="Qwen3-32B (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1618,7 +1618,7 @@ local_inference_model_map = {
     ),
     "Qwen/Qwen3-32B": ModelConfig(
         model_name="Qwen/Qwen3-32B",
-        display_name="Qwen3-32B (Prompt)",
+        display_name="Qwen3-32B (Prompt) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
         license="apache-2.0",
@@ -1762,7 +1762,7 @@ local_inference_model_map = {
     ),
     "NovaSky-AI/Sky-T1-32B-Preview": ModelConfig(
         model_name="NovaSky-AI/Sky-T1-32B-Preview",
-        display_name="Sky-T1-32B-Preview (Prompt)",
+        display_name="Sky-T1-32B-Preview (Prompt) (Reasoning)",
         url="https://huggingface.co/NovaSky-AI/Sky-T1-32B-Preview",
         org="NovaSky-AI",
         license="apache-2.0",
@@ -1846,7 +1846,7 @@ local_inference_model_map = {
     ),
     "uiuc-convai/CoALM-405B": ModelConfig(
         model_name="uiuc-convai/CoALM-405B",
-        display_name="CoALM-405B",
+        display_name="CoALM-405B (Reasoning)",
         url="https://huggingface.co/uiuc-convai/CoALM-405B",
         org="UIUC + Oumi",
         license="Meta Llama 3 Community",
@@ -1942,7 +1942,7 @@ local_inference_model_map = {
     ),
     "phronetic-ai/RZN-T": ModelConfig(
         model_name="phronetic-ai/RZN-T",
-        display_name="RZN-T (Prompt)",
+        display_name="RZN-T (Prompt) (Reasoning)",
         url="https://huggingface.co/phronetic-ai/RZN-T",
         org="Phronetic AI",
         license="apache-2.0",
@@ -2007,7 +2007,7 @@ third_party_inference_model_map = {
     ),
     "qwen/qwq-32b-FC-novita": ModelConfig(
         model_name="qwen/qwq-32b-FC-novita",
-        display_name="Qwen/QwQ-32B (FC) (Novita)",
+        display_name="Qwen/QwQ-32B (FC) (Novita) (Reasoning)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
@@ -2019,7 +2019,7 @@ third_party_inference_model_map = {
     ),
     "qwen/qwq-32b-novita": ModelConfig(
         model_name="qwen/qwq-32b-novita",
-        display_name="Qwen/QwQ-32B (Prompt) (Novita)",
+        display_name="Qwen/QwQ-32B (Prompt) (Novita) (Reasoning)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
         license="apache-2.0",
@@ -2032,7 +2032,7 @@ third_party_inference_model_map = {
     # Via Qwen Agent Framework
     "qwen3-4b-think-FC": ModelConfig(
         model_name="qwen3-4b-think-FC",
-        display_name="Qwen3-4B-Think (FC)",
+        display_name="Qwen3-4B-Think (FC) (Reasoning)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
         license="apache-2.0",
