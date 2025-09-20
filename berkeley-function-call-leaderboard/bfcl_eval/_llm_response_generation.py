@@ -67,6 +67,7 @@ def build_handler(model_name, temperature):
     handler = config.model_handler(model_name, temperature)
     # Propagate config flags to the handler instance
     handler.is_fc_model = config.is_fc_model
+    handler.underscore_to_dot = config.underscore_to_dot
     return handler
 
 
