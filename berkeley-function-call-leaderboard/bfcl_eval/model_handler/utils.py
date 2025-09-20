@@ -80,7 +80,10 @@ def convert_to_tool(functions, mapping, model_style):
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if "." in item["name"] and model_style in [
+        if underscore_to_dot and "." in item["name"]:
+            item["name"]=re.sub(r"\.","_",item["name"])
+            
+        elif "." in item["name"] and model_style in [
             ModelStyle.OPENAI_COMPLETIONS,
             ModelStyle.OPENAI_RESPONSES,
             ModelStyle.MISTRAL,
