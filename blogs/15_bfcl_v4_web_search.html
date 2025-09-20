@@ -332,46 +332,46 @@
                 <th colspan="21" class="level-1">
                   <span class="emoji">🏆</span> Overall Score
                   <div class="note">Percentage Weighted Average</div>
-                  <div class="note">(5288)</div>
+                  <div class="note">(5088)</div>
                 </th>
                 <th colspan="17" class="level-1">
                   <span class="emoji">📝</span> Non-Scoring
                   <div class="note">No Score Impact</div>
-                  <div class="note">(200)</div>
+                  <div class="note">(5218)</div>
                 </th>
               </tr>
 
               <!-- Row 2: Main Categories -->
               <tr>
                 <th colspan="5" class="level-2">
-                  <span class="emoji">🤖</span> Agentic
+                  <span class="emoji">🤖</span> Agentic (40%)
                   <div class="note">Unweighted Average</div>
-                  <div class="note">(665) - 40%</div>
+                  <div class="note">(665)</div>
                 </th>
                 <th colspan="4" class="level-2">
-                  <span class="emoji">🔄</span> Multi-Turn
+                  <span class="emoji">🔄</span> Multi-Turn (30%)
                   <div class="note">Unweighted Average</div>
-                  <div class="note">(800) - 30%</div>
+                  <div class="note">(800)</div>
                 </th>
                 <th colspan="4" class="level-2 section-live">
-                  <span class="emoji">💡</span> Live
+                  <span class="emoji">💡</span> Live (10%)
                   <div class="note">Weighted Average</div>
-                  <div class="note">(1351) - 10%</div>
+                  <div class="note">(1351)</div>
                 </th>
                 <th colspan="6" class="level-2 section-non-live">
-                  <span class="emoji">📂</span> Non-Live
+                  <span class="emoji">📂</span> Non-Live (10%)
                   <div class="note">Unweighted Average</div>
-                  <div class="note">(1390) - 10%</div>
+                  <div class="note">(1150)</div>
                 </th>
                 <th colspan="2" class="level-2">
-                  <span class="emoji">🧐</span> Hallucination Measurement
+                  <span class="emoji">🧐</span> Hallucination Measurement (10%)
                   <div class="note">Unweighted Average</div>
-                  <div class="note">(1122) - 10%</div>
+                  <div class="note">(1122)</div>
                 </th>
                 <th colspan="4" class="level-2">
                   <span class="emoji">📝</span> Format Sensitivity
                   <div class="note">Unweighted Average</div>
-                  <div class="note">(200)</div>
+                  <div class="note">(5200)</div>
                 </th>
                 <th class="level-2">
                   <span class="emoji">✅</span> Relevance
@@ -415,11 +415,11 @@
                 </th>
                 <th colspan="1" class="level-3">
                   <span class="emoji">🔀</span> Parallel
-                  <div class="note">(15)</div>
+                  <div class="note">(16)</div>
                 </th>
                 <th colspan="1" class="level-3">
                   <span class="emoji">📦🔀</span> Parallel Multiple
-                  <div class="note">(15)</div>
+                  <div class="note">(24)</div>
                 </th>
 
                 <!-- Non-Live Section -->
@@ -449,20 +449,10 @@
                 </th>
 
                 <!-- Non-Scoring Section -->
-                <th class="level-3">
-                  <span class="emoji">🐍</span> Simple Python
-                  <div class="note">(30)</div>
-                </th>
-                <th class="level-3">
-                  <span class="emoji">🔀</span> Parallel
-                  <div class="note">(15)</div>
-                </th>
-                <th class="level-3">
-                  <span class="emoji">📦</span> Multiple
-                  <div class="note">(15)</div>
-                </th>
-                <th class="level-3">
-                  <span class="note">...</span>
+                <th colspan="4" class="level-3">
+                  <span class="emoji">📋</span> Format Sensitivity Configurations
+                  <div class="note">26 Configurations × 200 test cases each</div>
+                  <div class="note">(5200 total)</div>
                 </th>
                 <th class="level-3">
                   <span class="emoji">✅</span> Live Relevance
@@ -561,7 +551,7 @@
                 </th>
                 <th class="level-4">
                   <span class="emoji">🐍</span> Python Parallel Multiple AST
-                  <div class="note">(440)</div>
+                  <div class="note">(200)</div>
                 </th>
 
                 <!-- Hallucination Measurement > Irrelevance -->
@@ -576,16 +566,19 @@
 
                 <!-- Non-Scoring > Format Sensitivity -->
                 <th class="level-4">
-                  <span class="note na"></span>
+                  <span class="emoji">🐍</span> ret_fmt=python, tool_call_tag=False, func_doc_fmt=json, prompt_fmt=markdown, style=classic
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-4">
-                  <span class="note na"></span>
+                  <span class="emoji">🔧</span> ret_fmt=python, tool_call_tag=False, func_doc_fmt=json, prompt_fmt=plaintext, style=experimental
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-4">
-                  <span class="note na"></span>
+                  <span class="emoji">📄</span> ret_fmt=json, tool_call_tag=True, func_doc_fmt=xml, prompt_fmt=plaintext, style=classic
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-4">
-                  <span class="note na"></span>
+                  <span class="note">...23 more</span>
                 </th>
 
                 <!-- Non-Scoring > Relevance -->
@@ -595,6 +588,21 @@
               </tr>
 
             </table>
+          </div>
+          
+          <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #495057;">📊 Scoring Methodology</h4>
+            <p style="margin-bottom: 15px;"><strong>Overall Score Calculation:</strong></p>
+            <ul style="margin-bottom: 15px;">
+              <li><strong>Percentage Weighted Average:</strong> The main categories (Agentic, Multi-Turn, Live, Non-Live, Hallucination Measurement) are combined using fixed percentage weights as shown in parentheses above.</li>
+              <li><strong>Formula:</strong> <code>Overall Score = (Agentic × 40%) + (Multi-Turn × 30%) + (Live × 10%) + (Non-Live × 10%) + (Hallucination × 10%)</code></li>
+            </ul>
+            
+            <p style="margin-bottom: 15px;"><strong>Within-Category Calculation:</strong></p>
+            <ul style="margin-bottom: 0;">
+              <li><strong>Unweighted Average:</strong> Subcategories are averaged equally regardless of test case count (e.g., Agentic combines Web Search and Memory with equal weight).</li>
+              <li><strong>Weighted Average:</strong> Subcategories are weighted by their actual test case counts (e.g., Live categories are weighted proportionally by the number of test cases in each subcategory).</li>
+            </ul>
           </div>
           <br>
           <h2 id="intro">1. Introduction</h2>
