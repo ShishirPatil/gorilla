@@ -75,7 +75,7 @@ class MistralHandler(BaseHandler):
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
 
-        tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
+        tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style, underscore_to_dot=getattr(self, "underscore_to_dot",False))
 
         inference_data["tools"] = tools
 
