@@ -69,16 +69,18 @@ class MiningHandler(OpenAICompletionsHandler):
         }
 
     def mining_system_prompt_pre_processing_chat_model(self,prompts, function_docs, test_category):
-        system_pre="""You are a function calling AI model.  
+        system_pre = """You are a function calling AI model.  
 You are provided with function signatures within <tools></tools> XML tags.  
 You may call one or more functions to assist with the user query.  
 Don't make assumptions about what values to plug into functions.
+
 
 Here are the available tools:  
 <tools>  
 {}  
 </tools>
 """
+
         system_suffix = """Use the following pydantic model json schema for each tool call you will make:  
 {"title": "FunctionCalls", "type": "array", "properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"]}
 
@@ -99,18 +101,32 @@ You FIRST think about the reasoning process as an internal monologue, and then p
 - If the question can be fully answered based on current information (without tools), use <answer></answer> tags.  
 - Inside <answer></answer>, provide only a short, precise answer to the question (not lengthy explanations).  
 - Even if you do not know the answer, output your answer inside <answer></answer> as a JSON:  
-  - {'answer': 'I do not know', 'context': 'I do not know'}  
-  - If you cannot answer the question at all, output: {'answer': 'I cannot answer this question', 'context': 'A short reason explaining why this question cannot be answered'}  
+  - {'answer': "I do not know", "context": "I do not know"}  
+  - If you cannot answer the question at all, output: {"answer": "I cannot answer this question", "context": "A short reason explaining why this question cannot be answered"}  
 
 **General Constraints:**  
 - At each turn, output ONLY ONE of: <tool_calls></tool_calls> OR <answer></answer> (never both).  
 - If you selected <answer></answer>, you MUST NOT propose another tool call even if the question is not answerable.  
 - All outputs must strictly follow the above format.  
 - Do not insert any additional explanation or commentary outside the specified tags.  
-- When using <tool_calls></tool_calls>, the JSON array must not be empty and must strictly conform to the schema above.
-- Tool Invocation Priority: If the final answer cannot be derived from the model’s current knowledge and context, you must continue invoking tools until sufficient information is obtained. Do not stop at "I do not know" or provide an incomplete answer.
-- Double-check Requirement: Before producing the final <answer>, you must perform a double-check step to verify correctness, consistency, and reliability of the result.
-- Dynamic Plan Update: During double-check, if issues or inconsistencies are found, you must update the plan in <think> and continue invoking tools until the problem is resolved, only then output the final answer.
+- When using <tool_calls></tool_calls>, the JSON array must not be empty and must strictly conform to the schema above.  
+- Be careful not to misuse double quotes in the output json format.  
+- Tool Invocation Priority: During intermediate steps, if the final answer cannot yet be derived, you must continue invoking tools until sufficient information is obtained.  
+
+**Final Step Rule:**  
+- For multi-step reasoning tasks (e.g., web-search), the FINAL step MUST always end with an <answer> block.  
+- Once you output <answer>, you must never output <tool_calls> again.  
+- Even if the answer is uncertain or incomplete, you must still provide <answer> in the required format.  
+
+**Double-check Requirement:**  
+- Before producing the final <answer>, the model must perform a Double-Check step: re-verify all calculations step-by-step, validate factual claims or flag uncertainty, ensure logical consistency and completeness, and confirm the output follows the required format, then provide the corrected and validated final answer.  
+
+**Dynamic Plan Update:**  
+- During double-check, if issues or inconsistencies are found, you must update the plan in <think> and continue invoking tools until the problem is resolved, only then output the final answer.
+
+**Attention**
+If no suitable function is found, just respond with XML tags as follows,output your answer inside <answer></answer> as a JSON, don't use <tool_calls></tool_calls>
+At any time, make sure that the <think></think> tag contains enough thoughts.
 
 **Example:**
 
@@ -127,9 +143,10 @@ OR
 {reasoning process here}
 </think>
 <answer>
-{'answer': '...', 'context': '...'}
+{"answer": "...", "context": "..."}
 </answer>
 """
+
         assert type(prompts) == list
 
         system_prompt = system_pre.format(function_docs)+system_suffix
