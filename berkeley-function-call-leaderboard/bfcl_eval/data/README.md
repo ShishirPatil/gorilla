@@ -19,7 +19,9 @@ and our release blogs:
 
 [BFCL V3](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#composition): Introduces multi-turn and multi-step function calling scenarios
 
-**_Latest Version Release Date_**: 09/22/2024
+[BFCL V4 Agentic](https://gorilla.cs.berkeley.edu/blogs/15_bfcl_v4_web_search.html): BFCL V4 Agentic benchmark focuses on tool-calling in real-world agentic settings, featuring web search with multi-hop reasoning and error recovery, agent memory management, and format sensitivity evaluation.
+
+**_Latest Version Release Date_**: 07/17/2025
 
 **_Original Release Date_**: 02/26/2024
 
@@ -84,6 +86,20 @@ We break down our dataset into our 3 major releases. The composition of each rel
 
 <p align="center">
   <img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_13_data_composition.png" alt="BFCL V3 data composition"/>
+</p>
+
+**BFCL V4 Agentic**:
+
+**Web Search Data Composition:**
+
+<p align="center">
+  <img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_15_data_composition.png" alt="BFCL V4 Web Search data composition"/>
+</p>
+
+**Memory Data Composition:**
+
+<p align="center">
+  <img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_16_memory1.png" alt="BFCL V4 Memory data composition"/>
 </p>
 
 ### Dataset Description
@@ -151,6 +167,41 @@ The augmented multiturn data is comprised of the followin subcategories:
 - **Long-Context (200)**: This dataset challenges the model's resilience in long context scenarios on function calling. We inject random objects (e.g. hundreds of files in one directory or thousands of booking records) to mimic real world API output, which tend to be overtly informative. Here, we aim to test the model's ability to grasp the core information from an overwhelmingly large context.
 
 - **Composite (200)**: Composite Category seeks to combine all three scenarios above to create an exceptionally hard challenge that, despite being rare, is important to handle when using autonomous agents at scale. Through this category, we want to convince the audience that a good model performance in this category offers a strong signal that LLMs can function as autonomous agents at scale despite rare and extremely difficult scenarios.
+
+## BFCL V4:
+
+BFCL V4 introduces agentic function calling scenarios that focus on real-world applications where LLMs must interact with external systems and maintain persistent state. The evaluation is divided into two main categories: **Web Search (200)** and **Memory (465)**, which together form the **Agentic** benchmark comprising 665 test cases.
+
+#### Agentic Evaluation
+
+**Web Search (200)**: This category evaluates the model's ability to perform web searches and handle search results in different contexts. The evaluation is split into two subcategories:
+
+- **Snippet (100)**: In this scenario, models are provided with search engine snippets directly, allowing them to work with pre-extracted information from web pages. This tests the model's ability to interpret and utilize summarized web content effectively.
+
+- **No Snippet (100)**: Here, search engine snippets are withheld, forcing the model to fetch and read full webpages to extract necessary information. This more challenging scenario tests the model's ability to navigate and process raw web content, simulating real-world agentic behavior where agents must independently gather information.
+
+**Memory (465)**: This category evaluates the model's ability to interact with different memory backends, testing persistent state management across various scenarios. The memory evaluation spans five different scenarios (student, customer, finance, healthcare, notetaker) across three distinct memory architectures:
+
+- **Vector Store (155)**: Tests the model's ability to store and retrieve information using semantic similarity through vector embeddings. This backend uses FAISS for efficient similarity search and supports operations like adding, updating, removing, and retrieving semantically similar content.
+
+- **Key Value Store (155)**: Evaluates the model's capability to manage structured data using a traditional key-value storage system. This tests precise data storage and retrieval operations where information is accessed via specific keys rather than semantic similarity.
+
+- **Recursive Summarization (155)**: Tests the model's ability to manage memory through recursive text summarization, where information is continuously condensed and updated. This approach simulates how agents might maintain concise but comprehensive memory over extended interactions.
+
+Each memory backend presents unique challenges in how agents must structure, store, and retrieve information, providing insights into different approaches to persistent state management in agentic systems.
+
+#### Format Sensitivity Evaluation
+
+**Format Sensitivity (5200)**: This non-scoring category specifically tests how sensitive models are to different prompt formats and system message variations. The evaluation uses 26 different configurations across multiple dimensions:
+
+- **Return Format Variations**: Testing Python, JSON, verbose XML, and concise XML output formats
+- **Tool Call Tag Presence**: Evaluating with and without explicit tool call tags
+- **Function Documentation Format**: Testing Python, XML, and JSON function documentation styles  
+- **Prompt Format**: Comparing plaintext vs. markdown formatting
+- **Prompt Style**: Testing classic vs. experimental prompt styles
+
+This comprehensive format sensitivity testing helps identify how robust models are to prompt engineering variations, which is crucial for real-world deployment where prompt formats may vary across different applications and use cases.
+
 
 ### Evaluation
 
