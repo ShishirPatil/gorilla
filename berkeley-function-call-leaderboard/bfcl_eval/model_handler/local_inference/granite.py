@@ -26,7 +26,7 @@ class GraniteFunctionCallingHandler(OSSHandler):
         )
 
         function = convert_to_tool(
-            function, GORILLA_TO_OPENAPI, model_style=ModelStyle.OSSMODEL
+            function, GORILLA_TO_OPENAPI, model_style=ModelStyle.OSSMODEL, underscore_to_dot=getattr(self, "underscore_to_dot", False)
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])
