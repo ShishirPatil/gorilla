@@ -1,0 +1,136 @@
+name: sync bfcl_eval/data to HF
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'berkeley-function-call-leaderboard/bfcl_eval/data/**'
+      - '.github/workflows/sync_data_to_hf.yml'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      HF_DATASET_REPO: gorilla-llm/Berkeley-Function-Calling-Leaderboard
+      SRC_DIR: berkeley-function-call-leaderboard/bfcl_eval/data
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: prepare rsync and git-lfs
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y rsync
+          git lfs install
+
+      - name: check HF dataset
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade --quiet huggingface_hub
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+          from huggingface_hub.errors import HfHubHTTPError
+          repo_id = os.environ["HF_DATASET_REPO"]
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          try:
+              api.create_repo(repo_id=repo_id, repo_type="dataset", exist_ok=True)
+              print(f"Repo ensured: {repo_id}")
+          except HfHubHTTPError as e:
+              code = getattr(getattr(e, "response", None), "status_code", None)
+              if code in (401, 403):
+                  print(f"No permission to create {repo_id} (HTTP {code}). Assume it exists.")
+              else:
+                  raise
+          PY
+
+      - name: clone HF repo
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          rm -rf hf
+          git clone "https://user:${HF_TOKEN}@huggingface.co/datasets/${HF_DATASET_REPO}" hf
+          (cd hf && git lfs install)
+
+      - name: clean HF repo work
+        run: |
+          set -euo pipefail
+          cd hf
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+      - name: write .gitattributes
+        run: |
+          set -euo pipefail
+          cd hf
+          printf "%s\n" \
+          "*.json filter=lfs diff=lfs merge=lfs -text" \
+          "*.jsonl filter=lfs diff=lfs merge=lfs -text" \
+          "*.ndjson filter=lfs diff=lfs merge=lfs -text" \
+          "*.csv filter=lfs diff=lfs merge=lfs -text" \
+          "*.tsv filter=lfs diff=lfs merge=lfs -text" \
+          "*.parquet filter=lfs diff=lfs merge=lfs -text" \
+          "*.gz filter=lfs diff=lfs merge=lfs -text" \
+          "*.bz2 filter=lfs diff=lfs merge=lfs -text" \
+          "*.xz filter=lfs diff=lfs merge=lfs -text" \
+          "*.zip filter=lfs diff=lfs merge=lfs -text" \
+          "*.npy filter=lfs diff=lfs merge=lfs -text" \
+          "*.npz filter=lfs diff=lfs merge=lfs -text" \
+          "*.pkl filter=lfs diff=lfs merge=lfs -text" \
+          "*.bin filter=lfs diff=lfs merge=lfs -text" \
+          "*.pt filter=lfs diff=lfs merge=lfs -text" \
+          "*.safetensors filter=lfs diff=lfs merge=lfs -text" \
+          "*.ipynb filter=lfs diff=lfs merge=lfs -text" \
+          "*.pdf filter=lfs diff=lfs merge=lfs -text" \
+          "*.png filter=lfs diff=lfs merge=lfs -text" \
+          "*.jpg filter=lfs diff=lfs merge=lfs -text" \
+          "*.jpeg filter=lfs diff=lfs merge=lfs -text" \
+          "*.gif filter=lfs diff=lfs merge=lfs -text" \
+          > .gitattributes
+
+      - name: sync SRC contents to hf/ and overwrite
+        run: |
+          set -euo pipefail
+          SRC="${GITHUB_WORKSPACE}/${SRC_DIR}"
+          test -d "$SRC"
+          rsync -a --delete \
+            --exclude ".git/" --exclude ".github/" --exclude ".gitattributes" \
+            "$SRC/" hf/
+
+      - name: reset index to match working tree
+        run: |
+          set -euo pipefail
+          cd hf
+          git rm -r --cached . || true
+
+      - name: normalize to LFS and stage
+        run: |
+          set -euo pipefail
+          cd hf
+          git add --renormalize .
+          while IFS= read -r -d '' f; do
+            git lfs track --filename "$f"
+          done < <(find . -type f -not -path "./.git/*" -not -name ".gitattributes" -size +9M -print0 || true)
+          [ -f .gitattributes ] && git add .gitattributes
+          git add -A
+
+      - name: commit and push
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd hf
+          if ! git diff --cached --quiet; then
+            git -c user.name="github-actions[bot]" \
+                -c user.email="github-actions[bot]@users.noreply.github.com" \
+                commit -m "sync bfcl_eval/data into HF repo"
+            git push --force "https://user:${HF_TOKEN}@huggingface.co/datasets/${HF_DATASET_REPO}" HEAD:main
+          else
+            echo "No content changes to push"
+          fi
