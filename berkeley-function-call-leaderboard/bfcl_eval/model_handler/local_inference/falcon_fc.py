@@ -7,7 +7,7 @@ from overrides import override
 class Falcon3FCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_name_huggingface = model_name.replace("-FC", "")
+        self.model_name_huggingface = model_name
 
     @override
     def _format_prompt(self, messages, function):

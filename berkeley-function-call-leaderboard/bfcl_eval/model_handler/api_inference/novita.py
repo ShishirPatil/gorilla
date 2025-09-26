@@ -27,7 +27,7 @@ class NovitaHandler(OpenAICompletionsHandler):
         if len(tools) > 0:
             return self.generate_with_backoff(
                 messages=message,
-                model=self.model_name.replace("-FC", "").replace("-novita", ""),
+                model=self.model_name,
                 temperature=self.temperature,
                 tools=tools,
             )
@@ -35,7 +35,7 @@ class NovitaHandler(OpenAICompletionsHandler):
 
             return self.generate_with_backoff(
                 messages=message,
-                model=self.model_name.replace("-FC", "").replace("-novita", ""),
+                model=self.model_name,
                 temperature=self.temperature,
             )
 
@@ -46,6 +46,6 @@ class NovitaHandler(OpenAICompletionsHandler):
 
         return self.generate_with_backoff(
             messages=inference_data["message"],
-            model=self.model_name.replace("-novita", ""),
+            model=self.model_name,
             temperature=self.temperature,
         )

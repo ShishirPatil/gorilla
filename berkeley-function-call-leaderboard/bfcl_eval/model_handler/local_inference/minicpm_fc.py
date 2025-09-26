@@ -17,7 +17,7 @@ class MiniCPMFCHandler(OSSHandler):
         super().__init__(model_name, temperature)
         self.stop_token_ids = [2, 73440]
         self.skip_special_tokens = False
-        self.model_name_huggingface = model_name.replace("-FC", "")
+        self.model_name_huggingface = model_name
 
     @override
     def _format_prompt(self, messages, function):

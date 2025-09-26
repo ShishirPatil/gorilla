@@ -63,7 +63,8 @@ class NovaHandler(BaseHandler):
         if len(tools) > 0:
             # toolConfig requires minimum number of 1 item.
             return self.generate_with_backoff(
-                modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
+                # modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
+                modelId=f"us.amazon.{self.model_name}",
                 messages=message,
                 system=system_prompt,
                 inferenceConfig={"temperature": self.temperature},
@@ -71,7 +72,8 @@ class NovaHandler(BaseHandler):
             )
         else:
             return self.generate_with_backoff(
-                modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
+                # modelId=f"us.amazon.{self.model_name.replace('.', ':')}"
+                modelId=f"us.amazon.{self.model_name}",
                 messages=message,
                 system=system_prompt,
                 inferenceConfig={"temperature": self.temperature},

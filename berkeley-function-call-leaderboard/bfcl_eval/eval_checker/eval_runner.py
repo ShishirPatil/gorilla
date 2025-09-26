@@ -25,8 +25,11 @@ from tqdm import tqdm
 def get_handler(model_name: str) -> BaseHandler:
     config = MODEL_CONFIG_MAPPING[model_name]
     handler: BaseHandler = config.model_handler(
-        model_name, temperature=0
-    )  # Temperature doesn't matter for evaluation
+        config.model_name, temperature=0
+    )
+    # handler: BaseHandler = config.model_handler(
+    #     model_name, temperature=0
+    # )  # Temperature doesn't matter for evaluation
     handler.is_fc_model = config.is_fc_model
     return handler
 

@@ -48,7 +48,7 @@ class GeminiHandler(BaseHandler):
         return prompts
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        if "FC" not in self.model_name:
+        if "FC" not in self.model_name or not self.is_fc_model:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
             return default_decode_ast_prompting(result, language, has_tool_call_tag)
         else:
@@ -57,7 +57,7 @@ class GeminiHandler(BaseHandler):
             return result
 
     def decode_execute(self, result, has_tool_call_tag):
-        if "FC" not in self.model_name:
+        if "FC" not in self.model_name or not self.is_fc_model:
             result = result.replace("```tool_code\n", "").replace("\n```", "")
             return default_decode_execute_prompting(result, has_tool_call_tag)
         else:
@@ -101,7 +101,7 @@ class GeminiHandler(BaseHandler):
             config.tools = [Tool(function_declarations=inference_data["tools"])]
 
         return self.generate_with_backoff(
-            model=self.model_name.replace("-FC", ""),
+            model=self.model_name,
             contents=inference_data["message"],
             config=config,
         )
@@ -248,7 +248,7 @@ class GeminiHandler(BaseHandler):
             config.system_instruction = inference_data["system_prompt"]
 
         api_response = self.generate_with_backoff(
-            model=self.model_name.replace("-FC", ""),
+            model=self.model_name,
             contents=inference_data["message"],
             config=config,
         )

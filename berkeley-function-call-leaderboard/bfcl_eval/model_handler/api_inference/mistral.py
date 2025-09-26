@@ -26,7 +26,7 @@ class MistralHandler(BaseHandler):
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        if "FC" in self.model_name:
+        if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
@@ -37,7 +37,7 @@ class MistralHandler(BaseHandler):
             return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
     def decode_execute(self, result, has_tool_call_tag):
-        if "FC" in self.model_name:
+        if "FC" in self.model_name or self.is_fc_model:
             function_call = convert_to_function_call(result)
             return function_call
         else:
@@ -62,7 +62,7 @@ class MistralHandler(BaseHandler):
         }
 
         return self.generate_with_backoff(
-            model=self.model_name.replace("-FC", ""),
+            model=self.model_name,
             messages=message,
             tools=tool,
             temperature=self.temperature,
