@@ -78,10 +78,18 @@ class CohereHandler(BaseHandler):
         if response_message.tool_plan:
             chat_turn_to_append.tool_plan = response_message.tool_plan
         if response_message.content:
-            chat_turn_to_append.content = [
-                cohere.TextAssistantMessageContentItem(text=msg.text, type="text")
-                for msg in response_message.content
-            ]
+            if chat_turn_to_append.content is None:
+                chat_turn_to_append.content = []
+
+            for msg in response_message.content:
+                if hasattr(msg, "thinking"):
+                    chat_turn_to_append.content.append(
+                        cohere.ThinkingAssistantMessageV2ContentItem(thinking=msg.thinking)
+                    )
+                else:
+                    chat_turn_to_append.content.append(
+                        cohere.TextAssistantMessageV2ContentItem(text=msg.text)
+                    )
         if response_message.citations:
             chat_turn_to_append.citations = response_message.citations
         inference_data["chat_turns"].append(chat_turn_to_append)
@@ -106,7 +114,7 @@ class CohereHandler(BaseHandler):
         self,
         messages: list,
         tools: list[cohere.types.ToolV2]
-    ) -> tuple[cohere.types.ChatResponse, float]:
+    ) -> tuple[cohere.v2.types.V2ChatResponse, float]:
         start_time = time.time()
         api_response = self.client.chat(
             model=self.model_name.replace("-FC", ""),
@@ -143,13 +151,18 @@ class CohereHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
+        reasoning_content = ""
+
         if len(api_response["tool_calls"]) > 0:  # non empty tool call list
             model_responses = api_response["tool_calls"]  # list: {"tool_name": , "parameters"}
         else:
             if isinstance(api_response["model_responses"], list):
                 model_responses = []
                 for item in api_response["model_responses"]:
-                    if isinstance(item, cohere.types.TextAssistantMessageContentItem):
+                    if isinstance(item, cohere.types.ThinkingAssistantMessageV2ContentItem):
+                        reasoning_content += item.thinking
+                        continue
+                    elif isinstance(item, cohere.types.TextAssistantMessageV2ContentItem):
                         model_responses.append(item.text)
                     else:
                         model_responses.append(item)
@@ -159,6 +172,7 @@ class CohereHandler(BaseHandler):
 
         return {
             "model_responses": model_responses,
+            "reasoning_content": reasoning_content or None,
             "tool_calls": api_response["tool_calls"],
             "chat_history": api_response["chat_history"],
             "input_token": api_response["input_token"],

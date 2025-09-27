@@ -736,6 +736,18 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
+    "command-a-reasoning-08-2025-FC": ModelConfig(
+        model_name="command-a-reasoning-08-2025-FC",
+        display_name="Command A Reasoning (FC)",
+        url="https://cohere.com/blog/command-a-reasoning",
+        org="Cohere",
+        license="CC-BY-NC 4.0 License (w/ Acceptable Use Addendum)",
+        model_handler=CohereHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
         model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
         display_name="Llama-3.1-Nemotron-Ultra-253B-v1 (FC)",
