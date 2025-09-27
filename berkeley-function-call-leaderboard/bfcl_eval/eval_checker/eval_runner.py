@@ -892,14 +892,11 @@ if __name__ == "__main__":
         type=str,
         help="Path to the folder where the evaluation score files will be stored; relative to the `berkeley-function-call-leaderboard` root folder",
     )
-
-    # When this flag is set, the evaluator will run on whichever entries are present in the model result files.
-    # It will **not** assume full coverage of the benchmark and will emit a warning at the end because the
-    # accuracy may differ from a full-set evaluation.
     parser.add_argument(
         "--partial-eval",
+        default=False,
         action="store_true",
-        help="Run evaluation on a partial set of benchmark entries without raising for missing IDs.",
+        help="Run evaluation on a partial set of benchmark entries (eg. entries present in the model result files) without raising for missing IDs.",
     )
 
     args = parser.parse_args()
