@@ -175,4 +175,5 @@ SUPPORTED_MODELS = [
     "qwen/qwq-32b-novita",
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
+    "DM-Cito-32B-v1",
 ]

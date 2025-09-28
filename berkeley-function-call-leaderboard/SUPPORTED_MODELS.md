@@ -134,6 +134,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                            | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
+| DM-Cito-32B-v1                             | Prompt           | Mininglamp     | DM-Cito-8B-v3                                               |
 
 ---
 
