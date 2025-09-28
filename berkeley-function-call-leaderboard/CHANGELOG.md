@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sep 17, 2025] [#1175](https://github.com/ShishirPatil/gorilla/pull/1175): Fix wrong date in ground truth for `live_simple_205-116-13`.
 - [Jul 17, 2025] [#1019](https://github.com/ShishirPatil/gorilla/pull/1019): BFCL V4 release:
 
   1. **New agentic domain**
