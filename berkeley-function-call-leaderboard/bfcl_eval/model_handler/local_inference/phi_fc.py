@@ -17,7 +17,7 @@ class PhiFCHandler(OSSHandler):
 
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_name_huggingface = model_name
+        self.model_name_huggingface = model_name.replace("-FC", "")
         self.is_fc_model = True
 
     @override

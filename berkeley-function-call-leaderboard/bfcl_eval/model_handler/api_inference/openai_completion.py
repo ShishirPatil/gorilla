@@ -58,7 +58,7 @@ class OpenAICompletionsHandler(BaseHandler):
 
         kwargs = {
             "messages": message,
-            "model": self.model_name,
+            "model": self.model_name.replace("-FC", ""),
             "temperature": self.temperature,
             "store": False,
         }

@@ -30,16 +30,14 @@ class FireworksHandler(OpenAICompletionsHandler):
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                # model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
-                model=f"accounts/fireworks/models/{self.model_name}",
+                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                # model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
-                model=f"accounts/fireworks/models/{self.model_name}",
+                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
                 temperature=self.temperature,
             )
         end_time = time.time()

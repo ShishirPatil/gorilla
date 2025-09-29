@@ -73,7 +73,7 @@ class OpenAIResponsesHandler(BaseHandler):
 
         kwargs = {
             "input": message,
-            "model": self.model_name,
+            "model": self.model_name.replace("-FC", ""),
             "store": False,
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
@@ -188,7 +188,7 @@ class OpenAIResponsesHandler(BaseHandler):
 
         kwargs = {
             "input": inference_data["message"],
-            "model": self.model_name,
+            "model": self.model_name.replace("-FC", ""),
             "store": False,
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
