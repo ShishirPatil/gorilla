@@ -30,6 +30,18 @@ if TYPE_CHECKING:
         MemoryAPI,
     )
 
+MODEL_REQUIRE_UNDERSCORE = {
+    ModelStyle.OPENAI_COMPLETIONS,
+    ModelStyle.OPENAI_RESPONSES,
+    ModelStyle.MISTRAL,
+    ModelStyle.GOOGLE,
+    ModelStyle.GROQ,
+    ModelStyle.ANTHROPIC,
+    ModelStyle.ANTHROPIC_BETA,
+    ModelStyle.COHERE,
+    ModelStyle.CLAUDE_AI,
+    ModelStyle.OPENROUTER,
+}
 
 def _cast_to_openai_type(properties, mapping):
     for key, value in properties.items():
@@ -80,22 +92,11 @@ def convert_to_tool(functions, mapping, model_style, underscore_to_dot: bool = F
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if underscore_to_dot and "." in item["name"]:
+        if  "." in item["name"] and (
+            underscore_to_dot or model_style in MODEL_REQUIRE_UNDERSCORE
+        ):
             item["name"] = re.sub(r"\.", "_", item["name"])
             
-        elif "." in item["name"] and model_style in [
-            ModelStyle.OPENAI_COMPLETIONS,
-            ModelStyle.OPENAI_RESPONSES,
-            ModelStyle.MISTRAL,
-            ModelStyle.GOOGLE,
-            ModelStyle.OSSMODEL,
-            ModelStyle.ANTHROPIC,
-            ModelStyle.COHERE,
-            ModelStyle.AMAZON,
-            ModelStyle.NOVITA_AI,
-        ]:
-            # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
-            item["name"] = re.sub(r"\.", "_", item["name"])
 
         item["parameters"]["type"] = "object"
         item["parameters"]["properties"] = _cast_to_openai_type(
