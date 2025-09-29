@@ -126,7 +126,7 @@ api_inference_model_map = {
     ),
     "DeepSeek-R1-0528": ModelConfig(
         model_name="DeepSeek-R1-0528",
-        display_name="DeepSeek-R1-0528 (Prompt) (Reasoning)",
+        display_name="DeepSeek-R1-0528 (Prompt)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -138,7 +138,7 @@ api_inference_model_map = {
     ),
     "DeepSeek-R1-0528-FC": ModelConfig(
         model_name="DeepSeek-R1-0528-FC",
-        display_name="DeepSeek-R1-0528 (FC) (Reasoning)",
+        display_name="DeepSeek-R1-0528 (FC)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -162,7 +162,7 @@ api_inference_model_map = {
     ),
     "gpt-5-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-2025-08-07",
-        display_name="GPT-5-2025-08-07 (FC) (Reasoning)",
+        display_name="GPT-5-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -174,7 +174,7 @@ api_inference_model_map = {
     ),
     "gpt-5-2025-08-07": ModelConfig(
         model_name="gpt-5-2025-08-07",
-        display_name="GPT-5-2025-08-07 (Prompt) (Reasoning)",
+        display_name="GPT-5-2025-08-07 (Prompt)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -186,7 +186,7 @@ api_inference_model_map = {
     ),
     "gpt-5-mini-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-mini-2025-08-07",
-        display_name="GPT-5-mini-2025-08-07 (FC) (Reasoning)",
+        display_name="GPT-5-mini-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -198,7 +198,7 @@ api_inference_model_map = {
     ),
     "gpt-5-mini-2025-08-07": ModelConfig(
         model_name="gpt-5-mini-2025-08-07",
-        display_name="GPT-5-mini-2025-08-07 (Prompt) (Reasoning)",
+        display_name="GPT-5-mini-2025-08-07 (Prompt)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -210,7 +210,7 @@ api_inference_model_map = {
     ),
     "gpt-5-nano-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-nano-2025-08-07",
-        display_name="GPT-5-nano-2025-08-07 (FC) (Reasoning)",
+        display_name="GPT-5-nano-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -222,7 +222,7 @@ api_inference_model_map = {
     ),
     "gpt-5-nano-2025-08-07": ModelConfig(
         model_name="gpt-5-nano-2025-08-07",
-        display_name="GPT-5-nano-2025-08-07 (Prompt) (Reasoning)",
+        display_name="GPT-5-nano-2025-08-07 (Prompt)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
         license="Proprietary",
@@ -354,7 +354,7 @@ api_inference_model_map = {
     ),
     "o3-2025-04-16": ModelConfig(
         model_name="o3-2025-04-16",
-        display_name="o3-2025-04-16 (Prompt) (Reasoning)",
+        display_name="o3-2025-04-16 (Prompt)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
         license="Proprietary",
@@ -366,7 +366,7 @@ api_inference_model_map = {
     ),
     "o3-2025-04-16-FC": ModelConfig(
         model_name="o3-2025-04-16",
-        display_name="o3-2025-04-16 (FC) (Reasoning)",
+        display_name="o3-2025-04-16 (FC)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
         license="Proprietary",
@@ -378,7 +378,7 @@ api_inference_model_map = {
     ),
     "o4-mini-2025-04-16": ModelConfig(
         model_name="o4-mini-2025-04-16",
-        display_name="o4-mini-2025-04-16 (Prompt) (Reasoning)",
+        display_name="o4-mini-2025-04-16 (Prompt)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
         license="Proprietary",
@@ -390,7 +390,7 @@ api_inference_model_map = {
     ),
     "o4-mini-2025-04-16-FC": ModelConfig(
         model_name="o4-mini-2025-04-16",
-        display_name="o4-mini-2025-04-16 (FC) (Reasoning)",
+        display_name="o4-mini-2025-04-16 (FC)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
         license="Proprietary",
@@ -402,7 +402,7 @@ api_inference_model_map = {
     ),
     "claude-opus-4-1-20250805": ModelConfig(
         model_name="claude-opus-4-1-20250805",
-        display_name="Claude-Opus-4-1-20250805 (Prompt) (Reasoning)",
+        display_name="Claude-Opus-4-1-20250805 (Prompt)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
@@ -414,7 +414,7 @@ api_inference_model_map = {
     ),
     "claude-opus-4-1-20250805-FC": ModelConfig(
         model_name="claude-opus-4-1-20250805",
-        display_name="Claude-Opus-4-1-20250805 (FC) (Reasoning)",
+        display_name="Claude-Opus-4-1-20250805 (FC)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
@@ -426,7 +426,7 @@ api_inference_model_map = {
     ),
     "claude-sonnet-4-20250514": ModelConfig(
         model_name="claude-sonnet-4-20250514",
-        display_name="Claude-Sonnet-4-20250514 (Prompt) (Reasoning)",
+        display_name="Claude-Sonnet-4-20250514 (Prompt)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
@@ -438,7 +438,7 @@ api_inference_model_map = {
     ),
     "claude-sonnet-4-20250514-FC": ModelConfig(
         model_name="claude-sonnet-4-20250514",
-        display_name="Claude-Sonnet-4-20250514 (FC) (Reasoning)",
+        display_name="Claude-Sonnet-4-20250514 (FC)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
@@ -534,7 +534,7 @@ api_inference_model_map = {
     ),
     "mistral-large-2411": ModelConfig(
         model_name="mistral-large-2411",
-        display_name="mistral-large-2411 (Prompt) (Reasoning)",
+        display_name="mistral-large-2411 (Prompt)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -546,7 +546,7 @@ api_inference_model_map = {
     ),
     "mistral-large-2411-FC": ModelConfig(
         model_name="mistral-large-2411",
-        display_name="mistral-large-2411 (FC) (Reasoning)",
+        display_name="mistral-large-2411 (FC)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
         license="Proprietary",
@@ -630,7 +630,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-flash-lite-preview-06-17": ModelConfig(
         model_name="gemini-2.5-flash-lite-preview-06-17",
-        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt) (Reasoning)",
+        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
@@ -654,7 +654,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-flash": ModelConfig(
         model_name="gemini-2.5-flash",
-        display_name="Gemini-2.5-Flash (Prompt) (Reasoning)",
+        display_name="Gemini-2.5-Flash (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
         license="Proprietary",
@@ -678,7 +678,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-pro": ModelConfig(
         model_name="gemini-2.5-pro",
-        display_name="Gemini-2.5-Pro (Prompt) (Reasoning)",
+        display_name="Gemini-2.5-Pro (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
