@@ -76,7 +76,7 @@ def _cast_to_openai_type(properties, mapping):
     return properties
 
 
-def convert_to_tool(functions, mapping, model_style):
+def convert_to_tool(functions, mapping, model_style, underscore_to_dot: bool = False):
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
