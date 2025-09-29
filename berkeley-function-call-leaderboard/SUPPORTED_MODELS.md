@@ -37,6 +37,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | DeepSeek-R1-0528                           | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
 | DeepSeek-V3-0324                           | Function Calling | DeepSeek       | DeepSeek-V3-0324-FC                                         |
 | DM-Cito-8B-v2                              | Prompt           | Mininglamp     | DM-Cito-8B-v2                                               |
+| DM-Cito-8B-v3                              | Prompt           | Mininglamp     | DM-Cito-8B-v3                                               |
 | Falcon3-{1B,3B,7B,10B}-Instruct            | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-v2                            | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
 | Functionary-{Small,Medium}-v3.1            | Function Calling | MeetKai        | meetkai/functionary-{small,medium}-v3.1-FC                  |
@@ -133,6 +134,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                            | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
+| DM-Cito-32B-v1                             | Prompt           | Mininglamp     | DM-Cito-8B-v3                                               |
 
 ---
 
