@@ -119,7 +119,7 @@ def generate(
         help="Exclude info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
-    num_threads: int = typer.Option(1, help="The number of threads to use."),
+    num_threads: Optional[int] = typer.Option(None, help="The number of threads to use."),
     gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
     backend: str = typer.Option("sglang", help="The backend to use for the model."),
     skip_server_setup: bool = typer.Option(
@@ -250,6 +250,11 @@ def evaluate(
         None,
         "--score-dir",
         help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+    partial_eval: bool = typer.Option(
+        False,
+        "--partial-eval",
+        help="Run evaluation on a partial set of benchmark entries (eg. entries present in the model result files) without raising for missing IDs.",
     ),
 ):
     """
