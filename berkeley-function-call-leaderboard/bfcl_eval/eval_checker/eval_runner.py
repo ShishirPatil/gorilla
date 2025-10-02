@@ -25,19 +25,18 @@ from tqdm import tqdm
 def get_handler(model_name: str) -> BaseHandler:
     config = MODEL_CONFIG_MAPPING[model_name]
     handler: BaseHandler = config.model_handler(
-        config.model_name, temperature=0
+        model_name=config.model_name,
+        temperature=0,
+        registry_name=model_name,
+        is_fc_model=config.is_fc_model,
     )
-    # handler: BaseHandler = config.model_handler(
-    #     model_name, temperature=0
-    # )  # Temperature doesn't matter for evaluation
-    handler.is_fc_model = config.is_fc_model
     return handler
 
 
 def _subset_entries_by_model_ids(
     model_result_entries: list[dict],
     prompt_entries: list[dict],
-    ground_truth_entries: list[dict],
+    ground_truth_entries: list[dict] = None,  # Irrelevance entries don't have ground truth
     allow_missing: bool = False,
 ):
     """
@@ -46,26 +45,26 @@ def _subset_entries_by_model_ids(
     if not model_result_entries:
         return [], []
 
-    if not allow_missing and (
-        len(model_result_entries) != len(prompt_entries)
-        or len(model_result_entries) != len(ground_truth_entries)
-    ):
+    if not allow_missing and (len(model_result_entries) != len(prompt_entries)):
         raise ValueError(
-            f"Length of model result ({len(model_result_entries)}) does not match length of test entries ({len(prompt_entries)}) or ground truth entries ({len(ground_truth_entries)}). If you intended to run only on a subset (eg. entries present in the model result), please pass the `--partial-eval` flag."
+            f"Length of model result ({len(model_result_entries)}) does not match length of test entries ({len(prompt_entries)}). If you intended to run only on a subset (eg. entries present in the model result), please pass the `--partial-eval` flag."
         )
 
     all_present_ids = {entry["id"]: entry for entry in model_result_entries}
 
-    filtered_prompt_entries = [
-        prompt_entry
-        for prompt_entry in prompt_entries
-        if prompt_entry["id"] in all_present_ids
-    ]
-    filtered_ground_truth_entries = [
-        ground_truth_entry
-        for ground_truth_entry in ground_truth_entries
-        if ground_truth_entry["id"] in all_present_ids
-    ]
+    # Align prompt and ground-truth using the *index* of the prompt entry. Some
+    # ground-truth items use a different ID format, but the order between the
+    # prompt list and the ground-truth list is guaranteed to be identical. We
+    # therefore keep the element at index *i* in both lists whenever the
+    # prompt entry at that index has an ID present in the model results.
+    filtered_prompt_entries: list[dict] = []
+    filtered_ground_truth_entries: list[dict] = []
+    for idx, prompt_entry in enumerate(prompt_entries):
+        if prompt_entry["id"] in all_present_ids:
+            filtered_prompt_entries.append(prompt_entry)
+            # ground_truth_entries and prompt_entries are aligned by index.
+            if ground_truth_entries is not None:
+                filtered_ground_truth_entries.append(ground_truth_entries[idx])
 
     return filtered_prompt_entries, filtered_ground_truth_entries
 
@@ -686,7 +685,7 @@ def evaluate_task(
 
     if is_relevance_or_irrelevance(test_category):
         prompt, _ = _subset_entries_by_model_ids(
-            model_result, prompt, [], allow_missing=allow_missing
+            model_result, prompt, None, allow_missing=allow_missing
         )
 
         accuracy, total_count = relevance_file_runner(
@@ -699,7 +698,7 @@ def evaluate_task(
         # Sanity: prompt and ground truth should be 1:1
         assert len(prompt) == len(
             possible_answer
-        ), "Length of ground truth should match prompt entries."
+        ), f"Length of ground truth ({len(possible_answer)}) should match prompt entries ({len(prompt)})."
 
         prompt, possible_answer = _subset_entries_by_model_ids(
             model_result, prompt, possible_answer, allow_missing=allow_missing
