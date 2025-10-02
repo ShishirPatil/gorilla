@@ -4,8 +4,15 @@ from openai import OpenAI
 
 
 class KimiHandler(OpenAICompletionsHandler):
-    def __init__(self, model_name: str, temperature: float) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
         self.client = OpenAI(
             # base_url="https://api.moonshot.ai/v1", 
