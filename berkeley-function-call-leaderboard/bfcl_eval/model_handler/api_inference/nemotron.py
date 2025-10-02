@@ -23,8 +23,15 @@ class NemotronHandler(OpenAICompletionsHandler):
     - <AVAILABLE_TOOLS>{functions}</AVAILABLE_TOOLS> for function documentation
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.client = OpenAI(
             base_url="https://integrate.api.nvidia.com/v1",
             api_key=os.getenv("NVIDIA_API_KEY"),

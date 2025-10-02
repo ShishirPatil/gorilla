@@ -17,8 +17,15 @@ from overrides import override
 
 
 class LingAPIHandler(OpenAICompletionsHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
         api_url = "https://bailingchat.alipay.com"
         self.client = OpenAI(base_url=api_url, api_key=os.getenv("LING_API_KEY"))
