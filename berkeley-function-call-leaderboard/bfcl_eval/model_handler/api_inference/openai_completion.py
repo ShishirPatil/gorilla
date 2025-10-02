@@ -19,13 +19,38 @@ from openai import OpenAI, RateLimitError
 
 
 class OpenAICompletionsHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = OpenAI(**self._build_client_kwargs())
+
+    def _build_client_kwargs(self):
+        """Collect OpenAI client keyword arguments from environment variables, but only
+        include them if they are actually present so that we keep the call minimal
+        and rely on the OpenAI SDK's own defaults when possible."""
+
+        kwargs = {}
+
+        if api_key := os.getenv("OPENAI_API_KEY"):
+            kwargs["api_key"] = api_key
+
+        if base_url := os.getenv("OPENAI_BASE_URL"):
+            kwargs["base_url"] = base_url
+
+        if headers_env := os.getenv("OPENAI_DEFAULT_HEADERS"):
+            kwargs["default_headers"] = json.loads(headers_env)
+
+        return kwargs
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        if "FC" in self.model_name or self.is_fc_model:
+        if self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
@@ -36,7 +61,7 @@ class OpenAICompletionsHandler(BaseHandler):
             return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
     def decode_execute(self, result, has_tool_call_tag):
-        if "FC" in self.model_name or self.is_fc_model:
+        if self.is_fc_model:
             return convert_to_function_call(result)
         else:
             return default_decode_execute_prompting(result)
@@ -58,7 +83,7 @@ class OpenAICompletionsHandler(BaseHandler):
 
         kwargs = {
             "messages": message,
-            "model": self.model_name.replace("-FC", ""),
+            "model": self.model_name,
             "temperature": self.temperature,
             "store": False,
         }
