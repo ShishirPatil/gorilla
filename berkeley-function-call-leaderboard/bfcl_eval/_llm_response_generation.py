@@ -64,10 +64,13 @@ def get_args():
 
 def build_handler(model_name, temperature):
     config = MODEL_CONFIG_MAPPING[model_name]
-    handler = config.model_handler(model_name, temperature)
-    # Propagate config flags to the handler instance
-    handler.is_fc_model = config.is_fc_model
-    handler.underscore_to_dot = config.underscore_to_dot
+    handler = config.model_handler(
+        model_name=config.model_name,
+        temperature=temperature,
+        registry_name=model_name,
+        is_fc_model=config.is_fc_model,
+        underscore_to_dot=config.underscore_to_dot,
+    )
     return handler
 
 
@@ -207,7 +210,11 @@ def generate_results(args, model_name, test_cases_total):
         is_oss_model = True
         # For OSS models, if the user didn't explicitly set the number of threads,
         # we default to 100 threads to speed up the inference.
-        num_threads = args.num_threads if args.num_threads is not None else LOCAL_SERVER_MAX_CONCURRENT_REQUEST
+        num_threads = (
+            args.num_threads
+            if args.num_threads is not None
+            else LOCAL_SERVER_MAX_CONCURRENT_REQUEST
+        )
     else:
         handler: BaseHandler
         is_oss_model = False

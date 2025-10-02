@@ -75,10 +75,10 @@ from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandle
 @dataclass
 class ModelConfig:
     """
-    Model configuration class for storing model metadata and settings.
+    Model configuration class for storing model metadata and settings. 
 
     Attributes:
-        model_name (str): [Not Used] Name of the model as used in the API or on Hugging Face.
+        model_name (str): Name of the model as used in the vendor API or on Hugging Face (may not be unique).
         display_name (str): Model name as it should appear on the leaderboard.
         url (str): Reference URL for the model or hosting service.
         org (str): Organization providing the model.
@@ -161,7 +161,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "gpt-5-2025-08-07-FC": ModelConfig(
-        model_name="gpt-5-2025-08-07-FC",
+        model_name="gpt-5-2025-08-07",
         display_name="GPT-5-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
@@ -185,7 +185,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-5-mini-2025-08-07-FC": ModelConfig(
-        model_name="gpt-5-mini-2025-08-07-FC",
+        model_name="gpt-5-mini-2025-08-07",
         display_name="GPT-5-mini-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
@@ -209,7 +209,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-5-nano-2025-08-07-FC": ModelConfig(
-        model_name="gpt-5-nano-2025-08-07-FC",
+        model_name="gpt-5-nano-2025-08-07",
         display_name="GPT-5-nano-2025-08-07 (FC)",
         url="https://openai.com/index/introducing-gpt-5/",
         org="OpenAI",
@@ -233,7 +233,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-4.1-2025-04-14-FC": ModelConfig(
-        model_name="gpt-4.1-2025-04-14-FC",
+        model_name="gpt-4.1-2025-04-14",
         display_name="GPT-4.1-2025-04-14 (FC)",
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
@@ -257,7 +257,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-4.1-mini-2025-04-14-FC": ModelConfig(
-        model_name="gpt-4.1-mini-2025-04-14-FC",
+        model_name="gpt-4.1-mini-2025-04-14",
         display_name="GPT-4.1-mini-2025-04-14 (FC)",
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
@@ -281,7 +281,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-4.1-nano-2025-04-14-FC": ModelConfig(
-        model_name="gpt-4.1-nano-2025-04-14-FC",
+        model_name="gpt-4.1-nano-2025-04-14",
         display_name="GPT-4.1-nano-2025-04-14 (FC)",
         url="https://openai.com/index/gpt-4-1/",
         org="OpenAI",
@@ -317,7 +317,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-4o-2024-11-20-FC": ModelConfig(
-        model_name="gpt-4o-2024-11-20-FC",
+        model_name="gpt-4o-2024-11-20",
         display_name="GPT-4o-2024-11-20 (FC)",
         url="https://openai.com/index/hello-gpt-4o/",
         org="OpenAI",
@@ -341,7 +341,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gpt-4o-mini-2024-07-18-FC": ModelConfig(
-        model_name="gpt-4o-mini-2024-07-18-FC",
+        model_name="gpt-4o-mini-2024-07-18",
         display_name="GPT-4o-mini-2024-07-18 (FC)",
         url="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
         org="OpenAI",
@@ -365,7 +365,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "o3-2025-04-16-FC": ModelConfig(
-        model_name="o3-2025-04-16-FC",
+        model_name="o3-2025-04-16",
         display_name="o3-2025-04-16 (FC)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
@@ -389,7 +389,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "o4-mini-2025-04-16-FC": ModelConfig(
-        model_name="o4-mini-2025-04-16-FC",
+        model_name="o4-mini-2025-04-16",
         display_name="o4-mini-2025-04-16 (FC)",
         url="https://openai.com/index/introducing-o3-and-o4-mini/",
         org="OpenAI",
@@ -461,7 +461,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "claude-3-5-haiku-20241022-FC": ModelConfig(
-        model_name="claude-3-5-haiku-20241022-FC",
+        model_name="claude-3-5-haiku-20241022",
         display_name="claude-3.5-haiku-20241022 (FC)",
         url="https://www.anthropic.com/news/3-5-models-and-computer-use",
         org="Anthropic",
@@ -473,7 +473,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-pro-v1.0": ModelConfig(
-        model_name="nova-pro-v1.0",
+        model_name="us.amazon.nova-pro-v1:0",
         display_name="Amazon-Nova-Pro-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -485,7 +485,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-lite-v1.0": ModelConfig(
-        model_name="nova-lite-v1.0",
+        model_name="us.amazon.nova-lite-v1:0",
         display_name="Amazon-Nova-Lite-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -497,7 +497,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-micro-v1.0": ModelConfig(
-        model_name="nova-micro-v1.0",
+        model_name="us.amazon.nova-micro-v1:0",
         display_name="Amazon-Nova-Micro-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -521,7 +521,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "open-mistral-nemo-2407-FC": ModelConfig(
-        model_name="open-mistral-nemo-2407-FC",
+        model_name="open-mistral-nemo-2407",
         display_name="Open-Mistral-Nemo-2407 (FC)",
         url="https://mistral.ai/news/mistral-nemo/",
         org="Mistral AI",
@@ -545,7 +545,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "mistral-large-2411-FC": ModelConfig(
-        model_name="mistral-large-2411-FC",
+        model_name="mistral-large-2411",
         display_name="mistral-large-2411 (FC)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
@@ -569,7 +569,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "mistral-small-2506-FC": ModelConfig(
-        model_name="mistral-small-2506-FC",
+        model_name="mistral-small-2506",
         display_name="Mistral-small-2506 (FC)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
@@ -593,7 +593,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "mistral-medium-2505-FC": ModelConfig(
-        model_name="mistral-medium-2505-FC",
+        model_name="mistral-medium-2505",
         display_name="Mistral-Medium-2505 (FC)",
         url="https://docs.mistral.ai/guides/model-selection/",
         org="Mistral AI",
@@ -605,7 +605,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "firefunction-v2-FC": ModelConfig(
-        model_name="firefunction-v2-FC",
+        model_name="accounts/fireworks/models/firefunction-v2",
         display_name="FireFunction-v2 (FC)",
         url="https://huggingface.co/fireworks-ai/firefunction-v2",
         org="Fireworks",
@@ -617,7 +617,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
-        model_name="gemini-2.5-flash-lite-preview-06-17-FC",
+        model_name="gemini-2.5-flash-lite-preview-06-17",
         display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
@@ -641,7 +641,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gemini-2.5-flash-FC": ModelConfig(
-        model_name="gemini-2.5-flash-FC",
+        model_name="gemini-2.5-flash",
         display_name="Gemini-2.5-Flash (FC)",
         url="https://deepmind.google/technologies/gemini/flash/",
         org="Google",
@@ -665,7 +665,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "gemini-2.5-pro-FC": ModelConfig(
-        model_name="gemini-2.5-pro-FC",
+        model_name="gemini-2.5-pro",
         display_name="Gemini-2.5-Pro (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
@@ -689,7 +689,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meetkai/functionary-small-v3.1-FC": ModelConfig(
-        model_name="meetkai/functionary-small-v3.1-FC",
+        model_name="meetkai/functionary-small-v3.1",
         display_name="Functionary-Small-v3.1 (FC)",
         url="https://huggingface.co/meetkai/functionary-small-v3.1",
         org="MeetKai",
@@ -701,7 +701,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "meetkai/functionary-medium-v3.1-FC": ModelConfig(
-        model_name="meetkai/functionary-medium-v3.1-FC",
+        model_name="meetkai/functionary-medium-v3.1",
         display_name="Functionary-Medium-v3.1 (FC)",
         url="https://huggingface.co/meetkai/functionary-medium-v3.1",
         org="MeetKai",
@@ -713,7 +713,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "command-r7b-12-2024-FC": ModelConfig(
-        model_name="command-r7b-12-2024-FC",
+        model_name="command-r7b-12-2024",
         display_name="Command R7B (FC)",
         url="https://cohere.com/blog/command-r7b",
         org="Cohere",
@@ -725,7 +725,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "command-a-03-2025-FC": ModelConfig(
-        model_name="command-a-03-2025-FC",
+        model_name="command-a-03-2025",
         display_name="Command A (FC)",
         url="https://cohere.com/blog/command-a",
         org="Cohere",
@@ -797,7 +797,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "grok-4-0709-FC": ModelConfig(
-        model_name="grok-4-0709-FC",
+        model_name="grok-4-0709",
         display_name="Grok-4-0709 (FC)",
         url="https://docs.x.ai/docs/models",
         org="xAI",
@@ -821,7 +821,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-0.6b-FC": ModelConfig(
-        model_name="qwen3-0.6b-FC",
+        model_name="qwen3-0.6b",
         display_name="Qwen3-0.6B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
@@ -845,7 +845,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-1.7b-FC": ModelConfig(
-        model_name="qwen3-1.7b-FC",
+        model_name="qwen3-1.7b",
         display_name="Qwen3-1.7B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
@@ -869,7 +869,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-4b-FC": ModelConfig(
-        model_name="qwen3-4b-FC",
+        model_name="qwen3-4b",
         display_name="Qwen3-4B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-4B",
         org="Qwen",
@@ -893,7 +893,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-8b-FC": ModelConfig(
-        model_name="qwen3-8b-FC",
+        model_name="qwen3-8b",
         display_name="Qwen3-8B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
@@ -917,7 +917,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-14b-FC": ModelConfig(
-        model_name="qwen3-14b-FC",
+        model_name="qwen3-14b",
         display_name="Qwen3-14B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
@@ -941,7 +941,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-32b-FC": ModelConfig(
-        model_name="qwen3-32b-FC",
+        model_name="qwen3-32b",
         display_name="Qwen3-32B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
@@ -989,7 +989,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwen3-235b-a22b-instruct-2507-FC": ModelConfig(
-        model_name="qwen3-235b-a22b-instruct-2507-FC",
+        model_name="qwen3-235b-a22b-instruct-2507",
         display_name="Qwen3-235B-A22B-Instruct-2507 (FC)",
         url="https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
         org="Qwen",
@@ -1013,7 +1013,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "qwq-32b-FC": ModelConfig(
-        model_name="qwq-32b-FC",
+        model_name="qwq-32b",
         display_name="QwQ-32B (FC)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
@@ -1073,7 +1073,7 @@ api_inference_model_map = {
         underscore_to_dot=False,
     ),
     "glm-4.5-FC": ModelConfig(
-        model_name="glm-4.5-FC",
+        model_name="glm-4.5",
         display_name="GLM-4.5 (FC)",
         url="https://huggingface.co/zai-org/GLM-4.5",
         org="Zhipu AI",
@@ -1085,7 +1085,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "glm-4.5-air-FC": ModelConfig(
-        model_name="glm-4.5-air-FC",
+        model_name="glm-4.5-air",
         display_name="GLM-4.5-Air (FC)",
         url="https://huggingface.co/zai-org/GLM-4.5-Air",
         org="Zhipu AI",
@@ -1097,7 +1097,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "kimi-k2-0711-preview-FC": ModelConfig(
-        model_name="moonshotai/Kimi-K2-Instruct-FC",
+        model_name="moonshotai/Kimi-K2-Instruct",
         display_name="Moonshotai-Kimi-K2-Instruct (FC)",
         url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
         org="MoonshotAI",
@@ -1185,7 +1185,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.1-8B-Instruct-FC",
+        model_name="meta-llama/Llama-3.1-8B-Instruct",
         display_name="Llama-3.1-8B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
@@ -1209,7 +1209,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-70B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.1-70B-Instruct-FC",
+        model_name="meta-llama/Llama-3.1-70B-Instruct",
         display_name="Llama-3.1-70B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
@@ -1233,7 +1233,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.2-1B-Instruct-FC",
+        model_name="meta-llama/Llama-3.2-1B-Instruct",
         display_name="Llama-3.2-1B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
@@ -1245,7 +1245,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.2-3B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.2-3B-Instruct-FC",
+        model_name="meta-llama/Llama-3.2-3B-Instruct",
         display_name="Llama-3.2-3B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
@@ -1257,7 +1257,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.3-70B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.3-70B-Instruct-FC",
+        model_name="meta-llama/Llama-3.3-70B-Instruct",
         display_name="Llama-3.3-70B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
@@ -1269,7 +1269,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-4-Scout-17B-16E-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-4-Scout-17B-16E-Instruct-FC",
+        model_name="meta-llama/Llama-4-Scout-17B-16E-Instruct",
         display_name="Llama-4-Scout-17B-16E-Instruct (FC)",
         url="https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
         org="Meta",
@@ -1281,7 +1281,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC": ModelConfig(
-        model_name="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8-FC",
+        model_name="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         display_name="Llama-4-Maverick-17B-128E-Instruct-FP8 (FC)",
         url="https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         org="Meta",
@@ -1389,7 +1389,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "microsoft/Phi-4-mini-instruct-FC": ModelConfig(
-        model_name="microsoft/Phi-4-mini-instruct-FC",
+        model_name="microsoft/Phi-4-mini-instruct",
         display_name="Phi-4-mini-instruct (FC)",
         url="https://huggingface.co/microsoft/Phi-4-mini-instruct",
         org="Microsoft",
@@ -1497,7 +1497,7 @@ local_inference_model_map = {
         underscore_to_dot=True,
     ),
     "Qwen/Qwen3-0.6B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-0.6B-FC",
+        model_name="Qwen/Qwen3-0.6B",
         display_name="Qwen3-0.6B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-0.6B",
         org="Qwen",
@@ -1521,7 +1521,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-1.7B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-1.7B-FC",
+        model_name="Qwen/Qwen3-1.7B",
         display_name="Qwen3-1.7B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-1.7B",
         org="Qwen",
@@ -1545,7 +1545,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-4B-Instruct-2507-FC": ModelConfig(
-        model_name="Qwen/Qwen3-4B-Instruct-2507-FC",
+        model_name="Qwen/Qwen3-4B-Instruct-2507",
         display_name="Qwen3-4B-Instruct-2507 (FC)",
         url="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
         org="Qwen",
@@ -1569,7 +1569,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-8B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-8B-FC",
+        model_name="Qwen/Qwen3-8B",
         display_name="Qwen3-8B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-8B",
         org="Qwen",
@@ -1593,7 +1593,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-14B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-14B-FC",
+        model_name="Qwen/Qwen3-14B",
         display_name="Qwen3-14B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-14B",
         org="Qwen",
@@ -1617,7 +1617,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-32B-FC": ModelConfig(
-        model_name="Qwen/Qwen3-32B-FC",
+        model_name="Qwen/Qwen3-32B",
         display_name="Qwen3-32B (FC)",
         url="https://huggingface.co/Qwen/Qwen3-32B",
         org="Qwen",
@@ -1641,7 +1641,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "Qwen/Qwen3-30B-A3B-Instruct-2507-FC": ModelConfig(
-        model_name="Qwen/Qwen3-30B-A3B-Instruct-2507-FC",
+        model_name="Qwen/Qwen3-30B-A3B-Instruct-2507",
         display_name="Qwen3-30B-A3B-Instruct-2507 (FC)",
         url="https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
         org="Qwen",
@@ -1713,7 +1713,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "openbmb/MiniCPM3-4B-FC": ModelConfig(
-        model_name="openbmb/MiniCPM3-4B-FC",
+        model_name="openbmb/MiniCPM3-4B",
         display_name="MiniCPM3-4B-FC (FC)",
         url="https://huggingface.co/openbmb/MiniCPM3-4B",
         org="openbmb",
@@ -1785,7 +1785,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "tiiuae/Falcon3-10B-Instruct-FC": ModelConfig(
-        model_name="tiiuae/Falcon3-10B-Instruct-FC",
+        model_name="tiiuae/Falcon3-10B-Instruct",
         display_name="Falcon3-10B-Instruct (FC)",
         url="https://huggingface.co/tiiuae/Falcon3-10B-Instruct",
         org="TII UAE",
@@ -1797,7 +1797,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "tiiuae/Falcon3-7B-Instruct-FC": ModelConfig(
-        model_name="tiiuae/Falcon3-7B-Instruct-FC",
+        model_name="tiiuae/Falcon3-7B-Instruct",
         display_name="Falcon3-7B-Instruct (FC)",
         url="https://huggingface.co/tiiuae/Falcon3-7B-Instruct",
         org="TII UAE",
@@ -1809,7 +1809,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "tiiuae/Falcon3-3B-Instruct-FC": ModelConfig(
-        model_name="tiiuae/Falcon3-3B-Instruct-FC",
+        model_name="tiiuae/Falcon3-3B-Instruct",
         display_name="Falcon3-3B-Instruct (FC)",
         url="https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
         org="TII UAE",
@@ -1821,7 +1821,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "tiiuae/Falcon3-1B-Instruct-FC": ModelConfig(
-        model_name="tiiuae/Falcon3-1B-Instruct-FC",
+        model_name="tiiuae/Falcon3-1B-Instruct",
         display_name="Falcon3-1B-Instruct (FC)",
         url="https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
         org="TII UAE",
@@ -1970,7 +1970,7 @@ local_inference_model_map = {
 third_party_inference_model_map = {
     # Via Novita AI Endpoint
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": ModelConfig(
-        model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",
+        model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
         display_name="Llama-4-Maverick-17B-128E-Instruct-FP8 (Prompt) (Novita)",
         url="https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         org="Meta",
@@ -1982,7 +1982,7 @@ third_party_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita": ModelConfig(
-        model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
+        model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
         display_name="Llama-4-Maverick-17B-128E-Instruct-FP8 (FC) (Novita)",
         url="https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
         org="Meta",
@@ -1994,7 +1994,7 @@ third_party_inference_model_map = {
         underscore_to_dot=True,
     ),
     "meta-llama/llama-4-scout-17b-16e-instruct-novita": ModelConfig(
-        model_name="meta-llama/llama-4-scout-17b-16e-instruct-novita",
+        model_name="meta-llama/llama-4-scout-17b-16e-instruct",
         display_name="Llama-4-Scout-17B-16E-Instruct (Prompt) (Novita)",
         url="https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
         org="Meta",
@@ -2006,7 +2006,7 @@ third_party_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/llama-4-scout-17b-16e-instruct-FC-novita": ModelConfig(
-        model_name="meta-llama/llama-4-scout-17b-16e-instruct-FC-novita",
+        model_name="meta-llama/llama-4-scout-17b-16e-instruct",
         display_name="Llama-4-Scout-17B-16E-Instruct (FC) (Novita)",
         url="https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
         org="Meta",
@@ -2018,7 +2018,7 @@ third_party_inference_model_map = {
         underscore_to_dot=True,
     ),
     "qwen/qwq-32b-FC-novita": ModelConfig(
-        model_name="qwen/qwq-32b-FC-novita",
+        model_name="qwen/qwq-32b",
         display_name="Qwen/QwQ-32B (FC) (Novita)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
@@ -2030,7 +2030,7 @@ third_party_inference_model_map = {
         underscore_to_dot=True,
     ),
     "qwen/qwq-32b-novita": ModelConfig(
-        model_name="qwen/qwq-32b-novita",
+        model_name="qwen/qwq-32b",
         display_name="Qwen/QwQ-32B (Prompt) (Novita)",
         url="https://huggingface.co/Qwen/QwQ-32B",
         org="Qwen",
