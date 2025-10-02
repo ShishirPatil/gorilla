@@ -666,7 +666,7 @@ api_inference_model_map = {
     ),
     "gemini-2.5-pro-FC": ModelConfig(
         model_name="gemini-2.5-pro",
-        display_name="Gemini-2.5-Pro (FC) (Reasoning)",
+        display_name="Gemini-2.5-Pro (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
