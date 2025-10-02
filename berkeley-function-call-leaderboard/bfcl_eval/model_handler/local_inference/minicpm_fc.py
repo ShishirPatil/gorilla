@@ -13,8 +13,16 @@ from overrides import override
 
 
 class MiniCPMFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.stop_token_ids = [2, 73440]
         self.skip_special_tokens = False
         self.model_name_huggingface = model_name

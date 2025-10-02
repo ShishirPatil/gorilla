@@ -75,10 +75,10 @@ from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandle
 @dataclass
 class ModelConfig:
     """
-    Model configuration class for storing model metadata and settings.
+    Model configuration class for storing model metadata and settings. 
 
     Attributes:
-        model_name (str): [Not Used] Name of the model as used in the API or on Hugging Face.
+        model_name (str): Name of the model as used in the vendor API or on Hugging Face (may not be unique).
         display_name (str): Model name as it should appear on the leaderboard.
         url (str): Reference URL for the model or hosting service.
         org (str): Organization providing the model.
@@ -473,7 +473,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-pro-v1.0": ModelConfig(
-        model_name="nova-pro-v1:0",
+        model_name="us.amazon.nova-pro-v1:0",
         display_name="Amazon-Nova-Pro-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -485,7 +485,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-lite-v1.0": ModelConfig(
-        model_name="nova-lite-v1:0",
+        model_name="us.amazon.nova-lite-v1:0",
         display_name="Amazon-Nova-Lite-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -497,7 +497,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "nova-micro-v1.0": ModelConfig(
-        model_name="nova-micro-v1:0",
+        model_name="us.amazon.nova-micro-v1:0",
         display_name="Amazon-Nova-Micro-v1:0 (FC)",
         url="https://aws.amazon.com/cn/ai/generative-ai/nova/",
         org="Amazon",
@@ -605,7 +605,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "firefunction-v2-FC": ModelConfig(
-        model_name="firefunction-v2",
+        model_name="accounts/fireworks/models/firefunction-v2",
         display_name="FireFunction-v2 (FC)",
         url="https://huggingface.co/fireworks-ai/firefunction-v2",
         org="Fireworks",

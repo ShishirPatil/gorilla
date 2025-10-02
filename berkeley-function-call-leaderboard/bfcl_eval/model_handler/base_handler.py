@@ -30,19 +30,40 @@ if TYPE_CHECKING:
 
 class BaseHandler:
     model_name: str
+    is_fc_model: bool
+    registry_name: str
+    temperature: float
+    registry_dir_name: str
+    model_name_underline_replaced: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature) -> None:
+    def __init__(
+        self, model_name, temperature, registry_name, is_fc_model, **kwargs
+    ) -> None:
+        """
+        Args:
+            model_name: The name of the model as used in the vendor API or on Hugging Face.
+            temperature: The temperature of the model.
+            registry_name: The name of the model as used internally in BFCL, used for result directory naming.
+            is_fc_model: Whether the model is a function calling model.
+            **kwargs: Additional attributes passed via kwargs.
+        """
         self.model_name = model_name
-        # Replace the slash with underscore to avoid creating subdirectories
+        self.is_fc_model = is_fc_model
+        self.registry_name = registry_name
+
         # Replace the dash and dot with underscore for valid variable name
         self.model_name_underline_replaced = (
             model_name.replace("/", "_").replace("-", "_").replace(".", "_")
         )
         # The directory name for the model
-        self.model_name_dir = model_name.replace("/", "_")
+        # Replace the slash with underscore to avoid creating subdirectories
+        self.registry_dir_name = registry_name.replace("/", "_")
         self.temperature = temperature
-        self.is_fc_model = False  # Whether the model is a function calling model
+
+        # Set any additional attributes passed via kwargs
+        for _key, _value in kwargs.items():
+            setattr(self, _key, _value)
 
     def inference(
         self,
@@ -54,7 +75,7 @@ class BaseHandler:
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
-        if "FC" in self.model_name or self.is_fc_model:
+        if "FC" in self.registry_name or self.is_fc_model:
             if contain_multi_turn_interaction(test_entry["id"]):
                 return self.inference_multi_turn_FC(
                     test_entry, include_input_log, exclude_state_log
@@ -238,7 +259,9 @@ class BaseHandler:
 
                 # Try decoding the model response
                 try:
-                    decoded_model_responses = self.decode_execute(model_responses, has_tool_call_tag=False)
+                    decoded_model_responses = self.decode_execute(
+                        model_responses, has_tool_call_tag=False
+                    )
                     current_step_inference_log.append(
                         {
                             "role": "handler_log",
@@ -527,7 +550,9 @@ class BaseHandler:
 
                 # Try decoding the model response
                 try:
-                    decoded_model_responses = self.decode_execute(model_responses, has_tool_call_tag=False)
+                    decoded_model_responses = self.decode_execute(
+                        model_responses, has_tool_call_tag=False
+                    )
                     current_step_inference_log.append(
                         {
                             "role": "handler_log",
@@ -742,8 +767,9 @@ class BaseHandler:
 
     @final
     def write(self, result, result_dir, update_mode=False):
-        model_name_dir = self.model_name.replace("/", "_")
-        model_result_dir = result_dir / model_name_dir
+        # Use the internal registry name to decide the result directory to avoid
+        # collisions between different variants that share the same API model name.
+        model_result_dir = result_dir / self.registry_dir_name
 
         if isinstance(result, dict):
             result = [result]

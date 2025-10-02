@@ -10,8 +10,15 @@ from openai import OpenAI
 
 
 class FireworksHandler(OpenAICompletionsHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.FIREWORK_AI
 
         self.client = OpenAI(
@@ -30,16 +37,14 @@ class FireworksHandler(OpenAICompletionsHandler):
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                # model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
-                model=f"accounts/fireworks/models/{self.model_name}",
+                model=self.model_name,
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                # model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
-                model=f"accounts/fireworks/models/{self.model_name}",
+                model=self.model_name,
                 temperature=self.temperature,
             )
         end_time = time.time()

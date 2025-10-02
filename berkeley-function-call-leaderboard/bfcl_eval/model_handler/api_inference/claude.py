@@ -23,13 +23,20 @@ from bfcl_eval.utils import contain_multi_turn_interaction
 
 
 class ClaudeHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.ANTHROPIC
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        if "FC" not in self.model_name  or not self.is_fc_model:
+        if not self.is_fc_model:
             return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
         else:
@@ -41,7 +48,7 @@ class ClaudeHandler(BaseHandler):
             return decoded_output
 
     def decode_execute(self, result, has_tool_call_tag):
-        if "FC" not in self.model_name or not self.is_fc_model:
+        if not self.is_fc_model:
             return default_decode_execute_prompting(result, has_tool_call_tag)
 
         else:
