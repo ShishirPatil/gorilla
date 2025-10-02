@@ -14,12 +14,19 @@ from openai import OpenAI, RateLimitError
 from overrides import override
 
 
+
 class DeepSeekAPIHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
+        if "DeepSeek-V3.1-Terminus" in model_name:
+            base = "https://api.deepseek.com/v3.1_terminus_expires_on_20251015"
+        else:
+            base = "https://api.deepseek.com"
+
         self.client = OpenAI(
-            base_url="https://api.deepseek.com", api_key=os.getenv("DEEPSEEK_API_KEY")
+            base_url=base,
+            api_key=os.getenv("DEEPSEEK_API_KEY"),
         )
 
     # The deepseek API is unstable at the moment, and will frequently give empty responses, so retry on JSONDecodeError is necessary
@@ -48,7 +55,7 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
 
         # Source https://api-docs.deepseek.com/quick_start/pricing
         # This will need to be updated if newer models are released.
-        if "DeepSeek-V3" in self.model_name:
+        if "DeepSeek-V3.1-Terminus" in self.model_name:
             api_model_name = "deepseek-chat"
         elif "DeepSeek-R1" in self.model_name:
             api_model_name = "deepseek-reasoner"

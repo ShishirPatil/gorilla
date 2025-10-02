@@ -62,6 +62,8 @@ class ClaudeHandler(BaseHandler):
         """
         if "claude-opus-4-1-20250805" in self.model_name:
             return 32000
+        elif "claude-sonnet-4.5-20250929" in self.model_name:
+            return 200000 
         elif "claude-sonnet-4-20250514" in self.model_name:
             return 64000
         elif "claude-3-5-haiku-20241022" in self.model_name:
