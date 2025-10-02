@@ -30,19 +30,6 @@ if TYPE_CHECKING:
         MemoryAPI,
     )
 
-MODEL_REQUIRE_UNDERSCORE = {
-    ModelStyle.OPENAI_COMPLETIONS,
-    ModelStyle.OPENAI_RESPONSES,
-    ModelStyle.MISTRAL,
-    ModelStyle.GOOGLE,
-    ModelStyle.GROQ,
-    ModelStyle.ANTHROPIC,
-    ModelStyle.ANTHROPIC_BETA,
-    ModelStyle.COHERE,
-    ModelStyle.CLAUDE_AI,
-    ModelStyle.OPENROUTER,
-}
-
 def _cast_to_openai_type(properties, mapping):
     for key, value in properties.items():
         if "type" not in value:
@@ -92,9 +79,7 @@ def convert_to_tool(functions, mapping, model_style, underscore_to_dot: bool = F
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if  "." in item["name"] and (
-            underscore_to_dot or model_style in MODEL_REQUIRE_UNDERSCORE
-        ):
+        if  "." in item["name"] and underscore_to_dot:
             item["name"] = re.sub(r"\.", "_", item["name"])
             
 
