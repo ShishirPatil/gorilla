@@ -8,6 +8,7 @@ from bfcl_eval.model_handler.api_inference.dm_cito import DMCitoHandler
 from bfcl_eval.model_handler.api_inference.fireworks import FireworksHandler
 from bfcl_eval.model_handler.api_inference.functionary import FunctionaryHandler
 from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
+from bfcl_eval.model_handler.api_inference.gigachat import GigaChatHandler
 from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
@@ -2066,6 +2067,78 @@ third_party_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
+    "GigaChat-2-MAX--IFT-FC": ModelConfig(
+        model_name="GigaChat-2-MAX--IFT-FC",
+        display_name="GigaChat 2 MAX (IFT)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "GigaChat-2-Pro--IFT-FC": ModelConfig(
+        model_name="GigaChat-2-Pro--IFT-FC",
+        display_name="GigaChat 2 Pro (IFT)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "GigaChat-2--IFT-FC": ModelConfig(
+        model_name="GigaChat-2--IFT-FC",
+        display_name="GigaChat 2 (IFT)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "GigaChat-2--PROD-FC": ModelConfig(
+        model_name="GigaChat-2--PROD-FC",
+        display_name="GigaChat 2 (PROD)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "GigaChat-2-Pro--PROD-FC": ModelConfig(
+        model_name="GigaChat-2-Pro--PROD-FC",
+        display_name="GigaChat 2 Pro (PROD)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "GigaChat-2-MAX--PROD-FC": ModelConfig(
+        model_name="GigaChat-2-MAX--PROD-FC",
+        display_name="GigaChat 2 MAX (PROD)",
+        url="https://giga.chat",
+        org="SberDevices",
+        license="Proprietary",
+        model_handler=GigaChatHandler,
+        input_price=10,
+        output_price=10,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    )
 }
 
 
