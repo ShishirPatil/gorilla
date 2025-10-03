@@ -46,7 +46,8 @@ dependencies = [
     "google-search-results",
     "sentence-transformers>=2.7.0",
     "faiss-cpu==1.11.0",
-    "networkx==3.3"
+    "networkx==3.3",
+    "langchain_gigachat"
 ]
 
 [project.scripts]
