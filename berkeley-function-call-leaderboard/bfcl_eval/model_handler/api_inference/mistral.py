@@ -29,6 +29,7 @@ class MistralHandler(BaseHandler):
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.MISTRAL
+        self.underscore_to_dot = True
 
         self.client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
