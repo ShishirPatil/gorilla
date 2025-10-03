@@ -19,8 +19,7 @@ class SeedOSSHandler(OSSHandler):
     def _format_prompt(self, messages, function):
         """
         Format prompt for Seed-OSS models based on the actual chat_template.jinja.
-        """
-        """
+
         {# ------------- special token variables ------------- #}
         {%- set bos_token              = '<seed:bos>'               -%}
         {%- set eos_token              = '<seed:eos>'               -%}
