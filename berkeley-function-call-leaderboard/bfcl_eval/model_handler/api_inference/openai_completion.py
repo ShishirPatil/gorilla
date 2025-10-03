@@ -29,6 +29,7 @@ class OpenAICompletionsHandler(BaseHandler):
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
+        self.underscore_to_dot = True
         self.client = OpenAI(**self._build_client_kwargs())
 
     def _build_client_kwargs(self):
