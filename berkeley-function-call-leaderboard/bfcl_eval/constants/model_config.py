@@ -424,9 +424,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-sonnet-4.5-20250929": ModelConfig(
-        model_name="claude-sonnet-4.5-20250929",
-        display_name="Claude-Sonnet-4.5-20250929 (Prompt)",
+    "claude-sonnet-4-5-20250929": ModelConfig(
+        model_name="claude-sonnet-4-5-20250929",
+        display_name="Claude-Sonnet-4-5-20250929 (Prompt)",
         url="https://www.anthropic.com/news/claude-sonnet-4-5",
         org="Anthropic",
         license="Proprietary",
@@ -436,9 +436,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-sonnet-4.5-20250929-FC": ModelConfig(
-        model_name="claude-sonnet-4.5-20250929",
-        display_name="Claude-Sonnet-4.5-20250929 (FC)",
+    "claude-sonnet-4-5-20250929-FC": ModelConfig(
+        model_name="claude-sonnet-4-5-20250929",
+        display_name="Claude-Sonnet-4-5-20250929 (FC)",
         url="https://www.anthropic.com/news/claude-sonnet-4-5",
         org="Anthropic",
         license="Proprietary",
