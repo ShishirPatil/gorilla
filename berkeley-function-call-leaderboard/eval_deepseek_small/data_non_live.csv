@@ -1,0 +1,2 @@
+Rank,Model,Non-Live Overall Acc,AST Summary,Simple AST,Python Simple AST,Java Simple AST,JavaScript Simple AST,Multiple AST,Parallel AST,Parallel Multiple AST,Irrelevance Detection
+1,DeepSeek-V3.1-Terminus (FC),37.50%,N/A,N/A,N/A,N/A,0.00%,100.00%,N/A,50.00%,100.00%

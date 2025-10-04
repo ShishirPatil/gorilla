@@ -1,0 +1,2 @@
+Rank,Model,Live Overall Acc,AST Summary,Python Simple AST,Python Multiple AST,Python Parallel AST,Python Parallel Multiple AST,Irrelevance Detection,Relevance Detection
+1,DeepSeek-V3.1-Terminus (FC),66.67%,66.67%,100.00%,100.00%,0.00%,0.00%,100.00%,0.00%
