@@ -1,0 +1,2 @@
+Rank,Model,Non-Live Overall Acc,AST Summary,Simple AST,Python Simple AST,Java Simple AST,JavaScript Simple AST,Multiple AST,Parallel AST,Parallel Multiple AST,Irrelevance Detection
+1,Claude-Sonnet-4-5-20250929 (FC),8.17%,N/A,N/A,98.00%,N/A,N/A,N/A,N/A,N/A,N/A
