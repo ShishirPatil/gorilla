@@ -19,10 +19,7 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
-        if "DeepSeek-V3.1-Terminus" in model_name:
-            base = "https://api.deepseek.com/v3.1_terminus_expires_on_20251015"
-        else:
-            base = "https://api.deepseek.com"
+        base = "https://api.deepseek.com"
 
         self.client = OpenAI(
             base_url=base,
