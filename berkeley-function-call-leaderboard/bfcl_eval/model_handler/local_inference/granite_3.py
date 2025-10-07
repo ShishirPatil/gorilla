@@ -16,8 +16,16 @@ class Granite3FCHandler(OSSHandler):
     - Granite-3.2-8B-Instruct (https://huggingface.co/ibm-granite/granite-3.2-8b-instruct)
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     # copied from phi_fc.py
