@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 1, 2025] [#1177](https://github.com/ShishirPatil/gorilla/pull/1177): Fix ground truth for `multi_turn_base_154`.
+- [Sep 27, 2025] [#1185](https://github.com/ShishirPatil/gorilla/pull/1185): Introduce the `--partial-eval` flag to the `bfcl evaluate` command, allowing partial evaluation on a subset of available test entries in the model result files.
+- [Sep 17, 2025] [#1175](https://github.com/ShishirPatil/gorilla/pull/1175): Fix wrong date in ground truth for `live_simple_205-116-13`.
 - [Jul 17, 2025] [#1019](https://github.com/ShishirPatil/gorilla/pull/1019): BFCL V4 release:
 
   1. **New agentic domain**
