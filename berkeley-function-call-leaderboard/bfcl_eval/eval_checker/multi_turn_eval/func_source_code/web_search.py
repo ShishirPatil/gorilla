@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 import html2text
 import requests
 from bs4 import BeautifulSoup
-from serpapi import GoogleSearch
 
 ERROR_TEMPLATES = [
     "503 Server Error: Service Unavailable for url: {url}",
@@ -50,80 +49,15 @@ class WebSearchAPI:
         region: Optional[str] = "wt-wt",
     ) -> list:
         """
-        This function queries the search engine for the provided keywords and region.
+        This function queries the search engine for the provided keywords using You.com API.
 
         Args:
             keywords (str): The keywords to search for.
             max_results (int, optional): The maximum number of search results to return. Defaults to 10.
-            region (str, optional): The region to search in. Defaults to "wt-wt". Possible values include:
-                - xa-ar for Arabia
-                - xa-en for Arabia (en)
-                - ar-es for Argentina
-                - au-en for Australia
-                - at-de for Austria
-                - be-fr for Belgium (fr)
-                - be-nl for Belgium (nl)
-                - br-pt for Brazil
-                - bg-bg for Bulgaria
-                - ca-en for Canada
-                - ca-fr for Canada (fr)
-                - ct-ca for Catalan
-                - cl-es for Chile
-                - cn-zh for China
-                - co-es for Colombia
-                - hr-hr for Croatia
-                - cz-cs for Czech Republic
-                - dk-da for Denmark
-                - ee-et for Estonia
-                - fi-fi for Finland
-                - fr-fr for France
-                - de-de for Germany
-                - gr-el for Greece
-                - hk-tzh for Hong Kong
-                - hu-hu for Hungary
-                - in-en for India
-                - id-id for Indonesia
-                - id-en for Indonesia (en)
-                - ie-en for Ireland
-                - il-he for Israel
-                - it-it for Italy
-                - jp-jp for Japan
-                - kr-kr for Korea
-                - lv-lv for Latvia
-                - lt-lt for Lithuania
-                - xl-es for Latin America
-                - my-ms for Malaysia
-                - my-en for Malaysia (en)
-                - mx-es for Mexico
-                - nl-nl for Netherlands
-                - nz-en for New Zealand
-                - no-no for Norway
-                - pe-es for Peru
-                - ph-en for Philippines
-                - ph-tl for Philippines (tl)
-                - pl-pl for Poland
-                - pt-pt for Portugal
-                - ro-ro for Romania
-                - ru-ru for Russia
-                - sg-en for Singapore
-                - sk-sk for Slovak Republic
-                - sl-sl for Slovenia
-                - za-en for South Africa
-                - es-es for Spain
-                - se-sv for Sweden
-                - ch-de for Switzerland (de)
-                - ch-fr for Switzerland (fr)
-                - ch-it for Switzerland (it)
-                - tw-tzh for Taiwan
-                - th-th for Thailand
-                - tr-tr for Turkey
-                - ua-uk for Ukraine
-                - uk-en for United Kingdom
-                - us-en for United States
-                - ue-es for United States (es)
-                - ve-es for Venezuela
-                - vn-vi for Vietnam
-                - wt-wt for No region
+            region (str, optional): The region to search in. Defaults to "wt-wt" (worldwide).
+                Supported regions include: us-en, uk-en, ca-en, au-en, de-de, fr-fr, es-es, 
+                it-it, jp-jp, kr-kr, cn-zh, in-en, br-pt, mx-es, ru-ru, nl-nl, and many more.
+                The API automatically maps region codes to You.com's format.
 
         Returns:
             list: A list of search result dictionaries, each containing information such as:
@@ -132,25 +66,110 @@ class WebSearchAPI:
             - 'body' (str): A brief description or snippet from the search result.
         """
         backoff = 2  # initial back-off in seconds
-        params = {
-            "engine": "duckduckgo",
-            "q": keywords,
-            "kl": region,
-            "api_key": os.getenv("SERPAPI_API_KEY"),
+        # Replace with the actual API key
+        api_key = os.getenv("YDC_API_KEY")
+        if not api_key:
+            return {"error": "You.com API key not provided. Please set YDC_API_KEY environment variable."}
+
+        headers = {
+            "X-API-Key": api_key,
+            "Content-Type": "application/json"
         }
+        
+        params = {
+            "query": keywords,
+            "count": max_results
+        }
+        
+        # Add region parameter if specified (supports region filtering)
+        if region and region != "wt-wt":
+            # Map common region codes to You.com format
+            region_mapping = {
+                "us-en": "US",
+                "uk-en": "GB", 
+                "ca-en": "CA",
+                "au-en": "AU",
+                "de-de": "DE",
+                "fr-fr": "FR",
+                "es-es": "ES",
+                "it-it": "IT",
+                "jp-jp": "JP",
+                "kr-kr": "KR",
+                "cn-zh": "CN",
+                "in-en": "IN",
+                "br-pt": "BR",
+                "mx-es": "MX",
+                "ru-ru": "RU",
+                "nl-nl": "NL",
+                "se-sv": "SE",
+                "no-no": "NO",
+                "dk-da": "DK",
+                "fi-fi": "FI",
+                "pl-pl": "PL",
+                "tr-tr": "TR",
+                "ar-es": "AR",
+                "cl-es": "CL",
+                "co-es": "CO",
+                "pe-es": "PE",
+                "ve-es": "VE",
+                "za-en": "ZA",
+                "eg-en": "EG",
+                "ng-en": "NG",
+                "ke-en": "KE",
+                "th-th": "TH",
+                "vn-vi": "VN",
+                "id-id": "ID",
+                "my-ms": "MY",
+                "ph-en": "PH",
+                "sg-en": "SG",
+                "hk-tzh": "HK",
+                "tw-tzh": "TW"
+            }
+            
+            # Use mapped region or try the original region code
+            you_region = region_mapping.get(region, region.upper())
+            params["region"] = you_region
 
         # Infinite retry loop with exponential backoff
         while True:
             try:
-                search = GoogleSearch(params)
-                search_results = search.get_dict()
+                response = requests.get(
+                    "https://api.ydc-index.io/v1/search",
+                    headers=headers,
+                    params=params,
+                    timeout=30
+                )
+                
+                if response.status_code == 429:
+                    wait_time = backoff + random.uniform(0, backoff)
+                    error_block = (
+                        "*" * 100
+                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from You.com API. Rate limit exceeded. Retrying in {wait_time:.1f} seconds…"
+                        + "*" * 100
+                    )
+                    print(error_block)
+                    time.sleep(wait_time)
+                    backoff = min(backoff * 2, 120)  # cap the back-off
+                    continue
+                elif response.status_code != 200:
+                    error_block = (
+                        "*" * 100
+                        + f"\n❗️❗️ [WebSearchAPI] Error from You.com API: {response.status_code} - {response.text}. This is not a rate-limit error, so it will not be retried."
+                        + "*" * 100
+                    )
+                    print(error_block)
+                    return {"error": f"You.com API error {response.status_code}: {response.text}"}
+                
+                search_results = response.json()
+                break  # Success – no rate-limit error detected
+                
             except Exception as e:
-                # If the underlying HTTP call raised a 429 we retry, otherwise propagate
+                # Check if the exception is a rate limit error
                 if "429" in str(e):
                     wait_time = backoff + random.uniform(0, backoff)
                     error_block = (
                         "*" * 100
-                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {wait_time:.1f} seconds…"
+                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from You.com API (in exception). Rate limit exceeded. Retrying in {wait_time:.1f} seconds…"
                         + "*" * 100
                     )
                     print(error_block)
@@ -160,56 +179,65 @@ class WebSearchAPI:
                 else:
                     error_block = (
                         "*" * 100
-                        + f"\n❗️❗️ [WebSearchAPI] Error from SerpAPI: {str(e)}. This is not a rate-limit error, so it will not be retried."
+                        + f"\n❗️❗️ [WebSearchAPI] Error from You.com API: {str(e)}. This is not a rate-limit error, so it will not be retried."
                         + "*" * 100
                     )
                     print(error_block)
                     return {"error": str(e)}
 
-            # SerpAPI sometimes returns the error in the payload instead of raising
-            if "error" in search_results and "429" in str(search_results["error"]):
-                wait_time = backoff + random.uniform(0, backoff)
-                error_block = (
-                    "*" * 100
-                    + f"\n❗️❗️ [WebSearchAPI] Received 429 from SerpAPI. The number of requests sent using this API key exceeds the hourly throughput limit OR your account has run out of searches. Retrying in {wait_time:.1f} seconds…"
-                    + "*" * 100
-                )
-                print(error_block)
-                time.sleep(wait_time)
-                backoff = min(backoff * 2, 120)
-                continue
-
-            break  # Success – no rate-limit error detected
-
-        if "organic_results" not in search_results:
+        if "results" not in search_results:
             return {
-                "error": "Failed to retrieve the search results from server. Please try again later."
+                "error": "Failed to retrieve the search results from You.com API. Please try again later."
             }
 
-        search_results = search_results["organic_results"]
+        # Extract web results from You.com API response
+        web_results = search_results.get("results", {}).get("web", [])
+        news_results = search_results.get("results", {}).get("news", [])
 
         # Convert the search results to the desired format
         results = []
-        for result in search_results[:max_results]:
+        
+        # Process web results
+        for result in web_results[:max_results]:
             if self.show_snippet:
                 results.append(
                     {
-                        "title": result["title"],
-                        "href": result["link"],
-                        "body": result["snippet"],
+                        "title": result.get("title", ""),
+                        "href": result.get("url", ""),
+                        "body": result.get("description", ""),
                     }
                 )
             else:
                 results.append(
                     {
-                        "title": result["title"],
-                        "href": result["link"],
+                        "title": result.get("title", ""),
+                        "href": result.get("url", ""),
                     }
                 )
+        
+        # If we need more results and have news results, add them
+        if len(results) < max_results and news_results:
+            remaining = max_results - len(results)
+            for result in news_results[:remaining]:
+                if self.show_snippet:
+                    results.append(
+                        {
+                            "title": result.get("title", ""),
+                            "href": result.get("url", ""),
+                            "body": result.get("description", ""),
+                        }
+                    )
+                else:
+                    results.append(
+                        {
+                            "title": result.get("title", ""),
+                            "href": result.get("url", ""),
+                        }
+                    )
 
         return results
 
-    def fetch_url_content(self, url: str, mode: str = "raw") -> str:
+    def fetch_url_content(self, url: str, mode: str = "raw", use_you_api: bool = False) -> str:
         """
         This function retrieves content from the provided URL and processes it based on the selected mode.
 
@@ -220,13 +248,64 @@ class WebSearchAPI:
                     - "raw": Returns the raw HTML content.
                     - "markdown": Converts raw HTML content to Markdown format for better readability, using html2text.
                     - "truncate": Extracts and cleans text by removing scripts, styles, and extraneous whitespace.
+            use_you_api (bool, optional): Whether to use You.com's content API for better content extraction. Defaults to False.
         """
         if not url.startswith(("http://", "https://")):
             raise ValueError(f"Invalid URL: {url}")
 
+        # Try You.com API first if requested and available
+        if use_you_api:
+            api_key = os.getenv("YDC_API_KEY")
+            if api_key:
+                try:
+                    headers = {
+                        "X-API-Key": api_key,
+                        "Content-Type": "application/json"
+                    }
+                    
+                    payload = {
+                        "urls": [url],
+                        "livecrawl_formats": "html"
+                    }
+                    
+                    response = requests.post(
+                        "https://api.ydc-index.io/v1/contents",
+                        headers=headers,
+                        json=payload,
+                        timeout=30
+                    )
+                    
+                    if response.status_code == 200:
+                        data = response.json()
+                        if data and len(data) > 0 and "html" in data[0]:
+                            html_content = data[0]["html"]
+                            
+                            # Process the response based on the mode
+                            if mode == "raw":
+                                return {"content": html_content}
+                            elif mode == "markdown":
+                                converter = html2text.HTML2Text()
+                                markdown = converter.handle(html_content)
+                                return {"content": markdown}
+                            elif mode == "truncate":
+                                soup = BeautifulSoup(html_content, "html.parser")
+                                # Remove scripts and styles
+                                for script_or_style in soup(["script", "style"]):
+                                    script_or_style.extract()
+                                # Extract and clean text
+                                text = soup.get_text(separator="\n", strip=True)
+                                return {"content": text}
+                            else:
+                                raise ValueError(f"Unsupported mode: {mode}")
+                    else:
+                        print(f"You.com API returned {response.status_code}, falling back to direct fetch")
+                        
+                except Exception as e:
+                    print(f"You.com API failed: {str(e)}, falling back to direct fetch")
+
+        # Fallback to direct HTTP request
         try:
             # A header that mimics a browser request. This helps avoid 403 Forbidden errors.
-            # TODO: Is this the best way to do this?
             headers = {
                 "User-Agent": (
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
