@@ -285,7 +285,7 @@ class GorillaFileSystem:
         Change the current working directory to the specified folder.
 
         Args:
-            folder (str): The folder of the directory to change to. You can only change one folder at a time.
+            folder (str): The folder of the directory to change to. You can only change one folder level at a time.
 
         Returns:
             current_working_directory (str): The new current working directory path.
