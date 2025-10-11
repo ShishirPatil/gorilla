@@ -17,6 +17,9 @@ class SeedOSSHandler(OSSHandler):
     def __init__(self, model_name, temperature, registry_name, is_fc_model, dtype="bfloat16", **kwargs) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.dtype = dtype
+        # Token IDs from ByteDance-Seed/Seed-OSS tokenizer_config.json:
+        # 2=<seed:eos>, 8=</seed:tool_call>
+        self.stop_token_ids = [2, 8]
 
     @override
     def _format_prompt(self, messages, function):
@@ -235,7 +238,7 @@ class SeedOSSHandler(OSSHandler):
                         formatted_prompt += (
                             f"    - {name} ({_py_type(spec.get('type','string'))}) {req_mark}: {desc}\n"
                         )
-                # Returns (optional)
+                # Returns
                 returns = fn.get("returns", {}).get("properties") if isinstance(fn.get("returns"), dict) else None
                 if returns:
                     formatted_prompt += "\n    Returns:\n"
