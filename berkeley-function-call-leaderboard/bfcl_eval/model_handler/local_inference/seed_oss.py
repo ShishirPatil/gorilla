@@ -14,9 +14,9 @@ class SeedOSSHandler(OSSHandler):
     These models support reasoning capabilities with thinking tokens.
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-        self.is_fc_model = False
+    def __init__(self, model_name, temperature, registry_name=None, is_fc_model=False, dtype="bfloat16", **kwargs) -> None:
+        super().__init__(model_name, temperature, dtype=dtype)
+        self.is_fc_model = is_fc_model
 
     @override
     def _format_prompt(self, messages, function):
