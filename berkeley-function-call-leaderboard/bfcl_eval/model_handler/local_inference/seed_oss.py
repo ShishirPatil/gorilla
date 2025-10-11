@@ -1,8 +1,11 @@
 import json
+import re
+import ast
 from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
+from bfcl_eval.model_handler.utils import decoded_output_to_execution_list
 
 
 class SeedOSSHandler(OSSHandler):
@@ -183,43 +186,86 @@ class SeedOSSHandler(OSSHandler):
         {%- endif %}
         {%- endif %}
         """
+        # Helper to map JSON schema types to Python-like types in docs
+        def _py_type(t: str) -> str:
+            if t == "string":
+                return "str"
+            if t in ("number", "integer"):
+                return "int"
+            if t == "boolean":
+                return "bool"
+            if t == "array":
+                return "list"
+            return "Any"
+
         formatted_prompt = ""
 
+        # System block
         if messages and messages[0]["role"] == "system":
             formatted_prompt += f"<seed:bos>system\n{messages[0]['content']}"
-            message_start_idx = 1
+            loop_messages = messages[1:]
         else:
-            formatted_prompt += "<seed:bos>system\nYou are a helpful assistant."
-            message_start_idx = 0
+            loop_messages = messages
+            if function and len(function) > 0:
+                formatted_prompt += (
+                    "<seed:bos>system\nYou are Doubao, a helpful AI assistant. You may call one or more functions to assist with the user query."
+                )
 
+        # Tools doc in Seed's native format
         if function and len(function) > 0:
-            formatted_prompt += "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\n"
-            formatted_prompt += "You are provided with function signatures within <tools></tools> XML tags:\n<tools>\n"
-            for func in function:
-                formatted_prompt += f"{json.dumps(func, indent=2)}\n"
-            formatted_prompt += "</tools>\n\n"
-            
-            formatted_prompt += "For each function call, return the function call in the exact format:\n"
-            formatted_prompt += "[function_name(parameter1=value1, parameter2=value2)]\n\n"
-            formatted_prompt += "IMPORTANT:\n"
-            formatted_prompt += "- Use the EXACT function name from the tools above\n"
-            formatted_prompt += "- Do not use variables or placeholders like 'func_name1'\n"
-            formatted_prompt += "- Use the actual parameter names as specified\n"
-            formatted_prompt += "- Format: [actual_function_name(param1=value1, param2=value2)]\n"
-        
-        formatted_prompt += "<seed:eos>"
+            # Render pythonic function signatures and doc
+            for item in function:
+                fn = item
+                formatted_prompt += "\nFunction:\n"
+                formatted_prompt += f"def {fn['name']}("
+                if fn.get("parameters", {}).get("properties"):
+                    props = list(fn["parameters"]["properties"].items())
+                    for idx, (name, spec) in enumerate(props):
+                        comma = "," if idx < len(props) - 1 else ""
+                        formatted_prompt += f"\n        {name}: {_py_type(spec.get('type','string'))}{comma}"
+                formatted_prompt += "):\n    \"\"\"\n"
+                formatted_prompt += f"    {fn.get('description','').strip()}\n"
+                props = fn.get("parameters", {}).get("properties", {})
+                if props:
+                    formatted_prompt += "\n    Args:\n"
+                    required = set(fn.get("parameters", {}).get("required", []) or [])
+                    for name, spec in props.items():
+                        req_mark = "[必填]" if name in required else "[选填]"
+                        desc = spec.get("description", "")
+                        formatted_prompt += (
+                            f"    - {name} ({_py_type(spec.get('type','string'))}) {req_mark}: {desc}\n"
+                        )
+                # Returns (optional)
+                returns = fn.get("returns", {}).get("properties") if isinstance(fn.get("returns"), dict) else None
+                if returns:
+                    formatted_prompt += "\n    Returns:\n"
+                    for name, spec in returns.items():
+                        formatted_prompt += f"    - {name} ({_py_type(spec.get('type','string'))}): {spec.get('description','')}\n"
+                formatted_prompt += "    \"\"\"\n"
 
-        for idx in range(message_start_idx, len(messages)):
-            message = messages[idx]
+            # Tool call format instruction
+            formatted_prompt += (
+                "工具调用请遵循如下格式:\n<seed:tool_call>\n<function=example_function_name>\n"
+                "<parameter=example_parameter_1>value_1</parameter>\n"
+                "<parameter=example_parameter_2>This is the value for the second parameter\nthat can span\nmultiple lines</parameter>\n"
+                "</function>\n</seed:tool_call>\n"
+            )
+
+        # End system block if we wrote one
+        if formatted_prompt.startswith("<seed:bos>system"):
+            formatted_prompt += "<seed:eos>"
+
+        # Conversation history
+        for message in loop_messages:
             role = message["role"]
             content = message["content"]
 
             if role in ["user", "system"]:
                 formatted_prompt += f"<seed:bos>{role}\n{content}<seed:eos>"
-            
+
             elif role == "assistant":
                 formatted_prompt += f"<seed:bos>{role}"
-                
+
                 reasoning_content = ""
                 if "reasoning_content" in message and message["reasoning_content"]:
                     reasoning_content = message["reasoning_content"].strip()
@@ -233,18 +279,25 @@ class SeedOSSHandler(OSSHandler):
 
                 if reasoning_content:
                     formatted_prompt += f"\n<seed:think>{reasoning_content}</seed:think>"
-                
+
                 if content and content.strip():
                     formatted_prompt += f"\n{content.strip()}<seed:eos>"
                 elif reasoning_content:
                     formatted_prompt += "<seed:eos>"
-            
+
             elif role == "tool":
                 formatted_prompt += f"<seed:bos>{role}\n{content}<seed:eos>"
 
+        # Generation prompt
         formatted_prompt += "<seed:bos>assistant\n"
-        
+
         return formatted_prompt
+
+    @override
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        """Seed uses native tool docs in prompt; avoid default system prompt injection."""
+        functions: list = test_entry["function"]
+        return {"message": [], "function": functions}
 
     @override
     def _parse_query_response_prompting(self, api_response: Any) -> dict:
@@ -268,6 +321,54 @@ class SeedOSSHandler(OSSHandler):
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
         }
+
+    @staticmethod
+    def _extract_seed_tool_calls(input_text: str) -> list[dict]:
+        """Extract Seed-native <seed:tool_call> blocks into list of {name: args} dicts."""
+        # Be tolerant of missing closing tag
+        pattern = r"<seed:tool_call>(.*?)(?:</seed:tool_call>)"
+        blocks = re.findall(pattern, input_text, re.DOTALL)
+        if not blocks:
+            # fallback: until end of string
+            pattern_fallback = r"<seed:tool_call>(.*)$"
+            blocks = re.findall(pattern_fallback, input_text, re.DOTALL)
+
+        calls: list[dict] = []
+        for block in blocks:
+            # function name
+            m = re.search(r"<function=([^>\n]+)>", block)
+            if not m:
+                continue
+            fn_name = m.group(1).strip()
+
+            # parameters (allow multiline, non-greedy)
+            params = {}
+            for p_name, p_val in re.findall(r"<parameter=([^>]+)>(.*?)</parameter>", block, re.DOTALL):
+                value_str = p_val.strip()
+                # Try to coerce to Python value
+                coerced = value_str
+                try:
+                    coerced = json.loads(value_str)
+                except Exception:
+                    try:
+                        coerced = ast.literal_eval(value_str)
+                    except Exception:
+                        coerced = value_str
+                params[p_name.strip()] = coerced
+
+            calls.append({fn_name: params})
+        return calls
+
+    @override
+    def decode_ast(self, result, language, has_tool_call_tag):
+        # Parse Seed-native tool calls into AST-like list[{name: {args}}]
+        return self._extract_seed_tool_calls(result)
+
+    @override
+    def decode_execute(self, result, has_tool_call_tag):
+        # Convert parsed calls to executable strings
+        decoded_output = self._extract_seed_tool_calls(result)
+        return decoded_output_to_execution_list(decoded_output)
 
     @override
     def _add_assistant_message_prompting(
