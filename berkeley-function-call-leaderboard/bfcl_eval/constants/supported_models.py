@@ -166,6 +166,7 @@ SUPPORTED_MODELS = [
     "BitAgent/BitAgent-Bounty-8B",
     "ThinkAgents/ThinkAgent-1B",
     "phronetic-ai/RZN-T",
+    "SmallCache/Alien-8B",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
     "meta-llama/llama-4-scout-17b-16e-instruct-novita",

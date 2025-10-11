@@ -1952,6 +1952,18 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "SmallCache/Alien-8B": ModelConfig(
+        model_name="SmallCache/Alien-8B",
+        display_name="Alien-8B",
+        url="https://huggingface.co/SmallCache/Alien-8B",
+        org="SmallCache",
+        license="Apache-2.0",
+        model_handler=LlamaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "phronetic-ai/RZN-T": ModelConfig(
         model_name="phronetic-ai/RZN-T",
         display_name="RZN-T (Prompt)",
