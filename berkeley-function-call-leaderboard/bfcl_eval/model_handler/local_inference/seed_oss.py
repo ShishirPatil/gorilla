@@ -17,9 +17,9 @@ class SeedOSSHandler(OSSHandler):
     def __init__(self, model_name, temperature, registry_name, is_fc_model, dtype="bfloat16", **kwargs) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.dtype = dtype
-        # Token IDs from ByteDance-Seed/Seed-OSS tokenizer_config.json:
-        # 2=<seed:eos>, 8=</seed:tool_call>
-        self.stop_token_ids = [2, 8]
+        # Note: Do NOT set stop_token_ids for <seed:tool_call> tags.
+        # These tokens (ID 7, 8) are NOT special tokens and can appear in <seed:think> reasoning.
+        # Hence adding stop tokens will truncate reasoning instead of stopping at the correct place.
 
     @override
     def _format_prompt(self, messages, function):
