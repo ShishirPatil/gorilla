@@ -1,12 +1,17 @@
-from torch import dtype
-from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
 import os
-from bfcl_eval.constants.eval_config import LOCAL_SERVER_PORT
+from typing import Any
+
 from openai import OpenAI
 from overrides import override
+from torch import dtype
+
 from bfcl_eval.constants.enums import ModelStyle
-from typing import Any
+from bfcl_eval.constants.eval_config import LOCAL_SERVER_PORT
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
+
 
 class LlamaHandler(OSSHandler):
     """
@@ -44,7 +49,7 @@ class LlamaHandler(OSSHandler):
             for message in messages:
                 formatted_prompt += f"<|header_start|>{message['role']}<|header_end|>\n\n{message['content'].strip()}<|eot|>"
 
-            formatted_prompt += f"<|header_start|>assistant<|header_end|>\n\n"
+            formatted_prompt += "<|header_start|>assistant<|header_end|>\n\n"
         # For Llama 3 series
         else:
             formatted_prompt = "<|begin_of_text|>"
@@ -52,13 +57,16 @@ class LlamaHandler(OSSHandler):
             for message in messages:
                 formatted_prompt += f"<|start_header_id|>{message['role']}<|end_header_id|>\n\n{message['content'].strip()}<|eot_id|>"
 
-            formatted_prompt += f"<|start_header_id|>assistant<|end_header_id|>\n\n"
+            formatted_prompt += "<|start_header_id|>assistant<|end_header_id|>\n\n"
 
         return formatted_prompt
 
     @override
     def _add_execution_results_prompting(
-        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+        self,
+        inference_data: dict,
+        execution_results: list[str],
+        model_response_data: dict,
     ) -> dict:
         for execution_result in execution_results:
             # Llama uses the `ipython` role for execution results
@@ -73,9 +81,10 @@ class LlamaHandler(OSSHandler):
 
 
 class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
-
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self, model_name, temperature, registry_name, is_fc_model, **kwargs
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.dtype = dtype
@@ -88,12 +97,17 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
         self.local_server_endpoint = os.getenv("LOCAL_SERVER_ENDPOINT", "localhost")
         self.local_server_port = os.getenv("LOCAL_SERVER_PORT", LOCAL_SERVER_PORT)
 
-        self.base_url = f"http://{self.local_server_endpoint}:{self.local_server_port}/v1"
+        self.base_url = (
+            f"http://{self.local_server_endpoint}:{self.local_server_port}/v1"
+        )
         self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
 
     @override
     def _add_execution_results_prompting(
-        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+        self,
+        inference_data: dict,
+        execution_results: list[str],
+        model_response_data: dict,
     ) -> dict:
         for execution_result in execution_results:
             # Llama uses the `ipython` role for execution results
@@ -109,7 +123,9 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
     @override
     def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
-            "model_responses": api_response.choices[0].message.content, # SID_DEBUG: (true for multi-turn chat) api_response.choices[0].text,
+            "model_responses": api_response.choices[
+                0
+            ].message.content,  # SID_DEBUG: (true for multi-turn chat) api_response.choices[0].text,
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
         }
