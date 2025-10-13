@@ -290,6 +290,12 @@ class GorillaFileSystem:
         Returns:
             current_working_directory (str): The new current working directory path.
         """
+        # Check if folder contains path separators
+        if "/" in folder and folder != "..":
+            return {
+                "error": f"cd: {folder}: You cannot use path to change directory. Please change one folder level at a time."
+            }
+        
         # Handle navigating to the parent directory with "cd .."
         if folder == "..":
             if self._current_dir.parent:
