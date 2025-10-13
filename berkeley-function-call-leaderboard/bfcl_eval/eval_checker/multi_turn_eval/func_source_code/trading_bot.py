@@ -266,6 +266,7 @@ class TradingBot:
             "Neptune Systems": "NEPT",
             "Synex Solutions": "SYNX",
             "Amazon": "AMZN",
+            "Gorilla": "GORI",
         }
 
         return {"symbol": symbol_map.get(name, "Stock not found")}

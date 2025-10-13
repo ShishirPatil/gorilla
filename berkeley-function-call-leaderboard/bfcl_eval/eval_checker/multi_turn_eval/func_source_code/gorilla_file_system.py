@@ -4,7 +4,10 @@ from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.long_context import (
-    FILE_CONTENT_EXTENSION, FILES_TAIL_USED, POPULATE_FILE_EXTENSION)
+    FILE_CONTENT_EXTENSION,
+    FILES_TAIL_USED,
+    POPULATE_FILE_EXTENSION,
+)
 
 
 class File:
@@ -285,11 +288,22 @@ class GorillaFileSystem:
         Change the current working directory to the specified folder.
 
         Args:
-            folder (str): The folder of the directory to change to. You can only change one folder at a time.
+            folder (str): The folder of the directory to change to. You can only change one folder level at a time.
 
         Returns:
             current_working_directory (str): The new current working directory path.
         """
+        # turn "../" → "..", "/"  → ""
+        folder = folder.rstrip("/")
+        if folder == "":
+            folder = "/"
+
+        # Check if path is nested
+        if folder not in {".", "..", "/"} and "/" in folder:
+            return {
+                "error": f"cd: {folder}: Unsupported path. Only one folder level at a time is supported."
+            }
+
         # Handle navigating to the parent directory with "cd .."
         if folder == "..":
             if self._current_dir.parent:
