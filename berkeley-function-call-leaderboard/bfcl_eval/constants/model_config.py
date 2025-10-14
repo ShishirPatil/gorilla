@@ -1230,7 +1230,7 @@ local_inference_model_map = {
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.2-1B-Instruct-FC",
+        model_name="meta-llama/Llama-3.2-1B-Instruct",
         display_name="Llama-3.2-1B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
