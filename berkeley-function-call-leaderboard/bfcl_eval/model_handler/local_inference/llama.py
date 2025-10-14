@@ -81,9 +81,23 @@ class LlamaHandler(OSSHandler):
 
 
 class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
+    """
+    This the handler for the Llama models in function calling mode.
+    According to the Llama model card, function calling should be handled differently
+    than what is suggested by the standard Hugging Face chat template.
+    For more details, see:
+    https://www.llama.com/docs/model-cards-and-prompt-formats/llama4_omni/#-zero-shot-function-calling---system-message-
+    This applies to all Llama 3 and Llama 4 series models, except for Llama 3.1.
+
+    In addition, because Llama uses the same system prompt as the default BFCL system
+    prompt that's normally provided to the model in "prompt mode", the constructed
+    formatted prompt string remains same in both modes.
+    As a result, we will not have separate "prompt mode" for Llama models to avoid confusion.
+    """
     def __init__(
         self, model_name, temperature, registry_name, is_fc_model, **kwargs
     ) -> None:
+        self.model_name = model_name.replace("-chat-completions", "")
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
