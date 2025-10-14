@@ -20,9 +20,6 @@ from bfcl_eval.model_handler.api_inference.nemotron import NemotronHandler
 from bfcl_eval.model_handler.api_inference.nova import NovaHandler
 from bfcl_eval.model_handler.api_inference.novita import NovitaHandler
 from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
-from bfcl_eval.model_handler.api_inference.openai_completion import (
-    OpenAICompletionsHandler,
-)
 from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
 from bfcl_eval.model_handler.api_inference.qwen import (
     QwenAgentNoThinkHandler,
@@ -44,16 +41,16 @@ from bfcl_eval.model_handler.local_inference.granite import (
 )
 from bfcl_eval.model_handler.local_inference.granite_3 import Granite3FCHandler
 from bfcl_eval.model_handler.local_inference.hammer import HammerHandler
-from bfcl_eval.model_handler.local_inference.llama import LlamaHandler, LlamaChatCompletionsHandler
+from bfcl_eval.model_handler.local_inference.llama import (
+    LlamaChatCompletionsHandler,
+    LlamaHandler,
+)
 from bfcl_eval.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
 from bfcl_eval.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl_eval.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl_eval.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl_eval.model_handler.local_inference.phi import PhiHandler
 from bfcl_eval.model_handler.local_inference.phi_fc import PhiFCHandler
-from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
-    QuickTestingOSSHandler,
-)
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
@@ -75,7 +72,7 @@ from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandle
 @dataclass
 class ModelConfig:
     """
-    Model configuration class for storing model metadata and settings. 
+    Model configuration class for storing model metadata and settings.
 
     Attributes:
         model_name (str): Name of the model as used in the vendor API or on Hugging Face (may not be unique).
@@ -1232,25 +1229,13 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    # "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
-    #     model_name="meta-llama/Llama-3.2-1B-Instruct-FC",
-    #     display_name="Llama-3.2-1B-Instruct (FC)",
-    #     url="https://llama.meta.com/llama3",
-    #     org="Meta",
-    #     license="Meta Llama 3 Community",
-    #     model_handler=LlamaHandler,
-    #     input_price=None,
-    #     output_price=None,
-    #     is_fc_model=True,
-    #     underscore_to_dot=False,
-    # ),
     "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
-        model_name="meta-llama/Llama-3.2-1B-Instruct",
+        model_name="meta-llama/Llama-3.2-1B-Instruct-FC",
         display_name="Llama-3.2-1B-Instruct (FC)",
         url="https://llama.meta.com/llama3",
         org="Meta",
         license="Meta Llama 3 Community",
-        model_handler=LlamaChatCompletionsHandler,
+        model_handler=LlamaHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
