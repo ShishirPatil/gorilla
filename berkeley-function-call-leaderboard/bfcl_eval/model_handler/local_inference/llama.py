@@ -82,7 +82,9 @@ class LlamaHandler(OSSHandler):
 
 class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
     """
-    This the handler for the Llama models in function calling mode.
+    This the handler for the Llama models in chat/completions mode for function calling and
+    uses the same system prompt used when using the Llama model with completions request.
+    The chat template can be used directly or by removing the default Huggingface system prompt.
     According to the Llama model card, function calling should be handled differently
     than what is suggested by the standard Hugging Face chat template.
     For more details, see:
@@ -97,7 +99,7 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
     def __init__(
         self, model_name, temperature, registry_name, is_fc_model, **kwargs
     ) -> None:
-        self.model_name = model_name.replace("-chat-completions", "")
+        self.model_name = model_name = model_name.replace("-chat-completions", "")
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
