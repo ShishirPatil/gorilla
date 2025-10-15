@@ -7,7 +7,12 @@ from urllib.parse import urlparse
 import html2text
 import requests
 from bs4 import BeautifulSoup
-from serpapi import GoogleSearch
+
+try:
+    from serpapi import GoogleSearch
+    SERPAPI_AVAILABLE = True
+except ImportError:
+    SERPAPI_AVAILABLE = False
 
 ERROR_TEMPLATES = [
     "503 Server Error: Service Unavailable for url: {url}",
@@ -37,6 +42,18 @@ class WebSearchAPI:
         self._random = random.Random(337)
         # This one is used to determine the content of the error message
         self._rng = random.Random(1053)
+        
+        # Determine which API to use based on available keys
+        self.brave_api_key = os.getenv("BRAVE_API_KEY")
+        self.serpapi_key = os.getenv("SERPAPI_API_KEY")
+        
+        if self.brave_api_key:
+            self.search_provider = "brave"
+        elif self.serpapi_key and SERPAPI_AVAILABLE:
+            self.search_provider = "serpapi"
+        else:
+            self.search_provider = None
+            print("⚠️ Warning: No API key found. Set either BRAVE_API_KEY or SERPAPI_API_KEY environment variable.")
 
     def _load_scenario(self, initial_config: dict, long_context: bool = False):
         # We don't care about the long_context parameter here
@@ -131,12 +148,128 @@ class WebSearchAPI:
             - 'href' (str): The URL of the search result.
             - 'body' (str): A brief description or snippet from the search result.
         """
+        if self.search_provider is None:
+            return {"error": "No search API configured. Set either BRAVE_API_KEY or SERPAPI_API_KEY environment variable."}
+        
+        if self.search_provider == "brave":
+            return self._search_with_brave(keywords, max_results, region)
+        else:
+            return self._search_with_serpapi(keywords, max_results, region)
+
+    def _search_with_brave(self, keywords: str, max_results: int, region: str) -> list:
+        """Search using Brave Search API."""
+        backoff = 2  # initial back-off in seconds
+
+        # Map region codes to Brave Search country codes (ISO 3166-1 alpha-2)
+        region_mapping = {
+            "xa-ar": "SA", "xa-en": "SA", "ar-es": "AR", "au-en": "AU", "at-de": "AT",
+            "be-fr": "BE", "be-nl": "BE", "br-pt": "BR", "bg-bg": "BG", "ca-en": "CA",
+            "ca-fr": "CA", "ct-ca": "ES", "cl-es": "CL", "cn-zh": "CN", "co-es": "CO",
+            "hr-hr": "HR", "cz-cs": "CZ", "dk-da": "DK", "ee-et": "EE", "fi-fi": "FI",
+            "fr-fr": "FR", "de-de": "DE", "gr-el": "GR", "hk-tzh": "HK", "hu-hu": "HU",
+            "in-en": "IN", "id-id": "ID", "id-en": "ID", "ie-en": "IE", "il-he": "IL",
+            "it-it": "IT", "jp-jp": "JP", "kr-kr": "KR", "lv-lv": "LV", "lt-lt": "LT",
+            "xl-es": "MX", "my-ms": "MY", "my-en": "MY", "mx-es": "MX", "nl-nl": "NL",
+            "nz-en": "NZ", "no-no": "NO", "pe-es": "PE", "ph-en": "PH", "ph-tl": "PH",
+            "pl-pl": "PL", "pt-pt": "PT", "ro-ro": "RO", "ru-ru": "RU", "sg-en": "SG",
+            "sk-sk": "SK", "sl-sl": "SI", "za-en": "ZA", "es-es": "ES", "se-sv": "SE",
+            "ch-de": "CH", "ch-fr": "CH", "ch-it": "CH", "tw-tzh": "TW", "th-th": "TH",
+            "tr-tr": "TR", "ua-uk": "UA", "uk-en": "GB", "us-en": "US", "ue-es": "US",
+            "ve-es": "VE", "vn-vi": "VN", "wt-wt": "ALL"
+        }
+        
+        country = region_mapping.get(region, "ALL")
+
+        headers = {
+            "Accept": "application/json",
+            "Accept-Encoding": "gzip",
+            "X-Subscription-Token": self.brave_api_key
+        }
+
+        params = {
+            "q": keywords,
+            "count": max_results,
+        }
+        
+        if country != "ALL":
+            params["country"] = country
+
+        # Infinite retry loop with exponential backoff
+        while True:
+            try:
+                response = requests.get(
+                    "https://api.search.brave.com/res/v1/web/search",
+                    headers=headers,
+                    params=params,
+                    timeout=20
+                )
+                # Check for rate limiting
+                if response.status_code == 429:
+                    wait_time = backoff + random.uniform(0, backoff)
+                    error_block = (
+                        "*" * 100
+                        + f"\n❗️❗️ [WebSearchAPI] Received 429 from Brave Search API. Rate limit exceeded. Retrying in {wait_time:.1f} seconds…"
+                        + "*" * 100
+                    )
+                    print(error_block)
+                    time.sleep(wait_time)
+                    backoff = min(backoff * 2, 120)  # cap the back-off
+                    continue
+                
+                response.raise_for_status()
+                search_results = response.json()
+                break  # Success
+                
+            except requests.exceptions.RequestException as e:
+                # If it's a 429, we already handled it above
+                if hasattr(e, 'response') and hasattr(e.response, 'status_code') and e.response.status_code == 429:
+                    continue
+                    
+                error_block = (
+                    "*" * 100
+                    + f"\n❗️❗️ [WebSearchAPI] Error from Brave Search API: {str(e)}. This is not a rate-limit error, so it will not be retried."
+                    + "*" * 100
+                )
+                print(error_block)
+                return {"error": str(e)}
+
+        if "web" not in search_results or "results" not in search_results["web"]:
+            return {
+                "error": "Failed to retrieve the search results from server. Please try again later."
+            }
+
+        web_results = search_results["web"]["results"]
+        breakpoint()
+
+        # Convert the search results to the desired format
+        results = []
+        for result in web_results[:max_results]:
+            if self.show_snippet:
+                results.append(
+                    {
+                        "title": result.get("title", ""),
+                        "href": result.get("url", ""),
+                        "body": result.get("description", ""),
+                    }
+                )
+            else:
+                results.append(
+                    {
+                        "title": result.get("title", ""),
+                        "href": result.get("url", ""),
+                    }
+                )
+        return results
+
+
+    def _search_with_serpapi(self, keywords: str, max_results: int, region: str) -> list:
+        """Search using SerpAPI."""
         backoff = 2  # initial back-off in seconds
         params = {
             "engine": "duckduckgo",
             "q": keywords,
             "kl": region,
-            "api_key": os.getenv("SERPAPI_API_KEY"),
+            "api_key": self.serpapi_key,
         }
 
         # Infinite retry loop with exponential backoff
@@ -208,6 +341,16 @@ class WebSearchAPI:
                 )
 
         return results
+
+    def _search_with_serpapi(self, keywords: str, max_results: int, region: str) -> list:
+        """Search using SerpAPI."""
+        backoff = 2  # initial back-off in seconds
+        params = {
+            "engine": "duckduckgo",
+            "q": keywords,
+            "kl": region,
+            "api_key": self.serpapi_key,
+        }
 
     def fetch_url_content(self, url: str, mode: str = "raw") -> str:
         """
