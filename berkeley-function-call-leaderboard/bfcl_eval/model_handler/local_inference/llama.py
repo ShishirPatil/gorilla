@@ -141,7 +141,7 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
         return {
             "model_responses": api_response.choices[
                 0
-            ].message.content,  # SID_DEBUG: (true for multi-turn chat) api_response.choices[0].text,
+            ].message.content,
             "input_token": api_response.usage.prompt_tokens,
             "output_token": api_response.usage.completion_tokens,
         }
