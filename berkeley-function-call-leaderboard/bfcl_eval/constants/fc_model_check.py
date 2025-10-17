@@ -98,12 +98,12 @@ def main():
         elif is_fc is None:
             warnings.append(r)
 
-    print("ERRORS (FC, but is_fc_model=False"))
+    print("ERRORS (FC, but is_fc_model=False)")
     for r in errors:
         print(f"{r['dict_name']}: key='{r['key']}' | model_name='{r['model_name']}' "
               f"| display_name='{r['display_name']}' | is_fc_model={r['is_fc_model']}")
 
-    print("WARNINGS (no FC, but is_fc_model=True"))
+    print("WARNINGS (no FC, but is_fc_model=True)")
     for r in warnings:
         print(f"{r['dict_name']}: key='{r['key']}' | model_name='{r['model_name']}' "
               f"| display_name='{r['display_name']}' | is_fc_model={r['is_fc_model']}")
