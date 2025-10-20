@@ -383,7 +383,7 @@ class GorillaFileSystem:
             if file_name in self._current_dir.contents:
                 self._current_dir._get_item(file_name)._write(content)
             else:
-                self._current_dir._add_file(file_name, content)
+                return {"error": f"echo: cannot write to '{file_name}': No such file"}
         else:
             return {"terminal_output": content}
 
