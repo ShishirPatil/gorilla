@@ -119,6 +119,18 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
         self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
 
     @override
+    def _query_prompting(self, inference_data: dict):
+        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
+
+        return self.generate_with_backoff(
+            messages=inference_data["message"],
+            model=self.model_name,
+            temperature=self.temperature,
+            store=False,
+            max_tokens=4096,
+        )
+
+    @override
     def _add_execution_results_prompting(
         self,
         inference_data: dict,

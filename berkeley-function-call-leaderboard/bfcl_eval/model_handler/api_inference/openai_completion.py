@@ -224,7 +224,6 @@ class OpenAICompletionsHandler(BaseHandler):
             model=self.model_name,
             temperature=self.temperature,
             store=False,
-            max_tokens=4096,
         )
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
