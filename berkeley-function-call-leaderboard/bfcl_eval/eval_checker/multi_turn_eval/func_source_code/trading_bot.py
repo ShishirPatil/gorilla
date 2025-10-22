@@ -266,6 +266,7 @@ class TradingBot:
             "Neptune Systems": "NEPT",
             "Synex Solutions": "SYNX",
             "Amazon": "AMZN",
+            "Gorilla": "GORI",
         }
 
         return {"symbol": symbol_map.get(name, "Stock not found")}
@@ -397,16 +398,14 @@ class TradingBot:
             "amount": amount,
         }
 
-    def make_transaction(
-        self, account_id: int, xact_type: str, amount: float
+    def withdraw_funds(
+        self, amount: float
     ) -> Dict[str, Union[str, float]]:
         """
-        Make a deposit or withdrawal based on specified amount.
+        Withdraw funds from the account balance.
 
         Args:
-            account_id (int): ID of the account.
-            xact_type (str): Transaction type (deposit or withdrawal).
-            amount (float): Amount to deposit or withdraw.
+            amount (float): Amount to withdraw from the account.
 
         Returns:
             status (str): Status of the transaction.
@@ -416,40 +415,24 @@ class TradingBot:
             return {"error": "User not authenticated. Please log in to make a transaction."}
         if self.market_status != "Open":
             return {"error": "Market is closed. Transactions are not allowed."}
-        if account_id != self.account_info["account_id"]:
-            return {"error": f"Account with ID {account_id} not found."}
         if amount <= 0:
             return {"error": "Transaction amount must be positive."}
 
-        if xact_type == "deposit":
-            self.account_info["balance"] += amount
-            self.transaction_history.append(
-                {
-                    "type": "deposit",
-                    "amount": amount,
-                    "timestamp": self._generate_transaction_timestamp(),
-                }
-            )
-            return {
-                "status": "Deposit successful",
-                "new_balance": self.account_info["balance"],
+        if amount > self.account_info["balance"]:
+            return {"error": "Insufficient funds for withdrawal."}
+
+        self.account_info["balance"] -= amount
+        self.transaction_history.append(
+            {
+                "type": "withdrawal",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
             }
-        elif xact_type == "withdrawal":
-            if amount > self.account_info["balance"]:
-                return {"error": "Insufficient funds for withdrawal."}
-            self.account_info["balance"] -= amount
-            self.transaction_history.append(
-                {
-                    "type": "withdrawal",
-                    "amount": amount,
-                    "timestamp": self._generate_transaction_timestamp(),
-                }
-            )
-            return {
-                "status": "Withdrawal successful",
-                "new_balance": self.account_info["balance"],
-            }
-        return {"error": "Invalid transaction type. Use 'deposit' or 'withdrawal'."}
+        )
+        return {
+            "status": "Withdrawal successful",
+            "new_balance": self.account_info["balance"],
+        }
 
     def get_account_info(self) -> Dict[str, Union[int, float]]:
         """

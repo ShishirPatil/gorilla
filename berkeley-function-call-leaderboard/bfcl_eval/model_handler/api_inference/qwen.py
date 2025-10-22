@@ -17,8 +17,15 @@ class QwenAPIHandler(OpenAICompletionsHandler):
 
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.client = OpenAI(
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
@@ -205,8 +212,15 @@ class QwenAPIHandler(OpenAICompletionsHandler):
 
 class QwenAgentThinkHandler(OpenAICompletionsHandler):
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
         """
         Note: Need to start vllm server first with command:

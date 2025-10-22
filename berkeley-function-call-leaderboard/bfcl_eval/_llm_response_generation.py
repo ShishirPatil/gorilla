@@ -64,9 +64,12 @@ def get_args():
 
 def build_handler(model_name, temperature):
     config = MODEL_CONFIG_MAPPING[model_name]
-    handler = config.model_handler(model_name, temperature)
-    # Propagate config flags to the handler instance
-    handler.is_fc_model = config.is_fc_model
+    handler = config.model_handler(
+        model_name=config.model_name,
+        temperature=temperature,
+        registry_name=model_name,
+        is_fc_model=config.is_fc_model,
+    )
     return handler
 
 
@@ -184,7 +187,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
             + traceback.format_exc(limit=10)
             + "-" * 100
         )
-        print(error_block)
+        tqdm.write(error_block)
 
         result = f"Error during inference: {str(e)}"
         metadata = {"traceback": traceback.format_exc()}
@@ -206,7 +209,11 @@ def generate_results(args, model_name, test_cases_total):
         is_oss_model = True
         # For OSS models, if the user didn't explicitly set the number of threads,
         # we default to 100 threads to speed up the inference.
-        num_threads = args.num_threads if args.num_threads is not None else LOCAL_SERVER_MAX_CONCURRENT_REQUEST
+        num_threads = (
+            args.num_threads
+            if args.num_threads is not None
+            else LOCAL_SERVER_MAX_CONCURRENT_REQUEST
+        )
     else:
         handler: BaseHandler
         is_oss_model = False
@@ -260,7 +267,14 @@ def generate_results(args, model_name, test_cases_total):
         completed = set()
 
         with ThreadPoolExecutor(max_workers=num_threads) as pool, tqdm(
-            total=len(test_cases_total), desc=f"Generating results for {model_name}"
+            total=len(test_cases_total),
+            desc=f"Generating results for {model_name}",
+            position=0,         
+            leave=True,           
+            dynamic_ncols=True,   
+            mininterval=0.2,      
+            smoothing=0.1,        
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]",
         ) as pbar:
 
             # seed initial ready tasks
@@ -347,16 +361,16 @@ def main(args):
                 "• For officially supported models, please refer to `SUPPORTED_MODELS.md`.\n"
                 "• For running new models, please refer to `README.md` and `CONTRIBUTING.md`."
             )
-    print(f"Generating results for {args.model}")
+    tqdm.write(f"Generating results for {args.model}")
     if args.run_ids:
-        print("Running specific test cases. Ignoring `--test-category` argument.")
+        tqdm.write("Running specific test cases. Ignoring `--test-category` argument.")
     else:
-        print(f"Running full test cases for categories: {all_test_categories}.")
+        tqdm.write(f"Running full test cases for categories: {all_test_categories}.")
 
     if any(is_format_sensitivity(test_category) for test_category in all_test_categories):
         for model_name in args.model:
             if MODEL_CONFIG_MAPPING[model_name].is_fc_model:
-                print(
+                tqdm.write(
                     "⚠️ Warning: Format sensitivity test cases are only supported for prompting (non-FC) models. "
                     f"Since {model_name} is a FC model based on its config, the format sensitivity test cases will be skipped."
                 )
@@ -375,7 +389,7 @@ def main(args):
         )
 
         if len(test_cases_total) == 0:
-            print(
+            tqdm.write(
                 f"✅ All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
         else:
