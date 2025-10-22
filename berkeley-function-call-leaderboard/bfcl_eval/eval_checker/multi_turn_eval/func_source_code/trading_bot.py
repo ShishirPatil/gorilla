@@ -609,32 +609,6 @@ class TradingBot:
 
         return {"transaction_history": filtered_history}
 
-    def update_stock_price(
-        self, symbol: str, new_price: float
-    ) -> Dict[str, Union[str, float]]:
-        """
-        Update the price of a stock.
-
-        Args:
-            symbol (str): Symbol of the stock to update.
-            new_price (float): New price of the stock.
-
-        Returns:
-            symbol (str): Symbol of the updated stock.
-            old_price (float): Previous price of the stock.
-            new_price (float): Updated price of the stock.
-        """
-        if symbol not in self.stocks:
-            return {"error": f"Stock with symbol '{symbol}' not found."}
-        if new_price <= 0:
-            return {"error": "New price must be a positive value."}
-
-        old_price = self.stocks[symbol]["price"]
-        self.stocks[symbol]["price"] = new_price
-        self.stocks[symbol]["percent_change"] = ((new_price - old_price) / old_price) * 100
-
-        return {"symbol": symbol, "old_price": old_price, "new_price": new_price}
-
     # below contains a list of functions to be nested
     def get_available_stocks(self, sector: str) -> Dict[str, List[str]]:
         """
