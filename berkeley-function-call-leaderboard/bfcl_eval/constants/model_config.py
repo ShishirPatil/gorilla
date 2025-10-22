@@ -63,6 +63,7 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.local_inference.star import STARHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1964,6 +1965,40 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "star-lab/STAR-0b6": ModelConfig(
+        model_name="star-lab/STAR-0b6",
+        display_name="STAR-0.6B(FC)",
+        url="https://huggingface.co/star-lab/STAR-0b6",
+        org="STAR Lab",
+        license="apache-2.0",
+        model_handler=STARHandler,
+        input_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "star-lab/STAR-1b7": ModelConfig(
+        model_name="star-lab/STAR-0b6",
+        display_name="STAR-1.7B(FC)",
+        url="https://huggingface.co/star-lab/STAR-1b7",
+        org="STAR Lab",
+        license="apache-2.0",
+        model_handler=STARHandler,
+        input_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "star-lab/STAR-4b": ModelConfig(
+        model_name="star-lab/STAR-4b",
+        display_name="STAR-4B(FC)",
+        url="https://huggingface.co/star-lab/STAR-4b",
+        org="STAR Lab",
+        license="apache-2.0",
+        model_handler=STARHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    )
 }
 
 # Inference through third-party inference platforms for open-source models
