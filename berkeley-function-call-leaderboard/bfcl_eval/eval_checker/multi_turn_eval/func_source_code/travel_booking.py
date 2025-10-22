@@ -203,8 +203,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"error": "Token expired"}
         if access_token != self.access_token:
-            if self.token_expires_in is not None:
-                self.token_expires_in -= 1
             return {"error": "Invalid access token"}
         if card_number in self.credit_card_list:
             return {"error": "Card already registered"}
@@ -454,7 +452,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"error": "Invalid access token"}
         if card_id not in self.credit_card_list:
             return {
@@ -498,7 +495,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"booking_status": False, "error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"booking_status": False, "error": "Invalid access token"}
         if card_id not in self.credit_card_list:
             return {"booking_status": False, "error": "Card not registered"}
@@ -598,7 +594,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"error": "Invalid access token"}
         if booking_id not in self.booking_record:
             return {"error": "Booking not found"}
@@ -661,7 +656,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"cancel_status": False, "error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"cancel_status": False, "error": "Invalid access token"}
         if booking_id not in self.booking_record:
             return {"cancel_status": False, "error": "Booking not found"}
@@ -699,7 +693,7 @@ class TravelAPI:
         }
         for key, val in exchange_rates.items():
             if base_currency == key[0] and target_currency == key[1]:
-                return {"exchanged_value": value * val}
+                return {"exchanged_value": float(value * val)}
             elif base_currency == key[1] and target_currency == key[0]:
                 return {"exchanged_value": round(value / val, 2)}
         raise ValueError("No available exchange rate for the given currencies.")
@@ -773,7 +767,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"error": "Invalid access token"}
         budget_limit = float(budget_limit)
         self.budget_limit = budget_limit
@@ -840,7 +833,6 @@ class TravelAPI:
         if self.token_expires_in == 0:
             return {"insurance_status": False, "error": "Token expired"}
         if access_token != self.access_token:
-            self.token_expires_in -= 1
             return {"insurance_status": False, "error": "Invalid access token"}
         if self.budget_limit is not None and self.budget_limit < insurance_cost:
             return {"insurance_status": False, "error": "Exceeded budget limit"}
