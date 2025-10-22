@@ -413,8 +413,10 @@ class TradingBot:
     def withdraw_funds(self, amount: float) -> Dict[str, Union[str, float]]:
         """
         Withdraw funds from the account balance.
+        Withdraw funds from the account balance.
 
         Args:
+            amount (float): Amount to withdraw from the account.
             amount (float): Amount to withdraw from the account.
 
         Returns:
@@ -428,6 +430,21 @@ class TradingBot:
         if amount <= 0:
             return {"error": "Transaction amount must be positive."}
 
+        if amount > self.account_info["balance"]:
+            return {"error": "Insufficient funds for withdrawal."}
+
+        self.account_info["balance"] -= amount
+        self.transaction_history.append(
+            {
+                "type": "withdrawal",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
+            }
+        )
+        return {
+            "status": "Withdrawal successful",
+            "new_balance": self.account_info["balance"],
+        }
         if amount > self.account_info["balance"]:
             return {"error": "Insufficient funds for withdrawal."}
 
