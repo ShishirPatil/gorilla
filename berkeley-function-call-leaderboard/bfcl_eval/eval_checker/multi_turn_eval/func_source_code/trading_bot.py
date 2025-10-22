@@ -376,6 +376,18 @@ class TradingBot:
             return {"error": f"Invalid stock symbol: {symbol}"}
         if price <= 0 or amount <= 0:
             return {"error": "Price and amount must be positive values."}
+
+        # Ensure sufficient funds for buy orders
+        if order_type.lower() == "buy":
+            total_cost = float(price) * int(amount)
+            if total_cost > self.account_info.get("balance", 0):
+                return {
+                    "error": (
+                        "Insufficient funds: required "
+                        f"${total_cost:.2f} but only ${self.account_info.get('balance', 0):.2f} available."
+                    )
+                }
+
         price = float(price)
         order_id = self.order_counter
         self.orders[order_id] = {
@@ -398,9 +410,7 @@ class TradingBot:
             "amount": amount,
         }
 
-    def withdraw_funds(
-        self, amount: float
-    ) -> Dict[str, Union[str, float]]:
+    def withdraw_funds(self, amount: float) -> Dict[str, Union[str, float]]:
         """
         Withdraw funds from the account balance.
 
@@ -505,7 +515,11 @@ class TradingBot:
             return {"error": "Funding amount must be positive."}
         self.account_info["balance"] += amount
         self.transaction_history.append(
-            {"type": "deposit", "amount": amount, "timestamp": self._generate_transaction_timestamp()}
+            {
+                "type": "deposit",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
+            }
         )
         return {
             "status": "Account funded successfully",
@@ -556,9 +570,7 @@ class TradingBot:
         """
         if not self.authenticated:
             return [
-                {
-                    "error": "User not authenticated. Please log in to view order history."
-                }
+                {"error": "User not authenticated. Please log in to view order history."}
             ]
 
         return {"history": list(self.orders.keys())}
@@ -686,6 +698,8 @@ class TradingBot:
         ]
 
         if changed_stocks:
-            return {"notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."}
+            return {
+                "notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."
+            }
         else:
             return {"notification": "No significant price changes in the selected stocks."}
