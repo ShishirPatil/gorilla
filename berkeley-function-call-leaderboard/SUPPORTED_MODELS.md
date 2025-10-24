@@ -128,6 +128,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | ToolACE-2-8B                               | Function Calling | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
 | watt-tool-{8B,70B}                         | Function Calling | Self-hosted 💻 | watt-ai/watt-tool-{8B,70B}                                  |
 | xiaoming-14B                               | Prompt           | Mininglamp     | xiaoming-14B                                                |
+| FunReason-MT                               | Function Calling | Self-hosted 💻 | Bingguang/FunReason-MT                                      |
 | xLAM-2-1b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-1b-fc-r                                   |
 | xLAM-2-32b-fc-r                            | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-32b-fc-r                                  |
 | xLAM-2-3b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |

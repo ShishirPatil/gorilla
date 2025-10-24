@@ -63,7 +63,7 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
-
+from bfcl_eval.model_handler.local_inference.funreason_mt import FunReasonMTHandler
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
 # Each key corresponds to the model id passed to the `--model` argument
@@ -1218,6 +1218,18 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Bingguang/FunReason-MT": ModelConfig(
+        model_name="Bingguang/FunReason-MT",
+        display_name="FunReason-MT",
+        url="https://huggingface.co/Bingguang/FunReason-MT",
+        org="Bingguang",
+        license="apache-2.0",
+        model_handler=FunReasonMTHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-70B-Instruct": ModelConfig(
