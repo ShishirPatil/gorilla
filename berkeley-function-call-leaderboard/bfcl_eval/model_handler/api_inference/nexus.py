@@ -1,17 +1,22 @@
 import time
+from typing import Any
 
 import requests
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.utils import (
-    ast_parse,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.constants.enums import ModelStyle
+from bfcl_eval.model_handler.utils import ast_parse
 
 
 class NexusHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.NEXUS
         self.is_fc_model = True
 
@@ -116,23 +121,23 @@ class NexusHandler(BaseHandler):
 
         return raven_prompt
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         if result.endswith(";"):
             result = result[:-1]
         result = result.replace(";", ",")
         func = "[" + result + "]"
-        decoded_output = ast_parse(func, language)
+        decoded_output = ast_parse(func, language, has_tool_call_tag)
         if "out_of_domain" in result:
             return "irrelevant"
 
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if result.endswith(";"):
             result = result[:-1]
         result = result.replace(";", ",")
         func = "[" + result + "]"
-        decoded_output = ast_parse(func)
+        decoded_output = ast_parse(func, has_tool_call_tag)
         execution_list = []
         for function_call in decoded_output:
             for key, value in function_call.items():
@@ -174,13 +179,12 @@ class NexusHandler(BaseHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # Nexus requires functions to be in a specific format
         inference_data["tools"] = self._generate_functions_from_dict(functions)
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response[0]["generated_text"]
             .replace("Call:", "")

@@ -1,37 +1,42 @@
 import json
 import re
+from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_function_call,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from overrides import override
 
 
 class QwenFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-        self.is_fc_model = True
-        self.model_name_huggingface = model_name.replace("-FC", "")
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
+        self.model_name_huggingface = model_name
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # Model response is of the form:
         # "<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Taylor Swift\", \"duration\": 20}}\n</tool_call>\n<tool_call>\n{\"name\": \"spotify.play\", \"arguments\": {\"artist\": \"Maroon 5\", \"duration\": 15}}\n</tool_call>"?
         tool_calls = self._extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return [
             {call["name"]: {k: v for k, v in call["arguments"].items()}}
             for call in tool_calls
         ]
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         tool_calls = self._extract_tool_calls(result)
         if type(tool_calls) != list or any(type(item) != dict for item in tool_calls):
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         decoded_result = []
         for item in tool_calls:
             if type(item) == str:
@@ -196,6 +201,25 @@ class QwenFCHandler(OSSHandler):
                         formatted_prompt += f"<|im_start|>{role}\n{content}"
                 else:
                     formatted_prompt += f"<|im_start|>{role}\n{content}"
+                    
+                if "tool_calls" in message:
+                    for tool_call in message["tool_calls"]:
+                        if (tool_call == message["tool_calls"][0] and content) or tool_call != message["tool_calls"][0]:
+                            formatted_prompt += "\n"
+                        
+                        if "function" in tool_call:
+                            tool_call = tool_call["function"]
+                        
+                        formatted_prompt += '<tool_call>\n{"name": "'
+                        formatted_prompt += tool_call["name"]
+                        formatted_prompt += '", "arguments": '
+                        
+                        if isinstance(tool_call["arguments"], str):
+                            formatted_prompt += tool_call["arguments"]
+                        else:
+                            formatted_prompt += json.dumps(tool_call["arguments"])
+                        
+                        formatted_prompt += "}\n</tool_call>"
 
                 formatted_prompt += "<|im_end|>\n"
 
@@ -217,15 +241,13 @@ class QwenFCHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # FC models use its own system prompt, so no need to add any message
 
         return {"message": [], "function": functions}
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         model_response = api_response.choices[0].text
         extracted_tool_calls = self._extract_tool_calls(model_response)
 
@@ -248,6 +270,8 @@ class QwenFCHandler(OSSHandler):
                 "role": "assistant",
                 "content": cleaned_response,
             }
+            
+        model_responses_message_for_chat_history["reasoning_content"] = reasoning_content
 
         return {
             "model_responses": cleaned_response,
@@ -276,7 +300,7 @@ class QwenFCHandler(OSSHandler):
         for match in matches:
             try:
                 match = json.loads(match)
+                result.append(match)
             except Exception as e:
                 pass
-            result.append(match)
         return result

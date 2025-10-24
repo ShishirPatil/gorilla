@@ -1,44 +1,43 @@
 import json
 import os
 import time
+from typing import Any
 
 from anthropic import Anthropic, RateLimitError
 from anthropic.types import TextBlock, ToolUseBlock
-from bfcl_eval.model_handler.base_handler import BaseHandler
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.utils import (
-    ast_parse,
     combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
     convert_to_function_call,
     convert_to_tool,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     extract_system_prompt,
     format_execution_results_prompting,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from bfcl_eval.utils import is_multi_turn
+from bfcl_eval.utils import contain_multi_turn_interaction
 
 
 class ClaudeHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.Anthropic
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
+        self.model_style = ModelStyle.ANTHROPIC
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
-        if "FC" not in self.model_name:
-            func = result
-            if " " == func[0]:
-                func = func[1:]
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            decode_output = ast_parse(func, language)
-            return decode_output
+    def decode_ast(self, result, language, has_tool_call_tag):
+        if not self.is_fc_model:
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
         else:
             decoded_output = []
@@ -48,23 +47,9 @@ class ClaudeHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
 
-    def decode_execute(self, result):
-        if "FC" not in self.model_name:
-            func = result
-            if " " == func[0]:
-                func = func[1:]
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            decode_output = ast_parse(func)
-            execution_list = []
-            for function_call in decode_output:
-                for key, value in function_call.items():
-                    execution_list.append(
-                        f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                    )
-            return execution_list
+    def decode_execute(self, result, has_tool_call_tag):
+        if not self.is_fc_model:
+            return default_decode_execute_prompting(result, has_tool_call_tag)
 
         else:
             function_call = convert_to_function_call(result)
@@ -82,7 +67,7 @@ class ClaudeHandler(BaseHandler):
         """
         max_tokens is required to be set when querying, so we default to the model's max tokens
         """
-        if "claude-opus-4-20250514" in self.model_name:
+        if "claude-opus-4-1-20250805" in self.model_name:
             return 32000
         elif "claude-sonnet-4-20250514" in self.model_name:
             return 64000
@@ -97,10 +82,14 @@ class ClaudeHandler(BaseHandler):
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
             "tools": inference_data["tools"],
+            "system_prompt": inference_data.get("system_prompt", []),
         }
         messages = inference_data["message"]
 
         if inference_data["caching_enabled"]:
+            if "system_prompt" in inference_data:
+                # Cache the system prompt
+                inference_data["system_prompt"][0]["cache_control"] = {"type": "ephemeral"}
             # Only add cache control to the last two user messages
             # Remove previously set cache control flags from all user messages except the last two
             count = 0
@@ -113,57 +102,59 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
+        kwargs = {
+            "model": self.model_name.strip("-FC"),
+            "max_tokens": self._get_max_tokens(),
+            "temperature": self.temperature,
+            "tools": inference_data["tools"],
+            "messages": messages,
+        }
+
+        # Include system_prompt if it exists
+        if "system_prompt" in inference_data:
+            kwargs["system"] = inference_data["system_prompt"]
+
         # Need to set timeout to avoid auto-error when requesting large context length
         # https://github.com/anthropics/anthropic-sdk-python#long-requests
-        return self.generate_with_backoff(
-            model=self.model_name.strip("-FC"),
-            max_tokens=self._get_max_tokens(),
-            tools=inference_data["tools"],
-            temperature=self.temperature,
-            messages=messages,
-            timeout=1200,
-        )
+        kwargs["timeout"] = 1200
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        inference_data["message"] = []
+        # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
+        system_prompt = extract_system_prompt(test_entry["question"][0])
+        if system_prompt is not None:
+            system_prompt = [{"type": "text", "text": system_prompt}]
+            inference_data["system_prompt"] = system_prompt
+
         for round_idx in range(len(test_entry["question"])):
-            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                test_entry["question"][round_idx]
-            )
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(
                 test_entry["question"][round_idx]
             )
-        inference_data["message"] = []
 
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        inference_data["caching_enabled"] = is_multi_turn(test_category)
+        caching_enabled: bool = contain_multi_turn_interaction(test_category)
+        inference_data["caching_enabled"] = caching_enabled
 
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
-        if inference_data["caching_enabled"]:
-            # First time compiling tools, so adding cache control flag to the last tool
-            if "tools" not in inference_data:
-                tools[-1]["cache_control"] = {"type": "ephemeral"}
-            # This is the situation where the tools are already compiled and we are adding more tools to the existing tools (in miss_func category)
-            # We add the cache control flag to the last tool in the previous existing tools and the last tool in the new tools to maximize cache hit
-            else:
-                existing_tool_len = len(inference_data["tools"])
-                tools[existing_tool_len - 1]["cache_control"] = {"type": "ephemeral"}
-                tools[-1]["cache_control"] = {"type": "ephemeral"}
+        if inference_data["caching_enabled"] and len(tools) > 0:
+            # Add the cache control flag to the last tool
+            tools[-1]["cache_control"] = {"type": "ephemeral"}
 
         inference_data["tools"] = tools
 
         return inference_data
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         text_outputs = []
         tool_call_outputs = []
         tool_call_ids = []
@@ -262,26 +253,30 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
+        kwargs = {
+            "model": self.model_name,
+            "max_tokens": self._get_max_tokens(),
+            "temperature": self.temperature,
+            "messages": inference_data["message"],
+        }
+
+        # Include system_prompt if it exists
+        if "system_prompt" in inference_data:
+            kwargs["system"] = inference_data["system_prompt"]
+
         # Need to set timeout to avoid auto-error when requesting large context length
         # https://github.com/anthropics/anthropic-sdk-python#long-requests
-        return self.generate_with_backoff(
-            model=self.model_name,
-            max_tokens=self._get_max_tokens(),
-            temperature=self.temperature,
-            system=inference_data["system_prompt"],
-            messages=inference_data["message"],
-            timeout=1200,
-        )
+        kwargs["timeout"] = 1200
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
         # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
         system_prompt = extract_system_prompt(test_entry["question"][0])
@@ -297,7 +292,7 @@ class ClaudeHandler(BaseHandler):
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
         # caching enabled only for multi_turn category
-        caching_enabled: bool = is_multi_turn(test_category)
+        caching_enabled: bool = contain_multi_turn_interaction(test_category)
 
         return {
             "message": [],
@@ -305,7 +300,7 @@ class ClaudeHandler(BaseHandler):
             "caching_enabled": caching_enabled,
         }
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         return {
             "model_responses": api_response.content[0].text,
             "input_token": api_response.usage.input_tokens,

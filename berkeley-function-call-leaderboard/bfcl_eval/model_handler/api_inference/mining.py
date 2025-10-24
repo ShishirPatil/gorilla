@@ -1,24 +1,32 @@
 import json
 import os
-
 import re
-from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.utils import (
-    func_doc_language_specific_pre_processing
+from typing import Any
+
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
 )
+from bfcl_eval.constants.enums import ModelStyle
 from openai import OpenAI
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+
 
 class MiningHandler(OpenAICompletionsHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Completions
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
+        self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.client = OpenAI(
             base_url= os.getenv("MINING_BASE_URL"),
             api_key=os.getenv("MINING_API_KEY"),
         )
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_output = []
         for invoked_function in result:
             name = invoked_function["name"]
@@ -26,7 +34,7 @@ class MiningHandler(OpenAICompletionsHandler):
             decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         too_call_format = []
         for tool_call in result:
             if isinstance(tool_call, dict):
@@ -44,14 +52,12 @@ class MiningHandler(OpenAICompletionsHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
         test_entry["question"][0] = self.mining_system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
         return {"message": []}
 
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         match = re.search(r'<tool_calls>\n(.*?)\n</tool_calls>', api_response.choices[0].message.content, re.DOTALL)
         tool_calls = api_response.choices[0].message.content
         if match:

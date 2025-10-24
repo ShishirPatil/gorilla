@@ -5,11 +5,7 @@ from typing import Dict, List
 import datamodel_code_generator
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_tool,
-    func_doc_language_specific_pre_processing,
-    resolve_ast_call,
-)
+from bfcl_eval.model_handler.utils import convert_to_tool, resolve_ast_call
 from datamodel_code_generator import DataModelType
 from datamodel_code_generator.model import get_data_model_types
 from datamodel_code_generator.parser.jsonschema import JsonSchemaParser
@@ -17,11 +13,19 @@ from overrides import override
 
 
 class MiniCPMFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.stop_token_ids = [2, 73440]
         self.skip_special_tokens = False
-        self.model_name_huggingface = model_name.replace("-FC", "")
+        self.model_name_huggingface = model_name
 
     @override
     def _format_prompt(self, messages, function):
@@ -45,16 +49,13 @@ class MiniCPMFCHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # MiniCPM use its own system prompt in FC mode
 
         return {"message": [], "function": functions}
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         msg = fc2dict(result)
         if (
             "tool_calls" in msg
@@ -69,7 +70,7 @@ class MiniCPMFCHandler(OSSHandler):
             return msg["content"]
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         msg = fc2dict(result)
         if (
             "tool_calls" in msg

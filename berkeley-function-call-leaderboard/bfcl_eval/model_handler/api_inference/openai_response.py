@@ -4,14 +4,13 @@ import time
 
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
     default_decode_ast_prompting,
     default_decode_execute_prompting,
     format_execution_results_prompting,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
@@ -20,10 +19,35 @@ from openai.types.responses import Response
 
 
 class OpenAIResponsesHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
-        self.model_style = ModelStyle.OpenAI_Responses
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
+        self.model_style = ModelStyle.OPENAI_RESPONSES
+        self.client = OpenAI(**self._build_client_kwargs())
+
+    def _build_client_kwargs(self):
+        """Collect OpenAI client keyword arguments from environment variables, but only
+        include them if they are actually present so that we keep the call minimal
+        and rely on the OpenAI SDK's own defaults when possible."""
+
+        kwargs = {}
+
+        if api_key := os.getenv("OPENAI_API_KEY"):
+            kwargs["api_key"] = api_key
+
+        if base_url := os.getenv("OPENAI_BASE_URL"):
+            kwargs["base_url"] = base_url
+
+        if headers_env := os.getenv("OPENAI_DEFAULT_HEADERS"):
+            kwargs["default_headers"] = json.loads(headers_env)
+
+        return kwargs
 
     @staticmethod
     def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
@@ -36,8 +60,8 @@ class OpenAIResponsesHandler(BaseHandler):
 
         return prompts
 
-    def decode_ast(self, result, language="Python"):
-        if "FC" in self.model_name or self.is_fc_model:
+    def decode_ast(self, result, language, has_tool_call_tag):
+        if self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
@@ -45,13 +69,13 @@ class OpenAIResponsesHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
         else:
-            return default_decode_ast_prompting(result, language)
+            return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
-    def decode_execute(self, result):
-        if "FC" in self.model_name or self.is_fc_model:
+    def decode_execute(self, result, has_tool_call_tag):
+        if self.is_fc_model:
             return convert_to_function_call(result)
         else:
-            return default_decode_execute_prompting(result)
+            return default_decode_execute_prompting(result, has_tool_call_tag)
 
     @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
@@ -74,15 +98,25 @@ class OpenAIResponsesHandler(BaseHandler):
 
         kwargs = {
             "input": message,
-            "model": self.model_name.replace("-FC", ""),
+            "model": self.model_name,
             "store": False,
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
+            "temperature": self.temperature,
         }
 
         # OpenAI reasoning models don't support temperature parameter
-        if "o3" not in self.model_name and "o4-mini" not in self.model_name:
-            kwargs["temperature"] = self.temperature
+        if (
+            "o3" in self.model_name
+            or "o4-mini" in self.model_name
+            or "gpt-5" in self.model_name
+        ):
+            del kwargs["temperature"]
+
+        # Non-reasoning models don't support reasoning parameter
+        else:
+            del kwargs["reasoning"]
+            del kwargs["include"]
 
         if len(tools) > 0:
             kwargs["tools"] = tools
@@ -101,9 +135,7 @@ class OpenAIResponsesHandler(BaseHandler):
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
 
         inference_data["tools"] = tools
@@ -185,26 +217,34 @@ class OpenAIResponsesHandler(BaseHandler):
 
         kwargs = {
             "input": inference_data["message"],
-            "model": self.model_name.replace("-FC", ""),
+            "model": self.model_name,
             "store": False,
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
+            "temperature": self.temperature,
         }
 
         # OpenAI reasoning models don't support temperature parameter
-        if "o3" not in self.model_name and "o4-mini" not in self.model_name:
-            kwargs["temperature"] = self.temperature
+        if (
+            "o3" in self.model_name
+            or "o4-mini" in self.model_name
+            or "gpt-5" in self.model_name
+        ):
+            del kwargs["temperature"]
+
+        # Non-reasoning models don't support reasoning parameter
+        else:
+            del kwargs["reasoning"]
+            del kwargs["include"]
 
         return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
+        test_entry_id: str = test_entry["id"]
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
 
         for round_idx in range(len(test_entry["question"])):

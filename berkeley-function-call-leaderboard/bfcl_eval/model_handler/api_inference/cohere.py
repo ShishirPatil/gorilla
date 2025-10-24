@@ -7,11 +7,11 @@ from typing import Any
 import cohere
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
-from bfcl_eval.model_handler.model_style import ModelStyle
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_tool,
-    func_doc_language_specific_pre_processing,
     retry_with_backoff,
+    extract_system_prompt,
 )
 from tenacity.stop import stop_after_attempt
 
@@ -19,13 +19,20 @@ from tenacity.stop import stop_after_attempt
 class CohereHandler(BaseHandler):
     client: cohere.ClientV2
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.COHERE
         self.is_fc_model = True
         self.client = cohere.ClientV2(api_key=os.getenv("COHERE_API_KEY"))
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         decoded_output = []
         if isinstance(result, list):
             for tool_call in result:
@@ -34,14 +41,20 @@ class CohereHandler(BaseHandler):
                 decoded_output.append({name: params})
         return decoded_output
 
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         execution_list = []
         if isinstance(result, list):
             for tool_call in result:
                 parameter_key_value_list = []
                 for parameter_name, parameter_value in tool_call["parameters"].items():
-                    parameter_key_value_list.append("{}={}".format(parameter_name, repr(parameter_value)))
-                execution_list.append("{}({})".format(tool_call["tool_name"], ",".join(parameter_key_value_list)))
+                    parameter_key_value_list.append(
+                        "{}={}".format(parameter_name, repr(parameter_value))
+                    )
+                execution_list.append(
+                    "{}({})".format(
+                        tool_call["tool_name"], ",".join(parameter_key_value_list)
+                    )
+                )
         return execution_list
 
     #### FC methods ####
@@ -78,10 +91,18 @@ class CohereHandler(BaseHandler):
         if response_message.tool_plan:
             chat_turn_to_append.tool_plan = response_message.tool_plan
         if response_message.content:
-            chat_turn_to_append.content = [
-                cohere.TextAssistantMessageContentItem(text=msg.text, type="text")
-                for msg in response_message.content
-            ]
+            if chat_turn_to_append.content is None:
+                chat_turn_to_append.content = []
+
+            for msg in response_message.content:
+                if hasattr(msg, "thinking"):
+                    chat_turn_to_append.content.append(
+                        cohere.ThinkingAssistantMessageV2ContentItem(thinking=msg.thinking)
+                    )
+                else:
+                    chat_turn_to_append.content.append(
+                        cohere.TextAssistantMessageV2ContentItem(text=msg.text)
+                    )
         if response_message.citations:
             chat_turn_to_append.citations = response_message.citations
         inference_data["chat_turns"].append(chat_turn_to_append)
@@ -93,7 +114,9 @@ class CohereHandler(BaseHandler):
             output_token = response.usage.billed_units.output_tokens
 
         metadata = {
-            "model_responses": chat_turn_to_append.content if chat_turn_to_append.content else None,
+            "model_responses": (
+                chat_turn_to_append.content if chat_turn_to_append.content else None
+            ),
             "tool_calls": model_tool_calls,
             "chat_history": [],
             "input_token": input_token or 0,
@@ -106,7 +129,7 @@ class CohereHandler(BaseHandler):
         self,
         messages: list,
         tools: list[cohere.types.ToolV2]
-    ) -> tuple[cohere.types.ChatResponse, float]:
+    ) -> tuple[cohere.v2.types.V2ChatResponse, float]:
         start_time = time.time()
         api_response = self.client.chat(
             model=self.model_name.replace("-FC", ""),
@@ -123,35 +146,44 @@ class CohereHandler(BaseHandler):
         turns = []
         for turn_idx, turn in enumerate(test_entry["question"]):
             if turn_idx == 0:  # we only extract system message from the first turn
-                system_message = load_system_message(turn)
+                system_message = extract_system_prompt(turn)
                 if system_message:
-                    inference_data["system_message"] = system_message  # we log system message if necessary
+                    inference_data["system_message"] = (
+                        system_message  # we log system message if necessary
+                    )
             if len(turn) > 0:
                 turns.append(preprocess_chat_turns(turn))
             else:
-                turns.append([])  # for miss_func categories, the turn to supplement function will be empty
+                turns.append(
+                    []
+                )  # for miss_func categories, the turn to supplement function will be empty
         assert len(turns) == len(test_entry["question"])
         test_entry["question"] = turns
         return inference_data
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
         inference_data["tools"] = tools
 
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
+        reasoning_content = ""
+
         if len(api_response["tool_calls"]) > 0:  # non empty tool call list
-            model_responses = api_response["tool_calls"]  # list: {"tool_name": , "parameters"}
+            model_responses = api_response[
+                "tool_calls"
+            ]  # list: {"tool_name": , "parameters"}
         else:
             if isinstance(api_response["model_responses"], list):
                 model_responses = []
                 for item in api_response["model_responses"]:
-                    if isinstance(item, cohere.types.TextAssistantMessageContentItem):
+                    if isinstance(item, cohere.types.ThinkingAssistantMessageV2ContentItem):
+                        reasoning_content += item.thinking
+                        continue
+                    elif isinstance(item, cohere.types.TextAssistantMessageV2ContentItem):
                         model_responses.append(item.text)
                     else:
                         model_responses.append(item)
@@ -161,6 +193,7 @@ class CohereHandler(BaseHandler):
 
         return {
             "model_responses": model_responses,
+            "reasoning_content": reasoning_content or None,
             "tool_calls": api_response["tool_calls"],
             "chat_history": api_response["chat_history"],
             "input_token": api_response["input_token"],
@@ -173,9 +206,14 @@ class CohereHandler(BaseHandler):
         chat_turns = []
         for message in first_turn_message:
             message_role = message["role"]
-            assert message_role in ["user", "assistant"], "message role must be in ['user', 'assistant']"
+            assert message_role in [
+                "user",
+                "assistant",
+            ], "message role must be in ['user', 'assistant']"
             if message_role == "user":
-                chat_turns.append(cohere.UserChatMessageV2(role="user", content=message["content"]))
+                chat_turns.append(
+                    cohere.UserChatMessageV2(role="user", content=message["content"])
+                )
             else:
                 chat_turns.append(
                     cohere.AssistantChatMessageV2(
@@ -196,7 +234,8 @@ class CohereHandler(BaseHandler):
             message_role = message["role"]
             if message_role == "user":
                 inference_data["chat_turns"].append(
-                    cohere.UserChatMessageV2(role="user", content=message["content"]))
+                    cohere.UserChatMessageV2(role="user", content=message["content"])
+                )
             elif message_role == "assistant":
                 inference_data["chat_turns"].append(
                     cohere.AssistantChatMessageV2(
@@ -208,7 +247,9 @@ class CohereHandler(BaseHandler):
                 raise Exception(f"Role {message_role} is undefined!")
         if inference_data["chat_turns"][-1].role != "user":
             # if last turn is not user turn - we suffixing a user turn at the end of the conversation history
-            inference_data["chat_turns"].append(cohere.UserChatMessageV2(role="user", content=""))
+            inference_data["chat_turns"].append(
+                cohere.UserChatMessageV2(role="user", content="")
+            )
         return inference_data
 
     def _add_assistant_message_FC(
@@ -226,12 +267,16 @@ class CohereHandler(BaseHandler):
             assert (
                 inference_data["chat_turns"][-1].role == "assistant"
             ), "last turn must be tool use turn and from the assistant"
-            assert inference_data["chat_turns"][-1].tool_calls, "last turn must have tool calls"
+            assert inference_data["chat_turns"][
+                -1
+            ].tool_calls, "last turn must have tool calls"
             assert len(inference_data["chat_turns"][-1].tool_calls) == len(
                 execution_results
             ), "Number of execution result must match number of tool calls from last turn!"
             tool_call_messages = []
-            for tool_call, execution_result in zip(inference_data["chat_turns"][-1].tool_calls, execution_results):
+            for tool_call, execution_result in zip(
+                inference_data["chat_turns"][-1].tool_calls, execution_results
+            ):
                 tool_call_id = tool_call.id
                 try:
                     tool_execution_result = ast.literal_eval(execution_result)
@@ -255,18 +300,9 @@ class CohereHandler(BaseHandler):
         return inference_data
 
 
-def load_system_message(all_messages: list[dict]):
-    for message in all_messages:
-        if message["role"] == "system":
-            return message["content"]
-    return None
-
-
 def preprocess_chat_turns(all_messages: list[dict]) -> list[dict]:
     processed_messages: list[dict] = []
     for message in all_messages:
-        if message["role"] == "system":
-            continue  # skip system message, it has been logged in inference_data
         processed_messages.append(message)
     return processed_messages
 

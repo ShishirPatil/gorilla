@@ -5,8 +5,16 @@ from overrides import override
 
 
 class ThinkAgentHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
     def _convert_functions_format(self, functions):
         if isinstance(functions, dict):
@@ -134,7 +142,7 @@ class ThinkAgentHandler(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
         result = result.replace("'", '"')  # replace single quotes with double quotes
@@ -150,7 +158,7 @@ class ThinkAgentHandler(OSSHandler):
         return func_calls
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         # The output is a list of dictionaries, where each dictionary contains the function name and its arguments
         result = result.strip()
         result = result.replace("'", '"')  # replace single quotes with double quotes

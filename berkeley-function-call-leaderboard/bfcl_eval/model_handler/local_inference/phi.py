@@ -3,25 +3,33 @@ from overrides import override
 
 
 class PhiHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         result = result.strip()
         if result.startswith("```json"):
             result = result[len("```json") :]
         if result.startswith("```python"):
             result = result[len("```python") :]
-        return super().decode_ast(result, language)
+        return super().decode_ast(result, language, has_tool_call_tag)
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if result.startswith("```json"):
             result = result[len("```json") :]
         if result.startswith("```python"):
             result = result[len("```python") :]
-        return super().decode_execute(result)
+        return super().decode_execute(result, has_tool_call_tag)
 
     @override
     def _format_prompt(self, messages, function):

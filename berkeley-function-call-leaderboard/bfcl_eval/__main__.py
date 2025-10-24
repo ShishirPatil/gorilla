@@ -119,13 +119,13 @@ def generate(
         help="Exclude info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
-    num_threads: int = typer.Option(1, help="The number of threads to use."),
+    num_threads: Optional[int] = typer.Option(None, help="The number of threads to use."),
     gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
-    backend: str = typer.Option("vllm", help="The backend to use for the model."),
+    backend: str = typer.Option("sglang", help="The backend to use for the model."),
     skip_server_setup: bool = typer.Option(
         False,
         "--skip-server-setup",
-        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables.",
+        help="Skip vLLM/SGLang server setup and use existing endpoint specified by the LOCAL_SERVER_ENDPOINT and LOCAL_SERVER_PORT environment variables.",
     ),
     local_model_path: Optional[str] = typer.Option(
         None,
@@ -251,13 +251,18 @@ def evaluate(
         "--score-dir",
         help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
+    partial_eval: bool = typer.Option(
+        False,
+        "--partial-eval",
+        help="Run evaluation on a partial set of benchmark entries (eg. entries present in the model result files) without raising for missing IDs.",
+    ),
 ):
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    evaluation_main(model, test_category, result_dir, score_dir)
+    evaluation_main(model, test_category, result_dir, score_dir, partial_eval)
 
 
 @cli.command()

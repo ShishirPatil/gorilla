@@ -1,14 +1,24 @@
 import os
 import time
+from typing import Any
 
-from bfcl_eval.model_handler.model_style import ModelStyle
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+from bfcl_eval.constants.enums import ModelStyle
 from openai import OpenAI
 
 
 class FireworksHandler(OpenAICompletionsHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.FIREWORK_AI
 
         self.client = OpenAI(
@@ -27,14 +37,14 @@ class FireworksHandler(OpenAICompletionsHandler):
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
+                model=self.model_name,
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
             api_response = self.client.chat.completions.create(
                 messages=message,
-                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
+                model=self.model_name,
                 temperature=self.temperature,
             )
         end_time = time.time()
@@ -47,7 +57,7 @@ class FireworksHandler(OpenAICompletionsHandler):
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         return super()._compile_tools(inference_data, test_entry)
 
-    def _parse_query_response_FC(self, api_response: any) -> dict:
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
         try:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}

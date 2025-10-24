@@ -1,7 +1,6 @@
 import json
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
@@ -14,8 +13,16 @@ class LlamaHandler_3_1(OSSHandler):
     
     For all other Llama models, see the LlamaHandler class.
     """
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
@@ -182,7 +189,7 @@ class LlamaHandler_3_1(OSSHandler):
         return formatted_prompt
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:
@@ -208,7 +215,7 @@ class LlamaHandler_3_1(OSSHandler):
         return decoded_output
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
         if ";" in result:
@@ -232,9 +239,6 @@ class LlamaHandler_3_1(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         # Llama use its own system prompt
 

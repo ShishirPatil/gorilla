@@ -1,8 +1,9 @@
+from typing import Any
+
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl_eval.model_handler.utils import (
     combine_consecutive_user_prompts,
     convert_system_prompt_into_user_prompt,
-    func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
 from overrides import override
@@ -14,19 +15,25 @@ class DeepseekReasoningHandler(OSSHandler):
     We DO also support the benchmark/inference for DeepSeek-R1 model through their official hosted API. The `api_inference/deepseek.py` file contains the implementation for the API inference handler.
     """
 
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
-
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
+        test_entry_id: str = test_entry["id"]
 
         # Deepseek R1 currently don't have native function calling support, so we still need the system prompt
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], functions, test_category
+            test_entry["question"][0], functions, test_entry_id
         )
 
         # Per https://huggingface.co/deepseek-ai/DeepSeek-R1#usage-recommendations
@@ -146,7 +153,7 @@ class DeepseekReasoningHandler(OSSHandler):
         return inference_data
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         model_response = api_response.choices[0].text
         reasoning_content = ""
         if "</think>" in model_response:

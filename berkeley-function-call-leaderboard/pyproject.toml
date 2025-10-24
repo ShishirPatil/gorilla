@@ -28,8 +28,8 @@ dependencies = [
     "tree-sitter-javascript==0.21.4",
     "openai>=1.86.0",
     "mistralai==1.7.0",
-    "anthropic==0.53.0",
-    "cohere==5.13.3",
+    "anthropic>=0.61.0",
+    "cohere==5.18.0",
     "typer>=0.12.5",
     "tabulate>=0.9.0",
     "datamodel-code-generator==0.25.7",
@@ -40,6 +40,13 @@ dependencies = [
     "writer-sdk>=2.1.0",
     "overrides",
     "boto3",
+    "beautifulsoup4",
+    "html2text",
+    "rank_bm25==0.2.2",
+    "google-search-results",
+    "sentence-transformers>=2.7.0",
+    "faiss-cpu==1.11.0",
+    "networkx==3.3"
 ]
 
 [project.scripts]

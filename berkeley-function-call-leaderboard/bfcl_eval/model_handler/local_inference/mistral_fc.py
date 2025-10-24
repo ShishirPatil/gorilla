@@ -1,31 +1,37 @@
 import json
 import random
 import string
+from typing import Any
 
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
-from bfcl_eval.model_handler.utils import (
-    convert_to_function_call,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from overrides import override
 
 
 class MistralFCHandler(OSSHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        dtype="bfloat16",
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
     @override
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language, has_tool_call_tag):
         # The input is already a list of dictionaries, so no need to decode
         # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return result
 
     @override
-    def decode_execute(self, result):
+    def decode_execute(self, result, has_tool_call_tag):
         if type(result) != list:
-            return []
+            raise ValueError(f"Model did not return a list of function calls: {result}")
         return convert_to_function_call(result)
 
     @staticmethod
@@ -219,11 +225,8 @@ class MistralFCHandler(OSSHandler):
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
-        test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
         # We don't add system prompt
-
         return {"message": [], "function": functions}
 
     @override
@@ -251,7 +254,7 @@ class MistralFCHandler(OSSHandler):
         return random_string
 
     @override
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
+    def _parse_query_response_prompting(self, api_response: Any) -> dict:
         model_responses = api_response.choices[0].text
         tool_call_ids = []
         """
