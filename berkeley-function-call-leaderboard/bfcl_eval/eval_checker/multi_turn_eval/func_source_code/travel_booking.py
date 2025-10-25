@@ -4,7 +4,9 @@ from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Union
 
 from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.long_context import (
-    BOOKING_RECORD_EXTENSION, CREDIT_CARD_EXTENSION)
+    BOOKING_RECORD_EXTENSION,
+    CREDIT_CARD_EXTENSION,
+)
 
 DEFAULT_STATE = {
     "random_seed": 141053,
@@ -108,11 +110,11 @@ class TravelAPI:
             if booking_id not in self.booking_record:
                 self.booking_record[booking_id] = booking_info
 
-    def _cache_flight_cost_entry(self, travel_from, travel_to, cost, travel_class, travel_date):
+    def _cache_flight_cost_entry(
+        self, travel_from, travel_to, cost, travel_class, travel_date
+    ):
         key = f"{travel_from}|{travel_to}|{travel_class}|{travel_date}"
-        self._flight_cost_lookup[key] = {
-            "cost": cost
-        }
+        self._flight_cost_lookup[key] = {"cost": cost}
 
     def authenticate_travel(
         self,
@@ -393,7 +395,7 @@ class TravelAPI:
             ("ATV", "GFD"): 240,
             ("PHV", "GFD"): 220,
             ("LHR", "CDG"): 100,
-            ("OKD", "LAX"): 220
+            ("OKD", "LAX"): 220,
         }
 
         # Ensure the travel_from and travel_to is a tuple in the correct order (from, to)
@@ -483,7 +485,7 @@ class TravelAPI:
             booking_id (str): The ID of the booking
             transaction_id (str): The ID of the transaction
             booking_status (bool): The status of the booking, True if successful, False if failed
-            booking_history (Dict): The booking history if long context is enabled
+            booking_history (Dict): The booking history. This field might be empty even though the history is non-empty.
                 - booking_id (str): The ID of the booking
                 - transaction_id (str): The ID of the transaction
                 - travel_date (str): The date of the travel
@@ -500,33 +502,48 @@ class TravelAPI:
             return {"booking_status": False, "error": "Card not registered"}
         if "balance" not in self.credit_card_list[card_id]:
             return {"booking_status": False, "error": "Balance not found"}
-        
+
         all_airports = self.list_all_airports()
         if travel_from not in all_airports:
-            return {"booking_status": False, "error": f"Invalid departure airport code: {travel_from}"}
+            return {
+                "booking_status": False,
+                "error": f"Invalid departure airport code: {travel_from}",
+            }
         if travel_to not in all_airports:
-            return {"booking_status": False, "error": f"Invalid destination airport code: {travel_to}"}
+            return {
+                "booking_status": False,
+                "error": f"Invalid destination airport code: {travel_to}",
+            }
 
         try:
             datetime.strptime(travel_date, "%Y-%m-%d")
         except ValueError:
-            return {"booking_status": False, "error": "Invalid date format. Use YYYY-MM-DD."}
+            return {
+                "booking_status": False,
+                "error": "Invalid date format. Use YYYY-MM-DD.",
+            }
 
         valid_classes = {"economy", "business", "first"}
         if travel_class not in valid_classes:
-            return {"booking_status": False, "error": f"Invalid travel class. Must be one of {valid_classes}"}
+            return {
+                "booking_status": False,
+                "error": f"Invalid travel class. Must be one of {valid_classes}",
+            }
 
         try:
             self.get_flight_cost(
                 travel_from=travel_from,
                 travel_to=travel_to,
                 travel_date=travel_date,
-                travel_class=travel_class
+                travel_class=travel_class,
             )
             key = f"{travel_from}|{travel_to}|{travel_class}|{travel_date}"
             travel_cost_entry = self._flight_cost_lookup.get(key)
             if travel_cost_entry is None:
-                return {"booking_status": False, "error": "No available route for the given parameters"}
+                return {
+                    "booking_status": False,
+                    "error": "No available route for the given parameters",
+                }
             travel_cost = travel_cost_entry["cost"]
         except ValueError as e:
             return {"booking_status": False, "error": str(e)}
@@ -575,7 +592,7 @@ class TravelAPI:
         insurance_id: Optional[str] = None,
     ) -> Dict[str, Union[Dict[str, Union[str, float]], str]]:
         """
-        Retrieve the invoice for a booking
+        Retrieve the invoice for a booking.
 
         Args:
             access_token (str): The access token obtained from the authenticate
@@ -607,6 +624,34 @@ class TravelAPI:
             "transaction_id": self.booking_record[booking_id]["transaction_id"],
         }
         return {"invoice": invoice}
+
+    def get_booking_history(
+        self,
+        access_token: str,
+    ) -> Dict[str, Dict[str, Dict[str, Union[str, float]]]]:
+        """
+        Retrieve all booking history for the user.
+
+        Args:
+            access_token (str): The access token obtained from the authenticate method.
+
+        Returns:
+            booking_history (Dict): A dictionary keyed by booking_id where each value contains the booking details.
+                - transaction_id (str): The ID of the transaction
+                - travel_date (str): The date of the travel
+                - travel_from (str): The location the travel is from
+                - travel_to (str): The location the travel is to
+                - travel_class (str): The class of the travel
+                - travel_cost (float): The cost of the travel
+        """
+        # Validate token state similar to other secured endpoints
+        if self.token_expires_in == 0:
+            return {"error": "Token expired"}
+        if access_token != self.access_token:
+            return {"error": "Invalid access token"}
+
+        # Simply return a copy of the booking records to avoid accidental mutation
+        return {"booking_history": deepcopy(self.booking_record)}
 
     def list_all_airports(self) -> List[str]:
         """
@@ -689,7 +734,7 @@ class TravelAPI:
             ("USD", "INR"): 70,
             ("USD", "RUB"): 60,
             ("USD", "BRL"): 3.8,
-            ("USD", "MXN"): 20
+            ("USD", "MXN"): 20,
         }
         for key, val in exchange_rates.items():
             if base_currency == key[0] and target_currency == key[1]:
