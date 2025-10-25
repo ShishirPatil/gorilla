@@ -448,10 +448,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-5-haiku-20241022": ModelConfig(
-        model_name="claude-3-5-haiku-20241022",
+    "claude-haiku-4-5-20251001": ModelConfig(
+        model_name="claude-haiku-4-5-20251001",
         display_name="claude-3.5-haiku-20241022 (Prompt)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+        url="https://www.anthropic.com/news/claude-haiku-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -460,10 +460,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-5-haiku-20241022-FC": ModelConfig(
-        model_name="claude-3-5-haiku-20241022",
+    "claude-haiku-4-5-20251001-FC": ModelConfig(
+        model_name="claude-haiku-4-5-20251001",
         display_name="claude-3.5-haiku-20241022 (FC)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+        url="https://www.anthropic.com/news/claude-haiku-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,

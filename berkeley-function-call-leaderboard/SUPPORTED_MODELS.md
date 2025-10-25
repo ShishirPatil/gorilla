@@ -23,8 +23,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Bielik-11B-v2.3-Instruct                   | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                                | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
 | BitAgent-Bounty-8B                         | Function Calling | Self-hosted 💻 | BitAgent/BitAgent-Bounty-8B                                 |
-| Claude-3.5-haiku-20241022                  | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
-| Claude-3.5-haiku-20241022                  | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
+| Claude-haiku-4.5-20241022                  | Function Calling | Anthropic      | claude-haiku-4-5-20251001-FC                                |
+| Claude-haiku-4.5-20241022                  | Prompt           | Anthropic      | claude-haiku-4-5-20251001                                   |
 | Claude-Opus-4.1-20250805                   | Function Calling | Anthropic      | claude-opus-4-1-20250805-FC                                 |
 | Claude-Opus-4.1-20250805                   | Prompt           | Anthropic      | claude-opus-4-1-20250805                                    |
 | Claude-Sonnet-4.5-20250929                 | Function Calling | Anthropic      | claude-sonnet-4-5-20250929-FC                               |
