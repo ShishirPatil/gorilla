@@ -33,9 +33,9 @@ For model names containing `{...}`, multiple versions are available. For example
 | Command A                                  | Function Calling | Cohere         | command-a-03-2025-FC                                        |
 | Command R7B                                | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
 | DeepSeek-R1                                | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
-| DeepSeek-R1-0528                           | Prompt           | DeepSeek       | DeepSeek-R1-0528                                            |
-| DeepSeek-R1-0528                           | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
-| DeepSeek-V3.1-Terminus                     | Function Calling | DeepSeek       | DeepSeek-V3.1-Terminus-FC                                   |
+| DeepSeek-V3.2-Exp                          | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp                                           |
+| DeepSeek-V3.2-Exp                          | Function Calling | DeepSeek       | DeepSeek-V3.2-Exp-FC                                        |
+| DeepSeek-V3.2-Exp (Thinking)               | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp-thinking                                  |
 | DM-Cito-8B-v2                              | Prompt           | Mininglamp     | DM-Cito-8B-v2                                               |
 | Falcon3-{1B,3B,7B,10B}-Instruct            | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-v2                            | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |

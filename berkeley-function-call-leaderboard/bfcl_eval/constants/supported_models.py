@@ -14,9 +14,9 @@
 
 SUPPORTED_MODELS = [
     "gorilla-openfunctions-v2",
-    "DeepSeek-R1-0528",
-    "DeepSeek-R1-0528-FC",
-    "DeepSeek-V3.1-Terminus-FC",
+    "DeepSeek-V3.2-Exp",
+    "DeepSeek-V3.2-Exp-FC",
+    "DeepSeek-V3.2-Exp-thinking",
     "gpt-5-2025-08-07-FC",
     "gpt-5-2025-08-07",
     "gpt-5-mini-2025-08-07-FC",

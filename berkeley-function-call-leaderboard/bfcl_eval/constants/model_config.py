@@ -124,9 +124,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1-0528": ModelConfig(
-        model_name="DeepSeek-R1-0528",
-        display_name="DeepSeek-R1-0528 (Prompt)",
+    "DeepSeek-V3.2-Exp": ModelConfig(
+        model_name="deepseek-chat",
+        display_name="DeepSeek-V3.2-Exp (Prompt)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -136,9 +136,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1-0528-FC": ModelConfig(
-        model_name="DeepSeek-R1-0528-FC",
-        display_name="DeepSeek-R1-0528 (FC)",
+    "DeepSeek-V3.2-Exp-FC": ModelConfig(
+        model_name="deepseek-chat",
+        display_name="DeepSeek-V3.2-Exp (FC)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -148,17 +148,17 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "DeepSeek-V3.1-Terminus-FC": ModelConfig(
-        model_name="DeepSeek-V3.1-Terminus",
-        display_name="DeepSeek-V3.1-Terminus (FC)",
-        url="https://api-docs.deepseek.com/guides/comparison_testing",
+    "DeepSeek-V3.2-Exp-thinking": ModelConfig(
+        model_name="deepseek-reasoner",
+        display_name="DeepSeek-V3.2-Exp (Prompt + Thinking)",
+        url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
-        license="DeepSeek License",
+        license="MIT",
         model_handler=DeepSeekAPIHandler,
         input_price=None,
         output_price=None,
-        is_fc_model=True,
-        underscore_to_dot=True,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
     "gpt-5-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-2025-08-07",
