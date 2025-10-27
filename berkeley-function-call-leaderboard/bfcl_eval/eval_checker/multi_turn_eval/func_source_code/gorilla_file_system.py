@@ -309,17 +309,15 @@ class GorillaFileSystem:
             if self._current_dir.parent:
                 self._current_dir = self._current_dir.parent
             elif self.root == self._current_dir:
-                return {"error": "Cuurent directory is already the root. Cannot go back."}
+                return {"error": "Current directory is already the root. Cannot go back."}
             else:
                 return {"error": "cd: ..: No such directory"}
             return {}
 
         # Handle absolute or relative paths
         target_dir = self._navigate_to_directory(folder)
-        if isinstance(target_dir, dict):  # Error condition check
-            return {
-                "error": f"cd: {folder}: No such directory. You cannot use path to change directory."
-            }
+        if isinstance(target_dir, dict):  # This means there was an error from _navigate_to_directory
+            return target_dir
         self._current_dir = target_dir
         return {"current_working_directory": target_dir.name}
 
@@ -377,13 +375,13 @@ class GorillaFileSystem:
         if file_name is None:
             return {"terminal_output": content}
         if not self._validate_file_or_directory_name(file_name):
-            return {"error": f"echo: cannot touch '{file_name}': Invalid character"}
+            return {"error": f"echo: cannot write to '{file_name}': Invalid character"}
 
         if file_name:
             if file_name in self._current_dir.contents:
                 self._current_dir._get_item(file_name)._write(content)
             else:
-                self._current_dir._add_file(file_name, content)
+                return {"error": f"echo: cannot write to '{file_name}': No such file"}
         else:
             return {"terminal_output": content}
 
@@ -405,9 +403,9 @@ class GorillaFileSystem:
             if isinstance(item, File):
                 return {"file_content": item._read()}
             else:
-                return {"error": f"cat: {file_name}: Is a directory"}
+                return {"error": f"cat: '{file_name}': Is a directory"}
         else:
-            return {"error": f"cat: {file_name}: No such file or directory"}
+            return {"error": f"cat: '{file_name}': No such file or directory"}
 
     def find(self, path: str = ".", name: Optional[str] = None) -> Dict[str, List[str]]:
         """
@@ -427,7 +425,15 @@ class GorillaFileSystem:
 
         """
         matches = []
-        target_dir = self._current_dir
+        # Navigate to the requested path first
+        target_dir = self._navigate_to_directory(path)
+        if isinstance(target_dir, dict):  # invalid path
+            # Replace the tool name in the error message for clarity
+            original_msg = target_dir.get("error", "")
+            # e.g. "cd: '/foo': No such file or directory" -> "find: '/foo': No such file or directory"
+            if original_msg.startswith("cd:"):
+                return {"error": original_msg.replace("cd:", "find:", 1)}
+            return target_dir
 
         def recursive_search(directory: Directory, base_path: str) -> None:
             for item_name, item in directory.contents.items():
@@ -631,7 +637,7 @@ class GorillaFileSystem:
 
         if "/" in destination:
             return {
-                "error": f"mv: no path allowed in destination. Only file name and folder name is supported for this operation."
+                "error": "mv: path not allowed in destination. Provide only a file or directory name."
             }
 
         # Check if the destination is an existing directory
@@ -703,7 +709,7 @@ class GorillaFileSystem:
             if isinstance(item, Directory):
                 if item.contents:  # Check if directory is not empty
                     return {
-                        "error": f"rmdir: failed to remove '{dir_name}': Directory not empty"
+                        "error": f"rmdir: cannot remove '{dir_name}': Directory not empty"
                     }
                 else:
                     self._current_dir.contents.pop(dir_name)
@@ -743,7 +749,7 @@ class GorillaFileSystem:
 
         if "/" in destination:
             return {
-                "error": f"cp: don't allow path in destination. Only file name and folder name is supported for this operation."
+                "error": "cp: path not allowed in destination. Provide only a file or directory name."
             }
         # Check if the destination is an existing directory
         if destination in self._current_dir.contents:
