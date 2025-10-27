@@ -137,7 +137,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "DeepSeek-V3.2-Exp-FC": ModelConfig(
         model_name="deepseek-chat",
@@ -150,11 +150,11 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "DeepSeek-V3.2-Exp-thinking": ModelConfig(
         model_name="deepseek-reasoner",
-        display_name="DeepSeek-V3.2-Exp (Prompt + Thinking)",
+        display_name="DeepSeek-V3.2-Exp (Prompt)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -163,6 +163,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gpt-5-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-2025-08-07",
@@ -425,7 +426,7 @@ api_inference_model_map = {
         output_price=75,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "claude-opus-4-1-20250805-FC": ModelConfig(
         model_name="claude-opus-4-1-20250805",
@@ -438,7 +439,7 @@ api_inference_model_map = {
         output_price=75,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "claude-sonnet-4-5-20250929": ModelConfig(
         model_name="claude-sonnet-4-5-20250929",
@@ -451,7 +452,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "claude-sonnet-4-5-20250929-FC": ModelConfig(
         model_name="claude-sonnet-4-5-20250929",
@@ -464,7 +465,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "claude-haiku-4-5-20251001": ModelConfig(
         model_name="claude-haiku-4-5-20251001",
@@ -477,6 +478,7 @@ api_inference_model_map = {
         output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "claude-haiku-4-5-20251001-FC": ModelConfig(
         model_name="claude-haiku-4-5-20251001",
@@ -489,6 +491,7 @@ api_inference_model_map = {
         output_price=4,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "nova-pro-v1.0": ModelConfig(
         model_name="us.amazon.nova-pro-v1:0",
@@ -561,7 +564,7 @@ api_inference_model_map = {
         output_price=6,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistral-large-2411-FC": ModelConfig(
         model_name="mistral-large-2411",
@@ -574,7 +577,7 @@ api_inference_model_map = {
         output_price=6,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistral-small-2506": ModelConfig(
         model_name="mistral-small-2506",
@@ -587,7 +590,7 @@ api_inference_model_map = {
         output_price=0.3,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistral-small-2506-FC": ModelConfig(
         model_name="mistral-small-2506",
@@ -600,7 +603,7 @@ api_inference_model_map = {
         output_price=0.3,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistral-medium-2505": ModelConfig(
         model_name="mistral-medium-2505",
@@ -613,7 +616,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistral-medium-2505-FC": ModelConfig(
         model_name="mistral-medium-2505",
@@ -626,7 +629,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=True,
         underscore_to_dot=True,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "firefunction-v2-FC": ModelConfig(
         model_name="accounts/fireworks/models/firefunction-v2",
@@ -1947,7 +1950,6 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
     ),
     "katanemo/Arch-Agent-1.5B": ModelConfig(
         model_name="katanemo/Arch-Agent-1.5B",
@@ -2032,6 +2034,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "phronetic-ai/RZN-T": ModelConfig(
         model_name="phronetic-ai/RZN-T",
@@ -2163,6 +2166,9 @@ MODEL_CONFIG_MAPPING = {
 # Uncomment to get the supported_models.py file contents
 # print(repr(list(MODEL_CONFIG_MAPPING.keys())))
 
-for key, modelconfig in MODEL_CONFIG_MAPPING.items():
-    if modelconfig.reasoning_mode and "(Reasoning)" not in modelconfig.display_name:
-        modelconfig.display_name = f"{modelconfig.display_name} (Reasoning)"
+for model_config in MODEL_CONFIG_MAPPING.values():
+    if model_config.reasoning_mode and "(Reasoning)" not in model_config.display_name:
+        if model_config.display_name.endswith(")"):
+            model_config.display_name = model_config.display_name[:-1] + " Reasoning)"
+        else:
+            model_config.display_name += " (Reasoning)"
