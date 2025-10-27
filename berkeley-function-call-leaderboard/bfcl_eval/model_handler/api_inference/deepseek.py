@@ -14,6 +14,7 @@ from openai import OpenAI, RateLimitError
 from overrides import override
 
 
+
 class DeepSeekAPIHandler(OpenAICompletionsHandler):
     def __init__(
         self,
@@ -25,8 +26,11 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
+        base = "https://api.deepseek.com"
+
         self.client = OpenAI(
-            base_url="https://api.deepseek.com", api_key=os.getenv("DEEPSEEK_API_KEY")
+            base_url=base,
+            api_key=os.getenv("DEEPSEEK_API_KEY"),
         )
 
     # The deepseek API is unstable at the moment, and will frequently give empty responses, so retry on JSONDecodeError is necessary
@@ -53,27 +57,16 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
-        # Source https://api-docs.deepseek.com/quick_start/pricing
-        # This will need to be updated if newer models are released.
-        if "DeepSeek-V3" in self.model_name:
-            api_model_name = "deepseek-chat"
-        elif "DeepSeek-R1" in self.model_name:
-            api_model_name = "deepseek-reasoner"
-        else:
-            raise ValueError(
-                f"Model name {self.model_name} not yet supported in this method"
-            )
-
         if len(tools) > 0:
             return self.generate_with_backoff(
-                model=api_model_name,
+                model=self.model_name,
                 messages=message,
                 tools=tools,
                 temperature=self.temperature,
             )
         else:
             return self.generate_with_backoff(
-                model=api_model_name,
+                model=self.model_name,
                 messages=message,
                 temperature=self.temperature,
             )
@@ -92,15 +85,8 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
         message: list[dict] = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(message)}
 
-        if "DeepSeek-R1" in self.model_name:
-            api_model_name = "deepseek-reasoner"
-        else:
-            raise ValueError(
-                f"Model name {self.model_name} not yet supported in this method"
-            )
-
         return self.generate_with_backoff(
-            model=api_model_name,
+            model=self.model_name,
             messages=message,
         )
 

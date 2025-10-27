@@ -23,19 +23,19 @@ For model names containing `{...}`, multiple versions are available. For example
 | Bielik-11B-v2.3-Instruct                   | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                                | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
 | BitAgent-Bounty-8B                         | Function Calling | Self-hosted 💻 | BitAgent/BitAgent-Bounty-8B                                 |
-| Claude-3.5-haiku-20241022                  | Function Calling | Anthropic      | claude-3-5-haiku-20241022-FC                                |
-| Claude-3.5-haiku-20241022                  | Prompt           | Anthropic      | claude-3-5-haiku-20241022                                   |
+| Claude-haiku-4.5-20241022                  | Function Calling | Anthropic      | claude-haiku-4-5-20251001-FC                                |
+| Claude-haiku-4.5-20241022                  | Prompt           | Anthropic      | claude-haiku-4-5-20251001                                   |
 | Claude-Opus-4.1-20250805                   | Function Calling | Anthropic      | claude-opus-4-1-20250805-FC                                 |
 | Claude-Opus-4.1-20250805                   | Prompt           | Anthropic      | claude-opus-4-1-20250805                                    |
-| Claude-Sonnet-4-20250514                   | Function Calling | Anthropic      | claude-sonnet-4-20250514                                    |
-| Claude-Sonnet-4-20250514                   | Prompt           | Anthropic      | claude-sonnet-4-20250514                                    |
+| Claude-Sonnet-4.5-20250929                 | Function Calling | Anthropic      | claude-sonnet-4-5-20250929-FC                               |
+| Claude-Sonnet-4.5-20250929                 | Prompt           | Anthropic      | claude-sonnet-4-5-20250929                                  |
 | CoALM-{8B, 70B, 405B}                      | Function Calling | Self-hosted 💻 | uiuc-convai/CoALM-{8B,70B,405B}                             |
 | Command A                                  | Function Calling | Cohere         | command-a-03-2025-FC                                        |
 | Command R7B                                | Function Calling | Cohere         | command-r7b-12-2024-FC                                      |
 | DeepSeek-R1                                | Prompt           | Self-hosted 💻 | deepseek-ai/DeepSeek-R1                                     |
-| DeepSeek-R1-0528                           | Prompt           | DeepSeek       | DeepSeek-R1-0528                                            |
-| DeepSeek-R1-0528                           | Function Calling | DeepSeek       | DeepSeek-R1-0528-FC                                         |
-| DeepSeek-V3-0324                           | Function Calling | DeepSeek       | DeepSeek-V3-0324-FC                                         |
+| DeepSeek-V3.2-Exp                          | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp                                           |
+| DeepSeek-V3.2-Exp                          | Function Calling | DeepSeek       | DeepSeek-V3.2-Exp-FC                                        |
+| DeepSeek-V3.2-Exp (Thinking)               | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp-thinking                                  |
 | DM-Cito-8B-v2                              | Prompt           | Mininglamp     | DM-Cito-8B-v2                                               |
 | Falcon3-{1B,3B,7B,10B}-Instruct            | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct                      |
 | FireFunction-v2                            | Function Calling | Fireworks AI   | firefunction-v2-FC                                          |
