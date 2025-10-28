@@ -216,7 +216,7 @@ class MessageAPI:
                 return {
                     "deleted_status": True,
                     "message_id": receiver,
-                    "message": f"Receiver {receiver_id}'s first message deleted successfully.",
+                    "message": f"Receiver {receiver_id}'s latest message deleted successfully.",
                 }
         return {"error": f"Receiver ID {receiver_id} not found."}
 
