@@ -125,9 +125,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1-0528": ModelConfig(
-        model_name="DeepSeek-R1-0528",
-        display_name="DeepSeek-R1-0528 (Prompt)",
+    "DeepSeek-V3.2-Exp": ModelConfig(
+        model_name="deepseek-chat",
+        display_name="DeepSeek-V3.2-Exp (Prompt)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -137,9 +137,9 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "DeepSeek-R1-0528-FC": ModelConfig(
-        model_name="DeepSeek-R1-0528-FC",
-        display_name="DeepSeek-R1-0528 (FC)",
+    "DeepSeek-V3.2-Exp-FC": ModelConfig(
+        model_name="deepseek-chat",
+        display_name="DeepSeek-V3.2-Exp (FC)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -149,17 +149,17 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "DeepSeek-V3-0324-FC": ModelConfig(
-        model_name="DeepSeek-V3-0324",
-        display_name="DeepSeek-V3-0324 (FC)",
-        url="https://api-docs.deepseek.com/news/news250325",
+    "DeepSeek-V3.2-Exp-thinking": ModelConfig(
+        model_name="deepseek-reasoner",
+        display_name="DeepSeek-V3.2-Exp (Prompt + Thinking)",
+        url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
-        license="DeepSeek License",
+        license="MIT",
         model_handler=DeepSeekAPIHandler,
         input_price=None,
         output_price=None,
-        is_fc_model=True,
-        underscore_to_dot=True,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
     "gpt-5-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-2025-08-07",
@@ -425,10 +425,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-sonnet-4-20250514": ModelConfig(
-        model_name="claude-sonnet-4-20250514",
-        display_name="Claude-Sonnet-4-20250514 (Prompt)",
-        url="https://www.anthropic.com/news/claude-4",
+    "claude-sonnet-4-5-20250929": ModelConfig(
+        model_name="claude-sonnet-4-5-20250929",
+        display_name="Claude-Sonnet-4-5-20250929 (Prompt)",
+        url="https://www.anthropic.com/news/claude-sonnet-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -437,10 +437,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-sonnet-4-20250514-FC": ModelConfig(
-        model_name="claude-sonnet-4-20250514",
-        display_name="Claude-Sonnet-4-20250514 (FC)",
-        url="https://www.anthropic.com/news/claude-4",
+    "claude-sonnet-4-5-20250929-FC": ModelConfig(
+        model_name="claude-sonnet-4-5-20250929",
+        display_name="Claude-Sonnet-4-5-20250929 (FC)",
+        url="https://www.anthropic.com/news/claude-sonnet-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -449,10 +449,10 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-3-5-haiku-20241022": ModelConfig(
-        model_name="claude-3-5-haiku-20241022",
+    "claude-haiku-4-5-20251001": ModelConfig(
+        model_name="claude-haiku-4-5-20251001",
         display_name="claude-3.5-haiku-20241022 (Prompt)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+        url="https://www.anthropic.com/news/claude-haiku-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
@@ -461,10 +461,10 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-3-5-haiku-20241022-FC": ModelConfig(
-        model_name="claude-3-5-haiku-20241022",
+    "claude-haiku-4-5-20251001-FC": ModelConfig(
+        model_name="claude-haiku-4-5-20251001",
         display_name="claude-3.5-haiku-20241022 (FC)",
-        url="https://www.anthropic.com/news/3-5-models-and-computer-use",
+        url="https://www.anthropic.com/news/claude-haiku-4-5",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
