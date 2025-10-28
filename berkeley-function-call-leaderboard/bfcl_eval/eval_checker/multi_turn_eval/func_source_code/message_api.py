@@ -200,7 +200,6 @@ class MessageAPI:
         Delete the latest message sent to a receiver.
         Args:
             receiver_id (str): User ID of the user to send the message to.
-            message_id (int): ID of the message to be deleted.
         Returns:
             deleted_status (bool): True if the message was deleted successfully, False otherwise.
             message_id (int): ID of the deleted message.
