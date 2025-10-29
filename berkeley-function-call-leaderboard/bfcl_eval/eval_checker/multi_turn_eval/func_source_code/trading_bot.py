@@ -376,6 +376,18 @@ class TradingBot:
             return {"error": f"Invalid stock symbol: {symbol}"}
         if price <= 0 or amount <= 0:
             return {"error": "Price and amount must be positive values."}
+
+        # Ensure sufficient funds for buy orders
+        if order_type.lower() == "buy":
+            total_cost = float(price) * int(amount)
+            if total_cost > self.account_info.get("balance", 0):
+                return {
+                    "error": (
+                        "Insufficient funds: required "
+                        f"${total_cost:.2f} but only ${self.account_info.get('balance', 0):.2f} available."
+                    )
+                }
+
         price = float(price)
         order_id = self.order_counter
         self.orders[order_id] = {
@@ -398,16 +410,14 @@ class TradingBot:
             "amount": amount,
         }
 
-    def make_transaction(
-        self, account_id: int, xact_type: str, amount: float
-    ) -> Dict[str, Union[str, float]]:
+    def withdraw_funds(self, amount: float) -> Dict[str, Union[str, float]]:
         """
-        Make a deposit or withdrawal based on specified amount.
+        Withdraw funds from the account balance.
+        Withdraw funds from the account balance.
 
         Args:
-            account_id (int): ID of the account.
-            xact_type (str): Transaction type (deposit or withdrawal).
-            amount (float): Amount to deposit or withdraw.
+            amount (float): Amount to withdraw from the account.
+            amount (float): Amount to withdraw from the account.
 
         Returns:
             status (str): Status of the transaction.
@@ -417,40 +427,39 @@ class TradingBot:
             return {"error": "User not authenticated. Please log in to make a transaction."}
         if self.market_status != "Open":
             return {"error": "Market is closed. Transactions are not allowed."}
-        if account_id != self.account_info["account_id"]:
-            return {"error": f"Account with ID {account_id} not found."}
         if amount <= 0:
             return {"error": "Transaction amount must be positive."}
 
-        if xact_type == "deposit":
-            self.account_info["balance"] += amount
-            self.transaction_history.append(
-                {
-                    "type": "deposit",
-                    "amount": amount,
-                    "timestamp": self._generate_transaction_timestamp(),
-                }
-            )
-            return {
-                "status": "Deposit successful",
-                "new_balance": self.account_info["balance"],
+        if amount > self.account_info["balance"]:
+            return {"error": "Insufficient funds for withdrawal."}
+
+        self.account_info["balance"] -= amount
+        self.transaction_history.append(
+            {
+                "type": "withdrawal",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
             }
-        elif xact_type == "withdrawal":
-            if amount > self.account_info["balance"]:
-                return {"error": "Insufficient funds for withdrawal."}
-            self.account_info["balance"] -= amount
-            self.transaction_history.append(
-                {
-                    "type": "withdrawal",
-                    "amount": amount,
-                    "timestamp": self._generate_transaction_timestamp(),
-                }
-            )
-            return {
-                "status": "Withdrawal successful",
-                "new_balance": self.account_info["balance"],
+        )
+        return {
+            "status": "Withdrawal successful",
+            "new_balance": self.account_info["balance"],
+        }
+        if amount > self.account_info["balance"]:
+            return {"error": "Insufficient funds for withdrawal."}
+
+        self.account_info["balance"] -= amount
+        self.transaction_history.append(
+            {
+                "type": "withdrawal",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
             }
-        return {"error": "Invalid transaction type. Use 'deposit' or 'withdrawal'."}
+        )
+        return {
+            "status": "Withdrawal successful",
+            "new_balance": self.account_info["balance"],
+        }
 
     def get_account_info(self) -> Dict[str, Union[int, float]]:
         """
@@ -523,7 +532,11 @@ class TradingBot:
             return {"error": "Funding amount must be positive."}
         self.account_info["balance"] += amount
         self.transaction_history.append(
-            {"type": "deposit", "amount": amount, "timestamp": self._generate_transaction_timestamp()}
+            {
+                "type": "deposit",
+                "amount": amount,
+                "timestamp": self._generate_transaction_timestamp(),
+            }
         )
         return {
             "status": "Account funded successfully",
@@ -574,9 +587,7 @@ class TradingBot:
         """
         if not self.authenticated:
             return [
-                {
-                    "error": "User not authenticated. Please log in to view order history."
-                }
+                {"error": "User not authenticated. Please log in to view order history."}
             ]
 
         return {"history": list(self.orders.keys())}
@@ -626,32 +637,6 @@ class TradingBot:
             filtered_history.extend(TRANSACTION_HISTORY_EXTENSION)
 
         return {"transaction_history": filtered_history}
-
-    def update_stock_price(
-        self, symbol: str, new_price: float
-    ) -> Dict[str, Union[str, float]]:
-        """
-        Update the price of a stock.
-
-        Args:
-            symbol (str): Symbol of the stock to update.
-            new_price (float): New price of the stock.
-
-        Returns:
-            symbol (str): Symbol of the updated stock.
-            old_price (float): Previous price of the stock.
-            new_price (float): Updated price of the stock.
-        """
-        if symbol not in self.stocks:
-            return {"error": f"Stock with symbol '{symbol}' not found."}
-        if new_price <= 0:
-            return {"error": "New price must be a positive value."}
-
-        old_price = self.stocks[symbol]["price"]
-        self.stocks[symbol]["price"] = new_price
-        self.stocks[symbol]["percent_change"] = ((new_price - old_price) / old_price) * 100
-
-        return {"symbol": symbol, "old_price": old_price, "new_price": new_price}
 
     # below contains a list of functions to be nested
     def get_available_stocks(self, sector: str) -> Dict[str, List[str]]:
@@ -730,6 +715,8 @@ class TradingBot:
         ]
 
         if changed_stocks:
-            return {"notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."}
+            return {
+                "notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."
+            }
         else:
             return {"notification": "No significant price changes in the selected stocks."}
