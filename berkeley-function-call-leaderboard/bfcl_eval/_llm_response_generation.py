@@ -69,6 +69,7 @@ def build_handler(model_name, temperature):
         temperature=temperature,
         registry_name=model_name,
         is_fc_model=config.is_fc_model,
+        underscore_to_dot=config.underscore_to_dot,
     )
     return handler
 
