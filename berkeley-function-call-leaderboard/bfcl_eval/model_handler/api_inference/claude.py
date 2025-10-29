@@ -23,13 +23,20 @@ from bfcl_eval.utils import contain_multi_turn_interaction
 
 
 class ClaudeHandler(BaseHandler):
-    def __init__(self, model_name, temperature) -> None:
-        super().__init__(model_name, temperature)
+    def __init__(
+        self,
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.ANTHROPIC
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        if "FC" not in self.model_name:
+        if not self.is_fc_model:
             return default_decode_ast_prompting(result, language, has_tool_call_tag)
 
         else:
@@ -41,7 +48,7 @@ class ClaudeHandler(BaseHandler):
             return decoded_output
 
     def decode_execute(self, result, has_tool_call_tag):
-        if "FC" not in self.model_name:
+        if not self.is_fc_model:
             return default_decode_execute_prompting(result, has_tool_call_tag)
 
         else:
@@ -62,9 +69,9 @@ class ClaudeHandler(BaseHandler):
         """
         if "claude-opus-4-1-20250805" in self.model_name:
             return 32000
-        elif "claude-sonnet-4-20250514" in self.model_name:
+        elif "claude-sonnet-4-5-20250929" in self.model_name:  
             return 64000
-        elif "claude-3-5-haiku-20241022" in self.model_name:
+        elif "claude-haiku-4-5-20251001" in self.model_name:
             return 8192
         else:
             raise ValueError(f"Unsupported model: {self.model_name}")

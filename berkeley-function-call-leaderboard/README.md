@@ -175,8 +175,8 @@ IDs to run:
 
 ```json
 {
-  "simple": ["simple_101", "simple_202"],
-  "multi_turn_base": ["multi_turn_base_14"]
+    "simple_python": ["simple_python_102", "simple_python_103"],
+    "multi_turn_base": ["multi_turn_base_15"]
 }
 ```
 
@@ -264,6 +264,14 @@ Once you have the results, run:
 ```bash
 bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY
 ```
+
+If you **only** generated a subset of benchmark entries (e.g. by using `--run-ids` during the generation step or by manually editing the result files) and you wish to evaluate *just* those entries, add the `--partial-eval` flag:
+
+```bash
+bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY --partial-eval
+```
+
+When `--partial-eval` is set, the evaluator silently skips IDs that are not present in the model result file and computes accuracy on the remaining subset. Please note that the score may differ from a full-set evaluation and therefore might not match the official leaderboard numbers.
 
 The `MODEL_NAME` and `TEST_CATEGORY` options are the same as those used in the [Generating LLM Responses](#generating-llm-responses) section. For details, refer to [SUPPORTED_MODELS.md](./SUPPORTED_MODELS.md) and [TEST_CATEGORIES.md](./TEST_CATEGORIES.md).
 
