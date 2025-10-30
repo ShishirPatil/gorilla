@@ -413,10 +413,8 @@ class TradingBot:
     def withdraw_funds(self, amount: float) -> Dict[str, Union[str, float]]:
         """
         Withdraw funds from the account balance.
-        Withdraw funds from the account balance.
 
         Args:
-            amount (float): Amount to withdraw from the account.
             amount (float): Amount to withdraw from the account.
 
         Returns:
