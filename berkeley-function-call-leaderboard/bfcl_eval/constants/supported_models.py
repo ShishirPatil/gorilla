@@ -126,6 +126,7 @@ SUPPORTED_MODELS = [
     "MadeAgents/Hammer2.1-3b",
     "MadeAgents/Hammer2.1-1.5b",
     "MadeAgents/Hammer2.1-0.5b",
+    "TactAgent/PinHook-4B",
     "THUDM/glm-4-9b-chat",
     "Qwen/Qwen3-0.6B-FC",
     "Qwen/Qwen3-0.6B",
