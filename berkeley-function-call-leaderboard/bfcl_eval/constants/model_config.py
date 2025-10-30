@@ -1125,10 +1125,10 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
-    "TactAgent/PinHook-v1-4B": ModelConfig(
-        model_name="TactAgent/PinHook-v1-4B",
-        display_name="PinHook-v1-4B(FC)",
-        url="https://huggingface.co/TactAgent/PinHook-v1-4B",
+    "TactAgent/PinHook-4B": ModelConfig(
+        model_name="TactAgent/PinHook-4B",
+        display_name="PinHook-4B(FC)",
+        url="https://huggingface.co/TactAgent/PinHook-4B",
         org="TactAgent",
         license="apache-2.0",
         model_handler=PinHookHandler,
