@@ -200,7 +200,6 @@ class MessageAPI:
         Delete the latest message sent to a receiver.
         Args:
             receiver_id (str): User ID of the user to send the message to.
-            message_id (int): ID of the message to be deleted.
         Returns:
             deleted_status (bool): True if the message was deleted successfully, False otherwise.
             message_id (int): ID of the deleted message.
@@ -217,7 +216,7 @@ class MessageAPI:
                 return {
                     "deleted_status": True,
                     "message_id": receiver,
-                    "message": f"Receiver {receiver_id}'s first message deleted successfully.",
+                    "message": f"Receiver {receiver_id}'s latest message deleted successfully.",
                 }
         return {"error": f"Receiver ID {receiver_id} not found."}
 
