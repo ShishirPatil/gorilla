@@ -109,7 +109,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | phi-4                                      | Prompt           | Self-hosted 💻 | microsoft/phi-4                                             |
 | Phi-4-mini-instruct                        | Prompt           | Self-hosted 💻 | microsoft/Phi-4-mini-instruct                               |
 | Phi-4-mini-instruct                        | Function Calling | Self-hosted 💻 | microsoft/Phi-4-mini-instruct-FC                            |
-| PinHook-4B                                 | Function Calling | Self-hosted 💻 | TactAgent/PinHook-4B                                        | 
+| PinHook-v1-4B                              | Function Calling | Self-hosted 💻 | TactAgent/PinHook-v1-4B                                     | 
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}            | Prompt           | Alibaba Cloud  | qwen3-{0.6b,1.7b,4b,8b,14b,32b}                             |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}            | Function Calling | Alibaba Cloud  | qwen3-{0.6b,1.7b,4b,8b,14b,32b}-FC                          |
 | Qwen3-{0.6B,1.7B,8B,14B,32B}               | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,8B,14B,32B}                           |
