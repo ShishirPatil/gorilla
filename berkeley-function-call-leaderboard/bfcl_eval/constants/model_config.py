@@ -737,7 +737,7 @@ api_inference_model_map = {
         underscore_to_dot=True,
     ),
     "command-a-reasoning-08-2025-FC": ModelConfig(
-        model_name="command-a-reasoning-08-2025-FC",
+        model_name="command-a-reasoning-08-2025",
         display_name="Command A Reasoning (FC)",
         url="https://cohere.com/blog/command-a-reasoning",
         org="Cohere",
