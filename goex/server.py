@@ -17,8 +17,15 @@ import exec_engine.credentials.credentials_utils as credentials_utils
 from exec_engine.utils import SQL_Type, RESTful_Type, Filesystem_Type
 import json
 import base64
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app):
+    print("Waiting for server to be ready...")
+    yield
+    print("Server is ready.")   
+    
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
