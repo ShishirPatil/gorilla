@@ -611,9 +611,9 @@ def is_empty_output(decoded_output):
 
 
 def _get_language_specific_hint(test_category):
-    if test_category == "java":
+    if is_java(test_category):
         return " Note that the provided function is in Java 8 SDK syntax."
-    elif test_category == "javascript":
+    elif is_js(test_category):
         return " Note that the provided function is in JavaScript syntax."
     else:
         return " Note that the provided function is in Python 3 syntax."
