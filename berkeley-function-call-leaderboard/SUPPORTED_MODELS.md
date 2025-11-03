@@ -75,8 +75,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-4-0709                                | Prompt           | xAI            | grok-4-0709                                                 |
 | Haha-7B                                    | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{7b,3b,1.5b,0.5b}                | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b}                      |
-| Kimi-K2-Instruct                           | Function Calling | MoonshotAI     | kimi-k2-0711-preview-FC                                     |
-| Kimi-K2-Instruct                           | Prompt           | MoonshotAI     | kimi-k2-0711-preview                                        |
+| Kimi-K2-Instruct                           | Function Calling | MoonshotAI     | kimi-k2-0905-preview-FC                                     |
+| Kimi-K2-Instruct                           | Prompt           | MoonshotAI     | kimi-k2-0905-preview                                        |
 | Ling-lite-v1.5                             | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct                | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
