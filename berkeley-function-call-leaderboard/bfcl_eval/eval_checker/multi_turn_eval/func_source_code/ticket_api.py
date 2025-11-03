@@ -212,7 +212,7 @@ class TicketAPI:
         Get the login status of the currently authenticated user.
 
         Returns:
-            username (bool): True if a user is logged in, False otherwise.
+            login_status (bool): True if a user is logged in, False otherwise.
 
         """
         return {"login_status": bool(self.current_user)}
