@@ -618,7 +618,7 @@ class GorillaFileSystem:
 
     def mv(self, source: str, destination: str) -> Dict[str, str]:
         """
-        Move a file or directory from one location to another. so
+        Move a file or directory from one location to another.
 
         Args:
             source (str): Source name of the file or directory to move. Source must be local to the current directory.
