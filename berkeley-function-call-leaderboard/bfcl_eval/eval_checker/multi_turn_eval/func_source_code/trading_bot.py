@@ -443,21 +443,6 @@ class TradingBot:
             "status": "Withdrawal successful",
             "new_balance": self.account_info["balance"],
         }
-        if amount > self.account_info["balance"]:
-            return {"error": "Insufficient funds for withdrawal."}
-
-        self.account_info["balance"] -= amount
-        self.transaction_history.append(
-            {
-                "type": "withdrawal",
-                "amount": amount,
-                "timestamp": self._generate_transaction_timestamp(),
-            }
-        )
-        return {
-            "status": "Withdrawal successful",
-            "new_balance": self.account_info["balance"],
-        }
 
     def get_account_info(self) -> Dict[str, Union[int, float]]:
         """
@@ -687,12 +672,12 @@ class TradingBot:
             stock (str): the stock symbol to add to the watchlist.
 
         Returns:
-            symbol (str): the symbol that were successfully added to the watchlist.
+            watchlist (List[str]): the watchlist.
         """
         if stock not in self.watch_list:
             if stock in self.stocks:  # Ensure symbol is valid
                 self.watch_list.append(stock)
-        return {"symbol": self.watch_list}
+        return {"watchlist": self.watch_list}
 
     def notify_price_change(self, stocks: List[str], threshold: float) -> Dict[str, str]:
         """

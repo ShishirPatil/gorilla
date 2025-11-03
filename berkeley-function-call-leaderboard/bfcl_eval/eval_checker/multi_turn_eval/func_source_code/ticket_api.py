@@ -209,13 +209,13 @@ class TicketAPI:
 
     def ticket_get_login_status(self) -> Dict[str, bool]:
         """
-        Get the username of the currently authenticated user.
+        Get the login status of the currently authenticated user.
 
         Returns:
-            username (bool): True if a user is logged in, False otherwise.
+            login_status (bool): True if a user is logged in, False otherwise.
 
         """
-        return {"username": bool(self.current_user)}
+        return {"login_status": bool(self.current_user)}
 
     def logout(self) -> Dict[str, bool]:
         """

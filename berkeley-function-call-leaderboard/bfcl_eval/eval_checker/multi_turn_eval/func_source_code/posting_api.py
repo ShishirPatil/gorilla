@@ -139,7 +139,7 @@ class TwitterAPI:
             comment_status (str): Status of the comment action.
         """
         if not self.authenticated:
-            raise {"error": "User not authenticated. Please authenticate before commenting."}
+            return {"error": "User not authenticated. Please authenticate before commenting."}
 
 
         if tweet_id not in self.tweets:
@@ -189,7 +189,7 @@ class TwitterAPI:
         self.following_list.append(username_to_follow)
         return {"follow_status": True}
 
-    def list_all_following(self) -> List[str]:
+    def list_all_following(self) -> Dict[str, List[str]]:
         """
         List all users that the authenticated user is following.
 
@@ -199,7 +199,7 @@ class TwitterAPI:
         if not self.authenticated:
             return {"error": "User not authenticated. Please authenticate before listing following."}
 
-        return self.following_list
+        return {"following_list": self.following_list}
 
     def unfollow_user(self, username_to_unfollow: str) -> Dict[str, bool]:
         """
