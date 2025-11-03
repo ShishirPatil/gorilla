@@ -332,7 +332,7 @@ class VehicleControlAPI:
         """
         Displays the status of the vehicle based on the provided display option.
         Args:
-            option (str): The option to display. [Enum]: ["fuel", "battery", "doors", "climate", "headlights", "parkingBrake", "brakePadle", "engine"]
+            option (str): The option to display. [Enum]: ["fuel", "battery", "doors", "climate", "headlights", "parkingBrake", "brakePedal", "engine"]
         Returns:
             status (Dict): The status of the vehicle based on the option.
                 - fuelLevel (float): [Optional] The fuel level of the vehicle in gallons.
