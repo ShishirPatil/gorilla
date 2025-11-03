@@ -590,7 +590,7 @@ class GorillaFileSystem:
 
         Args:
             file_name1 (str): The name of the first file in current directory.
-            file_name2 (str): The name of the second file in current directorry.
+            file_name2 (str): The name of the second file in current directory.
 
         Returns:
             diff_lines (str): The differences between the two files.
@@ -618,7 +618,7 @@ class GorillaFileSystem:
 
     def mv(self, source: str, destination: str) -> Dict[str, str]:
         """
-        Move a file or directory from one location to another. so
+        Move a file or directory from one location to another.
 
         Args:
             source (str): Source name of the file or directory to move. Source must be local to the current directory.
