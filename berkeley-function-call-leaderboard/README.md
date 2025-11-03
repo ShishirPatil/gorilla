@@ -157,7 +157,7 @@ For the `web_search` test category, we use the [SerpAPI](https://serpapi.com/) s
 You can provide multiple models or test categories by separating them with commas. For example:
 
 ```bash
-bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category simple,parallel,multiple,multi_turn
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category simple_python,parallel,live_multiple,multi_turn
 ```
 
 #### Selecting Specific Test Cases with `--run-ids`
