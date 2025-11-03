@@ -590,7 +590,7 @@ class GorillaFileSystem:
 
         Args:
             file_name1 (str): The name of the first file in current directory.
-            file_name2 (str): The name of the second file in current directorry.
+            file_name2 (str): The name of the second file in current directory.
 
         Returns:
             diff_lines (str): The differences between the two files.
