@@ -1,0 +1,4509 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Recipe Information",
+        "api_call": "https://api.spoonacular.com/recipes/:id/information?includeNutrition=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use a recipe id to get full information about a recipe, such as ingredients, nutrition, diet and allergen information, etc."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Similar Recipes",
+        "api_call": "https://api.spoonacular.com/recipes/:id/similar?number=10&limitLicense=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find recipes which are similar to the given one."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Taste by ID",
+        "api_call": "https://api.spoonacular.com/recipes/:id/tasteWidget.json?normalize=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's taste. The tastes supported are sweet, salty, sour, bitter, savory, and fatty."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Taste by ID Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/tasteWidget.png?normalize=false&rgb=75,192,192",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's taste as an image. The tastes supported are sweet, salty, sour, bitter, savory, and fatty."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Equipment by ID",
+        "api_call": "https://api.spoonacular.com/recipes/:id/equipmentWidget.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's equipment list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Equipment by ID Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/equipmentWidget.png",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's equipment list as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Price Breakdown by ID",
+        "api_call": "https://api.spoonacular.com/recipes/:id/priceBreakdownWidget.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's price breakdown data."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Price Breakdown by ID Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/priceBreakdownWidget.png",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's price breakdown."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Ingredients by ID",
+        "api_call": "https://api.spoonacular.com/recipes/:id/ingredientWidget.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's ingredient list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Ingredients by ID Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/ingredientWidget.png?measure=metric",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's ingredient list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Nutrition by ID",
+        "api_call": "https://api.spoonacular.com/recipes/:id/nutritionWidget.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's nutrition data."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Nutrition by ID Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/nutritionWidget.png",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's nutritional information as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Nutrition Label Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/nutritionLabel?defaultCss=false&showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's nutrition label as an HTML widget."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Nutrition Label Image",
+        "api_call": "https://api.spoonacular.com/recipes/:id/nutritionLabel.png?showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's nutrition label as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Analyzed Recipe Instructions",
+        "api_call": "https://api.spoonacular.com/recipes/:id/analyzedInstructions?stepBreakdown=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get an analyzed breakdown of a recipe's instructions. Each step is enriched with the ingredients and equipment required."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Ingredients by ID Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/ingredientWidget?defaultCss=false&measure=metric",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's ingredient list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Taste by ID Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/tasteWidget?normalize=true&rgb=75,192,192",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a recipe's taste. The tastes supported are sweet, salty, sour, bitter, savory, and fatty."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Equipment by ID Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/equipmentWidget?defaultCss=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's equipment list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Price Breakdown by ID Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/priceBreakdownWidget?defaultCss=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's price breakdown."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Summarize Recipe",
+        "api_call": "https://api.spoonacular.com/recipes/:id/summary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Automatically generate a short description that summarizes key information about the recipe."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Nutrition by ID Widget",
+        "api_call": "https://api.spoonacular.com/recipes/:id/nutritionWidget?defaultCss=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a recipe's nutritional information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Recipes",
+        "api_call": "https://api.spoonacular.com/recipes/complexSearch?query=burger&cuisine=italian&excludeCuisine=greek&diet=vegetarian&intolerances=gluten&equipment=pan&includeIngredients=tomato,cheese&excludeIngredients=eggs&type=main course&instructionsRequired=true&fillIngredients=false&addRecipeInformation=false&addRecipeNutrition=false&author=coffeebean&tags=ipsum ea proident amet occaecat&recipeBoxId=2468&titleMatch=Crock Pot&maxReadyTime=20&ignorePantry=false&sort=calories&sortDirection=asc&minCarbs=10&maxCarbs=100&minProtein=10&maxProtein=100&minCalories=50&maxCalories=800&minFat=1&maxFat=100&minAlcohol=0&maxAlcohol=100&minCaffeine=0&maxCaffeine=100&minCopper=0&maxCopper=100&minCalcium=0&maxCalcium=100&minCholine=0&maxCholine=100&minCholesterol=0&maxCholesterol=100&minFluoride=0&maxFluoride=100&minSaturatedFat=0&maxSaturatedFat=100&minVitaminA=0&maxVitaminA=100&minVitaminC=0&maxVitaminC=100&minVitaminD=0&maxVitaminD=100&minVitaminE=0&maxVitaminE=100&minVitaminK=0&maxVitaminK=100&minVitaminB1=0&maxVitaminB1=100&minVitaminB2=0&maxVitaminB2=100&minVitaminB5=0&maxVitaminB5=100&minVitaminB3=0&maxVitaminB3=100&minVitaminB6=0&maxVitaminB6=100&minVitaminB12=0&maxVitaminB12=100&minFiber=0&maxFiber=100&minFolate=0&maxFolate=100&minFolicAcid=0&maxFolicAcid=100&minIodine=0&maxIodine=100&minIron=0&maxIron=100&minMagnesium=0&maxMagnesium=100&minManganese=0&maxManganese=100&minPhosphorus=0&maxPhosphorus=100&minPotassium=0&maxPotassium=100&minSelenium=0&maxSelenium=100&minSodium=0&maxSodium=100&minSugar=0&maxSugar=100&minZinc=0&maxZinc=100&offset=606&number=10&limitLicense=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search through hundreds of thousands of recipes using advanced filtering and ranking. NOTE: This method combines searching by query, by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Recipes by Ingredients",
+        "api_call": "https://api.spoonacular.com/recipes/findByIngredients?ingredients=carrots,tomatoes&number=10&limitLicense=true&ranking=1&ignorePantry=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "\nEver wondered what recipes you can cook with the ingredients you have in your fridge or pantry? This endpoint lets"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Recipes by Nutrients",
+        "api_call": "https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=100&minProtein=10&maxProtein=100&minCalories=50&maxCalories=800&minFat=1&maxFat=100&minAlcohol=0&maxAlcohol=100&minCaffeine=0&maxCaffeine=100&minCopper=0&maxCopper=100&minCalcium=0&maxCalcium=100&minCholine=0&maxCholine=100&minCholesterol=0&maxCholesterol=100&minFluoride=0&maxFluoride=100&minSaturatedFat=0&maxSaturatedFat=100&minVitaminA=0&maxVitaminA=100&minVitaminC=0&maxVitaminC=100&minVitaminD=0&maxVitaminD=100&minVitaminE=0&maxVitaminE=100&minVitaminK=0&maxVitaminK=100&minVitaminB1=0&maxVitaminB1=100&minVitaminB2=0&maxVitaminB2=100&minVitaminB5=0&maxVitaminB5=100&minVitaminB3=0&maxVitaminB3=100&minVitaminB6=0&maxVitaminB6=100&minVitaminB12=0&maxVitaminB12=100&minFiber=0&maxFiber=100&minFolate=0&maxFolate=100&minFolicAcid=0&maxFolicAcid=100&minIodine=0&maxIodine=100&minIron=0&maxIron=100&minMagnesium=0&maxMagnesium=100&minManganese=0&maxManganese=100&minPhosphorus=0&maxPhosphorus=100&minPotassium=0&maxPotassium=100&minSelenium=0&maxSelenium=100&minSodium=0&maxSodium=100&minSugar=0&maxSugar=100&minZinc=0&maxZinc=100&offset=606&number=10&random=false&limitLicense=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find a set of recipes that adhere to the given nutritional limits. You may set limits for macronutrients (calories, protein,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Recipe Information Bulk",
+        "api_call": "https://api.spoonacular.com/recipes/informationBulk?ids=715538,716429&includeNutrition=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get information about multiple recipes at once. This is equivalent to calling the Get Recipe Information endpoint multiple times, but"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Random Recipes",
+        "api_call": "https://api.spoonacular.com/recipes/random?limitLicense=true&tags=ipsum ea proident amet occaecat&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find random (popular) recipes. If you need to filter recipes by diet, nutrition etc. you might want to consider using"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Autocomplete Recipe Search",
+        "api_call": "https://api.spoonacular.com/recipes/autocomplete?query=burger&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Autocomplete a partial input to suggest possible recipe names."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Extract Recipe from Website",
+        "api_call": "https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&forceExtraction=true&analyze=false&includeNutrition=false&includeTaste=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint lets you extract recipe data such as title, ingredients, and instructions from any properly formatted Website."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Taste Widget",
+        "api_call": "https://api.spoonacular.com/recipes/visualizeTaste?language=en&normalize=false&rgb=75,192,192",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "g"
+                    },
+                    {
+                        "key": "3",
+                        "value": "r"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "d"
+                    },
+                    {
+                        "key": "6",
+                        "value": "i"
+                    },
+                    {
+                        "key": "7",
+                        "value": "e"
+                    },
+                    {
+                        "key": "8",
+                        "value": "n"
+                    },
+                    {
+                        "key": "9",
+                        "value": "t"
+                    },
+                    {
+                        "key": "10",
+                        "value": "L"
+                    },
+                    {
+                        "key": "11",
+                        "value": "i"
+                    },
+                    {
+                        "key": "12",
+                        "value": "s"
+                    },
+                    {
+                        "key": "13",
+                        "value": "t"
+                    },
+                    {
+                        "key": "14",
+                        "value": "="
+                    },
+                    {
+                        "key": "15",
+                        "value": "3"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "t"
+                    },
+                    {
+                        "key": "18",
+                        "value": "o"
+                    },
+                    {
+                        "key": "19",
+                        "value": "m"
+                    },
+                    {
+                        "key": "20",
+                        "value": "a"
+                    },
+                    {
+                        "key": "21",
+                        "value": "t"
+                    },
+                    {
+                        "key": "22",
+                        "value": "o"
+                    },
+                    {
+                        "key": "23",
+                        "value": "e"
+                    },
+                    {
+                        "key": "24",
+                        "value": "s"
+                    },
+                    {
+                        "key": "25",
+                        "value": ","
+                    },
+                    {
+                        "key": "26",
+                        "value": " "
+                    },
+                    {
+                        "key": "27",
+                        "value": "5"
+                    },
+                    {
+                        "key": "28",
+                        "value": " "
+                    },
+                    {
+                        "key": "29",
+                        "value": "o"
+                    },
+                    {
+                        "key": "30",
+                        "value": "r"
+                    },
+                    {
+                        "key": "31",
+                        "value": "a"
+                    },
+                    {
+                        "key": "32",
+                        "value": "n"
+                    },
+                    {
+                        "key": "33",
+                        "value": "g"
+                    },
+                    {
+                        "key": "34",
+                        "value": "e"
+                    },
+                    {
+                        "key": "35",
+                        "value": "s"
+                    },
+                    {
+                        "key": "36",
+                        "value": ","
+                    },
+                    {
+                        "key": "37",
+                        "value": " "
+                    },
+                    {
+                        "key": "38",
+                        "value": "1"
+                    },
+                    {
+                        "key": "39",
+                        "value": " "
+                    },
+                    {
+                        "key": "40",
+                        "value": "t"
+                    },
+                    {
+                        "key": "41",
+                        "value": "s"
+                    },
+                    {
+                        "key": "42",
+                        "value": "p"
+                    },
+                    {
+                        "key": "43",
+                        "value": " "
+                    },
+                    {
+                        "key": "44",
+                        "value": "s"
+                    },
+                    {
+                        "key": "45",
+                        "value": "a"
+                    },
+                    {
+                        "key": "46",
+                        "value": "l"
+                    },
+                    {
+                        "key": "47",
+                        "value": "t"
+                    }
+                ]
+            }
+        },
+        "functionality": "Visualize a recipe's taste information as HTML including CSS. You can play around with that endpoint!"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Recipe Nutrition Widget",
+        "api_call": "https://api.spoonacular.com/recipes/visualizeNutrition?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "g"
+                    },
+                    {
+                        "key": "3",
+                        "value": "r"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "d"
+                    },
+                    {
+                        "key": "6",
+                        "value": "i"
+                    },
+                    {
+                        "key": "7",
+                        "value": "e"
+                    },
+                    {
+                        "key": "8",
+                        "value": "n"
+                    },
+                    {
+                        "key": "9",
+                        "value": "t"
+                    },
+                    {
+                        "key": "10",
+                        "value": "L"
+                    },
+                    {
+                        "key": "11",
+                        "value": "i"
+                    },
+                    {
+                        "key": "12",
+                        "value": "s"
+                    },
+                    {
+                        "key": "13",
+                        "value": "t"
+                    },
+                    {
+                        "key": "14",
+                        "value": "="
+                    },
+                    {
+                        "key": "15",
+                        "value": "3"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "o"
+                    },
+                    {
+                        "key": "18",
+                        "value": "z"
+                    },
+                    {
+                        "key": "19",
+                        "value": " "
+                    },
+                    {
+                        "key": "20",
+                        "value": "f"
+                    },
+                    {
+                        "key": "21",
+                        "value": "l"
+                    },
+                    {
+                        "key": "22",
+                        "value": "o"
+                    },
+                    {
+                        "key": "23",
+                        "value": "u"
+                    },
+                    {
+                        "key": "24",
+                        "value": "r"
+                    },
+                    {
+                        "key": "25",
+                        "value": "&"
+                    },
+                    {
+                        "key": "26",
+                        "value": "s"
+                    },
+                    {
+                        "key": "27",
+                        "value": "e"
+                    },
+                    {
+                        "key": "28",
+                        "value": "r"
+                    },
+                    {
+                        "key": "29",
+                        "value": "v"
+                    },
+                    {
+                        "key": "30",
+                        "value": "i"
+                    },
+                    {
+                        "key": "31",
+                        "value": "n"
+                    },
+                    {
+                        "key": "32",
+                        "value": "g"
+                    },
+                    {
+                        "key": "33",
+                        "value": "s"
+                    },
+                    {
+                        "key": "34",
+                        "value": "="
+                    },
+                    {
+                        "key": "35",
+                        "value": "2"
+                    }
+                ]
+            }
+        },
+        "functionality": "Visualize a recipe's nutritional information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Price Breakdown Widget",
+        "api_call": "https://api.spoonacular.com/recipes/visualizePriceEstimator?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "g"
+                    },
+                    {
+                        "key": "3",
+                        "value": "r"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "d"
+                    },
+                    {
+                        "key": "6",
+                        "value": "i"
+                    },
+                    {
+                        "key": "7",
+                        "value": "e"
+                    },
+                    {
+                        "key": "8",
+                        "value": "n"
+                    },
+                    {
+                        "key": "9",
+                        "value": "t"
+                    },
+                    {
+                        "key": "10",
+                        "value": "L"
+                    },
+                    {
+                        "key": "11",
+                        "value": "i"
+                    },
+                    {
+                        "key": "12",
+                        "value": "s"
+                    },
+                    {
+                        "key": "13",
+                        "value": "t"
+                    },
+                    {
+                        "key": "14",
+                        "value": "="
+                    },
+                    {
+                        "key": "15",
+                        "value": "3"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "o"
+                    },
+                    {
+                        "key": "18",
+                        "value": "z"
+                    },
+                    {
+                        "key": "19",
+                        "value": " "
+                    },
+                    {
+                        "key": "20",
+                        "value": "f"
+                    },
+                    {
+                        "key": "21",
+                        "value": "l"
+                    },
+                    {
+                        "key": "22",
+                        "value": "o"
+                    },
+                    {
+                        "key": "23",
+                        "value": "u"
+                    },
+                    {
+                        "key": "24",
+                        "value": "r"
+                    },
+                    {
+                        "key": "25",
+                        "value": "&"
+                    },
+                    {
+                        "key": "26",
+                        "value": "s"
+                    },
+                    {
+                        "key": "27",
+                        "value": "e"
+                    },
+                    {
+                        "key": "28",
+                        "value": "r"
+                    },
+                    {
+                        "key": "29",
+                        "value": "v"
+                    },
+                    {
+                        "key": "30",
+                        "value": "i"
+                    },
+                    {
+                        "key": "31",
+                        "value": "n"
+                    },
+                    {
+                        "key": "32",
+                        "value": "g"
+                    },
+                    {
+                        "key": "33",
+                        "value": "s"
+                    },
+                    {
+                        "key": "34",
+                        "value": "="
+                    },
+                    {
+                        "key": "35",
+                        "value": "2"
+                    }
+                ]
+            }
+        },
+        "functionality": "Visualize the price breakdown of a recipe."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Equipment Widget",
+        "api_call": "https://api.spoonacular.com/recipes/visualizeEquipment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "s"
+                    },
+                    {
+                        "key": "3",
+                        "value": "t"
+                    },
+                    {
+                        "key": "4",
+                        "value": "r"
+                    },
+                    {
+                        "key": "5",
+                        "value": "u"
+                    },
+                    {
+                        "key": "6",
+                        "value": "c"
+                    },
+                    {
+                        "key": "7",
+                        "value": "t"
+                    },
+                    {
+                        "key": "8",
+                        "value": "i"
+                    },
+                    {
+                        "key": "9",
+                        "value": "o"
+                    },
+                    {
+                        "key": "10",
+                        "value": "n"
+                    },
+                    {
+                        "key": "11",
+                        "value": "s"
+                    },
+                    {
+                        "key": "12",
+                        "value": "="
+                    },
+                    {
+                        "key": "13",
+                        "value": "P"
+                    },
+                    {
+                        "key": "14",
+                        "value": "r"
+                    },
+                    {
+                        "key": "15",
+                        "value": "e"
+                    },
+                    {
+                        "key": "16",
+                        "value": "h"
+                    },
+                    {
+                        "key": "17",
+                        "value": "e"
+                    },
+                    {
+                        "key": "18",
+                        "value": "a"
+                    },
+                    {
+                        "key": "19",
+                        "value": "t"
+                    },
+                    {
+                        "key": "20",
+                        "value": " "
+                    },
+                    {
+                        "key": "21",
+                        "value": "o"
+                    },
+                    {
+                        "key": "22",
+                        "value": "v"
+                    },
+                    {
+                        "key": "23",
+                        "value": "e"
+                    },
+                    {
+                        "key": "24",
+                        "value": "n"
+                    },
+                    {
+                        "key": "25",
+                        "value": "."
+                    },
+                    {
+                        "key": "26",
+                        "value": " "
+                    },
+                    {
+                        "key": "27",
+                        "value": "C"
+                    },
+                    {
+                        "key": "28",
+                        "value": "u"
+                    },
+                    {
+                        "key": "29",
+                        "value": "t"
+                    },
+                    {
+                        "key": "30",
+                        "value": " "
+                    },
+                    {
+                        "key": "31",
+                        "value": "c"
+                    },
+                    {
+                        "key": "32",
+                        "value": "u"
+                    },
+                    {
+                        "key": "33",
+                        "value": "c"
+                    },
+                    {
+                        "key": "34",
+                        "value": "u"
+                    },
+                    {
+                        "key": "35",
+                        "value": "m"
+                    },
+                    {
+                        "key": "36",
+                        "value": "b"
+                    },
+                    {
+                        "key": "37",
+                        "value": "e"
+                    },
+                    {
+                        "key": "38",
+                        "value": "r"
+                    },
+                    {
+                        "key": "39",
+                        "value": " "
+                    },
+                    {
+                        "key": "40",
+                        "value": "w"
+                    },
+                    {
+                        "key": "41",
+                        "value": "i"
+                    },
+                    {
+                        "key": "42",
+                        "value": "t"
+                    },
+                    {
+                        "key": "43",
+                        "value": "h"
+                    },
+                    {
+                        "key": "44",
+                        "value": " "
+                    },
+                    {
+                        "key": "45",
+                        "value": "a"
+                    },
+                    {
+                        "key": "46",
+                        "value": " "
+                    },
+                    {
+                        "key": "47",
+                        "value": "k"
+                    },
+                    {
+                        "key": "48",
+                        "value": "n"
+                    },
+                    {
+                        "key": "49",
+                        "value": "i"
+                    },
+                    {
+                        "key": "50",
+                        "value": "f"
+                    },
+                    {
+                        "key": "51",
+                        "value": "e"
+                    },
+                    {
+                        "key": "52",
+                        "value": " "
+                    },
+                    {
+                        "key": "53",
+                        "value": "a"
+                    },
+                    {
+                        "key": "54",
+                        "value": "n"
+                    },
+                    {
+                        "key": "55",
+                        "value": "d"
+                    },
+                    {
+                        "key": "56",
+                        "value": " "
+                    },
+                    {
+                        "key": "57",
+                        "value": "p"
+                    },
+                    {
+                        "key": "58",
+                        "value": "u"
+                    },
+                    {
+                        "key": "59",
+                        "value": "t"
+                    },
+                    {
+                        "key": "60",
+                        "value": " "
+                    },
+                    {
+                        "key": "61",
+                        "value": "i"
+                    },
+                    {
+                        "key": "62",
+                        "value": "n"
+                    },
+                    {
+                        "key": "63",
+                        "value": " "
+                    },
+                    {
+                        "key": "64",
+                        "value": "a"
+                    },
+                    {
+                        "key": "65",
+                        "value": " "
+                    },
+                    {
+                        "key": "66",
+                        "value": "b"
+                    },
+                    {
+                        "key": "67",
+                        "value": "l"
+                    },
+                    {
+                        "key": "68",
+                        "value": "e"
+                    },
+                    {
+                        "key": "69",
+                        "value": "n"
+                    },
+                    {
+                        "key": "70",
+                        "value": "d"
+                    },
+                    {
+                        "key": "71",
+                        "value": "e"
+                    },
+                    {
+                        "key": "72",
+                        "value": "r"
+                    },
+                    {
+                        "key": "73",
+                        "value": "."
+                    }
+                ]
+            }
+        },
+        "functionality": "Visualize the equipment used to make a recipe."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Create Recipe Card",
+        "api_call": "https://api.spoonacular.com/recipes/visualizeRecipe",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "0",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "1",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "2",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "3",
+                        "value": "l",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "5",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "6",
+                        "value": "M",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "7",
+                        "value": "y",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "8",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "9",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "10",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "11",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "12",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "13",
+                        "value": "p",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "14",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "15",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "16",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "17",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "18",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "19",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "20",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "21",
+                        "value": "d",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "22",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "23",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "24",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "25",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "26",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "27",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "28",
+                        "value": "2",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "29",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "30",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "31",
+                        "value": "u",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "32",
+                        "value": "p",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "33",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "34",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "35",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "36",
+                        "value": "f",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "37",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "38",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "39",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "40",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "41",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "42",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "43",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "44",
+                        "value": "b",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "45",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "46",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "47",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "48",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "49",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "50",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "51",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "52",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "53",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "54",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "55",
+                        "value": "u",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "56",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "57",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "58",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "59",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "60",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "61",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "62",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "63",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "64",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "65",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "66",
+                        "value": "k",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "67",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "68",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "69",
+                        "value": "h",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "70",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "71",
+                        "value": " ",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "72",
+                        "value": "b",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "73",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "74",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "75",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "76",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "77",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "78",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "79",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "80",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "81",
+                        "value": "d",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "82",
+                        "value": "y",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "83",
+                        "value": "I",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "84",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "85",
+                        "value": "M",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "86",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "87",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "88",
+                        "value": "u",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "89",
+                        "value": "t",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "90",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "91",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "92",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "93",
+                        "value": "6",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "94",
+                        "value": "0",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "95",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "96",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "97",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "98",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "99",
+                        "value": "v",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "100",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "101",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "102",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "103",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "104",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "105",
+                        "value": "2",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "106",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "107",
+                        "value": "m",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "108",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "109",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "110",
+                        "value": "k",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "111",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "112",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "113",
+                        "value": "l",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "114",
+                        "value": "l",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "115",
+                        "value": "i",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "116",
+                        "value": "p",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "117",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "118",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "119",
+                        "value": "M",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "120",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "121",
+                        "value": "s",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "122",
+                        "value": "k",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "123",
+                        "value": "&",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "124",
+                        "value": "b",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "125",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "126",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "127",
+                        "value": "k",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "128",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "129",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "130",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "131",
+                        "value": "u",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "132",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "133",
+                        "value": "d",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "134",
+                        "value": "I",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "135",
+                        "value": "m",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "136",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "137",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "138",
+                        "value": "e",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "139",
+                        "value": "=",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "140",
+                        "value": "b",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "141",
+                        "value": "a",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "142",
+                        "value": "c",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "143",
+                        "value": "k",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "144",
+                        "value": "g",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "145",
+                        "value": "r",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "146",
+                        "value": "o",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "147",
+                        "value": "u",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "148",
+                        "value": "n",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "149",
+                        "value": "d",
+                        "type": "text",
+                        "description": "undefined"
+                    },
+                    {
+                        "key": "150",
+                        "value": "1",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "Generate a recipe card for a recipe."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Analyze Recipe Instructions",
+        "api_call": "https://api.spoonacular.com/recipes/analyzeInstructions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "s"
+                    },
+                    {
+                        "key": "3",
+                        "value": "t"
+                    },
+                    {
+                        "key": "4",
+                        "value": "r"
+                    },
+                    {
+                        "key": "5",
+                        "value": "u"
+                    },
+                    {
+                        "key": "6",
+                        "value": "c"
+                    },
+                    {
+                        "key": "7",
+                        "value": "t"
+                    },
+                    {
+                        "key": "8",
+                        "value": "i"
+                    },
+                    {
+                        "key": "9",
+                        "value": "o"
+                    },
+                    {
+                        "key": "10",
+                        "value": "n"
+                    },
+                    {
+                        "key": "11",
+                        "value": "s"
+                    },
+                    {
+                        "key": "12",
+                        "value": "="
+                    },
+                    {
+                        "key": "13",
+                        "value": "P"
+                    },
+                    {
+                        "key": "14",
+                        "value": "u"
+                    },
+                    {
+                        "key": "15",
+                        "value": "t"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "t"
+                    },
+                    {
+                        "key": "18",
+                        "value": "h"
+                    },
+                    {
+                        "key": "19",
+                        "value": "e"
+                    },
+                    {
+                        "key": "20",
+                        "value": " "
+                    },
+                    {
+                        "key": "21",
+                        "value": "g"
+                    },
+                    {
+                        "key": "22",
+                        "value": "a"
+                    },
+                    {
+                        "key": "23",
+                        "value": "r"
+                    },
+                    {
+                        "key": "24",
+                        "value": "l"
+                    },
+                    {
+                        "key": "25",
+                        "value": "i"
+                    },
+                    {
+                        "key": "26",
+                        "value": "c"
+                    },
+                    {
+                        "key": "27",
+                        "value": " "
+                    },
+                    {
+                        "key": "28",
+                        "value": "i"
+                    },
+                    {
+                        "key": "29",
+                        "value": "n"
+                    },
+                    {
+                        "key": "30",
+                        "value": " "
+                    },
+                    {
+                        "key": "31",
+                        "value": "a"
+                    },
+                    {
+                        "key": "32",
+                        "value": " "
+                    },
+                    {
+                        "key": "33",
+                        "value": "p"
+                    },
+                    {
+                        "key": "34",
+                        "value": "a"
+                    },
+                    {
+                        "key": "35",
+                        "value": "n"
+                    },
+                    {
+                        "key": "36",
+                        "value": " "
+                    },
+                    {
+                        "key": "37",
+                        "value": "a"
+                    },
+                    {
+                        "key": "38",
+                        "value": "n"
+                    },
+                    {
+                        "key": "39",
+                        "value": "d"
+                    },
+                    {
+                        "key": "40",
+                        "value": " "
+                    },
+                    {
+                        "key": "41",
+                        "value": "t"
+                    },
+                    {
+                        "key": "42",
+                        "value": "h"
+                    },
+                    {
+                        "key": "43",
+                        "value": "e"
+                    },
+                    {
+                        "key": "44",
+                        "value": "n"
+                    },
+                    {
+                        "key": "45",
+                        "value": " "
+                    },
+                    {
+                        "key": "46",
+                        "value": "a"
+                    },
+                    {
+                        "key": "47",
+                        "value": "d"
+                    },
+                    {
+                        "key": "48",
+                        "value": "d"
+                    },
+                    {
+                        "key": "49",
+                        "value": " "
+                    },
+                    {
+                        "key": "50",
+                        "value": "t"
+                    },
+                    {
+                        "key": "51",
+                        "value": "h"
+                    },
+                    {
+                        "key": "52",
+                        "value": "e"
+                    },
+                    {
+                        "key": "53",
+                        "value": " "
+                    },
+                    {
+                        "key": "54",
+                        "value": "o"
+                    },
+                    {
+                        "key": "55",
+                        "value": "n"
+                    },
+                    {
+                        "key": "56",
+                        "value": "i"
+                    },
+                    {
+                        "key": "57",
+                        "value": "o"
+                    },
+                    {
+                        "key": "58",
+                        "value": "n"
+                    },
+                    {
+                        "key": "59",
+                        "value": "."
+                    },
+                    {
+                        "key": "60",
+                        "value": " "
+                    },
+                    {
+                        "key": "61",
+                        "value": "A"
+                    },
+                    {
+                        "key": "62",
+                        "value": "d"
+                    },
+                    {
+                        "key": "63",
+                        "value": "d"
+                    },
+                    {
+                        "key": "64",
+                        "value": " "
+                    },
+                    {
+                        "key": "65",
+                        "value": "s"
+                    },
+                    {
+                        "key": "66",
+                        "value": "o"
+                    },
+                    {
+                        "key": "67",
+                        "value": "m"
+                    },
+                    {
+                        "key": "68",
+                        "value": "e"
+                    },
+                    {
+                        "key": "69",
+                        "value": " "
+                    },
+                    {
+                        "key": "70",
+                        "value": "s"
+                    },
+                    {
+                        "key": "71",
+                        "value": "a"
+                    },
+                    {
+                        "key": "72",
+                        "value": "l"
+                    },
+                    {
+                        "key": "73",
+                        "value": "t"
+                    },
+                    {
+                        "key": "74",
+                        "value": " "
+                    },
+                    {
+                        "key": "75",
+                        "value": "a"
+                    },
+                    {
+                        "key": "76",
+                        "value": "n"
+                    },
+                    {
+                        "key": "77",
+                        "value": "d"
+                    },
+                    {
+                        "key": "78",
+                        "value": " "
+                    },
+                    {
+                        "key": "79",
+                        "value": "o"
+                    },
+                    {
+                        "key": "80",
+                        "value": "r"
+                    },
+                    {
+                        "key": "81",
+                        "value": "e"
+                    },
+                    {
+                        "key": "82",
+                        "value": "g"
+                    },
+                    {
+                        "key": "83",
+                        "value": "a"
+                    },
+                    {
+                        "key": "84",
+                        "value": "n"
+                    },
+                    {
+                        "key": "85",
+                        "value": "o"
+                    },
+                    {
+                        "key": "86",
+                        "value": "."
+                    }
+                ]
+            }
+        },
+        "functionality": "This endpoint allows you to break down instructions into atomic steps. Furthermore, each step will contain the ingredients and equipment"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Classify Cuisine",
+        "api_call": "https://api.spoonacular.com/recipes/cuisine",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "t"
+                    },
+                    {
+                        "key": "1",
+                        "value": "i"
+                    },
+                    {
+                        "key": "2",
+                        "value": "t"
+                    },
+                    {
+                        "key": "3",
+                        "value": "l"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "="
+                    },
+                    {
+                        "key": "6",
+                        "value": "P"
+                    },
+                    {
+                        "key": "7",
+                        "value": "o"
+                    },
+                    {
+                        "key": "8",
+                        "value": "r"
+                    },
+                    {
+                        "key": "9",
+                        "value": "k"
+                    },
+                    {
+                        "key": "10",
+                        "value": " "
+                    },
+                    {
+                        "key": "11",
+                        "value": "r"
+                    },
+                    {
+                        "key": "12",
+                        "value": "o"
+                    },
+                    {
+                        "key": "13",
+                        "value": "a"
+                    },
+                    {
+                        "key": "14",
+                        "value": "s"
+                    },
+                    {
+                        "key": "15",
+                        "value": "t"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "w"
+                    },
+                    {
+                        "key": "18",
+                        "value": "i"
+                    },
+                    {
+                        "key": "19",
+                        "value": "t"
+                    },
+                    {
+                        "key": "20",
+                        "value": "h"
+                    },
+                    {
+                        "key": "21",
+                        "value": " "
+                    },
+                    {
+                        "key": "22",
+                        "value": "g"
+                    },
+                    {
+                        "key": "23",
+                        "value": "r"
+                    },
+                    {
+                        "key": "24",
+                        "value": "e"
+                    },
+                    {
+                        "key": "25",
+                        "value": "e"
+                    },
+                    {
+                        "key": "26",
+                        "value": "n"
+                    },
+                    {
+                        "key": "27",
+                        "value": " "
+                    },
+                    {
+                        "key": "28",
+                        "value": "b"
+                    },
+                    {
+                        "key": "29",
+                        "value": "e"
+                    },
+                    {
+                        "key": "30",
+                        "value": "a"
+                    },
+                    {
+                        "key": "31",
+                        "value": "n"
+                    },
+                    {
+                        "key": "32",
+                        "value": "s"
+                    },
+                    {
+                        "key": "33",
+                        "value": "&"
+                    },
+                    {
+                        "key": "34",
+                        "value": "i"
+                    },
+                    {
+                        "key": "35",
+                        "value": "n"
+                    },
+                    {
+                        "key": "36",
+                        "value": "g"
+                    },
+                    {
+                        "key": "37",
+                        "value": "r"
+                    },
+                    {
+                        "key": "38",
+                        "value": "e"
+                    },
+                    {
+                        "key": "39",
+                        "value": "d"
+                    },
+                    {
+                        "key": "40",
+                        "value": "i"
+                    },
+                    {
+                        "key": "41",
+                        "value": "e"
+                    },
+                    {
+                        "key": "42",
+                        "value": "n"
+                    },
+                    {
+                        "key": "43",
+                        "value": "t"
+                    },
+                    {
+                        "key": "44",
+                        "value": "L"
+                    },
+                    {
+                        "key": "45",
+                        "value": "i"
+                    },
+                    {
+                        "key": "46",
+                        "value": "s"
+                    },
+                    {
+                        "key": "47",
+                        "value": "t"
+                    },
+                    {
+                        "key": "48",
+                        "value": "="
+                    },
+                    {
+                        "key": "49",
+                        "value": "3"
+                    },
+                    {
+                        "key": "50",
+                        "value": " "
+                    },
+                    {
+                        "key": "51",
+                        "value": "o"
+                    },
+                    {
+                        "key": "52",
+                        "value": "z"
+                    },
+                    {
+                        "key": "53",
+                        "value": " "
+                    },
+                    {
+                        "key": "54",
+                        "value": "p"
+                    },
+                    {
+                        "key": "55",
+                        "value": "o"
+                    },
+                    {
+                        "key": "56",
+                        "value": "r"
+                    },
+                    {
+                        "key": "57",
+                        "value": "k"
+                    },
+                    {
+                        "key": "58",
+                        "value": " "
+                    },
+                    {
+                        "key": "59",
+                        "value": "s"
+                    },
+                    {
+                        "key": "60",
+                        "value": "h"
+                    },
+                    {
+                        "key": "61",
+                        "value": "o"
+                    },
+                    {
+                        "key": "62",
+                        "value": "u"
+                    },
+                    {
+                        "key": "63",
+                        "value": "l"
+                    },
+                    {
+                        "key": "64",
+                        "value": "d"
+                    },
+                    {
+                        "key": "65",
+                        "value": "e"
+                    },
+                    {
+                        "key": "66",
+                        "value": "r"
+                    }
+                ]
+            }
+        },
+        "functionality": "Classify the recipe's cuisine."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Analyze a Recipe Search Query",
+        "api_call": "https://api.spoonacular.com/recipes/queries/analyze?q=salmon with fusilli and no nuts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Parse a recipe search query to find out its intention."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Convert Amounts",
+        "api_call": "https://api.spoonacular.com/recipes/convert?ingredientName=flour&sourceAmount=2.5&sourceUnit=cups&targetUnit=grams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Convert amounts like \"2 cups of flour to grams\"."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Parse Ingredients",
+        "api_call": "https://api.spoonacular.com/recipes/parseIngredients?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "g"
+                    },
+                    {
+                        "key": "3",
+                        "value": "r"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "d"
+                    },
+                    {
+                        "key": "6",
+                        "value": "i"
+                    },
+                    {
+                        "key": "7",
+                        "value": "e"
+                    },
+                    {
+                        "key": "8",
+                        "value": "n"
+                    },
+                    {
+                        "key": "9",
+                        "value": "t"
+                    },
+                    {
+                        "key": "10",
+                        "value": "L"
+                    },
+                    {
+                        "key": "11",
+                        "value": "i"
+                    },
+                    {
+                        "key": "12",
+                        "value": "s"
+                    },
+                    {
+                        "key": "13",
+                        "value": "t"
+                    },
+                    {
+                        "key": "14",
+                        "value": "="
+                    },
+                    {
+                        "key": "15",
+                        "value": "1"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "c"
+                    },
+                    {
+                        "key": "18",
+                        "value": "u"
+                    },
+                    {
+                        "key": "19",
+                        "value": "p"
+                    },
+                    {
+                        "key": "20",
+                        "value": " "
+                    },
+                    {
+                        "key": "21",
+                        "value": "g"
+                    },
+                    {
+                        "key": "22",
+                        "value": "r"
+                    },
+                    {
+                        "key": "23",
+                        "value": "e"
+                    },
+                    {
+                        "key": "24",
+                        "value": "e"
+                    },
+                    {
+                        "key": "25",
+                        "value": "n"
+                    },
+                    {
+                        "key": "26",
+                        "value": " "
+                    },
+                    {
+                        "key": "27",
+                        "value": "t"
+                    },
+                    {
+                        "key": "28",
+                        "value": "e"
+                    },
+                    {
+                        "key": "29",
+                        "value": "a"
+                    },
+                    {
+                        "key": "30",
+                        "value": "&"
+                    },
+                    {
+                        "key": "31",
+                        "value": "s"
+                    },
+                    {
+                        "key": "32",
+                        "value": "e"
+                    },
+                    {
+                        "key": "33",
+                        "value": "r"
+                    },
+                    {
+                        "key": "34",
+                        "value": "v"
+                    },
+                    {
+                        "key": "35",
+                        "value": "i"
+                    },
+                    {
+                        "key": "36",
+                        "value": "n"
+                    },
+                    {
+                        "key": "37",
+                        "value": "g"
+                    },
+                    {
+                        "key": "38",
+                        "value": "s"
+                    },
+                    {
+                        "key": "39",
+                        "value": "="
+                    },
+                    {
+                        "key": "40",
+                        "value": "1"
+                    }
+                ]
+            }
+        },
+        "functionality": "Extract an ingredient from plain text."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Ingredients Widget",
+        "api_call": "https://api.spoonacular.com/recipes/visualizeIngredients?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "i"
+                    },
+                    {
+                        "key": "1",
+                        "value": "n"
+                    },
+                    {
+                        "key": "2",
+                        "value": "g"
+                    },
+                    {
+                        "key": "3",
+                        "value": "r"
+                    },
+                    {
+                        "key": "4",
+                        "value": "e"
+                    },
+                    {
+                        "key": "5",
+                        "value": "d"
+                    },
+                    {
+                        "key": "6",
+                        "value": "i"
+                    },
+                    {
+                        "key": "7",
+                        "value": "e"
+                    },
+                    {
+                        "key": "8",
+                        "value": "n"
+                    },
+                    {
+                        "key": "9",
+                        "value": "t"
+                    },
+                    {
+                        "key": "10",
+                        "value": "L"
+                    },
+                    {
+                        "key": "11",
+                        "value": "i"
+                    },
+                    {
+                        "key": "12",
+                        "value": "s"
+                    },
+                    {
+                        "key": "13",
+                        "value": "t"
+                    },
+                    {
+                        "key": "14",
+                        "value": "="
+                    },
+                    {
+                        "key": "15",
+                        "value": "3"
+                    },
+                    {
+                        "key": "16",
+                        "value": " "
+                    },
+                    {
+                        "key": "17",
+                        "value": "o"
+                    },
+                    {
+                        "key": "18",
+                        "value": "z"
+                    },
+                    {
+                        "key": "19",
+                        "value": " "
+                    },
+                    {
+                        "key": "20",
+                        "value": "f"
+                    },
+                    {
+                        "key": "21",
+                        "value": "l"
+                    },
+                    {
+                        "key": "22",
+                        "value": "o"
+                    },
+                    {
+                        "key": "23",
+                        "value": "u"
+                    },
+                    {
+                        "key": "24",
+                        "value": "r"
+                    },
+                    {
+                        "key": "25",
+                        "value": "&"
+                    },
+                    {
+                        "key": "26",
+                        "value": "s"
+                    },
+                    {
+                        "key": "27",
+                        "value": "e"
+                    },
+                    {
+                        "key": "28",
+                        "value": "r"
+                    },
+                    {
+                        "key": "29",
+                        "value": "v"
+                    },
+                    {
+                        "key": "30",
+                        "value": "i"
+                    },
+                    {
+                        "key": "31",
+                        "value": "n"
+                    },
+                    {
+                        "key": "32",
+                        "value": "g"
+                    },
+                    {
+                        "key": "33",
+                        "value": "s"
+                    },
+                    {
+                        "key": "34",
+                        "value": "="
+                    },
+                    {
+                        "key": "35",
+                        "value": "2"
+                    }
+                ]
+            }
+        },
+        "functionality": "Visualize ingredients of a recipe. You can play around with that endpoint!"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Guess Nutrition by Dish Name",
+        "api_call": "https://api.spoonacular.com/recipes/guessNutrition?title=Spaghetti Aglio et Olio",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Estimate the macronutrients of a dish based on its title."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Quick Answer",
+        "api_call": "https://api.spoonacular.com/recipes/quickAnswer?q=How much vitamin c is in 2 apples?",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Answer a nutrition related natural language question."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Ingredient Information",
+        "api_call": "https://api.spoonacular.com/food/ingredients/:id/information?amount=150&unit=grams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use an ingredient id to get all available information about an ingredient, such as its image and supermarket aisle."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Compute Ingredient Amount",
+        "api_call": "https://api.spoonacular.com/food/ingredients/:id/amount?nutrient=protein&target=2&unit=oz",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Compute the amount you need of a certain ingredient for a certain nutritional goal. For example, how much pineapple do"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Ingredient Substitutes by ID",
+        "api_call": "https://api.spoonacular.com/food/ingredients/:id/substitutes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for substitutes for a given ingredient."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Compute Glycemic Load",
+        "api_call": "https://api.spoonacular.com/food/ingredients/glycemicLoad?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ingredients\": [\n        \"1 kiwi\",\n        \"2 cups rice\",\n        \"2 glasses of water\"\n    ]\n}"
+            }
+        },
+        "functionality": "Retrieve the glycemic index for a list of ingredients and compute the individual and total glycemic load."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Autocomplete Ingredient Search",
+        "api_call": "https://api.spoonacular.com/food/ingredients/autocomplete?query=burger&number=10&metaInformation=false&intolerances=egg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Autocomplete the entry of an ingredient."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Ingredient Search",
+        "api_call": "https://api.spoonacular.com/food/ingredients/search?query=burger&addChildren=true&minProteinPercent=10&maxProteinPercent=90&minFatPercent=10&maxFatPercent=90&minCarbsPercent=10&maxCarbsPercent=90&metaInformation=false&intolerances=egg&sort=calories&sortDirection=asc&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for simple whole foods (e.g. fruits, vegetables, nuts, grains, meat, fish, dairy etc.)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Ingredient Substitutes",
+        "api_call": "https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=butter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for substitutes for a given ingredient."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Map Ingredients to Grocery Products",
+        "api_call": "https://api.spoonacular.com/food/ingredients/map",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ingredients\": [\n        \"eggs\",\n        \"bacon\"\n    ],\n    \"servings\": 2\n}"
+            }
+        },
+        "functionality": "Map a set of ingredients to products you can buy in the grocery store."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Grocery Products by UPC",
+        "api_call": "https://api.spoonacular.com/food/products/upc/:upc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get information about a packaged food using its UPC."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Comparable Products",
+        "api_call": "https://api.spoonacular.com/food/products/upc/:upc/comparable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find comparable products to the given one."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Product Information",
+        "api_call": "https://api.spoonacular.com/food/products/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use a product id to get full information about a product, such as ingredients, nutrition, etc. The nutritional information is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Product Nutrition by ID Widget",
+        "api_call": "https://api.spoonacular.com/food/products/:id/nutritionWidget?defaultCss=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a product's nutritional information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Product Nutrition by ID Image",
+        "api_call": "https://api.spoonacular.com/food/products/:id/nutritionWidget.png",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a product's nutritional information as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Product Nutrition Label Widget",
+        "api_call": "https://api.spoonacular.com/food/products/:id/nutritionLabel?defaultCss=false&showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a product's nutrition label as an HTML widget."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Product Nutrition Label Image",
+        "api_call": "https://api.spoonacular.com/food/products/:id/nutritionLabel.png?showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a product's nutrition label as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Grocery Products",
+        "api_call": "https://api.spoonacular.com/food/products/search?query=burger&minCalories=50&maxCalories=800&minCarbs=10&maxCarbs=100&minProtein=10&maxProtein=100&minFat=1&maxFat=100&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search packaged food products, such as frozen pizza or Greek yogurt."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Autocomplete Product Search",
+        "api_call": "https://api.spoonacular.com/food/products/suggest?query=chicke&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Generate suggestions for grocery products based on a (partial) query. The matches will be found by looking in the title"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Classify Grocery Product",
+        "api_call": "https://api.spoonacular.com/food/products/classify?locale=en_US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"Kroger Vitamin A & D Reduced Fat 2% Milk\",\n    \"upc\": \"\",\n    \"plu_code\": \"\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to match a packaged food to a basic category, e.g. a specific brand of milk to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Classify Grocery Product Bulk",
+        "api_call": "https://api.spoonacular.com/food/products/classifyBatch?locale=en_US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"title\": \"Kroger Vitamin A & D Reduced Fat 2% Milk\",\n        \"upc\": \"\",\n        \"plu_code\": \"\"\n    }\n]"
+            }
+        },
+        "functionality": "Provide a set of product jsons, get back classified products."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Menu Item Information",
+        "api_call": "https://api.spoonacular.com/food/menuItems/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use a menu item id to get all available information about a menu item, such as nutrition."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Menu Item Nutrition by ID Widget",
+        "api_call": "https://api.spoonacular.com/food/menuItems/:id/nutritionWidget?defaultCss=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a menu item's nutritional information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Menu Item Nutrition by ID Image",
+        "api_call": "https://api.spoonacular.com/food/menuItems/:id/nutritionWidget.png",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a menu item's nutritional information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Menu Item Nutrition Label Widget",
+        "api_call": "https://api.spoonacular.com/food/menuItems/:id/nutritionLabel?defaultCss=false&showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a menu item's nutritional label information as HTML including CSS."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Menu Item Nutrition Label Image",
+        "api_call": "https://api.spoonacular.com/food/menuItems/:id/nutritionLabel.png?showOptionalNutrients=false&showZeroValues=false&showIngredients=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Visualize a menu item's nutritional label information as an image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Autocomplete Menu Item Search",
+        "api_call": "https://api.spoonacular.com/food/menuItems/suggest?query=chicke&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Generate suggestions for menu items based on a (partial) query. The matches will be found by looking in the title"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Menu Items",
+        "api_call": "https://api.spoonacular.com/food/menuItems/search?query=burger&minCalories=50&maxCalories=800&minCarbs=10&maxCarbs=100&minProtein=10&maxProtein=100&minFat=1&maxFat=100&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search over 115,000 menu items from over 800 fast food and chain restaurants. For example, McDonald's Big Mac or Starbucks"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Dish Pairing for Wine",
+        "api_call": "https://api.spoonacular.com/food/wine/dishes?wine=malbec",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find a dish that goes well with a given wine."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Wine Pairing",
+        "api_call": "https://api.spoonacular.com/food/wine/pairing?food=steak&maxPrice=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find a wine that goes well with a food. Food can be a dish name (\"steak\"), an ingredient name (\"salmon\"),"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Wine Description",
+        "api_call": "https://api.spoonacular.com/food/wine/description?wine=merlot",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a simple description of a certain wine, e.g. \"malbec\", \"riesling\", or \"merlot\"."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Wine Recommendation",
+        "api_call": "https://api.spoonacular.com/food/wine/recommendation?wine=merlot&maxPrice=50&minRating=0.7&number=3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a specific wine recommendation (concrete product) for a given wine type, e.g. \"merlot\"."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Image Classification by URL",
+        "api_call": "https://api.spoonacular.com/food/images/classify?imageUrl=https://spoonacular.com/recipeImages/635350-240x150.jpg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Classify a food image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Image Analysis by URL",
+        "api_call": "https://api.spoonacular.com/food/images/analyze?imageUrl=https://spoonacular.com/recipeImages/635350-240x150.jpg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Analyze a food image. The API tries to classify the image, guess the nutrition, and find a matching recipes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Talk to Chatbot",
+        "api_call": "https://api.spoonacular.com/food/converse?text=donut recipes&contextId=342938",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint can be used to have a conversation about food with the spoonacular chatbot. Use the \"Get Conversation Suggests\""
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Conversation Suggests",
+        "api_call": "https://api.spoonacular.com/food/converse/suggest?query=tell&number=5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint returns suggestions for things the user can say or ask the chatbot."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Custom Foods",
+        "api_call": "https://api.spoonacular.com/food/customFoods/search?query=burger&username=dsky&hash=4b5v4398573406&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search custom foods in a user's account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Detect Food in Text",
+        "api_call": "https://api.spoonacular.com/food/detect",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "0",
+                        "value": "t"
+                    },
+                    {
+                        "key": "1",
+                        "value": "e"
+                    },
+                    {
+                        "key": "2",
+                        "value": "x"
+                    },
+                    {
+                        "key": "3",
+                        "value": "t"
+                    },
+                    {
+                        "key": "4",
+                        "value": "="
+                    },
+                    {
+                        "key": "5",
+                        "value": "I"
+                    },
+                    {
+                        "key": "6",
+                        "value": " "
+                    },
+                    {
+                        "key": "7",
+                        "value": "l"
+                    },
+                    {
+                        "key": "8",
+                        "value": "i"
+                    },
+                    {
+                        "key": "9",
+                        "value": "k"
+                    },
+                    {
+                        "key": "10",
+                        "value": "e"
+                    },
+                    {
+                        "key": "11",
+                        "value": " "
+                    },
+                    {
+                        "key": "12",
+                        "value": "t"
+                    },
+                    {
+                        "key": "13",
+                        "value": "o"
+                    },
+                    {
+                        "key": "14",
+                        "value": " "
+                    },
+                    {
+                        "key": "15",
+                        "value": "e"
+                    },
+                    {
+                        "key": "16",
+                        "value": "a"
+                    },
+                    {
+                        "key": "17",
+                        "value": "t"
+                    },
+                    {
+                        "key": "18",
+                        "value": " "
+                    },
+                    {
+                        "key": "19",
+                        "value": "d"
+                    },
+                    {
+                        "key": "20",
+                        "value": "e"
+                    },
+                    {
+                        "key": "21",
+                        "value": "l"
+                    },
+                    {
+                        "key": "22",
+                        "value": "i"
+                    },
+                    {
+                        "key": "23",
+                        "value": "c"
+                    },
+                    {
+                        "key": "24",
+                        "value": "i"
+                    },
+                    {
+                        "key": "25",
+                        "value": "o"
+                    },
+                    {
+                        "key": "26",
+                        "value": "u"
+                    },
+                    {
+                        "key": "27",
+                        "value": "s"
+                    },
+                    {
+                        "key": "28",
+                        "value": " "
+                    },
+                    {
+                        "key": "29",
+                        "value": "t"
+                    },
+                    {
+                        "key": "30",
+                        "value": "a"
+                    },
+                    {
+                        "key": "31",
+                        "value": "c"
+                    },
+                    {
+                        "key": "32",
+                        "value": "o"
+                    },
+                    {
+                        "key": "33",
+                        "value": "s"
+                    },
+                    {
+                        "key": "34",
+                        "value": "."
+                    },
+                    {
+                        "key": "35",
+                        "value": " "
+                    },
+                    {
+                        "key": "36",
+                        "value": "T"
+                    },
+                    {
+                        "key": "37",
+                        "value": "h"
+                    },
+                    {
+                        "key": "38",
+                        "value": "e"
+                    },
+                    {
+                        "key": "39",
+                        "value": " "
+                    },
+                    {
+                        "key": "40",
+                        "value": "o"
+                    },
+                    {
+                        "key": "41",
+                        "value": "n"
+                    },
+                    {
+                        "key": "42",
+                        "value": "l"
+                    },
+                    {
+                        "key": "43",
+                        "value": "y"
+                    },
+                    {
+                        "key": "44",
+                        "value": " "
+                    },
+                    {
+                        "key": "45",
+                        "value": "t"
+                    },
+                    {
+                        "key": "46",
+                        "value": "h"
+                    },
+                    {
+                        "key": "47",
+                        "value": "i"
+                    },
+                    {
+                        "key": "48",
+                        "value": "n"
+                    },
+                    {
+                        "key": "49",
+                        "value": "g"
+                    },
+                    {
+                        "key": "50",
+                        "value": " "
+                    },
+                    {
+                        "key": "51",
+                        "value": "b"
+                    },
+                    {
+                        "key": "52",
+                        "value": "e"
+                    },
+                    {
+                        "key": "53",
+                        "value": "t"
+                    },
+                    {
+                        "key": "54",
+                        "value": "t"
+                    },
+                    {
+                        "key": "55",
+                        "value": "e"
+                    },
+                    {
+                        "key": "56",
+                        "value": "r"
+                    },
+                    {
+                        "key": "57",
+                        "value": " "
+                    },
+                    {
+                        "key": "58",
+                        "value": "i"
+                    },
+                    {
+                        "key": "59",
+                        "value": "s"
+                    },
+                    {
+                        "key": "60",
+                        "value": " "
+                    },
+                    {
+                        "key": "61",
+                        "value": "a"
+                    },
+                    {
+                        "key": "62",
+                        "value": " "
+                    },
+                    {
+                        "key": "63",
+                        "value": "c"
+                    },
+                    {
+                        "key": "64",
+                        "value": "h"
+                    },
+                    {
+                        "key": "65",
+                        "value": "e"
+                    },
+                    {
+                        "key": "66",
+                        "value": "e"
+                    },
+                    {
+                        "key": "67",
+                        "value": "s"
+                    },
+                    {
+                        "key": "68",
+                        "value": "e"
+                    },
+                    {
+                        "key": "69",
+                        "value": "b"
+                    },
+                    {
+                        "key": "70",
+                        "value": "u"
+                    },
+                    {
+                        "key": "71",
+                        "value": "r"
+                    },
+                    {
+                        "key": "72",
+                        "value": "g"
+                    },
+                    {
+                        "key": "73",
+                        "value": "e"
+                    },
+                    {
+                        "key": "74",
+                        "value": "r"
+                    },
+                    {
+                        "key": "75",
+                        "value": " "
+                    },
+                    {
+                        "key": "76",
+                        "value": "w"
+                    },
+                    {
+                        "key": "77",
+                        "value": "i"
+                    },
+                    {
+                        "key": "78",
+                        "value": "t"
+                    },
+                    {
+                        "key": "79",
+                        "value": "h"
+                    },
+                    {
+                        "key": "80",
+                        "value": " "
+                    },
+                    {
+                        "key": "81",
+                        "value": "c"
+                    },
+                    {
+                        "key": "82",
+                        "value": "h"
+                    },
+                    {
+                        "key": "83",
+                        "value": "e"
+                    },
+                    {
+                        "key": "84",
+                        "value": "d"
+                    },
+                    {
+                        "key": "85",
+                        "value": "d"
+                    },
+                    {
+                        "key": "86",
+                        "value": "a"
+                    },
+                    {
+                        "key": "87",
+                        "value": "r"
+                    },
+                    {
+                        "key": "88",
+                        "value": "."
+                    },
+                    {
+                        "key": "89",
+                        "value": " "
+                    },
+                    {
+                        "key": "90",
+                        "value": "B"
+                    },
+                    {
+                        "key": "91",
+                        "value": "u"
+                    },
+                    {
+                        "key": "92",
+                        "value": "t"
+                    },
+                    {
+                        "key": "93",
+                        "value": " "
+                    },
+                    {
+                        "key": "94",
+                        "value": "t"
+                    },
+                    {
+                        "key": "95",
+                        "value": "h"
+                    },
+                    {
+                        "key": "96",
+                        "value": "e"
+                    },
+                    {
+                        "key": "97",
+                        "value": "n"
+                    },
+                    {
+                        "key": "98",
+                        "value": " "
+                    },
+                    {
+                        "key": "99",
+                        "value": "a"
+                    },
+                    {
+                        "key": "100",
+                        "value": "g"
+                    },
+                    {
+                        "key": "101",
+                        "value": "a"
+                    },
+                    {
+                        "key": "102",
+                        "value": "i"
+                    },
+                    {
+                        "key": "103",
+                        "value": "n"
+                    },
+                    {
+                        "key": "104",
+                        "value": ","
+                    },
+                    {
+                        "key": "105",
+                        "value": " "
+                    },
+                    {
+                        "key": "106",
+                        "value": "p"
+                    },
+                    {
+                        "key": "107",
+                        "value": "i"
+                    },
+                    {
+                        "key": "108",
+                        "value": "z"
+                    },
+                    {
+                        "key": "109",
+                        "value": "z"
+                    },
+                    {
+                        "key": "110",
+                        "value": "a"
+                    },
+                    {
+                        "key": "111",
+                        "value": " "
+                    },
+                    {
+                        "key": "112",
+                        "value": "w"
+                    },
+                    {
+                        "key": "113",
+                        "value": "i"
+                    },
+                    {
+                        "key": "114",
+                        "value": "t"
+                    },
+                    {
+                        "key": "115",
+                        "value": "h"
+                    },
+                    {
+                        "key": "116",
+                        "value": " "
+                    },
+                    {
+                        "key": "117",
+                        "value": "p"
+                    },
+                    {
+                        "key": "118",
+                        "value": "e"
+                    },
+                    {
+                        "key": "119",
+                        "value": "p"
+                    },
+                    {
+                        "key": "120",
+                        "value": "p"
+                    },
+                    {
+                        "key": "121",
+                        "value": "e"
+                    },
+                    {
+                        "key": "122",
+                        "value": "r"
+                    },
+                    {
+                        "key": "123",
+                        "value": "o"
+                    },
+                    {
+                        "key": "124",
+                        "value": "n"
+                    },
+                    {
+                        "key": "125",
+                        "value": "i"
+                    },
+                    {
+                        "key": "126",
+                        "value": ","
+                    },
+                    {
+                        "key": "127",
+                        "value": " "
+                    },
+                    {
+                        "key": "128",
+                        "value": "m"
+                    },
+                    {
+                        "key": "129",
+                        "value": "u"
+                    },
+                    {
+                        "key": "130",
+                        "value": "s"
+                    },
+                    {
+                        "key": "131",
+                        "value": "h"
+                    },
+                    {
+                        "key": "132",
+                        "value": "r"
+                    },
+                    {
+                        "key": "133",
+                        "value": "o"
+                    },
+                    {
+                        "key": "134",
+                        "value": "o"
+                    },
+                    {
+                        "key": "135",
+                        "value": "m"
+                    },
+                    {
+                        "key": "136",
+                        "value": "s"
+                    },
+                    {
+                        "key": "137",
+                        "value": ","
+                    },
+                    {
+                        "key": "138",
+                        "value": " "
+                    },
+                    {
+                        "key": "139",
+                        "value": "a"
+                    },
+                    {
+                        "key": "140",
+                        "value": "n"
+                    },
+                    {
+                        "key": "141",
+                        "value": "d"
+                    },
+                    {
+                        "key": "142",
+                        "value": " "
+                    },
+                    {
+                        "key": "143",
+                        "value": "t"
+                    },
+                    {
+                        "key": "144",
+                        "value": "o"
+                    },
+                    {
+                        "key": "145",
+                        "value": "m"
+                    },
+                    {
+                        "key": "146",
+                        "value": "a"
+                    },
+                    {
+                        "key": "147",
+                        "value": "t"
+                    },
+                    {
+                        "key": "148",
+                        "value": "o"
+                    },
+                    {
+                        "key": "149",
+                        "value": "e"
+                    },
+                    {
+                        "key": "150",
+                        "value": "s"
+                    },
+                    {
+                        "key": "151",
+                        "value": " "
+                    },
+                    {
+                        "key": "152",
+                        "value": "i"
+                    },
+                    {
+                        "key": "153",
+                        "value": "s"
+                    },
+                    {
+                        "key": "154",
+                        "value": " "
+                    },
+                    {
+                        "key": "155",
+                        "value": "s"
+                    },
+                    {
+                        "key": "156",
+                        "value": "o"
+                    },
+                    {
+                        "key": "157",
+                        "value": " "
+                    },
+                    {
+                        "key": "158",
+                        "value": "g"
+                    },
+                    {
+                        "key": "159",
+                        "value": "o"
+                    },
+                    {
+                        "key": "160",
+                        "value": "o"
+                    },
+                    {
+                        "key": "161",
+                        "value": "d"
+                    },
+                    {
+                        "key": "162",
+                        "value": " "
+                    },
+                    {
+                        "key": "163",
+                        "value": "t"
+                    },
+                    {
+                        "key": "164",
+                        "value": "o"
+                    },
+                    {
+                        "key": "165",
+                        "value": "o"
+                    },
+                    {
+                        "key": "166",
+                        "value": "!"
+                    }
+                ]
+            }
+        },
+        "functionality": "Take any text and find all mentions of food contained within it. This task is also called Named Entity Recognition"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Site Content",
+        "api_call": "https://api.spoonacular.com/food/site/search?query=past",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search spoonacular's site content. You'll be able to find everything that you could also find using the search suggestions on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search All Food",
+        "api_call": "https://api.spoonacular.com/food/search?query=apple&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search all food content with one call. That includes recipes, grocery products, menu items, simple foods (ingredients), and food videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Search Food Videos",
+        "api_call": "https://api.spoonacular.com/food/videos/search?query=burger&type=main course&cuisine=italian&diet=vegetarian&includeIngredients=tomato,cheese&excludeIngredients=eggs&minLength=0&maxLength=999&offset=606&number=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Find recipe and other food related videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Random Food Joke",
+        "api_call": "https://api.spoonacular.com/food/jokes/random",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a random joke that is related to food. Caution: this is an endpoint for adults!"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Random Food Trivia",
+        "api_call": "https://api.spoonacular.com/food/trivia/random",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns random food trivia."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Add to Meal Plan",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/items?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"date\": 1589500800,\n    \"slot\": 1,\n    \"position\": 0,\n    \"type\": \"INGREDIENTS\",\n    \"value\": {\n        \"ingredients\": [\n            {\n                \"name\": \"1 banana\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Add an item to the user's meal plan."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Delete from Meal Plan",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/items/:id?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"dsky\",\n    \"id\": 15678,\n    \"hash\": \"4b5v4398573406\"\n}"
+            }
+        },
+        "functionality": "Delete an item from the user's meal plan."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Meal Plan Templates",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/templates?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get meal plan templates from user or public ones."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Meal Plan Template",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/templates/:id?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get information about a meal plan template."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Add to Shopping List",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/shopping-list/items?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"item\": \"1 package baking powder\",\n    \"aisle\": \"Baking\",\n    \"parse\": true\n}"
+            }
+        },
+        "functionality": "Add an item to the current shopping list of a user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Delete from Shopping List",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/shopping-list/items/:id?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"dsky\",\n    \"id\": 15678,\n    \"hash\": \"4b5v4398573406\"\n}"
+            }
+        },
+        "functionality": "Delete an item from the current shopping list of the user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Shopping List",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/shopping-list?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the current shopping list for the given user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Generate Shopping List",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/shopping-list/:start-date/:end-date?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"dsky\",\n    \"start-date\": \"2020-06-01\",\n    \"end-date\": \"2020-06-07\",\n    \"hash\": \"4b5v4398573406\"\n}"
+            }
+        },
+        "functionality": "Generate the shopping list for a user from the meal planner in a given time frame."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Get Meal Plan Week",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/week/:start-date?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve a meal planned week for the given user. The username must be a spoonacular user and the hash must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Clear Meal Plan Day",
+        "api_call": "https://api.spoonacular.com/mealplanner/:username/day/:date?hash=ipsum ea proident amet occaecat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": ""
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"dsky\",\n    \"date\": \"2020-06-01\",\n    \"hash\": \"4b5v4398573406\"\n}"
+            }
+        },
+        "functionality": "Delete all planned items from the user's meal plan for a specific day."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Generate Meal Plan",
+        "api_call": "https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=2000&diet=vegetarian&exclude=shellfish, olives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Generate a meal plan with three meals per day (breakfast, lunch, and dinner)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "spoonacular API: Connect User",
+        "api_call": "https://api.spoonacular.com/users/connect",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"your user's name\",\n    \"firstName\": \"your user's first name\",\n    \"lastName\": \"your user's last name\",\n    \"email\": \"your user's email\"\n}"
+            }
+        },
+        "functionality": "In order to call user-specific endpoints, you need to connect your app's users to spoonacular users."
+    }
+]
