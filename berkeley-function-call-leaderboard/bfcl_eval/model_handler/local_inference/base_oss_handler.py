@@ -30,7 +30,6 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
-        self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
 
@@ -105,7 +104,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 "trust_remote_code": True,
             }
         else:
-            self.model_path_or_id = self.model_name_huggingface
+            self.model_path_or_id = self.model_name
             load_kwargs = {
                 "pretrained_model_name_or_path": self.model_path_or_id,
                 "trust_remote_code": True,
