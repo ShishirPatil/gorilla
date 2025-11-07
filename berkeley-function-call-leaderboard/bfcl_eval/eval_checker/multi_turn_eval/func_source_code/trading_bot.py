@@ -221,28 +221,6 @@ class TradingBot:
         """
         return {"current_time": CURRENT_TIME.strftime("%I:%M %p")}
 
-    def update_market_status(self, current_time_str: str) -> Dict[str, str]:
-        """
-        Update the market status based on the current time.
-
-        Args:
-            current_time_str (str): Current time in HH:MM AM/PM format.
-
-        Returns:
-            status (str): Status of the market. [Enum]: ["Open", "Closed"]
-        """
-        market_open_time = time(9, 30)  # Market opens at 9:30 AM
-        market_close_time = time(16, 0)  # Market closes at 4:00 PM
-
-        current_time = datetime.strptime(current_time_str, "%I:%M %p").time()
-
-        if market_open_time <= current_time <= market_close_time:
-            self.market_status = "Open"
-            return {"status": "Open"}
-        else:
-            self.market_status = "Closed"
-            return {"status": "Closed"}
-
     def get_symbol_by_name(self, name: str) -> Dict[str, str]:
         """
         Get the symbol of a stock by company name.
