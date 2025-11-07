@@ -348,11 +348,14 @@ def get_directory_structure_by_category(test_category: str) -> str:
 
 def load_file(file_path, sort_by_id=False):
     result = []
-    with open(file_path) as f:
-        file = f.readlines()
-        for line in file:
-            content = json.loads(line)
-            result.append(content)
+
+    abs_filename = os.path.abspath(file_path)
+    with _get_file_lock(abs_filename):
+        with open(file_path) as f:
+            file = f.readlines()
+            for line in file:
+                content = json.loads(line)
+                result.append(content)
 
     if sort_by_id:
         result.sort(key=sort_key)
@@ -456,10 +459,7 @@ def write_list_of_dicts_to_file(filename, data, subdir=None) -> None:
         filename = os.path.join(subdir, os.path.basename(filename))
 
     abs_filename = os.path.abspath(filename)
-    file_lock = _get_file_lock(abs_filename)
-
-    # Write the list of dictionaries to the file in JSON format
-    with file_lock:
+    with _get_file_lock(abs_filename):
         with open(abs_filename, "w", encoding="utf-8") as f:
             for i, entry in enumerate(data):
                 # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
