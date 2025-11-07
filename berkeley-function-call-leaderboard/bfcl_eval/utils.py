@@ -3,6 +3,7 @@ import os
 import re
 from copy import deepcopy
 from pathlib import Path
+from threading import Lock
 from typing import Union
 
 from bfcl_eval.constants.category_mapping import *
@@ -14,6 +15,24 @@ from bfcl_eval.constants.eval_config import *
 from bfcl_eval.constants.executable_backend_config import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
 )
+
+_FILE_LOCK_REGISTRY: dict[str, Lock] = {}
+_FILE_LOCK_REGISTRY_LOCK = Lock()
+
+
+def _get_file_lock(filepath: str) -> Lock:
+    """
+    Get a file lock for a given file path.
+    This function is used to prevent multiple threads from writing to the same file simultaneously.
+    """
+    normalized_path = os.path.abspath(filepath)
+    with _FILE_LOCK_REGISTRY_LOCK:
+        lock = _FILE_LOCK_REGISTRY.get(normalized_path)
+        if lock is None:
+            lock = Lock()
+            _FILE_LOCK_REGISTRY[normalized_path] = lock
+        return lock
+
 
 #### Helper functions to extract/parse/complete test category from different formats ####
 
@@ -327,50 +346,16 @@ def get_directory_structure_by_category(test_category: str) -> str:
 #### Helper functions to load/write the dataset files ####
 
 
-def load_file(file_path, sort_by_id=False, allow_concatenated_json=False):
+def load_file(file_path, sort_by_id=False):
     result = []
-    with open(file_path) as f:
-        file = f.readlines()
-        for line in file:
-            try:
+
+    abs_filename = os.path.abspath(file_path)
+    with _get_file_lock(abs_filename):
+        with open(file_path) as f:
+            file = f.readlines()
+            for line in file:
                 content = json.loads(line)
                 result.append(content)
-            except Exception as e:
-                if not allow_concatenated_json:
-                    raise e
-
-                # Although this really shouldn't happen, sometimes a result file might have more than one JSON objects concatenated on a single line instead of one per line (e.g. '{"id": 1, xxx}{"id": 2, xxx}').
-                # We can parse them incrementally by using `json.JSONDecoder.raw_decode`, which returns both the parsed object and the index where it stopped parsing.
-                line_jsons = []
-                decoder = json.JSONDecoder()
-                idx = 0
-                while idx < len(line):
-                    # Skip whitespace between objects (if any)
-                    while idx < len(line) and line[idx].isspace():
-                        idx += 1
-
-                    if idx >= len(line):
-                        break
-
-                    try:
-                        json_obj, idx = decoder.raw_decode(line, idx)
-                        line_jsons.append(json_obj)
-                    except json.JSONDecodeError:
-                        # If decoding fails at any point, the entire line is invalid.
-                        raise e
-
-                # After parsing, we must ensure the entire line has been consumed.
-                # If `idx` is not at the end of the line, it means there's trailing
-                # garbage, which is an error.
-                if idx < len(line):
-                    raise e
-
-                if not line_jsons:
-                    # If the line was non-empty but contained no JSON objects (e.g., only whitespace),
-                    # it's an error.
-                    raise e
-
-                result.extend(line_jsons)
 
     if sort_by_id:
         result.sort(key=sort_key)
@@ -383,7 +368,7 @@ def sort_file_content_by_id(file_path: Path) -> None:
     when the ordering actually changes to avoid unnecessary disk writes.
     """
     # Load the current content preserving original order (and potential duplicates)
-    original_entries = load_file(file_path, allow_concatenated_json=True)
+    original_entries = load_file(file_path)
 
     # Desired final ordering (sorted, unique)
     sorted_entries = sorted(original_entries, key=sort_key)
@@ -473,13 +458,14 @@ def write_list_of_dicts_to_file(filename, data, subdir=None) -> None:
         # Construct the full path to the file
         filename = os.path.join(subdir, os.path.basename(filename))
 
-    # Write the list of dictionaries to the file in JSON format
-    with open(filename, "w", encoding="utf-8") as f:
-        for i, entry in enumerate(data):
-            # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
-            entry = make_json_serializable(entry)
-            json_str = json.dumps(entry, ensure_ascii=False) + "\n"
-            f.write(json_str)
+    abs_filename = os.path.abspath(filename)
+    with _get_file_lock(abs_filename):
+        with open(abs_filename, "w", encoding="utf-8") as f:
+            for i, entry in enumerate(data):
+                # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+                entry = make_json_serializable(entry)
+                json_str = json.dumps(entry, ensure_ascii=False) + "\n"
+                f.write(json_str)
 
 
 def make_json_serializable(value):
