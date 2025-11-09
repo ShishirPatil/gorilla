@@ -143,7 +143,7 @@ SUPPORTED_MODELS = [
     "Qwen/Qwen3-30B-A3B-Instruct-2507",
     "Qwen/Qwen3-235B-A22B-Instruct-2507-FC",
     "Qwen/Qwen3-235B-A22B-Instruct-2507",
-    "Humanoid/PelicanVLM-72B-Instruct",
+    "Humanoid/PelicanVLM-FC",
     "Qwen/Qwen2.5-vl-7B-FC",
     "Qwen/Qwen2.5-vl-32B-FC",
     "Qwen/Qwen2.5-vl-72B-FC",
