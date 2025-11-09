@@ -1282,9 +1282,9 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-        "Humanoid/PelicanVLM-72B-Instruct": ModelConfig(
-        model_name="Humanoid/PelicanVLM-72B-Instruct",
-        display_name="PelicanVLM-72B-Instruct (FC)",
+        "Humanoid/PelicanVLM-FC": ModelConfig(
+        model_name="Humanoid/PelicanVLM-FC",
+        display_name="PelicanVLM-FC (FC)",
         url="https://huggingface.co/rxc205/PelicanVLM-FC",
         org="Humanoid",
         license="apache-2.0",
