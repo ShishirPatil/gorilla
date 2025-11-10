@@ -1,5 +1,6 @@
 import json
 import os
+import hashlib
 import re
 from copy import deepcopy
 from pathlib import Path
@@ -25,10 +26,11 @@ def _get_file_lock(filepath: str) -> FileLock:
     """
     Get a file lock for a given file path.
     This function returns a cross-process file lock (using the `filelock` library) to prevent multiple
-    processes or threads from writing to the same target file at the same time. We create a distinct
-    lock file ("<filename>.lock") next to the target file so that unrelated paths don’t block each other.
+    processes or threads from writing to the same target file at the same time. All lock files are
+    colocated in the hidden directory `LOCK_DIR` so they don’t clutter the actual data folders.
     """
-    lock_path = f"{os.path.abspath(filepath)}.lock"
+    digest = hashlib.sha1(os.path.abspath(filepath).encode()).hexdigest()
+    lock_path = str(LOCK_DIR / f"{digest}.lock")
     with _FILE_LOCK_REGISTRY_LOCK:
         lock = _FILE_LOCK_REGISTRY.get(lock_path)
         if lock is None:
@@ -352,14 +354,14 @@ def get_directory_structure_by_category(test_category: str) -> str:
 
 def load_file(file_path, sort_by_id: bool = False, use_lock: bool = True) -> list[dict]:
     result = []
-    
+
     def _load_entries(input_path: str) -> None:
         with open(input_path) as f:
             file = f.readlines()
             for line in file:
                 content = json.loads(line)
                 result.append(content)
-        
+
     if use_lock:
         with _get_file_lock(file_path):
             _load_entries(file_path)
