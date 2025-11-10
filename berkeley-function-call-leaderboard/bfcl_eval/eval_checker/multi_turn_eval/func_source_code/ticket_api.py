@@ -147,7 +147,7 @@ class TicketAPI:
         Args:
             ticket_id (int): ID of the ticket to be changed.
             updates (Dict): Dictionary containing the fields to be updated.
-                - title (str) : [Optional] New title for the ticket.
+                - title (str): [Optional] New title for the ticket.
                 - description (str): [Optional] New description for the ticket.
                 - status (str): [Optional] New status for the ticket.
                 - priority (int): [Optional] New priority for the ticket.
