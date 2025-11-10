@@ -56,6 +56,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.pinhook import PinHookHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
     SalesforceLlamaHandler,
 )
@@ -1124,6 +1125,18 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
+    "TactAgent/PinHook-4B": ModelConfig(
+        model_name="TactAgent/PinHook-4B",
+        display_name="PinHook-4B(FC)",
+        url="https://huggingface.co/TactAgent/PinHook-4B",
+        org="TactAgent",
+        license="apache-2.0",
+        model_handler=PinHookHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
