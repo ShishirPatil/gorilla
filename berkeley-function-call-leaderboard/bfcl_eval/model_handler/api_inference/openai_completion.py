@@ -3,9 +3,11 @@ import os
 import time
 from typing import Any
 
+from openai import OpenAI, RateLimitError
+
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
@@ -15,7 +17,6 @@ from bfcl_eval.model_handler.utils import (
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from openai import OpenAI, RateLimitError
 
 
 class OpenAICompletionsHandler(BaseHandler):
