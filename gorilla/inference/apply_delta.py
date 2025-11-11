@@ -17,9 +17,37 @@ import tempfile
 from huggingface_hub import snapshot_download
 import torch
 from torch import nn
-from tqdm import tqdm
+
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig
 
+from bfcl_eval.progress_utils import (
+    create_task, advance, finish, track_iter, log, set_description
+)
+
+class _PBar:
+    def __init__(self, total=None, desc=None, scope="RAFT"):
+        self._name = (desc or "progress")
+        self._scope = scope
+        create_task(self._name, total=total, scope=self._scope, description=desc or "")
+    def update(self, n: int = 1):
+        advance(self._name, n)
+    def set_description(self, desc: str):
+        set_description(self._name, desc)
+    def close(self):
+        finish(self._name)
+
+class _TqdmShim:
+    def __call__(self, iterable=None, total=None, desc=None, **kwargs):
+        if iterable is None:
+            return _PBar(total=total, desc=desc, scope="RAFT")
+        else:
+            return track_iter(desc or "progress", iterable, scope="RAFT",
+                              total=total, description=desc or "")
+    @staticmethod
+    def write(msg):
+        log(msg)
+
+tqdm = _TqdmShim()
 
 GB = 1 << 30
 

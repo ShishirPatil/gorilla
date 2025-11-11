@@ -19,8 +19,35 @@ from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.utils import parse_prompt_variation_params
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
-from tqdm import tqdm
+from bfcl_eval.progress_utils import (
+    create_task, advance, finish, set_description,
+    track_iter, log
+)
 
+class _PBar:
+    def __init__(self, total=None, desc=None, scope="EVAL"):
+        self._name = (desc or "progress")
+        self._scope = scope
+        create_task(self._name, total=total, scope=self._scope, description=desc or "")
+    def update(self, n: int = 1):
+        advance(self._name, n)
+    def set_description(self, desc: str):
+        set_description(self._name, desc)
+    def close(self):
+        finish(self._name)
+
+def tqdm(iterable=None, total=None, desc=None, **kwargs):
+    """
+    Drop-in replacement:
+    - iterable form: for x in tqdm(data, total=len(data), desc="Eval"): ...
+    - manual form: pbar = tqdm(total=N, desc="Eval"); pbar.update(1); pbar.close()
+    """
+    if iterable is None:
+        return _PBar(total=total, desc=desc)
+    else:
+        return track_iter(desc or "progress", iterable, scope="EVAL", total=total, description=desc or "")
+# keep a compatible alias for tqdm.write
+tqdm_write = log
 
 def get_handler(model_name: str) -> BaseHandler:
     config = MODEL_CONFIG_MAPPING[model_name]
