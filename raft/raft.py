@@ -1,7 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from mdc import MDC
-from tqdm import tqdm
 from logconf import log_setup
 import logging
 from typing import Literal, Any, get_args
@@ -25,6 +24,35 @@ from checkpointing import Checkpointing, checkpointed
 import uuid
 import shutil
 from threading import Thread, Event
+
+from bfcl_eval.progress_utils import (
+    create_task, advance, finish, track_iter, log, set_description
+)
+
+class _PBar:
+    def __init__(self, total=None, desc=None, scope="RAFT"):
+        self._name = (desc or "progress")
+        self._scope = scope
+        create_task(self._name, total=total, scope=self._scope, description=desc or "")
+    def update(self, n: int = 1):
+        advance(self._name, n)
+    def set_description(self, desc: str):
+        set_description(self._name, desc)
+    def close(self):
+        finish(self._name)
+
+class _TqdmShim:
+    def __call__(self, iterable=None, total=None, desc=None, **kwargs):
+        if iterable is None:
+            return _PBar(total=total, desc=desc, scope="RAFT")
+        else:
+            return track_iter(desc or "progress", iterable, scope="RAFT",
+                              total=total, description=desc or "")
+    @staticmethod
+    def write(msg):
+        log(msg)
+
+tqdm = _TqdmShim()
 
 log_setup()
 
