@@ -15,7 +15,7 @@
 import json
 import argparse
 import os
-from tqdm import tqdm
+
 import torch
 from transformers import (
     AutoConfig,
@@ -27,6 +27,33 @@ from transformers import (
     LlamaForCausalLM,
     T5Tokenizer,
 )
+
+from bfcl_eval.progress_utils import (
+    create_task, advance, finish, track_iter, log, set_description
+)
+
+class _PBar:
+    def __init__(self, total=None, desc=None, scope="GOR"):
+        self._name = (desc or "progress")
+        self._scope = scope
+        create_task(self._name, total=total, scope=self._scope, description=desc or "")
+    def update(self, n: int = 1):
+        advance(self._name, n)
+    def set_description(self, desc: str):
+        set_description(self._name, desc)
+    def close(self):
+        finish(self._name)
+
+class _TqdmShim:
+    def __call__(self, iterable=None, total=None, desc=None, **kwargs):
+        if iterable is None:
+            return _PBar(total=total, desc=desc, scope="GOR")
+        else:
+            return track_iter(desc or "progress", iterable, scope="GOR",
+                              total=total, description=desc or "")
+    @staticmethod
+    def write(msg):
+        log(msg)
 
 # Load Gorilla Model from HF
 def load_model(
