@@ -1279,7 +1279,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "meta-llama/Llama-3.1-70B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-70B-Instruct",
@@ -1305,7 +1305,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.2-1B-Instruct",
@@ -1378,7 +1378,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "Salesforce/Llama-xLAM-2-8b-fc-r": ModelConfig(
         model_name="Salesforce/Llama-xLAM-2-8b-fc-r",
@@ -1391,7 +1391,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-32b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-32b-fc-r",
@@ -1404,7 +1404,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-3b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-3b-fc-r",
@@ -1417,7 +1417,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-1b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-1b-fc-r",
@@ -1430,7 +1430,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "mistralai/Ministral-8B-Instruct-2410": ModelConfig(
         model_name="mistralai/Ministral-8B-Instruct-2410",
@@ -1443,7 +1443,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "microsoft/phi-4": ModelConfig(
         model_name="microsoft/phi-4",
@@ -1456,7 +1456,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "microsoft/Phi-4-mini-instruct": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct",
@@ -1469,7 +1469,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "microsoft/Phi-4-mini-instruct-FC": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct",
@@ -1482,7 +1482,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-3.2-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.2-8b-instruct",
@@ -1495,7 +1495,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-3.1-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.1-8b-instruct",
@@ -1508,7 +1508,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
-        reasoning_mode=True,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-20b-functioncalling": ModelConfig(
         model_name="ibm-granite/granite-20b-functioncalling",
