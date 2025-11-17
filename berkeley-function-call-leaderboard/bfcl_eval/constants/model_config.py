@@ -1593,6 +1593,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-0.6B": ModelConfig(
         model_name="Qwen/Qwen3-0.6B",
@@ -1818,6 +1819,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "watt-ai/watt-tool-8B": ModelConfig(
         model_name="watt-ai/watt-tool-8B",
