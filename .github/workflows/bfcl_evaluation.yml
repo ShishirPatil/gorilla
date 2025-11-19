@@ -1,0 +1,73 @@
+name: BFCL Evaluation Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      MIN_ACCEPTABLE_SCORE: 0.60
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check for OPENAI_API_KEY
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "Error: OPENAI_API_KEY is not set"
+            exit 1
+          fi
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          cd berkeley-function-call-leaderboard
+          pip install -e .
+
+      - name: Run BFCL generate
+        working-directory: berkeley-function-call-leaderboard
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          bfcl generate \
+            --model gpt-4o-2024-08-06-FC \
+            --test-category live_parallel
+
+      - name: Run BFCL evaluate and extract score
+        working-directory: berkeley-function-call-leaderboard
+        run: |
+          bfcl evaluate \
+            --model gpt-4o-2024-08-06-FC \
+            --test-category live_parallel
+          
+          # Read score from the JSON file - get the first line only and parse accuracy
+          score=$(head -n 1 score/gpt-4o-2024-08-06-FC/BFCL_v3_live_parallel_score.json | jq -r '.accuracy')
+          echo "EVALUATION_SCORE=${score}" >> $GITHUB_ENV
+          
+          if (( $(echo "$score < $MIN_ACCEPTABLE_SCORE" | bc -l) )); then
+            echo "Score ($score) is below minimum threshold ($MIN_ACCEPTABLE_SCORE)"
+            exit 1
+          else
+            echo "Score ($score) meets or exceeds minimum threshold ($MIN_ACCEPTABLE_SCORE)"
+          fi
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## BFCL Evaluation Results
+            
+            - Score: ${{ env.EVALUATION_SCORE }}
+            - Minimum Threshold: ${{ env.MIN_ACCEPTABLE_SCORE }}
+            - Status: ${{ env.EVALUATION_SCORE >= env.MIN_ACCEPTABLE_SCORE && '✅ Passed' || '❌ Failed' }}
