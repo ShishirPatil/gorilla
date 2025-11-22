@@ -98,6 +98,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Mistral-Medium-2505                        | Function Calling | Mistral AI     | mistral-medium-2505-FC                                      |
 | Mistral-small-2506                         | Function Calling | Mistral AI     | mistral-small-2506-FC                                       |
 | Mistral-small-2506                         | Prompt           | Mistral AI     | mistral-small-2506                                          |
+| Nanbeige3.5-Pro-Thinking-FC                | Function Calling | Self-hosted 💻 | Nanbeige3.5-Pro-Thinking-FC                                 |
+| Nanbeige4-3B-Thinking-2511                 | Function Calling | Self-hosted 💻 | Nanbeige/Nanbeige4-3B-Thinking-2511                         |
 | Nemotron-4-340b-instruct                   | Prompt           | Nvidia         | nvidia/nemotron-4-340b-instruct                             |
 | O3-2025-04-16                              | Prompt           | OpenAI         | o3-2025-04-16                                               |
 | O3-2025-04-16                              | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |

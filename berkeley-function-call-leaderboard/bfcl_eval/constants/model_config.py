@@ -29,6 +29,7 @@ from bfcl_eval.model_handler.api_inference.qwen import (
     QwenAgentThinkHandler,
     QwenAPIHandler,
 )
+from bfcl_eval.model_handler.api_inference.nanbeige import NanbeigeAPIHandler
 from bfcl_eval.model_handler.api_inference.writer import WriterHandler
 from bfcl_eval.model_handler.local_inference.arch import ArchHandler
 from bfcl_eval.model_handler.local_inference.bielik import BielikHandler
@@ -56,6 +57,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
     SalesforceLlamaHandler,
 )
@@ -112,6 +114,18 @@ class ModelConfig:
 
 # Inference through API calls
 api_inference_model_map = {
+    "Nanbeige3.5-Pro-Thinking-FC": ModelConfig(
+        model_name="Nanbeige3.5-Pro-Thinking",
+        display_name="Nanbeige3.5-Pro-Thinking (FC)",
+        url="https://huggingface.co/Nanbeige",
+        org="Nanbeige",
+        license="apache-2.0",
+        model_handler=NanbeigeAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "gorilla-openfunctions-v2": ModelConfig(
         model_name="gorilla-openfunctions-v2",
         display_name="Gorilla-OpenFunctions-v2 (FC)",
@@ -1124,6 +1138,18 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
+    "Nanbeige/Nanbeige4-3B-Thinking-2511": ModelConfig(
+        model_name="Nanbeige/Nanbeige4-3B-Thinking-2511",
+        display_name="Nanbeige4-3B-Thinking-2511 (FC)",
+        url="https://huggingface.co/Nanbeige/Nanbeige4-3B-Thinking-2511",
+        org="Nanbeige",
+        license="apache-2.0",
+        model_handler=NanbeigeFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
