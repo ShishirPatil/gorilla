@@ -13,6 +13,8 @@
 # -----------------------------------------------------------------------------
 
 SUPPORTED_MODELS = [
+    "Nanbeige/Nanbeige4-3B-Thinking-2511"
+    "Nanbeige3.5-Pro-Thinking-FC",
     "gorilla-openfunctions-v2",
     "DeepSeek-V3.2-Exp",
     "DeepSeek-V3.2-Exp-FC",
