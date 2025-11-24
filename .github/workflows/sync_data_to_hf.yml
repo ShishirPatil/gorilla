@@ -8,6 +8,12 @@ on:
       - '.github/workflows/sync_data_to_hf.yml'
 
 jobs:
+# This job mirrors berkeley-function-call-leaderboard/bfcl_eval/data
+# into the Hugging Face dataset: gorilla-llm/Berkeley-Function-Calling-Leaderboard.
+# Please notice the requirements before merch:
+# 1. The repository must define a secret named HF_TOKEN
+# 2. HF_TOKEN should be a Hugging Face access token with write permissions.
+# If HF_TOKEN is missing or empty, the push will fail with an error like "Illegal header value b'Bearer'".
   sync:
     runs-on: ubuntu-latest
     env:
