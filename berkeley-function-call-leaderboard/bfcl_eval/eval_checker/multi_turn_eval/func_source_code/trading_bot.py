@@ -221,28 +221,6 @@ class TradingBot:
         """
         return {"current_time": CURRENT_TIME.strftime("%I:%M %p")}
 
-    def update_market_status(self, current_time_str: str) -> Dict[str, str]:
-        """
-        Update the market status based on the current time.
-
-        Args:
-            current_time_str (str): Current time in HH:MM AM/PM format.
-
-        Returns:
-            status (str): Status of the market. [Enum]: ["Open", "Closed"]
-        """
-        market_open_time = time(9, 30)  # Market opens at 9:30 AM
-        market_close_time = time(16, 0)  # Market closes at 4:00 PM
-
-        current_time = datetime.strptime(current_time_str, "%I:%M %p").time()
-
-        if market_open_time <= current_time <= market_close_time:
-            self.market_status = "Open"
-            return {"status": "Open"}
-        else:
-            self.market_status = "Closed"
-            return {"status": "Closed"}
-
     def get_symbol_by_name(self, name: str) -> Dict[str, str]:
         """
         Get the symbol of a stock by company name.
@@ -413,10 +391,8 @@ class TradingBot:
     def withdraw_funds(self, amount: float) -> Dict[str, Union[str, float]]:
         """
         Withdraw funds from the account balance.
-        Withdraw funds from the account balance.
 
         Args:
-            amount (float): Amount to withdraw from the account.
             amount (float): Amount to withdraw from the account.
 
         Returns:
@@ -430,21 +406,6 @@ class TradingBot:
         if amount <= 0:
             return {"error": "Transaction amount must be positive."}
 
-        if amount > self.account_info["balance"]:
-            return {"error": "Insufficient funds for withdrawal."}
-
-        self.account_info["balance"] -= amount
-        self.transaction_history.append(
-            {
-                "type": "withdrawal",
-                "amount": amount,
-                "timestamp": self._generate_transaction_timestamp(),
-            }
-        )
-        return {
-            "status": "Withdrawal successful",
-            "new_balance": self.account_info["balance"],
-        }
         if amount > self.account_info["balance"]:
             return {"error": "Insufficient funds for withdrawal."}
 
@@ -689,12 +650,12 @@ class TradingBot:
             stock (str): the stock symbol to add to the watchlist.
 
         Returns:
-            symbol (str): the symbol that were successfully added to the watchlist.
+            watchlist (List[str]): the watchlist.
         """
         if stock not in self.watch_list:
             if stock in self.stocks:  # Ensure symbol is valid
                 self.watch_list.append(stock)
-        return {"symbol": self.watch_list}
+        return {"watchlist": self.watch_list}
 
     def notify_price_change(self, stocks: List[str], threshold: float) -> Dict[str, str]:
         """
