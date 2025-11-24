@@ -3,7 +3,6 @@ from datetime import datetime
 import os
 from types import SimpleNamespace
 from typing import List, Optional
-
 import typer
 from importlib.metadata import version as _version
 from bfcl_eval._llm_response_generation import main as generation_main
@@ -18,7 +17,12 @@ from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.eval_checker.eval_runner import main as evaluation_main
 from dotenv import load_dotenv
 from tabulate import tabulate
-
+from bfcl_eval.progress_utils import (
+    init_logging,
+    start,
+    hijack_std_streams,
+    hijack_print,
+)
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
     def list_commands(self, ctx):
@@ -317,4 +321,8 @@ def scores(
 
 
 if __name__ == "__main__":
+    init_logging() 
+    start()
+    hijack_std_streams(True)
+    hijack_print(True) 
     cli()

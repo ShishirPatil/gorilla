@@ -20,11 +20,38 @@ from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.eval_checker.eval_runner_helper import load_file
 from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.utils import *
-from tqdm import tqdm
+from bfcl_eval.progress_utils import (
+    create_task, advance, finish, set_description,
+    track_iter, log
+)
 
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 
+class _PBar:
+    def __init__(self, total=None, desc=None, scope="EVAL"):
+        self._name = (desc or "progress")
+        self._scope = scope
+        create_task(self._name, total=total, scope=self._scope, description=desc or "")
+    def update(self, n: int = 1):
+        advance(self._name, n)
+    def set_description(self, desc: str):
+        set_description(self._name, desc)
+    def close(self):
+        finish(self._name)
+
+def tqdm(iterable=None, total=None, desc=None, **kwargs):
+    """
+    Drop-in replacement:
+    - iterable form: for x in tqdm(data, total=len(data), desc="Eval"): ...
+    - manual form: pbar = tqdm(total=N, desc="Eval"); pbar.update(1); pbar.close()
+    """
+    if iterable is None:
+        return _PBar(total=total, desc=desc)
+    else:
+        return track_iter(desc or "progress", iterable, scope="EVAL", total=total, description=desc or "")
+# keep a compatible alias for tqdm.write
+tqdm_write = log
 
 def get_args():
     parser = argparse.ArgumentParser()
