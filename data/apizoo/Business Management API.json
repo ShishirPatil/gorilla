@@ -1,0 +1,602 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get analytics",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}?fields=analytics.start(1680503760).end(1680564980).granularity(DAY).phone_numbers([]).country_codes([\"US\", \"BR\"])",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Analytics](https://developers.facebook.com/docs/whatsapp/business-management-api/analytics)\n- Endpoint reference: [WhatsApp Business Account > Analytics](https://developers.facebook.com/docs/graph-api/reference/waba-analytics/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get conversation analytics",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}?fields=conversation_analytics.start(1656661480).end(1674859480).granularity(MONTHLY).conversation_directions([\"business_initiated\"]).dimensions([\"conversation_type\", \"conversation_direction\"])",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Analytics](https://developers.facebook.com/docs/whatsapp/business-management-api/analytics)\n- Endpoint reference: [WhatsApp Business Account > Analytics](https://developers.facebook.com/docs/graph-api/reference/waba-analytics/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get credit lines",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-account-id}}/extendedcredits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Endpoint reference: [Business > Extendedcredits](https://developers.facebook.com/docs/marketing-api/reference/extended-credit/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get business account (specific fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-account-id}}?fields=id,name,timezone_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Endpoint reference: [Business](https://developers.facebook.com/docs/marketing-api/reference/business/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get commerce settings",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/whatsapp_commerce_settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Sell Products & Services](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/sell-products-and-services) (Cloud API)\n- Guide: [Sell Products & Services](https://developers.facebook.com/docs/whatsapp/on-premises/guides/commerce-guides) (On-Premises API)\n- Endpoint reference: [WhatsApp Business Phone"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Set or update commerce settings",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/whatsapp_commerce_settings?is_cart_enabled=true&is_catalog_visible=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "- Guide: [Sell Products & Services](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/sell-products-and-services) (Cloud API)\n- Guide: [Sell Products & Services](https://developers.facebook.com/docs/whatsapp/on-premises/guides/commerce-guides) (On-Premises API)\n- Endpoint reference: [WhatsApp Business Phone"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Upload media (Step 1 of 2): Create session",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{app-id}}/uploads?file_length=<FILE_SIZE>&file_type=<MIME_TYPE>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "- Guide: [Resumable Upload API](https://developers.facebook.com/docs/graph-api/guides/upload)\n- Endpoint reference: [Application > Uploads](https://developers.facebook.com/docs/graph-api/reference/application/uploads/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Upload media (Step 2 of 2): Initiate upload",
+        "api_call": "https://graph.facebook.com/{{api-version}}/<SESSION_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "headerPrefix",
+                        "value": "OAuth",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "file_offset",
+                    "value": "0"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "2Ksi_tgAh/comcast-receipt-2021-07-18.pdf"
+                }
+            }
+        },
+        "functionality": "- Guide: [Resumable Upload API](https://developers.facebook.com/docs/graph-api/guides/upload)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get business phone number",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Retrieve Phone Numbers](https://developers.facebook.com/docs/whatsapp/business-management-api/manage-phone-numbers)\n- Endpoint reference: [WhatsApp Business Phone Number](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get business phone number display name status (beta)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}?fields=id,display_phone_number,name_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Get Display Name Status (Beta)](https://developers.facebook.com/docs/whatsapp/business-management-api/manage-phone-numbers#get-display-name-status--beta-)\n- Endpoint reference: [WhatsApp Business Phone Number](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all business phone numbers",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/phone_numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Phone Numbers](https://developers.facebook.com/docs/whatsapp/phone-numbers)\n- Guide: [Retrieve Phone Numbers](https://developers.facebook.com/docs/whatsapp/business-management-api/manage-phone-numbers)\n- Endpoint reference: [WhatsApp Business Account > Phone Numbers](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/phone_numbers/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all business phone numbers w/ filtering (beta)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/phone_numbers?fields=id,is_official_business_account,display_phone_number,verified_name&filtering=[{'field':'account_mode','operator':'EQUAL','value':'SANDBOX'}]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Filter Phone Numbers](https://developers.facebook.com/docs/whatsapp/business-management-api/manage-phone-numbers#filter-phone-numbers)\n- Endpoint reference: [WhatsApp Business Account > Phone Numbers](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/phone_numbers/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get QR code",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls/<QR_CODE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all QR codes (default fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all QR codes (specific fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls?fields=code,prefilled_message,qr_image_url.format(SVG)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get QR code SVG image URL",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls?fields=prefilled_message,deep_link_url,qr_image_url.format(SVG)&code=<QR_CODE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get QR code PNG image URL",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls?fields=prefilled_message,deep_link_url,qr_image_url.format(PNG)&code=<QR_CODE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create QR code",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"prefilled_message\": \"<PREFILLED_MESSAGE>\",\n    \"generate_qr_image\": \"<GENERATE_QR_IMAGE>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Update Message QR Code.",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"prefilled_message\": \"<PREFILLED_MESSAGE>\",\n    \"code\": \"<CODE>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Delete QR code",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-phone-number-id}}/message_qrdls/<QR_CODE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "- Guide: [QR Codes](https://developers.facebook.com/docs/whatsapp/business-management-api/qr-codes)\n- Endpoint reference: [WhatsApp Business Phone Number > Message Qrdls](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/message_qrdls/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get template by ID (default fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/<TEMPLATE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Message Template](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-hsm/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get template by name (default fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates?name=<TEMPLATE_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all templates (default fields)",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get namespace",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}?fields=message_template_namespace",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create authentication template w/ OTP copy code button",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"authentication_code_copy_code_button\",\n    \"language\": \"en_US\",\n    \"category\": \"AUTHENTICATION\",\n    \"components\": [\n        {\n            \"type\": \"BODY\",\n            \"add_security_recommendation\": true\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"code_expiration_minutes\": 10\n        },\n        {\n            \"type\": \"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"OTP\",\n                    \"otp_type\": \"COPY_CODE\",\n                    \"text\": \"Copy Code\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Authentication Templates with OTP Buttons](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates)\n- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create authentication template w/ OTP one-tap autofill button",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"authentication_code_autofill_button\",\n    \"language\": \"en_US\",\n    \"category\": \"AUTHENTICATION\",\n    \"components\": [\n        {\n            \"type\": \"BODY\",\n            \"add_security_recommendation\": true\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"code_expiration_minutes\": 10\n        },\n        {\n            \"type\": \"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"OTP\",\n                    \"otp_type\": \"ONE_TAP\",\n                    \"text\": \"Copy Code\",\n                    \"autofill_text\": \"Autofill\",\n                    \"package_name\": \"com.example.luckyshrub\",\n                    \"signature_hash\": \"K8a%2FAINcGX7\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Authentication Templates with OTP Buttons](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates)\n- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create catalog template",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"intro_catalog_offer\",\n    \"language\": \"en_US\",\n    \"category\": \"MARKETING\",\n    \"components\": [\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Now shop for your favourite products right here on WhatsApp! Get Rs {{1}} off on all orders above {{2}}Rs! Valid for your first {{3}} orders placed on WhatsApp!\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"100\",\n                        \"400\",\n                        \"3\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"text\": \"Best grocery deals on WhatsApp!\"\n        },\n        {\n            \"type\": \"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"CATALOG\",\n                    \"text\": \"View catalog\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Catalog Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates/catalog-templates)\n- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create multi-product message template",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"abandoned_cart\",\n    \"language\": \"en_US\",\n    \"category\": \"MARKETING\",\n    \"components\": [\n        {\n            \"type\": \"HEADER\",\n            \"format\": \"TEXT\",\n            \"text\": \"Forget something {{1}}?\",\n            \"example\": {\n                \"header_text\": [\n                    \"Pablo\"\n                ]\n            }\n        },\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Looks like you left some items in your cart! Use code {{1}} and you can get 10% off of all of them!\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"10OFF\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\":\"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"MPM\",\n                    \"text\": \"View items\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Multi-Product Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates/mpm-templates)\n- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account >"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create template w/ text header, text body, text footer, and 2 quick reply buttons",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"seasonal_promotion_text_only\",\n    \"language\": \"en\",\n    \"category\": \"MARKETING\",\n    \"components\": [\n        {\n            \"type\": \"HEADER\",\n            \"format\": \"TEXT\",\n            \"text\": \"Our {{1}} is on!\",\n            \"example\": {\n                \"header_text\": [\n                    \"Summer Sale\"\n                ]\n            }\n        },\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Shop now through {{1}} and use code {{2}} to get {{3}} off of all merchandise.\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"the end of August\",\"25OFF\",\"25%\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"text\": \"Use the buttons below to manage your marketing subscriptions\"\n        },\n        {\n            \"type\":\"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"QUICK_REPLY\",\n                    \"text\": \"Unsubcribe from Promos\"\n                },\n                {\n                    \"type\":\"QUICK_REPLY\",\n                    \"text\": \"Unsubscribe from All\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create template w/ image header, text body, text footer, and 2 call-to-action buttons",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"limited_time_offer_tuscan_getaway_2023\",\n    \"language\": \"en_US\",\n    \"category\": \"MARKETING\",\n    \"components\": [\n        {\n            \"type\": \"HEADER\",\n            \"format\": \"IMAGE\",\n            \"example\": {\n                \"header_handle\": [\n                    \"4::aW...\"\n                ]\n            }\n        },\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Hi {{1}}! For a limited time only you can get our {{2}} for as low as {{3}}. Tap the Offer Details button for more information.\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"Mark\",\"Tuscan Getaway package\",\"800\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"text\": \"Offer valid until May 31, 2023\"\n        },\n        {\n            \"type\": \"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"PHONE_NUMBER\",\n                    \"text\": \"Call\",\n                    \"phone_number\": \"15550051310\"\n                },\n                {\n                    \"type\": \"URL\",\n                    \"text\": \"Shop Now\",\n                    \"url\": \"https://www.examplesite.com/shop?promo={{1}}\",\n                    \"example\": [\n                        \"summer2023\"\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create template w/ location header, text body, text footer, and a website buttons",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"order_delivery_update\",\n    \"language\": \"en_US\",\n    \"category\": \"UTILITY\",\n    \"components\": [\n        {\n            \"type\": \"HEADER\",\n            \"format\": \"LOCATION\"\n        },\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Good news {{1}}! Your order #{{2}} is on its way to the location above. Thank you for your order!\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"Mark\",\n                        \"566701\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"text\": \"To stop receiving delivery updates, tap the button below.\"\n        },\n        {\n            \"type\":\"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"QUICK_REPLY\",\n                    \"text\": \"Stop Delivery Updates\"\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Create template w/ document header, text body, a phone number button, and a URL button",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"order_confirmation\",\n  \"language\": \"en_US\",\n  \"category\": \"UTILITY\",\n  \"components\": [\n    {\n      \"type\": \"HEADER\",\n      \"format\": \"DOCUMENT\",\n      \"example\": {\n        \"header_handle\": [\n          \"4::YXBwbGljYXRpb24vcGRm:ARZVv4zuogJMxmAdS3_6T4o_K4ll2806avA7rWpikisTzYPsXXUeKk0REjS-hIM1rYrizHD7rQXj951TKgUFblgd_BDWVROCwRkg9Vhjj-cHNQ:e:1681237341:634974688087057:100089620928913:ARa1ZDhwbLZM3EENeeg\"\n         ]\n      }\n    },\n    {\n      \"type\": \"BODY\",\n      \"text\": \"Thank you for your order, {{1}}! Your order number is {{2}}. Tap the PDF linked above to view your receipt. If you have any questions, please use the buttons below to contact support. Thanks again!\",\n      \"example\": {\n        \"body_text\": [\n          [\n            \"Mark\",\"860198-230332\"\n          ]\n        ]\n      }\n    },\n    {\n      \"type\": \"BUTTONS\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"Call\",\n          \"phone_number\": \"16467043595\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"Contact Support\",\n          \"url\": \"https://www.examplesite.com/support\"\n        }\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Edit template",
+        "api_call": "https://graph.facebook.com/{{api-version}}/<TEMPLATE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"2023_april_promo\",\n    \"components\": [\n        {\n            \"type\": \"HEADER\",\n            \"format\": \"TEXT\",\n            \"text\": \"Fall Sale\"\n        },\n        {\n            \"type\": \"BODY\",\n            \"text\": \"Hi {{1}}, our Fall Sale is on! Use promo code {{2}} Get an extra 25% off every order above $350!\",\n            \"example\": {\n                \"body_text\": [\n                    [\n                        \"Mark\",\n                        \"FALL25\"\n                    ]\n                ]\n            }\n        },\n        {\n            \"type\": \"FOOTER\",\n            \"text\": \"Not interested in any of our sales? Tap Stop Promotions\"\n        },\n        {\n            \"type\": \"BUTTONS\",\n            \"buttons\": [\n                {\n                    \"type\": \"QUICK_REPLY\",\n                    \"text\": \"Stop promotions\"\n                }\n            ]\n        }\n    ],\n    \"language\": \"en_US\",\n    \"category\": \"MARKETING\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Message Template](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-hsm/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Delete template by name",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates?name=<TEMPLATE_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Delete template by ID",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/message_templates?hsm_id=<HSM_ID>&name=<NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all apps subscribed to WABA's webhooks",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Guide: [Webhooks](https://developers.facebook.com/docs/whatsapp/business-management-api/guides/set-up-webhooks)\n- Endpoint reference: [WhatsApp Business Account > Subscribed Apps](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/subscribed_apps)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Subscribe app to WABA's webhooks",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "- Guide: [Webhooks](https://developers.facebook.com/docs/whatsapp/business-management-api/guides/set-up-webhooks)\n- Endpoint reference: [WhatsApp Business Account > Subscribed Apps](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/subscribed_apps)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Unsubscribe app from WABA's webhooks",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "- Guide: [Webhooks](https://developers.facebook.com/docs/whatsapp/business-management-api/guides/set-up-webhooks)\n- Endpoint reference: [WhatsApp Business Account > Subscribed Apps](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/subscribed_apps)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get WABA",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{waba-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "- Endpoint reference: [WhatsApp Business Account](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all shared WABAs",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-account-id}}/client_whatsapp_business_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Endpoint reference: [Business > Extended Credits](https://developers.facebook.com/docs/marketing-api/reference/business/extendedcredits/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Business Management API: Get all owned WABAs",
+        "api_call": "https://graph.facebook.com/{{api-version}}/{{business-account-id}}/owned_whatsapp_business_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Endpoint reference: [Business > Extended Credits](https://developers.facebook.com/docs/marketing-api/reference/business/extendedcredits/)"
+    }
+]

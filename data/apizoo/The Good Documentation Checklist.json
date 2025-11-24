@@ -1,0 +1,487 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Generate from an API specification",
+        "api_call": "https://simplekart.postman.com/items?list=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "If you\u2019re using an API specification format, such as OpenAPI, you can [import a spec file](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-api-specifications) into Postman to automatically"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Find a collection",
+        "api_call": "https://api.spacexdata.com/v4/capsules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "It\u2019s possible someone else has already done the heavy lifting of creating a collection. Check with your teammates to see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Start from scratch",
+        "api_call": "https://postman-echo.com/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "If you\u2019re starting from scratch, you can import cURL as raw text for each API call. Or as a last"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Verify the request metadata",
+        "api_call": "https://graph.microsoft.com/beta/applications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{MicrosoftUserAccessToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "If you previously used a machine-readable data format, consider renaming your requests to be more human-readable. Verify the API metadata"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Organize logically in folders",
+        "api_call": "https://api.getpostman.com/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{postmanAPIKey}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "If your collection contains lots of requests, stay clean and tidy by ordering and grouping requests [in folders](https://learning.postman.com/docs/sending-requests/intro-to-collections/#managing-collections) to make"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Add and format descriptions",
+        "api_call": "https://api.getpostman.com/workspaces?apikey={{postmanAPIKey}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provide a [description](https://learning.postman.com/docs/publishing-your-api/authoring-your-documentation/#documenting-with-descriptions) for each parameter, request, folder, and collection. Style your descriptions, add tables, and embed screenshots [using Markdown](https://learning.postman.com/docs/postman/collections/using_markdown_for_descriptions/)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Add headings in the Introduction",
+        "api_call": "https://api.getpostman.com/environments?apikey={{postmanAPIKey}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The collection description should include relevant information about rate limiting, content types, or settings that apply across endpoints. Any h1"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Explain authorization",
+        "api_call": "https://api.pagerduty.com/incidents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.pagerduty+json;version=2",
+                    "type": "text"
+                },
+                {
+                    "key": "Token",
+                    "value": "token={{your-pg-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "The collection description is also a good place to be explicit about how to authorize requests - including instructions explaining"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Use variables",
+        "api_call": "https://postman-echo.com/get?test=123",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Just like in programming, [Postman variables](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes) make it easy to change a value in one spot and propagate those changes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Consider variable scopes",
+        "api_call": "https://postman-echo.com/get?foo1=I'm a collection variable&foo2={{somethingForThisEnvironment}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Postman supports several variable types and scopes to support different scenarios. For example, a collection variable is useful when the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Add placeholder text",
+        "api_call": "https://postman-echo.com/get?foo1=I'm a collection variable&foo2={{somethingForThisEnvironment}}&foo3={{variableWithNoValue}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Postman relies on string substitution to render variable values in the web documentation. Use placeholder text as a variable\u2019s value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Provide examples",
+        "api_call": "https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2020-09-01",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Save [examples](https://learning.postman.com/docs/publishing-your-api/authoring-your-documentation/#using-examples-in-your-docs) of requests and responses so users can understand the endpoint and troubleshoot issues more quickly. This is especially"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Demonstrate scenarios",
+        "api_call": "https://api.coindesk.com/v1/bpi/currentprice.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Good documentation is more than just API reference. It includes user scenarios to show what is possible with the API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Use variables for secrets",
+        "api_call": "https://api.twitter.com/1.1/users/show.json?screen_name={{myTwitterHandle}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{twitterAccessToken}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{twitterAccessTokenSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{twitterConsumerSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{twitterConsumerKey}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Another great use for variables is [to store your secrets](https://blog.postman.com/how-to-use-api-keys/) instead of hard-coding your confidential data. Remember to update your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Set up a sandbox environment",
+        "api_call": "https://api.twilio.com/2010-04-01/Accounts/{{TWILIO_ACCOUNT_SID}}/Messages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{TWILIO_AUTH_TOKEN}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{TWILIO_ACCOUNT_SID}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "To",
+                        "value": "{{YOUR_PHONE_NUMBER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "From",
+                        "value": "+15005550006",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Body",
+                        "value": "Hello from Postman!",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Some publishers have an isolated testing environment called a sandbox. This allows users to play around with the API without"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Collaborate with teammates",
+        "api_call": "https://api.dropboxapi.com/2/team/members/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{dropboxAccessToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/ecmascript",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"new_members\": [\r\n        {\r\n            \"member_email\": \"{{email}}\",\r\n            \"member_given_name\": \"{{first_name}}\",\r\n            \"member_surname\": \"{{last_name}}\",\r\n            \"member_external_id\": \"\",\r\n            \"send_welcome_email\": {{welcome_email}},\r\n            \"role\": \"{{member_role}}\"\r\n        }\r\n    ],\r\n    \"force_async\": false\r\n}"
+            }
+        },
+        "functionality": "Share your API documentation with teammates by sharing the collection to a [team workspace](https://learning.postman.com/docs/collaborating-in-postman/collaboration-intro/). The default role is that anyone"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Publish the documentation",
+        "api_call": "https://ads-api.twitter.com/7/stats/jobs/accounts/your_ads_account_id?end_time=&entity=&entity_ids=&granularity=&metric_groups=&placement=&start_time=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "In addition to sharing API documentation privately, you can also share collections and environments publicly as web-viewable documentation. Documentation is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Embed the Run in Postman button",
+        "api_call": "https://api.twitter.com/2/tweets/1275828087666679809?tweet.fields=attachments,author_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,referenced_tweets,source,text,withheld",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The **Run in Postman** button is one way to share a Postman collection (and optional environment). This button is found"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Add it to the API Network",
+        "api_call": "https://explore.postman.com/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "When you share API documentation publicly, you can also list those collections in the [Postman API Network](https://explore.postman.com/) for broader discovery."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Spruce up your profile",
+        "api_call": "https://explore.postman.com/263615",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "When you publish a collection, you can do that from either a personal profile or team profile. Taking the time"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Add scripts",
+        "api_call": "https://api.twitter.com/2/tweets/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{twitterAccessToken}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{twitterAccessTokenSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{twitterConsumerSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{twitterConsumerKey}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "You can add JavaScript that executes before or after a request runs. These [pre-request and test scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) are useful for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Keep track of metrics",
+        "api_call": "https://api.kloudless.com/v1/accounts/me/storage/folders/root/contents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-special-header",
+                    "value": "fromPostman",
+                    "description": "An example of a custom header your server might accept to keep track of inbound traffic from Postman",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Postman displays some information like views and imports of your documentation collection. There's also [API reporting on Business and Enterprise"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Helpful error messages",
+        "api_call": "{{url}}/auth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-Version",
+                    "value": "1.1",
+                    "type": "text"
+                },
+                {
+                    "key": "loginName",
+                    "value": "{{userName}}",
+                    "description": "From your dashboard (Sandbox only)",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "clientId",
+                        "value": "{{clientId}}",
+                        "description": "Your clientId",
+                        "type": "text"
+                    },
+                    {
+                        "key": "secret",
+                        "value": "{{secret}}",
+                        "description": "Your secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Publishers have developed clever ways to provide feedback to users who are learning their APIs. Some use helpful error messages"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "The Good Documentation Checklist: Visualize the API response",
+        "api_call": "https://covid19.richdataservices.com/rds/api/query/int/jhu_country/select?cols=date_stamp,cnt_confirmed,cnt_death,cnt_recovered&where=(iso3166_1=US)&format=amcharts&limit=5000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Another way you can make each API request more informative is to use the [Postman Visualizer](https://learning.postman.com/docs/sending-requests/visualizer/) to visualize the response"
+    }
+]

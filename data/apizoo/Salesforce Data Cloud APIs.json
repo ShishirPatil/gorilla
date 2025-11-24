@@ -1,0 +1,466 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Metadata",
+        "api_call": "https:///api/v1/metadata/",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The Customer 360 Audiences Metadata API response includes metadata about all entities, including Calculated Insights, Engagement, Profile, and other entities,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Query Calculated Insights",
+        "api_call": "https:///api/v1/insight/calculated-insights/PurchaseByDate__cio?batchSize=5&dimensions=PurchaseDay__c,CustomerId__c&measures=TotalOrders__c&filters=[CustomerId__c=A003]",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the list of data model objects, their fields, and category.\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_profile_meta.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Metadata - Individual Calculated Insight",
+        "api_call": "https:///api/v1/insight/metadata/PurchaseByDate__cio",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The metadata includes the dimension and measure that are part of the calculated insight.\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_insights_meta_ci_name.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Metadata - All Calculated Insights",
+        "api_call": "https:///api/v1/insight/metadata",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Get Salesforce CDP Insight metadata, including Calculated Insight objects, their dimensions and measures.\n\nhttps://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_insight_metadata.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Query",
+        "api_call": "https:///api/v1/query",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"sql\" : \"SELECT ssot__DataSourceId__c, ssot__DataSourceObjectId__c, ssot__InternalOrganizationId__c, ssot__PurchaseOrderDate__c, ssot__Id__c, ssot__SoldToCustomerId__c FROM ssot__SalesOrder__dlm WHERE ssot__SoldToCustomerId__c = 'A001' \"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use this API to query the Customer 360 Audiences data lake across data model, lake, unified, and linked objects.\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_query.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Insert Records",
+        "api_call": "https:///api/v1/ingest/sources/Event_API/runner_profiles",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n       \"data\": [{\n        \"maid\":123,\n        \"first_name\":\"Sandeep\",\n        \"last_name\":\"Aulakh\",\n        \"email\":\"saulakh@salesforce-nto.com\",\n        \"gender\":\"Male\",\n        \"city\":\"Wilton\",\n        \"state\":\"CT\",\n        \"created\":\"2021-10-22T09:11:11.816319Z\"\n    },\n    {\n        \"maid\":124,\n        \"first_name\":\"Aaron\",\n        \"last_name\":\"Cates\",\n        \"email\":\"acates@salesforce-nto.com\",\n        \"gender\":\"Male\",\n        \"city\":\"San Francisco\",\n        \"state\":\"CA\",\n        \"created\":\"2021-10-22T09:11:11.816319Z\"\n    }\n]}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Delete Records",
+        "api_call": "https:///api/v1/ingest/sources/Event_API/runner_profiles?ids=101",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Sync Record Validation",
+        "api_call": "https:///api/v1/ingest/sources/Event_API/runner_profiles/actions/test",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n       \"data\": [{\n        \"maid\":101,\n        \"first_name\":\"Sandeep\",\n        \"last_name\":\"Aulakh\",\n        \"email\":\"saulakh@salesforce-nto.com\",\n        \"gender\":\"Male\",\n        \"city\":\"Wilton\",\n        \"state\":\"CT\",\n        \"created\":\"2021-10-22T09:11:11.816319Z\"\n    },\n    {\n        \"maid\":102,\n        \"first_name\":\"Aaron\",\n        \"last_name\":\"Cates\",\n        \"email\":\"acates@salesforce-nto.com\",\n        \"gender\":\"Male\",\n        \"city\":\"San Francisco\",\n        \"state\":\"CA\",\n        \"created\":\"2021-10-22T09:11:11.816319Z\"\n    }\n]}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Create Job",
+        "api_call": "https:///api/v1/ingest/jobs",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"object\":\"runner_profiles\",\n   \"sourceName\":\"Event_API\",\n   \"operation\":\"upsert\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Upload Job",
+        "api_call": "https:///api/v1/ingest/jobs/fcf98ed6-d514-4923-8369-486f7dad4359/batches",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/csv"
+                },
+                {
+                    "key": "Content-Length",
+                    "value": "0",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "maid,first_name,last_name,email,gender,city,state,created\n201,Sandeep_csv,Aulakh_csv,saulakh+ntodemo.com,M,NYC,NY,2021-10-22T09:11:11.816319Z\n201,Sandeep_csv1,Aulakh_csv1,saulakh+ntodemo.com,M,NYC,NY,2021-11-22T09:11:11.816319Z\n",
+                "options": {
+                    "raw": {
+                        "language": "text"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Close Job",
+        "api_call": "https:///api/v1/ingest/jobs/78f56f55-c00a-4e20-ab7d-03307a319ff2",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"state\" : \"UploadComplete\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Abort Job",
+        "api_call": "https:///api/v1/ingest/jobs/e70934e8-2877-4660-872b-f3d9be4b9ad7",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"state\" : \"Aborted\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Delete Job",
+        "api_call": "https:///api/v1/ingest/jobs/78f56f55-c00a-4e20-ab7d-03307a319ff2",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Get Job Info",
+        "api_call": "https:///api/v1/ingest/jobs/78f56f55-c00a-4e20-ab7d-03307a319ff2",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Get All Jobs",
+        "api_call": "https:///api/v1/ingest/jobs?limit=50&offset=&orderby=&state=",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Metadata",
+        "api_call": "https:///api/v1/profile/metadata",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "The metadata includes the dimension and measure that are part of the calculated insight.\n\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_insights_meta_ci_name.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: Metadata - DMO",
+        "api_call": "https:///api/v1/profile/metadata/ssot__Individual__dlm",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the metadata for the data model object. Metadata includes the list of fields, data types and indexes available for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO",
+        "api_call": "https:///api/v1/profile/ssot__Individual__dlm?fields=ssot__Id__c,ssot__FirstName__c,ssot__LastName__c,ssot__DataSourceId__c&limit=100&filters=[ssot__DataSourceId__c=POS]",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects based on search filters. Use this API call to retrieve the object records after applying the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO - By ID",
+        "api_call": "https:///api/v1/profile/ssot__Individual__dlm/A031?fields=ssot__Id__c,ssot__FirstName__c,ssot__LastName__c,ssot__DataSourceId__c&limit=100&filters=[ssot__DataSourceId__c=POS]",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects based on search indexes and filters. Use this API call to retrieve the object record based"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO - By Search Key",
+        "api_call": "https:///api/v1/profile/ssot__Individual__dlm/POS?searchKey=ssot__DataSourceId__c&fields=ssot__Id__c,ssot__FirstName__c,ssot__LastName__c,ssot__DataSourceId__c&limit=100&filters=[ssot__FirstName__c=Meghan]",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects based on search indexes and filters. Use this API call to retrieve the object record based"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO and Children - By ID",
+        "api_call": "https:///api/v1/profile/UnifiedIndividual__dlm/1e0403e9-7a82-3a5a-90f7-00c92ef8d5b2/UnifiedContactPointEmail__dlm?fields=ssot__PartyId__c,ssot__EmailAddress__c&limit=10",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects and child objects based on indexes and search filters.\n\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_profile_dmname_id_child_dmname.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO and Children - By Search Key",
+        "api_call": "https:///api/v1/profile/UnifiedIndividual__dlm/Rice/UnifiedContactPointEmail__dlm?searchKey=ssot__LastName__c&fields=ssot__PartyId__c,ssot__EmailAddress__c&limit=10",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects and child objects based on indexes and search filters.\n\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_profile_dmname_id_child_dmname.htm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Data Cloud APIs: DMO and Calculated Insight - By ID",
+        "api_call": "https:///api/v1/profile/ssot__Individual__dlm/A001/calculated-insights/PurchaseByDate__cio?batchSize=5&dimensions=PurchaseDay__c,CustomerId__c&measures=TotalOrders__c&filters=[ssot__DataSourceId__c=POS]",
+        "api_version": "52.0",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns data model objects and a computed view based on indexes and search filters.\n\n\nhttps://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_profile_dmname_id_ci_ci_name.htm"
+    }
+]

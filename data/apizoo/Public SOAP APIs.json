@@ -1,0 +1,416 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: NumberToWords",
+        "api_call": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>500</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: NumberToDollars",
+        "api_call": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>500</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the non-zero dollar amount of the passed number."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Add",
+        "api_call": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>500</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Adds two integers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: NumberToDollars",
+        "api_call": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>500</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the non-zero dollar amount of the passed number."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Divide",
+        "api_call": "http://www.dneonline.com/calculator.asmx",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                },
+                {
+                    "key": "SOAPAction",
+                    "value": "http://tempuri.org/Divide",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <Divide xmlns=\"http://tempuri.org/\">\n      <intA>5</intA>\n      <intB>5</intB>\n    </Divide>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Divides two integers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Multiply",
+        "api_call": "http://www.dneonline.com/calculator.asmx",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                },
+                {
+                    "key": "SOAPAction",
+                    "value": "http://tempuri.org/Multiply",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <Multiply xmlns=\"http://tempuri.org/\">\n      <intA>5</intA>\n      <intB>5</intB>\n    </Multiply>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Multiplies two integers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Subtract",
+        "api_call": "http://www.dneonline.com/calculator.asmx",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                },
+                {
+                    "key": "SOAPAction",
+                    "value": "http://tempuri.org/Subtract",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <Subtract xmlns=\"http://tempuri.org/\">\n      <intA>5</intA>\n      <intB>5</intB>\n    </Subtract>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Subtracts two integers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: List of Continents by Name",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/xml; charset=utf-8",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <ListOfContinentsByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n    </ListOfContinentsByName>\n  </soap12:Body>\n</soap12:Envelope>"
+            }
+        },
+        "functionality": "Returns a list of continents ordered by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: List of Countries by Name",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <ListOfCountryNamesByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n    </ListOfCountryNamesByName>\n  </soap12:Body>\n</soap12:Envelope>"
+            }
+        },
+        "functionality": "Returns a list of countries ordered by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Captial City for a Country",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CapitalCity xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n      <sCountryISOCode>US</sCountryISOCode>\n    </CapitalCity>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the name of the captial city for the passed country code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Currency for a Country",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CountryCurrency xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n      <sCountryISOCode>US</sCountryISOCode>\n    </CountryCurrency>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the currency ISO code and name for the passed country ISO code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Flag for a Country",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CountryFlag xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n      <sCountryISOCode>US</sCountryISOCode>\n    </CountryFlag>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns a link to a picture of the country flag"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: International Phone Code for a Country Copy",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <CountryIntPhoneCode xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n      <sCountryISOCode>US</sCountryISOCode>\n    </CountryIntPhoneCode>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns the internation phone code for the passed ISO country code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: List of Currencies by Name",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap12:Envelope xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <ListOfCurrenciesByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n    </ListOfCurrenciesByName>\n  </soap12:Body>\n</soap12:Envelope>"
+            }
+        },
+        "functionality": "Returns a list of currencies ordered by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: List of Languages by Name",
+        "api_call": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <ListOfLanguagesByName xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n    </ListOfLanguagesByName>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "Returns an array of languages ordered by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Is Valid ISBN13 Number",
+        "api_call": "http://webservices.daehosting.com/services/isbnservice.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN13 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>978-1-4612-9090-2</sISBN>\n    </IsValidISBN13>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "The test is done by calculation on the first 12 digits and compare the result with the checksum number at"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Is Valid ISBN10 Number",
+        "api_call": "http://webservices.daehosting.com/services/isbnservice.wso",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "text/xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <IsValidISBN10 xmlns=\"http://webservices.daehosting.com/ISBN\">\n      <sISBN>0-19-852663-6</sISBN>\n    </IsValidISBN10>\n  </soap:Body>\n</soap:Envelope>"
+            }
+        },
+        "functionality": "The test is done by calculation on the first 9 digits and compare the result with the checksum number at"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Celsius to Farenheit Conversion",
+        "api_call": "https://www.w3schools.com/xml/tempconvert.asmx",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/soap+xml; charset=utf-8",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <CelsiusToFahrenheit xmlns=\"https://www.w3schools.com/xml/\">\n      <Celsius>20</Celsius>\n    </CelsiusToFahrenheit>\n  </soap12:Body>\n</soap12:Envelope>"
+            }
+        },
+        "functionality": "Converts celsius temperature to farenheit."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public SOAP APIs: Farenheit to Celsius Conversion",
+        "api_call": "https://www.w3schools.com/xml/tempconvert.asmx",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/soap+xml; charset=utf-8"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n  <soap12:Body>\n    <FahrenheitToCelsius xmlns=\"https://www.w3schools.com/xml/\">\n      <Fahrenheit>75</Fahrenheit>\n    </FahrenheitToCelsius>\n  </soap12:Body>\n</soap12:Envelope>"
+            }
+        },
+        "functionality": "Converts farenheit temperature to celsius."
+    }
+]
