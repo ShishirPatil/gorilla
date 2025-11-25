@@ -63,7 +63,7 @@ class MiningHandler(OpenAICompletionsHandler):
         if match:
            tool_calls =  match.group(1).strip()
         try:
-            tool_calls = tool_calls.replace("'",'"')
+            # tool_calls = tool_calls.replace("'",'"')
             tool_calls = json.loads(tool_calls)
         except:
             pass
