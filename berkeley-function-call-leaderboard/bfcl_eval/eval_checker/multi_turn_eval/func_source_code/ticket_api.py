@@ -147,7 +147,7 @@ class TicketAPI:
         Args:
             ticket_id (int): ID of the ticket to be changed.
             updates (Dict): Dictionary containing the fields to be updated.
-                - title (str) : [Optional] New title for the ticket.
+                - title (str): [Optional] New title for the ticket.
                 - description (str): [Optional] New description for the ticket.
                 - status (str): [Optional] New status for the ticket.
                 - priority (int): [Optional] New priority for the ticket.
@@ -209,13 +209,13 @@ class TicketAPI:
 
     def ticket_get_login_status(self) -> Dict[str, bool]:
         """
-        Get the username of the currently authenticated user.
+        Get the login status of the currently authenticated user.
 
         Returns:
-            username (bool): True if a user is logged in, False otherwise.
+            login_status (bool): True if a user is logged in, False otherwise.
 
         """
-        return {"username": bool(self.current_user)}
+        return {"login_status": bool(self.current_user)}
 
     def logout(self) -> Dict[str, bool]:
         """
