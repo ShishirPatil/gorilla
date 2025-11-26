@@ -62,6 +62,9 @@ from bfcl_eval.model_handler.local_inference.salesforce_llama import (
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
+from bfcl_eval.model_handler.local_inference.long_intent import (
+    LongIntentHandler,
+)
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
 
 # -----------------------------------------------------------------------------
@@ -1962,6 +1965,19 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+
+    "HuacanChai/Long-Intent-8B-0.1": ModelConfig(
+        model_name="HuacanChai/Long-Intent-8B-0.1",
+        display_name="Long-Intent-8B (FC)",
+        url="https://huggingface.co/HuacanChai/Long-Intent-8B-0.1",
+        org="LongTeam",
+        license="apache-2.0",
+        model_handler=LongIntentHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
 }
