@@ -980,7 +980,7 @@ function generateChart(csvData) {
                 csvData[i][8],
                 csvData[i][13],
                 csvData[i][18],
-                csvData[i][24],
+                csvData[i][30],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -990,6 +990,8 @@ function generateChart(csvData) {
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
         };
+        console.log(model_name);
+        console.log(dataPoint);
         dataset.push(dataPoint);
     }
 
