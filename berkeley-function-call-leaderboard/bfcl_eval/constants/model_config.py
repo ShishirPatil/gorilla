@@ -1132,6 +1132,30 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "kimi-k2-0905-preview-FC": ModelConfig(
+        model_name="kimi-k2-0905-preview",
+        display_name="Moonshotai-Kimi-K2-Instruct (FC)",
+        url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+        org="MoonshotAI",
+        license="modified-mit",
+        model_handler=KimiHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "kimi-k2-0905-preview": ModelConfig(
+        model_name="kimi-k2-0905-preview",
+        display_name="Moonshotai-Kimi-K2-Instruct (Prompt)",
+        url="https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+        org="MoonshotAI",
+        license="modified-mit",
+        model_handler=KimiHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
 }
 
 # Inference through local hosting
