@@ -1072,6 +1072,18 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "glm-4.6-FC": ModelConfig(
+        model_name="glm-4.6",
+        display_name="GLM-4.6 (FC thinking)",
+        url="https://huggingface.co/zai-org/GLM-4.6",
+        org="Zhipu AI",
+        license="MIT",
+        model_handler=GLMAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
     "glm-4.5-FC": ModelConfig(
         model_name="glm-4.5",
         display_name="GLM-4.5 (FC)",
