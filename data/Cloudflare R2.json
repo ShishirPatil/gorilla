@@ -1,0 +1,376 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: GetBucketLocation",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>?location",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "value": "UNSIGNED-PAYLOAD",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Returns the region the bucket resides in. You set the bucket's region using the LocationConstraint request parameter in a CreateBucket"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: HeadBucket",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "HEAD",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: ListBuckets",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Returns a list of all buckets owned by the authenticated sender of the request."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: CreateBucket",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Creates a new bucket."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: DeleteBucket",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Deletes the bucket. All objects (including unfinished multipart uploads) in the bucket must be deleted before the bucket itself can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: CreateMultipartUpload",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>?uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "/Users/kinlane/Downloads/APImetrics-monitoring-home-page.png"
+                }
+            }
+        },
+        "functionality": "This operation initiates a multipart upload and returns an upload ID. This upload ID is used to associate all of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: CompleteMultipartUpload",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>?uploadId={{upload-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUpload xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n   <Part>\n      <ETag>string</ETag>\n      <PartNumber>integer</PartNumber>\n   </Part>\n</CompleteMultipartUpload>"
+            }
+        },
+        "functionality": "Completes a multipart upload by assembling previously uploaded parts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: UploadPart",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>?uploadId={{upload-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUpload xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n   <Part>\n      <ETag>string</ETag>\n      <PartNumber>integer</PartNumber>\n   </Part>\n</CompleteMultipartUpload>"
+            }
+        },
+        "functionality": "Uploads a part in a multipart upload. You must initiate a multipart upload (see CreateMultipartUpload) before you can upload individual"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: UploadPartCopy",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>?uploadId={{upload-id}}&partNumber={{part-number}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUpload xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n   <Part>\n      <ETag>string</ETag>\n      <PartNumber>integer</PartNumber>\n   </Part>\n</CompleteMultipartUpload>"
+            }
+        },
+        "functionality": "Uploads a part by copying data from an existing object as data source. You specify the data source by adding"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: AbortMultipartUpload",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>?uploadId={{upload-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<CompleteMultipartUpload xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n   <Part>\n      <ETag>string</ETag>\n      <PartNumber>integer</PartNumber>\n   </Part>\n</CompleteMultipartUpload>"
+            }
+        },
+        "functionality": "Completes a multipart upload by assembling previously uploaded parts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: PutObject",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "GPeeGZTRk/cat-pic.jpg"
+                }
+            }
+        },
+        "functionality": "Completes a multipart upload by assembling previously uploaded parts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: HeadObject",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "HEAD",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "value": "UNSIGNED-PAYLOAD",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "The HEAD operation retrieves metadata from an object without returning the object itself. This operation is useful if you're only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: ListObjectV1",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "application/json",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: ListObjectV2",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ]
+        },
+        "functionality": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: GetObject",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ]
+        },
+        "functionality": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: DeleteObject",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ]
+        },
+        "functionality": "Delete an object from a bucket."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: DeleteObjects",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/?delete=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-amz-content-sha256",
+                    "type": "text",
+                    "value": "UNSIGNED-PAYLOAD"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Delete xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\">\n   <Object>\n      <Key>string</Key>\n      <VersionId>string</VersionId>\n   </Object>\n   ...\n   <Quiet>boolean</Quiet>\n</Delete>"
+            }
+        },
+        "functionality": "Delete multiple objects from a bucket in a single request."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Cloudflare R2: CopyObject",
+        "api_call": "https://<account-id>.r2.cloudflarestorage.com/<r2-bucket>/<r2-object>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/javascript",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "est\t"
+            }
+        },
+        "functionality": "Creates a copy of an object that is already stored in Amazon S3."
+    }
+]
