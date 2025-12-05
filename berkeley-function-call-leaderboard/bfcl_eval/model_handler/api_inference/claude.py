@@ -72,7 +72,7 @@ class ClaudeHandler(BaseHandler):
         elif "claude-sonnet-4-5-20250929" in self.model_name:  
             return 64000
         elif "claude-haiku-4-5-20251001" in self.model_name:
-            return 8192
+            return 64000
         else:
             raise ValueError(f"Unsupported model: {self.model_name}")
 
