@@ -174,4 +174,5 @@ SUPPORTED_MODELS = [
     "qwen/qwq-32b-novita",
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
+    "HuacanChai/Long-Intent-8B-0.1",
 ]
