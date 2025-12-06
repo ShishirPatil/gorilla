@@ -64,6 +64,8 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.local_inference.exaone4 import Exaone4Handler
+from bfcl_eval.model_handler.local_inference.exaone4_fc import Exaone4FCHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1972,6 +1974,54 @@ local_inference_model_map = {
         org="Phronetic AI",
         license="apache-2.0",
         model_handler=QwenHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "LGAI-EXAONE/EXAONE-4.0-32B-FC": ModelConfig(
+        model_name="LGAI-EXAONE/EXAONE-4.0-32B",
+        display_name="EXAONE-4.0-32B (FC)",
+        url="https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-32B",
+        org="LGAI",
+        license="exaone",
+        model_handler=Exaone4FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "LGAI-EXAONE/EXAONE-4.0-32B": ModelConfig(
+        model_name="LGAI-EXAONE/EXAONE-4.0-32B",
+        display_name="EXAONE-4.0-32B (Prompt)",
+        url="https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-32B",
+        org="LGAI",
+        license="exaone",
+        model_handler=Exaone4Handler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "LGAI-EXAONE/EXAONE-4.0-1.2B-FC": ModelConfig(
+        model_name="LGAI-EXAONE/EXAONE-4.0-1.2B",
+        display_name="EXAONE-4.0-1.2B (FC)",
+        url="https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-1.2B",
+        org="LGAI",
+        license="exaone",
+        model_handler=Exaone4FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "LGAI-EXAONE/EXAONE-4.0-1.2B": ModelConfig(
+        model_name="LGAI-EXAONE/EXAONE-4.0-1.2B",
+        display_name="EXAONE-4.0-1.2B (Prompt)",
+        url="https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-1.2B",
+        org="LGAI",
+        license="exaone",
+        model_handler=Exaone4Handler,
         input_price=None,
         output_price=None,
         is_fc_model=False,

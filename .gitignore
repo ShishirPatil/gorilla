@@ -21,6 +21,7 @@ goex/docker/misc/images.json
 
 # Ignore inference results
 berkeley-function-call-leaderboard/result/
+berkeley-function-call-leaderboard/results/
 
 # Ignore leaderboard score
 berkeley-function-call-leaderboard/score/
