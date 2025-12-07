@@ -133,8 +133,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                            | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                             | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
-| EXAONE-4.0-{1.2B,32B}                      | Prompt           | Self-hosted 💻 | EXAONE-4.0-{1.2B,32B-A3B}                                   |
-| EXAONE-4.0-{1.2B,32B}                      | Function Calling | Self-hosted 💻 | EXAONE-4.0-{1.2B,32B-A3B}-FC                                |
+| EXAONE-4.0-{1.2B,32B}                      | Prompt           | Self-hosted 💻 | EXAONE-4.0-{1.2B,32B}                                       |
+| EXAONE-4.0-{1.2B,32B}                      | Function Calling | Self-hosted 💻 | EXAONE-4.0-{1.2B,32B}-FC                                    |
 ---
 
 ## Additional Requirements for Certain Models
