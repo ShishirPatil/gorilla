@@ -243,7 +243,7 @@ class QwenAgentThinkHandler(OpenAICompletionsHandler):
                     'enable_thinking': True
                 }
             },
-            "thought_in_content": True,
+            "thought_in_content": False,
             'temperature': 0.6,
             'top_p': 0.95,
             'top_k': 20,
