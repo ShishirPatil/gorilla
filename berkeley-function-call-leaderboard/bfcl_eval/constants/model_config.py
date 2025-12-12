@@ -44,6 +44,7 @@ from bfcl_eval.model_handler.local_inference.granite import (
     GraniteFunctionCallingHandler,
 )
 from bfcl_eval.model_handler.local_inference.granite_3 import Granite3FCHandler
+from bfcl_eval.model_handler.local_inference.granite_4 import Granite4FCHandler
 from bfcl_eval.model_handler.local_inference.hammer import HammerHandler
 from bfcl_eval.model_handler.local_inference.llama import LlamaHandler
 from bfcl_eval.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
@@ -77,7 +78,7 @@ from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandle
 @dataclass
 class ModelConfig:
     """
-    Model configuration class for storing model metadata and settings. 
+    Model configuration class for storing model metadata and settings.
 
     Attributes:
         model_name (str): Name of the model as used in the vendor API or on Hugging Face (may not be unique).
@@ -414,27 +415,27 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "claude-opus-4-1-20250805": ModelConfig(
-        model_name="claude-opus-4-1-20250805",
-        display_name="Claude-Opus-4-1-20250805 (Prompt)",
+    "claude-opus-4-5-20251101": ModelConfig(
+        model_name="claude-opus-4-5-20251101",
+        display_name="Claude-Opus-4-5-20251101 (Prompt)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=15,
-        output_price=75,
+        input_price=5,
+        output_price=25,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "claude-opus-4-1-20250805-FC": ModelConfig(
-        model_name="claude-opus-4-1-20250805",
-        display_name="Claude-Opus-4-1-20250805 (FC)",
+    "claude-opus-4-5-20251101-FC": ModelConfig(
+        model_name="claude-opus-4-5-20251101",
+        display_name="Claude-Opus-4-5-20251101 (FC)",
         url="https://www.anthropic.com/news/claude-4",
         org="Anthropic",
         license="Proprietary",
         model_handler=ClaudeHandler,
-        input_price=15,
-        output_price=75,
+        input_price=5,
+        output_price=25,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
@@ -678,27 +679,27 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-pro-FC": ModelConfig(
-        model_name="gemini-2.5-pro",
-        display_name="Gemini-2.5-Pro (FC)",
+    "gemini-3-pro-preview-FC": ModelConfig(
+        model_name="gemini-3-pro-preview",
+        display_name="Gemini-3-Pro-Preview (FC)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=1.5,
-        output_price=10,
+        input_price=2,
+        output_price=12,
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-pro": ModelConfig(
-        model_name="gemini-2.5-pro",
-        display_name="Gemini-2.5-Pro (Prompt)",
+    "gemini-3-pro-preview": ModelConfig(
+        model_name="gemini-3-pro-preview",
+        display_name="Gemini-3-Pro-Preview (Prompt)",
         url="https://deepmind.google/technologies/gemini/pro/",
         org="Google",
         license="Proprietary",
         model_handler=GeminiHandler,
-        input_price=1.5,
-        output_price=10,
+        input_price=2,
+        output_price=12,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
@@ -833,6 +834,30 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "grok-4-1-fast-reasoning-FC": ModelConfig(
+        model_name="grok-4-1-fast-reasoning",
+        display_name="Grok-4-1-fast-reasoning (FC)",
+        url="https://docs.x.ai/docs/models",
+        org="xAI",
+        license="Proprietary",
+        model_handler=GrokHandler,
+        input_price=0.2,
+        output_price=0.5,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "grok-4-1-fast-non-reasoning-FC": ModelConfig(
+        model_name="grok-4-1-fast-non-reasoning",
+        display_name="Grok-4-1-fast-non-reasoning (FC)",
+        url="https://docs.x.ai/docs/models",
+        org="xAI",
+        license="Proprietary",
+        model_handler=GrokHandler,
+        input_price=0.2,
+        output_price=0.5,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
     "qwen3-0.6b-FC": ModelConfig(
         model_name="qwen3-0.6b",
@@ -1085,6 +1110,18 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "glm-4.6-FC": ModelConfig(
+        model_name="glm-4.6",
+        display_name="GLM-4.6 (FC thinking)",
+        url="https://huggingface.co/zai-org/GLM-4.6",
+        org="Zhipu AI",
+        license="MIT",
+        model_handler=GLMAPIHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
     "glm-4.5-FC": ModelConfig(
         model_name="glm-4.5",
@@ -1445,6 +1482,18 @@ local_inference_model_map = {
         org="IBM",
         license="Apache-2.0",
         model_handler=Granite3FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "ibm-granite/granite-4.0-350m": ModelConfig(
+        model_name="ibm-granite/granite-4.0-350m",
+        display_name="Granite-4.0-350m (FC)",
+        url="https://huggingface.co/ibm-granite/granite-4.0-350m",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite4FCHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
