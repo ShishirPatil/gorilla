@@ -171,6 +171,7 @@ SUPPORTED_MODELS = [
     "BitAgent/BitAgent-8B",
     "BitAgent/BitAgent-Bounty-8B",
     "ThinkAgents/ThinkAgent-1B",
+    "ByteDance-Seed/Seed-OSS-36B-Instruct",
     "phronetic-ai/RZN-T",
     "Nanbeige/Nanbeige4-3B-Thinking-2511",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",

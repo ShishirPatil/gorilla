@@ -65,6 +65,7 @@ from bfcl_eval.model_handler.local_inference.salesforce_llama import (
 from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
+from bfcl_eval.model_handler.local_inference.seed_oss import SeedOSSHandler
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
 
 # -----------------------------------------------------------------------------
@@ -2013,6 +2014,18 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "ByteDance-Seed/Seed-OSS-36B-Instruct": ModelConfig(
+        model_name="ByteDance-Seed/Seed-OSS-36B-Instruct",
+        display_name="Seed-OSS-36B-Instruct (Prompt)",
+        url="https://huggingface.co/ByteDance-Seed/Seed-OSS-36B-Instruct",
+        org="ByteDance",
+        license="apache-2.0",
+        model_handler=SeedOSSHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
         underscore_to_dot=False,
     ),
     "phronetic-ai/RZN-T": ModelConfig(

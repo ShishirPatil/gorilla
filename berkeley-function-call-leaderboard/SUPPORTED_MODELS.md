@@ -124,6 +124,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | QwQ-32B                                    | Prompt           | Alibaba Cloud  | qwq-32b                                                     |
 | QwQ-32B                                    | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
 | RZN-T                                      | Prompt           | Phronetic AI   | phronetic-ai/RZN-T                                          |
+| Seed-OSS-36B-Instruct                      | Prompt           | Self-hosted 💻 | ByteDance-Seed/Seed-OSS-36B-Instruct                        |
 | Sky-T1-32B-Preview                         | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | Snowflake/snowflake-arctic-instruct        | Prompt           | Snowflake      | snowflake/arctic                                            |
 | ThinkAgent-1B                              | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
