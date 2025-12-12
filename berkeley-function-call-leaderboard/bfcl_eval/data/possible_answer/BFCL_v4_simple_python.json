@@ -361,7 +361,7 @@
 {"id": "simple_python_360", "ground_truth": [{"find_recipe": {"recipeName": ["pasta carbonara"], "maxCalories": [500]}}]}
 {"id": "simple_python_361", "ground_truth": [{"restaurant_finder": {"city": ["New York City", "New York City, NY", "NYC", "New York"], "cuisine": ["Italian"], "diet": ["Gluten-free"]}}]}
 {"id": "simple_python_362", "ground_truth": [{"get_best_sushi_places": {"city": ["Tokyo"], "top": [5], "review_rate": [4.0]}}]}
-{"id": "simple_python_363", "ground_truth": [{"find_closest": {"location": ["Boston", "Boston, MA"], "cuisine": ["Sushi", "sushi"], "amenities": [["Patio"]]}}]}
+{"id": "simple_python_363", "ground_truth": [{"restaurant_search.find_closest": {"location": ["Boston", "Boston, MA"], "cuisine": ["Sushi", "sushi"], "amenities": [["Patio"]]}}]}
 {"id": "simple_python_364", "ground_truth": [{"find_restaurant": {"location": ["Brooklyn", "Brooklyn, NY"], "type": ["Italian"], "diet_option": ["Gluten-free"]}}]}
 {"id": "simple_python_365", "ground_truth": [{"cooking_conversion.convert": {"quantity": [2], "from_unit": ["pound", "pounds", "lb", "lbs"], "to_unit": ["ounce", "ounces", "oz"], "item": ["butter"]}}]}
 {"id": "simple_python_366", "ground_truth": [{"recipe.unit_conversion": {"value": [2], "from_unit": ["tablespoon", "tbsp"], "to_unit": ["teaspoon", "tsp"], "precision": [1, ""]}}]}
