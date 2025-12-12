@@ -18,7 +18,6 @@ class NanbeigeFCHandler(OSSHandler):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
-        self.model_name_huggingface = 'Nanbeige/Nanbeige4-3B-Thinking-2511'
 
     @override
     def decode_ast(self, result, language, has_tool_call_tag):
@@ -53,7 +52,7 @@ class NanbeigeFCHandler(OSSHandler):
             if messages[0]["role"] == "system":
                 formatted_prompt += messages[0]["content"] + "\n\n"
             else:
-                formatted_prompt += '你是一位工具函数调用专家，你会得到一个问题和一组可能的工具函数。根据问题，你需要进行一个或多个函数/工具调用以实现目的，请尽量尝试探索通过工具解决问题。 如果没有一个函数可以使用，请直接使用自然语言回复用户。 如果给定的问题缺少函数所需的参数，请使用自然语言进行提问，向用户询问必要信息。 如果调用结果已经足够回答用户问题，请对历史结果进行总结，使用自然语言回复用户。'
+                formatted_prompt += "你是一位工具函数调用专家，你会得到一个问题和一组可能的工具函数。根据问题，你需要进行一个或多个函数/工具调用以实现目的，请尽量尝试探索通过工具解决问题。 如果没有一个函数可以使用，请直接使用自然语言回复用户。 如果给定的问题缺少函数所需的参数，请使用自然语言进行提问，向用户询问必要信息。 如果调用结果已经足够回答用户问题，请对历史结果进行总结，使用自然语言回复用户。"
 
             formatted_prompt += "# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
             for tool in function:
@@ -67,7 +66,7 @@ class NanbeigeFCHandler(OSSHandler):
                     f"<|im_start|>system\n{messages[0]['content']}<|im_end|>\n"
                 )
             else:
-                formatted_prompt += '''<|im_start|>system\n 你是一个名为"南北阁"的人工智能助手，正在与人类用户进行交谈。你的目标是以最有帮助和最逻辑的方式回答问题，同时确保内容的安全性。你的回答中不应包含任何有害、政治化、宗教化、不道德、种族主义、非法的内容。请确保你的回答不带有社会偏见，符合社会主义价值观。如果遇到的问题无意义或事实上不连贯，请不要回答错误的内容，而是解释问题为何无效或不连贯。如果你不知道问题的答案，也请勿提供错误的信息。<|im_end|>\n'''
+                formatted_prompt += """<|im_start|>system\n 你是一个名为"南北阁"的人工智能助手，正在与人类用户进行交谈。你的目标是以最有帮助和最逻辑的方式回答问题，同时确保内容的安全性。你的回答中不应包含任何有害、政治化、宗教化、不道德、种族主义、非法的内容。请确保你的回答不带有社会偏见，符合社会主义价值观。如果遇到的问题无意义或事实上不连贯，请不要回答错误的内容，而是解释问题为何无效或不连贯。如果你不知道问题的答案，也请勿提供错误的信息。<|im_end|>\n"""
 
         last_query_index = len(messages) - 1
         for offset, message in enumerate(reversed(messages)):
@@ -114,24 +113,26 @@ class NanbeigeFCHandler(OSSHandler):
                         formatted_prompt += f"<|im_start|>{role}\n{content}"
                 else:
                     formatted_prompt += f"<|im_start|>{role}\n{content}"
-                    
+
                 if "tool_calls" in message:
                     for tool_call in message["tool_calls"]:
-                        if (tool_call == message["tool_calls"][0] and content) or tool_call != message["tool_calls"][0]:
+                        if (
+                            tool_call == message["tool_calls"][0] and content
+                        ) or tool_call != message["tool_calls"][0]:
                             formatted_prompt += "\n"
-                        
+
                         if "function" in tool_call:
                             tool_call = tool_call["function"]
-                        
+
                         formatted_prompt += '<tool_call>\n{"name": "'
                         formatted_prompt += tool_call["name"]
                         formatted_prompt += '", "arguments": '
-                        
+
                         if isinstance(tool_call["arguments"], str):
                             formatted_prompt += tool_call["arguments"]
                         else:
                             formatted_prompt += json.dumps(tool_call["arguments"])
-                        
+
                         formatted_prompt += "}\n</tool_call>"
 
                 formatted_prompt += "<|im_end|>\n"
@@ -183,7 +184,7 @@ class NanbeigeFCHandler(OSSHandler):
                 "role": "assistant",
                 "content": cleaned_response,
             }
-            
+
         model_responses_message_for_chat_history["reasoning_content"] = reasoning_content
 
         return {

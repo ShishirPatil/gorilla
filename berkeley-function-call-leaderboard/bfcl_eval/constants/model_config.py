@@ -115,18 +115,6 @@ class ModelConfig:
 
 # Inference through API calls
 api_inference_model_map = {
-    "Nanbeige3.5-Pro-Thinking-FC": ModelConfig(
-        model_name="Nanbeige3.5-Pro-Thinking",
-        display_name="Nanbeige3.5-Pro-Thinking (FC)",
-        url="https://huggingface.co/Nanbeige",
-        org="Nanbeige",
-        license="apache-2.0",
-        model_handler=NanbeigeAPIHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=True,
-        underscore_to_dot=False,
-    ),
     "gorilla-openfunctions-v2": ModelConfig(
         model_name="gorilla-openfunctions-v2",
         display_name="Gorilla-OpenFunctions-v2 (FC)",
@@ -1171,22 +1159,22 @@ api_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
-}
-
-# Inference through local hosting
-local_inference_model_map = {
-    "Nanbeige/Nanbeige4-3B-Thinking-2511": ModelConfig(
-        model_name="Nanbeige/Nanbeige4-3B-Thinking-2511",
-        display_name="Nanbeige4-3B-Thinking-2511 (FC)",
-        url="https://huggingface.co/Nanbeige/Nanbeige4-3B-Thinking-2511",
+    "Nanbeige3.5-Pro-Thinking-FC": ModelConfig(
+        model_name="Nanbeige3.5-Pro-Thinking",
+        display_name="Nanbeige3.5-Pro-Thinking (FC)",
+        url="https://huggingface.co/Nanbeige",
         org="Nanbeige",
         license="apache-2.0",
-        model_handler=NanbeigeFCHandler,
+        model_handler=NanbeigeAPIHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+}
+
+# Inference through local hosting
+local_inference_model_map = {
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
@@ -2037,6 +2025,18 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "Nanbeige/Nanbeige4-3B-Thinking-2511": ModelConfig(
+        model_name="Nanbeige/Nanbeige4-3B-Thinking-2511",
+        display_name="Nanbeige4-3B-Thinking-2511 (FC)",
+        url="https://huggingface.co/Nanbeige/Nanbeige4-3B-Thinking-2511",
+        org="Nanbeige",
+        license="apache-2.0",
+        model_handler=NanbeigeFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
 }

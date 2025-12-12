@@ -7,6 +7,7 @@ from openai import OpenAI
 from overrides import override
 import time
 
+
 class NanbeigeAPIHandler(OpenAICompletionsHandler):
     """
     This is the OpenAI-compatible API handler with streaming enabled.
@@ -24,8 +25,7 @@ class NanbeigeAPIHandler(OpenAICompletionsHandler):
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
         self.client = OpenAI(
             base_url="https://nanbeige.zhipin.com/api/gpt/open/chat/openai/v1",
-            api_key=os.getenv("NBG_API_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiIsInV1aWQiOiJGbGFnRXZhbEBrYW56aHVuLmNvbS03NDNkNzYzYy05YWQ4LTQzYzEtYmRlZC02N2E0YzFjMTg3ZTAifQ.5SIlTYrjyYvK_8PJcPBvHGnC7B41U2eEjCzxcfyZwjE")
-
+            api_key=os.getenv("NBG_API_KEY"),
         )
 
     #### FC methods ####
@@ -34,12 +34,12 @@ class NanbeigeAPIHandler(OpenAICompletionsHandler):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
-        
+
         return self.generate_with_backoff(
             messages=inference_data["message"],
-            model=self.model_name.replace("-FC", ""),
+            model=self.model_name,
             tools=tools,
-            timeout=72000
+            timeout=72000,
         )
 
     @override
@@ -47,20 +47,17 @@ class NanbeigeAPIHandler(OpenAICompletionsHandler):
         tool_info = []
         reasoning_content = api_response.choices[0].message.reasoning_content
         answer_content = api_response.choices[0].message.content
-        
+
         if api_response.choices[0].message.tool_calls:
             tool_calls = api_response.choices[0].message.tool_calls
             for tool_call in tool_calls:
                 tool_info.append({})
-                tool_info[-1]["id"] = (
-                    tool_info[-1].get("id", "") + tool_call.id
-                )
+                tool_info[-1]["id"] = tool_info[-1].get("id", "") + tool_call.id
                 tool_info[-1]["name"] = (
                     tool_info[-1].get("name", "") + tool_call.function.name
                 )
                 tool_info[-1]["arguments"] = (
-                    tool_info[-1].get("arguments", "")
-                    + tool_call.function.arguments
+                    tool_info[-1].get("arguments", "") + tool_call.function.arguments
                 )
 
         tool_call_ids = []
@@ -90,7 +87,9 @@ class NanbeigeAPIHandler(OpenAICompletionsHandler):
             }
             # Attach reasoning content so that it can be passed to the next turn
             if reasoning_content:
-                model_response_message_for_chat_history["reasoning_content"] = reasoning_content
+                model_response_message_for_chat_history["reasoning_content"] = (
+                    reasoning_content
+                )
         else:
             model_response = answer_content
             model_response_message_for_chat_history = {
@@ -99,7 +98,9 @@ class NanbeigeAPIHandler(OpenAICompletionsHandler):
             }
             # Attach reasoning content so that it can be passed to the next turn
             if reasoning_content:
-                model_response_message_for_chat_history["reasoning_content"] = reasoning_content
+                model_response_message_for_chat_history["reasoning_content"] = (
+                    reasoning_content
+                )
 
         response_data = {
             "model_responses": model_response,
