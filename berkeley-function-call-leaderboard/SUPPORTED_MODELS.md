@@ -4,10 +4,10 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 
 ## Function Calling (FC) vs. Prompt Mode
 
-- **Function Calling (FC) Mode:**  
+- **Function Calling (FC) Mode:**
   Models with native tool/function calling capabilities. For example, OpenAI GPT in FC mode uses the `tools` section as documented in the [OpenAI function calling guide](https://platform.openai.com/docs/guides/function-calling).
 
-- **Prompt Mode:**  
+- **Prompt Mode:**
   Models without native function calling capabilities rely on traditional prompt-based interactions to produce function calls in the desired format, and we supply the function definitions in the `system prompt` section as opposed to a dedicated `tools` section. Prompt mode also serve as an alternative approach for models that support FC mode but do not fully leverage its function calling ability (i.e., we only use its normal text generation capability).
 
 ## Understanding Versioned Models
@@ -80,8 +80,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Ling-lite-v1.5                             | Prompt           | Ant Group      | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct                | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct                | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |
+| Llama-3.1-{8B,70B}-Instruct-chat           | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-chat                 |
 | Llama-3.1-Nemotron-Ultra-253B-v1           | Prompt           | Nvidia         | nvidia/llama-3.1-nemotron-ultra-253b-v1                     |
 | Llama-3.2-{1B,3B}-Instruct                 | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-FC                    |
+| Llama-3.2-{1B,3B}-Instruct                 | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.2-{1B,3B}-Instruct-chat                  |
 | Llama-3.3-70B-Instruct                     | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.3-70B-Instruct-FC                        |
 | Llama-4-Maverick-17B-128E-Instruct-FP8     | Prompt           | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita    |
 | Llama-4-Maverick-17B-128E-Instruct-FP8     | Function Calling | Novita AI      | meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita |
