@@ -619,9 +619,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "gemini-2.5-flash-lite-preview-06-17-FC": ModelConfig(
-        model_name="gemini-2.5-flash-lite-preview-06-17",
-        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (FC)",
+    "gemini-2.5-flash-lite-FC": ModelConfig(
+        model_name="gemini-2.5-flash-lite",
+        display_name="Gemini-2.5-Flash-Lite (FC)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
@@ -631,9 +631,9 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "gemini-2.5-flash-lite-preview-06-17": ModelConfig(
-        model_name="gemini-2.5-flash-lite-preview-06-17",
-        display_name="Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt)",
+    "gemini-2.5-flash-lite": ModelConfig(
+        model_name="gemini-2.5-flash-lite",
+        display_name="Gemini-2.5-Flash-Lite (Prompt)",
         url="https://deepmind.google/technologies/gemini/flash-lite/",
         org="Google",
         license="Proprietary",
