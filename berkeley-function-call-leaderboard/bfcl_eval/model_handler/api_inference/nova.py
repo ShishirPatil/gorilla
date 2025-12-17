@@ -67,23 +67,21 @@ class NovaHandler(BaseHandler):
             "system_prompt": system_prompt,
         }
 
+        kwargs = {
+            "modelId": self.model_name,
+            "messages": message,
+            "system": system_prompt,
+            "inferenceConfig": {"temperature": self.temperature},
+        }
         if len(tools) > 0:
-            # toolConfig requires minimum number of 1 item.
-            return self.generate_with_backoff(
-                # modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
-                modelId=self.model_name,
-                messages=message,
-                system=system_prompt,
-                inferenceConfig={"temperature": self.temperature},
-                toolConfig={"tools": tools},
-            )
-        else:
-            return self.generate_with_backoff(
-                modelId=self.model_name,
-                messages=message,
-                system=system_prompt,
-                inferenceConfig={"temperature": self.temperature},
-            )
+            kwargs["toolConfig"] = {"tools": tools}
+
+        if "nova-2-lite" in self.model_name:
+            kwargs["additionalModelRequestFields"] = {
+                "reasoningConfig": {"type": "enabled", "maxReasoningEffort": "medium"}
+            }
+
+        return self.generate_with_backoff(**kwargs)
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         for round_idx in range(len(test_entry["question"])):
@@ -110,48 +108,30 @@ class NovaHandler(BaseHandler):
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
         model_responses_message_for_chat_history = api_response["output"]["message"]
+        reasoning_content = ""
 
-        if api_response["stopReason"] == "tool_use":
-            model_responses = []
-            tool_call_ids = []
-            """
-            Note: Not every response will have a toolUse, so we skip any content that does not have a toolUse
-            Example API response:
-            "output": {
-                "message": {
-                    "role": "assistant",
-                    "content": [
-                        {"text": "`"},
-                        {
-                            "toolUse": {
-                                "toolUseId": "tooluse_kF0BECcNSd6WITS9W4afbQ",
-                                "name": "calculate_triangle_area",
-                                "input": {"base": 10, "height": 5},
-                            }
-                        },
-                        {"text": "`"},
-                    ],
-                }
-            },
-            """
-            for func_call in api_response["output"]["message"]["content"]:
-                if "toolUse" not in func_call:
-                    continue
+        text_parts = []
+        tool_parts = []
+        tool_call_ids = []
+        for func_call in api_response["output"]["message"]["content"]:
+            if "reasoningContent" in func_call:
+                reasoning_content += func_call["reasoningContent"]["reasoningText"]["text"]
 
+            elif "text" in func_call:
+                text_parts.append(func_call["text"])
+
+            elif "toolUse" in func_call:
                 func_call = func_call["toolUse"]
                 func_name = func_call["name"]
                 func_args = func_call["input"]
-                model_responses.append({func_name: func_args})
+                tool_parts.append({func_name: func_args})
                 tool_call_ids.append(func_call["toolUseId"])
 
-        else:
-            model_responses = api_response["output"]["message"]["content"][0]["text"]
-            tool_call_ids = []
-
         return {
-            "model_responses": model_responses,
+            "model_responses": tool_parts if tool_parts else text_parts,
             "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
             "tool_call_ids": tool_call_ids,
+            "reasoning_content": reasoning_content,
             "input_token": api_response["usage"]["inputTokens"],
             "output_token": api_response["usage"]["outputTokens"],
         }

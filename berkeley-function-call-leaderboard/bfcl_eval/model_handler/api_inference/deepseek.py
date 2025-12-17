@@ -34,7 +34,7 @@ class DeepSeekAPIHandler(OpenAICompletionsHandler):
         )
 
     # The deepseek API is unstable at the moment, and will frequently give empty responses, so retry on JSONDecodeError is necessary
-    @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError])
+    @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError], error_message_pattern=r".*Insufficient Balance.*")
     def generate_with_backoff(self, **kwargs):
         """
         Per the DeepSeek API documentation:

@@ -219,7 +219,6 @@ class MistralFCHandler(OSSHandler):
                     f"[TOOL_RESULTS]{json.dumps(tool_results)}[/TOOL_RESULTS]"
                 )
 
-        formatted_prompt += eos_token
         return formatted_prompt
 
     @override

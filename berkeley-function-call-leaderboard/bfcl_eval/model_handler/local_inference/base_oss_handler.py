@@ -180,14 +180,10 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                     raise ValueError(f"Backend {backend} is not supported.")
 
                 def log_subprocess_output(pipe, stop_event):
-                    # Read lines until stop event is set
-                    while not stop_event.is_set():
-                        line = pipe.readline()
-                        if line:
+                    # Read lines until the pipe is closed (EOF)
+                    for line in iter(pipe.readline, ""):
+                        if not stop_event.is_set():
                             print(line, end="")
-                        else:
-                            break
-                    pipe.close()
                     print("server log tracking thread stopped successfully.")
 
                 # Start threads to read and print stdout and stderr

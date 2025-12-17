@@ -55,7 +55,7 @@ class ClaudeHandler(BaseHandler):
             function_call = convert_to_function_call(result)
             return function_call
 
-    @retry_with_backoff(error_type=RateLimitError)
+    @retry_with_backoff(error_type=RateLimitError, error_message_pattern=r".*Your credit balance is too low.*")
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
         api_response = self.client.messages.create(**kwargs)
