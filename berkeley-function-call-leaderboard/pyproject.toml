@@ -19,7 +19,6 @@ dependencies = [
     "tqdm",
     "numpy==1.26.4",
     "pandas",
-    "pathlib",
     "huggingface_hub",
     "pydantic>=2.8.2",
     "python-dotenv>=1.0.1",
