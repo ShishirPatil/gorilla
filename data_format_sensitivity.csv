@@ -1,112 +1,110 @@
 Rank,Model,Format Sensitivity Max Delta,Format Sensitivity Standard Deviation,Config ret_fmt=python&tool_call_tag=True&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=True&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=True&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=False&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=False&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=True&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=True&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=True&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=False&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=False&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=json&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=True&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=True&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=True&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=False&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=False&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=verbose_xml&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=True&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=True&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=True&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=False&func_doc_fmt=python&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=False&func_doc_fmt=xml&prompt_fmt=plaintext&style=classic,Config ret_fmt=concise_xml&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=classic,Config ret_fmt=python&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=markdown&style=classic,Config ret_fmt=python&tool_call_tag=False&func_doc_fmt=json&prompt_fmt=plaintext&style=experimental
-1,ToolACE-2-8B (FC),81.5,28.86,23.50%,42.00%,36.00%,80.00%,80.50%,81.00%,0.00%,0.00%,0.00%,20.50%,32.50%,17.00%,13.00%,6.50%,10.50%,12.00%,5.00%,6.00%,9.00%,8.50%,9.00%,20.50%,13.00%,7.00%,81.50%,81.00%
-2,Phi-4 (Prompt),81.0,23.16,74.50%,72.00%,79.00%,73.50%,77.50%,68.00%,1.50%,5.50%,11.50%,82.50%,79.50%,82.00%,80.00%,72.50%,78.00%,79.00%,71.00%,79.00%,78.00%,71.50%,80.00%,77.00%,69.00%,80.50%,67.50%,61.00%
-3,CoALM-8B,78.5,34.06,1.00%,6.50%,1.00%,76.00%,78.50%,78.00%,0.00%,0.00%,0.00%,61.00%,64.50%,65.50%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,78.00%,77.00%
-4,Qwen3-1.7B (Prompt),74.5,26.06,33.00%,60.00%,43.00%,70.00%,68.50%,71.50%,40.50%,55.00%,30.00%,71.00%,66.00%,73.50%,6.00%,0.00%,3.00%,42.50%,29.50%,42.50%,7.00%,0.00%,6.00%,59.50%,47.50%,60.50%,70.00%,74.50%
-5,Phi-4-mini-instruct (Prompt),73.0,32.79,49.50%,55.00%,53.00%,72.50%,71.50%,72.50%,0.50%,11.50%,0.50%,71.00%,71.00%,68.50%,0.00%,8.00%,0.00%,3.50%,6.00%,0.50%,0.00%,1.00%,0.00%,3.50%,1.50%,1.00%,73.00%,72.50%
-6,CoALM-70B,71.5,27.83,11.50%,6.00%,9.00%,71.50%,69.00%,70.50%,24.00%,38.00%,32.50%,11.50%,33.50%,45.50%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,71.00%,71.50%
-7,GPT-4.1-nano-2025-04-14 (Prompt),71.5,17.5,37.50%,46.00%,30.50%,79.00%,67.00%,60.50%,8.00%,26.50%,7.50%,70.00%,66.50%,45.00%,62.00%,65.50%,58.00%,61.50%,62.00%,55.00%,59.00%,56.00%,61.00%,55.00%,50.00%,54.50%,52.50%,61.50%
-8,Gemma-3-4b-it (Prompt),68.5,23.84,55.00%,52.00%,53.50%,64.50%,57.00%,62.50%,7.00%,16.00%,9.50%,70.50%,67.50%,71.50%,7.00%,15.50%,6.50%,13.50%,19.00%,13.00%,3.00%,16.50%,9.00%,22.00%,29.00%,24.50%,43.00%,47.00%
-9,Gemma-3-12b-it (Prompt),65.0,22.07,73.50%,72.00%,72.00%,76.50%,77.00%,75.50%,51.50%,32.50%,33.00%,81.00%,80.00%,81.50%,30.50%,55.00%,30.50%,21.00%,56.50%,35.50%,42.50%,53.00%,34.50%,22.00%,46.50%,16.50%,76.00%,77.50%
-10,Claude-Haiku-4-5-20251001 (Prompt),64.5,18.79,66.00%,63.50%,62.50%,66.50%,58.50%,57.50%,62.00%,61.00%,63.50%,82.00%,81.50%,82.50%,47.00%,31.00%,38.00%,41.00%,37.00%,38.00%,40.00%,33.00%,30.00%,26.00%,27.50%,18.00%,66.00%,68.50%
-11,GPT-4.1-mini-2025-04-14 (Prompt),56.5,16.5,82.50%,84.00%,81.50%,83.50%,83.50%,78.00%,78.50%,80.50%,76.50%,80.00%,81.50%,82.50%,27.50%,43.00%,43.50%,77.50%,77.00%,82.00%,37.50%,56.50%,55.50%,74.00%,77.00%,81.50%,77.50%,83.00%
-12,Qwen3-0.6B (Prompt),56.0,21.74,16.00%,12.50%,11.50%,48.50%,51.00%,49.50%,0.00%,0.00%,0.00%,41.00%,40.00%,56.00%,0.00%,0.00%,0.00%,1.00%,15.50%,6.00%,0.00%,0.00%,0.00%,0.00%,13.00%,1.00%,50.50%,53.00%
-13,Mistral-Small-2506 (Prompt),50.5,14.82,81.00%,79.00%,78.50%,80.50%,79.00%,79.50%,43.50%,75.50%,60.50%,82.50%,82.00%,84.50%,34.00%,46.50%,49.50%,76.00%,74.50%,75.50%,53.50%,45.50%,64.00%,56.00%,71.50%,71.50%,77.00%,82.00%
-14,Claude-Opus-4-1-20250805 (Prompt),50.0,15.46,82.00%,80.50%,81.50%,38.50%,35.00%,43.50%,82.50%,84.00%,85.00%,82.00%,84.50%,85.00%,80.50%,80.00%,82.50%,81.00%,81.00%,84.50%,80.00%,82.00%,83.50%,81.50%,82.00%,84.00%,47.00%,66.00%
-15,Qwen3-8B (Prompt),39.0,11.96,80.00%,79.00%,77.00%,79.50%,77.50%,80.00%,78.50%,75.50%,79.50%,76.00%,78.50%,81.00%,43.50%,48.00%,53.50%,52.00%,52.00%,61.50%,61.50%,69.00%,74.50%,58.50%,64.50%,72.00%,82.50%,79.00%
-16,Claude-Sonnet-4-5-20250929 (Prompt),37.5,10.36,87.00%,84.50%,81.50%,63.00%,58.00%,58.00%,85.50%,85.50%,87.00%,86.50%,88.00%,87.50%,83.00%,81.00%,84.50%,83.00%,81.00%,85.00%,85.50%,83.50%,85.00%,83.00%,84.00%,85.00%,50.50%,74.50%
-17,Gemma-3-27b-it (Prompt),36.0,9.58,78.00%,77.00%,78.00%,82.50%,82.00%,78.00%,65.00%,52.00%,48.50%,83.00%,82.00%,84.50%,57.50%,63.00%,59.50%,69.00%,70.00%,70.00%,72.50%,70.00%,70.00%,78.00%,71.00%,77.50%,77.00%,74.50%
-18,Bielik-11B-v2.3-Instruct (Prompt),35.5,10.6,65.00%,68.50%,64.00%,74.50%,73.00%,71.50%,69.50%,70.50%,67.00%,75.00%,73.50%,77.00%,41.50%,65.50%,50.50%,48.00%,53.00%,55.00%,41.50%,60.50%,50.00%,53.00%,55.50%,62.00%,71.00%,69.00%
-19,Qwen3-4B-Instruct-2507 (Prompt),31.5,9.03,80.50%,81.50%,80.00%,77.00%,78.00%,79.00%,69.00%,72.00%,80.50%,75.50%,75.00%,82.00%,69.00%,70.00%,75.00%,50.50%,51.00%,51.50%,75.50%,72.50%,76.50%,71.50%,68.00%,76.00%,80.50%,78.00%
-20,Qwen3-14B (Prompt),27.0,6.98,79.00%,82.50%,83.00%,81.00%,81.00%,79.50%,79.00%,79.00%,82.50%,78.50%,78.50%,81.50%,56.00%,62.50%,70.00%,70.50%,68.50%,75.00%,75.00%,65.50%,76.50%,76.50%,66.50%,78.00%,79.00%,82.00%
-21,Gemini-2.5-Flash-Lite-Preview-06-17 (Prompt),25.5,6.55,52.50%,51.50%,47.00%,72.50%,72.00%,66.00%,68.50%,72.50%,64.50%,59.50%,62.50%,61.00%,63.50%,62.50%,65.00%,72.50%,68.00%,72.00%,60.50%,64.00%,68.50%,61.00%,68.50%,62.00%,64.00%,61.00%
-22,GPT-4.1-2025-04-14 (Prompt),21.0,5.78,81.00%,82.00%,79.00%,81.00%,82.50%,81.50%,80.00%,80.50%,80.50%,80.00%,80.50%,80.50%,78.50%,79.50%,80.50%,74.00%,72.00%,69.50%,76.00%,74.50%,81.00%,66.00%,65.00%,61.50%,81.00%,78.00%
-23,QwQ-32B (Prompt),20.5,5.26,66.50%,76.50%,71.00%,80.50%,84.00%,81.00%,77.00%,81.50%,81.00%,80.00%,82.00%,80.50%,72.50%,74.50%,82.00%,73.50%,74.00%,79.50%,63.50%,72.00%,75.00%,70.50%,72.50%,78.00%,81.50%,81.00%
-24,Qwen3-30B-A3B-Instruct-2507 (Prompt),20.0,5.08,82.00%,81.50%,83.50%,80.50%,82.00%,83.50%,77.00%,77.00%,81.50%,79.50%,79.50%,82.50%,75.50%,75.00%,79.00%,76.00%,74.00%,81.50%,63.50%,71.50%,74.00%,68.50%,72.00%,74.50%,83.00%,82.00%
-25,Qwen3-32B (Prompt),19.5,5.13,76.00%,77.50%,78.50%,78.50%,82.50%,86.50%,82.50%,81.00%,83.50%,80.50%,81.50%,81.00%,72.00%,70.00%,78.00%,76.00%,70.00%,79.00%,76.00%,67.00%,75.50%,76.00%,67.50%,77.50%,84.00%,83.00%
-26,Mistral-Medium-2505,18.0,4.29,64.00%,75.50%,69.00%,72.50%,76.50%,72.50%,71.00%,77.50%,82.00%,78.00%,78.50%,79.50%,74.00%,74.50%,78.50%,72.50%,74.50%,79.00%,68.00%,71.00%,77.50%,68.50%,72.50%,77.50%,74.50%,69.50%
-27,GPT-5-mini-2025-08-07 (Prompt),18.0,4.12,75.50%,74.50%,73.50%,69.00%,69.00%,62.00%,75.00%,72.50%,74.00%,77.50%,76.00%,76.50%,74.00%,70.50%,71.50%,75.50%,73.50%,72.00%,72.00%,73.50%,73.50%,76.00%,74.50%,75.50%,59.50%,73.50%
-28,Moonshotai-Kimi-K2-Instruct (Prompt),17.5,5.42,72.50%,73.50%,76.50%,82.00%,83.50%,82.50%,83.50%,83.50%,83.00%,84.50%,84.50%,84.50%,76.00%,73.00%,76.00%,77.00%,69.00%,73.50%,82.00%,74.50%,76.00%,74.00%,69.00%,67.00%,81.00%,81.00%
-29,Open-Mistral-Nemo-2407 (Prompt),15.0,4.43,76.00%,76.50%,73.00%,75.00%,74.50%,78.00%,76.50%,76.50%,79.50%,78.00%,79.00%,80.50%,72.00%,65.50%,72.00%,73.00%,66.00%,72.00%,70.50%,68.00%,69.00%,69.50%,70.50%,66.50%,77.00%,78.50%
-30,GPT-4o-2024-11-20 (Prompt),15.0,3.84,79.50%,80.50%,79.00%,81.00%,81.00%,81.00%,80.50%,81.00%,81.00%,81.50%,80.50%,82.50%,77.00%,79.00%,80.50%,75.50%,75.00%,75.50%,76.50%,69.50%,79.00%,73.00%,68.00%,74.50%,83.00%,80.00%
-31,DeepSeek-V3.2-Exp (Prompt),15.0,4.56,79.50%,81.00%,79.00%,72.00%,69.50%,75.50%,78.50%,80.00%,81.00%,78.00%,77.50%,79.50%,66.00%,68.00%,74.00%,76.00%,75.00%,78.00%,68.00%,68.00%,71.50%,76.50%,72.00%,78.50%,78.50%,79.00%
-32,mistral-large-2411 (Prompt),14.0,4.18,83.50%,82.50%,77.50%,79.50%,81.50%,73.00%,81.50%,80.50%,80.50%,81.50%,79.50%,70.50%,81.50%,73.50%,82.00%,82.00%,75.00%,77.50%,80.00%,70.50%,79.00%,79.50%,72.50%,74.50%,69.50%,78.00%
-33,Grok-4-0709 (Prompt),13.5,3.42,76.50%,78.50%,69.50%,79.50%,78.00%,74.00%,80.00%,83.00%,82.50%,80.00%,80.50%,82.00%,81.50%,82.00%,82.00%,78.00%,80.50%,81.00%,77.50%,76.50%,83.00%,79.00%,73.00%,82.50%,75.50%,75.50%
-34,GPT-4o-mini-2024-07-18 (Prompt),13.5,3.94,79.50%,80.50%,80.50%,78.50%,81.50%,80.00%,79.00%,75.00%,76.00%,81.00%,81.00%,80.50%,69.00%,77.50%,79.50%,75.50%,76.00%,74.00%,68.00%,71.00%,78.00%,75.00%,70.50%,73.50%,79.00%,80.00%
-35,CoALM-405B,12.5,3.58,72.00%,80.50%,78.50%,84.50%,84.00%,84.00%,80.00%,79.00%,82.00%,80.50%,79.50%,82.00%,80.00%,77.50%,84.50%,80.00%,77.00%,83.00%,75.50%,75.00%,82.50%,75.50%,74.50%,82.50%,84.50%,84.50%
-36,GPT-5-nano-2025-08-07 (Prompt),12.0,2.89,74.50%,69.50%,69.00%,74.00%,73.00%,69.00%,70.50%,72.50%,71.00%,75.00%,73.50%,74.00%,71.00%,70.00%,73.00%,68.50%,66.50%,71.00%,73.50%,65.00%,77.00%,73.00%,69.50%,76.50%,70.00%,73.00%
-37,DeepSeek-V3.2-Exp (Prompt + Thinking),11.5,3.0,80.00%,82.50%,82.50%,85.50%,80.00%,81.50%,82.50%,82.00%,81.50%,82.00%,81.50%,84.50%,76.50%,74.00%,81.00%,78.50%,74.50%,79.50%,78.00%,75.50%,80.00%,76.00%,76.50%,82.50%,80.50%,80.00%
-38,Gemini-2.5-Pro (Prompt),9.0,2.36,74.50%,76.00%,78.00%,80.50%,80.50%,83.00%,79.50%,77.00%,82.00%,80.00%,79.00%,81.50%,79.00%,77.00%,81.50%,78.50%,77.00%,81.00%,78.00%,77.00%,82.50%,80.00%,80.50%,83.50%,81.00%,83.00%
-39,Gemini-2.5-Flash (Prompt),9.0,2.89,82.50%,80.00%,82.00%,77.00%,75.50%,78.00%,82.00%,82.50%,80.50%,83.00%,82.00%,82.00%,75.00%,77.50%,81.00%,77.00%,77.00%,82.00%,74.50%,76.00%,77.00%,76.00%,74.00%,77.00%,80.50%,78.50%
-40,o3-2025-04-16 (Prompt),8.5,2.4,77.50%,78.00%,71.00%,77.50%,79.50%,74.50%,73.00%,76.50%,75.00%,78.50%,79.00%,79.50%,76.00%,77.00%,77.00%,75.00%,74.50%,76.00%,78.50%,74.00%,79.50%,78.50%,77.50%,79.50%,72.50%,74.00%
-41,o4-mini-2025-04-16 (Prompt),8.0,2.4,77.00%,74.50%,73.00%,77.00%,76.50%,72.50%,76.50%,77.50%,79.50%,77.50%,79.00%,80.00%,77.00%,77.50%,75.00%,78.50%,74.50%,77.50%,73.50%,74.50%,79.50%,73.00%,76.50%,80.50%,72.50%,74.50%
-42,Qwen3-235B-A22B-Instruct-2507 (Prompt),7.5,1.74,81.00%,82.50%,83.00%,83.00%,83.00%,81.00%,82.00%,84.00%,79.50%,82.50%,82.00%,82.00%,83.50%,81.50%,84.00%,82.50%,82.00%,83.00%,80.00%,78.50%,83.00%,81.50%,76.50%,82.50%,82.00%,79.50%
-43,GPT-5-2025-08-07 (Prompt),7.0,1.87,74.00%,72.50%,70.50%,75.50%,72.00%,72.50%,74.50%,76.00%,76.00%,76.50%,76.50%,76.00%,77.50%,77.00%,77.50%,74.00%,74.50%,76.50%,77.00%,75.00%,76.50%,73.00%,77.00%,75.50%,74.00%,74.00%
-44,GPT-4.1-nano-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-45,palmyra-x-004 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-46,Falcon3-3B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-47,Qwen3-32B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-48,xLAM-2-70b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-49,Granite-3.1-8B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-50,Mistral-small-2506 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-51,DeepSeek-V3.2-Exp (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-52,Arch-Agent-1.5B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-53,Granite-20b-FunctionCalling (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-54,Gemma-3-1b-it (Prompt),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-55,GPT-4.1-mini-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-56,Qwen3-8B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-57,Llama-3.3-70B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-58,Qwen3-1.7B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-59,GPT-4.1-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-60,Claude-Opus-4-1-20250805 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-61,Qwen3-4B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-62,mistral-large-2411 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-63,xLAM-2-32b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-64,GPT-5-mini-2025-08-07 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-65,Hammer2.1-1.5b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-66,QwQ-32B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-67,GPT-5-2025-08-07 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-68,Hammer2.1-0.5b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-69,Llama-4-Scout-17B-16E-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-70,GPT-4o-mini-2024-07-18 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-71,xLAM-2-3b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-72,Llama-3.2-3B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-73,Granite-3.2-8B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-74,GPT-5-nano-2025-08-07 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-75,Moonshotai-Kimi-K2-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-76,Qwen3-0.6B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-77,o3-2025-04-16 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-78,Gemini-2.5-Flash-Lite-Preview-06-17 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-79,xLAM-2-1b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-80,GLM-4.5-Air (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-81,Arch-Agent-32B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-82,Qwen3-30B-A3B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-83,Llama-3.2-1B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-84,Falcon3-10B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-85,GLM-4.5 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-86,Mistral-Medium-2505 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-87,Command R7B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-88,o4-mini-2025-04-16 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-89,Hammer2.1-7b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-90,Gemini-2.5-Flash (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-91,Amazon-Nova-Micro-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-92,Open-Mistral-Nemo-2407 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-93,Arch-Agent-3B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-94,GPT-4o-2024-11-20 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-95,Amazon-Nova-Lite-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-96,Phi-4-mini-instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-97,Falcon3-7B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-98,Arch-Agent-7B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-99,Llama-4-Maverick-17B-128E-Instruct-FP8 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-100,Hammer2.1-3b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-101,xLAM-2-8b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-102,Claude-Haiku-4-5-20251001 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-103,Command A (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-104,Qwen3-14B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-105,Gemini-2.5-Pro (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-106,Falcon3-1B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-107,Claude-Sonnet-4-5-20250929 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-108,Qwen3-235B-A22B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-109,Grok-4-0709 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-110,Amazon-Nova-Pro-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-111,BitAgent-Bounty-8B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+1,Phi-4 (Prompt),81.5,23.34,75.50%,72.00%,79.00%,72.50%,77.00%,69.50%,1.50%,4.00%,11.00%,82.00%,79.00%,83.00%,80.00%,72.50%,79.50%,79.00%,71.50%,77.00%,78.00%,71.50%,79.50%,77.00%,68.50%,80.00%,66.00%,61.00%
+2,ToolACE-2-8B (FC),81.5,27.92,24.00%,41.50%,35.50%,80.00%,81.00%,80.50%,0.00%,0.00%,0.00%,20.50%,32.50%,17.00%,20.00%,14.00%,21.00%,17.50%,12.50%,12.00%,9.00%,8.50%,9.00%,21.00%,13.00%,6.50%,81.50%,81.00%
+3,CoALM-8B,79.0,34.18,1.00%,7.00%,1.00%,77.00%,78.50%,78.00%,0.00%,0.00%,0.00%,61.00%,64.50%,65.50%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,79.00%,77.00%
+4,Llama-3.1-8B-Instruct (Prompt),74.5,29.1,34.00%,72.00%,68.00%,73.50%,73.50%,77.50%,3.00%,44.50%,7.00%,70.50%,69.50%,75.00%,8.00%,6.00%,9.00%,48.00%,24.50%,57.50%,5.00%,7.50%,7.00%,40.50%,62.50%,62.00%,77.00%,75.00%
+5,GPT-4.1-nano-2025-04-14 (Prompt),73.0,17.08,36.50%,47.00%,32.00%,81.50%,68.00%,59.00%,8.50%,38.00%,10.00%,70.50%,65.00%,46.00%,64.50%,67.50%,62.50%,60.50%,61.00%,58.00%,60.50%,58.00%,65.00%,55.00%,47.50%,55.50%,54.00%,62.00%
+6,CoALM-70B,72.0,27.76,13.00%,6.50%,9.00%,72.00%,69.50%,70.50%,23.50%,36.50%,34.00%,10.50%,32.50%,45.50%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,69.50%,71.50%
+7,Gemma-3-4b-it (Prompt),69.5,23.67,54.00%,52.50%,53.00%,63.50%,57.50%,62.00%,6.00%,16.00%,9.50%,70.50%,67.50%,71.50%,5.50%,5.50%,5.00%,28.50%,32.50%,26.50%,2.00%,15.00%,8.00%,21.00%,29.00%,24.00%,41.50%,47.00%
+8,MiniCPM3-4B (Prompt),68.0,16.55,40.00%,60.00%,48.50%,33.00%,52.00%,56.50%,17.00%,14.50%,3.00%,66.00%,70.00%,71.00%,46.50%,59.00%,62.00%,38.00%,51.00%,44.50%,38.00%,51.50%,50.00%,38.00%,45.00%,35.50%,42.50%,60.00%
+9,Gemma-3-12b-it (Prompt),67.5,22.41,73.00%,72.00%,72.50%,76.50%,78.00%,74.50%,52.50%,32.50%,33.00%,81.50%,80.00%,83.00%,36.50%,51.00%,31.50%,26.00%,54.00%,20.50%,42.50%,54.00%,35.50%,22.50%,42.50%,15.50%,76.00%,77.50%
+10,Claude-Haiku-4-5-20251001 (Prompt),67.5,20.07,68.00%,64.00%,62.50%,66.00%,61.00%,58.00%,61.00%,59.00%,63.00%,83.00%,81.50%,82.50%,53.00%,36.50%,44.00%,33.50%,30.00%,29.00%,37.50%,30.50%,30.00%,22.00%,25.50%,15.50%,66.50%,69.00%
+11,RZN-T (Prompt),63.5,25.53,40.00%,49.50%,35.50%,56.50%,62.50%,60.00%,5.50%,8.50%,1.50%,55.50%,58.50%,63.50%,0.00%,0.00%,0.00%,15.50%,28.50%,27.00%,0.00%,0.00%,0.00%,3.00%,11.00%,4.00%,59.50%,55.50%
+12,Qwen3-0.6B (Prompt),60.5,24.35,35.00%,48.00%,34.00%,53.00%,56.50%,58.50%,7.00%,10.50%,3.00%,60.00%,57.00%,60.50%,0.50%,0.00%,0.00%,13.50%,21.50%,26.50%,0.00%,0.00%,0.00%,2.50%,15.00%,7.00%,55.50%,56.50%
+13,Mistral-Small-2506 (Prompt),50.0,13.57,80.50%,79.00%,78.00%,81.00%,82.00%,80.50%,54.50%,78.50%,69.50%,82.50%,82.50%,84.00%,34.00%,41.00%,58.50%,70.50%,74.50%,74.50%,50.00%,62.50%,67.00%,56.50%,73.50%,73.50%,76.50%,81.50%
+14,GPT-4.1-mini-2025-04-14 (Prompt),45.0,13.33,81.50%,82.50%,81.50%,83.50%,83.50%,79.00%,79.50%,80.50%,77.00%,80.00%,79.50%,81.50%,47.50%,51.00%,55.00%,80.00%,77.00%,81.00%,38.50%,57.50%,52.00%,73.00%,77.00%,82.50%,78.00%,82.00%
+15,Claude-Sonnet-4-5-20250929 (Prompt),37.5,10.07,87.00%,84.00%,82.00%,64.50%,60.50%,57.50%,85.50%,85.50%,86.50%,86.50%,88.00%,87.50%,83.50%,80.00%,83.50%,84.00%,80.50%,84.50%,86.00%,83.50%,85.00%,83.00%,84.00%,85.50%,50.50%,76.00%
+16,Bielik-11B-v2.3-Instruct (Prompt),35.0,9.74,65.50%,68.00%,65.00%,74.50%,73.50%,71.50%,70.00%,70.50%,67.00%,75.50%,74.50%,77.50%,48.00%,65.50%,55.50%,50.50%,55.00%,57.00%,42.50%,61.00%,50.00%,52.50%,55.50%,62.00%,71.00%,69.00%
+17,Gemma-3-27b-it (Prompt),34.0,8.06,77.00%,77.00%,77.00%,82.50%,82.50%,78.50%,65.50%,53.50%,50.50%,83.00%,82.00%,84.50%,70.50%,73.00%,72.00%,77.50%,73.00%,79.00%,73.00%,70.00%,71.00%,79.00%,71.00%,77.50%,76.50%,74.00%
+18,Gemma-3-1b-it (Prompt),25.5,9.76,3.00%,4.00%,6.00%,17.50%,25.50%,21.50%,0.00%,0.00%,0.00%,21.00%,21.00%,20.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.50%,0.00%,0.00%,0.00%,0.00%,18.50%,23.50%
+19,Gemini-2.5-Flash-Lite (Prompt),25.5,6.68,52.50%,51.50%,47.00%,72.50%,72.00%,66.00%,68.50%,72.50%,65.00%,59.50%,62.50%,61.00%,69.00%,66.00%,71.50%,71.00%,69.50%,70.50%,60.50%,64.00%,68.50%,61.00%,68.50%,62.50%,64.00%,61.00%
+20,GPT-4.1-2025-04-14 (Prompt),23.5,6.18,81.50%,82.00%,77.50%,81.50%,82.00%,82.00%,80.00%,81.00%,81.50%,81.00%,80.00%,81.00%,80.00%,78.50%,81.50%,75.50%,75.00%,71.50%,78.00%,76.00%,82.00%,66.00%,63.50%,58.50%,81.00%,79.00%
+21,Mistral-Medium-2505,21.5,5.02,59.50%,76.50%,67.50%,70.00%,76.00%,72.00%,71.00%,78.50%,80.00%,78.50%,79.00%,79.50%,74.50%,74.50%,81.00%,75.00%,73.50%,79.00%,70.50%,71.00%,78.00%,67.50%,71.00%,78.00%,75.50%,69.00%
+22,Qwen3-4B-Instruct-2507 (Prompt),18.0,5.22,80.00%,81.50%,80.50%,77.00%,79.00%,78.50%,70.50%,73.00%,81.50%,75.50%,75.50%,82.50%,68.00%,73.00%,72.50%,65.00%,64.50%,67.50%,75.50%,72.50%,76.50%,73.00%,68.00%,75.50%,80.50%,78.50%
+23,Qwen3-8B (Prompt),16.5,5.09,82.00%,78.50%,78.50%,79.50%,78.50%,81.00%,82.00%,78.00%,80.50%,81.50%,78.50%,79.50%,71.50%,73.00%,75.00%,71.00%,73.00%,76.00%,66.00%,68.50%,72.00%,65.50%,69.50%,72.00%,79.50%,81.50%
+24,Qwen3-30B-A3B-Instruct-2507 (Prompt),16.0,4.13,76.50%,82.00%,82.50%,79.50%,81.50%,84.00%,74.50%,71.00%,76.00%,78.00%,80.00%,80.50%,78.00%,75.00%,80.00%,75.50%,75.00%,81.50%,68.00%,74.00%,75.00%,72.50%,72.50%,75.00%,83.50%,80.50%
+25,GPT-5-mini-2025-08-07 (Prompt),16.0,3.78,76.00%,75.00%,74.00%,74.50%,65.50%,64.50%,76.00%,75.50%,76.00%,75.00%,73.00%,76.50%,73.00%,72.00%,72.50%,74.00%,74.00%,73.50%,72.00%,72.50%,77.00%,73.00%,73.00%,75.50%,61.00%,73.50%
+26,Qwen3-32B (Prompt),15.5,3.75,81.50%,78.50%,82.50%,80.00%,83.00%,83.50%,84.00%,82.00%,80.50%,79.50%,81.00%,84.50%,80.00%,79.50%,80.00%,80.00%,79.00%,81.00%,75.00%,70.00%,77.50%,79.00%,70.00%,79.50%,83.50%,85.50%
+27,Open-Mistral-Nemo-2407 (Prompt),14.5,4.6,75.50%,77.00%,76.50%,74.00%,73.50%,79.50%,77.00%,76.00%,79.50%,77.50%,79.50%,79.50%,69.50%,67.00%,76.00%,70.00%,65.00%,75.50%,70.00%,68.50%,68.00%,68.00%,69.50%,67.00%,76.50%,76.00%
+28,Qwen3-14B (Prompt),14.0,3.97,81.00%,82.00%,83.50%,81.00%,83.50%,81.50%,83.00%,79.50%,82.50%,81.50%,76.50%,83.00%,78.50%,70.00%,78.50%,79.00%,76.50%,82.00%,75.50%,69.50%,74.50%,76.50%,73.00%,77.50%,82.00%,80.00%
+29,mistral-large-2411 (Prompt),13.5,3.91,83.50%,81.00%,78.50%,80.00%,81.50%,75.00%,80.00%,80.50%,83.00%,82.00%,76.00%,72.50%,83.00%,77.00%,82.50%,81.50%,73.00%,80.50%,77.00%,70.00%,80.50%,80.00%,72.00%,76.00%,72.50%,77.50%
+30,Claude-Opus-4-5-20251101 (Prompt),13.0,3.65,83.50%,80.00%,83.00%,81.50%,73.50%,82.00%,83.50%,82.00%,86.00%,83.50%,82.50%,86.00%,81.00%,73.50%,78.00%,78.50%,74.00%,79.00%,79.50%,77.00%,86.50%,81.50%,76.00%,81.50%,82.50%,79.50%
+31,Grok-4-0709 (Prompt),13.0,2.88,76.50%,78.50%,70.50%,79.00%,80.50%,77.50%,83.00%,83.00%,82.00%,79.50%,82.00%,80.00%,81.50%,79.50%,82.00%,78.50%,79.00%,79.50%,78.00%,77.50%,83.50%,80.00%,75.50%,82.50%,76.00%,77.50%
+32,GPT-5.2-2025-12-11 (Prompt),13.0,3.25,76.50%,78.00%,75.00%,77.00%,72.50%,73.50%,78.00%,79.00%,81.50%,78.00%,80.00%,80.50%,80.00%,80.00%,81.00%,77.50%,81.00%,82.50%,77.00%,79.50%,80.50%,79.00%,76.50%,75.50%,69.50%,71.50%
+33,DeepSeek-V3.2-Exp (Prompt + Thinking),10.0,2.77,79.50%,77.00%,76.50%,77.00%,74.50%,78.00%,76.50%,77.00%,80.50%,77.00%,80.50%,80.50%,71.50%,71.50%,75.50%,78.00%,75.50%,79.00%,74.00%,73.00%,76.50%,76.00%,73.00%,80.00%,81.50%,78.00%
+34,o4-mini-2025-04-16 (Prompt),9.5,2.6,75.50%,75.50%,70.00%,78.50%,74.50%,70.50%,79.50%,78.50%,78.50%,77.50%,78.00%,78.00%,76.00%,75.50%,77.50%,76.00%,77.50%,77.50%,73.50%,73.00%,79.50%,73.00%,76.00%,78.50%,74.50%,73.50%
+35,Gemini-2.5-Flash (Prompt),9.0,2.45,81.50%,80.00%,80.00%,80.50%,79.50%,82.00%,83.50%,79.50%,80.00%,80.50%,79.00%,82.50%,77.00%,79.00%,80.50%,78.50%,77.00%,81.50%,77.00%,74.50%,76.50%,75.00%,75.50%,76.00%,82.00%,78.00%
+36,Gemini-3-Pro-Preview (Prompt),8.5,1.7,81.50%,82.50%,83.50%,81.00%,82.00%,83.50%,82.50%,81.50%,83.00%,80.00%,82.50%,85.00%,80.50%,82.00%,83.50%,81.00%,83.00%,83.00%,79.00%,82.50%,82.00%,76.50%,82.50%,82.50%,82.50%,84.00%
+37,o3-2025-04-16 (Prompt),8.5,2.75,78.00%,78.50%,72.50%,80.50%,76.50%,73.00%,73.00%,75.00%,73.50%,79.00%,80.50%,80.50%,77.00%,73.50%,79.50%,79.00%,81.00%,76.00%,76.50%,77.00%,75.50%,75.50%,74.50%,79.00%,74.50%,72.50%
+38,GPT-5-nano-2025-08-07 (Prompt),8.5,2.57,68.50%,70.00%,68.50%,74.50%,72.50%,73.00%,73.00%,72.00%,76.00%,73.50%,71.50%,72.00%,69.00%,68.50%,73.50%,70.00%,67.50%,71.50%,74.00%,70.50%,75.00%,74.50%,69.50%,76.00%,76.00%,70.50%
+39,Qwen3-235B-A22B-Instruct-2507 (Prompt),8.0,1.95,80.50%,82.50%,82.00%,82.50%,83.50%,80.50%,80.50%,83.00%,78.50%,80.50%,82.50%,82.00%,83.00%,81.00%,82.00%,83.00%,82.00%,82.00%,78.50%,78.50%,84.00%,79.00%,76.00%,84.00%,81.00%,80.50%
+40,Ministral-8B-Instruct-2410 (FC),0.0,0.0,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%
+41,GPT-4.1-nano-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+42,palmyra-x-004 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+43,Falcon3-3B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+44,Qwen3-32B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+45,xLAM-2-70b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+46,Granite-3.1-8B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+47,Mistral-small-2506 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+48,Nanbeige3.5-Pro-Thinking (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+49,DeepSeek-V3.2-Exp (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+50,Arch-Agent-1.5B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+51,Granite-20b-FunctionCalling (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+52,GPT-4.1-mini-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+53,Qwen3-8B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+54,Llama-3.3-70B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+55,GPT-4.1-2025-04-14 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+56,Qwen3-4B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+57,Claude-Opus-4-5-20251101 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+58,mistral-large-2411 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+59,xLAM-2-32b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+60,GPT-5-mini-2025-08-07 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+61,Hammer2.1-1.5b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+62,Hammer2.1-0.5b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+63,Llama-4-Scout-17B-16E-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+64,Gemini-3-Pro-Preview (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+65,xLAM-2-3b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+66,Llama-3.2-3B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+67,Granite-3.2-8B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+68,GPT-5-nano-2025-08-07 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+69,Moonshotai-Kimi-K2-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+70,o3-2025-04-16 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+71,GLM-4.6 (FC thinking),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+72,xLAM-2-1b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+73,MiniCPM3-4B-FC (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+74,Arch-Agent-32B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+75,Gemini-2.5-Flash-Lite (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+76,Llama-3.2-1B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+77,Amazon-Nova-2-Lite-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+78,Falcon3-10B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+79,Mistral-Medium-2505 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+80,Command R7B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+81,Qwen3-14B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+82,o4-mini-2025-04-16 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+83,Hammer2.1-7b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+84,Gemini-2.5-Flash (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+85,Amazon-Nova-Micro-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+86,Open-Mistral-Nemo-2407 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+87,Arch-Agent-3B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+88,Qwen3-1.7B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+89,Grok-4-1-fast-reasoning (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+90,Command A Reasoning (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+91,Falcon3-7B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+92,Nanbeige4-3B-Thinking-2511 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+93,Granite-4.0-350m (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+94,Grok-4-1-fast-non-reasoning (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+95,Llama-4-Maverick-17B-128E-Instruct-FP8 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+96,Hammer2.1-3b (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+97,xLAM-2-8b-fc-r (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+98,Qwen3-30B-A3B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+99,Claude-Haiku-4-5-20251001 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+100,Command A (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+101,Llama-3.1-Nemotron-Ultra-253B-v1 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+102,Falcon3-1B-Instruct (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+103,Qwen3-0.6B (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+104,Claude-Sonnet-4-5-20250929 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+105,Qwen3-235B-A22B-Instruct-2507 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+106,Grok-4-0709 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+107,GPT-5.2-2025-12-11 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+108,Amazon-Nova-Pro-v1:0 (FC),N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+109,BitAgent-Bounty-8B,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
