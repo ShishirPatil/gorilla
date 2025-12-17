@@ -1169,7 +1169,7 @@ api_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
 }
 
