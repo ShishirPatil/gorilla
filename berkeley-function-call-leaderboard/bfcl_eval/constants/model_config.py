@@ -2152,3 +2152,23 @@ MODEL_CONFIG_MAPPING = {
 
 # Uncomment to get the supported_models.py file contents
 # print(repr(list(MODEL_CONFIG_MAPPING.keys())))
+
+#FC model consistency check
+errors, warnings, passed = [], [], []
+
+for key, cfg in MODEL_CONFIG_MAPPING.items():
+    name_fields = [key, getattr(cfg, "model_name", ""), getattr(cfg, "display_name", "")]
+    has_fc = any("FC" in str(field) for field in name_fields)
+    is_fc = getattr(cfg, "is_fc_model", False)
+
+    if has_fc and not is_fc:
+        errors.append(key)
+    elif not has_fc and is_fc:
+        warnings.append(key)
+    else:
+        passed.append(key)
+
+print("FC Model Consistency Check:")
+print(f"Errors ({len(errors)}): {errors}")
+print(f"Warnings ({len(warnings)}): {warnings}")
+print(f"Passed ({len(passed)}): {passed}")
