@@ -90,6 +90,8 @@ SUPPORTED_MODELS = [
     "qwen3-30b-a3b-instruct-2507",
     "qwen3-235b-a22b-instruct-2507-FC",
     "qwen3-235b-a22b-instruct-2507",
+    "foxtool-8b-FC",
+    "foxtool-8b",
     "qwq-32b-FC",
     "qwq-32b",
     "xiaoming-14B",
