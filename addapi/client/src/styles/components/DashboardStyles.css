@@ -1,0 +1,43 @@
+/* DashboardStyles.css */
+
+/* General Styles */
+.btn-db { /* dashboard buttons */
+  min-width: 120px;
+  border-radius: 12px;
+  border-color: rgb(93, 88, 88) !important; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Specify properties */
+}
+
+.btn-db:hover, .btn-db:focus {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0,0,0,.12); /* Slightly more pronounced shadow */
+}
+
+
+/* Input and Output Cards */
+  .btn-grey {
+    background-image: linear-gradient(to bottom right, #C2C2C1, #A8A9AD);
+  }
+  
+  .btn-convert {
+    border-color: #FFCC99;
+    background-image: linear-gradient(to bottom right, #FFB347, #FFCC99);
+  }
+
+
+/* Examples Section */
+.examples-container {
+  padding: 1.5rem; 
+  background-color: #f8f9fa; 
+  border-color: rgb(141, 136, 136);
+  border-style: solid;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.12); /* Slightly more pronounced shadow */
+  margin-bottom: 1.5rem;
+}
+
+.btn-ex { /* example buttons */
+  border-radius: 8px;
+}
+
+  
