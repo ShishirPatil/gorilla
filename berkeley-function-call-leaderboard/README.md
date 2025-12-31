@@ -223,12 +223,14 @@ bfcl generate \
   --backend {sglang|vllm} \
   --num-gpus 1 \
   --gpu-memory-utilization 0.9 \
-  --local-model-path /path/to/local/model   # ← optional
+  --local-model-path /path/to/base/model \
+  --lora-modules /path/to/lora/adapter   # ← optional
 ```
 
 - Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 - `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
+- `--lora-modules` (optional): Specify the path to the LoRA modules for vLLM backend. This allows evaluation of fine-tuned models with LoRA adapters.
 
 ##### For Pre-existing OpenAI-compatible Endpoints
 
