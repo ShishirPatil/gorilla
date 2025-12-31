@@ -55,6 +55,12 @@ def get_args():
         default=None,
         help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     )
+    parser.add_argument(
+        "--lora-modules",
+        type=str,
+        default=None,
+        help="Specify the path to the LoRA modules for vLLM backend.",
+    )
     args = parser.parse_args()
 
     return args
@@ -199,7 +205,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total):
+def generate_results(args, model_name, test_cases_total, lora_modules: Optional[str] = None):
     handler = build_handler(model_name, args.temperature)
 
     if isinstance(handler, OSSHandler):
@@ -240,6 +246,7 @@ def generate_results(args, model_name, test_cases_total):
                 backend=args.backend,
                 skip_server_setup=args.skip_server_setup,
                 local_model_path=args.local_model_path,
+                lora_modules=lora_modules,
             )
 
         # ───── dependency bookkeeping ──────────────────────────────
@@ -393,7 +400,7 @@ def main(args):
                 f"✅ All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
         else:
-            generate_results(args, model_name, test_cases_total)
+            generate_results(args, model_name, test_cases_total, args.lora_modules)
             # Sort the result files by id at the end
             for model_result_json in args.result_dir.rglob(RESULT_FILE_PATTERN):
                 sort_file_content_by_id(model_result_json)

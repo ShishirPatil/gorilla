@@ -76,6 +76,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         backend: str,
         skip_server_setup: bool,
         local_model_path: Optional[str],
+        lora_modules: Optional[str] = None,
     ):
         """
         Spin up a local server for the model.
@@ -148,7 +149,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                             "--gpu-memory-utilization",
                             str(gpu_memory_utilization),
                             "--trust-remote-code",
-                        ],
+                        ] + (["--lora-modules", lora_modules] if lora_modules else []),
                         stdout=subprocess.PIPE,  # Capture stdout
                         stderr=subprocess.PIPE,  # Capture stderr
                         text=True,  # To get the output as text instead of bytes
