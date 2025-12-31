@@ -161,7 +161,7 @@ def generate(
     lora_modules: Optional[List[str]] = typer.Option(
         None,
         "--lora-modules",
-        help="Specify the path to the LoRA modules for vLLM backend in name="path" format. Can be specified multiple times.",
+        help='Specify the path to the LoRA modules for vLLM backend in name="path" format. Can be specified multiple times.',
     ),
 ):
     """
