@@ -59,7 +59,20 @@ def get_args():
         "--lora-modules",
         type=str,
         default=None,
-        help="Specify the path to the LoRA modules for vLLM backend.",
+        nargs="*",
+        help="Specify the path to the LoRA modules for vLLM backend in name=\"path\" format. Can be specified multiple times.",
+    )
+    parser.add_argument(
+        "--enable-lora",
+        action="store_true",
+        default=False,
+        help="Enable LoRA for vLLM backend.",
+    )
+    parser.add_argument(
+        "--max-lora-rank",
+        type=int,
+        default=None,
+        help="Specify the maximum LoRA rank for vLLM backend.",
     )
     args = parser.parse_args()
 
@@ -205,7 +218,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total, lora_modules: Optional[str] = None):
+def generate_results(args, model_name, test_cases_total, lora_modules: Optional[list[str]] = None, enable_lora: bool = False, max_lora_rank: Optional[int] = None):
     handler = build_handler(model_name, args.temperature)
 
     if isinstance(handler, OSSHandler):
@@ -400,7 +413,7 @@ def main(args):
                 f"✅ All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
         else:
-            generate_results(args, model_name, test_cases_total, args.lora_modules)
+            generate_results(args, model_name, test_cases_total, args.lora_modules, args.enable_lora, args.max_lora_rank)
             # Sort the result files by id at the end
             for model_result_json in args.result_dir.rglob(RESULT_FILE_PATTERN):
                 sort_file_content_by_id(model_result_json)
