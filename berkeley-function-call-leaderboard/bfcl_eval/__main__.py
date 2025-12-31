@@ -148,6 +148,21 @@ def generate(
         "--run-ids",
         help="If true, also run the test entry mentioned in the test_case_ids_to_generate.json file, in addition to the --test_category argument.",
     ),
+    enable_lora: bool = typer.Option(
+        False,
+        "--enable-lora",
+        help="Enable LoRA for vLLM backend.",
+    ),
+    max_lora_rank: Optional[int] = typer.Option(
+        None,
+        "--max-lora-rank",
+        help="Specify the maximum LoRA rank for vLLM backend.",
+    ),
+    lora_modules: Optional[List[str]] = typer.Option(
+        None,
+        "--lora-modules",
+        help="Specify the path to the LoRA modules for vLLM backend in name="path" format. Can be specified multiple times.",
+    ),
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
@@ -168,6 +183,9 @@ def generate(
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,
+        enable_lora=enable_lora,
+        max_lora_rank=max_lora_rank,
+        lora_modules=lora_modules,
     )
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     generation_main(args)
