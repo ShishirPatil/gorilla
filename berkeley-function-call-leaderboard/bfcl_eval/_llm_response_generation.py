@@ -1,29 +1,27 @@
 import argparse
+import heapq
 import multiprocessing as mp
 import os
-import shutil
-import traceback
-from collections import defaultdict, deque
-from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
-import threading
 import queue
+import shutil
+import threading
+import traceback
+from collections import defaultdict
+from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from copy import deepcopy
-from typing import TYPE_CHECKING
 
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
+    RESULT_FILE_PATTERN,
     RESULT_PATH,
     TEST_IDS_TO_GENERATE_PATH,
-    RESULT_FILE_PATTERN,
 )
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
 from bfcl_eval.eval_checker.eval_runner_helper import load_file
-from bfcl_eval.constants.enums import ModelStyle
-from bfcl_eval.utils import *
-from tqdm import tqdm
-
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
+from bfcl_eval.utils import *
+from tqdm import tqdm
 
 
 def get_args():
@@ -39,7 +37,7 @@ def get_args():
     parser.add_argument("--exclude-state-log", action="store_true", default=False)
     parser.add_argument("--num-threads", required=False, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
-    parser.add_argument("--backend", default="sglang", type=str, choices=["vllm", "sglang"])
+    parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--result-dir", default=None, type=str)
     parser.add_argument("--run-ids", action="store_true", default=False)
@@ -256,30 +254,29 @@ def generate_results(args, model_name, test_cases_total):
 
         id_to_test_case = {test_case["id"]: test_case for test_case in test_cases_total}
 
-        ready_queue = deque(
-            [
-                test_case_id
-                for test_case_id, dependency_ids in dependencies.items()
-                if not dependency_ids
-            ]
-        )
+        ready_queue = [
+            (sort_key(id_to_test_case[test_case_id]), test_case_id)
+            for test_case_id, dependency_ids in dependencies.items()
+            if not dependency_ids
+        ]
+        heapq.heapify(ready_queue)
         in_flight: dict[Future, str] = {}  # future -> test_case_id
         completed = set()
 
         with ThreadPoolExecutor(max_workers=num_threads) as pool, tqdm(
             total=len(test_cases_total),
             desc=f"Generating results for {model_name}",
-            position=0,         
-            leave=True,           
-            dynamic_ncols=True,   
-            mininterval=0.2,      
-            smoothing=0.1,        
+            position=0,
+            leave=True,
+            dynamic_ncols=True,
+            mininterval=0.2,
+            smoothing=0.1,
             bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]",
         ) as pbar:
 
             # seed initial ready tasks
             while ready_queue and len(in_flight) < num_threads:
-                test_case_id = ready_queue.popleft()
+                _, test_case_id = heapq.heappop(ready_queue)
                 test_case = id_to_test_case[test_case_id]
                 future = pool.submit(
                     multi_threaded_inference,
@@ -308,11 +305,14 @@ def generate_results(args, model_name, test_cases_total):
                     for child_id in children_of[test_case_id]:
                         dependencies[child_id].discard(test_case_id)
                         if not dependencies[child_id]:
-                            ready_queue.append(child_id)
+                            heapq.heappush(
+                                ready_queue,
+                                (sort_key(id_to_test_case[child_id]), child_id),
+                            )
 
                 # refill the pool up to max_workers
                 while ready_queue and len(in_flight) < num_threads:
-                    test_case_id = ready_queue.popleft()
+                    _, test_case_id = heapq.heappop(ready_queue)
                     test_case = id_to_test_case[test_case_id]
                     future = pool.submit(
                         multi_threaded_inference,

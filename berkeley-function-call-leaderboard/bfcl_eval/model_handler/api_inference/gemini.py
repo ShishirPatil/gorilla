@@ -78,7 +78,9 @@ class GeminiHandler(BaseHandler):
 
     # We can't retry on ClientError because it's too broad.
     # Both rate limit and invalid function description will trigger google.genai.errors.ClientError
-    @retry_with_backoff(error_message_pattern=r".*RESOURCE_EXHAUSTED.*")
+    @retry_with_backoff(
+        error_message_pattern=r".*(RESOURCE_EXHAUSTED|The model is overloaded).*"
+    )
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
         api_response = self.client.models.generate_content(**kwargs)
