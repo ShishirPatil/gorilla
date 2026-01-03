@@ -37,7 +37,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | DeepSeek-V3.2-Exp                      | Function Calling | DeepSeek       | DeepSeek-V3.2-Exp-FC                                        |
 | DeepSeek-V3.2-Exp                      | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp                                           |
 | DeepSeek-V3.2-Exp (Prompt + Thinking)  | Prompt           | DeepSeek       | DeepSeek-V3.2-Exp-thinking                                  |
-| DM-Cito-8B-v2                          | Prompt           | Mininglamp     | DM-Cito-8B-v2                                               |
+| DM-Cito-32B-v1                         | Prompt           | Mininglamp     | DM-Cito-32B-v1                                              |
+| DM-Cito-8B-v3                          | Prompt           | Mininglamp     | DM-Cito-8B-v3                                               |
 | Falcon3-{1B,3B,7B,10B}-Instruct        | Function Calling | Self-hosted 💻 | tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct-FC                   |
 | FireFunction-v2                        | Function Calling | Fireworks      | firefunction-v2-FC                                          |
 | Functionary-Medium-v3.1                | Function Calling | MeetKai        | meetkai/functionary-medium-v3.1-FC                          |

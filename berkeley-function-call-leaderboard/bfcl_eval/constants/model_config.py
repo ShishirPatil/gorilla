@@ -1075,9 +1075,21 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
-    "DM-Cito-8B-v2": ModelConfig(
-        model_name="DM-Cito-8B-v2",
-        display_name="DM-Cito-8B-v2 (Prompt)",
+    "DM-Cito-8B-v3": ModelConfig(
+        model_name="DM-Cito-8B-v3",
+        display_name="DM-Cito-8B-v3 (Prompt)",
+        url="https://www.mininglamp.com/",
+        org="Mininglamp",
+        license="Proprietary",
+        model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "DM-Cito-32B-v1": ModelConfig(
+        model_name="DM-Cito-32B-v1",
+        display_name="DM-Cito-32B-v1 (Prompt)",
         url="https://www.mininglamp.com/",
         org="Mininglamp",
         license="Proprietary",
@@ -1169,7 +1181,7 @@ api_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
-        underscore_to_dot=False,
+        underscore_to_dot=True,
     ),
 }
 

@@ -93,7 +93,8 @@ SUPPORTED_MODELS = [
     "qwq-32b-FC",
     "qwq-32b",
     "xiaoming-14B",
-    "DM-Cito-8B-v2",
+    "DM-Cito-8B-v3",
+    "DM-Cito-32B-v1",
     "Ling/ling-lite-v1.5",
     "glm-4.6-FC",
     "glm-4.5-FC",
@@ -181,4 +182,5 @@ SUPPORTED_MODELS = [
     "qwen/qwq-32b-novita",
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
+    "DM-Cito-32B-v1",
 ]
