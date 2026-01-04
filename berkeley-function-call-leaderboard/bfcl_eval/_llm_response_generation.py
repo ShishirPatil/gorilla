@@ -220,7 +220,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total, lora_modules: Optional[list[str]] = None, enable_lora: bool = False, max_lora_rank: Optional[int] = None):
+def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature)
 
     if isinstance(handler, OSSHandler):
@@ -261,7 +261,9 @@ def generate_results(args, model_name, test_cases_total, lora_modules: Optional[
                 backend=args.backend,
                 skip_server_setup=args.skip_server_setup,
                 local_model_path=args.local_model_path,
-                lora_modules=lora_modules,
+                lora_modules=args.lora_modules,
+                enable_lora=args.enable_lora,
+                max_lora_rank=args.max_lora_rank,
             )
 
         # ───── dependency bookkeeping ──────────────────────────────
@@ -415,7 +417,7 @@ def main(args):
                 f"✅ All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
         else:
-            generate_results(args, model_name, test_cases_total, args.lora_modules, args.enable_lora, args.max_lora_rank)
+            generate_results(args, model_name, test_cases_total)
             # Sort the result files by id at the end
             for model_result_json in args.result_dir.rglob(RESULT_FILE_PATTERN):
                 sort_file_content_by_id(model_result_json)
