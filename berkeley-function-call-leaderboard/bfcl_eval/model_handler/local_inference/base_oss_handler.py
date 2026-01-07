@@ -42,8 +42,11 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.local_server_endpoint = os.getenv("LOCAL_SERVER_ENDPOINT", "localhost")
         self.local_server_port = os.getenv("LOCAL_SERVER_PORT", LOCAL_SERVER_PORT)
 
-        self.base_url = f"http://{self.local_server_endpoint}:{self.local_server_port}/v1"
-        self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
+        # Support custom base_url and api_key for remote/local OpenAI-compatible deployments (e.g., vLLM)
+        # Use REMOTE_OPENAI_* variables to avoid conflicts with main OPENAI_* variables
+        self.base_url = os.getenv("REMOTE_OPENAI_BASE_URL", f"http://{self.local_server_endpoint}:{self.local_server_port}/v1")
+        self.api_key = os.getenv("REMOTE_OPENAI_API_KEY", "EMPTY")
+        self.client = OpenAI(base_url=self.base_url, api_key=self.api_key)
 
     @override
     def inference(
