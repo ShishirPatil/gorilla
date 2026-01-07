@@ -250,6 +250,7 @@ For remote deployments (e.g., via RunPod, ngrok, or enterprise gateways) that re
 ```bash
 REMOTE_OPENAI_BASE_URL=https://your-vllm-server.com/v1
 REMOTE_OPENAI_API_KEY=your-api-key-here
+REMOTE_OPENAI_TOKENIZER_PATH=/path/to/local/tokenizer  # Optional: specify local tokenizer for local/remote endpoints
 ```
 
 #### (Alternate) Script Execution for Generation

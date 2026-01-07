@@ -114,8 +114,28 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 "trust_remote_code": True,
             }
 
-        self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
-        config = AutoConfig.from_pretrained(**load_kwargs)
+        # For remote OpenAI-compatible endpoints, use specified tokenizer path if provided
+        is_remote_endpoint = bool(os.getenv("REMOTE_OPENAI_BASE_URL"))
+        tokenizer_path = os.getenv("REMOTE_OPENAI_TOKENIZER_PATH", self.model_path_or_id)
+
+        if is_remote_endpoint and os.getenv("REMOTE_OPENAI_TOKENIZER_PATH"):
+            # Use specified tokenizer for remote endpoints
+            tokenizer_kwargs = {
+                "pretrained_model_name_or_path": tokenizer_path,
+                "trust_remote_code": True,
+            }
+            try:
+                self.tokenizer = AutoTokenizer.from_pretrained(**tokenizer_kwargs)
+                config = AutoConfig.from_pretrained(**tokenizer_kwargs)
+                print(f"Loaded tokenizer from REMOTE_OPENAI_TOKENIZER_PATH: {tokenizer_path}")
+            except Exception as e:
+                print(f"Failed to load tokenizer from {tokenizer_path}, falling back to model path: {e}")
+                self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+                config = AutoConfig.from_pretrained(**load_kwargs)
+        else:
+            # Standard loading for local models or when no specific tokenizer path is provided
+            self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+            config = AutoConfig.from_pretrained(**load_kwargs)
 
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
