@@ -1,0 +1,18 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman Academy First Challenge: Complete my first challenge",
+        "api_call": "https://customer-education.postmanlabs.com/welcome?email=peter.ostman@postman.com&firstName=Peter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "text/plain"
+                }
+            ]
+        },
+        "functionality": "Marks the fist hands-on challenge in Postman Academy as completed."
+    }
+]

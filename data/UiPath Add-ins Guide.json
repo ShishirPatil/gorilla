@@ -1,0 +1,410 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: GET Folders",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/orchestrator_/odata/folders?$Filter=DisplayName eq 'UnattendedProcesses'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: GET Folders",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/orchestrator_/odata/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "It is recommended that the user should specify the Fully Qualified Name of the folder. Once specified, it can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Folder by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Folders?$Filter=DisplayName eq 'Video'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "When executing _GET Folders_ you will receive a list of folders including their IDs. You will need a specific folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Releases by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Releases?$filter=Name eq 'Add a pet to pet store by queue item'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "So you've created a **Process** in UiPath Studio and published it to Orchestrator. Here's where you specify that process, by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Start Process",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"startInfo\": {\r\n        \"ReleaseKey\": \"{{releaseKey}}\",\r\n        \"Strategy\": \"ModernJobsCount\",\r\n        \"JobsCount\": 1,\r\n        \"InputArguments\": \"{}\"\r\n    }\r\n}"
+            }
+        },
+        "functionality": "Within Orchestrator, a **Process** that is running or has been run is called a **Job**. To start a **Job** you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Folder by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Folders?$Filter=DisplayName eq 'UnattendedProcesses'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "When executing _GET Folders_ you will receive a list of folders including their IDs. You will need a specific folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Releases by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Releases?$filter=ProcessKey eq 'PetStore_UpdatePet'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "So you've created a **Process** in UiPath Studio and published it to Orchestrator. Here's where you specify that process, by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Start Process",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-TenantName",
+                    "value": "{{tenantName}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"startInfo\": {\r\n        \"ReleaseKey\": \"{{releaseKey}}\",\r\n        \"Strategy\": \"ModernJobsCount\",\r\n        \"JobsCount\": 1,\r\n        \"InputArguments\": \"{\\\"status\\\":\\\"Sold\\\"}\"\r\n    }\r\n}"
+            }
+        },
+        "functionality": "Within Orchestrator, a **Process** that is running or has been run is called a **Job**. To start a **Job** you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Folder by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Folders?$Filter=DisplayName eq 'UnattendedProcesses'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "When executing _GET Folders_ you will receive a list of folders including their IDs. You will need a specific folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Releases by Name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Releases?$filter=ProcessKey eq 'CreateTableauSAPorder'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "So you've created a **Process** in UiPath Studio and published it to Orchestrator. Here's where you specify that process, by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Start Process",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-TenantName",
+                    "value": "{{tenantName}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"startInfo\": {\r\n        \"ReleaseKey\": \"{{releaseKey}}\",\r\n        \"Strategy\": \"ModernJobsCount\",\r\n        \"JobsCount\": 1,\r\n        \"InputArguments\": \"{\\\"InventoryData\\\":[{\\\"Product ID\\\":\\\"FUR-FU-10002874\\\",\\\"Measure Names\\\":\\\"Sales Forecast\\\",\\\"Measure Values\\\":\\\"$96\\\"},{\\\"Product ID\\\":\\\"FUR-FU-10002874\\\",\\\"Measure Names\\\":\\\"Quantity\\\",\\\"Measure Values\\\":\\\"2\\\"}]}\"\r\n    }\r\n}"
+            }
+        },
+        "functionality": "Within Orchestrator, a **Process** that is running or has been run is called a **Job**. To start a **Job** you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Process Status",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/orchestrator_/odata/Jobs?$Filter=State eq 'Successful' AND ReleaseName eq 'Add a pet to pet store by queue item'&$orderby=EndTime DESC",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-TenantName",
+                    "value": "{{tenantName}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "You can use oData query options to filter for a specific \"ReleaseName\" and \"Status\".\n\nFor example, you could use following query"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Add Queue Item",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Queues/UiPathODataSvc.AddQueueItem",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Folder/OrganizationUnit Id",
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"itemData\": {\n        \"DeferDate\": \"2021-03-11T14:19:56.4407392Z\",\n        \"DueDate\": \"2021-03-11T15:19:56.4407392Z\",\n        \"Priority\": \"Normal\",\n        \"Name\": \"UnattendedQueue\",\n        \"SpecificContent\": {\n            \"Name@odata.type\": \"#String\",\n            \"Name\": \"Testymonika2000\",\n            \"Age\": 43,\n            \"Status\": false\n            \n        },\n        \"Reference\": \"Petstore\"\n    }\n}"
+            }
+        },
+        "functionality": "#Configuration\n\n| Property | Description | Type | Source |\n|----------|:-----------:|-----:|-------:|\n| Queue |  The name of the queue to which to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Get Queue Item by ID",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/QueueItems()",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Folder/OrganizationUnit Id",
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}"
+                }
+            ]
+        },
+        "functionality": "OAuth required scopes: OR.Queues or OR.Queues.Read.\r\n\r\nRequired permissions: Queues.View and Transactions.View."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Queues - Get All",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/QueueDefinitions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-TenantName",
+                    "value": "{{tenantName}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Assets - Create",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"Name\": \"Caesar2\",\n\t\"ValueScope\": \"Global\",\n\t\"ValueType\": \"Text\",\n\t\"StringValue\": \"Et tu Asset 2\"\n}"
+            }
+        },
+        "functionality": "Create a new Asset\n\nValueScope: Global or PerRobot\n\nValueType: Text, Bool, Integer, or Credential"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Assets - Get all",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-UIPATH-TenantName",
+                    "value": "{{cloudTenant}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get all Assets. Use query params to narrow the response group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Assets - Get by name",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Assets?$filter=Name eq 'Caesar'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get a single Asset with the name specified in the $filter param."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "UiPath Add-ins Guide: Assets - Edit",
+        "api_call": "{{cloudUrl}}/{{cloudOrg}}/{{cloudTenant}}/odata/Assets(38364)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-UIPATH-OrganizationUnitId",
+                    "value": "{{folderId}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"Name\": \"Caesar\",\n\t\"ValueScope\": \"Global\",\n\t\"ValueType\": \"Text\",\n\t\"StringValue\": \"Et tu Asset 3\",\n\t\"Id\": {{assetId}}\n}"
+            }
+        },
+        "functionality": "Change any characteristic of an Asset--name, scope, type, value..."
+    }
+]

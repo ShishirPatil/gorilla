@@ -1,0 +1,267 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with JavaScript rendering (5 credits per request)",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with premium proxies (10 credits per request)",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false&premium_proxy=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with premium proxies and JavaScript rendering (25 credits per request)",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=true&premium_proxy=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with header forwarding",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/headers&render_js=false&forward_headers=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Spb-Forwarded-Header-Name",
+                    "value": "Forwarded-Header-Value",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with custom cookie",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/cookies&render_js=false&cookies=cookie_name=cookie_value&forward_headers=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Spb-Forwarded-Header-Name",
+                    "value": "Forwarded-Header-Value",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML with premium proxy coming from France (10 credits per requests)",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://api.myip.com&render_js=false&premium_proxy=true&country_code=fr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: HTML wait for element to appear before returning the result",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false&wait_for=.opblock-tag-section",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: JSON response",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false&json_response=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Screenshot response",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io&render_js=true&screenshot=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Screenshot response on smaller screen",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false&screenshot=true&window_height=400&window_width=200",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Usage information",
+        "api_call": "app.scrapingbee.com/api/v1/usage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Extract page title",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=false&extract_rules={\"title\": \"h1\"}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Extract all links from a page",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=false&extract_rules={\n    \"all_links\" : {\n        \"selector\": \"a\",\n        \"type\": \"list\",\n        \"output\": {\n            \"anchor\": \"a\",\n            \"href\": {\n                \"selector\": \"a\",\n                \"output\": \"@href\"\n            }\n        }\n    }\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Extract all text from a page",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=false&extract_rules={ \"text\": \"body\"}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Extract all email addresses from a page",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=false&extract_rules={\n    \"email_addresses\": {\n        \"selector\": \"a[href^='mailto']\",\n        \"output\": \"@href\",\n        \"type\": \"list\"\n    }\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Wait for a fixed amount of time",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/html&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"wait\": 2000}\n    ]\n}\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Wait for an element to appear before clicking on it",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"wait_for_and_click\": \".opblock-tag-section\"}\n    ]\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Scroll vertically",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"scroll_x\": 1000}\n    ]\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Scroll horizontally",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"scroll_y\": 1000}\n    ]\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Filling form Input",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"fill\": [\".scheme-container\", \"https\"]}\n    ]\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Executing custom JavaScript",
+        "api_call": "app.scrapingbee.com/api/v1/?url=https://httpbin-scrapingbee.cleverapps.io/&render_js=true&js_scenario={\n    \"instructions\": [\n        {\"evaluate\": \"console.log('foo')\"}\n    ]\n}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ScrapingBee: Simple search",
+        "api_call": "app.scrapingbee.com/api/v1/store/google?search=pizza new york ",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

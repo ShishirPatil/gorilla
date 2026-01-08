@@ -1,0 +1,2540 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Add Power BI Encryption Key",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/tenantKeys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"activate\": \"\",\n\t\"isDefault\": \"\",\n\t\"keyVaultKeyIdentifier\": \"\",\n\t\"name\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/addpowerbiencryptionkey'>Add Power BI Encryption Key</a><br><p>Adds an encryption key for Power BI workspaces assigned to a capacity.<br/>\n<strong>Note:</strong> The user must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Capacities AssignWorkspacesToCapacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/AssignWorkspaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"capacityMigrationAssignments\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/capacities_assignworkspacestocapacity'>Capacities AssignWorkspacesToCapacity</a><br><p>Assigns the provided workspaces to the specified capacity.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Capacities UnassignWorkspacesFromCapacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/UnassignWorkspaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"workspacesToUnassign\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/capacities_unassignworkspacesfromcapacity'>Capacities UnassignWorkspacesFromCapacity</a><br><p>Unassigns the provided workspaces from capacity.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365 Global Administrator"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dashboards GetDashboardsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dashboards_getdashboardsasadmin'>Dashboards GetDashboardsAsAdmin</a><br><p>Returns a list of dashboards for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dashboards GetDashboardsInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dashboards_getdashboardsingroupasadmin'>Dashboards GetDashboardsInGroupAsAdmin</a><br><p>Returns a list of dashboards from the specified workspace.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dashboards GetTilesAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/dashboards/{dashboardId}/tiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dashboards_gettilesasadmin'>Dashboards GetTilesAsAdmin</a><br><p>Returns a list of tiles within the specified dashboard.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dataflows ExportDataflowAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/dataflows/{dataflowId}/export",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dataflows_exportdataflowasadmin'>Dataflows ExportDataflowAsAdmin</a><br><p>Exports the specified dataflow definition to a .json file.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dataflows GetDataflowDatasourcesAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/dataflows/{dataflowId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dataflows_getdataflowdatasourcesasadmin'>Dataflows GetDataflowDatasourcesAsAdmin</a><br><p>Returns a list of datasources for the specified dataflow.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dataflows GetDataflowsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/dataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dataflows_getdataflowsasadmin'>Dataflows GetDataflowsAsAdmin</a><br><p>Returns a list of dataflows for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dataflows GetDataflowsInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/dataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dataflows_getdataflowsingroupasadmin'>Dataflows GetDataflowsInGroupAsAdmin</a><br><p>Returns a list of dataflows from the specified workspace.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dataflows GetUpstreamDataflowsInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/dataflows/{dataflowId}/upstreamDataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/dataflows_getupstreamdataflowsingroupasadmin'>Dataflows GetUpstreamDataflowsInGroupAsAdmin</a><br><p>Returns a list of upstream dataflows for the specified dataflow.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetDatasetsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/datasets_getdatasetsasadmin'>Datasets GetDatasetsAsAdmin</a><br><p>Returns a list of datasets for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetDatasetsInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/datasets_getdatasetsingroupasadmin'>Datasets GetDatasetsInGroupAsAdmin</a><br><p>Returns a list of datasets from the specified workspace.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetDatasetToDataflowsLinksInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/datasets/upstreamDataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/datasets_getdatasettodataflowslinksingroupasadmin'>Datasets GetDatasetToDataflowsLinksInGroupAsAdmin</a><br><p>Returns a list of upstream dataflows for datasets from the specified workspace.<br/>\n<strong>Note:</strong> The user must have administrator rights"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetDatasourcesAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/datasets/{datasetId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/datasets_getdatasourcesasadmin'>Datasets GetDatasourcesAsAdmin</a><br><p>Returns a list of datasources for the specified dataset.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Activity Events",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/activityevents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getactivityevents'>Get Activity Events</a><br><p>Returns a list of audit activity events for a tenant.<br/>\n<strong>Note:</strong> The user must have administrator rights (such"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Capacities As Admin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getcapacitiesasadmin'>Get Capacities As Admin</a><br><p>Returns a list of capacities for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Power BI Encryption Keys",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/tenantKeys",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getpowerbiencryptionkeys'>Get Power BI Encryption Keys</a><br><p>Returns the encryption keys for the tenant.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshable For Capacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/{capacityId}/refreshables/{refreshableId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getrefreshableforcapacity'>Get Refreshable For Capacity</a><br><p>Returns the specified refreshable for the specified capacity the user has access to<br/>\n<strong>Note:</strong> The user must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshables",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/refreshables?$top",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getrefreshables'>Get Refreshables</a><br><p>Returns a list of refreshables for the organization within a capacity<br/>\n<strong>Note:</strong> The user must have administrator rights (such"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshables For Capacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/{capacityId}/refreshables?$top",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/getrefreshablesforcapacity'>Get Refreshables For Capacity</a><br><p>Returns a list of refreshables for the specified capacity the user has access to<br/>\n<strong>Note:</strong> The user"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups AddUserAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"displayName\": \"\",\n\t\"emailAddress\": \"\",\n\t\"groupUserAccessRight\": \"\",\n\t\"identifier\": \"\",\n\t\"principalType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/groups_adduserasadmin'>Groups AddUserAsAdmin</a><br><p>Grants user permissions to the specified workspace.<br/>\n<strong>Note:</strong> This API is currently limited to updating workspaces in the new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups DeleteUserAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/users/{user}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/groups_deleteuserasadmin'>Groups DeleteUserAsAdmin</a><br><p>Removes user permissions to the specified workspace.<br/>\n<strong>Note:</strong> This API is currently limited to updating workspaces in the new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups GetGroupsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups?$top",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/groups_getgroupsasadmin'>Groups GetGroupsAsAdmin</a><br><p>Returns a list of workspaces for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups RestoreDeletedGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/restore",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"emailAddress\": \"\",\n\t\"name\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/groups_restoredeletedgroupasadmin'>Groups RestoreDeletedGroupAsAdmin</a><br><p>Restores a deleted workspace.<br/>\n<strong>Note</strong>: This API is currently limited to restoring workspaces in the new workspace experience. The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups UpdateGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"capacityId\": \"\",\n\t\"dashboards\": \"\",\n\t\"dataflowStorageId\": \"\",\n\t\"dataflows\": \"\",\n\t\"datasets\": \"\",\n\t\"description\": \"\",\n\t\"id\": \"\",\n\t\"isOnDedicatedCapacity\": \"\",\n\t\"isReadOnly\": \"\",\n\t\"name\": \"\",\n\t\"reports\": \"\",\n\t\"state\": \"\",\n\t\"type\": \"\",\n\t\"users\": \"\",\n\t\"workbooks\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/groups_updategroupasadmin'>Groups UpdateGroupAsAdmin</a><br><p>Updates the specified workspace properties.<br/>\n<strong>Note</strong>: This API is currently limited to updating workspaces in the new workspace experience."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Imports GetImportsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/imports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/imports_getimportsasadmin'>Imports GetImportsAsAdmin</a><br><p>Returns a list of imports for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Patch Capacity As Admin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/capacities/{capacityId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"tenantKeyId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/patchcapacityasadmin'>Patch Capacity As Admin</a><br><p>Changes the specific capacity information. Currently, only supports changing the capacity encryption key<br/>\n<strong>Note:</strong> The user must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Reports GetReportsAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/reports_getreportsasadmin'>Reports GetReportsAsAdmin</a><br><p>Returns a list of reports for the organization.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office 365"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Reports GetReportsInGroupAsAdmin",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/groups/{groupId}/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/reports_getreportsingroupasadmin'>Reports GetReportsInGroupAsAdmin</a><br><p>Returns a list of reports from the specified workspace.<br/>\n<strong>Note:</strong> The user must have administrator rights (such as Office"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Rotate Power BI Encryption Key",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/admin/tenantKeys/{tenantKeyId}/Default.Rotate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"keyVaultKeyIdentifier\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/admin/rotatepowerbiencryptionkey'>Rotate Power BI Encryption Key</a><br><p>Rotate the encryption key for Power BI workspaces assigned to a capacity.<br/>\n<strong>Note:</strong> The user must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get App",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getapp'>Get App</a><br><p>Returns the specified installed app.<br/>\n<br/><strong>Required scope</strong>: App.Read.All<br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register an app</a>.</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Apps",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getapps'>Get Apps</a><br><p>Returns a list of installed apps.<br/>\n<br/><strong>Required scope</strong>: App.Read.All<br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register an app</a>.</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboard",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/dashboards/{dashboardId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getdashboard'>Get Dashboard</a><br><p>Returns the specified dashboard from the specified app.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboards",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getdashboards'>Get Dashboards</a><br><p>Returns a list of dashboards from the specified app.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the permissions scope,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/reports/{reportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getreport'>Get Report</a><br><p>Returns the specified report from the specified app.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Reports",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/getreports'>Get Reports</a><br><p>Returns a list of reports from the specified app.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the permissions scope,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tile",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/dashboards/{dashboardId}/tiles/{tileId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/gettile'>Get Tile</a><br><p>Returns the specified tile within the specified dashboard from the specified app.<br/>\n<strong>Note</strong>: All tile types are supported except"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tiles",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/apps/{appId}/dashboards/{dashboardId}/tiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/apps/gettiles'>Get Tiles</a><br><p>Returns a list of tiles within the specified dashboard from the specified app.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Available Feature By Name",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/availableFeatures(featureName='{featureName}')",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/availablefeatures/getavailablefeaturebyname'>Get Available Feature By Name</a><br><p>Returns the specified available feature for user by name.<br/>\n<br/><strong>Required scope</strong>: None</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Available Features",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/availableFeatures",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/availablefeatures/getavailablefeatures'>Get Available Features</a><br><p>Returns a list of available features for the user<br/>\n<br/><strong>Required scope</strong>: None</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Capacities",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getcapacities'>Get Capacities</a><br><p>Returns a list of capacities the user has access to.<br/>\n<br/><strong>Required scope</strong>: Capacity.Read.All or Capacity.ReadWrite.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshable For Capacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/{capacityId}/refreshables/{refreshableId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getrefreshableforcapacity'>Get Refreshable For Capacity</a><br><p>Returns the specified refreshable for the specified capacity the user has access to<br/>\n<br/><strong>Required scope</strong>: Capacity.Read.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshables",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/refreshables?$top",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getrefreshables'>Get Refreshables</a><br><p>Returns a list of refreshables for all capacities of which the user has access to.<br/>\n<br/><strong>Required scope</strong>: Capacity.Read.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refreshables For Capacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/{capacityId}/refreshables?$top",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getrefreshablesforcapacity'>Get Refreshables For Capacity</a><br><p>Returns a list of refreshables for the specified capacity the user has access to<br/>\n<br/><strong>Required scope</strong>: Capacity.Read.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Workload",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/{capacityId}/Workloads/{workloadName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getworkload'>Get Workload</a><br><p>Returns the current state of a workload and if the workload is enabled also returns the maximum memory"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Workloads",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/{capacityId}/Workloads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/getworkloads'>Get Workloads</a><br><p>Returns the current state of the specified capacity workloads, if a workload is enabled also returns the maximum"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups AssignMyWorkspaceToCapacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/AssignToCapacity",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"capacityId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/groups_assignmyworkspacetocapacity'>Groups AssignMyWorkspaceToCapacity</a><br><p>Assigns <strong>\"My Workspace\"</strong> to the specified capacity.<br/>\n<strong>Note</strong>: To perform this operation, the user must have admin or assign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups AssignToCapacity",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/AssignToCapacity",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"capacityId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/groups_assigntocapacity'>Groups AssignToCapacity</a><br><p>Assigns the specified workspace to the specified capacity.<br/>\n<strong>Note</strong>: To perform this operation, the user must be admin on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups CapacityAssignmentStatus",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/CapacityAssignmentStatus",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/groups_capacityassignmentstatus'>Groups CapacityAssignmentStatus</a><br><p>Gets the status of the assignment to capacity operation of the specified workspace.<br/>\n<strong>Note</strong>: To perform this operation, the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups CapacityAssignmentStatusMyWorkspace",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/CapacityAssignmentStatus",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/groups_capacityassignmentstatusmyworkspace'>Groups CapacityAssignmentStatusMyWorkspace</a><br><p>Gets the status of <strong>\"My Workspace\"</strong> assignment to capacity operation.<br/>\n<strong>Note</strong>: <br/><br/><strong>Required scope</strong>: Workspace.Read.All and Workspace.ReadWrite.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Patch Workload",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/capacities/{capacityId}/Workloads/{workloadName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"maxMemoryPercentageSetByUser\": \"\",\n\t\"state\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/patchworkload'>Patch Workload</a><br><p>Changes the state of a specific workload to Enabled or Disabled. When enabling a workload the maximum memory"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Add Dashboard",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/adddashboard'>Add Dashboard</a><br><p>Creates a new empty dashboard on <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Content.Create <br/>To set the permissions scope, see <a data-linktype=\"external\""
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Add Dashboard In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/adddashboardingroup'>Add Dashboard In Group</a><br><p>Creates a new empty dashboard on the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Content.Create <br/>To set the permissions scope,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Clone Tile",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards/{dashboardId}/tiles/{tileId}/Clone",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"positionConflictAction\": \"\",\n\t\"targetDashboardId\": \"\",\n\t\"targetModelId\": \"\",\n\t\"targetReportId\": \"\",\n\t\"targetWorkspaceId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/clonetile'>Clone Tile</a><br><p>Clones the specified tile from <strong>\"My Workspace\"</strong>.<br/>\n<br/>If target report id and target dataset are not specified, the following"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Clone Tile In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}/tiles/{tileId}/Clone",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"positionConflictAction\": \"\",\n\t\"targetDashboardId\": \"\",\n\t\"targetModelId\": \"\",\n\t\"targetReportId\": \"\",\n\t\"targetWorkspaceId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/clonetileingroup'>Clone Tile In Group</a><br><p>Clones the specified tile from the specified workspace.<br/>\n<br/>If target report id and target dataset are missing,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboard",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards/{dashboardId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/getdashboard'>Get Dashboard</a><br><p>Returns the specified dashboard from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the permissions scope, see <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboard In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/getdashboardingroup'>Get Dashboard In Group</a><br><p>Returns the specified dashboard from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboards",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/getdashboards'>Get Dashboards</a><br><p>Returns a list of dashboards from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dashboards In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/getdashboardsingroup'>Get Dashboards In Group</a><br><p>Returns a list of dashboards from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dashboard.ReadWrite.All or Dashboard.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tile",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards/{dashboardId}/tiles/{tileId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/gettile'>Get Tile</a><br><p>Returns the specified tile within the specified dashboard from <strong>\"My Workspace\"</strong>.<br/>\n<strong>Note</strong>: All tile types are supported except for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tile In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}/tiles/{tileId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/gettileingroup'>Get Tile In Group</a><br><p>Returns the specified tile within the specified dashboard from the specified workspace.<br/>\n<strong>Note</strong>: All tile types are"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tiles",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dashboards/{dashboardId}/tiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/gettiles'>Get Tiles</a><br><p>Returns a list of tiles within the specified dashboard from <strong>\"My Workspace\"</strong>.<br/>\n<strong>Note</strong>: All tile types are supported except"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Tiles In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}/tiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/gettilesingroup'>Get Tiles In Group</a><br><p>Returns a list of tiles within the specified dashboard from the specified workspace.<br/>\n<strong>Note</strong>: All tile types"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataflow Storage Accounts",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/dataflowStorageAccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflowstorageaccounts/getdataflowstorageaccounts'>Get Dataflow Storage Accounts</a><br><p>Returns a list of dataflow storage accounts the user has access to.<br/>\n<br/><strong>Required scope</strong>: StorageAccount.Read.All or StorageAccount.ReadWrite.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Groups AssignToDataflowStorage",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/AssignToDataflowStorage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"dataflowStorageId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflowstorageaccounts/groups_assigntodataflowstorage'>Groups AssignToDataflowStorage</a><br><p>Assigns the specified workspace to the specified dataflow storage account.<br/>\n<strong>Note</strong>: To perform this operation, the user must be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Dataflow",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/deletedataflow'>Delete Dataflow</a><br><p>Deletes a dataflow from the CDS for Analytics storage, including its definition file and actual model.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataflow",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/getdataflow'>Get Dataflow</a><br><p>Exports the specified dataflow definition to a .json file.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All or Dataflow.Read.All <br/>To set the permissions scope,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataflow Data Sources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/getdataflowdatasources'>Get Dataflow Data Sources</a><br><p>Returns a list of datasources for the specified dataflow.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All or Dataflow.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataflows",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/getdataflows'>Get Dataflows</a><br><p>Returns a list of all dataflows from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All or Dataflow.Read.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Upstream Dataflows In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}/upstreamDataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/getupstreamdataflowsingroup'>Get Upstream Dataflows In Group</a><br><p>Returns a list of upstream dataflows for the specified dataflow.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All or Dataflow.Read.All<br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Refresh Dataflow",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}/refreshes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"notifyOption\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/refreshdataflow'>Refresh Dataflow</a><br><p>Triggers a refresh for the specified dataflow.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All <br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Refresh Schedule",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dataflows/{dataflowId}/refreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/updaterefreshschedule'>Update Refresh Schedule</a><br><p>Creates or updates the specified dataflow refresh schedule configuration.<br/>\n<br/><strong>Required scope</strong>: Dataflow.ReadWrite.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Bind To Gateway",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.BindToGateway",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasourceObjectIds\": \"\",\n\t\"gatewayObjectId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/bindtogateway'>Bind To Gateway</a><br><p>Binds the specified dataset from <strong>\"My Workspace\"</strong> to the specified gateway with (optional) given set of datasource"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Bind To Gateway In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.BindToGateway",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasourceObjectIds\": \"\",\n\t\"gatewayObjectId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/bindtogatewayingroup'>Bind To Gateway In Group</a><br><p>Binds the specified dataset from the specified workspace to the specified gateway with (optional) given"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Dataset",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/deletedataset'>Delete Dataset</a><br><p>Deletes the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Dataset In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/deletedatasetingroup'>Delete Dataset In Group</a><br><p>Deletes the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Discover Gateways",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.DiscoverGateways",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/discovergateways'>Discover Gateways</a><br><p>Returns a list of gateways which the specified dataset from <strong>\"My Workspace\"</strong> can be bound to.<br/>\nThis API is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Discover Gateways In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.DiscoverGateways",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/discovergatewaysingroup'>Discover Gateways In Group</a><br><p>Returns a list of gateways that the specified dataset from the specified workspace can be bound"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataset",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdataset'>Get Dataset</a><br><p>Returns the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataset In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasetingroup'>Get Dataset In Group</a><br><p>Returns the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasets",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasets'>Get Datasets</a><br><p>Returns a list of datasets from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasets In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasetsingroup'>Get Datasets In Group</a><br><p>Returns a list of datasets from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Dataset To Dataflows Links In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/upstreamDataflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasettodataflowslinksingroup'>Get Dataset To Dataflows Links In Group</a><br><p>Returns a list of upstream dataflows for datasets from the specified workspace.<br/>\n<br/><strong>Required scope</strong>:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasources'>Get Datasources</a><br><p>Returns a list of datasources for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasources In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdatasourcesingroup'>Get Datasources In Group</a><br><p>Returns a list of datasources for the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Direct Query Refresh Schedule",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/directQueryRefreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdirectqueryrefreshschedule'>Get Direct Query Refresh Schedule</a><br><p>Returns the refresh schedule of a specified DirectQuery or LiveConnection dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Direct Query Refresh Schedule In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/directQueryRefreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getdirectqueryrefreshscheduleingroup'>Get Direct Query Refresh Schedule In Group</a><br><p>Returns the refresh schedule of a specified DirectQuery or LiveConnection dataset from the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Gateway Datasources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.GetBoundGatewayDatasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getgatewaydatasources'>Get Gateway Datasources</a><br><p>Returns a list of gateway datasources for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: Use the new <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Gateway Datasources In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.GetBoundGatewayDatasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getgatewaydatasourcesingroup'>Get Gateway Datasources In Group</a><br><p>Returns a list of gateway datasources for the specified dataset from the specified workspace.<br/>\n<br/><strong>Note</strong>: Use"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Parameters",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/parameters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getparameters'>Get Parameters</a><br><p>Returns a list of parameters for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Parameters In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/parameters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getparametersingroup'>Get Parameters In Group</a><br><p>Returns a list of parameters for the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refresh History",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/refreshes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getrefreshhistory'>Get Refresh History</a><br><p>Returns the refresh history of the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refresh History In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/refreshes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getrefreshhistoryingroup'>Get Refresh History In Group</a><br><p>Returns the refresh history of the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refresh Schedule",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/refreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getrefreshschedule'>Get Refresh Schedule</a><br><p>Returns the refresh schedule of the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Refresh Schedule In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/refreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/getrefreshscheduleingroup'>Get Refresh Schedule In Group</a><br><p>Returns the refresh schedule of the specified dataset from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Refresh Dataset",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/refreshes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"notifyOption\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/refreshdataset'>Refresh Dataset</a><br><p>Triggers a refresh for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/>In Shared capacities this call is limited to eight"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Refresh Dataset In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/refreshes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"notifyOption\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/refreshdatasetingroup'>Refresh Dataset In Group</a><br><p>Triggers a refresh for the specified dataset from the specified workspace.<br/>\n<br/>In Shared capacities this call is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Set All Dataset Connections",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.SetAllConnections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"connectionString\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/setalldatasetconnections'>Set All Dataset Connections</a><br><p><strong>Note: This API is deprecated and no longer supported.</strong><br/>Updates all connections for the specified dataset from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Set All Dataset Connections In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.SetAllConnections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"connectionString\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/setalldatasetconnectionsingroup'>Set All Dataset Connections In Group</a><br><p><strong>Note: This API is deprecated and no longer supported.</strong><br/>Updates all connections for the specified"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Take Over In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.TakeOver",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/takeoveringroup'>Take Over In Group</a><br><p>Transfers ownership over the specified dataset to the current authorized user.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Datasources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.UpdateDatasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"updateDetails\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updatedatasources'>Update Datasources</a><br><p>Updates the datasources of the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Important</strong>:<ul><li>The original datasource and the new datasource must have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Datasources In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.UpdateDatasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"updateDetails\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updatedatasourcesingroup'>Update Datasources In Group</a><br><p>Updates the datasources of the specified dataset from the specified workspace.<br/>\n<br/><strong>Important</strong>:<ul><li>The original datasource and the new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Direct Query Refresh Schedule",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/directQueryRefreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updatedirectqueryrefreshschedule'>Update Direct Query Refresh Schedule</a><br><p>Updates the refresh schedule for the specified DirectQuery or LiveConnection dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/>This operation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Direct Query Refresh Schedule In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/directQueryRefreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updatedirectqueryrefreshscheduleingroup'>Update Direct Query Refresh Schedule In Group</a><br><p>Updates the refresh schedule for the specified DirectQuery or LiveConnection dataset from the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Parameters",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/Default.UpdateParameters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"updateDetails\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updateparameters'>Update Parameters</a><br><p>Updates the parameters values for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Important</strong>: The dataset must be refreshed for new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Parameters In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/Default.UpdateParameters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"updateDetails\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updateparametersingroup'>Update Parameters In Group</a><br><p>Updates the parameters values for the specified dataset from the specified workspace.<br/>\n<br/><strong>Important</strong>: The dataset must be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Refresh Schedule",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/refreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updaterefreshschedule'>Update Refresh Schedule</a><br><p>Updates the refresh schedule for the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/>This operation is only supported for the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Refresh Schedule In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/refreshSchedule",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"value\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/updaterefreshscheduleingroup'>Update Refresh Schedule In Group</a><br><p>Updates the refresh schedule for the specified dataset from the specified workspace.<br/>\n<br/>This operation is only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Dashboards GenerateTokenInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"accessLevel\": \"\",\n\t\"allowSaveAs\": \"\",\n\t\"datasetId\": \"\",\n\t\"identities\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/dashboards_generatetokeningroup'>Dashboards GenerateTokenInGroup</a><br><p>Generates an embed token to view the specified dashboard from the specified workspace.<br/>This API is relevant only to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GenerateTokenInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"accessLevel\": \"\",\n\t\"allowSaveAs\": \"\",\n\t\"datasetId\": \"\",\n\t\"identities\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/datasets_generatetokeningroup'>Datasets GenerateTokenInGroup</a><br><p>Generates an embed token to <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/qanda\">Embed Q&amp;A</a> based on the specified dataset from the specified workspace.<br/>This"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Generate Token",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasets\": \"\",\n\t\"identities\": \"\",\n\t\"reports\": \"\",\n\t\"targetWorkspaces\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/generatetoken'>Generate Token</a><br><p>Generates an embed token for multiple reports, datasets and target workspaces. Reports and datasets do not have to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Reports GenerateTokenForCreateInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"accessLevel\": \"\",\n\t\"allowSaveAs\": \"\",\n\t\"datasetId\": \"\",\n\t\"identities\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/reports_generatetokenforcreateingroup'>Reports GenerateTokenForCreateInGroup</a><br><p>Generates an embed token to allow report creation on the specified workspace based on the specified dataset.<br/>This API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Reports GenerateTokenInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"accessLevel\": \"\",\n\t\"allowSaveAs\": \"\",\n\t\"datasetId\": \"\",\n\t\"identities\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/reports_generatetokeningroup'>Reports GenerateTokenInGroup</a><br><p>Generates an embed token to view or edit the specified report from the specified workspace.<br/>This API is relevant"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Tiles GenerateTokenInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/dashboards/{dashboardId}/tiles/{tileId}/GenerateToken",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"accessLevel\": \"\",\n\t\"allowSaveAs\": \"\",\n\t\"datasetId\": \"\",\n\t\"identities\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/embedtoken/tiles_generatetokeningroup'>Tiles GenerateTokenInGroup</a><br><p>Generates an embed token to view the specified tile from the specified workspace.<br/>This API is relevant only to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Add Datasource User",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasourceAccessRight\": \"\",\n\t\"displayName\": \"\",\n\t\"emailAddress\": \"\",\n\t\"identifier\": \"\",\n\t\"principalType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/adddatasourceuser'>Add Datasource User</a><br><p>Grants or updates the permissions required to use the specified datasource for the specified user.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Create Datasource",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"connectionDetails\": \"\",\n\t\"credentialDetails\": \"\",\n\t\"dataSourceName\": \"\",\n\t\"dataSourceType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/createdatasource'>Create Datasource</a><br><p>Creates a new datasource on the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All<li>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Datasource",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/deletedatasource'>Delete Datasource</a><br><p>Deletes the specified datasource from the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the permissions scope, see <a data-linktype=\"external\""
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Datasource User",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}/users/{emailAdress}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/deletedatasourceuser'>Delete Datasource User</a><br><p>Removes the specified user from the specified datasource.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the permissions scope, see <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasource",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getdatasource'>Get Datasource</a><br><p>Returns the specified datasource from the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getdatasources'>Get Datasources</a><br><p>Returns a list of datasources from the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasource Status",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getdatasourcestatus'>Get Datasource Status</a><br><p>Checks the connectivity status of the specified datasource from the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasource Users",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getdatasourceusers'>Get Datasource Users</a><br><p>Returns a list of users who have access to the specified datasource.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All<br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Gateway",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getgateway'>Get Gateway</a><br><p>Returns the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Gateways",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/getgateways'>Get Gateways</a><br><p>Returns a list of gateways for which the user is an admin.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Datasource",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/gateways/{gatewayId}/datasources/{datasourceId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"credentialDetails\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/gateways/updatedatasource'>Update Datasource</a><br><p>Updates the credentials of the specified datasource from the specified gateway.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All<li>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Add Group User",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"displayName\": \"\",\n\t\"emailAddress\": \"\",\n\t\"groupUserAccessRight\": \"\",\n\t\"identifier\": \"\",\n\t\"principalType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/addgroupuser'>Add Group User</a><br><p>Grants the specified user permissions to the specified workspace.<br/>\n<br/><strong>Notes</strong>: <li> Users that have been recently added to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Create Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/creategroup'>Create Group</a><br><p>Creates new workspace.<br/>\n<br/><strong>Required scope</strong>: Workspace.ReadWrite.All<br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register an app</a>.</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/deletegroup'>Delete Group</a><br><p>Deletes the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Workspace.ReadWrite.All<br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register an app</a>.</p>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete User In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/users/{user}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/deleteuseringroup'>Delete User In Group</a><br><p>Deletes the specified user permissions from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Workspace.ReadWrite.All<br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Groups",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/getgroups'>Get Groups</a><br><p>Returns a list of workspaces the user has access to.<br/>\n<br/><strong>Note</strong>: Users that have been recently added to a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Group Users",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/getgroupusers'>Get Group Users</a><br><p>Returns a list of users that have access to the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Workspace.Read.All or Workspace.ReadWrite.All<br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Group User",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"displayName\": \"\",\n\t\"emailAddress\": \"\",\n\t\"groupUserAccessRight\": \"\",\n\t\"identifier\": \"\",\n\t\"principalType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/groups/updategroupuser'>Update Group User</a><br><p>Update the specified user permissions to the specified workspace.<br/>\n<br/><strong>Notes</strong>: <li> Users permissions that have been recently updated"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Create Temporary Upload Location",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/imports/createTemporaryUploadLocation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/createtemporaryuploadlocation'>Create Temporary Upload Location</a><br><p>Creates a temporary blob storage to be used to import large .pbix files larger than 1"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Create Temporary Upload Location In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/imports/createTemporaryUploadLocation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/createtemporaryuploadlocationingroup'>Create Temporary Upload Location In Group</a><br><p>Creates a temporary blob storage to be used to import large .pbix files larger"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Import",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/imports/{importId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/getimport'>Get Import</a><br><p>Returns the specified import from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Import In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/imports/{importId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/getimportingroup'>Get Import In Group</a><br><p>Returns the specified import from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Imports",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/imports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/getimports'>Get Imports</a><br><p>Returns a list of imports from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Imports In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/imports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/getimportsingroup'>Get Imports In Group</a><br><p>Returns a list of imports from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Dataset.ReadWrite.All or Dataset.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Post Import",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/imports?datasetDisplayName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/postimport'>Post Import</a><br><p>Creates new content on <strong>\"My Workspace\"</strong> from .pbix, Excel, Rdl or file path in OneDrive for Business.<br/>\n<br/><strong>Required scope</strong>:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Post Import In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/imports?datasetDisplayName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/imports/postimportingroup'>Post Import In Group</a><br><p>Creates new content on the specified workspace from .pbix, .json, Excel, Rdl, or file path in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets DeleteRows",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_deleterows'>Datasets DeleteRows</a><br><p>Deletes all rows from the specified table within the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: this API supports only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets DeleteRowsInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/tables/{tableName}/rows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_deleterowsingroup'>Datasets DeleteRowsInGroup</a><br><p>Deletes all rows from the specified table, within the specified dataset, from the specified workspace.<br/>\n<br/><strong>Note</strong>: This API supports"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetTables",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/tables",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_gettables'>Datasets GetTables</a><br><p>Returns a list of tables tables within the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: This API supports only Push"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets GetTablesInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/tables",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_gettablesingroup'>Datasets GetTablesInGroup</a><br><p>Returns a list of tables within the specified dataset from the specified workspace.<br/>\n<br/><strong>Note</strong>: This API supports only Push"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PostDataset",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasources\": \"\",\n\t\"defaultMode\": \"\",\n\t\"name\": \"\",\n\t\"relationships\": \"\",\n\t\"tables\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_postdataset'>Datasets PostDataset</a><br><p>Creates a new dataset on <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: This API supports only Push datasets.<br/><br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PostDatasetInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasources\": \"\",\n\t\"defaultMode\": \"\",\n\t\"name\": \"\",\n\t\"relationships\": \"\",\n\t\"tables\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_postdatasetingroup'>Datasets PostDatasetInGroup</a><br><p>Creates a new dataset in the specified workspace.<br/>\n<br/><strong>Note</strong>: This API supports only Push datasets.<br/><br/><strong>Required scope</strong>: Dataset.ReadWrite.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PostRows",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/tables/{tableName}/rows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"rows\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_postrows'>Datasets PostRows</a><br><p>Adds new data rows to the specified table within the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: This API supports"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PostRowsInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/tables/{tableName}/rows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"rows\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_postrowsingroup'>Datasets PostRowsInGroup</a><br><p>Adds new data rows to the specified table, within the specified dataset, from the specified workspace.<br/>\n<br/><strong>Note</strong>: This API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PutTable",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/datasets/{datasetId}/tables/{tableName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"columns\": \"\",\n\t\"measures\": \"\",\n\t\"name\": \"\",\n\t\"rows\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_puttable'>Datasets PutTable</a><br><p>Updates the metadata and schema for the specified table within the specified dataset from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Note</strong>: This API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Datasets PutTableInGroup",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/tables/{tableName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"columns\": \"\",\n\t\"measures\": \"\",\n\t\"name\": \"\",\n\t\"rows\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/pushdatasets/datasets_puttableingroup'>Datasets PutTableInGroup</a><br><p>Updates the metadata and schema for the specified table, within the specified dataset, from the specified workspace.<br/>\n<br/><strong>Note</strong>: This"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Clone Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/Clone",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"\",\n\t\"targetModelId\": \"\",\n\t\"targetWorkspaceId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/clonereport'>Clone Report</a><br><p>Clones the specified report from <strong>\"My Workspace\"</strong>.<br/>\n<br/>If after cloning the report and its dataset reside in two different"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Clone Report In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/Clone",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"\",\n\t\"targetModelId\": \"\",\n\t\"targetWorkspaceId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/clonereportingroup'>Clone Report In Group</a><br><p>Clones the specified report from the specified workspace.<br/>\n<br/>If after cloning the report and its dataset reside"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/deletereport'>Delete Report</a><br><p>Deletes the specified report from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All <br/>To set the permissions scope, see <a data-linktype=\"external\" href=\"https://docs.microsoft.com/power-bi/developer/register-app\">Register"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Delete Report In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/deletereportingroup'>Delete Report In Group</a><br><p>Deletes the specified report from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Export Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/Export",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/exportreport'>Export Report</a><br><p>Exports the specified report from <strong>\"My Workspace\"</strong> to a .pbix file.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Export Report In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/Export",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/exportreportingroup'>Export Report In Group</a><br><p>Exports the specified report from the specified workspace to a .pbix file.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Export To File",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/ExportTo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"format\": \"\",\n\t\"paginatedReportConfiguration\": \"\",\n\t\"powerBIReportConfiguration\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/exporttofile'>Export To File</a><br><p>Exports the specified report from <strong>\"My Workspace\"</strong> to the requested format.<br/>\n<br/><strong>Required scope</strong>: (all of the below) <ul><li>Report.ReadWrite.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Export To File In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/ExportTo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"format\": \"\",\n\t\"paginatedReportConfiguration\": \"\",\n\t\"powerBIReportConfiguration\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/exporttofileingroup'>Export To File In Group</a><br><p>Exports the specified report from the specified workspace to the requested format.<br/>\n<br/><strong>Required scope</strong>: (all of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasources",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getdatasources'>Get Datasources</a><br><p>Returns a list of datasources for the specified RDL report from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Datasources In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/datasources",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getdatasourcesingroup'>Get Datasources In Group</a><br><p>Returns a list of datasources for the specified RDL report from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Export To File Status",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/exports/{exportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getexporttofilestatus'>Get Export To File Status</a><br><p>Returns the status of the Export to file job from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Export To File Status In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/exports/{exportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getexporttofilestatusingroup'>Get Export To File Status In Group</a><br><p>Returns the status of the Export to file job from the specified workspace.<br/>\n<br/><strong>Required"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get File Of Export To File",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/exports/{exportId}/file",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getfileofexporttofile'>Get File Of Export To File</a><br><p>Returns the file of the Export to file job of the specified report from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get File Of Export To File In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/exports/{exportId}/file",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getfileofexporttofileingroup'>Get File Of Export To File In Group</a><br><p>Returns the file of the Export to file job of the specified"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Page",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/pages/{pageName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getpage'>Get Page</a><br><p>Returns the specified page within the specified report from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Page In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/pages/{pageName}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getpageingroup'>Get Page In Group</a><br><p>Returns the specified page within the specified report from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Pages",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/pages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getpages'>Get Pages</a><br><p>Returns a list of pages within the specified report from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Pages In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/pages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getpagesingroup'>Get Pages In Group</a><br><p>Returns a list of pages within the specified report from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getreport'>Get Report</a><br><p>Returns the specified report from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the permissions scope, see <a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Report In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getreportingroup'>Get Report In Group</a><br><p>Returns the specified report from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Reports",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getreports'>Get Reports</a><br><p>Returns a list of reports from <strong>\"My Workspace\"</strong>.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the permissions scope, see"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Get Reports In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/getreportsingroup'>Get Reports In Group</a><br><p>Returns a list of reports from the specified workspace.<br/>\n<br/><strong>Required scope</strong>: Report.ReadWrite.All or Report.Read.All <br/>To set the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Rebind Report",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/Rebind",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasetId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/rebindreport'>Rebind Report</a><br><p>Rebinds the specified report from <strong>\"My Workspace\"</strong> to the requested dataset.<br/>\n<br/>If the dataset resides in a different upgraded"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Rebind Report In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/Rebind",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"datasetId\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/rebindreportingroup'>Rebind Report In Group</a><br><p>Rebinds the specified report from the specified workspace to the requested dataset.<br/>\n<br/>If the dataset resides in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Report Content",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/reports/{reportId}/UpdateReportContent",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"sourceReport\": \"\",\n\t\"sourceType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/updatereportcontent'>Update Report Content</a><br><p>Updates the specified report from <strong>\"My Workspace\"</strong> to have the same content as the report in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Update Report Content In Group",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/groups/{groupId}/reports/{reportId}/UpdateReportContent",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"sourceReport\": \"\",\n\t\"sourceType\": \"\"\n}"
+            }
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/reports/updatereportcontentingroup'>Update Report Content In Group</a><br><p>Updates the specified report from the specified workspace to have the same content as the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Power BI REST API v1: Refresh User Permissions",
+        "api_call": "https://api.powerbi.com/v1.0/myorg/RefreshUserPermissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "<a href='https://docs.microsoft.com/en-us/rest/api/power-bi/users/refreshuserpermissions'>Refresh User Permissions</a><br><p>Refreshes user permissions in Power BI<br/>\nWhen a user is granted permissions to a workspace, app, or artifact,"
+    }
+]

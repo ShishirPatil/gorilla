@@ -1,0 +1,169 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: Create a wallet",
+        "api_call": "https://api-sandbox.circle.com/v1/wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"description\": \"Treasury Wallet\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an end user wallet.\n#### Body Params\n\n**idempotencyKey** *string* (REQUIRED)\nUniversally unique identifier (UUID v4) idempotency key. This key is utilized to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: List all wallets",
+        "api_call": "https://api-sandbox.circle.com/v1/wallets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a list of a user's wallets."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: Get a wallet",
+        "api_call": "https://api-sandbox.circle.com/v1/wallets/:walletId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: Create a blockchain address",
+        "api_call": "https://api-sandbox.circle.com/v1/wallets/:walletId/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"currency\": \"EUR\",\n  \"chain\": \"FLOW\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates a new blockchain address for a wallet for a given currency/chain pair. Circle may reuse addresses on blockchains that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: List all addresses",
+        "api_call": "https://api-sandbox.circle.com/v1/wallets/:walletId/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a list of addresses associated with a wallet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: Create a transfer",
+        "api_call": "https://api-sandbox.circle.com/v1/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"source\": {\n    \"type\": \"wallet\",\n    \"id\": \"12345\"\n  },\n  \"destination\": {\n    \"type\": \"blockchain\",\n    \"address\": \"0x8381470ED67C3802402dbbFa0058E8871F017A6F\",\n    \"chain\": \"ETH\"\n  },\n  \"amount\": {\n    \"amount\": \"3.14\",\n    \"currency\": \"USD\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "A transfer can be made from an existing funded wallet to a blockchain address or another wallet.\n#### Body Params\n\n**idempotencyKey** *string*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: List all transfers",
+        "api_call": "https://api-sandbox.circle.com/v1/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Searches for transfers involving the provided wallets. If no wallet ids are provided, searches all wallets associated with your Circle"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Accounts API: Get a transfer",
+        "api_call": "https://api-sandbox.circle.com/v1/transfers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Books Api: fetch books",
+        "api_call": "https://www.googleapis.com/books/v1/volumes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "StartFragment\n\n[`q`](https://developers.google.com/books/docs/v1/using#q) - Search for volumes that contain this text string. There are special keywords you can specify in the search"
+    }
+]

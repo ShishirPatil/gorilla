@@ -1,0 +1,458 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Authenticate",
+        "api_call": "{{sandbox_host}}/authenticate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-secret",
+                    "value": "{{api_secret}}",
+                    "description": "Private key required to authenticate API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Authorize",
+        "api_call": "{{sandbox_host}}/authorize?request_token={{request_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "description": "JWT Authorization token",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: PAN Aadhaar Link Status",
+        "api_call": "{{sandbox_host}}/it-tools/pans/:pan/pan-aadhaar-status?aadhaar_number={{aadhaar_number}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Aadhaar Offline e-KYC Generate OTP",
+        "api_call": "{{sandbox_host}}/kyc/aadhaar/okyc/otp",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"aadhaar_number\": \"{{aadhaar_number}}\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Aadhaar Offline e-KYC Verify OTP",
+        "api_call": "{{sandbox_host}}/kyc/aadhaar/okyc/otp/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"otp\": {{otp}},\r\n  \"ref_id\": {{ref_id}}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Fetch Bank Details By IFSC",
+        "api_call": "{{sandbox_host}}/bank/:ifsc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "3.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Verify Bank Account",
+        "api_call": "{{sandbox_host}}/bank/:ifsc/accounts/:account_number/verify?name=John&mobile=9999999999",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "3.0"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Verify Bank Account [Penny-Less]",
+        "api_call": "{{sandbox_host}}/bank/:ifsc/accounts/:account_number/penniless-verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Verify UPI VPA",
+        "api_call": "{{sandbox_host}}/bank/upi/:virtual_payment_address?name=John",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Director Master Data",
+        "api_call": "{{sandbox_host}}/mca/directors/:din?consent={{consent}}&reason={{reason}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "description": "JWT Authorization token",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Company Master Data",
+        "api_call": "{{sandbox_host}}/mca/companies/:id?consent={{consent}}&reason={{reason}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "description": "JWT Authorization token",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Search GSTIN",
+        "api_call": "{{sandbox_host}}/gsp/public/gstin/:gstin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "description": "JWT Authorization token",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Returns GSTIN entity for given GSTIN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Search TAN",
+        "api_call": "{{sandbox_host}}/itd/portal/public/tans/:tan?consent={{consent}}&reason={{reason}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ]
+        },
+        "functionality": "Returns TAN entity for given TAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Pan Verification (Basic)",
+        "api_call": "{{sandbox_host}}/pans/:pan/verify?consent={{consent}}&reason={{reason}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "description": "Public key required to authorize API access.",
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_key}}"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "KYC API: Pan Verification (Advance)",
+        "api_call": "{{sandbox_host}}/kyc/pan",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "JWT Authorization token",
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_key}}",
+                    "description": "Public key required to authorize API access.",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "type": "text",
+                    "value": "{{version}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"pan\": \"\",\r\n    \"consent\": \"Y\",\r\n    \"reason\": \"For KYC purpose.\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

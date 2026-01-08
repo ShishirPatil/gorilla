@@ -1,0 +1,273 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Create Order",
+        "api_call": "{{endpoint}}/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "2022-01-01",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-id",
+                    "value": "{{appId}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-secret",
+                    "value": "{{secretKey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"customer_details\": {\n        \"customer_id\": \"7112AAA812234\",\n        \"customer_email\": \"johny@cashfree.com\",\n        \"customer_phone\": \"9908734801\"\n    },\"order_meta\": {\n        \"notify_url\": \"https://webhook.site/0578a7fd-a0c0-4d47-956c-d02a061e36d3\"\n    },\n    \"order_amount\": 1.00,\n    \"order_currency\": \"INR\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Order Pay - Card",
+        "api_call": "{{endpoint}}/orders/sessions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payment_method\": {\"card\": {\n            \"card_number\": \"4XXXXXXXXXXXXXX9\",\n            \"card_holder_name\": \"Johny\",\n            \"card_expiry_mm\": \"05\",\n            \"card_expiry_yy\": \"27\",\n            \"card_cvv\": \"002\",\n            \"channel\": \"link\"\n        }},\n    \"payment_session_is\": \"HNRx6SlDWB1t7DNvG1uJ\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Order Pay - UPI",
+        "api_call": "{{endpoint}}/orders/sessions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payment_method\": {\"upi\": {\n            \"upi_id\": \"success@upi\",\n            \"channel\": \"link\"\n        }},\n    \"payment_session_id\": \"HS4k8sStf2VLdggrxyfj\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Preauthorization",
+        "api_call": "{{endpoint}}/orders/{order_id}/authorization",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-id",
+                    "value": "{{appId}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-secret",
+                    "value": "{{secretKey}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 1,\n    \"action\": \"VOID\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Get Order",
+        "api_call": "{{endpoint}}/orders/order_18482DnJeIcADSrG3Bq2yilafTtJI0x",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-client-id",
+                    "value": "{{appId}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-secret",
+                    "value": "{{secretKey}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "{{version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Get Payment for an Order",
+        "api_call": "{{endpoint}}/orders/{order_id}/payments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "2022-01-01",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-id",
+                    "value": "{{appId}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-secret",
+                    "value": "{{secretKey}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Get Payment by ID",
+        "api_call": "{{endpoint}}/orders/{order_id}/payments/{cf_payment_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-version",
+                    "value": "2022-01-01",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-id",
+                    "value": "{{appId}}",
+                    "type": "text"
+                },
+                {
+                    "key": "x-client-secret",
+                    "value": "{{secretKey}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Payment Gateway Collection: Submit or Resend OTP",
+        "api_call": "{{endpoint}}/orders/pay/authenticate/{payment_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-version",
+                    "value": "2022-01-01",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"otp\": \"string\",\n    \"action\": \"SUBMIT_OTP\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

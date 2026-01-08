@@ -1,0 +1,1284 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get rooms",
+        "api_call": "https://api.100ms.live/v2/rooms",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "# List rooms\n\n## Overview\n\nThis API retrieves details of a list of rooms in your account. 100ms provides options to\n\n\\* retrieve"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get room by id",
+        "api_call": "https://api.100ms.live/v2/rooms/<ROOM_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get room by name",
+        "api_call": "https://api.100ms.live/v2/rooms?name=<ROOM_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get rooms by enabled",
+        "api_call": "https://api.100ms.live/v2/rooms?enabled=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get rooms created in timerange",
+        "api_call": "https://api.100ms.live/v2/rooms?after=2022-01-01T01:00:00.000Z&before=2022-03-31T01:00:00.000Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create room",
+        "api_call": "https://api.100ms.live/v2/rooms",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"new-room-{{$timestamp}}\",\n  \"description\": \"This is a sample description for the room\",\n  \"template_id\": \"63188115d11d6db790c73c60\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Disable room",
+        "api_call": "https://api.100ms.live/v2/rooms/<ROOM_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"enabled\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Enable room",
+        "api_call": "https://api.100ms.live/v2/rooms/<ROOM_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"enabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get room codes",
+        "api_call": "https://api.100ms.live/v2/room-codes/room/:room_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create room codes for all roles",
+        "api_call": "https://api.100ms.live/v2/room-codes/room/:room_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create room codes for a role",
+        "api_call": "https://api.100ms.live/v2/room-codes/room/:room_id/role/:role",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update room code",
+        "api_call": "https://api.100ms.live/v2/room-codes/code",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"code\": \"<room-code-here>\",\n    \"enabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get auth token for short code",
+        "api_call": "https://auth.100ms.live/v2/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"code\": \"tgw-yusf-mfa\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Active Room Details",
+        "api_call": "https://api.100ms.live/v2/active-rooms/<room_id>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of a specific active room. 100ms allows you to retrieve details of an active room with their"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Peer Details",
+        "api_call": "https://api.100ms.live/v2/active-rooms/:room_id/peers/:peer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of a specific peer in an active room. You can use the peer_id to retrieve the details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: List Peers",
+        "api_call": "https://api.100ms.live/v2/active-rooms/:room_id/peers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update Peer",
+        "api_call": "https://api.100ms.live/v2/active-rooms/:room_id/peers/:peer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"\",\n    \"role\": \"\",\n    \"metadata\": {\n        \"card_reveal\": \"<CARD_REVEAL_DATA>\",\n        \"visibility\": \"private\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You can use this API to update the details of a connected peer, such as name, role, and metadata (custom/additional"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Send Message",
+        "api_call": "https://api.100ms.live/v2/active-rooms/<room_id>/send-message",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"peer_id\": \"\",\n    \"role\": \"\",\n    \"message\": \"hi\",\n    \"type\": \"chat\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You can use this API to send messages to a single peer, a set of peers (a particular role), or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Remove Peer",
+        "api_call": "https://api.100ms.live/v2/active-rooms/:room_id/remove-peers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"peer_id\": \"\",\n    \"role\": \"student\",\n    \"reason\": \"Removed due to misconduct\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You can use this API to remove/disconnect a connected peer from an active room. 100ms provides options to disconnect a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: End Active Room",
+        "api_call": "https://api.100ms.live/v2/active-rooms/:room_id/end-room",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"reason\": \"The session has ended\",\n    \"lock\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Trigger this request to end an active room.\n\n## Arguments\n\n| Name | Type | Description | Required |\n| --- | ---"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get sessions",
+        "api_call": "https://api.100ms.live/v2/sessions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get session by id",
+        "api_call": "https://api.100ms.live/v2/sessions/:session_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "{{TOKEN}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get sessions by room id",
+        "api_call": "https://api.100ms.live/v2/sessions?room_id=<ROOM_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get active sessions",
+        "api_call": "https://api.100ms.live/v2/sessions?active=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get sessions started in timerange",
+        "api_call": "https://api.100ms.live/v2/sessions?after=2022-01-01T01:00:00.000Z&before=2022-03-31T01:00:00.000Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Start recording for a room",
+        "api_call": "https://api.100ms.live/v2/recordings/room/:room_id/start",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"meeting_url\": \"<meeting-url>\",\n    \"resolution\": {\n        \"width\": 720,\n        \"height\": 1280\n    },\n    \"transcription\": {\n        \"enabled\": true,\n        \"output_modes\": [\"txt\", \"srt\", \"json\"],\n        \"custom_vocabulary\": [\"100ms\", \"WebSDK\", \"Flutter\", \"Sundar\", \"Pichai\", \"DALL-E\"],\n        \"summary\": {\n            \"enabled\": true,\n            \"context\": \"<Put in the context of the call. For example, this is a sales call.> \",\n            \"sections\": [\n                {\n                    \"title\": \"Agenda\",\n                    \"format\": \"bullets\"\n                },\n                {\n                    \"title\": \"Key Points\",\n                    \"format\": \"bullets\"\n                },\n                {\n                    \"title\": \"Action Items\",\n                    \"format\": \"bullets\"\n                },\n                {\n                    \"title\": \"Short Summary\",\n                    \"format\": \"paragraph\"\n                }\n            ],\n            \"temperature\": 0.5\n        }\n    }\n}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop recording for a room",
+        "api_call": "https://api.100ms.live/v2/recordings/room/:room_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop recording by id",
+        "api_call": "https://api.100ms.live/v2/recordings/:recording_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get recording",
+        "api_call": "https://api.100ms.live/v2/recordings/:recording_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get all recordings",
+        "api_call": "https://api.100ms.live/v2/recordings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get recording config",
+        "api_call": "https://api.100ms.live/v2/recordings/:recording_id/config",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Start live stream for a room",
+        "api_call": "https://api.100ms.live/v2/live-streams/room/:room_id/start",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"meeting_url\": \"<meeting_url>\",\n    \"recording\": {\n        \"hls_vod\": true,\n        \"single_file_per_layer\": false\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop all live streams for a room",
+        "api_call": "https://api.100ms.live/v2/live-streams/room/:room_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop live stream by id",
+        "api_call": "https://api.100ms.live/v2/live-streams/:job_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get live stream",
+        "api_call": "https://api.100ms.live/v2/live-streams/:stream_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get all live streams",
+        "api_call": "https://api.100ms.live/v2/live-streams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Send timed metadata for a live stream",
+        "api_call": "https://api.100ms.live/v2/live-streams/:stream_id/timed-metadata",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payload\": \"Hi, this is a test event\",\n    \"duration\": 100\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Pause live stream recording",
+        "api_call": "https://api.100ms.live/v2/live-streams/:stream_id/pause-recording",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Resume live stream recording",
+        "api_call": "https://api.100ms.live/v2/live-streams/:stream_id/resume-recording",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create stream key",
+        "api_call": "https://api.100ms.live/v2/stream-keys/room/:room-id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get stream key and RTMP URL",
+        "api_call": "https://api.100ms.live/v2/stream-keys/room/:room-id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Disable stream key",
+        "api_call": "https://api.100ms.live/v2/stream-keys/room/:room-id/disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Start external stream for a room",
+        "api_call": "https://api.100ms.live/v2/external-streams/room/:room_id/start",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"meeting_url\": \"{{meeting_url}}\",\n    \"rtmp_urls\":[\"{{rtmp_url}}\"],\n    \"recording\": true,\n    \"resolution\": {\n        \"width\": 1920,\n        \"height\": 1080\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop external stream for a room",
+        "api_call": "https://api.100ms.live/v2/external-streams/room/:room_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Stop external stream by id",
+        "api_call": "https://api.100ms.live/v2/external-streams/:stream_id/stop",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get all external streams",
+        "api_call": "https://api.100ms.live/v2/external-streams",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get external stream",
+        "api_call": "https://api.100ms.live/v2/external-streams/:stream_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get recording asset",
+        "api_call": "https://api.100ms.live/v2/recording-assets/:asset_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get all recording assets",
+        "api_call": "https://api.100ms.live/v2/recording-assets?status=failed",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get presigned URL for recording",
+        "api_call": "https://api.100ms.live/v2/recording-assets/:asset_id/presigned-url",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get events",
+        "api_call": "https://api.100ms.live/v2/analytics/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create Poll",
+        "api_call": "https://api.100ms.live/v2/polls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"first poll\",\n    \"duration\": 235,\n    \"anonymous\": true,\n    \"mode\": \"userid\",\n    \"type\": \"poll\",\n    \"start\": \"auto\",\n    \"questions\": [\n        {\n            \"index\": 1,\n            \"text\": \"q1\",\n            \"format\": \"text\",\n            \"attachment\": [\n                {\n                    \"type\": \"mimetype\",\n                    \"url\": \"url\"\n                }\n            ],\n            \"skippable\": true,\n            \"duration\": 0,\n            \"once\": false,\n            \"weight\": 2,\n            \"answer_min_len\": 1,\n            \"answer_max_len\": 1024,\n            \"type\": \"single-choice\",\n            \"answer\": {\n                \"hidden\": false,\n                \"options\": [\n                    1,\n                    2\n                ],\n                \"text\": \"option 1\",\n                \"case\": false,\n                \"trim\": true\n            },\n            \"options\": [\n                {\n                    \"index\": 1,\n                    \"text\": \"option 1\",\n                    \"weight\": 1\n                },\n                {\n                    \"index\": 2,\n                    \"text\": \"option 2\",\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"index\": 2,\n            \"text\": \"q2\",\n            \"format\": \"text\",\n            \"attachment\": [\n                {\n                    \"type\": \"mimetype\",\n                    \"url\": \"url\"\n                }\n            ],\n            \"skippable\": true,\n            \"duration\": 0,\n            \"once\": false,\n            \"weight\": 1,\n            \"answer_min_len\": 1,\n            \"answer_max_len\": 1024,\n            \"type\": \"single-choice\",\n            \"answer\": {\n                \"hidden\": false,\n                \"options\": [\n                    1,\n                    2\n                ],\n                \"text\": \"optoin1\",\n                \"case\": false,\n                \"trim\": true\n            },\n            \"options\": [\n                {\n                    \"index\": 1,\n                    \"text\": \"optoin1\",\n                    \"weight\": 1\n                },\n                {\n                    \"index\": 2,\n                    \"text\": \"optoin1\",\n                    \"weight\": 1\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update Polls",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"first poll\",\n    \"duration\": 235,\n    \"anonymous\": true,\n    \"mode\": \"userid\",\n    \"type\": \"poll\",\n    \"start\": \"auto\",\n    \"questions\": [\n        {\n            \"index\": 1,\n            \"text\": \"q1343\",\n            \"format\": \"text\",\n            \"attachment\": [\n                {\n                    \"type\": \"mimetype\",\n                    \"url\": \"url\"\n                }\n            ],\n            \"skippable\": true,\n            \"duration\": 0,\n            \"once\": false,\n            \"weight\": 2,\n            \"answer_min_len\": 1,\n            \"answer_max_len\": 1024,\n            \"type\": \"single-choice\",\n            \"answer\": {\n                \"hidden\": false,\n                \"options\": [\n                    1,\n                    2\n                ],\n                \"text\": \"optoin1\",\n                \"case\": false,\n                \"trim\": true\n            },\n            \"options\": [\n                {\n                    \"index\": 1,\n                    \"text\": \"option 1\",\n                    \"weight\": 1\n                },\n                {\n                    \"index\": 2,\n                    \"text\": \"option 2\",\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"index\": 2,\n            \"text\": \"q2\",\n            \"format\": \"text\",\n            \"attachment\": [\n                {\n                    \"type\": \"mimetype\",\n                    \"url\": \"url\"\n                }\n            ],\n            \"skippable\": true,\n            \"duration\": 0,\n            \"once\": false,\n            \"weight\": 1,\n            \"answer_min_len\": 1,\n            \"answer_max_len\": 1024,\n            \"type\": \"single-choice\",\n            \"answer\": {\n                \"hidden\": false,\n                \"options\": [\n                    1,\n                    2\n                ],\n                \"text\": \"optoin1\",\n                \"case\": false,\n                \"trim\": true\n            },\n            \"options\": [\n                {\n                    \"index\": 1,\n                    \"text\": \"option 1\",\n                    \"weight\": 1\n                },\n                {\n                    \"index\": 2,\n                    \"text\": \"option 2\",\n                    \"weight\": 1\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update Poll Question",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id/questions/:question_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"index\": 1,\n    \"text\": \"q1\",\n    \"format\": \"text\",\n    \"attachment\": [\n        {\n            \"type\": \"mimetype\",\n            \"url\": \"url\"\n        }\n    ],\n    \"skippable\": true,\n    \"duration\": 0,\n    \"once\": false,\n    \"weight\": 2,\n    \"answer_min_len\": 1,\n    \"answer_max_len\": 1024,\n    \"type\": \"single-choice\",\n    \"answer\": {\n        \"hidden\": false,\n        \"options\": [\n            1,\n            2\n        ],\n        \"text\": \"option 1\",\n        \"case\": false,\n        \"trim\": true\n    },\n    \"options\": [\n        {\n            \"index\": 1,\n            \"text\": \"option 1\",\n            \"weight\": 1\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Delete Poll Question",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id/questions/:question_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update Poll Option",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id/questions/:question_id/options/:option_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"index\": 1,\n    \"text\": \"optoin1\",\n    \"weight\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Delete Poll Option",
+        "api_call": "https://api.100ms.live/v2/polls/:poll_id/questions/:question_id/options/:option_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll Sessions",
+        "api_call": "https://api.100ms.live/polls/:poll_id/sessions/:session_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll Results",
+        "api_call": "https://api.100ms.live/polls/:poll_id/sessions/:session_id/results",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll Result",
+        "api_call": "https://api.100ms.live/polls/:poll_id/sessions/:session_id/results/:result_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll Responses",
+        "api_call": "https://api.100ms.live/polls/:poll_id/sessions/:session_id/responses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get Poll Response",
+        "api_call": "https://api.100ms.live/polls/:poll_id/sessions/:session_id/responses/:response_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get templates",
+        "api_call": "https://api.100ms.live/v2/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get template by id",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create template",
+        "api_call": "https://api.100ms.live/v2/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"new-template-{{$timestamp}}\",\n    \"default\": false,\n    \"roles\": {\n        \"guest\": {\n            \"name\": \"guest\",\n            \"publishParams\": {\n                \"allowed\": [\n                    \"audio\",\n                    \"video\",\n                    \"screen\"\n                ],\n                \"audio\": {\n                    \"bitRate\": 32,\n                    \"codec\": \"opus\"\n                },\n                \"video\": {\n                    \"bitRate\": 300,\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 30,\n                    \"width\": 480,\n                    \"height\": 360\n                },\n                \"screen\": {\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 10,\n                    \"width\": 1920,\n                    \"height\": 1080\n                },\n                \"videoSimulcastLayers\": {},\n                \"screenSimulcastLayers\": {}\n            },\n            \"subscribeParams\": {\n                \"subscribeToRoles\": [\n                    \"host\",\n                    \"guest\"\n                ],\n                \"maxSubsBitRate\": 3200,\n                \"subscribeDegradation\": {\n                    \"packetLossThreshold\": 25,\n                    \"degradeGracePeriodSeconds\": 1,\n                    \"recoverGracePeriodSeconds\": 4\n                }\n            },\n            \"permissions\": {\n                \"sendRoomState\": false\n            },\n            \"priority\": 1,\n            \"maxPeerCount\": 0\n        },\n        \"host\": {\n            \"name\": \"host\",\n            \"publishParams\": {\n                \"allowed\": [\n                    \"audio\",\n                    \"video\",\n                    \"screen\"\n                ],\n                \"audio\": {\n                    \"bitRate\": 32,\n                    \"codec\": \"opus\"\n                },\n                \"video\": {\n                    \"bitRate\": 300,\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 30,\n                    \"width\": 480,\n                    \"height\": 360\n                },\n                \"screen\": {\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 10,\n                    \"width\": 1920,\n                    \"height\": 1080\n                },\n                \"videoSimulcastLayers\": {},\n                \"screenSimulcastLayers\": {}\n            },\n            \"subscribeParams\": {\n                \"subscribeToRoles\": [\n                    \"guest\",\n                    \"host\"\n                ],\n                \"maxSubsBitRate\": 3200,\n                \"subscribeDegradation\": {\n                    \"packetLossThreshold\": 25,\n                    \"degradeGracePeriodSeconds\": 1,\n                    \"recoverGracePeriodSeconds\": 4\n                }\n            },\n            \"permissions\": {\n                \"endRoom\": true,\n                \"removeOthers\": true,\n                \"mute\": true,\n                \"unmute\": true,\n                \"changeRole\": true,\n                \"sendRoomState\": false\n            },\n            \"priority\": 1,\n            \"maxPeerCount\": 0\n        }\n    },\n    \"settings\": {\n        \"region\": \"in\",\n        \"subscribeDegradation\": {},\n        \"recording\": {\n            \"enabled\": true,\n            \"upload\": {\n                \"type\": \"s3\",\n                \"location\": \"<Name of the AWS s3 bucket>\",\n                \"prefix\": \"<Upload prefix path>\",\n                \"options\": {\n                    \"region\": \"<region of the s3 bucket>\"\n                },\n                \"credentials\": {\n                    \"key\": \"<access key ID for the AWS account/S3 bucket>\",\n                    \"secretKey\": \"<secret access key for the AWS account/S3 bucket>\"\n                }\n            }\n        },\n        \"screenSimulcastLayers\": {},\n        \"videoSimulcastLayers\": {},\n        \"roomState\": {\n            \"messageInterval\": 5,\n            \"sendPeerList\": false,\n            \"stopRoomStateOnJoin\": true,\n            \"enabled\": false\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update template by id",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"roles\": {\n        \"guest\": {\n            \"name\": \"guest\",\n            \"publishParams\": {\n                \"allowed\": [\n                    \"audio\",\n                    \"video\",\n                    \"screen\"\n                ],\n                \"audio\": {\n                    \"bitRate\": 32,\n                    \"codec\": \"opus\"\n                },\n                \"video\": {\n                    \"bitRate\": 300,\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 30,\n                    \"width\": 480,\n                    \"height\": 360\n                },\n                \"screen\": {\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 10,\n                    \"width\": 1920,\n                    \"height\": 1080\n                },\n                \"videoSimulcastLayers\": {},\n                \"screenSimulcastLayers\": {}\n            },\n            \"subscribeParams\": {\n                \"subscribeToRoles\": [\n                    \"host\",\n                    \"guest\"\n                ],\n                \"maxSubsBitRate\": 3200,\n                \"subscribeDegradation\": {\n                    \"packetLossThreshold\": 25,\n                    \"degradeGracePeriodSeconds\": 1,\n                    \"recoverGracePeriodSeconds\": 4\n                }\n            },\n            \"permissions\": {\n                \"sendRoomState\": false\n            },\n            \"priority\": 1,\n            \"maxPeerCount\": 0\n        },\n        \"host\": {\n            \"name\": \"host\",\n            \"publishParams\": {\n                \"allowed\": [\n                    \"audio\",\n                    \"video\",\n                    \"screen\"\n                ],\n                \"audio\": {\n                    \"bitRate\": 32,\n                    \"codec\": \"opus\"\n                },\n                \"video\": {\n                    \"bitRate\": 300,\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 30,\n                    \"width\": 480,\n                    \"height\": 360\n                },\n                \"screen\": {\n                    \"codec\": \"vp8\",\n                    \"frameRate\": 10,\n                    \"width\": 1920,\n                    \"height\": 1080\n                },\n                \"videoSimulcastLayers\": {},\n                \"screenSimulcastLayers\": {}\n            },\n            \"subscribeParams\": {\n                \"subscribeToRoles\": [\n                    \"guest\",\n                    \"host\"\n                ],\n                \"maxSubsBitRate\": 3200,\n                \"subscribeDegradation\": {\n                    \"packetLossThreshold\": 25,\n                    \"degradeGracePeriodSeconds\": 1,\n                    \"recoverGracePeriodSeconds\": 4\n                }\n            },\n            \"permissions\": {\n                \"endRoom\": true,\n                \"removeOthers\": true,\n                \"mute\": true,\n                \"unmute\": true,\n                \"changeRole\": true,\n                \"sendRoomState\": false\n            },\n            \"priority\": 1,\n            \"maxPeerCount\": 0\n        }\n    },\n    \"settings\": {\n        \"region\": \"in\",\n        \"subscribeDegradation\": {},\n        \"screenSimulcastLayers\": {},\n        \"videoSimulcastLayers\": {},\n        \"roomState\": {\n            \"messageInterval\": 5,\n            \"sendPeerList\": false,\n            \"stopRoomStateOnJoin\": true,\n            \"enabled\": false\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get role",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>/roles/<ROLE_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Create/update role",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>/roles/<ROLE_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"host2\",\n    \"publishParams\": {\n        \"allowed\": [\n            \"audio\",\n            \"video\",\n            \"screen\"\n        ],\n        \"audio\": {\n            \"bitRate\": 32,\n            \"codec\": \"opus\"\n        },\n        \"video\": {\n            \"bitRate\": 310,\n            \"codec\": \"vp8\",\n            \"frameRate\": 30,\n            \"width\": 480,\n            \"height\": 360\n        },\n        \"screen\": {\n            \"codec\": \"vp8\",\n            \"frameRate\": 10,\n            \"width\": 1920,\n            \"height\": 1080\n        },\n        \"videoSimulcastLayers\": {},\n        \"screenSimulcastLayers\": {}\n    },\n    \"subscribeParams\": {\n        \"subscribeToRoles\": [\n            \"guest\",\n            \"host\"\n        ],\n        \"maxSubsBitRate\": 3200,\n        \"subscribeDegradation\": {\n            \"packetLossThreshold\": 25,\n            \"degradeGracePeriodSeconds\": 1,\n            \"recoverGracePeriodSeconds\": 4\n        }\n    },\n    \"permissions\": {\n        \"endRoom\": true,\n        \"removeOthers\": true,\n        \"mute\": true,\n        \"unmute\": true,\n        \"changeRole\": true,\n        \"sendRoomState\": false\n    },\n    \"priority\": 1,\n    \"maxPeerCount\": 0\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Delete role",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>/roles/<ROLE_NAME>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Get settings",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "100ms API: Update settings",
+        "api_call": "https://api.100ms.live/v2/templates/<TEMPLATE_ID>/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"region\": \"eu\",\n    \"subscribeDegradation\": {},\n    \"recording\": {\n        \"enabled\": true,\n        \"upload\": {\n            \"type\": \"s3\",\n            \"location\": \"<Name of the AWS s3 bucket>\",\n            \"prefix\": \"<Upload prefix path>\",\n            \"options\": {\n                \"region\": \"<region of the s3 bucket>\"\n            },\n            \"credentials\": {\n                \"key\": \"<access key ID for the AWS account/S3 bucket>\",\n                \"secretKey\": \"<secret access key for the AWS account/S3 bucket>\"\n            }\n        }\n    },\n    \"screenSimulcastLayers\": {},\n    \"videoSimulcastLayers\": {},\n    \"roomState\": {\n        \"messageInterval\": 5,\n        \"sendPeerList\": false,\n        \"stopRoomStateOnJoin\": true,\n        \"enabled\": false\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

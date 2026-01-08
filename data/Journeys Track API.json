@@ -1,0 +1,658 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Find your account region",
+        "api_call": "https://track.customer.io/api/v1/accounts/region",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns the appropriate region and URL for your Track API credentials. Use it to determine the URLs you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Add or update a customer",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"anonymous_id\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"_update\": \"<boolean>\",\n  \"cio_relationships\": {\n    \"action\": \"add_relationships\",\n    \"relationships\": [\n      {\n        \"identifiers\": {\n          \"object_type_id\": \"<string>\",\n          \"object_id\": \"<string>\"\n        },\n        \"relationship_attributes\": {\n          \"in_3f\": {\n            \"x-additionalPropertiesName\": \"Relationship Attributes\"\n          }\n        }\n      },\n      {\n        \"identifiers\": {\n          \"object_type_id\": \"<string>\",\n          \"object_id\": \"<string>\"\n        },\n        \"relationship_attributes\": {\n          \"ut435\": {\n            \"x-additionalPropertiesName\": \"Relationship Attributes\"\n          },\n          \"proident_03\": {\n            \"x-additionalPropertiesName\": \"Relationship Attributes\"\n          },\n          \"laborisd_7\": {\n            \"x-additionalPropertiesName\": \"Relationship Attributes\"\n          }\n        }\n      }\n    ]\n  },\n  \"unsubscribed\": \"<boolean>\",\n  \"cio_subscription_preferences\": {\n    \"topics\": {\n      \"consequat3\": \"<boolean>\"\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds or updates a person.\n\nIf your request does _not_ include `cio_id` and the identifiers in the request body do not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Delete a customer",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deleting a customer removes them, and all of their information, from Customer.io.\n\n**NOTE**: Calls that update customers by ID can also"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Add or update a customer device",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier/devices",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"device\": {\n    \"id\": \"<string>\",\n    \"platform\": \"android\",\n    \"last_used\": \"<integer>\",\n    \"attributes\": {\n      \"device_os\": \"<string>\",\n      \"device_model\": \"<string>\",\n      \"app_version\": \"<string>\",\n      \"cio_sdk_version\": \"<string>\",\n      \"_last_status\": \"suppressed\",\n      \"device_locale\": \"<string>\",\n      \"push_enabled\": \"true\"\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Customers can have more than one device. Use this method to add iOS and Android devices to, or update devices"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Delete a customer device",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier/devices/:device_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Remove a device from a customer profile. If you continue sending data about a device to Customer.io, you may inadvertently"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Suppress a customer profile",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier/suppress",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Delete a customer profile and prevent the person's identifier(s) from being re-added to your workspace. Any future API calls or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Unsuppress a customer profile",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier/unsuppress",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Unsuppressing a profile allows you to add the customer back to Customer.io. If you unsuppress a person in a workspace"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Custom unsubscribe handling",
+        "api_call": "https://track.customer.io/unsubscribe/:delivery_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"unsubscribe\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint lets you set a global unsubscribed status outside of the subscription pathways native to Customer.io. If you use"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Merge duplicate people",
+        "api_call": "https://track.customer.io/api/v1/merge_customers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"primary\": {\n    \"id\": \"<string>\"\n  },\n  \"secondary\": {\n    \"id\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Merge two customer profiles together. The payload contains `primary` and `secondary` profile objects. The primary profile remains after the merge"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Track a customer event",
+        "api_call": "https://track.customer.io/api/v1/customers/:identifier/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"type\": \"event\",\n  \"timestamp\": \"<integer>\",\n  \"data\": {\n    \"recipient\": \"<string>\",\n    \"from_address\": \"<email>\",\n    \"reply_to\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send an event associated with a person, referenced by the identifier in the path. There are three defined event `type`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Track an anonymous event",
+        "api_call": "https://track.customer.io/api/v1/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"anonymous_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"type\": \"event\",\n  \"timestamp\": \"<integer>\",\n  \"data\": {\n    \"from_address\": \"<email>\",\n    \"reply_to\": \"<string>\",\n    \"velitde\": {\n      \"x-additionalPropertiesName\": \"liquid merge data\",\n      \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n    },\n    \"aliquip_de4\": {\n      \"x-additionalPropertiesName\": \"liquid merge data\",\n      \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n    },\n    \"labore_76a\": {\n      \"x-additionalPropertiesName\": \"liquid merge data\",\n      \"description\": \"Insert key-values that you want to reference in messages or convert to attributes if/when you associate this event with a person.\"\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "An anonymous event represents a person you haven't identified yet. When you identify a person, you can set their `anonymous_id`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Report metrics",
+        "api_call": "https://track.customer.io/api/v1/metrics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"delivery_id\": \"<string>\",\n  \"metric\": \"bounced\",\n  \"timestamp\": \"<integer>\",\n  \"recipient\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint helps you report metrics from channels that aren't native to Customer.io or don't rely on our SDKs. When"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Report push metrics",
+        "api_call": "https://track.customer.io/api/v1/push/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"delivery_id\": \"<string>\",\n  \"event\": \"converted\",\n  \"device_id\": \"<string>\",\n  \"timestamp\": \"<integer>\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "While this endpoint still works, you should take advantage of our [universal metrics endpoint](#operation/metrics). It supports channels besides push and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Add people to a manual segment",
+        "api_call": "https://track.customer.io/api/v1/segments/:segment_id/add_customers?id_type=id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"ids\": [\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add people to a manual segment by ID. You are limited to 1000 customer IDs per request.\n\nThis endpoint requires people"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Remove people from a manual segment",
+        "api_call": "https://track.customer.io/api/v1/segments/:segment_id/remove_customers?id_type=id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"ids\": [\n    \"<string>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "You can remove users from a manual segment by ID. You are limited to 1000 customer IDs per request.\n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Submit a form",
+        "api_call": "https://track.customer.io/api/v1/forms/:form_id/submit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"data\": {\n    \"email\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submit a form response. If Customer.io does not recognize the `form_id` we create a new form connection (found on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Make a single request",
+        "api_call": "https://track.customer.io/api/v2/entity",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"action\": \"identify\",\n  \"identifiers\": {\n    \"id\": \"<string>\"\n  },\n  \"type\": \"person\",\n  \"attributes\": {\n    \"cio_subscription_preferences\": {\n      \"topics\": {\n        \"aliquip9c\": \"<boolean>\"\n      }\n    }\n  },\n  \"cio_relationships\": [\n    {\n      \"identifiers\": {\n        \"object_type_id\": \"<string>\",\n        \"object_id\": \"<string>\"\n      },\n      \"relationship_attributes\": {\n        \"proident4\": {\n          \"x-additionalPropertiesName\": \"Relationship Attributes\"\n        }\n      }\n    },\n    {\n      \"identifiers\": {\n        \"object_type_id\": \"<string>\",\n        \"object_id\": \"<string>\"\n      },\n      \"relationship_attributes\": {\n        \"elit_4\": {\n          \"x-additionalPropertiesName\": \"Relationship Attributes\"\n        }\n      }\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint lets you create, update, or delete a single person or object\u2014including managing relationships between objects and people. \n\nAn"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Journeys Track API: Send multiple requests",
+        "api_call": "https://track.customer.io/api/v2/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{site_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"batch\": [\n    {\n      \"action\": \"identify\",\n      \"identifiers\": {\n        \"id\": \"<string>\"\n      },\n      \"type\": \"person\",\n      \"attributes\": {\n        \"cio_subscription_preferences\": {\n          \"topics\": {\n            \"enim56\": \"<boolean>\"\n          }\n        }\n      },\n      \"cio_relationships\": [\n        {\n          \"identifiers\": {\n            \"object_type_id\": \"<string>\",\n            \"object_id\": \"<string>\"\n          },\n          \"relationship_attributes\": {\n            \"cupidatat1de\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            }\n          }\n        },\n        {\n          \"identifiers\": {\n            \"object_type_id\": \"<string>\",\n            \"object_id\": \"<string>\"\n          },\n          \"relationship_attributes\": {\n            \"incbf\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"laborum6b_\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"officia_50c\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"esse_0\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"action\": \"identify\",\n      \"identifiers\": {\n        \"id\": \"<string>\"\n      },\n      \"type\": \"person\",\n      \"attributes\": {\n        \"cio_subscription_preferences\": {\n          \"topics\": {\n            \"exercitation038\": \"<boolean>\",\n            \"labore_1e\": \"<boolean>\"\n          }\n        }\n      },\n      \"cio_relationships\": [\n        {\n          \"identifiers\": {\n            \"object_type_id\": \"<string>\",\n            \"object_id\": \"<string>\"\n          },\n          \"relationship_attributes\": {\n            \"sunt12\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"laborum_37\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"laboris_56\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"esse_0c\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            },\n            \"enim5\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            }\n          }\n        },\n        {\n          \"identifiers\": {\n            \"object_type_id\": \"<string>\",\n            \"object_id\": \"<string>\"\n          },\n          \"relationship_attributes\": {\n            \"amet_6_\": {\n              \"x-additionalPropertiesName\": \"Relationship Attributes\"\n            }\n          }\n        }\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint lets you batch requests for different people and objects in a single request. Each object in your array"
+    }
+]

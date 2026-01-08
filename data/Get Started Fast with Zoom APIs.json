@@ -1,0 +1,1115 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Refresh access token",
+        "api_call": "https://zoom.us/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "{{oAuthDevRefreshToken}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "### Refreshing an Access Token\n\nAccess tokens expire after one hour. Once expired, you will have to refresh a user's access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Revoke an access token",
+        "api_call": "https://zoom.us/oauth/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "[access_token]",
+                        "type": "text",
+                        "description": "The current access_token to revoke that is valid and not expired."
+                    }
+                ]
+            }
+        },
+        "functionality": "### Revoking an Access Token\n\nSupply the `access_token` you wish to revoke to the Body params.\n\nNavigate to the Auth tab and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Request user authorization",
+        "api_call": "https://zoom.us/oauth/token?response_type=code&client_id=Your app development client id from your OAuth Marketplace app for the oAuth authorization flow. The development client id and secret can be used for development testing API requests. &redirect_uri=Your dev production redirect URI for your OAuth marketplace app.",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "### Step 1: Request User Authorization\n\nClick the Params tab.\n\nIf this is your first time authorizing Zoom API access, update the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Request access token",
+        "api_call": "https://zoom.us/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "[code]",
+                        "type": "text",
+                        "description": "The authorization code supplied to the callback by Zoom when you requested user authorization."
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{oAuthDevRedirectUri}}",
+                        "type": "text",
+                        "description": "Your application's redirect URI."
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "### Step 2: Request Access Token\n\nNavigate to the Auth tab and under Basic Auth and fill in the following:\n\n- Username:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Refresh access token",
+        "api_call": "https://zoom.us/oauth/token?grant_type=refresh_token&refresh_token=refresh_token from OAuth dev auth access_token response.",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "### Refreshing an Access Token\n\nAccess tokens expire after one hour. Once expired, you will have to refresh a user's access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Revoke an access token",
+        "api_call": "https://zoom.us/oauth/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "[access_token]",
+                        "type": "text",
+                        "description": "The current access_token to revoke that is valid and not expired."
+                    }
+                ]
+            }
+        },
+        "functionality": "### Revoking an Access Token\n\nSupply the `access_token` you wish to revoke to the query params.\n\nNavigate to the Auth tab and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Request user authorization PKCE",
+        "api_call": "https://zoom.us/oauth/token?response_type=code&client_id=Your app development client id from your OAuth Marketplace app for the oAuth authorization flow. The development client id and secret can be used for development testing API requests. &redirect_uri=Your dev production redirect URI for your OAuth marketplace app.&code_challenge=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code_with_pkce",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientSecret",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientId",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessTokenUrl",
+                        "value": "https://zoom.us/oauth/token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authUrl",
+                        "value": "https://zoom.us/oauth/authorize",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenName",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "### Step 1: Request User Authorization\n\nZoom supports Proof Key for Code Exchange (PKCE) when requesting user tokens. This offers better"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Request access token PKCE",
+        "api_call": "https://zoom.us/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "[code]",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{oAuthDevRedirectUri}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "[code verifier]",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "### Step 2: Request Access Token\n\nNavigate to the Auth tab and under Basic Auth and fill in the following:\n\n- Username:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Refresh access token",
+        "api_call": "https://zoom.us/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "{{oAuthDevRefreshToken}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "### Refreshing an Access Token\n\nAccess tokens expire after one hour. Once expired, you will have to refresh a user's access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Revoke an access token",
+        "api_call": "https://zoom.us/oauth/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "[access_token]",
+                        "type": "text",
+                        "description": "The current access_token to revoke that is valid and not expired."
+                    }
+                ]
+            }
+        },
+        "functionality": "### Revoking an Access Token\n\nSupply the `access_token` you wish to revoke to the query params.\n\nNavigate to the Auth tab and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get a user",
+        "api_call": "https://api.zoom.us/v2/users/{userId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "access_token",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "### Get a User\n\nIn order to get your Server-to-Server app `access_token`, you will need your account_id. The account_id is available"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get access token",
+        "api_call": "https://zoom.us/oauth/token?grant_type=account_credentials&account_id=[account_id]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{serverToServerClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{serverToServerClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "### Get Access Token\n\nUse the `account_id` you got from you S2S OAuth app credentials (or the \"Get a user\" API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Refresh access token",
+        "api_call": "https://zoom.us/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "{{oAuthDevRefreshToken}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "### Refreshing an Access Token\n\nAccess tokens expire after one hour. Once expired, you will have to refresh a user's access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Revoke an access token",
+        "api_call": "https://zoom.us/oauth/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "[access_token]",
+                        "type": "text",
+                        "description": "The current access_token to revoke that is valid and not expired."
+                    }
+                ]
+            }
+        },
+        "functionality": "### Revoking an Access Token\n\nSupply the `access_token` you wish to revoke to the Body params.\n\nNavigate to the Auth tab and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: POST Device Authorization",
+        "api_call": "https://zoom.us/oauth/devicecode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{oAuthDevClientSecret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{oAuthDevClientId}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic [Client_ID:Client_Secret Base64-encoded]",
+                    "type": "text",
+                    "description": "The string Basic with your Client ID and Client Secret separated with colon (:), Base64-encoded.",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "{{oAuthDevClientId}}",
+                        "description": "Your app development client id from your OAuth Marketplace app for the oAuth authorization flow.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Create a meeting",
+        "api_call": "https://api.zoom.us/v2/users/:userId/meetings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"agenda\": \"My Meeting\",\n    \"default_password\": false,\n    \"duration\": 60,\n    \"password\": \"123456\",\n    \"pre_schedule\": false,\n    \"recurrence\": {\n        \"end_date_time\": \"2022-04-02T15:59:00Z\",\n        \"end_times\": 7,\n        \"monthly_day\": 1,\n        \"monthly_week\": 1,\n        \"monthly_week_day\": 1,\n        \"repeat_interval\": 1,\n        \"type\": 1,\n        \"weekly_days\": \"1\"\n    },\n    \"schedule_for\": \"jchill@example.com\",\n    \"settings\": {\n        \"additional_data_center_regions\": [\n            \"TY\"\n        ],\n        \"allow_multiple_devices\": true,\n        \"alternative_hosts\": \"jchill@example.com;thill@example.com\",\n        \"alternative_hosts_email_notification\": true,\n        \"approval_type\": 2,\n        \"approved_or_denied_countries_or_regions\": {\n            \"approved_list\": [\n                \"CX\"\n            ],\n            \"denied_list\": [\n                \"CA\"\n            ],\n            \"enable\": true,\n            \"method\": \"approve\"\n        },\n        \"audio\": \"telephony\",\n        \"audio_conference_info\": \"test\",\n        \"authentication_domains\": \"example.com\",\n        \"authentication_exception\": [\n            {\n                \"email\": \"jchill@example.com\",\n                \"name\": \"Jill Chill\"\n            }\n        ],\n        \"authentication_option\": \"signIn_D8cJuqWVQ623CI4Q8yQK0Q\",\n        \"auto_recording\": \"cloud\",\n        \"breakout_room\": {\n            \"enable\": true,\n            \"rooms\": [\n                {\n                    \"name\": \"room1\",\n                    \"participants\": [\n                        \"jchill@example.com\"\n                    ]\n                }\n            ]\n        },\n        \"calendar_type\": 1,\n        \"close_registration\": false,\n        \"contact_email\": \"jchill@example.com\",\n        \"contact_name\": \"Jill Chill\",\n        \"email_notification\": true,\n        \"encryption_type\": \"enhanced_encryption\",\n        \"focus_mode\": true,\n        \"global_dial_in_countries\": [\n            \"US\"\n        ],\n        \"host_video\": true,\n        \"jbh_time\": 0,\n        \"join_before_host\": false,\n        \"language_interpretation\": {\n            \"enable\": true,\n            \"interpreters\": [\n                {\n                    \"email\": \"interpreter@example.com\",\n                    \"languages\": \"US,FR\"\n                }\n            ]\n        },\n        \"meeting_authentication\": true,\n        \"meeting_invitees\": [\n            {\n                \"email\": \"jchill@example.com\"\n            }\n        ],\n        \"mute_upon_entry\": false,\n        \"participant_video\": false,\n        \"private_meeting\": false,\n        \"registrants_confirmation_email\": true,\n        \"registrants_email_notification\": true,\n        \"registration_type\": 1,\n        \"show_share_button\": true,\n        \"use_pmi\": false,\n        \"waiting_room\": false,\n        \"watermark\": false,\n        \"host_save_video_order\": true,\n        \"alternative_host_update_polls\": true\n    },\n    \"start_time\": \"2022-03-25T07:32:55Z\",\n    \"template_id\": \"Dv4YdINdTk+Z5RToadh5ug==\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"topic\": \"My Meeting\",\n    \"tracking_fields\": [\n        {\n            \"field\": \"field1\",\n            \"value\": \"value1\"\n        }\n    ],\n    \"type\": 2\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use this API to [create a meeting](https://support.zoom.us/hc/en-us/articles/201362413-Scheduling-meetings) for a user. For user-level apps, pass [the `me` value](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis#mekeyword) instead of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: List meetings",
+        "api_call": "https://api.zoom.us/v2/users/:userId/meetings?type=scheduled&page_size=30&next_page_token=IAfJX3jsOLW7w3dokmFl84zOa0MAVGyMEB2&page_number=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Use this API to list a user's (meeting host) scheduled meetings. For user-level apps, pass [the `me` value](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis#mekeyword) instead of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get a meeting",
+        "api_call": "https://api.zoom.us/v2/meetings/:meetingId?occurrence_id=1648194360000&show_previous_occurrences=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the details of a meeting.<br><br>\n**Scopes:** `meeting:read:admin` `meeting:read`<br>\n\n **[Rate Limit Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):** `Light` \n\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Delete a meeting",
+        "api_call": "https://api.zoom.us/v2/meetings/:meetingId?schedule_for_reminder=true&cancel_meeting_reminder=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a meeting.<br><br>\n**Scopes:** `meeting:write:admin` `meeting:write`<br>\n\n **[Rate Limit Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):** `Light` \n\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Update a meeting",
+        "api_call": "https://api.zoom.us/v2/meetings/:meetingId?occurrence_id=1648194360000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"schedule_for\": \"jchill@example.com\",\n  \"agenda\": \"My Meeting\",\n  \"duration\": 60,\n  \"password\": \"123456\",\n  \"pre_schedule\": false,\n  \"recurrence\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"settings\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"start_time\": \"2022-03-25T07:29:29Z\",\n  \"template_id\": \"5Cj3ceXoStO6TGOVvIOVPA==\",\n  \"timezone\": \"America/Los_Angeles\",\n  \"topic\": \"My Meeting\",\n  \"tracking_fields\": [\n    {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  ],\n  \"type\": 2\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use this API to update a meeting's details.\n\n**Note:** \n* This API has a rate limit of **100 requests per day**."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get meeting's closed caption token",
+        "api_call": "https://api.zoom.us/v2/meetings/{meetingId}/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "### Get Meeting's Closed Caption Token\n\nUse this API to get a meeting's [closed caption token (caption URL)](https://support.zoom.us/hc/en-us/articles/115002212983-Using-a-third-party-closed-captioning-service). This token lets"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Start recording",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"recording.start\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Stop recording",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"recording.stop\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Pause recording",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"recording.pause\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Resume recording",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"recording.resume\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Invite participant",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"participant.invite\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Invite participant through phone call out",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"participant.invite.callout\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ],\n    \"invitee_name\": \"Jill Chill\",\n    \"phone_number\": \"5550100\",\n    \"invite_options\": {\n      \"require_greeting\": true,\n      \"require_pressing_one\": true\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Invite participant through room system call out",
+        "api_call": "https://api.zoom.us/v2/live_meetings/{meetingId}/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"method\": \"participant.invite.room_system_callout\",\n  \"params\": {\n    \"contacts\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"id\": \"30R7kT7bTIKSNUFEuH_Qlg\"\n      }\n    ],\n    \"invitee_name\": \"Jill Chill\",\n    \"phone_number\": \"5550100\",\n    \"invite_options\": {\n      \"require_greeting\": true,\n      \"require_pressing_one\": true\n    },\n    \"call_type\": \"h323\",\n    \"device_ip\": \"10.100.111.237\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: custCreate User",
+        "api_call": "https://api.zoom.us/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"action\": \"custCreate\",\n  \"user_info\": {\n    \"email\": \"jchill@example.com\",\n    \"first_name\": \"Jill\",\n    \"last_name\": \"Chill\",\n    \"password\": \"if42!LfH@\",\n    \"type\": 1,\n    \"feature\": {\n      \"zoom_phone\": true\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "### custCreate User\n\nUsers created with this `custCreate` action do not have passwords and will not have the ability to log"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Create a Meeting",
+        "api_call": "https://api.zoom.us/v2/users/{userId}/meetings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"agenda\": \"My Meeting\",\n  \"default_password\": false,\n  \"duration\": 60,\n  \"password\": \"123456\",\n  \"pre_schedule\": false,\n  \"recurrence\": {\n    \"end_date_time\": \"2022-04-02T15:59:00Z\",\n    \"end_times\": 7,\n    \"monthly_day\": 1,\n    \"monthly_week\": 1,\n    \"monthly_week_day\": 1,\n    \"repeat_interval\": 1,\n    \"type\": 1,\n    \"weekly_days\": \"1\"\n  },\n  \"schedule_for\": \"jchill@example.com\",\n  \"settings\": {\n    \"additional_data_center_regions\": [\n      \"TY\"\n    ],\n    \"allow_multiple_devices\": true,\n    \"alternative_hosts\": \"jchill@example.com;thill@example.com\",\n    \"alternative_hosts_email_notification\": true,\n    \"approval_type\": 2,\n    \"approved_or_denied_countries_or_regions\": {\n      \"approved_list\": [\n        \"CX\"\n      ],\n      \"denied_list\": [\n        \"CA\"\n      ],\n      \"enable\": true,\n      \"method\": \"approve\"\n    },\n    \"audio\": \"telephony\",\n    \"authentication_domains\": \"example.com\",\n    \"authentication_exception\": [\n      {\n        \"email\": \"jchill@example.com\",\n        \"name\": \"Jill Chill\"\n      }\n    ],\n    \"authentication_option\": \"signIn_D8cJuqWVQ623CI4Q8yQK0Q\",\n    \"auto_recording\": \"cloud\",\n    \"breakout_room\": {\n      \"enable\": true,\n      \"rooms\": [\n        {\n          \"name\": \"room1\",\n          \"participants\": [\n            \"jchill@example.com\"\n          ]\n        }\n      ]\n    },\n    \"calendar_type\": 1,\n    \"close_registration\": false,\n    \"cn_meeting\": false,\n    \"contact_email\": \"jchill@example.com\",\n    \"contact_name\": \"Jill Chill\",\n    \"email_notification\": true,\n    \"encryption_type\": \"enhanced_encryption\",\n    \"focus_mode\": true,\n    \"global_dial_in_countries\": [\n      \"US\"\n    ],\n    \"host_video\": true,\n    \"in_meeting\": false,\n    \"jbh_time\": 0,\n    \"join_before_host\": false,\n    \"language_interpretation\": {\n      \"enable\": true,\n      \"interpreters\": [\n        {\n          \"email\": \"interpreter@example.com\",\n          \"languages\": \"US,FR\"\n        }\n      ]\n    },\n    \"meeting_authentication\": true,\n    \"meeting_invitees\": [\n      {\n        \"email\": \"jchill@example.com\"\n      }\n    ],\n    \"mute_upon_entry\": false,\n    \"participant_video\": false,\n    \"private_meeting\": false,\n    \"registrants_confirmation_email\": true,\n    \"registrants_email_notification\": true,\n    \"registration_type\": 1,\n    \"show_share_button\": true,\n    \"use_pmi\": false,\n    \"waiting_room\": false,\n    \"watermark\": false,\n    \"host_save_video_order\": true,\n    \"alternative_host_update_polls\": true\n  },\n  \"start_time\": \"2022-03-25T07:32:55Z\",\n  \"template_id\": \"Dv4YdINdTk+Z5RToadh5ug==\",\n  \"timezone\": \"America/Los_Angeles\",\n  \"topic\": \"My Meeting\",\n  \"tracking_fields\": [\n    {\n      \"field\": \"field1\",\n      \"value\": \"value1\"\n    }\n  ],\n  \"type\": 2\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "### Create a Meeting with custCreate User\n\nCustCreate users are non-login users created via API. If you create a meeting via"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get `in-meeting` chat",
+        "api_call": "https://api.zoom.us/v2/meetings/{meetingId}/recordings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "### Get `in-meeting` Chat\n\nAfter a meeting has ended and the recording files are finished processing, call the [GET Meetings Recordings"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Add a meeting registrant",
+        "api_call": "https://api.zoom.us/v2/meetings/{meetingId}/registrants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "### Add a Meeting Registrant\n\nUse the [Meeting Registration](https://support.zoom.us/hc/en-us/articles/211579443-Registration-for-Meetings) to generate unique join URLs for each participant. The unique join URLs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Add a webinar registrant",
+        "api_call": "https://api.zoom.us/v2/webinars/{webinarId}/registrants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "### Add a Webinar Registrant\n\nUse the [Webinar Registration](https://support.zoom.us/hc/en-us/articles/204619915-Scheduling-a-webinar-with-registration) to generate unique join URLs for each participant. The unique join URLs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get meeting token (caption URL)",
+        "api_call": "https://api.zoom.us/v2/meetings/{meetingId}/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "### Get Meeting Token (Caption URL)\n\nAs a meeting host, you can\u00a0[add closed captions to Zoom meetings](https://support.zoom.us/hc/en-us/articles/207279736)\u00a0by providing the third-party closed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: List meeting templates",
+        "api_call": "https://api.zoom.us/v2/users/{userId}/meeting_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: List webinar templates",
+        "api_call": "https://api.zoom.us/v2/users/{userId}/webinar_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Get meeting recordings",
+        "api_call": "https://api.zoom.us/v2/meetings/:meetingId/recordings?include_fields=a2f19f96-9294-4f51-8134-6f0eea108eb2&ttl=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Use this API to return all of a meeting's [recordings](https://support.zoom.us/hc/en-us/articles/203741855-Cloud-Recording#h_7420acb5-1897-4061-87b4-5b76e99c03b4). The recording files can be downloaded via the `download_url` property"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started Fast with Zoom APIs: Delete meeting recordings",
+        "api_call": "https://api.zoom.us/v2/meetings/:meetingId/recordings?action=trash",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete all recording files of a meeting.<br><br>\n\n**Scopes:** `recording:write:admin` `recording:write`<br> \n **[Rate Limit Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):** `Light`<br>\n**Prerequisites**:\n* Cloud Recording should be enabled on"
+    }
+]

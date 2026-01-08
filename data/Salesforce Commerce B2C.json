@@ -1,0 +1,4287 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: OAuth token from account manager",
+        "api_call": "https://account.demandware.com/dwsso/oauth2/access_token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{admin_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{admin_client_secret}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "SALESFORCE_COMMERCE_API:bbsv_150",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - create/update tenant",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"instance\": \"{{tenant}}\",\n    \"description\": \"Tenant for API Access\",\n    \"merchantName\": \"{{tenantMerchantName}}\",\n    \"contact\": \"{{tenantContact}}\",\n    \"emailAddress\": \"{{tenantEmail}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - retrieve tenant",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - create/update public client",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants//clients/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"clientId\": \"{{public_client_id}}\",\n    \"name\": \"Public Client\",\n    \"isPrivateClient\": \"false\",\n    \"channels\": [\n        \"RefArch\",\n        \"RefArchGlobal\"\n    ],\n    \"scopes\": [\n        \"sfcc.shopper-baskets-orders\",\n        \"sfcc.shopper-baskets-orders.rw\",\n        \"sfcc.shopper-categories\",\n        \"sfcc.shopper-context.rw\",\n        \"sfcc.shopper-customers.login\",\n        \"sfcc.shopper-customers.register\",\n        \"sfcc.shopper-discovery-search\",\n        \"sfcc.shopper-experience\",\n        \"sfcc.shopper-gift-certificates\",\n        \"sfcc.shopper-myaccount\",\n        \"sfcc.shopper-myaccount.addresses\",\n        \"sfcc.shopper-myaccount.addresses.rw\",\n        \"sfcc.shopper-myaccount.baskets\",\n        \"sfcc.shopper-myaccount.orders\",\n        \"sfcc.shopper-myaccount.paymentinstruments\",\n        \"sfcc.shopper-myaccount.paymentinstruments.rw\",\n        \"sfcc.shopper-myaccount.productlists\",\n        \"sfcc.shopper-myaccount.productlists.rw\",\n        \"sfcc.shopper-myaccount.rw\",\n        \"sfcc.shopper-product-search\",\n        \"sfcc.shopper-productlists\",\n        \"sfcc.shopper-products\",\n        \"sfcc.shopper-promotions\",\n        \"sfcc.shopper.stores\",\n        \"sfcc.pwdless_login\",\n        \"sfcc.session_bridge\"\n    ],\n    \"redirectUri\": [\n        \"http://127.0.0.1:3000/callback\",\n        \"http://localhost:3000/callback\",\n        \"https://*.mobify-storefront.com/callback\",\n        \"{{ocapi_uri}}/on/demandware.store/Sites-{{ocapi_site}}-Site/{{locale}}/SLASCallback-RetrieveCode\"\n    ],\n    \"callbackUri\": []\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - create/update private client",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants//clients/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"clientId\": \"{{private_client_id}}\",\n    \"secret\": \"{{private_client_secret}}\",\n    \"name\": \"Private Client\",\n    \"isPrivateClient\": \"true\",\n    \"channels\": [\n        \"RefArch\",\n        \"RefArchGlobal\"\n    ],\n    \"scopes\": [\n        \"sfcc.catalogs\",\n        \"sfcc.customerlists.rw\",\n        \"sfcc.orders.rw\",\n        \"sfcc.products.rw\",\n        \"sfcc.gift-certificates\",\n        \"sfcc.gift-certificates.rw\",\n        \"sfcc.shopper-baskets-orders\",\n        \"sfcc.shopper-baskets-orders.rw\",\n        \"sfcc.shopper-categories\",\n        \"sfcc.shopper-context.rw\",\n        \"sfcc.shopper-customers.login\",\n        \"sfcc.shopper-customers.register\",\n        \"sfcc.shopper-discovery-search\",\n        \"sfcc.shopper-gift-certificates\",\n        \"sfcc.shopper-myaccount\",\n        \"sfcc.shopper-myaccount.addresses\",\n        \"sfcc.shopper-myaccount.addresses.rw\",\n        \"sfcc.shopper-myaccount.baskets\",\n        \"sfcc.shopper-myaccount.orders\",\n        \"sfcc.shopper-myaccount.paymentinstruments\",\n        \"sfcc.shopper-myaccount.paymentinstruments.rw\",\n        \"sfcc.shopper-myaccount.productlists\",\n        \"sfcc.shopper-myaccount.productlists.rw\",\n        \"sfcc.shopper-myaccount.rw\",\n        \"sfcc.shopper-product-search\",\n        \"sfcc.shopper-productlists\",\n        \"sfcc.shopper-products\",\n        \"sfcc.shopper-promotions\",\n        \"sfcc.shopper.stores\",\n        \"sfcc.inventory.impex-event-log\",\n        \"sfcc.inventory.impex-graphs\",\n        \"sfcc.inventory.impex-graphs.rw\",\n        \"sfcc.inventory.impex-inventory.rw\",\n        \"sfcc.inventory.impex-inventory\",\n        \"sfcc.inventory.availability\",\n        \"sfcc.inventory.availability.rw\",\n        \"sfcc.inventory.reservations\",\n        \"sfcc.inventory.reservations.rw\",\n        \"sfcc.inventory.admin.rw\",\n        \"sfcc.pwdless_login\",\n        \"sfcc.session_bridge\",\n        \"sfcc.ts_ext_on_behalf_of\"\n    ],\n    \"redirectUri\": [\n        \"http://127.0.0.1:3000/callback\",\n        \"http://localhost:3000/callback\",\n        \"https://*.mobify-storefront.com/callback\",\n        \"{{ocapi_uri}}/on/demandware.store/Sites-{{ocapi_site}}-Site/{{locale}}/SLASCallback-RetrieveCode\"\n    ],\n    \"callbackUri\": [\n        \"{{ocapi_uri}}/on/demandware.store/Sites-{{ocapi_site}}-Site/default/PasswordlessLogin-Callback\",\n        \"{{callback_url}}\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - retrieve client",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants//clients/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - retrieve clients",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants//clients",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS Admin - delete client",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth-admin/v1/tenants//clients/",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{AUTHORIZATION}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Guest - Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_url}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Guest - Get Refresh Guest Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "refresh_token",
+                        "value": "{{guest_private_refresh_token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Guest - Authorize",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/authorize?redirect_uri=&response_type=code&client_id=&hint=guest&code_challenge=",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Guest - Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "{{auth_code}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code_pkce",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{PUBLIC_GUEST_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Guest - Get Refresh Guest Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "refresh_token",
+                        "value": "{{guest_public_refresh_token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Ecom User - Authorize",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/login?client_id=&channel_id={{ocapi_site}}&redirect_uri=&code_challenge=",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{ecom_customer_pw}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Ecom User - Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "{{auth_code}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code_pkce",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{ECOM_USER_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Ecom User - Get Refresh Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "refresh_token",
+                        "value": "{{b2c_private_refresh_token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Ecom User - Authorize",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/login?client_id=&channel_id={{ocapi_site}}&redirect_uri=&code_challenge=",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{ecom_customer_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Ecom User - Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "{{auth_code}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code_pkce",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{PUBLIC_ECOM_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Ecom User - Get Refresh Access Token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "refresh_token",
+                        "value": "{{b2c_public_refresh_token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Request passwordless token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/passwordless/login",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "mode",
+                        "value": "callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "callback_uri",
+                        "value": "{{callback_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Private Client - Authenticate with passwordless token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/passwordless/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "hint",
+                        "value": "pwdless_login",
+                        "type": "text"
+                    },
+                    {
+                        "key": "pwdless_login_token",
+                        "value": "",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Get trusted agent authorization code",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/trusted-agent/authorize?client_id=&channel_id={{ocapi_site}}&code_challenge=&login_id=&idp_origin=ecom&redirect_uri=&response_type=code",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Request trusted agent access token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/trusted-agent/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "Bearer [Bearer token returned from Account Manager after the trusted agent on behalf of (TAOB) authorize call.]",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "agent_id",
+                        "value": "",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{ECOM_USER_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "idp_origin",
+                        "value": "ecom",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Get TSOB for external trusted systems for registered shoppers",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/trusted-system/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "hint",
+                        "value": "ts_ext_on_behalf_of",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "idp_origin",
+                        "value": "okta",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Get TSOB for external trusted systems for guest shoppers",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/trusted-system/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "hint",
+                        "value": "ts_ext_on_behalf_of",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "guest",
+                        "type": "text"
+                    },
+                    {
+                        "key": "idp_origin",
+                        "value": "okta",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Add to Cart, Get DWSID",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Cart-AddProduct?format=ajax",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "pid",
+                        "value": "{{product_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "quantity",
+                        "value": "1",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Session bridge - Get JWT for DWSID cookie",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/session-bridge/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "dwsid",
+                        "value": "{{dwsid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "guest",
+                        "type": "text"
+                    },
+                    {
+                        "key": "hint",
+                        "value": "sb-guest",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Add to Cart, Get DWSID",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Cart-AddProduct?format=ajax",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "pid",
+                        "value": "{{product_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "quantity",
+                        "value": "1",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Guest - Authorize",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/authorize?redirect_uri=&response_type=code&client_id=&hint=guest&code_challenge=",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Session bridge - Get JWT for DWSID cookie",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/session-bridge/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{ECOM_USER_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "{{auth_code}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "session_bridge",
+                        "type": "text"
+                    },
+                    {
+                        "key": "dwsid",
+                        "value": "{{dwsid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "guest",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Add to Cart, Get DWSID",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Cart-AddProduct?format=ajax",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "pid",
+                        "value": "{{product_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "quantity",
+                        "value": "1",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Login-Show, get CSRF",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Login-Show",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Account-Login",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Account-Login",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "loginEmail",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "loginPassword",
+                        "value": "{{ecom_customer_pw}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "csrf_token",
+                        "value": "{{csrf}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Session bridge - Get JWT for DWSID cookie",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/session-bridge/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    },
+                    {
+                        "key": "dwsid",
+                        "value": "{{dwsid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "hint",
+                        "value": "sb-user",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Add to Cart, Get DWSID",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Cart-AddProduct?format=ajax",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "pid",
+                        "value": "{{product_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "quantity",
+                        "value": "1",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Login-Show, get CSRF",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Login-Show",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SFCC - Account-Login",
+        "api_call": "https://<instance>-<realm>-<customer>.demandware.net or On-Demand Sandbox URI, like https://zzte-053.dx.commercecloud.salesforce.com/on/demandware.store/Sites-{{ocapi_site}}-Site/en_US/Account-Login",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{storefront_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "storefront",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "loginEmail",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "loginPassword",
+                        "value": "{{ecom_customer_pw}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "csrf_token",
+                        "value": "{{csrf}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Public Client - Ecom User - Authorize",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations//oauth2/login?client_id=&channel_id={{ocapi_site}}&redirect_uri=&code_challenge=",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{ecom_customer_pw}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Session bridge - Get JWT for DWSID cookie",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/session-bridge/token",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "{{public_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{PUBLIC_ECOM_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "{{auth_code}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "usid",
+                        "value": "{{usid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "session_bridge",
+                        "type": "text"
+                    },
+                    {
+                        "key": "dwsid",
+                        "value": "{{dwsid}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "login_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Get password reset token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/password/reset",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "user_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "mode",
+                        "value": "callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "callback_uri",
+                        "value": "{{callback_url}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{private_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_challenge",
+                        "value": "{{ECOM_USER_CODE_CHALLENGE}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SLAS - Reset password",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_{{tenant}}/oauth2/password/action",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{private_client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{private_client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "showPassword",
+                        "value": true,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "{{private_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "pwd_action_token",
+                        "value": "",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code_verifier",
+                        "value": "{{ECOM_USER_CODE_VERIFIER}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "new_password",
+                        "value": "",
+                        "type": "text"
+                    },
+                    {
+                        "key": "user_id",
+                        "value": "{{ecom_customer_login}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "channel_id",
+                        "value": "{{ocapi_site}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"customerInfo\": {\n        \"email\": \"{{CUSTOMER_EMAIL}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Merge basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/actions/merge?siteId=RefArch&createDestinationBasket=true&productItemMergeMode=sum_quantities",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"currency\": \"EUR\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Delete basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update billing address on basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//billing-address?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"415 Mission St\",\n    \"city\": \"San Francisco\",\n    \"postalCode\": \"94105\",\n    \"stateCode\": \"CA\",\n    \"countryCode\": \"US\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer on basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//customer?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"shopperUpdate@salesforce-test.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add coupon to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//coupons?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"code\": \"10_percent_off\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove coupon from basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//coupons/test-couponItemId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add gift certificate item to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//gift-certificate-items?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 1,\n    \"recipientEmail\": \"miller@salesforce-test.com\",\n    \"shipmentId\": \"me\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove gift certificate item from basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//gift-certificate-items/test-giftCertificateItemId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add item to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//items?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"productId\": \"{{product_id}}\",\n        \"quantity\": 1\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove item from basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//items/test-itemId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update item in basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//items/test-itemId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"quantity\": 2\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add CREDIT_CARD payment instrument to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//payment-instruments?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 9.99,\n    \"paymentCard\": {\n        \"expirationYear\": 1990,\n        \"expirationMonth\": 7,\n        \"validFromMonth\": 8,\n        \"validFromYear\": 2007,\n        \"issueNumber\": \"i117\",\n        \"maskedNumber\": \"*********1234\",\n        \"holder\": \"Miller\",\n        \"cardType\": \"Visa\"\n    },\n    \"paymentMethodId\": \"CREDIT_CARD\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add GIFT_CERTIFICATE payment instrument to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//payment-instruments?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 9.99,\n    \"giftCertificateCode\": \"test-giftCertificateCode\",\n    \"paymentMethodId\": \"GIFT_CERTIFICATE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Add other payment instrument to basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//payment-instruments?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 9.99,\n    \"paymentMethodId\": \"TEST_PAYPAL_PAYMENT_METHOD\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove payment instrument from basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//payment-instruments/test-paymentInstrumentId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//payment-instruments/test-paymentInstrumentId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 10.34,\n    \"paymentMethodId\": \"CREDIT_CARD\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create shipment for basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"shipmentId\": \"me2\",\n    \"shippingMethod\": {\n        \"id\": \"001\"\n    },\n    \"shippingAddress\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"address1\": \"415 Mission St\",\n        \"city\": \"Jena\",\n        \"postalCode\": \"94105\",\n        \"stateCode\": \"CA\",\n        \"countryCode\": \"US\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove shipment from basket",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments/test-shpmentId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update shipment",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments/test-shpmentId?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"shipmentId\": \"me\",\n    \"shipmentNo\": \"ignored shipment no\",\n    \"shippingMethod\": {\n        \"id\": \"003\"\n    },\n    \"shippingAddress\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"address1\": \"415 Mission St\",\n        \"city\": \"San Francisco\",\n        \"postalCode\": \"94105\",\n        \"stateCode\": \"CA\",\n        \"countryCode\": \"US\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update shipping address on shipment",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments/test-shpmentId/shipping-address?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"111 President Street\",\n    \"city\": \"Washington D.C.\",\n    \"postalCode\": \"12345\",\n    \"stateCode\": \"WA\",\n    \"countryCode\": \"US\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update shipping method on shipment",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments/test-shpmentId/shipping-method?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"test-shippingMethodId\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get shipping methods for shipment",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets//shipments/test-shpmentId/shipping-methods?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create shopper context",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/shopper-context/v1/organizations/f_ecom_{{tenant}}/shopper-context/test-shoppersUniqueIdentifier?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"effectiveDateTime\": \"2020-12-20T00:00:00Z\",\n    \"customQualifiers\": {\n        \"deviceType\": \"mobile\",\n        \"sourceCodeGroup\": \"Sale\",\n        \"referrerURL\": \"https://www.google.com\",\n        \"currency\": \"USD\",\n        \"referrerHost\": \"google\",\n        \"authenticated\": \"no\",\n        \"ipAddress\": \"189.0.0.0\",\n        \"zipCode\": \"11111\",\n        \"country\": \"US\",\n        \"region\": \"West\",\n        \"city\": \"SLC\",\n        \"operatingSystem\": \"Android\",\n        \"customergroupId\": \"\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get shopper context",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/shopper-context/v1/organizations/f_ecom_{{tenant}}/shopper-context/test-shoppersUniqueIdentifier?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"effectiveDateTime\": \"2020-12-20T00:00:00Z\",\n    \"customQualifiers\": {\n        \"deviceType\": \"mobile\",\n        \"sourceCodeGroup\": \"Sale\",\n        \"referrerURL\": \"https://www.google.com\",\n        \"currency\": \"USD\",\n        \"referrerHost\": \"google\",\n        \"authenticated\": \"no\",\n        \"ipAddress\": \"189.0.0.0\",\n        \"zipCode\": \"11111\",\n        \"country\": \"US\",\n        \"region\": \"West\",\n        \"city\": \"SLC\",\n        \"operatingSystem\": \"Android\",\n        \"customergroupId\": \"\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Delete shopper context",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/shopper-context/v1/organizations/f_ecom_{{tenant}}/shopper-context/test-shoppersUniqueIdentifier",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update shopper context",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/shopper/shopper-context/v1/organizations/f_ecom_{{tenant}}/shopper-context/test-shoppersUniqueIdentifier",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"effectiveDateTime\": \"2020-12-20T00:00:00Z\",\n    \"customQualifiers\": {\n        \"deviceType\": \"mobile\",\n        \"sourceCodeGroup\": \"Sale\",\n        \"referrerURL\": \"https://www.google.com\",\n        \"currency\": \"USD\",\n        \"referrerHost\": \"google\",\n        \"authenticated\": \"no\",\n        \"ipAddress\": \"189.0.0.0\",\n        \"zipCode\": \"11111\",\n        \"country\": \"US\",\n        \"region\": \"West\",\n        \"city\": \"SLC\",\n        \"operatingSystem\": \"Android\",\n        \"customergroupId\": \"\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Register new customer",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"password\": \"12345!aBcD\",\n    \"customer\": {\n        \"login\": \"jsmith\",\n        \"email\": \"jsmith@test.com\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Smith\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get reset password token",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers/password/actions/create-reset-token?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"login\": \"janedoe@test.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Reset customer password",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers/password/actions/reset?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"resetToken\": \"R1e2s3e4t5T6o7k8e9n0\",\n    \"login\": \"janedoe@test.com\",\n    \"newPassword\": \"p@assword2\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers/?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers/?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"customer\": {\n        \"value\": {\n            \"customerNo\": \"00010009\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Wild\",\n            \"email\": \"jwild@yourstore.com\",\n            \"fax\": \"+49 03641 78393 346\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create customer address",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//addresses?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addressId\": \"home_address\",\n    \"address1\": \"5 Wall St\",\n    \"address2\": \"24 Presidential Way\",\n    \"city\": \"Burlington\",\n    \"companyName\": \"Salesforce Commerce Cloud\",\n    \"countryCode\": \"US\",\n    \"firstName\": \"John\",\n    \"jobTitle\": \"Developer\",\n    \"lastName\": \"Murphy\",\n    \"phone\": \"408-555-1212\",\n    \"postalCode\": \"01805\",\n    \"postBox\": \"12a\",\n    \"preferred\": false,\n    \"salutation\": \"Mr.\",\n    \"secondName\": \"Jim\",\n    \"stateCode\": \"MA\",\n    \"title\": \"Dr.\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer address",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//addresses/test-addressId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer address",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//addresses/test-addressId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addressId\": \"home_address\",\n    \"address1\": \"5 Wall St\",\n    \"address2\": \"24 Presidential Way\",\n    \"city\": \"Burlington\",\n    \"companyName\": \"Salesforce Commerce Cloud\",\n    \"countryCode\": \"US\",\n    \"firstName\": \"John\",\n    \"jobTitle\": \"Developer\",\n    \"lastName\": \"Murphy\",\n    \"phone\": \"408-555-1212\",\n    \"postalCode\": \"01805\",\n    \"postBox\": \"12a\",\n    \"preferred\": false,\n    \"salutation\": \"Mr.\",\n    \"secondName\": \"Jim\",\n    \"stateCode\": \"MA\",\n    \"title\": \"Dr.\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove customer address",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//addresses/test-addressId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer baskets",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//baskets?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer orders",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//orders?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer password",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//password?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"currentPassword\": \"01dpass\",\n    \"password\": \"newpass\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create CREDIT_CARD customer payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//payment-instruments?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"paymentCard\": {\n        \"expirationYear\": 2027,\n        \"expirationMonth\": 7,\n        \"validFromMonth\": 8,\n        \"validFromYear\": 2007,\n        \"issueNumber\": \"i117\",\n        \"number\": \"1234567\",\n        \"holder\": \"John Smith\",\n        \"cardType\": \"MasterCard\"\n    },\n    \"paymentMethodId\": \"CREDIT_CARD\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create GIFT_CERTIFICATE customer payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//payment-instruments?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"giftCertificateCode\": \"gift_code7\",\n    \"paymentMethodId\": \"GIFT_CERTIFICATE\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create other customer payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//payment-instruments?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"paymentMethodId\": \"OTHER_PAYMENT_METHOD\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//payment-instruments/test-paymentInstrumentId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Delete customer payment instrument",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//payment-instruments/test-paymentInstrumentId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer product lists",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create customer product list",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"coRegistrant\": {\n        \"email\": \"janedoe@example.com\",\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"role\": \"Bride\"\n    },\n    \"creationDate\": \"2019-10-18T22:06:28.965Z\",\n    \"description\": \"our productlist\",\n    \"event\": {\n        \"city\": \"Washington\",\n        \"country\": \"US\",\n        \"date\": \"2019-09-05T17:12:56.670Z\",\n        \"state\": \"DC\",\n        \"type\": \"Wedding\"\n    },\n    \"id\": \"bcedkiWbxCM2MaaadkRhB2IBzM\",\n    \"lastModified\": \"2019-10-18T22:06:28.971Z\",\n    \"name\": \"OurProductList\",\n    \"public\": true,\n    \"registrant\": {\n        \"email\": \"johndoe@example.com\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"role\": \"Groom\"\n    },\n    \"type\": \"wish_list\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Delete customer product list",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer product list",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer product list",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"description\": \"productlist2\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create customer product list item",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM/items?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"1d447daa4d25805fd682bd4ce1\",\n  \"priority\": 4,\n  \"productId\": \"RedDress1\",\n  \"public\": true,\n  \"purchasedQuantity\": 0,\n  \"quantity\": 2,\n  \"type\": \"product\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Delete customer product list item",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM/items/1d447daa4d25805fd682bd4ce1?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get customer product list item",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM/items/1d447daa4d25805fd682bd4ce1?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update customer product list item",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers//product-lists/bcedkiWbxCM2MaaadkRhB2IBzM/items/1d447daa4d25805fd682bd4ce1?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"productId\": \"RedDress1\",\n  \"id\": \"1\",\n  \"purchasedQuantity\": 0,\n  \"priority\": 3,\n  \"quantity\": 4,\n  \"public\": false,\n  \"type\": \"product\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get Pages (PLP)",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/experience/shopper-experience/v1/organizations/f_ecom_{{tenant}}/pages?siteId={{ocapi_site}}&aspectTypeId=plp&categoryId=mens&aspectAttributes={\"category\":\"mens\"}&locale=en_US",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get Pages (PDP)",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/experience/shopper-experience/v1/organizations/f_ecom_{{tenant}}/pages?siteId={{ocapi_site}}&aspectTypeId=pdp&categoryId=mens&aspectAttributes={\"product\":\"750518699592M\"}&locale=en_US",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get Page",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/experience/shopper-experience/v1/organizations/f_ecom_{{tenant}}/pages/homepage-example?siteId={{ocapi_site}}&locale=en_US",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"basketId\": \"{{basket_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create CREDIT_CARD payment instrument for order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId/payment-instruments?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amount\": 700,\n  \"paymentCard\": {\n    \"expirationYear\": 1990,\n    \"expirationMonth\": 7,\n    \"validFromMonth\": 8,\n    \"validFromYear\": 2007,\n    \"issueNumber\": \"i117\",\n    \"maskedNumber\": \"************4567\",\n    \"holder\": \"Miller\",\n    \"cardType\": \"Visa\"\n  },\n  \"paymentMethodId\": \"CREDIT_CARD\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Create GIFT_CERTIFICATE payment instrument for order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId/payment-instruments?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amount\": 700,\n  \"giftCertificateCode\": \"gift_code7\",\n  \"paymentMethodId\": \"GIFT_CERTIFICATE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Remove payment instrument from order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId/payment-instruments/test-paymentInstrumentId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Update payment instrument of order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId/payment-instruments/test-paymentInstrumentId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amount\": 2,\n  \"paymentMethodId\": \"CREDIT_CARD\",\n  \"paymentCard\": {\n    \"cardType\": \"Visa\",\n    \"maskedNumber\": \"****-****-****-4567\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get payment methods for order",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/test-orderId/payment-methods?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get products",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_{{tenant}}/products?ids=test-productId1,test-productId2&siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get product",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_{{tenant}}/products/test-productId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get categories",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_{{tenant}}/categories?ids=test-categoryId1,test-categoryId2&siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get category",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_{{tenant}}/categories/test-categoryId?siteId={{ocapi_site}}",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Perform product search",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/search/shopper-search/v1/organizations/f_ecom_{{tenant}}/product-search?siteId={{ocapi_site}}&q=shirt&refine=price=(0..100)&refine=c_refinementColor=green|red|blue&expand=(availability,prices)",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: SCAPI - Get search suggestions",
+        "api_call": "https://{{shortCode}}.api.commercecloud.salesforce.com/search/shopper-search/v1/organizations/f_ecom_{{tenant}}/search-suggestions?siteId={{ocapi_site}}&q=son",
+        "api_version": "v1",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: Registered customer details",
+        "api_call": "https://.api.commercecloud.salesforce.com/customer/shopper-customers/v1/organizations/f_ecom_{{tenant}}/customers/{{customerId}}?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"credentials\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 1b. Product Details",
+        "api_call": "https://.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_{{tenant}}/products?ids={{productId}}&siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{custOauthToken}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 1c. Product Search",
+        "api_call": "https://.api.commercecloud.salesforce.com/search/shopper-search/v1/organizations/f_ecom_{{tenant}}/product-search?q=hon&siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 1c. Product Search Suggestions",
+        "api_call": "https://.api.commercecloud.salesforce.com/search/shopper-search/v1/organizations/f_ecom_{{tenant}}/search-suggestions?q=jac&siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 1d. Promotion Details",
+        "api_call": "https://.api.commercecloud.salesforce.com/pricing/shopper-promotions/v1/organizations/f_ecom_{{tenant}}/promotions?ids={{promoId}}&siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{custOauthToken}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2c. Create Basket",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "sandbox",
+                    "value": "{{sandbox}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2c-1. Delete Baskets (if needed)",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "sandbox",
+                    "value": "{{sandbox}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2c-2. Get Basket",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "sandbox",
+                    "value": "{{sandbox}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2d. Add Item To Basket",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}/items?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[{\n    \"productId\": \"{{productId}}\",\n    \"quantity\": 1\n}]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2d-1. Add Billing Address",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}/billing-address?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"firstName\": \"Stephanie\",\n    \"lastName\": \"Miller\",\n    \"address1\": \"104 Presidential Way\",\n    \"city\": \"Woburn\",\n    \"postalCode\": \"01801\",\n    \"stateCode\": \"MA\",\n    \"countryCode\": \"US\"\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2d-2. Add Customer Info",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}/customer?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"clavery@salesforce.com\"\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2e. Update Shipment for Basket",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}/shipments/me?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"shippingAddress\": {\n    \"address1\": \"18911 marathon Rd\",\n    \"city\": \"Austin\",\n    \"countryCode\": \"US\",\n    \"firstName\": \"Terrance\",\n    \"lastName\": \"Grahn\",\n    \"postalCode\": \"78758\",\n    \"stateCode\": \"TX\"\n  },\n  \"shippingMethod\": {\n    \"id\": \"001\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 2f. Add Payment",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-baskets/v1/organizations/f_ecom_{{tenant}}/baskets/{{basketId}}/payment-instruments?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"paymentMethodId\": \"CREDIT_CARD\",\n      \"paymentCard\": {\n        \"cardType\": \"Visa\"\n      }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: 3a. CREATE ORDER",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"basketId\": \"{{basketId}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Salesforce Commerce B2C: Get Orders",
+        "api_call": "https://.api.commercecloud.salesforce.com/checkout/shopper-orders/v1/organizations/f_ecom_{{tenant}}/orders/{{orderNo}}?siteId=RefArch",
+        "api_version": "v1",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

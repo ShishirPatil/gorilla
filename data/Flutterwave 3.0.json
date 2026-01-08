@@ -1,0 +1,2487 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Charge",
+        "api_call": "https://api.flutterwave.com/v3/charges?type=ussd",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "// unencrypted payload sample. You can get more samples from https://developer.flutterwave.com/reference/endpoints/charge\n{\n   \"amount\":100,\n   \"currency\":\"XAF\",\n   \"card_number\":5399670123490229,\n   \"cvv\":123,\n   \"expiry_month\":1,\n   \"expiry_year\":21,\n   \"email\":\"user@flw.com\",\n   \"tx_ref\":\"MC-3243e\",\n   \"subaccounts\":[\n      {\n         \"id\":\"RS_99FFBEACA80A2C9F9A58F675C56672FA\"\n      }\n   ]\n}\n\n\n// encrypted payload (for card charge only).\n\n{\n   \"client\":\"C10EgEYkJrusinoq55RgQ7rl+hlselSCuuX6GWx6VIJ7Ec7hXCGXup9Ukx8Luge/2HH2WYqXHvqdgrwMxhwlFMUV7tgqgH9ZCoe37pCnvkSkToNPiAbU0jG7L5i+WCxVR5/RaF0p0wbts8nb291rlgpnkk7QPuI2HcqR9R5Uairt/0O+PEmmFhF9v9A92X1w3zyAsGKQH98XxJxP9tAn176RahJL0upUhxrkJHoyJdaE55iicZGpg7Gu/CMYkgQHBGj3ODzL4Bla+pO+50wh5j2BIR+yjx8/V6uMw0qEPvfi5w+zQMoyQhFKvaYxk9P23L+SqR1tBzkty/aV4SCwLmpnzQnbXUewBqxZTQH+1MI=\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Validate Charge",
+        "api_call": "https://api.flutterwave.com/v3/validate-charge",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"otp\":\"12345\",\n   \"flw_ref\":\"FLW-MOCK-66d7d1a4ea70666edb4d88c4439e62b3\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Tokenized Charge",
+        "api_call": "https://api.flutterwave.com/v3/tokenized-charges",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"token\":\"flw-t1nf-1dd5c21361bb85c64deb7ff57ec891b2-m03k\",\n   \"currency\":\"NGN\",\n   \"country\":\"NG\",\n   \"amount\":12000,\n   \"email\":\"developers@flutterwavego.com\",\n   \"full_name\":\"Flutterwave Developers\",\n   \"ip\":\"pstmn\",\n   \"narration\":\"test_token_charge\",\n   \"tx_ref\":\"testToken111\",\n   \"do_3ds\":true,\n   \"redirect_url\":\"https://flutterwave.com/ng\",\n   \"meta\":{\n      \"sub_meta_1\":\"meta_child_1\",\n      \"sub_meta_2\":\"meta_child_2\"\n   }\n}"
+            }
+        },
+        "functionality": "Charge with Token"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create Bulk Tokenized Charge",
+        "api_call": "https://api.flutterwave.com/v3/bulk-tokenized-charges/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"title\":\"akhlm blk tknzd chrg pstmn tst 1\",\n   \"retry_strategy\":{\n      \"retry_interval\":120,\n      \"retry_amount_variable\":60,\n      \"retry_attempt_variable\":2\n   },\n   \"bulk_data\":[\n      {\n         \"currency\":\"NGN\",\n         \"token\":\"flw-t1nf-f9b3bf384cd30d6fca42b6df9d27bd2f-m03k\",\n         \"country\":\"NG\",\n         \"amount\":3500,\n         \"email\":\"user@example.com\",\n         \"first_name\":\"Example\",\n         \"last_name\":\"User\",\n         \"ip\":\"pstmn\",\n         \"tx_ref\":\"akhlm-pstmn-blkchrg-xy10\"\n      },\n      {\n         \"currency\":\"NGN\",\n         \"token\":\"flw-t1nf-f9b3bf384cd30d6fca42b6df9d27bd2f-m03k\",\n         \"country\":\"NG\",\n         \"amount\":3000,\n         \"email\":\"user@example.com\",\n         \"first_name\":\"Jane\",\n         \"last_name\":\"Doe\",\n         \"ip\":\"pstmn\",\n         \"tx_ref\":\"akhlm-pstmn-blkchrge-xx10\"\n      }\n   ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create bulk tokenized charge"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Bulk Tokenized Transactions",
+        "api_call": "https://api.flutterwave.com/v3/bulk-tokenized-charges/:bulk_id/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get status of Bulk Tokenized Charge",
+        "api_call": "https://api.flutterwave.com/v3/bulk-tokenized-charges/:bulk_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get bulk charge status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update a Card Token",
+        "api_call": "https://api.flutterwave.com/v3/tokens/:token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"email\":\"user@example.com\",\n   \"full_name\":\"Kendrick Graham\",\n   \"phone_number\":\"0813XXXXXXX\"\n}"
+            }
+        },
+        "functionality": "Update Token Details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Void a Charge",
+        "api_call": "https://api.flutterwave.com/v3/charges/:flw_ref/void",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Capture a Charge",
+        "api_call": "https://api.flutterwave.com/v3/charges/:flw_ref/capture",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Refund",
+        "api_call": "https://api.flutterwave.com/v3/charges/:flw_ref/refund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"amount\":\"30\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Verify a Transaction",
+        "api_call": "https://api.flutterwave.com/v3/transactions/:id/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Verify transactions using txref"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Verify a transaction by Transaction reference",
+        "api_call": "https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Refund",
+        "api_call": "https://api.flutterwave.com/v3/transactions/:id/refund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": \"50\"\n}"
+            }
+        },
+        "functionality": "Intiate a transaction refund"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Multiple Transactions",
+        "api_call": "https://api.flutterwave.com/v3/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get transactions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all refunds",
+        "api_call": "https://api.flutterwave.com/v3/refunds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Transactions Fees (Collections)",
+        "api_call": "https://api.flutterwave.com/v3/transactions/fee",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get Transaction Fee"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Resend Failed WebHooks",
+        "api_call": "https://api.flutterwave.com/v3/transactions/:id/resend-hook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Resend transaction webhook"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: View Transaction Timeline",
+        "api_call": "https://api.flutterwave.com/v3/transactions/:id/events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get transaction events"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Initiate a Transfer",
+        "api_call": "https://api.flutterwave.com/v3/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_bank\": \"FMM\",\n    \"account_number\": \"676064566\",\n    \"amount\": 15000,\n    \"narration\": \"Test francophone transfer\",\n    \"currency\": \"XAF\",\n    \"beneficiary_name\": \"Cornelius Ashley-Osuzoka\",\n    \"reference\": \"Sample_PMCK\",\n    \"debit_currency\": \"XAF\",\n    \"meta\": {\n        \"first_name\": \"Cornelius\",\n        \"last_name\": \"Ashley-Osuzoka\",\n        \"email\": \"user@gmail.com\",\n        \"mobile_number\": \"676064566\",\n        \"recipient_address\": \"Immueble CiSo, Boulevard de la liberte, Akwa Douala\"\n    }\n}"
+            }
+        },
+        "functionality": "Create a new transfer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Retry a transfer",
+        "api_call": "https://api.flutterwave.com/v3/transfers/:id/retries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Bulk Transfer",
+        "api_call": "https://api.flutterwave.com/v3/bulk-transfers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"title\": \"Test_ZAR_Bulk_Transfers_1\",\n    \"bulk_data\": [\n        {\n            \"bank_code\": \"FNB\",\n            \"account_number\": \"0031625807099\",\n            \"amount\": 1900,\n            \"currency\": \"ZAR\",\n            \"narration\": \"Test transfer to Lisa\",\n            \"reference\": \"bulk_Transfers_0019_PMCK\",\n            \"meta\": [\n                {\n                    \"first_name\": \"Lisa\",\n                    \"last_name\": \"Wayne\",\n                    \"email\": \"test@test.com\",\n                    \"mobile_number\": \"+23457558595\",\n                    \"recipient_address\": \"234 Kings road, Cape Town\"\n                }\n            ]\n        },\n        {\n            \"bank_code\": \"FNB\",\n            \"account_number\": \"0031625807099\",\n            \"amount\": 3200,\n            \"currency\": \"ZAR\",\n            \"narration\": \"Test transfer to Daemon\",\n            \"reference\": \"bulk_Transfers_0020_PMCK\",\n            \"meta\": [\n                {\n                    \"first_name\": \"Daemon\",\n                    \"last_name\": \"Philips\",\n                    \"email\": \"test@test.com\",\n                    \"mobile_number\": \"+23457558595\",\n                    \"recipient_address\": \"234 Kings road, Cape Town\"\n                }\n            ]\n        },\n        {\n            \"bank_code\": \"FNB\",\n            \"account_number\": \"0031625807099\",\n            \"amount\": 6950,\n            \"currency\": \"ZAR\",\n            \"narration\": \"Test transfer to John\",\n            \"reference\": \"bulk_Transfers_0021_PMCK\",\n            \"meta\": [\n                {\n                    \"first_name\": \"John\",\n                    \"last_name\": \"Kolapo\",\n                    \"email\": \"test@test.com\",\n                    \"mobile_number\": \"+23457558595\",\n                    \"recipient_address\": \"234 Kings road, Cape Town\"\n                }\n            ]\n        },\n        {\n            \"bank_code\": \"FNB\",\n            \"account_number\": \"0031625807099\",\n            \"amount\": 1500,\n            \"currency\": \"ZAR\",\n            \"narration\": \"Test transfer to Kara\",\n            \"reference\": \"bulk_Transfers_0022_PMCK\",\n            \"meta\": [\n                {\n                    \"first_name\": \"Kara\",\n                    \"last_name\": \"Johnson\",\n                    \"email\": \"test@test.com\",\n                    \"mobile_number\": \"+23457558595\",\n                    \"recipient_address\": \"234 Kings road, Cape Town\"\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Create bulk transfer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Transfer Fee",
+        "api_call": "https://api.flutterwave.com/v3/transfers/fee",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get Transfer Fees"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Transfer",
+        "api_call": "https://api.flutterwave.com/v3/transfers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Fetch all transfers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Transfer Retry",
+        "api_call": "https://api.flutterwave.com/v3/transfers/:id/retries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Bulk Transfer",
+        "api_call": "https://api.flutterwave.com/v3/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Transfer Rates",
+        "api_call": "https://api.flutterwave.com/v3/transfers/rates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"amount\":\"10000\",\n   \"destination_currency\":\"USD\",\n   \"source_currency\":\"NGN\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Transfer Beneficiary",
+        "api_call": "https://api.flutterwave.com/v3/beneficiaries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"account_number\":\"0690000034\",\n   \"account_bank\":\"044\",\n   \"beneficiary_name\":\"Flutterwave Developers\"\n}"
+            }
+        },
+        "functionality": "Create a beneficiary"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: List all Transfer Beneficiaries",
+        "api_call": "https://api.flutterwave.com/v3/beneficiaries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all beneficiaries"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Transfer Beneficiary",
+        "api_call": "https://api.flutterwave.com/v3/beneficiaries/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Get single beneficiary"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Delete a Transfer Beneficiary",
+        "api_call": "https://api.flutterwave.com/v3/beneficiaries/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a beneficiary"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"currency\":\"USD\",\n   \"amount\":5,\n   \"debit_currency\":\"NGN\",\n   \"billing_name\":\"Flutterwave Developers\",\n   \"billing_address\":\"333, Fremont Street\",\n   \"billing_city\":\"San Francisco\",\n   \"billing_state\":\"CA\",\n   \"billing_postal_code\":\"94105\",\n   \"billing_country\":\"US\"\n}"
+            }
+        },
+        "functionality": "Create new virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Virtual Cards",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get all virtual cards"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get a single card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fund a Virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id/fund",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"debit_currency\": \"USD\",\n    \"amount\": \"5\"\n}"
+            }
+        },
+        "functionality": "Fund a virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Withdraw from a virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id/withdraw",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 500000\n}"
+            }
+        },
+        "functionality": "Withdraw funds from a virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Block/Unblock a Virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id/status/:status_action",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Block/Unblock a virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Terminate a Virtual Card",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id/terminate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Terminate an existing virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Virtual Card's Transactions",
+        "api_call": "https://api.flutterwave.com/v3/virtual-cards/:id/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Get transactions done with on a virtual card"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Virtual Account Number",
+        "api_call": "https://api.flutterwave.com/v3/virtual-account-numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"email\":\"user@gmail.com\",\n   \"is_permanent\":true,\n   \"bvn\":\"12345678901\",\n   \"tx_ref\":\"Sample_tx_ref\",\n   \"phonenumber\":\"08100000000\",\n   \"firstname\":\"Flutterwave\",\n   \"lastname\":\"Developers\",\n   \"narration\":\"Add_the_name_of_account_here\"\n}\n"
+            }
+        },
+        "functionality": "Create a virtual account number"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create Bulk Virtual Account Numbers",
+        "api_call": "https://api.flutterwave.com/v3/bulk-virtual-account-numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accounts\": 3,\n    \"email\": \"user@gmail.com\",\n    \"is_permanent\": true,\n    \"tx_ref\": \"Sample_tx_ref\"\n}"
+            }
+        },
+        "functionality": "Create bulk virtual account numbers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Virtual Account Number",
+        "api_call": "https://api.flutterwave.com/v3/virtual-account-numbers/:order_ref",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get account details for specified order ref"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch Bulk Virtual Account Details",
+        "api_call": "https://api.flutterwave.com/v3/bulk-virtual-account-numbers/:batch_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get account details for generated bulk acconts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update BVN",
+        "api_call": "https://api.flutterwave.com/v3/virtual-account-numbers/:order_ref",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"bvn\": \"12345678901\"\n}"
+            }
+        },
+        "functionality": "Create a virtual account number"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Delete a Virtual Account Number",
+        "api_call": "https://api.flutterwave.com/v3/virtual-account-numbers/:order_ref",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a collection subaccount",
+        "api_call": "https://api.flutterwave.com/v3/subaccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_bank\": \"044\",\n    \"account_number\": \"0690000034\",\n    \"business_name\": \"Example Business\",\n    \"business_email\": \"user@gmail.com\",\n    \"business_contact\": \"Example User\",\n    \"business_contact_mobile\": \"09080000000\",\n    \"business_mobile\": \"08100000000\",\n    \"country\": \"NG\",\n    \"split_type\": \"flat\",\n    \"split_value\": \"1000\"\n}"
+            }
+        },
+        "functionality": "Create a subaccount"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch all subaccounts",
+        "api_call": "https://api.flutterwave.com/v3/subaccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Fetch all subaccounts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Subaccount",
+        "api_call": "https://api.flutterwave.com/v3/subaccounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a single subaccount details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update a subaccount",
+        "api_call": "https://api.flutterwave.com/v3/subaccounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"business_name\": \"Example Business\",\n    \"business_email\": \"business@gmail.com\",\n    \"account_bank\": \"044\",\n    \"account_number\": \"0690000034\",\n    \"split_type\": \"flat\",\n    \"split_value\": \"200\"\n}"
+            }
+        },
+        "functionality": "Update a subaccount details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Delete a subaccount",
+        "api_call": "https://api.flutterwave.com/v3/subaccounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a subaccount"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Payout Subaccount",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"account_name\": \"Example User\",\n  \"email\": \"user@gmail.com\",\n  \"mobilenumber\": \"09010000000\",\n  \"country\": \"US\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: List all Payout Subaccounts",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Payout Subaccount",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts/:account_reference",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update a Payout Subaccount",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts/:account_reference",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\n  \"account_name\": \"Another Example\",\n  \"email\": \"user@gmail.com\",\n  \"mobilenumber\": \"08100000000\",\n  \"country\": \"NG\"\n}\n"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch Transactions",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts/:account_reference/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch Available  Balance",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts/:account_reference/balances",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch Static Virtual Accounts",
+        "api_call": "https://api.flutterwave.com/v3/payout-subaccounts/:account_reference/static-account?currency=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Subscriptions",
+        "api_call": "https://api.flutterwave.com/v3/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all subscriptions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Activate a Subscription",
+        "api_call": "https://api.flutterwave.com/v3/subscriptions/:id/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Activate a subscription"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Deactivate a Subscription",
+        "api_call": "https://api.flutterwave.com/v3/subscriptions/:id/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Cancel a subscription"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Payment Plan",
+        "api_call": "https://api.flutterwave.com/v3/payment-plans",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 1000,\n    \"name\": \"Sample Plan\",\n    \"interval\": \"monthly\",\n    \"duration\": 12,\n    \"currency\": \"NGN\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Payment Plans",
+        "api_call": "https://api.flutterwave.com/v3/payment-plans",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Fetch all payment plans"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Payment Plan",
+        "api_call": "https://api.flutterwave.com/v3/payment-plans/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get a single payment plan"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update a Payment Plan",
+        "api_call": "https://api.flutterwave.com/v3/payment-plans/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Another Plan\",\n    \"status\": \"active\"\n}"
+            }
+        },
+        "functionality": "Update a payment plan"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Cancel a Payment Plan",
+        "api_call": "https://api.flutterwave.com/v3/payment-plans/:id/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Cancel a payment plan"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create a Bill Payment",
+        "api_call": "https://api.flutterwave.com/v3/bills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"NG\",\n    \"recurrence\": \"ONCE\",\n    \"type\": \"EKEDC PREPAID TOPUP\",\n     \"biller_name\": \"EKEDC PREPAID TOPUP\",\n    \"reference\": \"N7Q17OmcddddhxiGfEwPwzFPTuBOtw1w3\",\n    \"customer\": \"1101160434535\",\n    \"amount\": 100\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Bill Payments",
+        "api_call": "https://api.flutterwave.com/v3/bills?from=2018-08-01&to=2018-09-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Bill Payment",
+        "api_call": "https://api.flutterwave.com/v3/bills/:reference",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Initiate Bulk Bills Payment",
+        "api_call": "https://api.flutterwave.com/v3/bulk-bills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"bulk_reference\": \"bulkRef001\",\n  \"callback_url\": \"https://www.google.com\",\n  \"bulk_data\": [\n     {\n        \"country\": \"NG\",\n        \"customer\": \"+2348029494025\",\n        \"amount\": 100,\n        \"recurrence\": \"WEEKLY\",\n        \"type\": \"AIRTIME\",\n        \"reference\": \"billRef05\"\n      },\n      {\n        \"country\": \"NG\",\n        \"customer\": \"+2347063932728\",\n        \"amount\": 100,\n        \"recurrence\": \"WEEKLY\",\n        \"type\": \"AIRTIME\",\n        \"reference\": \"billRef06\"\n      },\n      {\n        \"country\": \"NG\",\n        \"customer\": \"+2347013431382\",\n        \"amount\": 100,\n        \"recurrence\": \"WEEKLY\",\n        \"type\": \"AIRTIME\",\n        \"reference\": \"billRef07\"\n      },\n      {\n        \"country\": \"NG\",\n        \"customer\": \"+2348134088426\",\n        \"amount\": 100,\n        \"recurrence\": \"WEEKLY\",\n        \"type\": \"AIRTIME\",\n        \"reference\": \"billRef08\"\n      }\n  ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: List Recurring Bill Payments",
+        "api_call": "https://api.flutterwave.com/v3/recurring-bills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update Recurring Bills Details",
+        "api_call": "https://api.flutterwave.com/v3/recurring-bills/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"customer\": \"+23481056829830\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Biller Details",
+        "api_call": "https://api.flutterwave.com/v3/bill-categories?power=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "Bearer FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Validate a Bill Service",
+        "api_call": "https://api.flutterwave.com/v3/bill-items/:item_code/validate?code=BIL113&customer=45053878653",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": ""
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Billers",
+        "api_call": "https://api.flutterwave.com/v3/billers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": ""
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: List Biller Products",
+        "api_call": "https://api.flutterwave.com/v3/billers/:id/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Biller Product",
+        "api_call": "https://api.flutterwave.com/v3/billers/:id/products/:product_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Initiate a Biller Order",
+        "api_call": "https://api.flutterwave.com/v3/billers/BIL136/products/OT151/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": \"3500.00\",\n    \"reference\": \"FLWTTOT1000000029\",\n    \"customer\": {\n        \"name\": \"emmanuel\",\n        \"email\": \"emmanuel@x.com\",\n        \"phone_number\": \"08060811638\"\n    },\n    \"fields\": [\n        {\n            \"id\": \"42107711:42107712\",\n            \"quantity\": \"1\",\n            \"value\": \"3500\"\n        },\n        {\n            \"id\": \"42107710\",\n            \"quantity\": \"1\",\n            \"value\": \"t@x.com\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Update a Biller Order",
+        "api_call": "https://api.flutterwave.com/v3/product-orders/be9c8abf-4611-46e9-85e7-5a2e8c5d7ab3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"amount\": \"3814.13\",\n\t\"reference\": \"FLWTTOT1000000019\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Banks",
+        "api_call": "https://api.flutterwave.com/v3/banks/:country",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all banks in specified country"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Bank Branches",
+        "api_call": "https://api.flutterwave.com/v3/banks/:id/branches",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get banks branches"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Multiple Wallet Balances",
+        "api_call": "https://api.flutterwave.com/v3/balances",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get all wallet balances"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Single Wallet Balance",
+        "api_call": "https://api.flutterwave.com/v3/balances/:currency",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Get balances for specific currency"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Resolve Account Details",
+        "api_call": "https://api.flutterwave.com/v3/accounts/resolve",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_number\": \"+2547060000000\",\n    \"account_bank\": \"MPS\",\n    \"type\": \"MOBILEMONEY\",\n    \"country\": \"KE\"\n}\n  "
+            }
+        },
+        "functionality": "Resolve Account Details for Transfers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Resolve BVN Details",
+        "api_call": "{{BASE_API_URL}}/v3/kyc/bvns/:bvn",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Resolve BVN details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Resolve Card Bin",
+        "api_call": "https://api.flutterwave.com/v3/card-bins/:bin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get Balance History",
+        "api_call": "https://api.flutterwave.com/v3/wallet/statement",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK-6507535aed4db770e25cccef800897b3-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Settlements",
+        "api_call": "https://api.flutterwave.com/v3/settlements",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all settlements"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get a Settlement",
+        "api_call": "https://api.flutterwave.com/v3/settlements/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get single settlement details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Create an OTP",
+        "api_call": "https://api.flutterwave.com/v3/otps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "type": "text",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"length\": 7,\n\t\"customer\": { \n        \"name\": \"Example User\", \n        \"email\": \"user@gmail.com\", \n        \"phone\": \"08130000000\" \n        },\n\t\"sender\": \"Example Business\",\n\t\"send\": true,\n\t\"medium\": [\"email\", \"whatsapp\"],\n\t\"expiry\": 5\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Validate an OTP",
+        "api_call": "https://api.flutterwave.com/v3/otps/:reference/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "FLWSECK_TEST-SANDBOXDEMOKEY-X",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"otp\": \"1234567\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Get all Chargebacks",
+        "api_call": "https://api.flutterwave.com/v3/chargebacks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Accept/Decline Chargebacks",
+        "api_call": "https://api.flutterwave.com/v3/chargebacks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"decline\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Flutterwave 3.0: Fetch a Chargeback",
+        "api_call": "https://api.flutterwave.com/v3/chargebacks?flw_ref",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
