@@ -1,0 +1,2128 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create Ad Account User",
+        "api_call": "{{baseUrl}}/adAccountUsers/(account:urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}},user:urn%3Ali%3Aperson%3A)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"role\": \"VIEWER\",\n    \"user\": \"urn:li:person:{{person_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API example\u00a0[creates an Ad Account User](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-account-users?tabs=http#create-ad-account-user). Creating Ad Account Users grants a member access to an Ad Account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch an Ad Account User",
+        "api_call": "{{baseUrl}}/adAccountUsers/(account:urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}},user:urn%3Ali%3Aperson%3A)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API example\u00a0[fetches an Ad Account User](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-account-users?tabs=http#get-ad-account-user). Fetching an existing Ad Account User requires both account and user parameters.\n\nThe person"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find Ad Account Users by Accounts",
+        "api_call": "{{baseUrl}}/adAccountUsers?q=accounts&accounts=List(urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "This API example searches for all Ad Account Users by sponsored ad account or multiple sponsored ad accounts. Learn more"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch the Authenticated User's Ad Accounts",
+        "api_call": "{{baseUrl}}/adAccountUsers?q=authenticatedUser",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "This API example retrieves all Ad Accounts that an authenticated user has access to. Specifically, this api call will return"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch the Authenticated User's Organization Roles",
+        "api_call": "{{baseUrl}}/organizationAcls?q=roleAssignee",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "To understand more about verifying Company Page Access visit our public documentation\u00a0[here](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-access-control-by-role?tabs=http#find-a-members-organization-access-control-information).\n\nA role defines the privileges that a member has"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Existing Ad Account User",
+        "api_call": "{{baseUrl}}/adAccountUsers/(account:urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}},user:urn%3Ali%3Aperson%3A)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n            \"role\": \"VIEWER\",\n            \"user\": \"urn:li:person:{{person_id}}\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API example\u00a0[updates an Ad Account User](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-account-users?tabs=http#update-existing-ad-account-user). An Ad Account User's role can be updated by using this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete an Ad Account User",
+        "api_call": "{{baseUrl}}/adAccountUsers/(account:urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}},user:urn%3Ali%3Aperson%3A)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "This API example\u00a0[deletes an Ad Account User](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-account-users?tabs=http#delete-an-ad-account-user). Members can be removed from Ad Account access by using the delete Ad"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create an Ad Account",
+        "api_call": "{{baseUrl}}/adAccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"currency\": \"USD\", \n    \"name\": \"Ad account A\", \n    \"notifiedOnCampaignOptimization\": true, \n    \"notifiedOnCreativeApproval\": true, \n    \"notifiedOnCreativeRejection\": true, \n    \"notifiedOnEndOfCampaign\": true, \n    \"reference\": \"urn:li:organization:{{organization_id}}\", \n    \"type\": \"BUSINESS\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This example API\u00a0[creates an Ad Account](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts?tabs=http#create-ad-account)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create a Test Ad Account",
+        "api_call": "{{baseUrl}}/adAccounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"currency\": \"USD\", \n    \"name\": \"XYZ Company\", \n    \"notifiedOnCampaignOptimization\": true, \n    \"notifiedOnCreativeApproval\": true, \n    \"notifiedOnCreativeRejection\": true, \n    \"notifiedOnEndOfCampaign\": true, \n    \"reference\": \"urn:li:organization:{{organization_id}}\", \n    \"type\": \"BUSINESS\",\n    \"test\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API example\u00a0[creates a\u00a0\"test\"\u00a0ad account](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts?tabs=http#creating-a-test-ad-account)\u00a0by including an additional boolean\u00a0`test`\u00a0flag to\u00a0`true`\u00a0on the payload."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch the Ad Account by ID",
+        "api_call": "{{baseUrl}}/adAccounts/{{sponsoredaccount_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "[Fetch an ad Account](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts?tabs=http#fetch-ad-account)\u00a0by sponsored account ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Search Accounts by Status",
+        "api_call": "{{baseUrl}}/adAccounts?q=search&search=(status:(values:List(ACTIVE)))",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Use the\u00a0`q=search`\u00a0parameter with the adAccountsV2 API to\u00a0[search for ad accounts](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts?tabs=http#search-for-accounts)\u00a0by ID, name, reference, type, and status fields. Search criteria can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Search Account by Type",
+        "api_call": "{{baseUrl}}/adAccounts?q=search&search=(type:(values:List(BUSINESS)))",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Use the\u00a0`q=search`\u00a0parameter with the adAccountsV2 API to\u00a0[search for accounts](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-accounts?tabs=http#search-for-accounts)\u00a0by ID, name, reference, type, and status fields. Search criteria can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Ad Account Name",
+        "api_call": "{{baseUrl}}/adAccounts/{{sponsoredaccount_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"name\": \"Updated Ad Acount name\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Ad Accounts can be updated through a partial update by patching the fields you want to change. The following example"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create a Campaign Group",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"name\": \"CampaignGroup1\",\n    \"runSchedule\": {\n        \"end\": 1635493862000,\n        \"start\": 1635321062000\n    },\n    \"status\": \"ACTIVE\",\n    \"totalBudget\": {\n        \"amount\": \"1000.00\",\n        \"currencyCode\": \"USD\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Campaign groups can be created in ACTIVE or DRAFT state. You can change ACTIVE to ARCHIVED or PAUSED. This example\u00a0[creates"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create Multiple Campaign Groups",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"elements\": [\n        {\n            \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n            \"name\": \"CampaignGroup2\",\n            \"runSchedule\": {\n                \"end\": 1635493862000,\n                \"start\": 1635321062000\n            },\n            \"status\": \"ACTIVE\",\n            \"totalBudget\": {\n                \"amount\": \"60000.00\",\n                \"currencyCode\": \"USD\"\n            }\n        },\n        {\n            \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n            \"name\": \"CampaignGroup3\",\n            \"runSchedule\": {\n                \"end\": 1635493862000,\n                \"start\": 1635321062000\n            },\n            \"status\": \"ACTIVE\",\n            \"totalBudget\": {\n                \"amount\": \"30000.00\",\n                \"currencyCode\": \"USD\"\n            }\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Campaign groups can be created in ACTIVE or DRAFT state. You can change ACTIVE to ARCHIVED or PAUSED. This example"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch a Campaign Group by ID",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "A Campaign Group can be fetched by the campaign group id as shown in this example call. See our public"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch multiple Campaign Groups by ID",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups?ids=List(,)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Multiple Campaign Groups can be fetched by the campaign group ids a shown in this example call. View our public"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Search for Campaign Groups",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups?q=search&search=(status:(values:List(ACTIVE,DRAFT)))&sort=(field:ID,order:DESCENDING)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Use the\u00a0`q=search`\u00a0parameter to\u00a0[search for campaign groups](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaign-groups?tabs=http#search-for-campaign-groups)\u00a0by ID, account, name, and status fields. Search criteria can be chained together for increased"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Campaign Group",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"totalBudget\": {\n                \"amount\": \"3000\",\n                \"currencyCode\": \"USD\"\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Campaign groups can be updated with a partial update. This example updates the amount and currencyCode for a Campaign Group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Multiple Campaign Groups",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups?ids=List(,)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_PARTIAL_UPDATE",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"entities\": {\n        \"{{campaigngroup_id1}}\": {\n            \"patch\": {\n                \"$set\": {\n                    \"totalBudget\": {\n                        \"amount\": \"1000\",\n                        \"currencyCode\": \"USD\"\n                    }\n                }\n            }\n        },\n        \"{{campaigngroup_id2}}\": {\n            \"patch\": {\n                \"$set\": {\n                    \"status\": \"PAUSED\"\n                }\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Multiple campaign groups can be updated with a partial update. This example updates the amount and currencyCode for one Campaign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete a Campaign Group",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This example call\u00a0[deletes a Campaign Group](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaign-groups?tabs=http#delete-a-campaign-group).\n\nOnly campaign groups which are in DRAFT status are allowed to be deleted. Once deleted,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete Multiple Campaign Groups",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaignGroups?ids=List(,)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Multiple Campaign Group can be deleted as shown in this example call. View our online documentation\u00a0[here](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaign-groups?tabs=http#batch-delete-campaign-groups)\u00a0to learn more.\n\nOnly campaign groups"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch a Campaign using Campaign ID",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns/{{campaignId1}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create Campaign (SPONSORED_UPDATES)",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id1}}\",\n    \"audienceExpansionEnabled\": false,\n    \"costType\": \"CPC\",\n    \"creativeSelection\": \"OPTIMIZED\",\n    \"dailyBudget\": {\n        \"amount\": \"18\",\n        \"currencyCode\": \"USD\"\n    },\n    \"locale\": {\n        \"country\": \"US\",\n        \"language\": \"en\"\n    },\n    \"name\": \"Campaign 1\",\n    \"offsiteDeliveryEnabled\": false,\n    \"runSchedule\": {\n        \"end\": 1648186989000,\n        \"start\": 1647927789000\n    },\n    \"targetingCriteria\": {\n        \"include\": {\n            \"and\": [\n                {\n                    \"or\": {\n                        \"urn:li:adTargetingFacet:locations\": [\n                            \"urn:li:geo:103644278\"\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    \"type\": \"SPONSORED_UPDATES\",\n    \"unitCost\": {\n        \"amount\": \"15\",\n        \"currencyCode\": \"USD\"\n    },\n    \"status\": \"DRAFT\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create multiple campaign using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"elements\": [\n        {\n            \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n            \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id1}}\",\n            \"audienceExpansionEnabled\": false,\n            \"costType\": \"CPC\",\n            \"creativeSelection\": \"OPTIMIZED\",\n            \"dailyBudget\": {\n                \"amount\": \"18\",\n                \"currencyCode\": \"USD\"\n            },\n            \"locale\": {\n                \"country\": \"US\",\n                \"language\": \"en\"\n            },\n            \"name\": \"Campaign 2\",\n            \"offsiteDeliveryEnabled\": false,\n            \"runSchedule\": {\n                \"end\": 1648186989000,\n                \"start\": 1647927789000\n            },\n            \"targetingCriteria\": {\n                \"include\": {\n                    \"and\": [\n                        {\n                            \"or\": {\n                                \"urn:li:adTargetingFacet:locations\": [\n                                    \"urn:li:geo:103644278\"\n                                ]\n                            }\n                        }\n                    ]\n                }\n            },\n            \"type\": \"SPONSORED_UPDATES\",\n            \"unitCost\": {\n                \"amount\": \"15\",\n                \"currencyCode\": \"USD\"\n            },\n            \"status\": \"DRAFT\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Search for Campaign using criteria",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns?q=search&search.campaignGroup.values[0]=urn:li:sponsoredCampaignGroup:",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Campaign Using campaignId",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns/{{campaignId1}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"runSchedule\": {\n        \"start\": 1647927789001,\n        \"end\": 1648186989000\n            }\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update multiple campaigns using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns?ids[0]=&ids[1]=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_PARTIAL_UPDATE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Reactivate a Campaign",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"runSchedule\": {\n                \"end\": 9876543210123,\n                \"start\": 1637911456034\n            },\n            \"status\": \"ACTIVE\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Archive a Campaign",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"status\": \"ARCHIVED\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete campaign Using campaign Id",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete multiple campaigns using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/adCampaigns?ids=List(,)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch a Creative using Creative ID",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch multiple Creatives using BATCH",
+        "api_call": "{{baseUrl}}adAccounts/{{adAccountsId}}/creatives?ids=List()",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create a Creative",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"campaign\": \"urn:li:sponsoredCampaign:{{campaignId1}}\",\n    \"reference\": \"urn:li:share:{{share_id}}\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"SPONSORED_STATUS_UPDATE\",\n    \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredUpdateCreativeVariables\": {}\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Search Creative using Criteria",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives?q=search&search.campaign.values[0]=urn:li:sponsoredCampaign:",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update Creative Using Creative Id",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredUpdateCreativeVariables\": {\n                \"sponsoredStatusUpdateContentType\": \"ARTICLE\",\n                \"mediaAspectRatio\": {\n                    \"widthAspect\": 2.8565217,\n                    \"heightAspect\": 1.0\n                },\n                \"share\": \"urn:li:share:{{share_id}}\",\n                \"activity\": \"urn:li:activity:445566\",\n                \"callToActionEnabled\": false,\n                \"directSponsoredContent\": false\n            }\n        }\n    }\n    }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Update multiple Creative using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives?ids=List(,)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"entities\": {\n            \"{{creative_Id1}}\": {\n                \"patch\": {\n                    \"$set\": {\n                        \"status\": \"ACTIVE\"\n                    }\n                }\n            },\n            \"{{creative_Id2}}\": {\n                \"patch\": {\n                    \"$set\": {\n                        \"status\": \"ACTIVE\"\n                    }\n                }\n            }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete Creative Using Creative Id",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Delete multiple Creatives using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives?ids=List()",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_DELETE",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Create multiple Creatives using BATCH",
+        "api_call": "{{baseUrl}}/adAccounts/{{adAccountsId}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"elements\": [\n        {\n            \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id1}}\",\n            \"status\": \"ACTIVE\",\n            \"type\": \"TEXT_AD\",\n            \"variables\": {\n                \"clickUri\": \"https://www.linkedin.com\",\n                \"data\": {\n                    \"com.linkedin.ads.TextAdCreativeVariables\": {\n                        \"text\": \"This is a test ad description that links to LinkedIn 1 Batch 1 \",\n                        \"title\": \"This is Test Ad!\"\n                    }\n                }\n            }\n        },\n        {\n            \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id1}}\",\n            \"status\": \"ACTIVE\",\n            \"type\": \"TEXT_AD\",\n            \"variables\": {\n                \"clickUri\": \"https://www.linkedin.com\",\n                \"data\": {\n                    \"com.linkedin.ads.TextAdCreativeVariables\": {\n                        \"text\": \"This is a test ad description that links to LinkedIn 2 Batch 1\",\n                        \"title\": \"This is Test Ad!\"\n                    }\n                }\n            }\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Fetch the Ad Targeting Facets",
+        "api_call": "{{baseUrl}}/adTargetingFacets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/advertising-targeting/ads-targeting?tabs=http&view=li-lms-unversioned)\u00a0to understand more on Ads Targeting APIs.\n\nFacets are high-level categories of the types of targeting available to you."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find Entities by Facet Seniorities",
+        "api_call": "{{baseUrl}}/adTargetingEntities?q=adTargetingFacet&queryVersion=QUERY_USES_URNS&facet=List(urn%3Ali%3AadTargetingFacet%3Aseniorities)&locale=(language:en,country:US)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To understand more about the Ad Targeting Entities refer to our public documentation\u00a0[here](https://docs.microsoft.com/linkedin/shared/references/v2/ads/adtargetingentities?context=linkedin/marketing/contex&view=li-lms-unversioned).  \nOnce you've identified the facet type(s)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find Entities by Similar Entities",
+        "api_call": "{{baseUrl}}/adTargetingEntities?q=similarEntities&facet=urn%3Ali%3AadTargetingFacet%3Aemployers&queryVersion=QUERY_USES_URNS&entities=List(urn%3Ali%3Aorganization%3A1003)&locale=(language:en,country:US)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To understand more about the Ad Targeting Entities refer to our public documentation\u00a0[here](https://docs.microsoft.com/linkedin/shared/references/v2/ads/adtargetingentities?context=linkedin/marketing/contex&view=li-lms-unversioned).  \nOnce you've identified the facet type(s)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find Entities by Typeahead Suggestions",
+        "api_call": "{{baseUrl}}/adTargetingEntities?q=TYPEAHEAD&facet=List(urn%3Ali%3AadTargetingFacet%3Alocations)&query=afric",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To understand more about the Ad Targeting Entities refer to our public documentation\u00a0[here](https://docs.microsoft.com/linkedin/shared/references/v2/ads/adtargetingentities?context=linkedin/marketing/contex&view=li-lms-unversioned).  \nOnce you've identified the facet type(s)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find Entities by URNs",
+        "api_call": "{{baseUrl}}/adTargetingEntities?q=urns&queryVersion=QUERY_USES_URNS&urns=List(urn%3Ali%3Ageo%3A102095887)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To understand more about the Ad Targeting Entities refer to our public documentation\u00a0[here](https://docs.microsoft.com/linkedin/shared/references/v2/ads/adtargetingentities?context=linkedin/marketing/contex&view=li-lms-unversioned).  \nOnce you've identified the facet type(s)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Ad Supply Forecast API",
+        "api_call": "{{baseUrl}}/adSupplyForecasts?q=criteriaV2&account=urn%3Ali%3AsponsoredAccount%3A{{sponsoredaccount_id}}&timeRange=(start:1631790775000,end:1632136375000)&campaignType=SPONSORED_UPDATES&totalBudget=(amount:100.00,currencyCode:USD)&competingBid=(bidType:CPM,bidPrice:(currencyCode:USD,amount:10))&targetingCriteria=(include:(and:List((or:(urn%3Ali%3AadTargetingFacet%3Alocations:List(urn%3Ali%3Ageo%3A101165590))))),exclude:(or:(urn%3Ali%3AadTargetingFacet%3AstaffCountRanges:List(urn%3Ali%3AstaffCountRange%3A%2810001%2C2147483647%29))))",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "The Ad Supply Forecasts API enables you to forecast impressions, spending, and other metrics based on:\n\n\\*   Targeting criteria\n\\*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 2. Register Upload",
+        "api_call": "{{baseUrl}}/assets?action=registerUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/vector-asset-api?tabs=http&view=li-lms-unversioned#register-an-upload-for-images)\u00a0to understand more on this API.\n\nThis API example covers Registering an upload for an Image File.  \nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 3. Upload the image file (select an image file in the Body for postman to use)",
+        "api_call": "{{upload_url}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "#### Select an image file on your local machine in the Body for postman to use in this example call.\n\nView"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 4. Check the status of the upload",
+        "api_call": "{{baseUrl}}/assets/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/vector-asset-api?tabs=http&view=li-lms-unversioned#check-status-of-upload)\u00a0to understand more on this API.\n\nThis API examples retrieves the status of the Image File uploaded in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 5. Create a share",
+        "api_call": "{{baseUrl}}/shares",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"owner\": \"urn:li:organization:6446331\",\n  \"text\": {\n    \"text\": \"Test Share text\"\n  },\n  \"subject\": \"Test Share Subject\",\n  \"distribution\": {\n    \"linkedInDistributionTarget\": {}\n  },\n  \"content\": {\n    \"contentEntities\": [\n      {\n        \"entity\": \"urn:li:digitalmediaAsset:{{asset_id}}\"\n      }\n    ],\n    \"title\": \"Test Share with Content title\",\n    \"shareMediaCategory\": \"IMAGE\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/share-api?tabs=http&view=li-lms-unversioned#post-shares)\u00a0to understand more on creating shares.\n\nThis API example creates an organic image share on the Company Page (organization)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 6. Create a Campaign for the Image Ad",
+        "api_call": "{{baseUrl}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id1}}\",\n    \"associatedEntity\": \"urn:li:organization:{{organization_id}}\",\n    \"audienceExpansionEnabled\": false,\n    \"costType\": \"CPC\",\n    \"creativeSelection\": \"OPTIMIZED\",\n    \"dailyBudget\": {\n        \"amount\": \"18\",\n        \"currencyCode\": \"USD\"\n    },\n    \"locale\": {\n        \"country\": \"US\",\n        \"language\": \"en\"\n    },\n    \"name\": \"Campaign Sponsored update B\",\n    \"offsiteDeliveryEnabled\": false,\n    \"runSchedule\": {\n        \"end\": 1635332789000,\n        \"start\": 1631790775000\n    },\n    \"targetingCriteria\": {\n        \"include\": {\n            \"and\": [\n                {\n                    \"or\": {\n                        \"urn:li:adTargetingFacet:locations\": [\n                            \"urn:li:geo:103644278\"\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    \"type\": \"SPONSORED_UPDATES\",\n    \"unitCost\": {\n        \"amount\": \"15\",\n        \"currencyCode\": \"USD\"\n    },\n    \"status\": \"DRAFT\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaigns?tabs=http&view=li-lms-unversioned#create-a-campaign)\u00a0to understand more on creating a Single Image Sponsored Content Campaign.\n\nThis API example creates a Sponsored Content Campaign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 7. Create a Creative for the Image Ad",
+        "api_call": "{{baseUrl}}/adCreatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id1}}\",\n    \"reference\": \"urn:li:share:{{share_id}}\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"SPONSORED_STATUS_UPDATE\",\n    \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredUpdateCreativeVariables\": {}\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-creatives?tabs=http&view=li-lms-unversioned#create-a-sponsored-content-share)\u00a0to understand more on creating a Sponsored Content Ad Creative.\n\nThis API example creates a Sponsored Content Ad Creative"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 2. Register Upload",
+        "api_call": "{{baseUrl}}/assets?action=registerUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"registerUploadRequest\":{\n      \"owner\":\"urn:li:organization:{{organization_id}}\",\n      \"recipes\":[\n         \"urn:li:digitalmediaRecipe:feedshare-image\"\n      ],\n      \"serviceRelationships\":[\n         {\n            \"identifier\":\"urn:li:userGeneratedContent\",\n            \"relationshipType\":\"OWNER\"\n         }\n      ],\n      \"supportedUploadMechanism\":[\n         \"SYNCHRONOUS_UPLOAD\"\n      ]\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/vector-asset-api?tabs=http&view=li-lms-unversioned#register-an-upload-for-images)\u00a0to understand more on this API.\n\nThis API example covers registering an upload for an Image File.  \nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 3. Upload the image file Copy (select an image file in the Body for postman to use)",
+        "api_call": "{{upload_url}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/vector-asset-api?tabs=http&view=li-lms-unversioned#upload-the-image)\u00a0to understand more on this API.\n\nThis API example uses the\u00a0`upLoadUrl`\u00a0URL from the previous Step's response for an actual"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 4. Check the status of the upload",
+        "api_call": "{{baseUrl}}/assets/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/vector-asset-api?tabs=http&view=li-lms-unversioned#check-status-of-upload)\u00a0to understand more on this API.\n\nThis API examples retrieves the status of the Image File uploaded in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 5. Create a dark share",
+        "api_call": "{{baseUrl}}/shares",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"agent\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"content\": {\n    \"contentEntities\": [\n      {\n        \"entity\": \"urn:li:digitalmediaAsset:{{asset_id}}\"\n      }\n    ],\n    \"title\": \"Test Share with Content title\",\n    \"shareMediaCategory\": \"IMAGE\"\n    },\n    \"distribution\": {\n        \"linkedInDistributionTarget\": {}\n    },\n    \"owner\": \"urn:li:organization:{{organization_id}}\",\n    \"subject\": \"Test Share Subject\",\n    \"text\": {\n        \"text\": \"Test Share!\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/shares/share-api?tabs=http&view=li-lms-unversioned#direct-sponsored-content-share)\u00a0to understand more on creating a direct sponsored content share (dark share).\n\nThis API example creates a dark image"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 6. Create a Campaign for the Image Ad",
+        "api_call": "{{baseUrl}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n    \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id}}\",\n    \"audienceExpansionEnabled\": false,\n    \"costType\": \"CPC\",\n    \"creativeSelection\": \"OPTIMIZED\",\n    \"dailyBudget\": {\n        \"amount\": \"18\",\n        \"currencyCode\": \"USD\"\n    },\n    \"locale\": {\n        \"country\": \"US\",\n        \"language\": \"en\"\n    },\n    \"name\": \"Campaign Sponsored update B\",\n    \"offsiteDeliveryEnabled\": false,\n    \"runSchedule\": {\n        \"end\": 1529778043445,\n        \"start\": 1528914043445\n    },\n    \"targetingCriteria\": {\n        \"include\": {\n            \"and\": [\n                {\n                    \"or\": {\n                        \"urn:li:adTargetingFacet:locations\": [\n                            \"urn:li:geo:103644278\"\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    \"type\": \"SPONSORED_UPDATES\",\n    \"unitCost\": {\n        \"amount\": \"15\",\n        \"currencyCode\": \"USD\"\n    },\n    \"status\": \"ACTIVE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-campaigns?tabs=http&view=li-lms-unversioned#create-a-campaign)\u00a0to understand more on creating a Single Image Sponsored Content Campaign.\n\nThis API example creates a Sponsored Content Campaign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 7. Create a Creative for the Image Ad",
+        "api_call": "{{baseUrl}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id}}\",\n    \"reference\": \"urn:li:share:{{share_id}}\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"SPONSORED_STATUS_UPDATE\",\n    \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredUpdateCreativeVariables\": {}\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/account-structure/create-and-manage-creatives?tabs=http&view=li-lms-unversioned#create-a-direct-sponsored-content-share)\u00a0to understand more on creating a Sponsored Content Ad Creative.\n\nThis API example creates a Sponsored Content Ad Creative"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 2. Register Video Upload",
+        "api_call": "{{baseUrl}}/assets?action=registerUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"registerUploadRequest\":{\n      \"owner\":\"urn:li:organization:{{organization_id}}\",\n      \"recipes\":[\n         \"urn:li:digitalmediaRecipe:feedshare-video\"\n      ],\n      \"serviceRelationships\":[\n         {\n            \"identifier\":\"urn:li:userGeneratedContent\",\n            \"relationshipType\":\"OWNER\"\n         }\n      ],\n      \"supportedUploadMechanism\":[\n         \"SYNCHRONOUS_UPLOAD\"\n      ]\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 3. Upload the video file (select a video file in the Body for postman to use)",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 4. Check the status of the upload",
+        "api_call": "{{baseUrl}}/assets/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 5. Create Post",
+        "api_call": "{{baseUrl}}/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"author\": \"urn:li:organization:{{organization_id}}\",\n  \"lifecycleState\": \"PUBLISHED\",\n  \"specificContent\": {\n    \"com.linkedin.ugc.ShareContent\": {\n      \"media\": [\n        {\n          \"title\": {\n            \"attributes\": [],\n            \"text\": \"Sample Video Create\"\n          },\n          \"description\": {\n            \"attributes\": [],\n            \"text\": \"Sample Description\"\n          },\n          \"media\": \"urn:li:digitalmediaAsset:{{video_asset_id}}\",\n          \"thumbnails\": [],\n          \"status\": \"READY\"\n        }\n      ],\n      \"shareCommentary\": {\n        \"attributes\": [],\n        \"text\": \"Some share text\"\n      },\n      \"shareMediaCategory\": \"VIDEO\"\n    }\n  },\n  \"visibility\": {\n    \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 6. Create a Campaign for the Video Ad",
+        "api_call": "{{baseUrl}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n  \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id1}}\",\n  \"audienceExpansionEnabled\": false,\n  \"costType\": \"CPV\",\n  \"objectiveType\": \"VIDEO_VIEW\",\n  \"creativeSelection\": \"OPTIMIZED\",\n  \"locale\": {\"language\": \"en\",\"country\": \"US\"},\n  \"name\": \"Video campaign Sponsored Update\",\n  \"format\":\"SINGLE_VIDEO\",\n  \"offsiteDeliveryEnabled\": false,\n  \"runSchedule\": {\n    \"start\": 1520890990333,\n    \"end\": 1637971200000\n  },\n  \"targetingCriteria\": {\n      \"include\": {\n          \"and\": [\n              {\n                  \"or\": {\n                      \"urn:li:adTargetingFacet:interfaceLocales\": [\n                          \"urn:li:locale:en_US\"\n                      ]\n                  }\n              },\n              {\n                  \"or\": {\n                      \"urn:li:adTargetingFacet:locations\": [\n                          \"urn:li:geo:103644278\"\n                      ]\n                  }\n              }\n          ]\n      }\n  },\n  \"type\": \"SPONSORED_UPDATES\",\n    \"dailyBudget\": {\n    \"currencyCode\": \"USD\",\n    \"amount\": \"18\"\n  },\n  \"unitCost\": {\n    \"amount\": \"15\",\n    \"currencyCode\": \"USD\"\n  },\n  \"status\": \"ACTIVE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 7. Create a Creative for the Video Ad",
+        "api_call": "{{baseUrl}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id1}}\",\n    \"reference\": \"urn:li:ugcPost:{{post_id1}}\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"SPONSORED_VIDEO\",\n    \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredVideoCreativeVariables\": {}\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 2. Register Document Upload",
+        "api_call": "{{baseUrl}}/documents?action=initializeUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 3. Upload the Document file (select a document file in the Body for postman to use)",
+        "api_call": "{{document_uploadurl}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 4. Check the status of the upload",
+        "api_call": "{{baseUrl}}/assets/{{document_asset_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 5. Create Post",
+        "api_call": "{{baseUrl}}/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"author\": \"urn:li:organization:{{organization_id}}\",\n  \"lifecycleState\": \"PUBLISHED\",\n  \"specificContent\": {\n    \"com.linkedin.ugc.ShareContent\": {\n      \"media\": [\n        {\n          \"title\": {\n            \"attributes\": [],\n            \"text\": \"Sample Video Create\"\n          },\n          \"description\": {\n            \"attributes\": [],\n            \"text\": \"Sample Description\"\n          },\n          \"media\": \"urn:li:digitalmediaAsset:{{document_asset_id}}\",\n          \"thumbnails\": [],\n          \"status\": \"READY\"\n        }\n      ],\n      \"shareCommentary\": {\n        \"attributes\": [],\n        \"text\": \"Some share text\"\n      },\n      \"shareMediaCategory\": \"VIDEO\"\n    }\n  },\n  \"visibility\": {\n    \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 6. Create a Campaign for the Document Ad",
+        "api_call": "{{baseUrl}}/adCampaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"account\": \"urn:li:sponsoredAccount:{{sponsoredaccount_id}}\",\n  \"campaignGroup\": \"urn:li:sponsoredCampaignGroup:{{campaigngroup_id1}}\",\n  \"audienceExpansionEnabled\": false,\n  \"costType\": \"CPV\",\n  \"objectiveType\": \"SPONSORED_UPDATE_NATIVE_DOCUMENT\",\n  \"creativeSelection\": \"OPTIMIZED\",\n  \"locale\": {\"language\": \"en\",\"country\": \"US\"},\n  \"name\": \"Video campaign Sponsored Update\",\n  \"format\":\"SINGLE_VIDEO\",\n  \"offsiteDeliveryEnabled\": false,\n  \"runSchedule\": {\n    \"start\": 1520890990333,\n    \"end\": 1637971200000\n  },\n  \"targetingCriteria\": {\n      \"include\": {\n          \"and\": [\n              {\n                  \"or\": {\n                      \"urn:li:adTargetingFacet:interfaceLocales\": [\n                          \"urn:li:locale:en_US\"\n                      ]\n                  }\n              },\n              {\n                  \"or\": {\n                      \"urn:li:adTargetingFacet:locations\": [\n                          \"urn:li:geo:103644278\"\n                      ]\n                  }\n              }\n          ]\n      }\n  },\n  \"type\": \"SPONSORED_UPDATES\",\n    \"dailyBudget\": {\n    \"currencyCode\": \"USD\",\n    \"amount\": \"18\"\n  },\n  \"unitCost\": {\n    \"amount\": \"15\",\n    \"currencyCode\": \"USD\"\n  },\n  \"status\": \"ACTIVE\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: 7. Create a Creative for the Document Ad",
+        "api_call": "{{baseUrl}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"campaign\": \"urn:li:sponsoredCampaign:{{campaign_id1}}\",\n    \"reference\": \"urn:li:ugcPost:{{post_id1}}\",\n    \"status\": \"ACTIVE\",\n    \"type\": \"SPONSORED_VIDEO\",\n    \"variables\": {\n        \"data\": {\n            \"com.linkedin.ads.SponsoredVideoCreativeVariables\": {}\n        }\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Campaign Management: Find audience count by targeting criteria",
+        "api_call": "{{baseUrl}}/audienceCounts?q=targetingCriteriaV2&targetingCriteria=(include:(and:List((or:({encoded facet_URN_1}:List({encoded facet_URN_1_value_1}, {encoded facet_URN_1_value_2}))),(or:({encoded facet_URN_2}:List({encoded facet_URN_2_value_1},{encoded facet_URN_2_value_2}))))))",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View our\u00a0[Public Documentation](https://docs.microsoft.com/linkedin/marketing/integrations/ads/advertising-targeting/ads-targeting?tabs=http&view=li-lms-unversioned)\u00a0to understand more on Ads Targeting APIs.\n\nFacets are high-level categories of the types of targeting available to you."
+    }
+]

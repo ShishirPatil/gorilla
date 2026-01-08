@@ -1,0 +1,3036 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search for images",
+        "api_call": "https://api.shutterstock.com/v2/images/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for images. If you specify more than one search parameter, the API uses an AND condition. Array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Run multiple image searches",
+        "api_call": "https://api.shutterstock.com/v2/bulk_search/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"added_date\": \"<date>\",\n        \"added_date_start\": \"<date>\",\n        \"aspect_ratio_min\": \"<number>\",\n        \"aspect_ratio_max\": \"<number>\",\n        \"aspect_ratio\": \"<number>\",\n        \"added_date_end\": \"<date>\",\n        \"authentic\": \"<boolean>\",\n        \"category\": \"<string>\",\n        \"color\": \"<string>\",\n        \"contributor\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"contributor_country\": [\n            \"<country-code-2>\",\n            \"<country-code-2>\"\n        ],\n        \"fields\": \"<string>\",\n        \"height\": \"<integer>\",\n        \"height_from\": \"<integer>\",\n        \"height_to\": \"<integer>\",\n        \"image_type\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"keyword_safe_search\": true,\n        \"language\": \"<string>\",\n        \"license\": [\n            \"commercial\"\n        ],\n        \"model\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"orientation\": \"<string>\",\n        \"page\": 1,\n        \"per_page\": 20,\n        \"people_model_released\": \"<boolean>\",\n        \"people_age\": \"<string>\",\n        \"people_ethnicity\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"people_gender\": \"<string>\",\n        \"people_number\": \"<integer>\",\n        \"query\": \"<string>\",\n        \"region\": \"<country-code-2>\",\n        \"safe\": true,\n        \"sort\": \"popular\",\n        \"spellcheck_query\": true,\n        \"view\": \"minimal\",\n        \"width\": \"<integer>\",\n        \"width_from\": \"<integer>\",\n        \"width_to\": \"<integer>\"\n    },\n    {\n        \"added_date\": \"<date>\",\n        \"added_date_start\": \"<date>\",\n        \"aspect_ratio_min\": \"<number>\",\n        \"aspect_ratio_max\": \"<number>\",\n        \"aspect_ratio\": \"<number>\",\n        \"added_date_end\": \"<date>\",\n        \"authentic\": \"<boolean>\",\n        \"category\": \"<string>\",\n        \"color\": \"<string>\",\n        \"contributor\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"contributor_country\": [\n            \"<country-code-2>\",\n            \"<country-code-2>\"\n        ],\n        \"fields\": \"<string>\",\n        \"height\": \"<integer>\",\n        \"height_from\": \"<integer>\",\n        \"height_to\": \"<integer>\",\n        \"image_type\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"keyword_safe_search\": true,\n        \"language\": \"<string>\",\n        \"license\": [\n            \"commercial\"\n        ],\n        \"model\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"orientation\": \"<string>\",\n        \"page\": 1,\n        \"per_page\": 20,\n        \"people_model_released\": \"<boolean>\",\n        \"people_age\": \"<string>\",\n        \"people_ethnicity\": [\n            \"<string>\",\n            \"<string>\"\n        ],\n        \"people_gender\": \"<string>\",\n        \"people_number\": \"<integer>\",\n        \"query\": \"<string>\",\n        \"region\": \"<country-code-2>\",\n        \"safe\": true,\n        \"sort\": \"popular\",\n        \"spellcheck_query\": true,\n        \"view\": \"minimal\",\n        \"width\": \"<integer>\",\n        \"width_from\": \"<integer>\",\n        \"width_to\": \"<integer>\"\n    }\n]"
+            }
+        },
+        "functionality": "This endpoint runs up to 5 image searches in a single request and returns up to 20 results per search."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get suggestions for a search term",
+        "api_call": "https://api.shutterstock.com/v2/images/search/suggestions?query=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint provides autocomplete suggestions for partial search terms."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get keywords from text",
+        "api_call": "https://api.shutterstock.com/v2/images/search/suggestions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint returns up to 10 important keywords from a block of plain text."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List image categories",
+        "api_call": "https://api.shutterstock.com/v2/images/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the categories (Shutterstock-assigned genres) that images can belong to."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List similar images",
+        "api_call": "https://api.shutterstock.com/v2/images/:id/similar",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns images that are visually similar to an image that you specify."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List recommended images",
+        "api_call": "https://api.shutterstock.com/v2/images/recommendations?id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns images that customers put in the same collection as the specified image IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List updated images",
+        "api_call": "https://api.shutterstock.com/v2/images/updated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists images that have been updated in the specified time period to update content management systems (CMS) or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List images",
+        "api_call": "https://api.shutterstock.com/v2/images?id=<asset-id>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists information about one or more images, including the available sizes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about images",
+        "api_call": "https://api.shutterstock.com/v2/images/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about an image, including a URL to a preview image and the sizes that it is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: License images",
+        "api_call": "https://api.shutterstock.com/v2/images/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"images\": [\n        {\n            \"image_id\": \"<string>\",\n            \"auth_cookie\": {\n                \"name\": \"<string>\",\n                \"value\": \"<string>\"\n            },\n            \"editorial_acknowledgement\": \"<boolean>\",\n            \"format\": \"jpg\",\n            \"metadata\": {},\n            \"price\": \"<number>\",\n            \"search_id\": \"<string>\",\n            \"show_modal\": \"<boolean>\",\n            \"size\": \"<string>\",\n            \"custom_dimensions\": {\n                \"height\": \"<integer>\",\n                \"width\": \"<integer>\"\n            },\n            \"subscription_id\": \"<string>\",\n            \"verification_code\": \"<string>\"\n        },\n        {\n            \"image_id\": \"<string>\",\n            \"auth_cookie\": {\n                \"name\": \"<string>\",\n                \"value\": \"<string>\"\n            },\n            \"editorial_acknowledgement\": \"<boolean>\",\n            \"format\": \"jpg\",\n            \"metadata\": {},\n            \"price\": \"<number>\",\n            \"search_id\": \"<string>\",\n            \"show_modal\": \"<boolean>\",\n            \"size\": \"<string>\",\n            \"custom_dimensions\": {\n                \"height\": \"<integer>\",\n                \"width\": \"<integer>\"\n            },\n            \"subscription_id\": \"<string>\",\n            \"verification_code\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint gets licenses for one or more images. You must specify the image IDs in the body parameter and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List image licenses",
+        "api_call": "https://api.shutterstock.com/v2/images/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists existing licenses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Download images",
+        "api_call": "https://api.shutterstock.com/v2/images/licenses/:id/downloads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"auth_cookie\": {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n    },\n    \"show_modal\": \"<boolean>\",\n    \"size\": \"<string>\",\n    \"verification_code\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint redownloads images that you have already received a license for. The download links in the response are valid"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Create image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint creates one or more image collections (lightboxes). To add images to the collections, use `POST /v2/images/collections/{id}/items`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists your collections of images and their basic attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the details of image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a collection, including its cover image and timestamps for its creation and most"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Rename image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint sets a new name for an image collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Delete image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint deletes an image collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Add images to collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        },\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint adds one or more images to a collection by image IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the contents of image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of images in a collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Remove images from collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint removes one or more images from a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List featured image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/featured",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists featured collections of specific types and a name and cover image for each collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the details of featured image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/featured/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a featured collection, including its cover image and timestamps for its creation and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the contents of featured image collections",
+        "api_call": "https://api.shutterstock.com/v2/images/collections/featured/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of images in a featured collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Upload ephemeral images",
+        "api_call": "https://api.shutterstock.com/v2/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"base64_image\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Deprecated; use `POST /v2/cv/images` instead. This endpoint uploads an image for reverse image search. The image must be in JPEG"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Upload images",
+        "api_call": "https://api.shutterstock.com/v2/cv/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"base64_image\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint uploads an image for reverse image or video search. Images must be in JPEG or PNG format. To"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List similar images",
+        "api_call": "https://api.shutterstock.com/v2/cv/similar/images?asset_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns images that are visually similar to an image that you specify or upload."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List similar videos",
+        "api_call": "https://api.shutterstock.com/v2/cv/similar/videos?asset_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns videos that are visually similar to an image that you specify or upload."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List suggested keywords",
+        "api_call": "https://api.shutterstock.com/v2/cv/keywords?asset_id=<asset-upload-id>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of suggested keywords for a media item that you specify or upload."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search for videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for videos. If you specify more than one search parameter, the API uses an AND condition. Array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get suggestions for a search term",
+        "api_call": "https://api.shutterstock.com/v2/videos/search/suggestions?query=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint provides autocomplete suggestions for partial search terms."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List similar videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/:id/similar",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for videos that are similar to a video that you specify."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List updated videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/updated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists videos that have been updated in the specified time period to update content management systems (CMS) or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List videos",
+        "api_call": "https://api.shutterstock.com/v2/videos?id=<asset-id>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists information about one or more videos, including the aspect ratio and URLs to previews."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about a video, including URLs to previews and the sizes that it is available in."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List video categories",
+        "api_call": "https://api.shutterstock.com/v2/videos/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the categories (Shutterstock-assigned genres) that videos can belong to."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: License videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"videos\": [\n        {\n            \"video_id\": \"<string>\",\n            \"auth_cookie\": {\n                \"name\": \"<string>\",\n                \"value\": \"<string>\"\n            },\n            \"editorial_acknowledgement\": \"<boolean>\",\n            \"metadata\": {},\n            \"price\": \"<number>\",\n            \"search_id\": \"<string>\",\n            \"show_modal\": \"<boolean>\",\n            \"size\": \"<string>\",\n            \"subscription_id\": \"<string>\"\n        },\n        {\n            \"video_id\": \"<string>\",\n            \"auth_cookie\": {\n                \"name\": \"<string>\",\n                \"value\": \"<string>\"\n            },\n            \"editorial_acknowledgement\": \"<boolean>\",\n            \"metadata\": {},\n            \"price\": \"<number>\",\n            \"search_id\": \"<string>\",\n            \"show_modal\": \"<boolean>\",\n            \"size\": \"<string>\",\n            \"subscription_id\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint gets licenses for one or more videos. You must specify the video IDs in the body parameter and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List video licenses",
+        "api_call": "https://api.shutterstock.com/v2/videos/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists existing licenses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Download videos",
+        "api_call": "https://api.shutterstock.com/v2/videos/licenses/:id/downloads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"auth_cookie\": {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n    },\n    \"show_modal\": \"<boolean>\",\n    \"size\": \"<string>\",\n    \"verification_code\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint redownloads videos that you have already received a license for."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Create video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint creates one or more collections (clipboxes). To add videos to collections, use `POST /v2/videos/collections/{id}/items`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists your collections of videos and their basic attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the details of video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a collection, including the timestamp for its creation and the number of videos"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Rename video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint sets a new name for a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Delete video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint deletes a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Add videos to collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        },\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint adds one or more videos to a collection by video IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the contents of video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of videos in a collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Remove videos from collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint removes one or more videos from a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List featured video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/featured",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists featured video collections and a name and cover video for each collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the details of featured video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/featured/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a featured video collection, including its cover video and timestamps for its creation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the contents of featured video collections",
+        "api_call": "https://api.shutterstock.com/v2/videos/collections/featured/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of videos in a featured collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search for tracks",
+        "api_call": "https://api.shutterstock.com/v2/audio/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for tracks. If you specify more than one search parameter, the API uses an AND condition. Array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio genres",
+        "api_call": "https://api.shutterstock.com/v2/audio/genres",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of all audio genres."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio instruments",
+        "api_call": "https://api.shutterstock.com/v2/audio/instruments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of all audio instruments."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio moods",
+        "api_call": "https://api.shutterstock.com/v2/audio/moods",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of all audio moods."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio tracks",
+        "api_call": "https://api.shutterstock.com/v2/audio?id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists information about one or more audio tracks, including the description and publication date."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about audio tracks",
+        "api_call": "https://api.shutterstock.com/v2/audio/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about a track, including its genres, instruments, and other attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: License audio tracks",
+        "api_call": "https://api.shutterstock.com/v2/audio/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"audio\": [\n        {\n            \"audio_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"search_id\": \"<string>\"\n        },\n        {\n            \"audio_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"search_id\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint gets licenses for one or more tracks. The download links in the response are valid for 8 hours."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio licenses",
+        "api_call": "https://api.shutterstock.com/v2/audio/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists existing licenses. You can filter the results according to the track ID to see if you have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Download audio tracks",
+        "api_call": "https://api.shutterstock.com/v2/audio/licenses/:id/downloads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint redownloads tracks that you have already received a license for. The download links in the response are valid"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Create audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint creates one or more collections (soundboxes). To add tracks, use `POST /v2/audio/collections/{id}/items`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists your collections of audio tracks and their basic attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the details of audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a collection, including the number of items in it and when it was"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Rename audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "This endpoint sets a new name for a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Delete audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint deletes a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Add audio tracks to collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        },\n        {\n            \"id\": \"<string>\",\n            \"added_time\": \"<dateTime>\",\n            \"media_type\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint adds one or more tracks to a collection by track IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the contents of audio collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of tracks in a collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Remove audio tracks from collections",
+        "api_call": "https://api.shutterstock.com/v2/audio/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint removes one or more tracks from a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search editorial images",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/search?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for editorial images. If you specify more than one search parameter, the API uses an AND condition."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List updated content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/updated?type=<string>&date_updated_start=<dateTime>&date_updated_end=<dateTime>&country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists editorial images that have been updated in the specified time period to update content management systems (CMS)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List editorial categories",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the categories that editorial images can belong to, which are separate from the categories that other types"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get editorial content details",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/:id?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about an editorial image, including a URL to a preview image and the sizes that it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List editorial image licenses",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists existing editorial image licenses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: License editorial content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"<country-code-3>\",\n    \"editorial\": [\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        },\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint gets licenses for one or more editorial images. You must specify the country and one or more editorial"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get editorial livefeed list",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/livefeeds?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get editorial livefeed",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/livefeeds/:id?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get editorial livefeed items",
+        "api_call": "https://api.shutterstock.com/v2/editorial/images/livefeeds/:id/items?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) Get editorial content details",
+        "api_call": "https://api.shutterstock.com/v2/editorial/:id?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/{id}` instead to show information about an editorial image, including a URL to a preview image and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) License editorial content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"<country-code-3>\",\n    \"editorial\": [\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        },\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Deprecated; use `POST /v2/editorial/images/licenses` instead to get licenses for one or more editorial images. You must specify the country and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) Get editorial livefeed list",
+        "api_call": "https://api.shutterstock.com/v2/editorial/livefeeds?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/livefeeds` instead to get a list of editorial livefeeds."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) Get editorial livefeed",
+        "api_call": "https://api.shutterstock.com/v2/editorial/livefeeds/:id?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated: use `GET /v2/editorial/images/livefeeds/{id}` instead to get an editorial livefeed."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) Get editorial livefeed items",
+        "api_call": "https://api.shutterstock.com/v2/editorial/livefeeds/:id/items?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/livefeeds/{id}/items` instead to get editorial livefeed items."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) Search editorial content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/search?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/search` instead to search for editorial images."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) List editorial categories",
+        "api_call": "https://api.shutterstock.com/v2/editorial/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/categories` instead. This endpoint lists the categories that editorial images can belong to, which are separate from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: (Deprecated) List updated content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/updated?type=<string>&date_updated_start=<dateTime>&date_updated_end=<dateTime>&country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deprecated; use `GET /v2/editorial/images/updated` instead to get recently updated items."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search editorial video content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/videos/search?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for editorial videos. If you specify more than one search parameter, the API uses an AND condition."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List editorial video categories",
+        "api_call": "https://api.shutterstock.com/v2/editorial/videos/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the categories that editorial videos can belong to, which are separate from the categories that other types"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get editorial video content details",
+        "api_call": "https://api.shutterstock.com/v2/editorial/videos/:id?country=<country-code-3>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about an editorial image, including a URL to a preview image and the sizes that it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List editorial video licenses",
+        "api_call": "https://api.shutterstock.com/v2/editorial/videos/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists existing editorial video licenses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: License editorial video content",
+        "api_call": "https://api.shutterstock.com/v2/editorial/videos/licenses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country\": \"<country-code-3>\",\n    \"editorial\": [\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        },\n        {\n            \"editorial_id\": \"<string>\",\n            \"license\": \"<string>\",\n            \"metadata\": {},\n            \"size\": \"original\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint gets licenses for one or more editorial videos. You must specify the country and one or more editorial"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Search catalogs for assets",
+        "api_call": "https://api.shutterstock.com/v2/catalog/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint searches for assets in the account's catalog. If you specify more than one search parameter, the API uses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List catalog collections",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of catalog collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Create catalog collections",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\",\n    \"visibility\": \"private\",\n    \"items\": [\n        {\n            \"asset\": {\n                \"type\": \"<string>\",\n                \"id\": \"<string>\"\n            }\n        },\n        {\n            \"asset\": {\n                \"type\": \"<string>\",\n                \"id\": \"<string>\"\n            }\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint creates a catalog collection and optionally adds assets. To add assets to the collection later, use `PATCH /v2/catalog/collections/{collection_id}/items`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Update collection metadata",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections/:collection_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"<string>\",\n    \"visibility\": \"<string>\",\n    \"cover_asset\": {\n        \"id\": \"<string>\"\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint updates the metadata of a catalog collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Delete catalog collections",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections/:collection_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint deletes a catalog collection. It does not remove the assets from the user's account's catalog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Add items to catalog collections",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections/:collection_id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"asset\": {\n                \"type\": \"<string>\",\n                \"id\": \"<string>\"\n            }\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint adds assets to a catalog collection. It also automatically adds the assets to the user's account's catalog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Remove items from catalog collection",
+        "api_call": "https://api.shutterstock.com/v2/catalog/collections/:collection_id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"items\": [\n        {\n            \"id\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint removes assets from a catalog collection. It does not remove the assets from the user's account's catalog."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Create rendered audio",
+        "api_call": "https://api.shutterstock.com/v2/ai/audio/renders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"audio_renders\": [\n        {\n            \"preset\": \"<string>\",\n            \"timeline\": {\n                \"spans\": [\n                    {\n                        \"span_type\": \"<string>\",\n                        \"time\": \"<integer>\",\n                        \"id\": \"<number>\",\n                        \"tempo\": \"<integer>\",\n                        \"regions\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"instrument_groups\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"tempo_changes\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ]\n                    },\n                    {\n                        \"span_type\": \"<string>\",\n                        \"time\": \"<integer>\",\n                        \"id\": \"<number>\",\n                        \"tempo\": \"<integer>\",\n                        \"regions\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"instrument_groups\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"tempo_changes\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            \"filename\": \"<string>\"\n        },\n        {\n            \"preset\": \"<string>\",\n            \"timeline\": {\n                \"spans\": [\n                    {\n                        \"span_type\": \"<string>\",\n                        \"time\": \"<integer>\",\n                        \"id\": \"<number>\",\n                        \"tempo\": \"<integer>\",\n                        \"regions\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"instrument_groups\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"tempo_changes\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ]\n                    },\n                    {\n                        \"span_type\": \"<string>\",\n                        \"time\": \"<integer>\",\n                        \"id\": \"<number>\",\n                        \"tempo\": \"<integer>\",\n                        \"regions\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"instrument_groups\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ],\n                        \"tempo_changes\": [\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            },\n                            {\n                                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            \"filename\": \"<string>\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "This endpoint creates rendered audio from timeline data. It returns a render ID that you can use to download the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about audio renders",
+        "api_call": "https://api.shutterstock.com/v2/ai/audio/renders?id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows the status of one or more audio renders, including download links for completed audio."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List computer audio instruments",
+        "api_call": "https://api.shutterstock.com/v2/ai/audio/instruments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the instruments that you can include in computer audio. If you specify more than one search parameter,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List computer audio descriptors",
+        "api_call": "https://api.shutterstock.com/v2/ai/audio/descriptors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "<Basic Auth Username>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "<Basic Auth Password>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the descriptors that you can use in the audio regions in an audio render."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about multiple contributors",
+        "api_call": "https://api.shutterstock.com/v2/contributors?id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists information about one or more contributors, including contributor type, equipment they use and other attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about a single contributor",
+        "api_call": "https://api.shutterstock.com/v2/contributors/:contributor_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint shows information about a single contributor, including contributor type, equipment they use, and other attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List contributors' collections",
+        "api_call": "https://api.shutterstock.com/v2/contributors/:contributor_id/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists collections based on contributor ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get details about contributors' collections",
+        "api_call": "https://api.shutterstock.com/v2/contributors/:contributor_id/collections/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint gets more detailed information about a contributor's collection, including its cover image, timestamps for its creation, and most"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get the items in contributors' collections",
+        "api_call": "https://api.shutterstock.com/v2/contributors/:contributor_id/collections/:id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists the IDs of items in a contributor's collection and the date that each was added."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get user details",
+        "api_call": "https://api.shutterstock.com/v2/user",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get access token details",
+        "api_call": "https://api.shutterstock.com/v2/user/access_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: List user subscriptions",
+        "api_call": "https://api.shutterstock.com/v2/user/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Echo text",
+        "api_call": "https://api.shutterstock.com/v2/test",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Validate input",
+        "api_call": "https://api.shutterstock.com/v2/test/validate?id=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Authorize applications",
+        "api_call": "https://api.shutterstock.com/v2/oauth/authorize?client_id=<string>&redirect_uri=<string>&response_type=<string>&state=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a redirect URI (in the 'Location' header) that the customer uses to authorize your application and, together"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Shutterstock API: Get access tokens",
+        "api_call": "https://api.shutterstock.com/v2/oauth/access_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "ShutterstockWorkspace/1.1.30",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "client_id",
+                        "value": "<string>",
+                        "description": "(Required) Client ID (Consumer Key) of your application"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "<string>",
+                        "description": "(Required) Grant type: authorization_code generates user tokens, client_credentials generates short-lived client grants"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "<string>",
+                        "description": "Client Secret (Consumer Secret) of your application",
+                        "disabled": true
+                    },
+                    {
+                        "key": "code",
+                        "value": "<string>",
+                        "description": "Response code from the /oauth/authorize flow; required if grant_type=authorization_code",
+                        "disabled": true
+                    },
+                    {
+                        "key": "realm",
+                        "value": "customer",
+                        "description": "User type to be authorized (usually 'customer')",
+                        "disabled": true
+                    },
+                    {
+                        "key": "expires",
+                        "value": "false",
+                        "description": "Whether or not the token expires, expiring tokens come with a refresh_token to renew the access_token",
+                        "disabled": true
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "<string>",
+                        "description": "Pass this along with grant_type=refresh_token to get a fresh access token",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "This endpoint returns an access token for the specified user and with the specified scopes. The token does not expire"
+    }
+]

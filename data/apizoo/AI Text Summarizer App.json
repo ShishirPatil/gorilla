@@ -1,0 +1,52 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "AI Text Summarizer App: retrieve summary",
+        "api_call": "PASTE YOUR REPLIT WEBVIEW URL HERE AND IN CURRENT VALUE COLUMN/summarize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text_to_summarize\": \"{{text}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "AI Text Summarizer App: hugging face summary",
+        "api_call": "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"inputs\": \"{{text}}\",\n   \"parameters\": {\n      \"max_length\": 100,\n      \"min_length\": 30\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

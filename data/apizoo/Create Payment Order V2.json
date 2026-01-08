@@ -1,0 +1,32 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Create Payment Order V2: Create Payment Order V2",
+        "api_call": "https://demo-api.vivapayments.com/checkout/v2/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{Bearer_Token}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"amount\": 1234,\r\n  \"customerTrns\": \"string\",\r\n  \"customer\": {\r\n    \"email\": \"string\",\r\n    \"fullName\": \"string\",\r\n    \"phone\": \"string\",\r\n    \"countryCode\": \"string\",\r\n    \"requestLang\": \"string\"\r\n  },\r\n  \"paymentTimeout\": 1800,\r\n  \"preauth\": false,\r\n  \"allowRecurring\": false,\r\n  \"maxInstallments\": 0,\r\n  \"forceMaxInstallments\": false,\r\n  \"paymentNotification\": false,\r\n  \"tipAmount\": 0,\r\n  \"disableExactAmount\": false,\r\n  \"disableCash\": false,\r\n  \"disableWallet\": false,\r\n  \"sourceCode\": \"Default\",\r\n  \"merchantTrns\": \"string\",\r\n  \"tags\": [\r\n    \"tag 1\",\r\n    \"tag 2\"\r\n  ],\r\n  \"paymentMethodFees\": [\r\n    {\r\n      \"paymentMethodId\": \"35\",\r\n      \"fee\": 250\r\n    }\r\n  ],\r\n  \"cardTokens\": [\r\n    \"ct_5d0a4e3a7e04469f123456\"\r\n  ],\r\n  \"isCardVerification\": false,\r\n  \"klarnaOrderOptions\":\r\n              {\r\n              \"attachment\":\r\n                {\r\n                \"body\": \"string\",\r\n                \"contentType\": \"string\"\r\n                },\r\n              \"billingAddress\":\r\n                {\r\n                \"city\": \"London\",\r\n                \"email\": \"johndoe@example.com\",\r\n                \"phone\": \"01234567890\",\r\n                \"title\": \"Mr\",\r\n                \"region\": \"string\",\r\n                \"country\": \"GB\",\r\n                \"attention\": \"string\",\r\n                \"givenName\": \"John\",\r\n                \"familyName\": \"Doe\",\r\n                \"postalCode\": \"SW11 1AA\",\r\n                \"streetAddress\": \"1 Test Street\",\r\n                \"streetAddress2\": \"Flat 5\",\r\n                \"organizationName\": \"string\"\r\n                },\r\n              \"shippingAddress\":\r\n                {\r\n                \"city\": \"London\",\r\n                \"email\": \"johndoe@example.com\",\r\n                \"phone\": \"01234567890\",\r\n                \"title\": \"Mr\",\r\n                \"region\": \"string\",\r\n                \"country\": \"GB\",\r\n                \"attention\": \"string\",\r\n                \"givenName\": \"John\",\r\n                \"familyName\": \"Doe\",\r\n                \"postalCode\": \"SW11 1AA\",\r\n                \"streetAddress\": \"1 Test Street\",\r\n                \"streetAddress2\": \"Flat 5\",\r\n                \"organizationName\": \"string\"\r\n                },\r\n              \"orderLines\":\r\n                {\r\n                \"name\": \"Product\",\r\n                \"type\": \"physical\",\r\n                \"taxRate\": \"2000\",\r\n                \"quantity\": \"1\",\r\n                \"unitPrice\": \"5000\",\r\n                \"imageUrl\": \"https://www.example.com/example\",\r\n                \"reference\": \"987654\",\r\n                \"totalAmount\": \"4000\",\r\n                \"productUrl\": \"https://www.example.com/example\",\r\n                \"merchantData\": \"string\",\r\n                \"quantityUnit\": \"pcs\",\r\n                \"totalTaxAmount\": \"1000\",\r\n                \"totalDiscountAmount\": \"1000\",\r\n                \"subscription\":\r\n                  {\r\n                  \"name\": \"string\",\r\n                  \"interval\": \"MONTH\",\r\n                  \"intervalCount\": \"3\"\r\n                  },\r\n                \"productIdentifiers\":\r\n                  {\r\n                  \"size\": \"12\",\r\n                  \"brand\": \"Acme\",\r\n                  \"color\": \"Teal\",\r\n                  \"categoryPath\": \"Clothing > Women's > Dresses\",\r\n                  \"globalTradeItemNumber\": \"123-456-789\",\r\n                  \"manufacturerPartNumber\": \"123456789000\"\r\n                  }\r\n                }\r\n }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

@@ -1,0 +1,2121 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new address object",
+        "api_call": "https://api.lob.com/v1/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Sample Address",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "name",
+                        "value": "Lob HQ",
+                        "description": "(optional) Either name or company is required, you may also add both. Must be no longer than 40 characters. If both name and company are provided, they will be printed on two separate lines above the rest of the address.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "company",
+                        "value": "Lob",
+                        "description": "(optional) Either name or company is required, you may also add both. Must be no longer than 40 characters. If both name and company are provided, they will be printed on two separate lines above the rest of the address. This field can be used for any secondary recipient information which is not part of the actual mailing address (Company Name, Department, Attention Line, etc).",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "address_line1",
+                        "value": "210 King St",
+                        "description": "(required) Must be no longer than 64 characters for US addresses or 200 characters for international addresses."
+                    },
+                    {
+                        "key": "address_line2",
+                        "value": "",
+                        "description": "(optional) Must be no longer than 64 characters for US addresses or 200 characters for international addresses.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "address_city",
+                        "value": "San Francisco",
+                        "description": "(optiona) Required if address_country is US, otherwise optional. Must be no longer than 200 characters."
+                    },
+                    {
+                        "key": "address_state",
+                        "value": "CA",
+                        "description": "(optional) Required and must be a 2 letter state short-name code or a valid full state name if address_country is US, otherwise optional and not any longer than 200 characters."
+                    },
+                    {
+                        "key": "address_zip",
+                        "value": "94107",
+                        "description": "(optional) Required and must follow the ZIP format of 12345 or ZIP+4 format of 12345-1234 if address_country is US, otherwise optional and not any longer than 40 characters."
+                    },
+                    {
+                        "key": "address_country",
+                        "value": "US",
+                        "description": "(optional) Must be a 2 letter country short-name code (ISO 3166). Defaults to US",
+                        "disabled": true
+                    },
+                    {
+                        "key": "phone",
+                        "value": "415-555-1212",
+                        "description": "(optional) Must be no longer than 40 characters.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "email",
+                        "value": "support@lob.com",
+                        "description": "(optional) Must be no longer than 100 characters.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. Nested objects are not supported. See Metadata for more information.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new address given information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all addresses",
+        "api_call": "https://api.lob.com/v1/addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your addresses. The addresses are returned sorted by creation date, with the most recently created addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve address with given id",
+        "api_call": "https://api.lob.com/v1/addresses/:adr_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing address. You need only supply the unique customer identifier that was returned upon address"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Deletes address with given id",
+        "api_call": "https://api.lob.com/v1/addresses/:adr_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the details of an existing address. You need only supply the unique customer identifier that was returned upon address"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Verify an international (except US or US territories) address with a live API key.",
+        "api_call": "https://api.lob.com/v1/intl_verifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "Translate response to the native language of the country (native) or match the response to the language in the request (match). Default response is in English. Allowed values are native, match.",
+                    "key": "x-lang-output",
+                    "value": "match"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "recipient",
+                        "value": "The Sunset Room",
+                        "description": "(optional)"
+                    },
+                    {
+                        "key": "primary_line",
+                        "value": "370 Water St",
+                        "description": "(required)"
+                    },
+                    {
+                        "key": "secondary_line",
+                        "value": "<string>",
+                        "description": "(optional)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "city",
+                        "value": "Summerside",
+                        "description": "(optional)"
+                    },
+                    {
+                        "key": "state",
+                        "value": "Prince Edward Island",
+                        "description": "(optional)"
+                    },
+                    {
+                        "key": "postal_code",
+                        "value": "C1N 1C4",
+                        "description": "(optional)"
+                    },
+                    {
+                        "key": "country",
+                        "value": "CA",
+                        "description": "(required) Must be a 2 letter country short-name code (ISO 3166). Does not accept US, AS, PR, FM, GU, MH, MP, PW, or VI. For these addresses, please use the US verification API. Also does not accept PS, which is not currently supported."
+                    }
+                ]
+            }
+        },
+        "functionality": "Verify an international (except US or US territories) address _with a live API key_. Requests to this endpoint with a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Bulk Verify international addresses with a live API key.",
+        "api_call": "https://api.lob.com/v1/bulk/intl_verifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addresses\": [\n        {\n            \"primary_line\": \"370 Water St\",\n            \"recipient\": \"The Sunset Room\",\n            \"secondary_line\": \"\",\n            \"city\": \"Summerside\",\n            \"state\": \"Prince Edward Island\",\n            \"postal_code\": \"C1N 1C4\",\n            \"country\": \"CA\"\n        },\n        {\n            \"recipient\": \"Samuel's Coffee House\",\n            \"primary_line\": \"4 Queen St\",\n            \"secondary_line\": \"\",\n            \"city\": \"Summerside\",\n            \"state\": \"Prince Edward Island\",\n            \"postal_code\": \"C1N 1C4\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Verify a list of international (except US or US territories) address _with a live API key_. Requests to this endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Autocomplete a partial US address.",
+        "api_call": "https://api.lob.com/v1/us_autocompletions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "address_prefix",
+                        "value": "1",
+                        "description": "(required Only accepts numbers and street names in an alphanumeric format.\n"
+                    },
+                    {
+                        "key": "city",
+                        "value": "San Francisco",
+                        "description": "(optional) input used to filter suggestions. Case insensitive, and does not match partial abbreviations.\n"
+                    },
+                    {
+                        "key": "state",
+                        "value": "CA",
+                        "description": "(optional) input used to filter suggestions. Case insensitive, and does not match partial abbreviations.\n",
+                        "disabled": true
+                    },
+                    {
+                        "key": "zip_code",
+                        "value": "94107",
+                        "description": "(optional) ZIP Code input used to filter suggestions. Matches partial entries.\n",
+                        "disabled": true
+                    },
+                    {
+                        "key": "geo_ip_sort",
+                        "value": "true",
+                        "description": "(optional) If true, sort suggestions by proximity to the IP set in the `X-Forwarded-For` header.\n",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Given an address prefix consisting of a partial primary line, as well as optional input of city, state, and zip"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Verify a US or US territory address with a live API key.",
+        "api_call": "https://api.lob.com/v1/us_verifications?case=upper",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{LIVE_API_KEY}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "recipient",
+                        "value": "",
+                        "description": "(optional) The intended recipient, typically a person's or firm's name.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "address",
+                        "value": "",
+                        "description": "(required) The entire address in one string (e.g. \"185 Berry Street 94107\"). Does not support a recipient and will error when other payload parameters are provided.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "primary_line",
+                        "value": "210 King St",
+                        "description": "(required) If not using the address property",
+                        "type": "text"
+                    },
+                    {
+                        "key": "secondary_line",
+                        "value": "",
+                        "description": "(optional)",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "urbanization",
+                        "value": "",
+                        "description": "(optional) Only used for addresses in Puerto Rico.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "city",
+                        "value": "",
+                        "description": "(optional) city and state are required if no zip_code is passed.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "state",
+                        "value": "",
+                        "description": "(optional) city and state are required if no zip_code is passed.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "zip_code",
+                        "value": "94107",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Verify a US or US territory address _with a live API key_. The address can be in components (e.g. `primary_line`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Verify in Bulk a list of US or US territory address with a live API key.",
+        "api_call": "https://api.lob.com/v1/bulk/us_verifications?case=upper",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addresses\": [\n        {\n            \"primary_line\": \"deliverable\",\n            \"city\": \"SAN FRANCISCO\",\n            \"state\": \"CA\",\n            \"zip_code\": \"11111\"\n        },{\n            \"primary_line\": \"deliverable\",\n            \"city\": \"SAN FRANCISCO\",\n            \"state\": \"CA\",\n            \"zip_code\": \"11111\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Verify a list of US or US territory addresses _with a live API key_. Requests to this endpoint with a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Zip Lookups based on information pertaining to a given ZIP code",
+        "api_call": "https://api.lob.com/v1/us_zip_lookups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "zip_code",
+                        "value": "94107",
+                        "description": "(Required) A 5-digit ZIP code."
+                    }
+                ]
+            }
+        },
+        "functionality": "Returns information about a ZIP code"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new bank_account",
+        "api_call": "https://api.lob.com/v1/bank_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "My Checking Account",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "routing_number",
+                        "value": "322271627",
+                        "description": "(required) Must be a valid US routing number of 9 characters."
+                    },
+                    {
+                        "key": "account_number",
+                        "value": "123456789",
+                        "description": "(required) Must be no longer than 17 characters."
+                    },
+                    {
+                        "key": "account_type",
+                        "value": "company",
+                        "description": "(required) The type of entity that holds the account. Must be either company or individual"
+                    },
+                    {
+                        "key": "signatory",
+                        "value": "Jane Doe",
+                        "description": "(required) The signatory associated with your account. Must be no longer than 30 characters. This name will be printed on checks created with this bank account. If you prefer to use a custom signature image on your checks instead, please create your bank account from the Dashboard."
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new bank_account with the provided properties."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all bank_accounts",
+        "api_call": "https://api.lob.com/v1/bank_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your bank_accounts. The bank_accounts are returned sorted by creation date, with the most recently created bank_accounts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve bank_account with given id",
+        "api_call": "https://api.lob.com/v1/bank_accounts/:bank_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing bank_account. You need only supply the unique bank_account identifier that was returned upon bank_account"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Verify a bank account",
+        "api_call": "https://api.lob.com/v1/bank_accounts/:bank_id/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "amounts",
+                        "value": "[22,63]",
+                        "description": "(Required) In live mode, an array containing the two micro deposits (in cents) placed in the bank account. In test mode, no micro deposits will be placed, so any two integers between 1 and 100 will work."
+                    }
+                ]
+            }
+        },
+        "functionality": "Verify a bank account in order to create a check."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Delete a bank_account",
+        "api_call": "https://api.lob.com/v1/bank_accounts/:bank_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes a bank account. It cannot be undone."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create a new billing group",
+        "api_call": "https://api.lob.com/v1/billing_groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "Marketing Dept",
+                        "description": "Name of the billing group.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "Usage group used for the Marketing Dept resource sends",
+                        "description": "Description of the billing group.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List billing groups",
+        "api_call": "https://api.lob.com/v1/billing_groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve billing group with given id",
+        "api_call": "https://api.lob.com/v1/billing_groups/:bg_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update billing group with given id",
+        "api_call": "https://api.lob.com/v1/billing_groups/:bg_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "IT Dept",
+                        "description": "Name of the billing group.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "Usage group used for the IT Dept resource sends",
+                        "description": "Description of the billing group.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create",
+        "api_call": "https://api.lob.com/v1/campaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "* `native` - Translate response to the native language of the country in the request\n* `match` - match the response to the language in the request\n\nDefault response is in English.\n",
+                    "key": "x-lang-output",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "Summer Sale",
+                        "description": "(Required) Name of the campaign."
+                    },
+                    {
+                        "key": "schedule_type",
+                        "value": "immediate",
+                        "description": "(Required) How the campaign should be scheduled. One of targeted_delivery, immediate, or scheduled_send_date"
+                    },
+                    {
+                        "key": "description",
+                        "value": "some description",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2022-09-01",
+                        "description": "(optional)  A timestamp in ISO 8601 format. If schedule_type is scheduled_send_date, provide a date to send this campaign.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "target_delivery_date",
+                        "value": "2022-10-30",
+                        "description": "(optional)  A timestamp in ISO 8601 format. If schedule_type is target_delivery_date, provide a targeted delivery date for mail pieces in this campaign.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "billing_group_id",
+                        "value": "bg_XXXXXXX",
+                        "description": "(optional) Unique identifier prefixed with bg_",
+                        "disabled": true
+                    },
+                    {
+                        "key": "cancel_window_campaign_minutes",
+                        "value": "3000",
+                        "description": "(optional) A window, in minutes, within which the campaign can be canceled.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"geo\": \"north\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. i.e. '{\"customer_id\" : \"NEWYORK2015\"}' Nested objects are not supported.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "use_type",
+                        "value": "marketing",
+                        "description": "(optional) The usage type of this campaign. Can be one of marketing or operational.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "auto_cancel_if_ncoa",
+                        "value": "true",
+                        "description": "(optional) Whether or not a mail piece should be automatically canceled and not sent if the address is updated via NCOA.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new campaign with the provided properties"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List",
+        "api_call": "https://api.lob.com/v1/campaigns",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of your campaigns. The campaigns are returned sorted by creation date, with the most recently created campaigns"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve",
+        "api_call": "https://api.lob.com/v1/campaigns/:cmp_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of an existing campaign. You need only supply the unique campaign identifier that was returned upon campaign"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update",
+        "api_call": "https://api.lob.com/v1/campaigns/:cmp_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "name",
+                        "value": "Fall Sale",
+                        "description": "(optional) Name of the campaign.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "schedule_type",
+                        "value": "immediate",
+                        "description": "(optional) How the campaign should be scheduled. One of targeted_delivery, immediate, or scheduled_send_date",
+                        "disabled": true
+                    },
+                    {
+                        "key": "description",
+                        "value": "some description",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2022-09-01",
+                        "description": "(optional)  A timestamp in ISO 8601 format. If schedule_type is scheduled_send_date, provide a date to send this campaign.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "target_delivery_date",
+                        "value": "2022-10-30",
+                        "description": "(optional)  A timestamp in ISO 8601 format. If schedule_type is target_delivery_date, provide a targeted delivery date for mail pieces in this campaign.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "cancel_window_campaign_minutes",
+                        "value": "3000",
+                        "description": "(optional) A window, in minutes, within which the campaign can be canceled.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"geo\": \"north\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. i.e. '{\"customer_id\" : \"NEWYORK2015\"}' Nested objects are not supported.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "is_draft",
+                        "value": "true",
+                        "description": "(optional) Whether or not the campaign is still a draft.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "use_type",
+                        "value": "operational",
+                        "description": "(optional) The usage type of this campaign. Can be one of marketing or operational.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "auto_cancel_if_ncoa",
+                        "value": "false",
+                        "description": "(optional) Whether or not a mail piece should be automatically canceled and not sent if the address is updated via NCOA.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Update the details of an existing campaign. You need only supply the unique identifier that was returned upon campaign creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Delete",
+        "api_call": "https://api.lob.com/v1/campaigns/:cmp_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete an existing campaign. You need only supply the unique identifier that was returned upon campaign creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create",
+        "api_call": "https://api.lob.com/v1/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "* `native` - Translate response to the native language of the country in the request\n* `match` - match the response to the language in the request\n\nDefault response is in English.\n",
+                    "key": "x-lang-output",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "campaign_id",
+                        "value": "cmp_XXXXXX",
+                        "description": "(required) Unique identifier prefixed with cmp_."
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "postcard",
+                        "description": "(required) The resource type of this campaign. Can be one of postcard or letter"
+                    },
+                    {
+                        "key": "details",
+                        "value": "<object>",
+                        "description": "(required)"
+                    },
+                    {
+                        "key": "description",
+                        "value": "a new creative",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "from",
+                        "value": "<string>",
+                        "description": "(optional)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"geo\": \"north\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. i.e. '{\"customer_id\" : \"NEWYORK2015\"}' Nested objects are not supported.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new creative with the provided properties"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List",
+        "api_call": "https://api.lob.com/v1/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of your creatives. The creatives are returned sorted by creation date, with the most recently created creatives"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve",
+        "api_call": "https://api.lob.com/v1/creatives/:crv_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of an existing creative. You need only supply the unique creative identifier that was returned upon creative"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update",
+        "api_call": "https://api.lob.com/v1/creatives/:crv_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "resource_type",
+                        "value": "postcard",
+                        "description": "(optional) The resource type of this campaign. Can be one of postcard or letter",
+                        "disabled": true
+                    },
+                    {
+                        "key": "details",
+                        "value": "<object>",
+                        "description": "(optional)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "description",
+                        "value": "a new creative",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "from",
+                        "value": "<string>",
+                        "description": "(optional)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"geo\": \"north\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. i.e. '{\"customer_id\" : \"NEWYORK2015\"}' Nested objects are not supported.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Update the details of an existing creative. You need only supply the unique identifier that was returned upon creative creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Delete",
+        "api_call": "https://api.lob.com/v1/creatives/:crv_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete an existing creative. You need only supply the unique identifier that was returned upon creative creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List",
+        "api_call": "https://api.lob.com/v1/uploads?campaignId=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of your uploads. Optionally, filter uploads by campaign."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create",
+        "api_call": "https://api.lob.com/v1/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"campaignId\": \"cmp_XXXXX\",\n  \"columnMapping\": \n    {\n      \"name\":\"recipient\", \n      \"address_line1\" : \"primary_line\", \n      \"address_line2\" : \"secondary_line\", \n      \"address_city\": \"city\", \n      \"address_state\": \"state\", \n      \"addess_zip\": \"zip_code\",\n      \"metadata\": \"metadata\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new upload with the provided properties"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve",
+        "api_call": "https://api.lob.com/v1/uploads/:upl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the details of an existing upload. You need only supply the unique upload identifier that was returned upon upload"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update",
+        "api_call": "https://api.lob.com/v1/uploads/:upl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"columnMapping\": \n    {\n      \"name\":\"recipient\", \n      \"address_line1\" : \"primary_line\", \n      \"address_line2\" : \"secondary_line\", \n      \"address_city\": \"city\", \n      \"address_state\": \"state\", \n      \"addess_zip\": \"zip_code\"\n    },\n    \"state\": \"Draft\",\n    \"originalFilename\": \"myfile\",\n    \"overwriteColumnMapping\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update the details of an existing upload. You need only supply the unique identifier that was returned upon upload creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Delete",
+        "api_call": "https://api.lob.com/v1/uploads/:upl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete an existing upload. You need only supply the unique identifier that was returned upon upload creation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Upload file",
+        "api_call": "https://api.lob.com/v1/uploads/:upl_id/file",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "Upload an audience file and associate it with an upload."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create a new card",
+        "api_call": "https://api.lob.com/v1/cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "front",
+                        "value": "https://s3-us-west-2.amazonaws.com/public.lob.com/assets/card_horizontal.pdf",
+                        "description": "A PDF template for the front of the card",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "Test card",
+                        "description": "Description of the card.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "size",
+                        "value": "2.125x3.375\n",
+                        "description": "The size of the card - Enum: \"3.375x2.125\" \"2.125x3.375\"",
+                        "type": "text"
+                    },
+                    {
+                        "key": "back",
+                        "value": "https://s3.us-west-2.amazonaws.com/public.lob.com/assets/card_blank_horizontal.pdf",
+                        "description": "A PDF template for the back of the card",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List of your cards",
+        "api_call": "https://api.lob.com/v1/cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve a card with a given id",
+        "api_call": "https://api.lob.com/v1/cards/:card_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update card with given id",
+        "api_call": "https://api.lob.com/v1/cards/:card_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Test card",
+                        "description": "Description of the card",
+                        "type": "text"
+                    },
+                    {
+                        "key": "auto_reorder",
+                        "value": "true",
+                        "description": "Allows for auto reordering",
+                        "type": "text"
+                    },
+                    {
+                        "key": "reorder_quantity",
+                        "value": "10000",
+                        "description": "The quantity of items to be reordered (only required when auto_reorder is true).",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Delete a card with given id",
+        "api_call": "https://api.lob.com/v1/cards/:card_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve card order by given id",
+        "api_call": "https://api.lob.com/v1/cards/:card_id/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Create card orders by given id",
+        "api_call": "https://api.lob.com/v1/cards/:card_id/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "quantity",
+                        "value": "10000",
+                        "description": "number of cards to order",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new check",
+        "api_call": "https://api.lob.com/v1/checks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Check Num 12345",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "to",
+                        "value": "adr_69ccbb7384a84b77",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. Checks cannot be sent internationally (address_country must be US). The total string of the sum of address_line1 and address_line2 must be no longer than 50 characters combined. If an object is used, an address will be created, corrected, and standardized for free whenever possible using our US Address Verification engine, and returned back with an ID. Depending on your Print & Mail Edition, addresses may also be run additionally through National Change of Address (NCOA). If an address used does not meet your account\u2019s US Mail Strictness Setting, the request will fail. Read more here.\n\n ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "from",
+                        "value": "adr_69ccbb7384a84b77",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. Must be a US address. All addresses will be standardized into uppercase without being modified by verification.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "bank_account",
+                        "value": "bank_33afcfcbf73a7b3",
+                        "description": "(required) Must be a bank account ID. Only verified bank accounts may be used.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "amount",
+                        "value": "1000",
+                        "description": "(required) A number that specifies the payment amount to be sent in dollars. Amounts will be rounded to 2 decimal places and must be less than $1,000,000 (1000000).",
+                        "type": "text"
+                    },
+                    {
+                        "key": "memo",
+                        "value": "foobar",
+                        "description": "(optional) Max of 40 characters to be included on the memo line of the check.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "check_number",
+                        "value": "12345",
+                        "description": "(optional) An integer that designates the check number. If check_number is not explicitly passed, checks created from a new bank_account will start at 10000 and increment accordingly every time a check is created with that bank_account. If a check_number is ever explicitly passed, that will override any defaults. Afterwards, checks created with that bank_account will increment from there without needing to pass check_number.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "logo",
+                        "value": "",
+                        "description": "(optional) This can be a URL or local file to an image to print (in grayscale) in the upper-left corner of your check. The image must have a color model of RGB or CMYK, be a square, be at least 100px X 100px, and have a transparent background. The accepted file types are PNG and JPG.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "message",
+                        "value": "foobar",
+                        "description": "(optional) Either message or check_bottom, choose one. Max of 400 characters to be included at the bottom of the check page.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "check_bottom",
+                        "value": "<html><body>check bottom</body></html>",
+                        "description": "(optional) Either message or check_bottom, choose one. The artwork to use on the bottom of the check page. Accepts an HTML string of under 10,000 characters, the ID of a saved HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. PDF, PNG, and JPGs must be sized at 8.5\"x11\" at 300 DPI, while supplied HTML will be rendered and trimmed to fit on a 8.5\"x11\" page. The check bottom will always be printed in black & white. You must follow this template. See here for HTML examples.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "attachment",
+                        "value": "",
+                        "description": "(optional) A document to include with the check. Accepts an HTML string of under 10,000 characters, the ID of a saved HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. All pages of PDF, PNG, and JPGs must be sized at 8.5\"x11\" at 300 DPI, while supplied HTML will be rendered and trimmed to as many 8.5\"x11\" pages as necessary. If a PDF is provided, it must be 6 pages or fewer. The attachment will be printed double-sided in black & white and will be included in the envelope after the check page. Please follow these design guidelines. See pricing for extra costs incurred. See here for HTML examples.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "mail_type",
+                        "value": "usps_first_class",
+                        "description": "(optional) A string designating the mail postage type. Defaults to usps_first_class.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2021-11-01",
+                        "description": "(optional) A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the check off for production. This will override any check cancellation window applied to the check. Until the send_date has passed, the check will be cancelable. If a date in the format 2021-11-01 is passed, it will evaluate to midnight UTC of that date (2017-11-01T00:00:00.000Z). If a datetime is passed, that exact time will be used. A send_date passed with no time zone will default to UTC, while a send_date passed with a time zone will be converted to UTC.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "billing_group_id",
+                        "value": "",
+                        "description": "(optional) An optional string with the billing group ID to tag your usage with. Is used for billing purpose. Requires special activation to use. See Billing Group API for more information.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "merge_variables",
+                        "value": "{\"name\" : \"Harry\"}",
+                        "description": "(optional) You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like: {{variable_name}}, pass in {\"variable_name\": \"Harry\"} to render Harry. merge_variables must be an object. Any type of value is accepted as long as the object is valid JSON. That means you can use strings, numbers, booleans, arrays, objects, or null. The max length of the object is 25,000 characters. This means if you call JSON.stringify on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters: !, \", #, %, &, ', (, ), *, +, ,, /, ;, <, =, >, @, [, \\, ], ^, `, {, |, }, ~. More instructions can be found in this guide. Depending on your Merge Variable Strictness setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. Nested objects are not supported. See Metadata for more information.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new check with the provided properties."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all checks",
+        "api_call": "https://api.lob.com/v1/checks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your checks. The checks are returned sorted by creation date, with the most recently created checks"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve check with given id",
+        "api_call": "https://api.lob.com/v1/checks/:chk_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing check. You need only supply the unique check identifier that was returned upon check"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Cancel a check",
+        "api_call": "https://api.lob.com/v1/checks/:chk_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Completely removes a check from production. This can only be done if the check has a `send_date` and the `send_date`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new letter object",
+        "api_call": "https://api.lob.com/v1/letters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "12345"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "foobar",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "to",
+                        "value": "adr_58088d858a815c66",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. If an object is used, an address will be created, corrected, and standardized for free whenever possible using our US Address Verification engine (if it is a US address), and returned back with an ID. Depending on your Print & Mail Edition, US addresses may also be run additionally through National Change of Address (NCOA). Non-US addresses will be standardized into uppercase only. If a US address used does not meet your account\u2019s US Mail Strictness Setting, the request will fail. Read more here.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "from",
+                        "value": "adr_58088d858a815c66",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. Must be a US address unless using a custom_envelope. All addresses will be standardized into uppercase without being modified by verification.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "billing_group_id",
+                        "value": "",
+                        "description": "(optional) An optional string with the billing group ID to tag your usage with. Is used for billing purpose. Requires special activation to use. See Billing Group API for more information.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2021-07-01",
+                        "description": "(optional) A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the letter off for production. This will override any letter cancellation window applied to the letter. Until the send_date has passed, the letter will be cancelable. If a date in the format 2021-07-01 is passed, it will evaluate to midnight UTC of that date (2017-11-01T00:00:00.000Z). If a datetime is passed, that exact time will be used. A send_date passed with no time zone will default to UTC, while a send_date passed with a time zone will be converted to UTC.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "color",
+                        "value": "true",
+                        "description": "(required) Set this key to true if you would like to print in color. Set to false if you would like to print in black and white."
+                    },
+                    {
+                        "key": "file",
+                        "value": "<html><body><h1>Hello World</h1></body></html>",
+                        "description": "(required) Accepts an HTML string of under 10,000 characters, the ID of a saved HTML template, or a remote URL or a local upload of an HTML or PDF file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file upload have no character limit. HTML merge variables should not include delimiting whitespace. All pages of a supplied PDF file must be sized at 8.5\"x11\", while supplied HTML will be rendered and trimmed to as many 8.5\"x11\" pages as necessary. For design specifications, please see our PDF and HTML templates. If a custom_envelope is used, follow this template. For domestic destinations, the file limit is 60 pages single-sided or 120 pages double-sided. For international destinations, the file limit is 6 pages single-sided or 12 pages double-sided. PDFs that surpass the file limit will error, while HTML that renders more pages than the file limit will be trimmed. See pricing for extra costs incurred. Any letters over 6 pages single-sided or 12 pages double-sided will be placed in a flat envelope instead of the standard double window envelope."
+                    },
+                    {
+                        "key": "double_sided",
+                        "value": "false",
+                        "description": "(optional) Boolean that defaults to true. Use false to force single-sided printing.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "address_placement",
+                        "value": "top_first_page",
+                        "description": "(optional) Specifies the location of the address information that will show through the double-window envelope. Options are top_first_page and insert_blank_page. Defaults to top_first_page, meaning we will print address information at the top of your provided first page. To see how this will impact your letter design, view our letter template. If you pass insert_blank_page, a blank address page will be inserted at the beginning of your file and you will be charged for the extra page.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "mail_type",
+                        "value": "usps_first_class",
+                        "description": "(optional) A string designating the mail postage type. Options are usps_first_class or usps_standard. Defaults to usps_first_class. usps_standard is a cheaper option which is less predictable and takes longer to deliver. usps_standard cannot be used with certified letters, registered letters, or any letters sent outside of the United States.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "extra_service",
+                        "value": "certified",
+                        "description": "(optional) Add an extra service to your letter. Options are certified, certified_return_receipt, or registered. Certified provides tracking and delivery confirmation for domestic destinations. When using Certified, an extra sheet (1 PDF page single-sided or 2 PDF pages double-sided) will be added to the beginning of your letter reserved for address and barcode information. See here for templates: #10 envelope and flat envelope (used for letters over 6 pages single-sided or 12 pages double-sided). You will not be charged for this extra sheet. Set certified_return_receipt to optionally request an electronic copy of the recipient's signature to prove delivery of your certified letter. Registered provides tracking and confirmation for international addresses. See pricing for extra costs incurred.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "return_envelope",
+                        "value": "false",
+                        "description": "(optional) Boolean that defaults to false. If you would like to include a return envelope with your letter, set this key to true and specify the perforated_page. See pricing for extra costs incurred.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "perforated_page",
+                        "value": "3",
+                        "description": "(optional) Required if return_envelope is true. The number of the page that should be perforated for use with the return envelope. Must be greater than or equal to 1. The blank page added by address_placement=insert_blank_page will be ignored when considering the perforated page number. To see how perforation will impact your letter design, view our perforation guide.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "custom_envelope",
+                        "value": "env_123",
+                        "description": "(optional) Accepts an envelope ID for any customized envelope with available inventory. If no inventory is available for the specified ID, the letter will not be sent, and an error will be returned. If the letter has more than 6 sheets, it will be sent in a blank flat envelope. Custom envelopes may be created and ordered from the dashboard. This feature is exclusive to certain customers. Upgrade to the appropriate Print & Mail Edition to gain access.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "merge_variables",
+                        "value": "{\"name\": \"Harry\"}",
+                        "description": "(optional) You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like: {{variable_name}}, pass in {\"variable_name\": \"Harry\"} to render Harry. merge_variables must be an object. Any type of value is accepted as long as the object is valid JSON. That means you can use strings, numbers, booleans, arrays, objects, or null. The max length of the object is 25,000 characters. This means if you call JSON.stringify on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters: !, \", #, %, &, ', (, ), *, +, ,, /, ;, <, =, >, @, [, \\, ], ^, `, {, |, }, ~. More instructions can be found in this guide. Depending on your Merge Variable Strictness setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. Nested objects are not supported. See Metadata for more information.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new letter given information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all letters",
+        "api_call": "https://api.lob.com/v1/letters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your letters. The letters are returned sorted by creation date, with the most recently created letters"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve letter with given id",
+        "api_call": "https://api.lob.com/v1/letters/:ltr_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing letter. You need only supply the unique letter identifier that was returned upon letter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Cancel a letter",
+        "api_call": "https://api.lob.com/v1/letters/:ltr_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Completely removes a letter from production. This can only be done if the letter has a `send_date` and the `send_date`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new postcard object",
+        "api_call": "https://api.lob.com/v1/postcards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Sample Postcard",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters."
+                    },
+                    {
+                        "key": "to",
+                        "value": "adr_58088d858a815c66",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. If an object is used, an address will be created, corrected, and standardized for free whenever possible using our US Address Verification engine (if it is a US address), and returned back with an ID. Depending on your Print & Mail Edition, US addresses may also be run additionally through National Change of Address (NCOA). Non-US addresses will be standardized into uppercase only. If a US address used does not meet your account\u2019s US Mail Strictness Setting, the request will fail. Read more here.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "from",
+                        "value": "",
+                        "description": "(optional) Must either be an address ID or an inline object with correct address parameters. Must be a US address. All addresses will be standardized into uppercase without being modified by verification.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "billing_group_id",
+                        "value": "",
+                        "description": "(optional) An optional string with the billing group ID to tag your usage with. Is used for billing purpose. Requires special activation to use. See Billing Group API for more information.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2021-06-01",
+                        "description": "(optional) A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the postcard off for production. This will override any postcard cancellation window applied to the postcard. Until the send_date has passed, the postcard will be cancelable. If a date in the format 2021-06-01 is passed, it will evaluate to midnight UTC of that date (2021-06-01T00:00:00.000Z). If a datetime is passed, that exact time will be used. A send_date passed with no time zone will default to UTC, while a send_date passed with a time zone will be converted to UTC.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "front",
+                        "value": "<html><body><h1>Hello World</h1></body></html>",
+                        "description": "(required) The artwork to use as the front of your postcard. Accepts an HTML string of under 10,000 characters, the ID of a saved HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. PDF, PNG, and JPGs must be sized at 4.25\"x6.25\", 6.25\"x9.25\", or 6.25\"x11.25\" at 300 DPI, while supplied HTML will be rendered to the specified size. See here for HTML examples."
+                    },
+                    {
+                        "key": "back",
+                        "value": "<html><body><h1>Goodbye</h1></body></html>",
+                        "description": "(required) The artwork to use as the back of your postcard. Accepts an HTML string of under 10,000 characters, the ID of a saved HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. PDF, PNG, and JPGs must be sized at 4.25\"x6.25\", 6.25\"x9.25\", or 6.25\"x11.25\" at 300 DPI, while supplied HTML will be rendered to the specified size. Be sure to leave room for address and postage information by following the templates provided here: 4x6 template, 6x9 template, 6x11 template. See here for HTML examples."
+                    },
+                    {
+                        "key": "size",
+                        "value": "4x6",
+                        "description": "(optional) Specifies the size of the postcard. Must be either 4x6, 6x9, or 6x11. Defaults to 4x6. Only 4x6 postcards can be sent to international destinations.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "mail_type",
+                        "value": "usps_first_class",
+                        "description": "(optional) A string designating the mail postage type. Options are usps_first_class or usps_standard. Defaults to usps_first_class. usps_standard is a cheaper option which is less predictable and takes longer to deliver. usps_standard cannot be used with 4x6 postcards or for any postcards sent outside of the United States.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "merge_variables",
+                        "value": "{\"name\": \"Harry\"}",
+                        "description": "(optional) You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like: {{variable_name}}, pass in {\"variable_name\": \"Harry\"} to render Harry. merge_variables must be an object. Any type of value is accepted as long as the object is valid JSON. That means you can use strings, numbers, booleans, arrays, objects, or null. The max length of the object is 25,000 characters. This means if you call JSON.stringify on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters: !, \", #, %, &, ', (, ), *, +, ,, /, ;, <, =, >, @, [, \\, ], ^, `, {, |, }, ~. More instructions can be found in this guide. Depending on your Merge Variable Strictness setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. Nested objects are not supported. See Metadata for more information.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new postcard given information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all postcards",
+        "api_call": "https://api.lob.com/v1/postcards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your postcards. The addresses are returned sorted by creation date, with the most recently created addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve postcard with given id",
+        "api_call": "https://api.lob.com/v1/postcards/:psc_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing postcard. You need only supply the unique customer identifier that was returned upon postcard"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Cancels postcard with given id",
+        "api_call": "https://api.lob.com/v1/postcards/:psc_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Completely removes a postcard from production. This can only be done if the postcard has a `send_date` and the `send_date`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Lookup",
+        "api_call": "https://api.lob.com/v1/us_reverse_geocode_lookups?size=5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "latitude",
+                        "value": "38.897606",
+                        "description": "A positive or negative decimal indicating the geographic latitude of the address, specifying the north-to-south position of a location. This should be input with longitude to pinpoint locations on a map.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "longitude",
+                        "value": "-77.036674",
+                        "description": "A positive or negative decimal indicating the geographic longitude of the address, specifying the north-to-south position of a location. This should be input with latitude to pinpoint locations on a map.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new self_mailer object",
+        "api_call": "https://api.lob.com/v1/self_mailers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Sample Self Mailer",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters."
+                    },
+                    {
+                        "key": "to",
+                        "value": "adr_58088d858a815c66",
+                        "description": "(required) Must either be an address ID or an inline object with correct address parameters. If an object is used, an address will be created, corrected, and standardized for free whenever possible using our US Address Verification engine (if it is a US address), and returned back with an ID. Depending on your\u00a0Print & Mail Edition, US addresses may also be run additionally through\u00a0National Change of Address (NCOA). Non-US addresses will be standardized into uppercase only. If a US address used does not meet your account\u2019s\u00a0US Mail Strictness Setting, the request will fail. Read more\u00a0here.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "from",
+                        "value": "",
+                        "description": "(optional) Must either be an address ID or an inline object with correct address parameters. Must be a US address. All addresses will be standardized into uppercase without being modified by verification.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "billing_group_id",
+                        "value": "",
+                        "description": "(optional) An optional string with the billing group ID to tag your usage with. Is used for billing purpose. Requires special activation to use. See\u00a0Billing Group\u00a0API for more information.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "send_date",
+                        "value": "2021-11-01",
+                        "description": "(optional) A timestamp in ISO 8601 format which specifies a date after the current time and up to 180 days in the future to send the self mailer off for production. This will override any\u00a0self_mailer cancellation window\u00a0applied to the self_mailer. Until the\u00a0send_date\u00a0has passed, the self_mailer will be\u00a0cancelable. If a date in the format\u00a02021-11-01\u00a0is passed, it will evaluate to midnight UTC of that date (2021-11-01T00:00:00.000Z). If a datetime is passed, that exact time will be used. A\u00a0send_date\u00a0passed with no time zone will default to UTC, while a\u00a0send_date\u00a0passed with a time zone will be converted to UTC.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "inside",
+                        "value": "<html><body><h1>Hello World</h1></body></html>",
+                        "description": "(required) The artwork to use as the inside of your self mailer. Accepts an HTML string of under 10,000 characters, the ID of a saved\u00a0HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. PDF, PNG, and JPGs must be sized at 6\"x18\" at 300 DPI, while supplied HTML will be rendered to the specified\u00a0size. Be sure to leave room for address and postage information by following the templates provided here:\u00a06x18 bifold template,\u00a012x9 bifold template. See\u00a0here\u00a0for HTML examples."
+                    },
+                    {
+                        "key": "outside",
+                        "value": "<html><body><h1>Goodbye</h1></body></html>",
+                        "description": "(required) The artwork to use as the outside of your self mailer. Accepts an HTML string of under 10,000 characters, the ID of a saved\u00a0HTML template, or a remote URL or a local upload of an HTML, PDF, PNG, or JPG file. Remote URLs have a 20 MB file size limit and must be downloaded within 40 seconds. HTML files passed as remote URLs or local file uploads have no character limit. HTML merge variables should not include delimiting whitespace. PDF, PNG, and JPGs must be sized at 6\"x18\" at 300 DPI, while supplied HTML will be rendered to the specified\u00a0size. See\u00a0here\u00a0for HTML examples."
+                    },
+                    {
+                        "key": "size",
+                        "value": "6x18_bifold",
+                        "description": "(optional) Specifies the size of the self mailer. Must be\u00a06x18_bifold\u00a0(default) or\u00a012x9_bifold",
+                        "disabled": true
+                    },
+                    {
+                        "key": "mail_type",
+                        "value": "usps_first_class",
+                        "description": "(optional) A string designating the mail postage type. Options are\u00a0usps_first_class\u00a0or\u00a0usps_standard. Defaults to\u00a0usps_first_class.\u00a0usps_standard\u00a0is\u00a0a cheaper option\u00a0which is less predictable and takes longer to deliver.\u00a0usps_standard\u00a0cannot be used with any self mailers sent outside of the United States.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "merge_variables",
+                        "value": "{\"name\": \"Harry\"}",
+                        "description": "(optional) You can input a merge variable payload object to your template to render dynamic content. For example, if you have a template like:\u00a0{{variable_name}}, pass in\u00a0{\"variable_name\": \"Harry\"}\u00a0to render\u00a0Harry.\u00a0merge_variables\u00a0must be an object. Any type of value is accepted as long as the object is valid JSON. That means you can use\u00a0strings,\u00a0numbers,\u00a0booleans,\u00a0arrays,\u00a0objects, or\u00a0null. The max length of the object is 25,000 characters. This means if you call\u00a0JSON.stringify\u00a0on your object, it can be no longer than 25,000 characters. Your variable names cannot contain any whitespace or any of the following special characters:\u00a0!,\u00a0\",\u00a0#,\u00a0%,\u00a0&,\u00a0',\u00a0(,\u00a0),\u00a0*,\u00a0+,\u00a0,,\u00a0/,\u00a0;,\u00a0<,\u00a0=,\u00a0>,\u00a0@,\u00a0[,\u00a0\\,\u00a0],\u00a0^,\u00a0`,\u00a0{,\u00a0|,\u00a0},\u00a0~. More instructions can be found in\u00a0this guide. Depending on your\u00a0Merge Variable Strictness\u00a0setting, if you define variables in your HTML but do not pass them here, you will either receive an error or the variable will render as an empty string.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters\u00a0\"\u00a0and\u00a0\\. Nested objects are not supported. See\u00a0Metadata\u00a0for more information.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new self_mailer given information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all self_mailers",
+        "api_call": "https://api.lob.com/v1/self_mailers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your self_mailers. The self_mailers are returned sorted by creation date, with the most recently created self_mailers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve self_mailer with given id",
+        "api_call": "https://api.lob.com/v1/self_mailers/:sfm_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing self_mailer. You need only supply the unique self_mailer identifier that was returned upon self_mailer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Deletes self_mailer with given id",
+        "api_call": "https://api.lob.com/v1/self_mailers/:sfm_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Completely removes a self mailer from production. This can only be done if the self mailer's `send_date` has not yet"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new template object",
+        "api_call": "https://api.lob.com/v1/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Sample Template",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "html",
+                        "value": "<html><body><h1>Hello World</h1></body></html>",
+                        "description": "(Required) An HTML string of less than 100,000 characters to be used as the published_version of this template. See here for guidance on designing HTML templates. Please see endpoint specific documentation for any other product-specific HTML details. Merge variables should not include delimiting whitespace. If there is a syntax error with your variable names within your HTML, then an error will be thrown, e.g. using a {{#users}} opening tag without the corresponding closing tag {{/users}}."
+                    },
+                    {
+                        "key": "metadata",
+                        "value": "{\"customer_id\": \"987654\"}",
+                        "description": "(optional) Use metadata to store custom information for tagging and labeling back to your internal systems. Must be an object with up to 20 key-value pairs. Keys must be at most 40 characters and values must be at most 500 characters. Neither can contain the characters \" and \\. Nested objects are not supported. See Metadata for more information.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "engine",
+                        "value": "handlebars",
+                        "description": "(optional) valid values are \"legacy\" \"handlebars\"\nThe engine used to combine html template with merge variables.\n\nlegacy - Lob's original engine\nhandlebars",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new template given information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all templates",
+        "api_call": "https://api.lob.com/v1/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your templates. The templates are returned sorted by creation date, with the most recently created templates"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve template with given id",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing template. You need only supply the unique template identifier that was returned upon template"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Compile the template into html",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/compile",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Compiles a template with passed in merge variables into html."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Update description and/or published version of a template.",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Template Update",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters."
+                    },
+                    {
+                        "key": "published_version",
+                        "value": "vrsn_56fd7d06cef302d",
+                        "description": "(optional)  Update the published version of a template. The published version is the one that will be used in any print & mail requests that reference the specified template. Will err if the version attempting to be set as the published_version has been deleted or does not exist.\n\n",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Updates the description and/or published version of the template with the given id. To update the template's html, create a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Deletes template with given id",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the details of an existing template. You need only supply the unique customer identifier that was returned upon template"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Creates a new template_version object",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Template version 123",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "html",
+                        "value": "<html><body></h1> Hello {{name}}</h1></body></html>",
+                        "description": "(required) An HTML string of less than 100,000 characters. See here for guidance on designing HTML templates. Please see endpoint specific documentation for any other product-specific HTML details. Newly created versions will not be published until the published_version of the template is updated. Merge variables should not include delimiting whitespace. If there is a syntax error within your variable names within your HTML, then an error will be thrown, e.g. using a {{#users}} opening tag without the corresponding closing tag {{/users}}."
+                    },
+                    {
+                        "key": "engine",
+                        "value": "handlebars",
+                        "description": "(optional) valid values are \"legacy\" \"handlebars\"\nThe engine used to combine html template with merge variables.\nlegacy - Lob's original engine\nhandlebars",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates a new template version attached to the specified template."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: List all template_versions",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of template versions for the passed `template_id`. The template versions are sorted by creation date, with the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Retrieve template version with given template and version ids.",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/versions/:vrsn_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the template version with the given template and version ids."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Updates the template version with given template and version ids.",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/versions/:vrsn_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "A string of no longer than 256 characters that uniquely identifies this resource. For more help integrating idempotency keys, refer to our [implementation guide](https://www.lob.com/guides#idempotent_request).\n",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "description",
+                        "value": "Update again",
+                        "description": "(optional) An internal description that identifies this resource. Must be no longer than 255 characters."
+                    },
+                    {
+                        "key": "engine",
+                        "value": "handlebars",
+                        "description": "(optional) valid values are \"legacy\" \"handlebars\"\nThe engine used to combine html template with merge variables.\nlegacy - Lob's original engine\nhandlebars",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Retrieves the template version with the given template and version ids."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Deletes the template version with given template and version ids if possible.",
+        "api_call": "https://api.lob.com/v1/templates/:tmpl_id/versions/:vrsn_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes a template version. A template's `published_version` can not be deleted."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Lob API: Lookups",
+        "api_call": "https://api.lob.com/v1/us_zip_lookups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "zip_code",
+                        "value": "94107",
+                        "description": "A 5-digit ZIP code.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

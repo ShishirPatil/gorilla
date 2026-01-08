@@ -1,0 +1,258 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: upload",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/data:upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": ""
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: recognize",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/speech:async_recognize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"options\": {\n    \"model\": \"general\",\n    \"audio_encoding\": \"PCM_S16LE\",\n    \"sample_rate\": 16000,\n    \"channels_count\": 1 \n  },\n  \"request_file_id\": \"{{request_file_id_asr}}\"\n}' \\"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: status",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/task:get?id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: download",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/data:download?response_file_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: upload",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/data:upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": ""
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: synthesis",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/text:async_synthesize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/ssml",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"audio_encoding\": \"opus\",\n    \"voice\": \"Ost_24000\",\n    \"request_file_id\" : \"{{request_file_id_tts}}\"\n}' \\",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: status",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/task:get?id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: download",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/data:download?response_file_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: synthesis",
+        "api_call": "https://smartspeech.sber.ru/rest/v1/text:synthesize?format=wav16&voice=Nec_24000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/ssml",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{access_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\u041e\u0437\u0432\u0443\u0447\u0438\u0432\u0430\u0439\u0442\u0435 \u0442\u0435\u043a\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0435\u043d\u0442, \u0440\u043e\u043b\u0438\u043a\u0438 \u0438 \u043f\u0440\u0435\u0437\u0435\u043d\u0442\u0430\u0446\u0438\u0438, \u0447\u0442\u043e\u0431\u044b \u0441\u043e\u043a\u0440\u0430\u0442\u0438\u0442\u044c \u0440\u0430\u0441\u0445\u043e\u0434\u044b \u043d\u0430 \u043f\u0440\u043e\u0434\u0430\u043a\u0448\u043d.\n\u0427\u0442\u043e\u0431\u044b \u0443\u043b\u0443\u0447\u0448\u0438\u0442\u044c \u0441\u0438\u043d\u0442\u0435\u0437, \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c SSML \u0440\u0430\u0437\u043c\u0435\u0442\u043a\u0443.\n    \u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0443\u0434\u0430\u0440\u0435\u043d\u0438\u0435 - \u043f\u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0430\u043f\u043e\u0441\u0442\u0440\u043e\u0444 \u043f\u043e\u0441\u043b\u0435 \u0443\u0434\u0430\u0440\u043d\u043e\u0439 \u0433\u043b\u0430\u0441\u043d\u043e\u0439. \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \"\u0442\u0432\u043e'\u0440\u043e\u0433\" \u0438 \u0442\u0432\u043e\u0440\u043e'\u0433\".\n    \u0421\u0434\u0435\u043b\u0430\u0442\u044c \u0430\u043a\u0446\u0435\u043d\u0442 - \u043f\u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0441\u0438\u043c\u0432\u043e\u043b \"\u043a\u0440\u044b\u0448\u0435\u0447\u043a\u0430\" ^ \u043f\u043e\u0441\u043b\u0435 \u0441\u043b\u043e\u0432\u0430. \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \"\u041d\u0435 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c\" \u0438 \"\u041d\u0435 \u043c\u043e\u0436\u0435\u0442^ \u0431\u044b\u0442\u044c\".\n    \u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u0430\u0443\u0437\u0443 - \u0442\u0435\u0433 \"break time\". \u0414\u043b\u0438\u043d\u0430 \u043f\u0430\u0443\u0437\u044b \u0443\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0432 \u043c\u0438\u043b\u043b\u0438\u0441\u0435\u043a\u0443\u043d\u0434\u0430\u0445, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \"\u041c\u043e\u0441\u043a\u0432\u0430 <break time=\"500ms\"/>\u043f\u043e\u0440\u0442 \u043f\u044f\u0442\u0438 \u043c\u043e\u0440\u0435\u0439\".\n    \u041f\u0440\u043e\u0438\u0437\u043d\u0435\u0441\u0442\u0438 \u0447\u0430\u0441\u0442\u044c \u0444\u0440\u0430\u0437\u044b \u0434\u0440\u0443\u0433\u0438\u043c \u0433\u043e\u043b\u043e\u0441\u043e\u043c - \u0442\u0435\u0433 \"voice\". \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \"\u0423 \u043d\u0435\u0433\u043e \u0432\u043d\u0443\u0442\u0440\u0435 \u043d\u0435\u043e\u043d\u043a\u0430! <voice name=\"Tur_HQ\">\u0427\u0442\u043e \u044d\u0442\u043e \u0442\u0430\u043a\u043e\u0435 - \u043d\u0435\u043e\u043d\u043a\u0430?\"</voice>.\n    \u0414\u043b\u044f \u0440\u0430\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u0430\u043a\u0446\u0435\u043d\u0442\u043e\u0432 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u0442\u0435\u0433 \"paint\". \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \"\u041b\u044e\u0431\u0438\u0448\u044c \u043f\u0435\u0441\u0438\u043a\u043e\u0432?\" \u0438\u043b\u0438 \"\u041b\u044e\u0431\u0438\u0448\u044c <paint pitch=\"5\" slope=\"5\">\u043f\u0435\u0441\u0438\u043a\u043e\u0432?\"</paint>."
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "SaluteSpeech: get access_token",
+        "api_call": "https://ngw.devices.sberbank.ru:9443/api/v2/oauth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "RqUID",
+                    "value": "6f0b1291-c7f3-43c6-bb2e-9f3efb2dc98e",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "scope",
+                        "value": "SALUTE_SPEECH_PERS",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

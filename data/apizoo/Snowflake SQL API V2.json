@@ -1,0 +1,123 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Snowflake SQL API V2: Checks the status of the execution of a statement",
+        "api_call": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<Bearer Token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Snowflake SQL API V2: Cancels the execution of a statement.",
+        "api_call": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<Bearer Token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancels the execution of the statement with the specified statement handle."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Snowflake SQL API V2: Submits a SQL statement for execution.",
+        "api_call": "https://org-account.snowflakecomputing.com/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "<Bearer Token>",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {},\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits a single statement for execution. You can specify that the statement should be executed asynchronously."
+    }
+]
