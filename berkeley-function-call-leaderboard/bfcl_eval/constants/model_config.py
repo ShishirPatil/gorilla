@@ -1763,6 +1763,18 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "Team-ACE/ToolACE-2.5-8B": ModelConfig(
+        model_name="Team-ACE/ToolACE-2.5-8B",
+        display_name="ToolACE-2.5-8B (FC)",
+        url="https://huggingface.co/Team-ACE/ToolACE-2.5-Llama-3.1-8B",
+        org="Huawei Noah & USTC",
+        license="Apache-2.0",
+        model_handler=LlamaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "Team-ACE/ToolACE-2-8B": ModelConfig(
         model_name="Team-ACE/ToolACE-2-8B",
         display_name="ToolACE-2-8B (FC)",
