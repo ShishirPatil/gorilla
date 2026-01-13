@@ -1,0 +1,30 @@
+[
+  {
+    "user_name": "nirkal", 
+    "api_name": "Kubernetes Pod List", 
+    "api_call": "io.k8s.api.core.v1.PodList()", 
+    "api_version": "1.0", 
+    "api_arguments": {}, 
+    "functionality": "Retrieve a list of Kubernetes pods", 
+    "env_requirements": ["Kubernetes"], 
+    "example_code": "from kubernetes import client, config\n\nconfig.load_kube_config()\nv1 = client.CoreV1Api()\nprint(\"Listing pods with their IPs:\")\nret = v1.list_pod_for_all_namespaces(watch=False)\nfor i in ret.items:\n    print(\"%s\t%s\t%s\" % (i.status.pod_ip, i.metadata.namespace, i.metadata.name))", 
+    "meta_data": {},
+    "questions": [
+      "I am a Kubenetes DevOps Engineer and I want to get the list of pods running in a given namespace",
+    ]
+  },
+  {
+    "user_name": "nirkal", 
+    "api_name": "Get Pod Logs", 
+    "api_call": "kubectl logs {my-pod} -n {my-namespace}", 
+    "api_version": "1.0", 
+    "api_arguments": {"namespace": "my-namespace", "name": "my-pod"}, 
+    "functionality": "Retrieve logs of a specific pod", 
+    "env_requirements": ["Kubernetes environment"], 
+    "example_code": "kubectl logs my-pod -n my-namespace", 
+    "meta_data": {"authentication_required": "Yes", "method": "GET"},
+    "questions": [
+      "My application running in a given Kubernetes cluster is returning HTTP 500, I want to see the logs from the application pods.",
+    ]
+  }
+]
