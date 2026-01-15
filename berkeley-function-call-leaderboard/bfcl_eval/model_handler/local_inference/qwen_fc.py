@@ -18,7 +18,6 @@ class QwenFCHandler(OSSHandler):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
-        self.model_name_huggingface = model_name
 
     @override
     def decode_ast(self, result, language, has_tool_call_tag):

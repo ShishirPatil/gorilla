@@ -25,7 +25,6 @@ class PhiFCHandler(OSSHandler):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
-        self.model_name_huggingface = model_name
         self.is_fc_model = True
 
     @override
