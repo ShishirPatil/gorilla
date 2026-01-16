@@ -107,6 +107,7 @@ SUPPORTED_MODELS = [
     "google/gemma-3-4b-it",
     "google/gemma-3-12b-it",
     "google/gemma-3-27b-it",
+    "google/functiongemma-270m-it-FC",
     "meta-llama/Llama-3.1-8B-Instruct-FC",
     "meta-llama/Llama-3.1-8B-Instruct",
     "meta-llama/Llama-3.1-70B-Instruct-FC",

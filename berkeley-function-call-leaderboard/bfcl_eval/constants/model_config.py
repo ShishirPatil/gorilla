@@ -39,6 +39,7 @@ from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
 )
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
+from bfcl_eval.model_handler.local_inference.functiongemma import FunctionGemmaHandler
 from bfcl_eval.model_handler.local_inference.glm import GLMHandler
 from bfcl_eval.model_handler.local_inference.granite import (
     GraniteFunctionCallingHandler,
@@ -1245,6 +1246,18 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "google/functiongemma-270m-it-FC": ModelConfig(
+        model_name="google/functiongemma-270m-it",
+        display_name="FunctionGemma-270m-it (FC)",
+        url="https://ai.google.dev/gemma/docs/functiongemma",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=FunctionGemmaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
