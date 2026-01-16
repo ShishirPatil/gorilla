@@ -245,6 +245,14 @@ LOCAL_SERVER_ENDPOINT=localhost
 LOCAL_SERVER_PORT=1053
 ```
 
+For remote deployments (e.g., via RunPod, ngrok, or enterprise gateways) that require custom authentication or use non-standard base URLs, you can specify a full base URL and API key:
+
+```bash
+REMOTE_OPENAI_BASE_URL=https://your-vllm-server.com/v1
+REMOTE_OPENAI_API_KEY=your-api-key-here
+REMOTE_OPENAI_TOKENIZER_PATH=/path/to/local/tokenizer  # Optional: specify local tokenizer for local/remote endpoints
+```
+
 #### (Alternate) Script Execution for Generation
 
 For those who prefer using script execution instead of the CLI, you can run the following command:
