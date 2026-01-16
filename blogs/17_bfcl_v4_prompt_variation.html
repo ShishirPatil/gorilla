@@ -686,13 +686,13 @@
           </summary>
           <div style="padding: 16px; display: flex; min-height: 100px;">
             <p
-              style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;"><b>• has_tool_call_tag=True:</b>
+              style="color: green; font-family: 'Roboto Mono', monospace; margin: 0; font-size: 14px; white-space: pre-line;"><b>• has_tool_call_tag=False:</b>
               "You should only return the function calls in your response.
               If you decide to invoke any of the function(s), you MUST put it in the format of {output_format}.
               {param_types} You SHOULD NOT include any
               other text in the response."
 
-              <b>• has_tool_call_tag=False:</b>
+              <b>• has_tool_call_tag=True:</b>
               "You should only return the function calls in the &lt;TOOLCALL&gt; section. If you decide to invoke any of
               the function(s), you MUST put it in the format of &lt;TOOLCALL&gt;{output_format}&lt;/TOOLCALL&gt;.
               {param_types} You SHOULD NOT include any other text in the response."
