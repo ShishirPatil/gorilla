@@ -226,15 +226,15 @@ bfcl generate \
   --local-model-path /path/to/base/model \
   --enable-lora \
   --max-lora-rank 128 \
-  --lora-modules bfclv3="/path/to/lora/adapter1" bfclv4="/path/to/lora/adapter2" # ← optional
+  --lora-modules module1="/path/to/lora/adapter1" module2="/path/to/lora/adapter2" # ← optional
 ```
 
 - Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 - `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre-downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
-- `--enable-lora` (optional): Enable LoRA for the vLLM backend. This flag is required to use LoRA modules.
-- `--max-lora-rank` (optional): Specify the maximum LoRA rank for the vLLM backend. This is an integer value.
-- `--lora-modules` (optional): Specify the path to the LoRA modules for the vLLM backend in `name="path"` format. This allows evaluation of fine-tuned models with LoRA adapters. You can specify multiple LoRA modules by repeating this argument.
+- `--enable-lora` (optional): Enable LoRA for the vLLM backend. This flag is required to use LoRA modules. This only works when backend is `vllm`.
+- `--max-lora-rank` (optional): Specify the maximum LoRA rank for the vLLM backend. This is an integer value. This only works when backend is `vllm` and `--enable-lora` flag is set.
+- `--lora-modules` (optional): Specify the path to the LoRA modules for the vLLM backend in `name="path"` format. This allows evaluation of fine-tuned models with LoRA adapters. You can specify multiple LoRA modules by repeating this argument. This only works when backend is `vllm` and `--enable-lora` flag is set.
 
 ##### For Pre-existing OpenAI-compatible Endpoints
 
