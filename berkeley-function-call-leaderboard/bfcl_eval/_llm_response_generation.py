@@ -9,6 +9,7 @@ import traceback
 from collections import defaultdict
 from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from copy import deepcopy
+from typing import Optional
 
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
@@ -55,7 +56,27 @@ def get_args():
         default=None,
         help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     )
+    parser.add_argument(
+        "--lora-modules",
+        type=str,
+        default=None,
+        nargs="*",
+        help="Specify the path to the LoRA modules for vLLM backend in name=\"path\" format. Can be specified multiple times.",
+    )
+    parser.add_argument(
+        "--enable-lora",
+        action="store_true",
+        default=False,
+        help="Enable LoRA for vLLM backend.",
+    )
+    parser.add_argument(
+        "--max-lora-rank",
+        type=int,
+        default=None,
+        help="Specify the maximum LoRA rank for vLLM backend.",
+    )
     args = parser.parse_args()
+    print(f"Parsed arguments: {args}")
 
     return args
 
@@ -240,6 +261,9 @@ def generate_results(args, model_name, test_cases_total):
                 backend=args.backend,
                 skip_server_setup=args.skip_server_setup,
                 local_model_path=args.local_model_path,
+                lora_modules=args.lora_modules,
+                enable_lora=args.enable_lora,
+                max_lora_rank=args.max_lora_rank,
             )
 
         # ───── dependency bookkeeping ──────────────────────────────
