@@ -79,6 +79,9 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         backend: str,
         skip_server_setup: bool,
         local_model_path: Optional[str],
+        lora_modules: Optional[list[str]] = None,
+        enable_lora: bool = False,
+        max_lora_rank: Optional[int] = None,
     ):
         """
         Spin up a local server for the model.
@@ -171,7 +174,21 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                             "--gpu-memory-utilization",
                             str(gpu_memory_utilization),
                             "--trust-remote-code",
-                        ],
+                        ]
+                        + (["--enable-lora"] if enable_lora else [])
+                        + (
+                            ["--max-lora-rank", str(max_lora_rank)]
+                            if max_lora_rank is not None
+                            else []
+                        )
+                        + (
+                            sum(
+                                [["--lora-modules", lora_module] for lora_module in lora_modules],
+                                [],
+                            )
+                            if lora_modules
+                            else []
+                        ),
                         stdout=subprocess.PIPE,  # Capture stdout
                         stderr=subprocess.PIPE,  # Capture stderr
                         text=True,  # To get the output as text instead of bytes
