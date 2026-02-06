@@ -475,27 +475,43 @@ def write_list_of_dicts_to_file(filename, data, subdir=None) -> None:
 
     # Write the list of dictionaries to the file in JSON format
     with open(filename, "w", encoding="utf-8") as f:
-        for i, entry in enumerate(data):
+        for entry in data:
             # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
             entry = make_json_serializable(entry)
             json_str = json.dumps(entry, ensure_ascii=False) + "\n"
+            # Final safeguard: remove any surrogates that might have slipped through
+            json_str = _remove_surrogates(json_str)
             f.write(json_str)
+
+
+def _remove_surrogates(s: str) -> str:
+    """Remove unpaired Unicode surrogates that can't be encoded as UTF-8."""
+    # Surrogates (U+D800 to U+DFFF) cannot be encoded in UTF-8.
+    # Encoding with 'replace' substitutes them with '?', then decode back.
+    return s.encode("utf-8", errors="replace").decode("utf-8")
 
 
 def make_json_serializable(value):
     if isinstance(value, dict):
         # If the value is a dictionary, we need to go through each key-value pair recursively
-        return {k: make_json_serializable(v) for k, v in value.items()}
+        # Also sanitize keys in case they contain surrogates
+        return {
+            (_remove_surrogates(k) if isinstance(k, str) else k): make_json_serializable(v)
+            for k, v in value.items()
+        }
     elif isinstance(value, list):
         # If the value is a list, we need to process each element recursively
         return [make_json_serializable(item) for item in value]
+    elif isinstance(value, str):
+        # Remove any unpaired surrogates that can't be encoded as UTF-8
+        return _remove_surrogates(value)
     else:
         # Try to serialize the value directly, and if it fails, convert it to a string
         try:
             json.dumps(value, ensure_ascii=False)
             return value
         except (TypeError, ValueError):
-            return str(value)
+            return _remove_surrogates(str(value))
 
 
 def sort_key(entry):
