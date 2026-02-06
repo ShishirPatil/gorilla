@@ -371,7 +371,8 @@ def _evaluate_single_ast_entry(
         model_result_item,
         possible_answer_item,
         language,
-        test_category,
+        # format sensitivity has parallel, multiple cases which is encoded in index
+        test_category if test_category != 'format_sensitivity' else index.split(':')[-1],
         model_name,
     )
 

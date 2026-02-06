@@ -39,7 +39,7 @@
 {"id": "simple_javascript_38", "ground_truth": [{"getDirectoryToWatchFromFailedLookupLocationDirectory": {"dir": ["/projects/myApp/node_modules/react"], "dirPath": ["/projects/myApp/node_modules/react"]}}]}
 {"id": "simple_javascript_39", "ground_truth": [{"maybeAddJsSyntheticRestParameter": {"declaration": ["funcDeclaration"], "parameters": ["funcParameters"]}}]}
 {"id": "simple_javascript_40", "ground_truth": [{"assignOwnDefaults": {"objectValue": [12.0], "sourceValue": [10.0], "key": ["maxItems"], "object": [{}]}}]}
-{"id": "simple_javascript_41", "ground_truth": [{"queue": {"worker": ["myWorkerFunction"], "concurrency": [5.0], "payload": ["", 0.0]}}]}
+{"id": "simple_javascript_41", "ground_truth": [{"queue_1": {"worker": ["myWorkerFunction"], "concurrency": [5.0], "payload": ["", 0.0]}}]}
 {"id": "simple_javascript_42", "ground_truth": [{"B": {"t": [5.0]}}]}
 {"id": "simple_javascript_43", "ground_truth": [{"invokeCallback": {"callback": ["processResult"], "error": ["null"], "value": ["Operation successful"]}}]}
 {"id": "simple_javascript_44", "ground_truth": [{"skipThrough": {"node": ["currentNode"], "st": ["nodeState"], "c": ["processNode"]}}]}
