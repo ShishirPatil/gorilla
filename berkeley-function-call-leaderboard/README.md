@@ -157,7 +157,7 @@ For the `web_search` test category, we use the [SerpAPI](https://serpapi.com/) s
 You can provide multiple models or test categories by separating them with commas. For example:
 
 ```bash
-bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category simple,parallel,multiple,multi_turn
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category simple_python,parallel,live_multiple,multi_turn
 ```
 
 #### Selecting Specific Test Cases with `--run-ids`
@@ -223,12 +223,18 @@ bfcl generate \
   --backend {sglang|vllm} \
   --num-gpus 1 \
   --gpu-memory-utilization 0.9 \
-  --local-model-path /path/to/local/model   # ← optional
+  --local-model-path /path/to/base/model \
+  --enable-lora \
+  --max-lora-rank 128 \
+  --lora-modules module1="/path/to/lora/adapter1" module2="/path/to/lora/adapter2" # ← optional
 ```
 
-- Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `sglang`.
+- Choose your backend using `--backend sglang` or `--backend vllm`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
-- `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre‑downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
+- `--local-model-path` (optional): Point this flag at a directory that already contains the model's files (`config.json`, tokenizer, weights, etc.). Use it only when you've pre-downloaded the model and the weights live somewhere other than the default `$HF_HOME` cache.
+- `--enable-lora` (optional): Enable LoRA for the vLLM backend. This flag is required to use LoRA modules. This only works when backend is `vllm`.
+- `--max-lora-rank` (optional): Specify the maximum LoRA rank for the vLLM backend. This is an integer value. This only works when backend is `vllm` and `--enable-lora` flag is set.
+- `--lora-modules` (optional): Specify the path to the LoRA modules for the vLLM backend in `name="path"` format. This allows evaluation of fine-tuned models with LoRA adapters. You can specify multiple LoRA modules by repeating this argument. This only works when backend is `vllm` and `--enable-lora` flag is set.
 
 ##### For Pre-existing OpenAI-compatible Endpoints
 
@@ -243,6 +249,14 @@ In addition, you should specify the endpoint and port used by the local server. 
 ```bash
 LOCAL_SERVER_ENDPOINT=localhost
 LOCAL_SERVER_PORT=1053
+```
+
+For remote deployments (e.g., via RunPod, ngrok, or enterprise gateways) that require custom authentication or use non-standard base URLs, you can specify a full base URL and API key:
+
+```bash
+REMOTE_OPENAI_BASE_URL=https://your-vllm-server.com/v1
+REMOTE_OPENAI_API_KEY=your-api-key-here
+REMOTE_OPENAI_TOKENIZER_PATH=/path/to/local/tokenizer  # Optional: specify local tokenizer for local/remote endpoints
 ```
 
 #### (Alternate) Script Execution for Generation

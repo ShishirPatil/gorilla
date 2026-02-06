@@ -2,18 +2,22 @@ import json
 from copy import deepcopy
 
 from bfcl_eval._llm_response_generation import parse_test_category_argument
-from bfcl_eval.constants.eval_config import POSSIBLE_ANSWER_PATH, PROMPT_PATH, UTILS_PATH
-from bfcl_eval.utils import load_file, write_list_of_dicts_to_file
+from bfcl_eval.constants.eval_config import UTILS_PATH
+from bfcl_eval.utils import (
+    write_list_of_dicts_to_file,
+    load_dataset_entry,
+    load_ground_truth_entry,
+)
 from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     STATELESS_CLASSES,
     execute_multi_turn_func_call,
 )
 
-test_filename_total, _ = parse_test_category_argument(["multi_turn"])
+test_categories_total = parse_test_category_argument(["multi_turn"])
 
-for file_path in test_filename_total:
-    ground_truth_data = load_file(POSSIBLE_ANSWER_PATH / file_path)
-    dataset_data = load_file(PROMPT_PATH / file_path)
+for test_category in test_categories_total:
+    dataset_data = load_dataset_entry(test_category)
+    ground_truth_data = load_ground_truth_entry(test_category)
 
     result = []
     for ground_truth_entry, test_entry in zip(ground_truth_data, dataset_data):
@@ -127,4 +131,8 @@ for file_path in test_filename_total:
                 )
             all_inference_log.append(state_log)
 
-    write_list_of_dicts_to_file(file_path, result, UTILS_PATH / "ground_truth_conversation")
+    write_list_of_dicts_to_file(
+        f"{test_category}_conversation.json",
+        result,
+        UTILS_PATH / "ground_truth_conversation",
+    )
