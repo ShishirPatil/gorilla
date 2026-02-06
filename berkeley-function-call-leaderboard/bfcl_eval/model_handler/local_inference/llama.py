@@ -99,7 +99,7 @@ class LlamaChatCompletionsHandler(OpenAICompletionsHandler):
     def __init__(
         self, model_name, temperature, registry_name, is_fc_model, **kwargs
     ) -> None:
-        self.model_name = model_name = model_name.replace("-chat-completions", "")
+        self.model_name = model_name = model_name.replace("-chat", "").replace("-FC", "")
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
