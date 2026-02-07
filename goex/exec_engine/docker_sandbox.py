@@ -94,7 +94,7 @@ class DockerSandbox:
                 container.remove()
 
         except Exception as e:
-            print("Failure occured inside client.containers.run with the following error message:", e)
+            print("Failure occurred inside client.containers.run with the following error message:", e)
             return None
         
         return {"output": docker_out, "debug": docker_debug}

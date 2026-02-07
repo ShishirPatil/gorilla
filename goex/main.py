@@ -274,5 +274,5 @@ class ExecutionEngine:
             else:
                 return response
         except Exception as e:
-            print("An error occured while trying to execute output locally {e}.\nAborted...".format(e=e))
+            print("An error occurred while trying to execute output locally {e}.\nAborted...".format(e=e))
             return
