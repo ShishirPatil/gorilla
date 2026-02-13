@@ -39,6 +39,7 @@ from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
 )
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
+from bfcl_eval.model_handler.local_inference.functiongemma import FunctionGemmaHandler
 from bfcl_eval.model_handler.local_inference.glm import GLMHandler
 from bfcl_eval.model_handler.local_inference.granite import (
     GraniteFunctionCallingHandler,
@@ -58,6 +59,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.pelican_vl_fc import PelicanVLFCHandler
 from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
     SalesforceLlamaHandler,
@@ -1247,6 +1249,18 @@ local_inference_model_map = {
         is_fc_model=False,
         underscore_to_dot=False,
     ),
+    "google/functiongemma-270m-it-FC": ModelConfig(
+        model_name="google/functiongemma-270m-it",
+        display_name="FunctionGemma-270m-it (FC)",
+        url="https://ai.google.dev/gemma/docs/functiongemma",
+        org="Google",
+        license="gemma-terms-of-use",
+        model_handler=FunctionGemmaHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "meta-llama/Llama-3.1-8B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct",
         display_name="Llama-3.1-8B-Instruct (FC)",
@@ -1761,6 +1775,30 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "X-Humanoid/Pelican1.0-VL-235B-A22B-FC": ModelConfig(
+        model_name="X-Humanoid/Pelican1.0-VL-235B-A22B-FC",
+        display_name="Pelican1.0-VL-235B-A22 (FC)",
+        url="https://huggingface.co/X-Humanoid/Pelican1.0-VL-235B-A22B-FC",
+        org="x-humanoid",
+        license="apache-2.0",
+        model_handler=PelicanVLFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "X-Humanoid/Pelican1.0-VL-30B-A3B-FC": ModelConfig(
+        model_name="X-Humanoid/Pelican1.0-VL-30B-A3B-FC",
+        display_name="Pelican1.0-VL-30B-A3B (FC)",
+        url="https://huggingface.co/X-Humanoid/Pelican1.0-VL-30B-A3B-FC",
+        org="x-humanoid",
+        license="apache-2.0",
+        model_handler=PelicanVLFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
     "Team-ACE/ToolACE-2-8B": ModelConfig(

@@ -42,8 +42,11 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.local_server_endpoint = os.getenv("LOCAL_SERVER_ENDPOINT", "localhost")
         self.local_server_port = os.getenv("LOCAL_SERVER_PORT", LOCAL_SERVER_PORT)
 
-        self.base_url = f"http://{self.local_server_endpoint}:{self.local_server_port}/v1"
-        self.client = OpenAI(base_url=self.base_url, api_key="EMPTY")
+        # Support custom base_url and api_key for remote/local OpenAI-compatible deployments (e.g., vLLM)
+        # Use REMOTE_OPENAI_* variables to avoid conflicts with main OPENAI_* variables
+        self.base_url = os.getenv("REMOTE_OPENAI_BASE_URL", f"http://{self.local_server_endpoint}:{self.local_server_port}/v1")
+        self.api_key = os.getenv("REMOTE_OPENAI_API_KEY", "EMPTY")
+        self.client = OpenAI(base_url=self.base_url, api_key=self.api_key)
 
     @override
     def inference(
@@ -76,6 +79,9 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         backend: str,
         skip_server_setup: bool,
         local_model_path: Optional[str],
+        lora_modules: Optional[list[str]] = None,
+        enable_lora: bool = False,
+        max_lora_rank: Optional[int] = None,
     ):
         """
         Spin up a local server for the model.
@@ -111,8 +117,28 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 "trust_remote_code": True,
             }
 
-        self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
-        config = AutoConfig.from_pretrained(**load_kwargs)
+        # For remote OpenAI-compatible endpoints, use specified tokenizer path if provided
+        is_remote_endpoint = bool(os.getenv("REMOTE_OPENAI_BASE_URL"))
+        tokenizer_path = os.getenv("REMOTE_OPENAI_TOKENIZER_PATH", self.model_path_or_id)
+
+        if is_remote_endpoint and os.getenv("REMOTE_OPENAI_TOKENIZER_PATH"):
+            # Use specified tokenizer for remote endpoints
+            tokenizer_kwargs = {
+                "pretrained_model_name_or_path": tokenizer_path,
+                "trust_remote_code": True,
+            }
+            try:
+                self.tokenizer = AutoTokenizer.from_pretrained(**tokenizer_kwargs)
+                config = AutoConfig.from_pretrained(**tokenizer_kwargs)
+                print(f"Loaded tokenizer from REMOTE_OPENAI_TOKENIZER_PATH: {tokenizer_path}")
+            except Exception as e:
+                print(f"Failed to load tokenizer from {tokenizer_path}, falling back to model path: {e}")
+                self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+                config = AutoConfig.from_pretrained(**load_kwargs)
+        else:
+            # Standard loading for local models or when no specific tokenizer path is provided
+            self.tokenizer = AutoTokenizer.from_pretrained(**load_kwargs)
+            config = AutoConfig.from_pretrained(**load_kwargs)
 
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
@@ -148,7 +174,21 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                             "--gpu-memory-utilization",
                             str(gpu_memory_utilization),
                             "--trust-remote-code",
-                        ],
+                        ]
+                        + (["--enable-lora"] if enable_lora else [])
+                        + (
+                            ["--max-lora-rank", str(max_lora_rank)]
+                            if max_lora_rank is not None
+                            else []
+                        )
+                        + (
+                            sum(
+                                [["--lora-modules", lora_module] for lora_module in lora_modules],
+                                [],
+                            )
+                            if lora_modules
+                            else []
+                        ),
                         stdout=subprocess.PIPE,  # Capture stdout
                         stderr=subprocess.PIPE,  # Capture stderr
                         text=True,  # To get the output as text instead of bytes
