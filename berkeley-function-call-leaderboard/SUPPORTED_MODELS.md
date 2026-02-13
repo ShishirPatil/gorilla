@@ -108,6 +108,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Moonshotai-Kimi-K2-Instruct            | Prompt           | MoonshotAI     | kimi-k2-0905-preview                                        |
 | Nanbeige3.5-Pro-Thinking               | Function Calling | Nanbeige       | Nanbeige3.5-Pro-Thinking-FC                                 |
 | Nanbeige4-3B-Thinking-2511             | Function Calling | Self-hosted 💻 | Nanbeige/Nanbeige4-3B-Thinking-2511                         |
+| Nanbeige4.1-3B                         | Function Calling | Self-hosted 💻 | Nanbeige/Nanbeige4.1-3B                                     |
 | Nemotron-4-340b-instruct               | Prompt           | NVIDIA         | nvidia/nemotron-4-340b-instruct                             |
 | o3-2025-04-16                          | Function Calling | OpenAI         | o3-2025-04-16-FC                                            |
 | o3-2025-04-16                          | Prompt           | OpenAI         | o3-2025-04-16                                               |

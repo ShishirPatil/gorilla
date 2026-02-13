@@ -2089,6 +2089,18 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "Nanbeige/Nanbeige4.1-3B": ModelConfig(
+        model_name="Nanbeige/Nanbeige4.1-3B",
+        display_name="Nanbeige4.1-3B",
+        url="https://huggingface.co/Nanbeige/Nanbeige4.1-3B",
+        org="Nanbeige",
+        license="apache-2.0",
+        model_handler=NanbeigeFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
 }
 
 # Inference through third-party inference platforms for open-source models
