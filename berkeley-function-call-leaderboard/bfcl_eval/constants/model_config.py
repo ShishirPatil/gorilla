@@ -1513,6 +1513,18 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "ibm-granite/granite-4.0-h-1b": ModelConfig(
+        model_name="ibm-granite/granite-4.0-h-1b",
+        display_name="Granite-4.0-H-1B (FC)",
+        url="https://huggingface.co/ibm-granite/granite-4.0-h-1b",
+        org="IBM",
+        license="Apache-2.0",
+        model_handler=Granite4FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "ibm-granite/granite-20b-functioncalling": ModelConfig(
         model_name="ibm-granite/granite-20b-functioncalling",
         display_name="Granite-20b-FunctionCalling (FC)",

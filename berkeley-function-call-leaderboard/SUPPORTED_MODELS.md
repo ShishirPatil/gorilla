@@ -77,6 +77,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Granite-3.1-8B-Instruct                | Function Calling | Self-hosted 💻 | ibm-granite/granite-3.1-8b-instruct                         |
 | Granite-3.2-8B-Instruct                | Function Calling | Self-hosted 💻 | ibm-granite/granite-3.2-8b-instruct                         |
 | Granite-4.0-350m                       | Function Calling | Self-hosted 💻 | ibm-granite/granite-4.0-350m                                |
+| Granite-4.0-H-1B                       | Function Calling | Self-hosted 💻 | ibm-granite/granite-4.0-h-1b                                |
 | Grok-4-0709                            | Function Calling | xAI            | grok-4-0709-FC                                              |
 | Grok-4-0709                            | Prompt           | xAI            | grok-4-0709                                                 |
 | Grok-4-1-fast-non-reasoning            | Function Calling | xAI            | grok-4-1-fast-non-reasoning-FC                              |
