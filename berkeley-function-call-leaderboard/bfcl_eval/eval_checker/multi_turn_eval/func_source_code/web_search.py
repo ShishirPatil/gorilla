@@ -270,9 +270,7 @@ class WebSearchAPI:
                 "Sec-Fetch-User": "?1",
                 "Sec-Fetch-Dest": "document",
             }
-            response = requests.get(
-                url, headers=headers, timeout=20, allow_redirects=True
-            )
+            response = requests.get(url, headers=headers, timeout=20, allow_redirects=True)
             response.raise_for_status()
 
             # Note: Un-comment this when we want to simulate a random error
