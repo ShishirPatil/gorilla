@@ -43,7 +43,9 @@ def _get_file_lock(filepath: str) -> FileLock:
 #### Helper functions to extract/parse/complete test category from different formats ####
 
 
-def extract_test_category(input_string: Union[str, Path], raise_error: bool = True) -> str:
+def extract_test_category(
+    input_string: Union[str, Path], raise_error: bool = True
+) -> str:
     """
     Extract the test category from a given file name. If category cannot be extracted, and the flag is not set, then raise an error.
     """
@@ -62,7 +64,9 @@ def extract_test_category(input_string: Union[str, Path], raise_error: bool = Tr
         return None
 
 
-def extract_test_category_from_id(test_entry_id: str, remove_prereq: bool = False) -> str:
+def extract_test_category_from_id(
+    test_entry_id: str, remove_prereq: bool = False
+) -> str:
     """
     Extract the test category from the test entry ID.
 
@@ -85,9 +89,9 @@ def extract_prompt_format_from_id(test_entry_id: str) -> str:
     if ":" not in test_entry_id:
         return DEFAULT_SYSTEM_PROMPT_FORMAT
     else:
-        assert (
-            len(test_entry_id.split(":")) == 3
-        ), f"Test entry ID {test_entry_id} should contain exactly two colons, since they are supposed to be the format sensitivity ids."
+        assert len(test_entry_id.split(":")) == 3, (
+            f"Test entry ID {test_entry_id} should contain exactly two colons, since they are supposed to be the format sensitivity ids."
+        )
         return test_entry_id.split(":")[1]
 
 
@@ -115,7 +119,9 @@ def find_file_by_category(
     If `is_result_file` is True, it looks for a file with the suffix "_result.json".
     If `is_score_file` is True, it looks for a file with the suffix "_score.json".
     """
-    assert not (is_result_file and is_score_file), "Cannot be both result and score file."
+    assert not (is_result_file and is_score_file), (
+        "Cannot be both result and score file."
+    )
 
     if is_result_file:
         suffix = "_result.json"
@@ -141,7 +147,9 @@ def get_file_name_by_category(
     If `is_result_file` is True, it returns the file name with the suffix "_result.json".
     If `is_score_file` is True, it returns the file name with the suffix "_score.json".
     """
-    assert not (is_result_file and is_score_file), "Cannot be both result and score file."
+    assert not (is_result_file and is_score_file), (
+        "Cannot be both result and score file."
+    )
 
     if is_result_file:
         file_name = f"{VERSION_PREFIX}_{test_category}_result.json"
@@ -386,9 +394,9 @@ def sort_file_content_by_id(file_path: Path) -> None:
         # Desired final ordering (sorted, unique)
         sorted_entries = sorted(original_entries, key=sort_key)
 
-        assert len(original_entries) == len(
-            sorted_entries
-        ), "There should be no duplicates in the file"
+        assert len(original_entries) == len(sorted_entries), (
+            "There should be no duplicates in the file"
+        )
 
         # Check if the write is necessary by comparing id sequences
         original_ids = [entry["id"] for entry in original_entries]
@@ -457,10 +465,14 @@ def load_ground_truth_entry(test_category: str) -> list[dict]:
         return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_web_search.json")
 
     else:
-        return load_file(POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_{test_category}.json")
+        return load_file(
+            POSSIBLE_ANSWER_PATH / f"{VERSION_PREFIX}_{test_category}.json"
+        )
 
 
-def write_list_of_dicts_to_file(filename, data, subdir=None, use_lock: bool = True) -> None:
+def write_list_of_dicts_to_file(
+    filename, data, subdir=None, use_lock: bool = True
+) -> None:
     """
     Write a list of dictionaries to a file.
     If `subdir` is provided, the file will be written to the subdirectory.
@@ -644,17 +656,17 @@ def _func_doc_language_specific_pre_processing(
         if is_java(test_category):
             for key, value in properties.items():
                 if value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += " This parameter can be of any type of Java object in string representation."
+                    properties[key]["description"] += (
+                        " This parameter can be of any type of Java object in string representation."
+                    )
                 else:
-                    value[
-                        "description"
-                    ] += f" This is Java {value['type']} type parameter in string representation."
+                    value["description"] += (
+                        f" This is Java {value['type']} type parameter in string representation."
+                    )
                 if value["type"] == "ArrayList" or value["type"] == "Array":
-                    value[
-                        "description"
-                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
                     del value["items"]
 
                 value["type"] = "string"
@@ -662,24 +674,24 @@ def _func_doc_language_specific_pre_processing(
         elif is_js(test_category):
             for key, value in properties.items():
                 if value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += " This parameter can be of any type of JavaScript object in string representation."
+                    properties[key]["description"] += (
+                        " This parameter can be of any type of JavaScript object in string representation."
+                    )
                 else:
-                    value[
-                        "description"
-                    ] += f" This is JavaScript {value['type']} type parameter in string representation."
+                    value["description"] += (
+                        f" This is JavaScript {value['type']} type parameter in string representation."
+                    )
                 if value["type"] == "array":
-                    value[
-                        "description"
-                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
                     del value["items"]
 
                 if value["type"] == "dict":
                     if "properties" in value:  # not every dict has properties
-                        value[
-                            "description"
-                        ] += f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
+                        value["description"] += (
+                            f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
+                        )
                         del value["properties"]
 
                 value["type"] = "string"
@@ -701,7 +713,9 @@ def add_language_specific_hint_to_function_doc(test_cases: list[dict]) -> list[d
     return test_cases
 
 
-def process_web_search_test_case(test_cases: list[dict], test_category: str) -> list[dict]:
+def process_web_search_test_case(
+    test_cases: list[dict], test_category: str
+) -> list[dict]:
     """
     Web search test cases need to have their entry id updated. As both the base and no_snippet test categories are using the same question (from the same file), we need to differentiate them here.
     """
@@ -781,7 +795,8 @@ def populate_test_cases_with_predefined_functions(test_cases: list[dict]) -> lis
         for func_collection in involved_classes:
             # func_doc is a list of dict
             func_doc = load_file(
-                MULTI_TURN_FUNC_DOC_PATH / MULTI_TURN_FUNC_DOC_FILE_MAPPING[func_collection]
+                MULTI_TURN_FUNC_DOC_PATH
+                / MULTI_TURN_FUNC_DOC_FILE_MAPPING[func_collection]
             )
             entry["function"].extend(func_doc)
 
@@ -862,13 +877,19 @@ def populate_initial_settings_for_web_search_test_cases(
     """
     Special handling for the web search category, as it controls the show_snippet parameter
     """
+    force_native_browser_for_gpt_oss = int(
+        os.getenv("FORCE_NATIVE_BROWSER_FOR_GPT_OSS", FORCE_NATIVE_BROWSER_FOR_GPT_OSS)
+    )
     for entry in test_cases:
         if is_web_search(entry["id"]):
             involved_classes = entry["involved_classes"]
 
             init_config = {
                 involved_classes[0]: {
-                    "show_snippet": False if "no_snippet" in entry["id"] else True
+                    "show_snippet": False if "no_snippet" in entry["id"] else True,
+                    "force_native_browser_for_gpt_oss": bool(
+                        force_native_browser_for_gpt_oss
+                    ),
                 }
             }
             entry["initial_config"] = init_config
