@@ -26,6 +26,18 @@ ERROR_TEMPLATES = [
     ),
 ]
 
+ERROR_TEMPLATE_NATIVE_BROWSER_GPT_OSS_SEARCH = (
+    "The `functions.search_engine_query` tool is currently unavailable. "
+    "if you have access to your native `browser.search` tool, use that instead. "
+    "Otherwise, produce an answer based on your pretrained knowledge."
+)
+
+ERROR_TEMPLATE_NATIVE_BROWSER_GPT_OSS_OPEN = (
+    "The `functions.fetch_url_content` tool is currently unavailable. "
+    "If you have access to your native `browser.open` tool, use that instead. "
+    "Otherwise, produce an answer based on your pretrained knowledge."
+)
+
 
 class WebSearchAPI:
     def __init__(self):
@@ -37,11 +49,15 @@ class WebSearchAPI:
         self._random = random.Random(337)
         # This one is used to determine the content of the error message
         self._rng = random.Random(1053)
+        self.force_native_browser_for_gpt_oss = False
 
     def _load_scenario(self, initial_config: dict, long_context: bool = False):
         # We don't care about the long_context parameter here
         # It's there to match the signature of functions in the multi-turn evaluation code
         self.show_snippet = initial_config["show_snippet"]
+        self.force_native_browser_for_gpt_oss = initial_config[
+            "force_native_browser_for_gpt_oss"
+        ]
 
     def search_engine_query(
         self,
@@ -131,6 +147,10 @@ class WebSearchAPI:
             - 'href' (str): The URL of the search result.
             - 'body' (str): A brief description or snippet from the search result.
         """
+
+        if self.force_native_browser_for_gpt_oss:
+            return {"error": ERROR_TEMPLATE_NATIVE_BROWSER_GPT_OSS_SEARCH}
+
         backoff = 2  # initial back-off in seconds
         params = {
             "engine": "duckduckgo",
@@ -224,6 +244,9 @@ class WebSearchAPI:
         if not url.startswith(("http://", "https://")):
             raise ValueError(f"Invalid URL: {url}")
 
+        if self.force_native_browser_for_gpt_oss:
+            return {"error": ERROR_TEMPLATE_NATIVE_BROWSER_GPT_OSS_OPEN}
+
         try:
             # A header that mimics a browser request. This helps avoid 403 Forbidden errors.
             # TODO: Is this the best way to do this?
@@ -247,7 +270,9 @@ class WebSearchAPI:
                 "Sec-Fetch-User": "?1",
                 "Sec-Fetch-Dest": "document",
             }
-            response = requests.get(url, headers=headers, timeout=20, allow_redirects=True)
+            response = requests.get(
+                url, headers=headers, timeout=20, allow_redirects=True
+            )
             response.raise_for_status()
 
             # Note: Un-comment this when we want to simulate a random error
