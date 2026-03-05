@@ -61,6 +61,8 @@ SUPPORTED_MODELS = [
     "gemini-2.5-flash",
     "gemini-3-pro-preview-FC",
     "gemini-3-pro-preview",
+    "gemini-3.1-flash-lite-preview-FC",
+    "gemini-3.1-flash-lite-preview",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-medium-v3.1-FC",
     "command-r7b-12-2024-FC",
