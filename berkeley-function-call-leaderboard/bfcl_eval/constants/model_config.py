@@ -10,7 +10,7 @@ from bfcl_eval.model_handler.api_inference.functionary import FunctionaryHandler
 from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
 from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
-from bfcl_eval.model_handler.api_inference.glyphh import GlyphhHDCHandler
+from bfcl_eval.model_handler.api_inference.glyphh import GlyphhHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
 from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
@@ -1186,16 +1186,16 @@ api_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
-    "glyphh-hdc-v1": ModelConfig(
-        model_name="glyphh-hdc-v1",
-        display_name="Glyphh HDC v1 (Prompt)",
-        url="https://glyphh.com",
+    "glyphh-ada-1.1": ModelConfig(
+        model_name="glyphh-ada-1.1",
+        display_name="Glyphh Ada 1.1 (HDC+FC)",
+        url="https://glyphh.ai",
         org="Glyphh",
         license="Proprietary",
-        model_handler=GlyphhHDCHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=False,
+        model_handler=GlyphhHandler,
+        input_price=0.05,   # Haiku 4.5 pricing (HDC routing is free, only arg extraction uses LLM)
+        output_price=0.40,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
 }
@@ -2211,18 +2211,6 @@ MODEL_CONFIG_MAPPING = {
     **api_inference_model_map,
     **local_inference_model_map,
     **third_party_inference_model_map,
-    "glyphh-ada-1.1": ModelConfig(
-        model_name="glyphh-ada-1.1",
-        display_name="Glyphh Ada 1.1 (HDC+FC)",
-        url="https://glyphh.ai",
-        org="Glyphh",
-        license="Proprietary",
-        model_handler=ClaudeHandler,
-        input_price=None,
-        output_price=None,
-        is_fc_model=True,
-        underscore_to_dot=False,
-    ),
 }
 
 # Uncomment to get the supported_models.py file contents

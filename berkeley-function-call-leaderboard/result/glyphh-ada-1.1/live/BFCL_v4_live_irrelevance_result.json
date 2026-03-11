@@ -1,0 +1,884 @@
+{"id": "live_irrelevance_4-0-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.347784996032715}
+{"id": "live_irrelevance_0-0-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.789592981338501}
+{"id": "live_irrelevance_3-0-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.943914890289307}
+{"id": "live_irrelevance_2-0-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.33953595161438}
+{"id": "live_irrelevance_1-0-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.834104061126709}
+{"id": "live_irrelevance_6-0-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.66861629486084}
+{"id": "live_irrelevance_7-0-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.173511028289795}
+{"id": "live_irrelevance_5-0-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.75946593284607}
+{"id": "live_irrelevance_8-0-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.537036180496216}
+{"id": "live_irrelevance_9-0-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.300966024398804}
+{"id": "live_irrelevance_11-1-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.376450061798096}
+{"id": "live_irrelevance_10-1-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.247091770172119}
+{"id": "live_irrelevance_13-2-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.517086982727051}
+{"id": "live_irrelevance_14-2-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.655508041381836}
+{"id": "live_irrelevance_12-2-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.342653751373291}
+{"id": "live_irrelevance_16-2-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.8089377880096436}
+{"id": "live_irrelevance_15-2-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.073215007781982}
+{"id": "live_irrelevance_17-2-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.97452187538147}
+{"id": "live_irrelevance_18-2-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.608867168426514}
+{"id": "live_irrelevance_19-2-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.575171947479248}
+{"id": "live_irrelevance_21-2-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.86796498298645}
+{"id": "live_irrelevance_20-2-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.643528938293457}
+{"id": "live_irrelevance_22-2-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.191110849380493}
+{"id": "live_irrelevance_23-2-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.304008960723877}
+{"id": "live_irrelevance_24-2-12", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.945422887802124}
+{"id": "live_irrelevance_25-2-13", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.939177989959717}
+{"id": "live_irrelevance_26-2-14", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.636376619338989}
+{"id": "live_irrelevance_27-2-15", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.348747968673706}
+{"id": "live_irrelevance_28-2-16", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.050998210906982}
+{"id": "live_irrelevance_29-2-17", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.856669902801514}
+{"id": "live_irrelevance_30-2-18", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.808157920837402}
+{"id": "live_irrelevance_31-2-19", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.706072092056274}
+{"id": "live_irrelevance_32-2-20", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.88709020614624}
+{"id": "live_irrelevance_33-2-21", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.7968909740448}
+{"id": "live_irrelevance_34-2-22", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.767831087112427}
+{"id": "live_irrelevance_35-2-23", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.132057189941406}
+{"id": "live_irrelevance_38-2-26", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.249190092086792}
+{"id": "live_irrelevance_37-2-25", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.277288913726807}
+{"id": "live_irrelevance_39-2-27", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.935889959335327}
+{"id": "live_irrelevance_36-2-24", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.7091357707977295}
+{"id": "live_irrelevance_40-2-28", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.479358911514282}
+{"id": "live_irrelevance_41-2-29", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.470124006271362}
+{"id": "live_irrelevance_42-2-30", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.79020881652832}
+{"id": "live_irrelevance_44-2-32", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.373617887496948}
+{"id": "live_irrelevance_43-2-31", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.339717864990234}
+{"id": "live_irrelevance_46-2-34", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.801128149032593}
+{"id": "live_irrelevance_45-2-33", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.713692903518677}
+{"id": "live_irrelevance_48-2-36", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.537263870239258}
+{"id": "live_irrelevance_47-2-35", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.603342056274414}
+{"id": "live_irrelevance_49-2-37", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.781282901763916}
+{"id": "live_irrelevance_50-2-38", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.674093246459961}
+{"id": "live_irrelevance_54-2-42", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.766798257827759}
+{"id": "live_irrelevance_53-2-41", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.239191770553589}
+{"id": "live_irrelevance_51-2-39", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.823991060256958}
+{"id": "live_irrelevance_52-2-40", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.128069877624512}
+{"id": "live_irrelevance_55-2-43", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.317476034164429}
+{"id": "live_irrelevance_57-2-45", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.132426023483276}
+{"id": "live_irrelevance_58-2-46", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.221774101257324}
+{"id": "live_irrelevance_56-2-44", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.279540061950684}
+{"id": "live_irrelevance_59-2-47", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.392200946807861}
+{"id": "live_irrelevance_61-2-49", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.939907073974609}
+{"id": "live_irrelevance_60-2-48", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.814076900482178}
+{"id": "live_irrelevance_62-2-50", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.452630996704102}
+{"id": "live_irrelevance_64-2-52", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.966987133026123}
+{"id": "live_irrelevance_63-2-51", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.9143970012664795}
+{"id": "live_irrelevance_65-2-53", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.503971099853516}
+{"id": "live_irrelevance_66-2-54", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.953567028045654}
+{"id": "live_irrelevance_69-2-57", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.479818820953369}
+{"id": "live_irrelevance_68-2-56", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.661922931671143}
+{"id": "live_irrelevance_67-2-55", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.773921012878418}
+{"id": "live_irrelevance_70-2-58", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.6992247104644775}
+{"id": "live_irrelevance_71-2-59", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.126682758331299}
+{"id": "live_irrelevance_72-2-60", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.0355610847473145}
+{"id": "live_irrelevance_74-2-62", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.4114789962768555}
+{"id": "live_irrelevance_73-2-61", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.927645206451416}
+{"id": "live_irrelevance_75-2-63", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.293236970901489}
+{"id": "live_irrelevance_76-2-64", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.820603132247925}
+{"id": "live_irrelevance_77-2-65", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.328869104385376}
+{"id": "live_irrelevance_79-2-67", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.051194190979004}
+{"id": "live_irrelevance_78-2-66", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.083518028259277}
+{"id": "live_irrelevance_81-2-69", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.16643214225769}
+{"id": "live_irrelevance_80-2-68", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.7173848152160645}
+{"id": "live_irrelevance_82-2-70", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.75319504737854}
+{"id": "live_irrelevance_84-2-72", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.252976179122925}
+{"id": "live_irrelevance_83-2-71", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.314684152603149}
+{"id": "live_irrelevance_85-2-73", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.892395973205566}
+{"id": "live_irrelevance_86-2-74", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.6684911251068115}
+{"id": "live_irrelevance_88-2-76", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.143333196640015}
+{"id": "live_irrelevance_87-2-75", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.25049614906311}
+{"id": "live_irrelevance_89-2-77", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.054796934127808}
+{"id": "live_irrelevance_90-2-78", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.700292110443115}
+{"id": "live_irrelevance_92-2-80", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.499096155166626}
+{"id": "live_irrelevance_93-2-81", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.496025085449219}
+{"id": "live_irrelevance_94-2-82", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.982352018356323}
+{"id": "live_irrelevance_95-2-83", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.8728251457214355}
+{"id": "live_irrelevance_96-2-84", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.065284967422485}
+{"id": "live_irrelevance_97-2-85", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.313677072525024}
+{"id": "live_irrelevance_98-2-86", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.4393157958984375}
+{"id": "live_irrelevance_99-2-87", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.475481033325195}
+{"id": "live_irrelevance_100-2-88", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.304327964782715}
+{"id": "live_irrelevance_102-2-90", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.625646114349365}
+{"id": "live_irrelevance_101-2-89", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.56329083442688}
+{"id": "live_irrelevance_104-4-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.301206827163696}
+{"id": "live_irrelevance_105-4-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.464997053146362}
+{"id": "live_irrelevance_106-5-0", "result": [{"ChaDri.change_drink": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.688053131103516}
+{"id": "live_irrelevance_107-5-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.015913248062134}
+{"id": "live_irrelevance_108-5-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.0508811473846436}
+{"id": "live_irrelevance_109-6-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.339382886886597}
+{"id": "live_irrelevance_111-7-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.501152992248535}
+{"id": "live_irrelevance_110-7-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.865614891052246}
+{"id": "live_irrelevance_112-7-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.542939186096191}
+{"id": "live_irrelevance_103-3-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 17.064079999923706}
+{"id": "live_irrelevance_113-7-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.84854793548584}
+{"id": "live_irrelevance_114-7-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.943957090377808}
+{"id": "live_irrelevance_91-2-79", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 38.56800103187561}
+{"id": "live_irrelevance_116-7-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.632261037826538}
+{"id": "live_irrelevance_115-7-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.659149885177612}
+{"id": "live_irrelevance_120-9-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 2.453619956970215}
+{"id": "live_irrelevance_118-7-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.374831199645996}
+{"id": "live_irrelevance_117-7-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.689661979675293}
+{"id": "live_irrelevance_122-9-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 2.468714952468872}
+{"id": "live_irrelevance_121-9-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.464157342910767}
+{"id": "live_irrelevance_123-9-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 2.4153800010681152}
+{"id": "live_irrelevance_119-8-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.070706129074097}
+{"id": "live_irrelevance_124-10-0", "result": [{"answer.string": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.022042274475098}
+{"id": "live_irrelevance_125-11-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.452199935913086}
+{"id": "live_irrelevance_126-11-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.698737144470215}
+{"id": "live_irrelevance_127-11-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.458839893341064}
+{"id": "live_irrelevance_128-11-3", "result": [{"create_workspace": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.538950204849243}
+{"id": "live_irrelevance_129-11-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.748578071594238}
+{"id": "live_irrelevance_130-11-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.51907730102539}
+{"id": "live_irrelevance_131-11-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.56706690788269}
+{"id": "live_irrelevance_133-12-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.498621940612793}
+{"id": "live_irrelevance_132-11-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.5090491771698}
+{"id": "live_irrelevance_134-13-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.11402177810669}
+{"id": "live_irrelevance_135-13-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.670769929885864}
+{"id": "live_irrelevance_136-13-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.948332071304321}
+{"id": "live_irrelevance_137-13-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.545847177505493}
+{"id": "live_irrelevance_138-13-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.797645092010498}
+{"id": "live_irrelevance_139-13-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.69144606590271}
+{"id": "live_irrelevance_141-13-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.276601076126099}
+{"id": "live_irrelevance_140-13-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.928161144256592}
+{"id": "live_irrelevance_142-13-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.633427858352661}
+{"id": "live_irrelevance_146-14-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.792309045791626}
+{"id": "live_irrelevance_143-13-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.37747597694397}
+{"id": "live_irrelevance_147-15-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.622071981430054}
+{"id": "live_irrelevance_148-15-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.8853440284729}
+{"id": "live_irrelevance_145-13-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.754575729370117}
+{"id": "live_irrelevance_144-13-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.17021894454956}
+{"id": "live_irrelevance_149-15-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.055109977722168}
+{"id": "live_irrelevance_150-15-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.264904022216797}
+{"id": "live_irrelevance_151-16-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.162383794784546}
+{"id": "live_irrelevance_152-16-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.280461072921753}
+{"id": "live_irrelevance_153-17-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.36649489402771}
+{"id": "live_irrelevance_155-17-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.535161733627319}
+{"id": "live_irrelevance_156-18-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.500698089599609}
+{"id": "live_irrelevance_154-17-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.781000137329102}
+{"id": "live_irrelevance_159-19-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.399876832962036}
+{"id": "live_irrelevance_160-19-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.136421203613281}
+{"id": "live_irrelevance_158-19-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.560125112533569}
+{"id": "live_irrelevance_161-20-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.3283960819244385}
+{"id": "live_irrelevance_162-20-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.018448114395142}
+{"id": "live_irrelevance_163-20-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.2839789390563965}
+{"id": "live_irrelevance_165-21-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.849224805831909}
+{"id": "live_irrelevance_157-18-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 17.87016010284424}
+{"id": "live_irrelevance_164-21-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.39181900024414}
+{"id": "live_irrelevance_167-22-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.997112035751343}
+{"id": "live_irrelevance_166-21-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.868673086166382}
+{"id": "live_irrelevance_168-23-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.22312593460083}
+{"id": "live_irrelevance_169-23-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.9560511112213135}
+{"id": "live_irrelevance_170-24-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.739547967910767}
+{"id": "live_irrelevance_171-25-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.339252948760986}
+{"id": "live_irrelevance_172-26-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.860951662063599}
+{"id": "live_irrelevance_174-27-1", "result": [{"order_status_check": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.3991920948028564}
+{"id": "live_irrelevance_173-27-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.640320062637329}
+{"id": "live_irrelevance_177-29-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.727391004562378}
+{"id": "live_irrelevance_175-27-2", "result": [{"inventory_management": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.133038997650146}
+{"id": "live_irrelevance_176-28-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.487492084503174}
+{"id": "live_irrelevance_178-29-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.46737003326416}
+{"id": "live_irrelevance_179-30-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.488205671310425}
+{"id": "live_irrelevance_180-30-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.388198137283325}
+{"id": "live_irrelevance_181-31-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.805609226226807}
+{"id": "live_irrelevance_183-31-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.174302101135254}
+{"id": "live_irrelevance_182-31-1", "result": [{"inventory_management": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.306275129318237}
+{"id": "live_irrelevance_184-31-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.74308705329895}
+{"id": "live_irrelevance_188-32-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.1909990310668945}
+{"id": "live_irrelevance_187-32-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.672985076904297}
+{"id": "live_irrelevance_186-31-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.22850513458252}
+{"id": "live_irrelevance_185-31-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.56414794921875}
+{"id": "live_irrelevance_189-32-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.497366189956665}
+{"id": "live_irrelevance_190-32-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.454631805419922}
+{"id": "live_irrelevance_191-32-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.498482942581177}
+{"id": "live_irrelevance_193-32-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.144179821014404}
+{"id": "live_irrelevance_192-32-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.190010070800781}
+{"id": "live_irrelevance_194-32-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.997234106063843}
+{"id": "live_irrelevance_195-32-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.108396053314209}
+{"id": "live_irrelevance_196-32-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.893783092498779}
+{"id": "live_irrelevance_197-32-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.131788969039917}
+{"id": "live_irrelevance_198-32-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.9977757930755615}
+{"id": "live_irrelevance_199-32-12", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.038639068603516}
+{"id": "live_irrelevance_201-32-14", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.589459180831909}
+{"id": "live_irrelevance_200-32-13", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.929154872894287}
+{"id": "live_irrelevance_202-32-15", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.296411037445068}
+{"id": "live_irrelevance_203-32-16", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.241487741470337}
+{"id": "live_irrelevance_204-32-17", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.481669902801514}
+{"id": "live_irrelevance_205-32-18", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.5195701122283936}
+{"id": "live_irrelevance_206-32-19", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.692644119262695}
+{"id": "live_irrelevance_208-32-21", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.674853086471558}
+{"id": "live_irrelevance_207-32-20", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.236553192138672}
+{"id": "live_irrelevance_209-32-22", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.379112958908081}
+{"id": "live_irrelevance_210-33-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.279810905456543}
+{"id": "live_irrelevance_211-34-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.097766160964966}
+{"id": "live_irrelevance_213-34-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.614908218383789}
+{"id": "live_irrelevance_212-34-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.019233226776123}
+{"id": "live_irrelevance_214-34-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.736292123794556}
+{"id": "live_irrelevance_215-34-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.506814002990723}
+{"id": "live_irrelevance_216-34-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.5551581382751465}
+{"id": "live_irrelevance_218-34-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.778403043746948}
+{"id": "live_irrelevance_217-34-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.968546152114868}
+{"id": "live_irrelevance_219-34-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.7455620765686035}
+{"id": "live_irrelevance_221-34-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.557637929916382}
+{"id": "live_irrelevance_220-34-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.789602756500244}
+{"id": "live_irrelevance_222-34-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.686525821685791}
+{"id": "live_irrelevance_223-34-12", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.27882981300354}
+{"id": "live_irrelevance_224-34-13", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.4807448387146}
+{"id": "live_irrelevance_226-35-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.5639009475708}
+{"id": "live_irrelevance_225-35-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.747628688812256}
+{"id": "live_irrelevance_227-35-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.540508985519409}
+{"id": "live_irrelevance_229-36-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.235985994338989}
+{"id": "live_irrelevance_228-35-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.799917936325073}
+{"id": "live_irrelevance_230-36-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.783555030822754}
+{"id": "live_irrelevance_231-37-0", "result": [{"add_postgres_server": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.015990734100342}
+{"id": "live_irrelevance_232-38-0", "result": [{"add_postgres_server": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.064326047897339}
+{"id": "live_irrelevance_233-38-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.540314674377441}
+{"id": "live_irrelevance_234-39-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.581283807754517}
+{"id": "live_irrelevance_237-42-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.428137302398682}
+{"id": "live_irrelevance_236-41-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.627544164657593}
+{"id": "live_irrelevance_235-40-0", "result": [{"dartfx_help": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.61943507194519}
+{"id": "live_irrelevance_238-43-0", "result": [{"dartfx_help": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.632393836975098}
+{"id": "live_irrelevance_239-43-1", "result": [{"add_postgres_server": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.853083848953247}
+{"id": "live_irrelevance_240-44-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.578033208847046}
+{"id": "live_irrelevance_241-45-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.789376020431519}
+{"id": "live_irrelevance_242-45-1", "result": [{"dartfx_help": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.382800102233887}
+{"id": "live_irrelevance_243-46-0", "result": [{"add_mtnards_server": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.26515817642212}
+{"id": "live_irrelevance_245-48-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.905401945114136}
+{"id": "live_irrelevance_244-47-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.945672988891602}
+{"id": "live_irrelevance_246-48-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.025984048843384}
+{"id": "live_irrelevance_247-48-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.7194130420684814}
+{"id": "live_irrelevance_248-49-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.836023092269897}
+{"id": "live_irrelevance_249-50-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.9527587890625}
+{"id": "live_irrelevance_250-51-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.124251127243042}
+{"id": "live_irrelevance_251-52-0", "result": [{"default_function": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.431097984313965}
+{"id": "live_irrelevance_252-53-0", "result": [{"list_servers": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.684510946273804}
+{"id": "live_irrelevance_255-54-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.366399049758911}
+{"id": "live_irrelevance_253-53-1", "result": [{"list_files": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.374836921691895}
+{"id": "live_irrelevance_254-53-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.188262939453125}
+{"id": "live_irrelevance_258-56-1", "result": [{"acl_api.add_mapping": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.6451311111450195}
+{"id": "live_irrelevance_259-56-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.994779825210571}
+{"id": "live_irrelevance_256-55-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.797716856002808}
+{"id": "live_irrelevance_260-56-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.560951232910156}
+{"id": "live_irrelevance_257-56-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 15.176553964614868}
+{"id": "live_irrelevance_261-56-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.22188401222229}
+{"id": "live_irrelevance_263-56-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.965446949005127}
+{"id": "live_irrelevance_262-56-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.407864093780518}
+{"id": "live_irrelevance_264-56-7", "result": [{"version_api.VersionApi.get_version": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.921995162963867}
+{"id": "live_irrelevance_265-57-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.353991031646729}
+{"id": "live_irrelevance_266-57-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.852541923522949}
+{"id": "live_irrelevance_267-57-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.552963733673096}
+{"id": "live_irrelevance_268-57-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.591039896011353}
+{"id": "live_irrelevance_269-57-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.337759017944336}
+{"id": "live_irrelevance_270-57-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.522089958190918}
+{"id": "live_irrelevance_271-57-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.139269828796387}
+{"id": "live_irrelevance_272-57-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.5972740650177}
+{"id": "live_irrelevance_273-58-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.872243165969849}
+{"id": "live_irrelevance_275-60-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.230823040008545}
+{"id": "live_irrelevance_276-60-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.149364948272705}
+{"id": "live_irrelevance_274-59-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.098965644836426}
+{"id": "live_irrelevance_277-60-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.152355909347534}
+{"id": "live_irrelevance_279-61-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.93333888053894}
+{"id": "live_irrelevance_278-60-3", "result": [{"detect_beats_and_filter": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.004541873931885}
+{"id": "live_irrelevance_280-62-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.183001756668091}
+{"id": "live_irrelevance_281-63-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.33734917640686}
+{"id": "live_irrelevance_284-66-0", "result": [{"sitefinity_create_contentitem": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.395110130310059}
+{"id": "live_irrelevance_283-65-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.027717113494873}
+{"id": "live_irrelevance_285-67-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.307526111602783}
+{"id": "live_irrelevance_282-64-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.029834985733032}
+{"id": "live_irrelevance_287-69-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.085929155349731}
+{"id": "live_irrelevance_288-70-0", "result": [{"get_adriel_profile": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.97832989692688}
+{"id": "live_irrelevance_289-71-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.756917953491211}
+{"id": "live_irrelevance_286-68-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 15.170318126678467}
+{"id": "live_irrelevance_291-72-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.04993200302124}
+{"id": "live_irrelevance_290-71-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.73658299446106}
+{"id": "live_irrelevance_292-72-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.358262062072754}
+{"id": "live_irrelevance_293-73-0", "result": [{"get_adriel_list_projects": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.9358971118927}
+{"id": "live_irrelevance_294-73-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.678741931915283}
+{"id": "live_irrelevance_295-73-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.537990093231201}
+{"id": "live_irrelevance_296-73-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.454470872879028}
+{"id": "live_irrelevance_297-73-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.343946933746338}
+{"id": "live_irrelevance_300-74-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.5921220779418945}
+{"id": "live_irrelevance_301-75-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.410336971282959}
+{"id": "live_irrelevance_298-73-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.860931158065796}
+{"id": "live_irrelevance_299-73-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.186999082565308}
+{"id": "live_irrelevance_302-76-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.035984992980957}
+{"id": "live_irrelevance_303-76-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.213016986846924}
+{"id": "live_irrelevance_304-76-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.554412841796875}
+{"id": "live_irrelevance_305-76-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.998833179473877}
+{"id": "live_irrelevance_306-76-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.513852834701538}
+{"id": "live_irrelevance_307-76-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.488080978393555}
+{"id": "live_irrelevance_308-76-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.4192869663238525}
+{"id": "live_irrelevance_312-76-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.588636159896851}
+{"id": "live_irrelevance_309-76-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.52478575706482}
+{"id": "live_irrelevance_311-76-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.0347580909729}
+{"id": "live_irrelevance_313-76-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.1911280155181885}
+{"id": "live_irrelevance_310-76-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.940049171447754}
+{"id": "live_irrelevance_314-76-12", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.330886125564575}
+{"id": "live_irrelevance_315-76-13", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.332892894744873}
+{"id": "live_irrelevance_316-76-14", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.7519690990448}
+{"id": "live_irrelevance_317-76-15", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.749933958053589}
+{"id": "live_irrelevance_318-76-16", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.20321798324585}
+{"id": "live_irrelevance_319-76-17", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.877624034881592}
+{"id": "live_irrelevance_320-76-18", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.732421875}
+{"id": "live_irrelevance_321-76-19", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.596208810806274}
+{"id": "live_irrelevance_322-76-20", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.061227083206177}
+{"id": "live_irrelevance_323-76-21", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.587590932846069}
+{"id": "live_irrelevance_324-76-22", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.791326999664307}
+{"id": "live_irrelevance_325-76-23", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.010075092315674}
+{"id": "live_irrelevance_327-76-25", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.529638767242432}
+{"id": "live_irrelevance_326-76-24", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.693079948425293}
+{"id": "live_irrelevance_328-76-26", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.920907974243164}
+{"id": "live_irrelevance_332-77-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.90971302986145}
+{"id": "live_irrelevance_330-76-28", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.784445285797119}
+{"id": "live_irrelevance_329-76-27", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.664344072341919}
+{"id": "live_irrelevance_331-76-29", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.73538613319397}
+{"id": "live_irrelevance_333-78-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.740386009216309}
+{"id": "live_irrelevance_334-78-1", "result": [{"get_trip": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.372893810272217}
+{"id": "live_irrelevance_335-79-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.306650876998901}
+{"id": "live_irrelevance_336-79-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.349862098693848}
+{"id": "live_irrelevance_337-80-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.217994928359985}
+{"id": "live_irrelevance_338-80-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.550425052642822}
+{"id": "live_irrelevance_341-81-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.9186460971832275}
+{"id": "live_irrelevance_340-81-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.063369035720825}
+{"id": "live_irrelevance_343-81-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.765491247177124}
+{"id": "live_irrelevance_339-81-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.196805953979492}
+{"id": "live_irrelevance_342-81-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.6614248752594}
+{"id": "live_irrelevance_344-81-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.61546516418457}
+{"id": "live_irrelevance_345-81-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.3367931842803955}
+{"id": "live_irrelevance_346-81-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.870265007019043}
+{"id": "live_irrelevance_347-81-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.437827825546265}
+{"id": "live_irrelevance_348-81-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.580776929855347}
+{"id": "live_irrelevance_349-81-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.412155151367188}
+{"id": "live_irrelevance_350-81-11", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.246190071105957}
+{"id": "live_irrelevance_352-81-13", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.998258829116821}
+{"id": "live_irrelevance_351-81-12", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.517822027206421}
+{"id": "live_irrelevance_353-81-14", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.398854970932007}
+{"id": "live_irrelevance_354-81-15", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.024186849594116}
+{"id": "live_irrelevance_355-81-16", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.7326860427856445}
+{"id": "live_irrelevance_357-81-18", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.639588832855225}
+{"id": "live_irrelevance_356-81-17", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.904991149902344}
+{"id": "live_irrelevance_358-81-19", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.54571533203125}
+{"id": "live_irrelevance_359-81-20", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.00701379776001}
+{"id": "live_irrelevance_360-81-21", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.197324991226196}
+{"id": "live_irrelevance_362-81-23", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.83632493019104}
+{"id": "live_irrelevance_361-81-22", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.172941207885742}
+{"id": "live_irrelevance_363-81-24", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.542776823043823}
+{"id": "live_irrelevance_365-81-26", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.47025990486145}
+{"id": "live_irrelevance_364-81-25", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.879225015640259}
+{"id": "live_irrelevance_366-81-27", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.302242755889893}
+{"id": "live_irrelevance_367-81-28", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.300919055938721}
+{"id": "live_irrelevance_369-81-30", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.42797589302063}
+{"id": "live_irrelevance_370-81-31", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.262799263000488}
+{"id": "live_irrelevance_371-81-32", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.439891815185547}
+{"id": "live_irrelevance_368-81-29", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.943005084991455}
+{"id": "live_irrelevance_372-81-33", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.078238010406494}
+{"id": "live_irrelevance_373-81-34", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.753854036331177}
+{"id": "live_irrelevance_374-81-35", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.017445802688599}
+{"id": "live_irrelevance_375-81-36", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.550693035125732}
+{"id": "live_irrelevance_377-81-38", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.891651153564453}
+{"id": "live_irrelevance_378-81-39", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.191352128982544}
+{"id": "live_irrelevance_376-81-37", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.139121294021606}
+{"id": "live_irrelevance_379-81-40", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.062751054763794}
+{"id": "live_irrelevance_380-81-41", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.578330993652344}
+{"id": "live_irrelevance_381-81-42", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.214341163635254}
+{"id": "live_irrelevance_382-81-43", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.58119010925293}
+{"id": "live_irrelevance_383-81-44", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.435261964797974}
+{"id": "live_irrelevance_384-81-45", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.694638013839722}
+{"id": "live_irrelevance_385-81-46", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.507882118225098}
+{"id": "live_irrelevance_386-81-47", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.111405849456787}
+{"id": "live_irrelevance_387-81-48", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.592912912368774}
+{"id": "live_irrelevance_388-81-49", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.728876113891602}
+{"id": "live_irrelevance_389-81-50", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.295868873596191}
+{"id": "live_irrelevance_390-81-51", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.806414842605591}
+{"id": "live_irrelevance_391-81-52", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.501391172409058}
+{"id": "live_irrelevance_392-81-53", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.240394115447998}
+{"id": "live_irrelevance_393-81-54", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.508865118026733}
+{"id": "live_irrelevance_394-81-55", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.481929063796997}
+{"id": "live_irrelevance_396-81-57", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.398715972900391}
+{"id": "live_irrelevance_395-81-56", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.850851058959961}
+{"id": "live_irrelevance_399-82-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.180422067642212}
+{"id": "live_irrelevance_397-81-58", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.972942113876343}
+{"id": "live_irrelevance_398-81-59", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.093971014022827}
+{"id": "live_irrelevance_400-83-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.613631963729858}
+{"id": "live_irrelevance_401-83-1", "result": [{"calculate_sum": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.786566257476807}
+{"id": "live_irrelevance_404-86-0", "result": [{"play_artist": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.598353862762451}
+{"id": "live_irrelevance_402-84-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.070399045944214}
+{"id": "live_irrelevance_405-87-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.7233567237854}
+{"id": "live_irrelevance_406-88-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.82029914855957}
+{"id": "live_irrelevance_403-85-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.950280904769897}
+{"id": "live_irrelevance_407-89-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.930723667144775}
+{"id": "live_irrelevance_408-90-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.785048961639404}
+{"id": "live_irrelevance_410-91-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.821846008300781}
+{"id": "live_irrelevance_409-91-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.139092922210693}
+{"id": "live_irrelevance_412-92-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.5450310707092285}
+{"id": "live_irrelevance_415-94-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.585875988006592}
+{"id": "live_irrelevance_413-93-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.488380193710327}
+{"id": "live_irrelevance_411-92-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.950031042098999}
+{"id": "live_irrelevance_414-93-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.539618015289307}
+{"id": "live_irrelevance_416-95-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.822216987609863}
+{"id": "live_irrelevance_419-97-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.420815944671631}
+{"id": "live_irrelevance_420-98-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.518130302429199}
+{"id": "live_irrelevance_422-100-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.845767974853516}
+{"id": "live_irrelevance_421-99-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.697722911834717}
+{"id": "live_irrelevance_423-101-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.748063087463379}
+{"id": "live_irrelevance_424-101-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.177990913391113}
+{"id": "live_irrelevance_417-96-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 20.503002166748047}
+{"id": "live_irrelevance_418-96-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 20.16398310661316}
+{"id": "live_irrelevance_425-101-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.656705141067505}
+{"id": "live_irrelevance_426-102-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.21861720085144}
+{"id": "live_irrelevance_427-102-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.024362087249756}
+{"id": "live_irrelevance_429-104-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.021978855133057}
+{"id": "live_irrelevance_430-105-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.985104084014893}
+{"id": "live_irrelevance_428-103-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.625958919525146}
+{"id": "live_irrelevance_431-106-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.904587030410767}
+{"id": "live_irrelevance_432-107-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.582727909088135}
+{"id": "live_irrelevance_434-108-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.652768135070801}
+{"id": "live_irrelevance_436-109-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.448430776596069}
+{"id": "live_irrelevance_438-110-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.24480676651001}
+{"id": "live_irrelevance_439-110-1", "result": [{"joku": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.129917860031128}
+{"id": "live_irrelevance_441-112-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.131419897079468}
+{"id": "live_irrelevance_440-111-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.344275951385498}
+{"id": "live_irrelevance_443-113-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.402483940124512}
+{"id": "live_irrelevance_442-113-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.044522047042847}
+{"id": "live_irrelevance_444-114-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.184207916259766}
+{"id": "live_irrelevance_445-115-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.175113916397095}
+{"id": "live_irrelevance_447-116-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 3.58624005317688}
+{"id": "live_irrelevance_446-116-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.073714256286621}
+{"id": "live_irrelevance_448-117-0", "result": [{"landscape_summary.generate": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.188471078872681}
+{"id": "live_irrelevance_449-118-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.094119071960449}
+{"id": "live_irrelevance_450-118-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 3.964946985244751}
+{"id": "live_irrelevance_451-119-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.0412726402282715}
+{"id": "live_irrelevance_452-120-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.037287950515747}
+{"id": "live_irrelevance_453-121-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.036473751068115}
+{"id": "live_irrelevance_455-122-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.941687107086182}
+{"id": "live_irrelevance_454-121-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.29247522354126}
+{"id": "live_irrelevance_456-123-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.680200815200806}
+{"id": "live_irrelevance_457-124-0", "result": [{"get_weather_forecast": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.695240259170532}
+{"id": "live_irrelevance_458-124-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.330307245254517}
+{"id": "live_irrelevance_433-107-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 64.11500430107117}
+{"id": "live_irrelevance_435-108-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 64.23590993881226}
+{"id": "live_irrelevance_461-126-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.914308071136475}
+{"id": "live_irrelevance_459-125-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.57031512260437}
+{"id": "live_irrelevance_460-125-1", "result": [{"requests.get": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.1969921588897705}
+{"id": "live_irrelevance_437-109-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 64.23949790000916}
+{"id": "live_irrelevance_462-127-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.994829893112183}
+{"id": "live_irrelevance_463-128-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.404283285140991}
+{"id": "live_irrelevance_464-128-1", "result": [{"get_country_output": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.867228031158447}
+{"id": "live_irrelevance_465-129-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.586324214935303}
+{"id": "live_irrelevance_468-130-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.236788988113403}
+{"id": "live_irrelevance_466-129-1", "result": [{"process_data": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.075501203536987}
+{"id": "live_irrelevance_469-130-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.605937957763672}
+{"id": "live_irrelevance_467-129-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.079930782318115}
+{"id": "live_irrelevance_470-131-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.308686017990112}
+{"id": "live_irrelevance_471-131-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.405732154846191}
+{"id": "live_irrelevance_473-132-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.922045946121216}
+{"id": "live_irrelevance_472-132-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.20205307006836}
+{"id": "live_irrelevance_474-133-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.425235986709595}
+{"id": "live_irrelevance_476-134-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.7173497676849365}
+{"id": "live_irrelevance_475-133-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.356223106384277}
+{"id": "live_irrelevance_477-134-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.837178945541382}
+{"id": "live_irrelevance_480-136-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.611982107162476}
+{"id": "live_irrelevance_478-135-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.176668167114258}
+{"id": "live_irrelevance_479-135-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.117666721343994}
+{"id": "live_irrelevance_481-136-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.692519187927246}
+{"id": "live_irrelevance_482-137-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.750060796737671}
+{"id": "live_irrelevance_483-138-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.129354000091553}
+{"id": "live_irrelevance_485-139-0", "result": [{"thermodynamics.calculate_boiling_point": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.756246089935303}
+{"id": "live_irrelevance_484-138-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.843288898468018}
+{"id": "live_irrelevance_486-140-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.83941388130188}
+{"id": "live_irrelevance_487-141-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.4908447265625}
+{"id": "live_irrelevance_488-141-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.036808729171753}
+{"id": "live_irrelevance_489-142-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.702799081802368}
+{"id": "live_irrelevance_490-142-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.64195203781128}
+{"id": "live_irrelevance_491-142-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.492114782333374}
+{"id": "live_irrelevance_492-142-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.380833864212036}
+{"id": "live_irrelevance_493-142-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.326558113098145}
+{"id": "live_irrelevance_494-142-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.66947317123413}
+{"id": "live_irrelevance_497-143-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.282148122787476}
+{"id": "live_irrelevance_495-142-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.948861837387085}
+{"id": "live_irrelevance_496-142-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.663375854492188}
+{"id": "live_irrelevance_498-144-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.723443031311035}
+{"id": "live_irrelevance_500-146-0", "result": [{"telemetry.flowrules.interfaceInfo.get": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.742779970169067}
+{"id": "live_irrelevance_502-147-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.75014591217041}
+{"id": "live_irrelevance_501-146-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.386466979980469}
+{"id": "live_irrelevance_499-145-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.688259124755859}
+{"id": "live_irrelevance_503-148-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.958060026168823}
+{"id": "live_irrelevance_504-148-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.493479251861572}
+{"id": "live_irrelevance_505-148-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.276957035064697}
+{"id": "live_irrelevance_506-148-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.547692060470581}
+{"id": "live_irrelevance_507-149-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.801707983016968}
+{"id": "live_irrelevance_508-149-1", "result": [{"requests.get": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.425882816314697}
+{"id": "live_irrelevance_509-150-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.816897869110107}
+{"id": "live_irrelevance_510-150-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.740735769271851}
+{"id": "live_irrelevance_511-151-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.417185068130493}
+{"id": "live_irrelevance_513-152-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.170212745666504}
+{"id": "live_irrelevance_512-151-1", "result": [{"requests.get": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.407760858535767}
+{"id": "live_irrelevance_514-153-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.0162599086761475}
+{"id": "live_irrelevance_515-154-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.558573007583618}
+{"id": "live_irrelevance_516-154-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.67138409614563}
+{"id": "live_irrelevance_521-158-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.9307849407196045}
+{"id": "live_irrelevance_520-157-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.469042062759399}
+{"id": "live_irrelevance_519-157-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.978446960449219}
+{"id": "live_irrelevance_522-159-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.420825719833374}
+{"id": "live_irrelevance_517-155-0", "result": [{"send.message": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 13.559000968933105}
+{"id": "live_irrelevance_524-161-0", "result": [{"greet_user": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 3.9900190830230713}
+{"id": "live_irrelevance_523-160-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.551692008972168}
+{"id": "live_irrelevance_518-156-0", "result": [{"list_directory_contents": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.576668977737427}
+{"id": "live_irrelevance_525-162-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.44211483001709}
+{"id": "live_irrelevance_526-162-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.604466199874878}
+{"id": "live_irrelevance_527-162-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.488931179046631}
+{"id": "live_irrelevance_528-162-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.8096840381622314}
+{"id": "live_irrelevance_529-163-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.323890924453735}
+{"id": "live_irrelevance_531-164-1", "result": [{"get_spouse_name": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.976714849472046}
+{"id": "live_irrelevance_530-164-0", "result": [{"get_spouse_name": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.521235942840576}
+{"id": "live_irrelevance_532-164-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.245907783508301}
+{"id": "live_irrelevance_533-165-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.604847192764282}
+{"id": "live_irrelevance_534-166-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.933861970901489}
+{"id": "live_irrelevance_537-168-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.7553629875183105}
+{"id": "live_irrelevance_538-168-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.421745777130127}
+{"id": "live_irrelevance_536-167-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.623217821121216}
+{"id": "live_irrelevance_535-167-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.902404308319092}
+{"id": "live_irrelevance_539-168-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.7681169509887695}
+{"id": "live_irrelevance_541-168-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.797025918960571}
+{"id": "live_irrelevance_540-168-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.471153259277344}
+{"id": "live_irrelevance_543-168-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.8322837352752686}
+{"id": "live_irrelevance_542-168-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.022001028060913}
+{"id": "live_irrelevance_544-168-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.085122108459473}
+{"id": "live_irrelevance_545-168-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.459004163742065}
+{"id": "live_irrelevance_546-168-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.656222105026245}
+{"id": "live_irrelevance_547-169-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.358934879302979}
+{"id": "live_irrelevance_548-169-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.67246413230896}
+{"id": "live_irrelevance_549-169-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.86838412284851}
+{"id": "live_irrelevance_550-169-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.865487813949585}
+{"id": "live_irrelevance_551-169-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.589942216873169}
+{"id": "live_irrelevance_552-169-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.301055908203125}
+{"id": "live_irrelevance_553-169-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.294931888580322}
+{"id": "live_irrelevance_554-169-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.270236253738403}
+{"id": "live_irrelevance_557-170-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.534029960632324}
+{"id": "live_irrelevance_555-169-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.760316133499146}
+{"id": "live_irrelevance_556-169-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.02510690689087}
+{"id": "live_irrelevance_558-171-0", "result": [{"version_api.VersionApi.get_version": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.381432056427002}
+{"id": "live_irrelevance_559-172-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.312412261962891}
+{"id": "live_irrelevance_560-172-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.756979942321777}
+{"id": "live_irrelevance_562-172-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.605265855789185}
+{"id": "live_irrelevance_561-172-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.016187906265259}
+{"id": "live_irrelevance_563-172-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.62185001373291}
+{"id": "live_irrelevance_564-172-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.496323108673096}
+{"id": "live_irrelevance_567-175-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.725593090057373}
+{"id": "live_irrelevance_568-176-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.764387845993042}
+{"id": "live_irrelevance_569-177-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.185392141342163}
+{"id": "live_irrelevance_566-174-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.163958072662354}
+{"id": "live_irrelevance_565-173-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.359276056289673}
+{"id": "live_irrelevance_570-178-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.260857105255127}
+{"id": "live_irrelevance_571-179-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.625342845916748}
+{"id": "live_irrelevance_572-179-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.32820200920105}
+{"id": "live_irrelevance_573-179-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.0917017459869385}
+{"id": "live_irrelevance_574-179-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.871639728546143}
+{"id": "live_irrelevance_575-179-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.472028970718384}
+{"id": "live_irrelevance_576-179-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.944291114807129}
+{"id": "live_irrelevance_578-181-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.942338943481445}
+{"id": "live_irrelevance_579-181-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.295770645141602}
+{"id": "live_irrelevance_577-180-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.607665061950684}
+{"id": "live_irrelevance_580-182-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.723482131958008}
+{"id": "live_irrelevance_582-182-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.973730802536011}
+{"id": "live_irrelevance_581-182-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.727365732192993}
+{"id": "live_irrelevance_583-182-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.355508089065552}
+{"id": "live_irrelevance_584-182-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.544515132904053}
+{"id": "live_irrelevance_585-182-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.573288917541504}
+{"id": "live_irrelevance_586-182-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.268702983856201}
+{"id": "live_irrelevance_589-184-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.511352062225342}
+{"id": "live_irrelevance_587-183-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.406349182128906}
+{"id": "live_irrelevance_588-183-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.067772150039673}
+{"id": "live_irrelevance_591-186-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.749351739883423}
+{"id": "live_irrelevance_590-185-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.560559272766113}
+{"id": "live_irrelevance_594-189-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.623046159744263}
+{"id": "live_irrelevance_593-188-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.891870021820068}
+{"id": "live_irrelevance_592-187-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.167464971542358}
+{"id": "live_irrelevance_596-191-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.063987970352173}
+{"id": "live_irrelevance_595-190-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.164966821670532}
+{"id": "live_irrelevance_597-192-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.304371356964111}
+{"id": "live_irrelevance_598-193-0", "result": [{"Movies_1_BuyMovieTickets": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.367041110992432}
+{"id": "live_irrelevance_599-193-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.775296211242676}
+{"id": "live_irrelevance_600-193-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.870483875274658}
+{"id": "live_irrelevance_601-193-3", "result": [{"Movies_1_BuyMovieTickets": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.331658124923706}
+{"id": "live_irrelevance_603-193-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.143090009689331}
+{"id": "live_irrelevance_602-193-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.1855788230896}
+{"id": "live_irrelevance_604-193-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.111900091171265}
+{"id": "live_irrelevance_605-193-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.679955005645752}
+{"id": "live_irrelevance_606-193-8", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.805048942565918}
+{"id": "live_irrelevance_607-194-0", "result": [{"RentalCars_3_ReserveCar": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 12.401677131652832}
+{"id": "live_irrelevance_608-194-1", "result": [{"RentalCars_3_ReserveCar": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 12.42308497428894}
+{"id": "live_irrelevance_609-194-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.44642686843872}
+{"id": "live_irrelevance_610-194-3", "result": [{"RentalCars_3_ReserveCar": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 12.98420000076294}
+{"id": "live_irrelevance_611-194-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.589798927307129}
+{"id": "live_irrelevance_612-195-0", "result": [{"Trains_1_GetTrainTickets": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.183688879013062}
+{"id": "live_irrelevance_613-195-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.236872911453247}
+{"id": "live_irrelevance_614-195-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.760395050048828}
+{"id": "live_irrelevance_615-195-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.427889823913574}
+{"id": "live_irrelevance_616-195-4", "result": [{"Trains_1_FindTrains": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.054111242294312}
+{"id": "live_irrelevance_617-195-5", "result": [{"Trains_1_FindTrains": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.881675004959106}
+{"id": "live_irrelevance_618-195-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.006428003311157}
+{"id": "live_irrelevance_619-196-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.34372591972351}
+{"id": "live_irrelevance_621-196-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.213597059249878}
+{"id": "live_irrelevance_620-196-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.257006168365479}
+{"id": "live_irrelevance_624-197-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.898271083831787}
+{"id": "live_irrelevance_625-197-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.573515176773071}
+{"id": "live_irrelevance_622-196-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.523030996322632}
+{"id": "live_irrelevance_623-196-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.594878911972046}
+{"id": "live_irrelevance_626-198-0", "result": [{"Trains_1_FindTrains": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.30357575416565}
+{"id": "live_irrelevance_628-199-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.589982986450195}
+{"id": "live_irrelevance_629-199-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.035153865814209}
+{"id": "live_irrelevance_627-198-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.72469711303711}
+{"id": "live_irrelevance_630-199-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.022058963775635}
+{"id": "live_irrelevance_631-200-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.807362079620361}
+{"id": "live_irrelevance_632-201-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.294305086135864}
+{"id": "live_irrelevance_633-201-1", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 11.066397905349731}
+{"id": "live_irrelevance_635-201-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.585384845733643}
+{"id": "live_irrelevance_634-201-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.36830997467041}
+{"id": "live_irrelevance_636-202-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.1644182205200195}
+{"id": "live_irrelevance_637-202-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.538710117340088}
+{"id": "live_irrelevance_638-202-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.2217347621917725}
+{"id": "live_irrelevance_639-202-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.2033562660217285}
+{"id": "live_irrelevance_640-203-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.138843774795532}
+{"id": "live_irrelevance_641-203-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.85939621925354}
+{"id": "live_irrelevance_642-203-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.906307935714722}
+{"id": "live_irrelevance_643-203-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.629902124404907}
+{"id": "live_irrelevance_644-204-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.362252235412598}
+{"id": "live_irrelevance_645-204-1", "result": [{"RentalCars_3_GetCarsAvailable": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.215955972671509}
+{"id": "live_irrelevance_646-205-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.531543970108032}
+{"id": "live_irrelevance_647-205-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.929497718811035}
+{"id": "live_irrelevance_648-205-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.544196128845215}
+{"id": "live_irrelevance_650-205-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.367675304412842}
+{"id": "live_irrelevance_649-205-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.799829959869385}
+{"id": "live_irrelevance_651-206-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.853041887283325}
+{"id": "live_irrelevance_652-206-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.055657863616943}
+{"id": "live_irrelevance_655-207-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.4830780029296875}
+{"id": "live_irrelevance_653-206-2", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.458823204040527}
+{"id": "live_irrelevance_654-206-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.822185039520264}
+{"id": "live_irrelevance_657-209-0", "result": [{"Payment_1_MakePayment": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.653159141540527}
+{"id": "live_irrelevance_658-209-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.783121109008789}
+{"id": "live_irrelevance_656-208-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.386723756790161}
+{"id": "live_irrelevance_659-210-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.685546875}
+{"id": "live_irrelevance_660-211-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 16.164999961853027}
+{"id": "live_irrelevance_661-211-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 15.004920721054077}
+{"id": "live_irrelevance_662-211-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.821335077285767}
+{"id": "live_irrelevance_663-211-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.76250696182251}
+{"id": "live_irrelevance_664-211-4", "result": [{"Buses_3_FindBus": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 15.140016794204712}
+{"id": "live_irrelevance_666-212-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.396404027938843}
+{"id": "live_irrelevance_667-212-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.496518135070801}
+{"id": "live_irrelevance_668-213-0", "result": [{"Movies_3_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.910891056060791}
+{"id": "live_irrelevance_669-213-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.892399072647095}
+{"id": "live_irrelevance_670-213-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.762484788894653}
+{"id": "live_irrelevance_671-214-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.137343168258667}
+{"id": "live_irrelevance_665-211-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 17.220343112945557}
+{"id": "live_irrelevance_672-215-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.725008726119995}
+{"id": "live_irrelevance_673-215-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.275149822235107}
+{"id": "live_irrelevance_677-218-0", "result": [{"Buses_3_FindBus": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.54581093788147}
+{"id": "live_irrelevance_674-215-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.528602123260498}
+{"id": "live_irrelevance_675-216-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.807915925979614}
+{"id": "live_irrelevance_676-217-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.222298860549927}
+{"id": "live_irrelevance_678-219-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.053771018981934}
+{"id": "live_irrelevance_679-219-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.006246089935303}
+{"id": "live_irrelevance_680-220-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.085521936416626}
+{"id": "live_irrelevance_681-220-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.490659713745117}
+{"id": "live_irrelevance_682-221-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.262905836105347}
+{"id": "live_irrelevance_684-222-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.537785768508911}
+{"id": "live_irrelevance_683-221-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.898407220840454}
+{"id": "live_irrelevance_685-223-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.020533800125122}
+{"id": "live_irrelevance_686-223-1", "result": [{"Buses_3_BuyBusTicket": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.042981147766113}
+{"id": "live_irrelevance_689-224-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.8668248653411865}
+{"id": "live_irrelevance_687-223-2", "result": [{"Buses_3_BuyBusTicket": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.151201963424683}
+{"id": "live_irrelevance_688-223-3", "result": [{"Buses_3_BuyBusTicket": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.319928169250488}
+{"id": "live_irrelevance_690-225-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.08619213104248}
+{"id": "live_irrelevance_691-225-1", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 11.022464990615845}
+{"id": "live_irrelevance_693-225-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.134284019470215}
+{"id": "live_irrelevance_692-225-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.309434175491333}
+{"id": "live_irrelevance_694-225-4", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.742103815078735}
+{"id": "live_irrelevance_695-225-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.454984903335571}
+{"id": "live_irrelevance_697-227-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.743393898010254}
+{"id": "live_irrelevance_699-228-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.4790191650390625}
+{"id": "live_irrelevance_696-226-0", "result": [{"Movies_1_FindMovies": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 12.274040937423706}
+{"id": "live_irrelevance_698-227-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.745318174362183}
+{"id": "live_irrelevance_701-230-0", "result": [{"Payment_1_RequestPayment": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.830236911773682}
+{"id": "live_irrelevance_700-229-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.892030954360962}
+{"id": "live_irrelevance_703-230-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.665194988250732}
+{"id": "live_irrelevance_702-230-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.137901067733765}
+{"id": "live_irrelevance_704-230-3", "result": [{"Restaurants_2_FindRestaurants": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.26187515258789}
+{"id": "live_irrelevance_708-232-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.109714984893799}
+{"id": "live_irrelevance_710-234-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.385174036026001}
+{"id": "live_irrelevance_705-231-0", "result": [{"Trains_1_FindTrains": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 10.182076930999756}
+{"id": "live_irrelevance_706-231-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.292901039123535}
+{"id": "live_irrelevance_707-231-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.121748924255371}
+{"id": "live_irrelevance_709-233-0", "result": [{"Travel_1_FindAttractions": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 11.124450922012329}
+{"id": "live_irrelevance_711-235-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.694907903671265}
+{"id": "live_irrelevance_712-236-0", "result": [{"view_service_provider_profile": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.86595106124878}
+{"id": "live_irrelevance_713-237-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.361977100372314}
+{"id": "live_irrelevance_714-237-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.517333030700684}
+{"id": "live_irrelevance_715-237-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.908252239227295}
+{"id": "live_irrelevance_716-237-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.925691843032837}
+{"id": "live_irrelevance_719-238-0", "result": [{"book_flight": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.907567024230957}
+{"id": "live_irrelevance_720-238-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.243583917617798}
+{"id": "live_irrelevance_721-239-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.424204111099243}
+{"id": "live_irrelevance_717-237-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.057732105255127}
+{"id": "live_irrelevance_718-237-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.506683111190796}
+{"id": "live_irrelevance_724-241-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.034050703048706}
+{"id": "live_irrelevance_722-240-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.274768114089966}
+{"id": "live_irrelevance_725-241-1", "result": [{"play_song": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 5.684933662414551}
+{"id": "live_irrelevance_726-242-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.985240697860718}
+{"id": "live_irrelevance_723-240-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.198245286941528}
+{"id": "live_irrelevance_728-244-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.172739744186401}
+{"id": "live_irrelevance_729-244-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.1527721881866455}
+{"id": "live_irrelevance_730-245-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.876540899276733}
+{"id": "live_irrelevance_733-248-0", "result": [{"user.mandates": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.899847030639648}
+{"id": "live_irrelevance_732-247-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.197554111480713}
+{"id": "live_irrelevance_727-243-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.003957986831665}
+{"id": "live_irrelevance_734-249-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.298858880996704}
+{"id": "live_irrelevance_735-249-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.496186971664429}
+{"id": "live_irrelevance_736-250-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.331331968307495}
+{"id": "live_irrelevance_737-251-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.256243944168091}
+{"id": "live_irrelevance_739-253-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.474222183227539}
+{"id": "live_irrelevance_740-254-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.311034917831421}
+{"id": "live_irrelevance_741-254-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.668290138244629}
+{"id": "live_irrelevance_731-246-0", "result": [{"vt_get_votes_on_ip_address": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 22.377635955810547}
+{"id": "live_irrelevance_738-252-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.384175062179565}
+{"id": "live_irrelevance_742-254-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.35709810256958}
+{"id": "live_irrelevance_743-254-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.71629786491394}
+{"id": "live_irrelevance_744-255-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.668858051300049}
+{"id": "live_irrelevance_745-256-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.80914306640625}
+{"id": "live_irrelevance_746-257-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.071523904800415}
+{"id": "live_irrelevance_749-260-0", "result": [{"project_api.ProjectApi.create_project": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.610521078109741}
+{"id": "live_irrelevance_748-259-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.39216685295105}
+{"id": "live_irrelevance_750-261-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.891011953353882}
+{"id": "live_irrelevance_752-263-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.587552070617676}
+{"id": "live_irrelevance_753-264-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.748031139373779}
+{"id": "live_irrelevance_751-262-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.610677003860474}
+{"id": "live_irrelevance_754-265-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.371618747711182}
+{"id": "live_irrelevance_755-266-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.027419090270996}
+{"id": "live_irrelevance_756-267-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.71209192276001}
+{"id": "live_irrelevance_757-268-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.837219953536987}
+{"id": "live_irrelevance_758-269-0", "result": [{"ldap_api.LdapApi.add_mapping_1": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.953879117965698}
+{"id": "live_irrelevance_760-271-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.686208963394165}
+{"id": "live_irrelevance_759-270-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.771896123886108}
+{"id": "live_irrelevance_763-273-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 3.9345738887786865}
+{"id": "live_irrelevance_761-272-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.36622405052185}
+{"id": "live_irrelevance_764-274-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.902138948440552}
+{"id": "live_irrelevance_762-272-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.364206790924072}
+{"id": "live_irrelevance_767-276-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.200653076171875}
+{"id": "live_irrelevance_766-275-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.8640711307525635}
+{"id": "live_irrelevance_768-277-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.9204113483428955}
+{"id": "live_irrelevance_769-278-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.690008878707886}
+{"id": "live_irrelevance_747-258-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 50.983696937561035}
+{"id": "live_irrelevance_771-280-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.549447059631348}
+{"id": "live_irrelevance_770-279-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.658716917037964}
+{"id": "live_irrelevance_765-274-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 17.137529134750366}
+{"id": "live_irrelevance_772-281-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.769832134246826}
+{"id": "live_irrelevance_775-284-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.063606023788452}
+{"id": "live_irrelevance_774-283-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.336698770523071}
+{"id": "live_irrelevance_773-282-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.963794946670532}
+{"id": "live_irrelevance_777-286-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.826004981994629}
+{"id": "live_irrelevance_776-285-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.635426998138428}
+{"id": "live_irrelevance_779-288-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.172027111053467}
+{"id": "live_irrelevance_780-289-0", "result": [{"get_event_specification_infos": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.413160800933838}
+{"id": "live_irrelevance_782-291-0", "result": [{"get_event_specification_infos": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.306355953216553}
+{"id": "live_irrelevance_778-287-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.421301126480103}
+{"id": "live_irrelevance_783-292-0", "result": [{"CustomDashboardsApi.get_shareable_api_tokens": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.378042221069336}
+{"id": "live_irrelevance_781-290-0", "result": [{"EventSettingsApi.get_built_in_event_specifications": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 9.889665126800537}
+{"id": "live_irrelevance_784-293-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.174294710159302}
+{"id": "live_irrelevance_787-296-0", "result": [{"events_api.EventsApi.get_event": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.073804140090942}
+{"id": "live_irrelevance_785-294-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.096303939819336}
+{"id": "live_irrelevance_788-297-0", "result": [{"EventSettingsApi.get_built_in_event_specification": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 7.997043132781982}
+{"id": "live_irrelevance_786-295-0", "result": [{"create_infra_alert_config": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 12.100291013717651}
+{"id": "live_irrelevance_789-298-0", "result": [{"EventSettingsApi.get_built_in_event_specification": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.825519800186157}
+{"id": "live_irrelevance_791-300-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.178272008895874}
+{"id": "live_irrelevance_790-299-0", "result": [{"EventSettingsApi.get_built_in_event_specification": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.405423164367676}
+{"id": "live_irrelevance_793-302-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.07016921043396}
+{"id": "live_irrelevance_792-301-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.041494131088257}
+{"id": "live_irrelevance_795-304-0", "result": [{"type.of.food": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.644826173782349}
+{"id": "live_irrelevance_794-303-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.64560580253601}
+{"id": "live_irrelevance_796-305-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.18841814994812}
+{"id": "live_irrelevance_797-305-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.104724884033203}
+{"id": "live_irrelevance_798-305-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.170231103897095}
+{"id": "live_irrelevance_799-305-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.865367889404297}
+{"id": "live_irrelevance_800-305-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.105931043624878}
+{"id": "live_irrelevance_801-305-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.423511981964111}
+{"id": "live_irrelevance_803-305-7", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.890083074569702}
+{"id": "live_irrelevance_802-305-6", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.234179258346558}
+{"id": "live_irrelevance_805-305-9", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 9.601497173309326}
+{"id": "live_irrelevance_804-305-8", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 13.457220077514648}
+{"id": "live_irrelevance_806-305-10", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.165328025817871}
+{"id": "live_irrelevance_808-307-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.331999063491821}
+{"id": "live_irrelevance_807-306-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.511109113693237}
+{"id": "live_irrelevance_809-308-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.794178009033203}
+{"id": "live_irrelevance_812-310-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.5036609172821045}
+{"id": "live_irrelevance_813-311-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.444583177566528}
+{"id": "live_irrelevance_810-309-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.754219055175781}
+{"id": "live_irrelevance_811-309-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.262096881866455}
+{"id": "live_irrelevance_814-312-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.828155994415283}
+{"id": "live_irrelevance_815-313-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.600752830505371}
+{"id": "live_irrelevance_816-314-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.741836071014404}
+{"id": "live_irrelevance_817-314-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.670367956161499}
+{"id": "live_irrelevance_818-314-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.899333715438843}
+{"id": "live_irrelevance_819-314-3", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.485544919967651}
+{"id": "live_irrelevance_820-314-4", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.605431795120239}
+{"id": "live_irrelevance_822-315-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.779340982437134}
+{"id": "live_irrelevance_821-314-5", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.766981840133667}
+{"id": "live_irrelevance_823-316-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.588913917541504}
+{"id": "live_irrelevance_825-318-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.894246816635132}
+{"id": "live_irrelevance_824-317-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 8.514631986618042}
+{"id": "live_irrelevance_826-319-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.027132034301758}
+{"id": "live_irrelevance_827-320-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.955888986587524}
+{"id": "live_irrelevance_828-321-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.959197998046875}
+{"id": "live_irrelevance_830-323-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.75228214263916}
+{"id": "live_irrelevance_831-323-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.363821744918823}
+{"id": "live_irrelevance_833-325-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.52468204498291}
+{"id": "live_irrelevance_829-322-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.536045789718628}
+{"id": "live_irrelevance_832-324-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.8905510902404785}
+{"id": "live_irrelevance_835-326-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.19234299659729}
+{"id": "live_irrelevance_838-328-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.138444185256958}
+{"id": "live_irrelevance_834-325-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 12.00138807296753}
+{"id": "live_irrelevance_839-329-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.415038824081421}
+{"id": "live_irrelevance_836-327-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.799867153167725}
+{"id": "live_irrelevance_837-327-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.529221057891846}
+{"id": "live_irrelevance_840-330-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.967152833938599}
+{"id": "live_irrelevance_841-331-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.507770299911499}
+{"id": "live_irrelevance_842-332-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.696081876754761}
+{"id": "live_irrelevance_844-334-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.842504024505615}
+{"id": "live_irrelevance_845-335-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.244178295135498}
+{"id": "live_irrelevance_843-333-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.741937875747681}
+{"id": "live_irrelevance_847-337-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.693651914596558}
+{"id": "live_irrelevance_846-336-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.754613876342773}
+{"id": "live_irrelevance_848-338-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.063465118408203}
+{"id": "live_irrelevance_849-339-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.056997060775757}
+{"id": "live_irrelevance_852-342-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.631090879440308}
+{"id": "live_irrelevance_851-341-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.519798994064331}
+{"id": "live_irrelevance_853-343-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.900184869766235}
+{"id": "live_irrelevance_850-340-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.92549991607666}
+{"id": "live_irrelevance_854-344-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.145066976547241}
+{"id": "live_irrelevance_855-345-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.0988609790802}
+{"id": "live_irrelevance_856-345-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.095355033874512}
+{"id": "live_irrelevance_857-346-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.613221883773804}
+{"id": "live_irrelevance_860-349-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.3883068561553955}
+{"id": "live_irrelevance_861-349-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.341837644577026}
+{"id": "live_irrelevance_862-349-2", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.567770004272461}
+{"id": "live_irrelevance_858-347-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.215291023254395}
+{"id": "live_irrelevance_859-348-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 10.034502029418945}
+{"id": "live_irrelevance_863-350-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.877322196960449}
+{"id": "live_irrelevance_867-353-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.561645030975342}
+{"id": "live_irrelevance_865-351-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.819031000137329}
+{"id": "live_irrelevance_864-351-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.08896780014038}
+{"id": "live_irrelevance_866-352-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.880995750427246}
+{"id": "live_irrelevance_868-354-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 6.730914115905762}
+{"id": "live_irrelevance_870-355-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.915556907653809}
+{"id": "live_irrelevance_869-354-1", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.006945848464966}
+{"id": "live_irrelevance_871-356-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.729139089584351}
+{"id": "live_irrelevance_872-357-0", "result": [{"run_ireg": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.171998977661133}
+{"id": "live_irrelevance_874-359-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.27030611038208}
+{"id": "live_irrelevance_873-358-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 11.335822105407715}
+{"id": "live_irrelevance_878-363-0", "result": [{"RentalCars_3_GetCarsAvailable": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 6.176565885543823}
+{"id": "live_irrelevance_879-364-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 7.04258918762207}
+{"id": "live_irrelevance_875-360-0", "result": [{"Events_3_BuyEventTickets": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 14.821187019348145}
+{"id": "live_irrelevance_876-361-0", "result": [{"Events_3_BuyEventTickets": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 15.235417127609253}
+{"id": "live_irrelevance_877-362-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 14.515944957733154}
+{"id": "live_irrelevance_880-365-0", "result": [{"Buses_3_BuyBusTicket": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 8.595713138580322}
+{"id": "live_irrelevance_882-882-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 4.929389953613281}
+{"id": "live_irrelevance_881-366-0", "result": [], "input_token_count": 0, "output_token_count": 0, "latency": 5.258282899856567}
+{"id": "live_irrelevance_883-883-0", "result": [{"Hotels_2_BookHouse": "{}"}], "input_token_count": 0, "output_token_count": 0, "latency": 4.586982250213623}

@@ -1,120 +1,64 @@
 """
-Gorilla-compatible handler for BFCL leaderboard submission.
+Glyphh Ada — Hyperdimensional Computing (HDC) + Function Calling handler.
 
-Decodes pre-computed result files into AST/execute formats expected
-by the gorilla eval framework. Pure HDC model — no LLM API calls.
+Architecture:
+  Glyphh Ada uses a two-stage pipeline for function calling:
 
-Result format by category:
-  Single-turn (AST):  result = '[{"func_name": {"param": "val"}}]'  (JSON string)
-  Irrelevance:        result = ''  (empty string → no function call)
-  Multi-turn:         result = [["[{...}]"], ["[{...}]"]]  (list[list[str]])
-  Memory (agentic):   result = 'retrieved text...'  (plain text)
+  1. HDC Routing (deterministic, no LLM):
+     - Encodes user queries and function signatures into 10,000-dimensional
+       hypervectors using bag-of-words + role binding
+     - Uses cosine similarity in HD space to route queries to the most
+       relevant function(s), narrowing from N candidates to top-3
+     - For multi-turn scenarios, a CognitiveLoop tracks conversation state
+       (working directory, prior calls) to improve routing accuracy
 
-Integration:
-  1. Copy this file into gorilla repo's model_handler/api_inference/ directory
-  2. Register in model_config.py as a ModelConfig entry
-  3. Add to SUPPORTED_MODELS
-  4. Place result files in result/glyphh-hdc-v1/<group>/
+  2. Argument Extraction (Claude Haiku 4.5):
+     - Only the matched function(s) are sent to the LLM for parameter extraction
+     - Uses native tool_use (function calling) mode
+     - The LLM sees only the filtered candidates, not the full function set
 
-See: https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CONTRIBUTING.md
+  This hybrid approach means:
+    - Routing is deterministic and instant (no LLM cost for function selection)
+    - LLM cost is minimal (only arg extraction on pre-filtered functions)
+    - The HDC layer can be trained on domain-specific function vocabularies
+
+  Results are generated using Glyphh's own eval pipeline and submitted as
+  pre-computed result files. The decode_ast/decode_execute methods handle
+  the same output format as ClaudeHandler since the arg extraction stage
+  uses Claude's native tool_use format.
+
+  For more information: https://glyphh.ai
 """
 
-from __future__ import annotations
-
-import json
-from typing import Any
+from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 
 
-class GlyphhHDCHandler:
-    """Gorilla-compatible handler for Glyphh HDC model.
+class GlyphhHandler(ClaudeHandler):
+    """Glyphh Ada handler — HDC routing + Claude Haiku for arg extraction.
 
-    Decodes pre-computed results — no inference (pure HDC, not an LLM).
-    Only decode_ast() and decode_execute() are needed for evaluation.
+    Extends ClaudeHandler since the argument extraction stage uses Claude's
+    native tool_use API. The HDC routing layer runs outside the BFCL handler
+    pipeline (in Glyphh's own eval framework), so inference methods are
+    inherited as-is from ClaudeHandler.
+
+    The key difference from vanilla Claude:
+      - Function selection is done by HDC (cosine similarity in hyperdimensional
+        space), not by the LLM
+      - The LLM only sees the top-3 HDC-matched functions, reducing context
+        and improving accuracy on large function sets
+      - Multi-turn state tracking uses HDC pathway encoding, not prompt history
     """
 
-    def __init__(self, **kwargs: Any) -> None:
-        pass
-
-    # ── Decode: AST format ────────────────────────────────────────────────
-
-    def decode_ast(
+    def __init__(
         self,
-        result: Any,
-        language: str = "Python",
-        has_tool_call_tag: bool = False,
-    ) -> list[dict]:
-        """Convert result to AST format: [{"func_name": {"param": val}}].
+        model_name,
+        temperature,
+        registry_name,
+        is_fc_model,
+        **kwargs,
+    ) -> None:
+        super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
 
-        Handles:
-          - JSON string: parse into list of function call dicts
-          - Already a list: return as-is
-          - Empty/unparseable: return [] (treated as "no function call")
-        """
-        if isinstance(result, list):
-            return result
-
-        if not isinstance(result, str) or not result.strip():
-            return []
-
-        try:
-            parsed = json.loads(result)
-            if isinstance(parsed, list):
-                return parsed
-            return []
-        except (json.JSONDecodeError, TypeError):
-            return []
-
-    # ── Decode: Execute format ────────────────────────────────────────────
-
-    def decode_execute(
-        self,
-        result: Any,
-        has_tool_call_tag: bool = False,
-    ) -> list[str]:
-        """Convert result to execute format: ["func_name(param=val, ...)"].
-
-        Handles:
-          - JSON string of [{func: {args}}] → ["func(k=v, ...)"]
-          - Already a list of strings: return as-is
-          - Empty/unparseable: return []
-        """
-        if isinstance(result, list):
-            # Already decoded (e.g. list of executable strings)
-            if all(isinstance(s, str) for s in result):
-                return result
-            # List of dicts — convert to executable strings
-            return self._dicts_to_exec(result)
-
-        if not isinstance(result, str) or not result.strip():
-            return []
-
-        try:
-            parsed = json.loads(result)
-            if isinstance(parsed, list):
-                return self._dicts_to_exec(parsed)
-            return []
-        except (json.JSONDecodeError, TypeError):
-            return []
-
-    # ── Helpers ───────────────────────────────────────────────────────────
-
-    @staticmethod
-    def _dicts_to_exec(calls: list) -> list[str]:
-        """Convert [{func: {param: val}}, ...] to ["func(param=val)", ...]."""
-        result = []
-        for call in calls:
-            if not isinstance(call, dict):
-                continue
-            for func_name, params in call.items():
-                # Handle JSON-stringified params (e.g. '{"folder": "workspace"}')
-                if isinstance(params, str):
-                    try:
-                        params = json.loads(params)
-                    except (json.JSONDecodeError, TypeError):
-                        pass
-                if not isinstance(params, dict) or not params:
-                    result.append(f"{func_name}()")
-                else:
-                    args = ", ".join(f"{k}={repr(v)}" for k, v in params.items())
-                    result.append(f"{func_name}({args})")
-        return result
+    def _get_max_tokens(self):
+        # Glyphh Ada uses Claude Haiku 4.5 for arg extraction
+        return 64000
