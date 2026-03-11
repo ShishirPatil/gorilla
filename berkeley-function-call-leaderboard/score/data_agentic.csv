@@ -1,0 +1,2 @@
+Rank,Model,Agentic Overall Acc,Web Search Summary,Web Search Base,Web Search No Snippet,Memory Summary,Memory KV,Memory Vector,Memory Recursive Summarization
+1,Glyphh Ada 1.1 (HDC+FC),83.30%,79.50%,77.00%,82.00%,87.10%,87.10%,87.10%,87.10%

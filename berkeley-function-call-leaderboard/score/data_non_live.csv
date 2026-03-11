@@ -1,0 +1,2 @@
+Rank,Model,Non-Live Overall Acc,AST Summary,Simple AST,Python Simple AST,Java Simple AST,JavaScript Simple AST,Multiple AST,Parallel AST,Parallel Multiple AST,Irrelevance Detection
+1,Glyphh Ada 1.1 (HDC+FC),88.71%,88.71%,80.83%,94.50%,76.00%,72.00%,94.50%,91.50%,88.00%,85.42%
