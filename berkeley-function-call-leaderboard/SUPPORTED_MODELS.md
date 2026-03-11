@@ -49,6 +49,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | Gemini-2.5-Flash-Lite                  | Prompt           | Google         | gemini-2.5-flash-lite                                       |
 | Gemini-3-Pro-Preview                   | Function Calling | Google         | gemini-3-pro-preview-FC                                     |
 | Gemini-3-Pro-Preview                   | Prompt           | Google         | gemini-3-pro-preview                                        |
+| Gemini-3.1-Flash-Lite-Preview          | Function Calling | Google         | gemini-3.1-flash-lite-preview-FC                            |
+| Gemini-3.1-Flash-Lite-Preview          | Prompt           | Google         | gemini-3.1-flash-lite-preview                               |
 | Gemma-3-{1b,4b,12b,27b}-it             | Prompt           | Self-hosted 💻 | google/gemma-3-{1b,4b,12b,27b}-it                           |
 | FunctionGemma-270m-it                  | Function Calling | Self-hosted 💻 | google/functiongemma-270m-it-FC                             |
 | GLM-4-9b-Chat                          | Function Calling | Self-hosted 💻 | THUDM/glm-4-9b-chat                                         |
