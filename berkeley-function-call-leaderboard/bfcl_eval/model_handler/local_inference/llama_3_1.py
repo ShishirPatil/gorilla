@@ -23,7 +23,6 @@ class LlamaHandler_3_1(OSSHandler):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
-        self.model_name_huggingface = model_name.replace("-FC", "")
 
     @override
     def _format_prompt(self, messages, function):
