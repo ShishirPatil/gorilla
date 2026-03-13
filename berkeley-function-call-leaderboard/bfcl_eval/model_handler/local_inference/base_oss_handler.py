@@ -79,6 +79,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         backend: str,
         skip_server_setup: bool,
         local_model_path: Optional[str],
+        custom_generation: Optional[str] = None,
         lora_modules: Optional[list[str]] = None,
         enable_lora: bool = False,
         max_lora_rank: Optional[int] = None,
@@ -216,6 +217,43 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                         stderr=subprocess.PIPE,  # Capture stderr
                         text=True,  # To get the output as text instead of bytes
                     )
+                elif backend == "hf":
+                    
+                    process = subprocess.Popen(
+                        [
+                            "python",
+                            str(Path(__file__).parent.parent.parent / "scripts" / "launch_hf_model.py"),
+                            "--model-path-or-id",
+                            str(self.model_path_or_id),
+                            "--port",
+                            str(self.local_server_port),
+                            "--dtype",
+                            str(self.dtype),
+                            "--tensor-parallel-size",
+                            str(num_gpus),
+                            "--trust-remote-code",
+                        ]
+                        + (["--custom-generation", custom_generation] if custom_generation else [])
+                        + (["--local-files-only"] if "local_files_only" in load_kwargs else [])
+                        + (["--enable-lora"] if enable_lora else [])
+                        + (
+                            ["--max-lora-rank", str(max_lora_rank)]
+                            if max_lora_rank is not None
+                            else []
+                        )
+                        + (
+                            sum(
+                                [["--lora-modules", lora_module] for lora_module in lora_modules],
+                                [],
+                            )
+                            if lora_modules
+                            else []
+                        ),
+                        stdout=subprocess.PIPE,  # Capture stdout
+                        stderr=subprocess.PIPE,  # Capture stderr
+                        text=True,  # To get the output as text instead of bytes
+                    )
+
                 else:
                     raise ValueError(f"Backend {backend} is not supported.")
 

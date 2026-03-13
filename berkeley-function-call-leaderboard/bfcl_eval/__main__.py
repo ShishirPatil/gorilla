@@ -132,6 +132,11 @@ def generate(
         "--local-model-path",
         help="Specify the path to a local directory containing the model's config/tokenizer/weights for fully offline inference. Use this only if the model weights are stored in a location other than the default HF_HOME directory.",
     ),
+    custom_generation: Optional[str] = typer.Option(
+        None,
+        "--custom-generation",
+        help="Specify the path to a custom generation function for the HuggingFace backend in name=\"path\" format. The function should be in the format `def generate(model, input_ids, generation_config=None, **kwargs)` and return the output token ids. This allows you to use a custom generation loop instead of the default `model.generate()` method, which can be useful for implementing features like stop token handling that are not natively supported by the HuggingFace generation API. The path should be relative to the `berkeley-function-call-leaderboard` root folder.",
+    ),
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
@@ -182,6 +187,7 @@ def generate(
         local_model_path=local_model_path,
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
+        custom_generation=custom_generation,
         run_ids=run_ids,
         enable_lora=enable_lora,
         max_lora_rank=max_lora_rank,

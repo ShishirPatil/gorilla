@@ -261,6 +261,7 @@ def generate_results(args, model_name, test_cases_total):
                 backend=args.backend,
                 skip_server_setup=args.skip_server_setup,
                 local_model_path=args.local_model_path,
+                custom_generation=args.custom_generation,
                 lora_modules=args.lora_modules,
                 enable_lora=args.enable_lora,
                 max_lora_rank=args.max_lora_rank,
