@@ -1,0 +1,1130 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Posts",
+        "api_call": "{{site}}/wp-json/wp/v2/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "## List Posts\n| | |\n| :-- | :--\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create Posts",
+        "api_call": "{{site}}/wp-json/wp/v2/posts?content={{content}}&title={{title}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "| | |\n| :--- | :---\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Post",
+        "api_call": "{{site}}/wp-json/wp/v2/posts/{{postId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "| | |\n| :--- | :---\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made; determines fields present in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Post",
+        "api_call": "{{site}}/wp-json/wp/v2/posts/{{postId}}?content={{content}}&title={{title}}&excerpt={{excerpt}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Post",
+        "api_call": "{{site}}/wp-json/wp/v2/posts/{{postId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "| | |\n| :--- | :---\n|```id```|Unique identifier for the object.\n|```force```|Whether to bypass trash and force deletion."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Media ",
+        "api_call": "{{site}}/wp-json/wp/v2/media",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a Media item ",
+        "api_call": "{{site}}/wp-json/wp/v2/media",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Disposition",
+                    "name": "Content-Type",
+                    "value": "form-data; filename=\"test_funny.jpg\"",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "image/jpeg",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "test-file",
+                        "value": "{{file}}",
+                        "description": "some test param",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "|||\n|:--|:--\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as GMT.\n|```slug```|An alphanumeric identifier for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Media item",
+        "api_call": "{{site}}/wp-json/wp/v2/media/{{mediaId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Media item",
+        "api_call": "{{site}}/wp-json/wp/v2/media/{{mediaId}}?caption={{caption}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```id```|Unique identifier for the object.\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Media item",
+        "api_call": "{{site}}/wp-json/wp/v2/media/{{mediaId}}?force=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "image/jpeg",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "|||\n|:--|:--\n|```id```|Unique identifier for the object.\n|```force```|Whether to bypass trash and force deletion."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Pages",
+        "api_call": "{{site}}/wp-json/wp/v2/pages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|\tScope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a Page",
+        "api_call": "{{site}}/wp-json/wp/v2/pages?content={{content}}&title={{title}}&excerpt={{excerpt}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as GMT.\n|```slug```|An alphanumeric identifier for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Page",
+        "api_call": "{{site}}/wp-json/wp/v2/pages/{{pageId}}\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Page",
+        "api_call": "{{site}}/wp-json/wp/v2/pages/{{pageId}}?title={{title}}&content={{content}}&excerpt={{excerpt}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Page",
+        "api_call": "{{site}}/wp-json/wp/v2/pages/{{pageId}}\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```id```|Unique identifier for the object.\n|```force```|Whether to bypass trash and force deletion.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Themes ",
+        "api_call": "{{site}}/wp-json/wp/v2/themes?status={{themeStatus}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```status```|Limit result set to themes assigned one or more statuses.<br/>Required: **1**\n|```context```|Scope under which the request is made; determines fields present"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Tags",
+        "api_call": "{{site}}/wp-json/wp/v2/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:---\n|```context```|Scope under which the request is made;determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the collection.<br/>Default:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a Tag ",
+        "api_call": "{{site}}/wp-json/wp/v2/tags?name={{test-tag}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```description```|HTML description of the term.\n|```name```|HTML title for the term.<br/>Required: **1**\n|```slug```|An alphanumeric identifier for the term unique to its type.\n|```meta```|Meta fields."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Tag",
+        "api_call": "{{site}}/wp-json/wp/v2/tags/{{tagId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```context```|Scope under which the request is made; |```determines```|fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Tag ",
+        "api_call": "{{site}}/wp-json/wp/v2/tags/{{tagId}}?name={{test-tag}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```description```|HTML description of the term.\n|```name```|HTML title for the term.\n|```slug```|An alphanumeric identifier for the term unique to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Tag",
+        "api_call": "{{site}}/wp-json/wp/v2/tags/{{tagId}}?force=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```force```|Required to be true, as terms do not support trashing.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Types",
+        "api_call": "{{site}}/wp-json/wp/v2/types",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Type",
+        "api_call": "{{site}}/wp-json/wp/v2/types/{{typeId}}?type={{type}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```type```|An alphanumeric identifier for the post type.<br/> Required:**1**\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Categories",
+        "api_call": "{{site}}/wp-json/wp/v2/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```context```|Scope under which the request is made;determines fields present in response.\n<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the collection.<br/>Default:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a category",
+        "api_call": "{{site}}/wp-json/wp/v2/categories?name={{categoriesName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```description```|HTML description of the term.\n|```name```|HTML title for the term.<br/>Required: **1**\n|```slug```|An alphanumeric identifier for the term unique to its type.\n|```parent```|The parent"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Category ",
+        "api_call": "{{site}}/wp-json/wp/v2/categories/{{categoriesId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Category",
+        "api_call": "{{site}}/wp-json/wp/v2/categories/{{categoriesId}}?name={{categoriesName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```description```|HTML description of the term.\n|```name```|HTML title for the term.\n|```slug```|An alphanumeric identifier for the term unique to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Category",
+        "api_call": "{{site}}/wp-json/wp/v2/categories/{{categoriesId}}?force=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the term.\n|```force```|Required to be true, as terms do not support trashing.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Taxonomy",
+        "api_call": "{{site}}/wp-json/wp/v2/taxonomies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```type```|Limit results to taxonomies"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Taxonomy",
+        "api_call": "{{site}}/wp-json/wp/v2/taxonomies/{{taxonomy}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{newToken}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "|||\n|:--|:--\n|```taxonomy```|An alphanumeric identifier for the taxonomy.\n|```context```|Scope under which the request is made; determines fields present in response.<bvr/>Default: **view**<br/>One of: **view,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Status",
+        "api_call": "{{site}}/wp-json/wp/v2/statuses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, ed**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Status",
+        "api_call": "{{site}}/wp-json/wp/v2/statuses/{{statusId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```status```|An alphanumeric identifier for the status.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Search-results",
+        "api_call": "{{site}}/wp-json/wp/v2/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed**\n|```page```|Current page of the collection.<br/>Default:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List wp_blocks",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "| | | \n| :--- | :---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a wp_block ",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks?title={{title}}&content={{content}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "| | |\n| :--- | :---\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Updating a wp_block",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks/{{blockId}}?content={{content}}&title={{title}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object was published, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a wp_block",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks/{{blockId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a wp_block",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks/{{blockId}}?force=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```force```|Whether to bypass trash and force deletion."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Comments",
+        "api_call": "{{site}}/wp-json/wp/v2/comments\n\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a Comment ",
+        "api_call": "{{site}}/wp-json/wp/v2/comments?post={{commentPostId}}&content={{content}}&author_name={{author}}&author_email={{email}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```post```|The ID of the associated post object.<br/>Required:**1**\n|```content```|The content for the object.<br/>Required:**1**\n|```author```|The ID of the user object, if author was a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Comment",
+        "api_call": "{{site}}/wp-json/wp/v2/comments/{{commentId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "**Authentication Required**\n\n\n|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made; determines fields present inresponse.<br/>Default:**view**<br/>One of: **view, embed, edit**\n|```password```|The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a Comment",
+        "api_call": "{{site}} /wp-json/wp/v2/comments/{{commentId}}?content={{content}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```author```|The ID of the user object, if author was a user.\n|```author_email```|Email address for the object author.\n|```author_ip```|IP"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Comment",
+        "api_call": "{{site}}/wp-json/wp/v2/comments/{{commentId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the object.\n|```force```|Whether to bypass trash and force deletion.\n|```password```|The password for the parent post of the comment (if"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a wp_block-revision",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks/{{blockId}}/autosaves?parent={{postId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```parent```|The ID for the parent of the object.<br/>Request:**1**\n|```context```|Scope under which the request is made; |```determines```|fields present in response.<br/>Default: **view**<br/>One of:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a wp_block-revision",
+        "api_call": "{{site}}/wp-json/wp/v2/{{blockId}}/autosaves",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```parent```|The ID for the parent of the object.\n|```date```|The date the object was published, in the site's timezone.\n|```date_gmt```|The date the object"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a wp_block-revision with parent",
+        "api_call": "{{site}}/wp-json/wp/v2/blocks/{{parentId}}/autosaves/{{blockId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```parent```|The ID for the parent of the object.\n|```id```|The ID for the object.\n|```context```|Scope under which the request is made; determines fields"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Post Revisions",
+        "api_call": "{{site}}/wp/v2/posts/{{postId}}/revisions\n\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "| | |\n| :-- | :--\n|```parent``` |The ID for the parent of the object.\n|```context```|\tScope under which the request is made;"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Post-Revision",
+        "api_call": "{{site}}/wp/v2/posts/{{parentId}}/revisions/{{revisionId}}\n\n",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "| | |\n|:--|:--\n|```parent```|The ID for the parent of the object.\n|```id```|Unique identifier for the object.\n|```context```|Scope under which the request is made;"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete a Post-revision",
+        "api_call": "{{site}}/wp/v2/posts/{{parentId}}/revisions/{{revisionsId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "| | |\n| :--- | :-- \n|```parent```|The ID for the parent of the object.\n|```id```|Unique identifier for the object.\n|```force```|Required to be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Rendered-block",
+        "api_call": "{{site}}/wp-json/wp/v2/block-renderer/{{blockName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```name```|Unique registered name for the block.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **edit**\n|```attributes```|Attributes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: List Users ",
+        "api_call": "{{site}}/wp-json/wp/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:--|:--\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**\n|```page```|Current page of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Create a User",
+        "api_call": "{{site}}/wp-json/wp/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```username```|Login name for the user.<br/>Required: **1**\n|```name```|Display name for the user.\n|```first_name```|First name for the user.\n|```last_name```|Last name for the user.\n|```email```|The email address"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a User",
+        "api_call": "{{site}}/wp-json/wp/v2/users/{{userId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the user.\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update a User",
+        "api_call": "{{site}}/wp-json/wp/v2/users/{{userId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the user.\n|```username```|Login name for the user.\n|```name```|Display name for the user.\n|```first_name```|First name for the user.\n|```last_name```|Last name for the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete User",
+        "api_call": "{{site}}/wp-json/wp/v2/users/{{userId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```id```|Unique identifier for the user.\n|```force```|Required to be true, as users do not support trashing.\n|```reassign```|Reassign the deleted user's posts and links"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve a Me",
+        "api_call": "{{site}}/wp-json/wp/v2/users/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```context```|Scope under which the request is made; determines fields present in response.<br/>Default: **view**<br/>One of: **view, embed, edit**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update Me",
+        "api_call": "{{site}}/wp-json/wp/v2/users/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```username```|Login name for the user.\n|```name```|Display name for the user.\n|```first_name```|First name for the user.\n|```last_name```|Last name for the user.\n|```email```|The email address for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Delete Me",
+        "api_call": "{{site}}/wp-json/wp/v2/users/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```force```|Required to be true, as users do not support trashing.\n|```reassign```|Reassign the deleted user's posts and links to this user ID.<br/>Required:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Retrieve Site Settings ",
+        "api_call": "{{site}}/wp-json/wp/v2/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "mZbu ThPI bbpv RR4L Asfv v3Ay",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "wapi",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "There are no arguments for this endpoint.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Update Site Settings ",
+        "api_call": "{{site}}/wp-json/wp/v2/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "|||\n|:---|:---\n|```title```|Site title.\n|```description```|Site tagline.\n|```timezone```|A city in the same timezone as you.\n|```date_format```|A date format for all date strings.\n|```time_format```|A time format for all"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Wordpress API v2: Routes",
+        "api_call": "{{site}}/wp-json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns all the available API routes and endpoints for a Wordpress instance."
+    }
+]

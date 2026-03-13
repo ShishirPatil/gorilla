@@ -1,0 +1,2893 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Obtain access token",
+        "api_call": "https://api-demo.airwallex.com/api/v1/authentication/login",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-client-id",
+                    "value": "{{clientId}}"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{apiKey}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "**POST /api/v1/authentication/login **"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get authorization status",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/authorizations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get single authorization status",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/authorizations/:issuing_transaction_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a cardholder",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cardholders/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"address\": {\n        \"city\": \"\u4e0a\u6d77\u5e02\",\n        \"country\": \"CN\",\n        \"line1\": \"\u9ec4\u6d66\u533a\u4e2d\u6d77\u56fd\u9645\u5927\u53a6\",\n        \"postcode\": \"25000\"\n    },\n    \"email\": \"test+{{$guid}}@example.com\",\n    \"individual\": {\n        \"date_of_birth\": \"1982-11-02\",\n        \"express_consent_obtained\": \"yes\",\n        \"identification\": {\n            \"country\": \"CN\",\n            \"expiry_date\": \"2030-08-28\",\n            \"number\": \"001238243\",\n            \"type\": \"ID_CARD\"\n        },\n        \"name\": {\n            \"first_name\": \"\u4e09\",\n            \"last_name\": \"\u5f20\"\n        }\n    },\n    \"mobile_number\": \"123456789\",\n    \"postal_address\": {\n        \"city\": \"\u4e0a\u6d77\u5e02\",\n        \"country\": \"CN\",\n        \"line1\": \"\u9ec4\u6d66\u533a\u4e2d\u6d77\u56fd\u9645\u5927\u53a6\",\n        \"postcode\": \"250000\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get all cardholders",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cardholders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get cardholder details",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cardholders/:cardholder_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a cardholder",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cardholders/:cardholder_id/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"address\": {\n        \"city\": \"\u4e0a\u6d77\u5e02\",\n        \"country\": \"CN\",\n        \"line1\": \"\u9ec4\u6d66\u533a\u4e2d\u6d77\u56fd\u9645\u5927\u53a6\",\n        \"postcode\": \"25000\"\n    },\n    \"individual\": {\n        \"date_of_birth\": \"1982-11-02\",\n        \"express_consent_obtained\": \"yes\",\n        \"identification\": {\n            \"country\": \"CN\",\n            \"expiry_date\": \"2030-08-28\",\n            \"number\": \"001238243\",\n            \"type\": \"ID_CARD\"\n        },\n        \"name\": {\n            \"first_name\": \"\u4e09\",\n            \"last_name\": \"\u5f20\"\n        }\n    },\n    \"mobile_number\": \"123456789\",\n    \"postal_address\": {\n        \"city\": \"\u4e0a\u6d77\u5e02\",\n        \"country\": \"CN\",\n        \"line1\": \"\u9ec4\u6d66\u533a\u4e2d\u6d77\u56fd\u9645\u5927\u53a6\",\n        \"postcode\": \"250000\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a card",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"authorization_controls\": {\n        \"allowed_transaction_count\": \"MULTIPLE\",\n        \"transaction_limits\": {\n            \"currency\": \"USD\",\n            \"limits\": [\n                {\n                    \"amount\": 10000,\n                    \"interval\": \"PER_TRANSACTION\"\n                }\n            ]\n        }\n    },\n    \"created_by\": \"Postman Test\",\n    \"form_factor\": \"VIRTUAL\",\n    \"issue_to\": \"ORGANISATION\",\n    \"primary_contact_details\": {\n        \"email\": \"test@example.com\",\n        \"full_name\": \"Postman Test\",\n        \"mobile_number\": \"123456789\"\n    },\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get sensitive card details",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/:card_id/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "default",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get all cards",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Activate a card",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/:card_id/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get card details",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/:card_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get card remaining limits",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/:card_id/limits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a card",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/cards/:card_id/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"authorization_controls\": {\n        \"allowed_transaction_count\": \"MULTIPLE\",\n        \"transaction_limits\": {\n            \"currency\": \"USD\",\n            \"limits\": [\n                {\n                    \"amount\": 20000,\n                    \"interval\": \"ALL_TIME\"\n                }\n            ]\n        }\n    },\n    \"card_status\": \"ACTIVE\",\n    \"nick_name\": \"Postman Test Card\",\n    \"primary_contact_details\": {\n        \"email\": \"test@example.com\",\n        \"full_name\": \"Postman Test\",\n        \"mobile_number\": \"123456789\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get issuing config",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/config",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update issuing config",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/config/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"remote_auth\": {\n        \"default_action\": \"DECLINED\",\n        \"enabled\": true,\n        \"url\": \"https://example.com/remote-auth\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get transactions",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get single transaction",
+        "api_call": "https://api-demo.airwallex.com/api/v1/issuing/transactions/:issuing_transaction_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve available payment method types",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/config/payment_method_types?active=true&country_code=CN&transaction_currency=CNY&transaction_mode=oneoff",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve bank names for certain payment method types",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/config/banks?payment_method_type=bank_transfer&country_code=MY",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"merchant_customer_id\": \"merchant_{{$guid}}\",\n    \"first_name\": \"{{$randomFirstName}}\",\n    \"last_name\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"phone_number\": \"{{$randomPhoneNumber}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/:customer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/:customer_id/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"merchant_customer_id\": \"{{merchant_customer_id}}\",\n    \"first_name\": \"{{$randomFirstName}}\",\n    \"last_name\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"phone_number\": \"{{$randomPhoneNumber}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Generate a client secret for a Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/:customer_id/generate_client_secret",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Add PaymentMethod to Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/:customer_id/add_payment_method",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_method_id\": \"{{payment_method_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Remove PaymentMethod from Customer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers/:customer_id/remove_payment_method",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_method_id\": \"{{payment_method_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of Customers",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a customs declaration",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/customs_declarations/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_intent_id\": \"{{payment_intent_id}}\",\n    \"customs_details\": {\n        \"customs_code\": \"GUANGZHOU_ZS\",\n        \"merchant_customs_name\": \"{{$randomCompanyName}}\",\n        \"merchant_customs_number\": \"{{$randomInt}}\"\n    },\n    \"shopper_details\": {\n        \"shopper_id\": \"310101200001010000\",\n        \"shopper_name\": \"{{$randomFullName}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a FundsSplit",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/funds_splits/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"source_id\": \"{{payment_intent_id}}\",\n    \"source_type\": \"PAYMENT_INTENT\",\n    \"amount\": {{fund_split_amount}},\n    \"destination\": \"{{connected_account_id}}\",\n    \"auto_release\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a FundsSplit",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/funds_splits/:fund_split_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of FundsSplits",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/funds_splits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Release a FundsSplit",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/funds_splits/:fund_split_id/release",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a PaymentAttempt by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_attempts/:payment_attempt_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve list of PaymentAttempts",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_attempts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a PaymentConsent - MIT",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_consents/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"customer_id\": \"{{customer_id}}\",\n    \"payment_method\": {\n        \"id\": \"{{payment_method_id}}\",\n        \"type\": \"card\"\n    },\n    \"next_triggered_by\": \"merchant\",\n    \"merchant_trigger_reason\": \"scheduled\",\n    \"connected_account_id\": \"{{connected_account_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of PaymentConsents",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_consents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a PaymentIntent - MVP",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "default",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"amount\": {{$randomInt}},\n    \"currency\": \"CNY\",\n    \"merchant_order_id\": \"Merchant_Order_{{$guid}}\",\n    \"return_url\": \"{{$randomUrl}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a PaymentIntent - With More Info",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "default",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"amount\": 100,\n    \"currency\": \"CNY\",\n    \"merchant_order_id\": \"Merchant_Order_{{$guid}}\",\n    \"metadata\": {\n        \"my_test_metadata_id\": \"my_test_metadata_id_{{$guid}}\"\n    },\n    \"order\": {\n        \"products\": [\n            {\n                \"code\": \"3414314111\",\n                \"desc\": \"iPhone\",\n                \"name\": \"iPhone\",\n                \"quantity\": 1,\n                \"sku\": \"iPhone_001\",\n                \"type\": \"Mobile Phone - iPhone\",\n                \"unit_price\": 1499.99,\n                \"url\": \"{{$randomUrl}}\"\n            }\n        ],\n        \"shipping\": {\n            \"address\": {\n                \"city\": \"{{$randomCity}}\",\n                \"country_code\": \"CN\",\n                \"postcode\": \"25000\",\n                \"state\": \"{{$randomCity}}\",\n                \"street\": \"{{$randomStreetAddress}}\"\n            },\n            \"first_name\": \"{{$randomFirstName}}\",\n            \"last_name\": \"{{$randomLastName}}\",\n            \"phone_number\": \"{{$randomPhoneNumber}}\",\n            \"shipping_method\": \"\u987a\u4e30\u5feb\u9012\"\n        },\n        \"type\": \"Online Mobile Phone Purchases\"\n    },\n    \"payment_method_options\": {\n        \"card\": {\n            \"risk_control\": {\n                \"skip_risk_processing\": false,\n                \"three_domain_secure_action\": \"FORCE_3DS\",\n                \"three_ds_action\": \"FORCE_3DS\"\n            }\n        }\n    },\n    \"return_url\": \"{{$randomUrl}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a PaymentIntent",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Confirm a PaymentIntent - payment_method = card",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id/confirm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_method\": {\n        \"type\": \"card\",\n        \"card\": {\n            \"billing\": {\n                \"address\": {\n                    \"city\": \"{{$randomCity}}\",\n                    \"country_code\": \"US\",\n                    \"postcode\": \"25000\",\n                    \"state\": \"{{$randomCity}}\",\n                    \"street\": \"{{$randomStreetAddress}}\"\n                },\n                \"first_name\": \"{{$randomFirstName}}\",\n                \"last_name\": \"{{$randomLastName}}\"\n            },\n            \"expiry_month\": \"12\",\n            \"expiry_year\": \"2030\",\n            \"number\": \"4111111111111111\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Confirm a PaymentIntent - auto_capture = false",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id/confirm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_method\": {\n        \"type\": \"card\",\n        \"card\": {\n            \"billing\": {\n                \"address\": {\n                    \"city\": \"{{$randomCity}}\",\n                    \"country_code\": \"US\",\n                    \"postcode\": \"25000\",\n                    \"state\": \"{{$randomCity}}\",\n                    \"street\": \"{{$randomStreetAddress}}\"\n                },\n                \"first_name\": \"{{$randomFirstName}}\",\n                \"last_name\": \"{{$randomLastName}}\"\n            },\n            \"expiry_month\": \"12\",\n            \"expiry_year\": \"2030\",\n            \"number\": \"4111111111111111\"\n        }\n    },\n    \"payment_method_options\": {\n        \"card\": {\n            \"auto_capture\": false\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Confirm a PaymentIntent - Trigger Netcetera 3DS",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id/confirm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_method\": {\n        \"type\": \"card\",\n        \"card\": {\n            \"billing\": {\n                \"address\": {\n                    \"city\": \"{{$randomCity}}\",\n                    \"country_code\": \"US\",\n                    \"postcode\": \"25000\",\n                    \"state\": \"{{$randomCity}}\",\n                    \"street\": \"{{$randomStreetAddress}}\"\n                },\n                \"first_name\": \"{{$randomFirstName}}\",\n                \"last_name\": \"{{$randomLastName}}\"\n            },\n            \"expiry_month\": \"12\",\n            \"expiry_year\": \"2030\",\n            \"number\": \"5424184049821670\"\n        }\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Continue to confirm a PaymentIntent",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id/confirm_continue",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"type\": \"dcc\",\n    \"use_dcc\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Capture a PaymentIntent",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents/:payment_intent_id/capture",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"amount\": \"{{payment_intent_amount}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of PaymentIntents",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_intents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a PaymentMethod",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_methods/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"type\": \"card\",\n    \"card\": {\n        \"billing\": {\n            \"address\": {\n                \"city\": \"{{$randomCity}}\",\n                \"country_code\": \"CN\",\n                \"state\": \"{{$randomCity}}\",\n                \"street\": \"{{$randomStreetAddress}}\"\n            },\n            \"first_name\": \"{{$randomFirstName}}\",\n            \"last_name\": \"{{$randomLastName}}\"\n        },\n        \"expiry_month\": \"12\",\n        \"expiry_year\": \"2030\",\n        \"number\": \"4111111111111111\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a PaymentMethod",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_methods/:payment_method_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a PaymentMethod",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_methods/:payment_method_id/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"type\": \"card\",\n    \"card\": {\n        \"billing\": {\n            \"address\": {\n                \"city\": \"{{$randomCity}}\",\n                \"country_code\": \"CN\",\n                \"state\": \"{{$randomCity}}\",\n                \"street\": \"{{$randomStreetAddress}}\"\n            },\n            \"first_name\": \"{{$randomFirstName}}\",\n            \"last_name\": \"{{$randomLastName}}\"\n        },\n        \"expiry_month\": \"12\",\n        \"expiry_year\": \"2030\",\n        \"number\": \"4111111111111111\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of PaymentMethods",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_methods",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Disable a PaymentMethod",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/payment_methods/:payment_method_id/disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a Quote",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/quotes/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"mcp\",\n    \"payment_currency\": \"{{$randomCurrencyCode}}\",\n    \"settlement_currency\": \"{{$randomCurrencyCode}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of Quotes",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/quotes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a Refund",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/refunds/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\",\n    \"payment_intent_id\": \"{{payment_intent_id}}\",\n    \"reason\": \"Postman Test\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a Refund",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/refunds/:refund_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of Refunds",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/refunds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of beneficiaries",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a beneficiary by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries/:beneficiary_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new beneficiary",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"US\",\n            \"postcode\": \"{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"USD\",\n            \"account_name\": \"{{$randomCompanyName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"US\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"CHASUS33\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_methods\": [\n        \"SWIFT\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Delete existing beneficiary",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries/delete/:beneficiary_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update existing beneficiary",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries/update/:beneficiary_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"US\",\n            \"postcode\": \"{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"USD\",\n            \"account_name\": \"{{$randomCompanyName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"US\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"CHASUS33\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_methods\": [\n        \"SWIFT\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Validate beneficiary",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiaries/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"US\",\n            \"postcode\": \"{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"USD\",\n            \"account_name\": \"{{$randomCompanyName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"US\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"CHASUS33\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_methods\": [\n        \"SWIFT\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get the API schema",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiary_api_schemas/generate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_currency\": \"CNY\",\n    \"bank_country_code\": \"CN\",\n    \"entity_type\": \"COMPANY\",\n    \"local_clearing_system\": null,\n    \"payment_method\": null\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get the form schema",
+        "api_call": "https://api-demo.airwallex.com/api/v1/beneficiary_form_schemas/generate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_currency\": \"HKD\",\n    \"bank_country_code\": \"HK\",\n    \"entity_type\": \"COMPANY\",\n    \"payment_method\": \"LOCAL\",\n    \"local_clearing_system\": null\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of payers",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a payer by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers/:payer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new payer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payer\": {\n        \"additional_info\": {\n            \"business_registration_number\": \"{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomInt}}{{$randomInt}}\"\n        },\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"{{$randomInt}}{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    }\n};",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update existing payer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers/update/:payer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payer\": {\n        \"additional_info\": {\n            \"business_registration_number\": \"{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomInt}}{{$randomInt}}\"\n        },\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"{{$randomInt}}{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    }\n};",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Delete existing payer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers/delete/:payer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Validate payer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payers/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payer\": {\n        \"additional_info\": {\n            \"business_registration_number\": \"{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomAlphaNumeric}}{{$randomInt}}{{$randomInt}}\"\n        },\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"{{$randomInt}}{{$randomInt}}\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    }\n};",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of payments",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get payment by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/:payment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Cancel a payment",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/cancel/:payment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new payment - to beneficiary",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"25000\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"CNY\",\n            \"account_name\": \"{{$randomFullName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"CN\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"ABOCCNBJ\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_amount\": 1000,\n    \"payment_currency\": \"CNY\",\n    \"payment_method\": \"SWIFT\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Test {{$guid}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"source_amount\": null,\n    \"source_currency\": \"USD\",\n    \"swift_charge_option\": \"SHARED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new payment - to beneficiary_id",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary_id\": \"{{beneficiary_id}}\",\n    \"payment_amount\": 1000,\n    \"payment_currency\": \"{{beneficiary_account_currency}}\",\n    \"payment_method\": \"{{beneficiary_payment_method}}\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Test {{$guid}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"source_amount\": null,\n    \"source_currency\": \"CNY\",\n    \"swift_charge_option\": \"SHARED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retry a payment",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/retry/:payment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_name\": \"{{$randomFullName}}\",\n    \"bank_country_code\": \"CN\",\n    \"bank_name\": \"{{$randomCompanyName}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a payment",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/update/:payment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"25000\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"CNY\",\n            \"account_name\": \"{{$randomFullName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"CN\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"ABOCCNBJ\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_amount\": 1000,\n    \"payment_currency\": \"CNY\",\n    \"payment_method\": \"SWIFT\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Test {{$guid}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"source_amount\": null,\n    \"source_currency\": \"USD\",\n    \"swift_charge_option\": \"SHARED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Validate payment",
+        "api_call": "https://api-demo.airwallex.com/api/v1/payments/validate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary\": {\n        \"address\": {\n            \"city\": \"{{$randomCity}}\",\n            \"country_code\": \"CN\",\n            \"postcode\": \"25000\",\n            \"state\": \"{{$randomCity}}\",\n            \"street_address\": \"{{$randomStreetAddress}}\"\n        },\n        \"bank_details\": {\n            \"account_currency\": \"CNY\",\n            \"account_name\": \"{{$randomFullName}}\",\n            \"account_number\": \"{{$randomBankAccount}}\",\n            \"bank_country_code\": \"CN\",\n            \"bank_name\": \"{{$randomCompanyName}}\",\n            \"swift_code\": \"ABOCCNBJ\"\n        },\n        \"company_name\": \"{{$randomCompanyName}}\",\n        \"entity_type\": \"COMPANY\"\n    },\n    \"payment_amount\": 1000,\n    \"payment_currency\": \"CNY\",\n    \"payment_method\": \"SWIFT\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Test {{$guid}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"source_amount\": null,\n    \"source_currency\": \"USD\",\n    \"swift_charge_option\": \"SHARED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of financial reports",
+        "api_call": "https://api-demo.airwallex.com/api/v1/finance/financial_reports",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get financial report by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/finance/financial_reports/:report_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get contents of a financial report",
+        "api_call": "https://api-demo.airwallex.com/api/v1/finance/financial_reports/:report_id/content",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a financial report",
+        "api_call": "https://api-demo.airwallex.com/api/v1/finance/financial_reports/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"file_format\": \"CSV\",\n    \"from_created_at\": \"2022-02-01\",\n    \"to_created_at\": \"2022-05-31\",\n    \"type\": \"BALANCE_ACTIVITY_REPORT\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of financial transactions",
+        "api_call": "https://api-demo.airwallex.com/api/v1/financial_transactions?page_size=200&to_created_at=2022-01-25",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a financial transaction by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/financial_transactions/:financial_transaction_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of settlements",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/financial/settlements",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a settlement by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/financial/settlements/:settlement_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a settlement report by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/pa/financial/settlements/:settlement_id/report",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create an account invitation link - oauth2",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/invitation_links/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"identifier\": \"external_account_id_{{$guid}}\",\n    \"metadata\": {},\n    \"mode\": \"oauth2\",\n    \"oauth2\": {\n        \"redirect_uri\": \"{{$randomUrl}}\",\n        \"response_type\": \"code\",\n        \"scope\": [\n            \"r:awx_action:balances_view\",\n            \"r:awx_action:settings.account_details_view\"\n        ],\n        \"state\": \"state-{{$guid}}\"\n    },\n    \"prefilled_formdata\": [\n        {\n            \"editable\": false,\n            \"field\": \"email\",\n            \"value\": \"test.{{$timestamp}}@example.com\",\n            \"verified\": true\n        },\n        {\n            \"editable\": false,\n            \"field\": \"business_name\",\n            \"value\": \"{{$randomCompanyName}}\",\n            \"verified\": true\n        },\n        {\n            \"editable\": false,\n            \"field\": \"first_name\",\n            \"value\": \"{{$randomFirstName}}\",\n            \"verified\": true\n        },\n        {\n            \"editable\": false,\n            \"field\": \"last_name\",\n            \"value\": \"{{$randomLastName}}\",\n            \"verified\": true\n        },\n        {\n            \"editable\": false,\n            \"field\": \"contact_name\",\n            \"value\": \"{{$randomFullName}}\",\n            \"verified\": true\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create an account invitation link - scale_connect",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/invitation_links/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_id\": \"{{connected_account_id}}\",\n    \"mode\": \"scale_connect\",\n    \"prefilled_formdata\": [\n        {\n            \"editable\": false,\n            \"field\": \"email\",\n            \"value\": \"{{connected_account_email}}\",\n            \"verified\": true\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get an account invitation link by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/invitation_links/:invitation_link_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create an account - Business",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_details\": {\n        \"beneficial_owners\": [\n            {\n                \"identification_type\": \"PERSONAL_ID\",\n                \"nationality\": \"CN\",\n                \"attachments\": {\n                    \"identity_files\": [\n                        {\n                            \"description\": \"{{filename}}\",\n                            \"file_id\": \"{{file_id}}\",\n                            \"tag\": \"PERSONAL_ID_FRONT\"\n                        },\n                        {\n                            \"description\": \"{{filename}}\",\n                            \"file_id\": \"{{file_id}}\",\n                            \"tag\": \"PERSONAL_ID_BACK\"\n                        }\n                    ]\n                }\n            }\n        ],\n        \"business_details\": {\n            \"address\": {\n                \"country_code\": \"CN\"\n            },\n            \"business_name\": \"\u5f20\u4e09\u8d38\u6613\u6709\u9650\u516c\u53f8\",\n            \"industry_category\": \"E-Commerce - Merchant\",\n            \"url\": \"{{$randomUrl}}\",\n            \"attachments\": {\n                \"business_documents\": [\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"BUSINESS_LICENSE\"\n                    }\n                ]\n            }\n        },\n        \"legal_rep_details\": {\n            \"identification_type\": \"PERSONAL_ID\",\n            \"nationality\": \"CN\",\n            \"attachments\": {\n                \"identity_files\": [\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"PERSONAL_ID_FRONT\"\n                    },\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"PERSONAL_ID_BACK\"\n                    }\n                ]\n            }\n        }\n    },\n    \"account_usage\": {\n        \"card_usage\": [\n            \"NONE\"\n        ],\n        \"collection_country_codes\": [\n            \"CN\"\n        ],\n        \"collection_from\": [\n            \"CLIENTS_AND_OTHER_THIRD_PARTIES\"\n        ],\n        \"expected_monthly_transaction_volume\": {\n            \"amount\": \"100000.0\"\n        },\n        \"payout_country_codes\": [\n            \"CN\"\n        ],\n        \"payout_to\": [\n            \"CONNECTED_AWX_ACCOUNT\",\n            \"VENDORS_SUPPLIERS_OR_OTHER_THIRD_PARTY_BANK_ACCOUNT\",\n            \"WITHDRAWAL_TO_BANK_ACCOUNT_UNDER_THE_SAME_NAME\"\n        ]\n    },\n    \"customer_agreements\": {\n        \"agreed_to_data_usage\": true,\n        \"agreed_to_terms_and_conditions\": true,\n        \"opt_in_for_marketing\": false\n    },\n    \"primary_contact\": {\n        \"email\": \"test+{{$guid}}@example.com\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create an account - Individual",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_details\": {\n        \"individual_details\": {\n            \"address\": {\n                \"address_line1\": \"{{$randomStreetAddress}}\",\n                \"country_code\": \"HK\",\n                \"postcode\": \"25000\",\n                \"state\": \"{{$randomCity}}\",\n                \"suburb\": \"{{$randomCity}}\"\n            },\n            \"date_of_birth\": \"2000-01-01\",\n            \"first_name\": \"John\",\n            \"first_name_english\": \"John\",\n            \"last_name\": \"Doe\",\n            \"last_name_english\": \"Doe\",\n            \"photo_file_id\": \"{{file_id}}\",\n            \"nationality\": \"HK\",\n            \"primary_identification\": {\n                \"identification_type\": \"PERSONAL_ID\",\n                \"issuing_country_code\": \"HK\",\n                \"personal_id\": {\n                    \"front_file_id\": \"{{file_id}}\"\n                }\n            },\n            \"user_id_on_platform\": \"dummy_external_id_{{$guid}}\"\n        },\n        \"legal_entity_type\": \"INDIVIDUAL\"\n    },\n    \"account_usage\": {\n        \"card_usage\": [\n            \"PERSONAL_SPENDING\"\n        ],\n        \"collection_country_codes\": [\n            \"HK\"\n        ],\n        \"collection_from\": [\n            \"SELF_TOP_UP\"\n        ],\n        \"expected_monthly_transaction_volume\": {\n            \"amount\": \"5000\"\n        },\n        \"payout_country_codes\": [\n            \"HK\"\n        ],\n        \"payout_to\": [\n            \"OWN_BANK_ACCOUNT\"\n        ]\n    },\n    \"customer_agreements\": {\n        \"agreed_to_data_usage\": true,\n        \"agreed_to_terms_and_conditions\": true\n    },\n    \"primary_contact\": {\n        \"email\": \"test+{{$guid}}@example.com\",\n        \"mobile\": \"{{$randomPhoneNumber}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update a connected account",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/:connected_account_id/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_details\": {\n        \"beneficial_owners\": [\n            {\n                \"identification_type\": \"PERSONAL_ID\",\n                \"nationality\": \"CN\",\n                \"attachments\": {\n                    \"identity_files\": [\n                        {\n                            \"description\": \"{{filename}}\",\n                            \"file_id\": \"{{file_id}}\",\n                            \"tag\": \"PERSONAL_ID_FRONT\"\n                        },\n                        {\n                            \"description\": \"{{filename}}\",\n                            \"file_id\": \"{{file_id}}\",\n                            \"tag\": \"PERSONAL_ID_BACK\"\n                        }\n                    ]\n                }\n            }\n        ],\n        \"business_details\": {\n            \"address\": {\n                \"country_code\": \"CN\"\n            },\n            \"industry_category\": \"E-Commerce - Merchant\",\n            \"purpose\": \"Payment to service providers - Shipping & Delivery Companies/Agencies\",\n            \"url\": \"http://www.example.com\",\n            \"attachments\": {\n                \"business_documents\": [\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"BUSINESS_LICENSE\"\n                    }\n                ]\n            }\n        },\n        \"legal_rep_details\": {\n            \"attachments\": {\n                \"identity_files\": [\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"PERSONAL_ID_FRONT\"\n                    },\n                    {\n                        \"description\": \"{{filename}}\",\n                        \"file_id\": \"{{file_id}}\",\n                        \"tag\": \"PERSONAL_ID_BACK\"\n                    }\n                ]\n            },\n            \"identification_type\": \"PERSONAL_ID\",\n            \"nationality\": \"CN\"\n        }\n    },\n    \"account_usage\": {\n        \"card_usage\": [\n            \"NONE\"\n        ],\n        \"collection_country_codes\": [\n            \"CN\"\n        ],\n        \"collection_from\": [\n            \"CLIENTS_AND_OTHER_THIRD_PARTIES\"\n        ],\n        \"expected_monthly_transaction_volume\": {\n            \"amount\": \"100000.0\"\n        },\n        \"payout_country_codes\": [\n            \"CN\"\n        ],\n        \"payout_to\": [\n            \"CONNECTED_AWX_ACCOUNT\",\n            \"VENDORS_SUPPLIERS_OR_OTHER_THIRD_PARTY_BANK_ACCOUNT\",\n            \"WITHDRAWAL_TO_BANK_ACCOUNT_UNDER_THE_SAME_NAME\"\n        ]\n    },\n    \"customer_agreements\": {\n        \"agreed_to_data_usage\": true,\n        \"agreed_to_terms_and_conditions\": true,\n        \"opt_in_for_marketing\": false\n    },\n    \"primary_contact\": {\n        \"email\": \"test+{{$guid}}@example.com\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Submit account for activation",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/:connected_account_id/submit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get account by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/:connected_account_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of connected accounts",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve account details",
+        "api_call": "https://api-demo.airwallex.com/api/v1/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Agree to terms and conditions",
+        "api_call": "https://api-demo.airwallex.com/api/v1/accounts/:connected_account_id/terms_and_conditions/agree",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of charges",
+        "api_call": "https://api-demo.airwallex.com/api/v1/charges",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a charge by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/charges/:charge_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new charge",
+        "api_call": "https://api-demo.airwallex.com/api/v1/charges/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": \"10\",\n    \"currency\": \"USD\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Postman Test - {{$guid}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"source\": \"{{connected_account_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create flow",
+        "api_call": "https://api-demo.airwallex.com/api/v1/hosted_flows/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_id\": \"{{connected_account_id}}\",\n    \"template\": \"{{hosted_flow_template_id}}\",\n    \"return_url\": \"{{$randomUrl}}\",\n    \"error_url\": \"{{$randomUrl}}\",\n    \"metadata\": {}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get flow",
+        "api_call": "https://api-demo.airwallex.com/api/v1/hosted_flows/:hosted_flow_instance_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Authorize flow",
+        "api_call": "https://api-demo.airwallex.com/api/v1/hosted_flows/:hosted_flow_instance_id/authorize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"identity\": \"external_user_{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of transfers",
+        "api_call": "https://api-demo.airwallex.com/api/v1/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a transfer by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/transfers/:transfer_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new transfer",
+        "api_call": "https://api-demo.airwallex.com/api/v1/transfers/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": \"10\",\n    \"currency\": \"USD\",\n    \"destination\": \"{{connected_account_id}}\",\n    \"reason\": \"professional_business_services\",\n    \"reference\": \"Postman Test - {{$guid}}\",\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update status of connected account",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/accounts/:account_id/update_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"force\": true,\n    \"next_status\": \"ACTIVE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a transaction for the provided card",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/issuing/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"auth_code\": \"\",\n    \"card_id\": \"{{card_id}}\",       \n    \"card_number\": \"{{card_number}}\",\n    \"merchant_category_code\": \"\",\n    \"merchant_info\": \"Airwallex Cards Simulation\",\n    \"transaction_amount\": 10.10,\n    \"transaction_currency\": \"USD\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Capture the transaction with the provided id",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/issuing/:transaction_id/capture",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a global account deposit",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/deposit/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "default",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": \"1000\",\n    \"global_account_id\": \"{{global_account_id}}\",\n    \"payer_bankname\": \"Postman Bank\",\n    \"payer_country\": \"CN\",\n    \"payer_name\": \"Postman\",\n    \"reference\": \"Test from Postman\",\n    \"status\": \"SETTLED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Transition Payment Status",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/payments/:payment_id/transition",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "default",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"failure_type\": \"\",\n    \"next_status\": \"DISPATCHED\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get onboarding file download links",
+        "api_call": "https://api-demo.airwallex.com/api/v1/files/download_links",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"file_ids\": [\n        \"{{file_id}}\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Upload a file",
+        "api_call": "https://files-demo.airwallex.com/api/v1/files/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "src": "/Volumes/GoogleDrive/My Drive/Pictures/\u8eab\u4efd\u8bc1\u6837\u672c-\u6b63\u9762.jpg"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a new notification",
+        "api_call": "https://api-demo.airwallex.com/api/v1/notifications/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"deliver_type\": \"EMAIL\",\n    \"source_id\": \"{{connected_account_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Industry categories",
+        "api_call": "https://api-demo.airwallex.com/api/v1/reference/industry_categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Invalid conversion dates",
+        "api_call": "https://api-demo.airwallex.com/api/v1/reference/invalid_conversion_dates?currency_pair=USDCNY",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Settlement accounts",
+        "api_call": "https://api-demo.airwallex.com/api/v1/reference/settlement_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Supported currencies",
+        "api_call": "https://api-demo.airwallex.com/api/v1/reference/supported_currencies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a conversion - buy_amount based",
+        "api_call": "https://api-demo.airwallex.com/api/v1/conversions/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"buy_amount\": \"10000\",\n  \"buy_currency\": \"AUD\",\n  \"conversion_date\": null,\n  \"quote_id\": \"{{quote_id}}\",\n  \"reason\": \"For settling a payment\",\n  \"request_id\": \"{{$guid}}\",\n  \"sell_currency\": \"CNY\",\n  \"term_agreement\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create a conversion - sell_amount based",
+        "api_call": "https://api-demo.airwallex.com/api/v1/conversions/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"buy_currency\": \"AUD\",\n  \"conversion_date\": null,\n  \"quote_id\": \"{{quote_id}}\",\n  \"reason\": \"For settling a payment\",\n  \"request_id\": \"{{$guid}}\",\n  \"sell_amount\": 10000,\n  \"sell_currency\": \"CNY\",\n  \"term_agreement\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Retrieve a specific conversion",
+        "api_call": "https://api-demo.airwallex.com/api/v1/conversions/:conversion_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: List conversions",
+        "api_call": "https://api-demo.airwallex.com/api/v1/conversions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Reverse a settled conversion",
+        "api_call": "https://api-demo.airwallex.com/api/v1/conversions/:conversion_id/reverse",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create LockFX quote",
+        "api_call": "https://api-demo.airwallex.com/api/v1/lockfx/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"buy_amount\": null,\n    \"buy_currency\": \"AUD\",\n    \"conversion_date\": null,\n    \"sell_amount\": 100,\n    \"sell_currency\": \"USD\",\n    \"validity\": \"MIN_1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get indicative market quote",
+        "api_call": "https://api-demo.airwallex.com/api/v1/marketfx/quote?buy_currency=USD&sell_currency=CNY&buy_amount=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get current balances",
+        "api_call": "https://api-demo.airwallex.com/api/v1/balances/current",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get balance history",
+        "api_call": "https://api-demo.airwallex.com/api/v1/balances/history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get list of deposits",
+        "api_call": "https://api-demo.airwallex.com/api/v1/deposits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get a list of global accounts",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get global account by ID",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts/:global_account_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Generate global account statement - AMAZON",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts/:global_account_id/generate_statement_letter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_statement_type\": \"AMAZON\",\n    \"registration_info\": {\n        \"agreement\": true,\n        \"registered_address\": {\n            \"address\": \"{{$randomStreetAddress}}\",\n            \"city\": \"{{$randomCity}}\",\n            \"country\": \"{{$randomCountry}}\",\n            \"postcode\": \"3000\",\n            \"state\": \"{{$randomCity}}\"\n        },\n        \"registered_email\": \"{{$randomExampleEmail}}\",\n        \"registered_name\": \"{{$randomFullName}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Generate global account statement - GENERAL",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts/:global_account_id/generate_statement_letter",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"account_statement_type\": \"GENERAL\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get global account transactions",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts/:global_account_id/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "description": "The connected account's ID.",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Open a global account",
+        "api_call": "https://api-demo.airwallex.com/api/v1/global_accounts/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-on-behalf-of",
+                    "value": "{{connected_account_id}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"country_code\": \"{country_code}\",\n    \"currency\": \"{currency}\",\n    \"nick_name\": \"My New Global Account\",\n    \"payment_methods\": [\n        \"LOCAL\",\n        \"SWIFT\"\n    ],\n    \"request_id\": \"{{$guid}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Replace {country_code} and {currency} with supported actual country code and currency mentioned in Airwallex API Reference :-\n\n[https://www.airwallex.com/docs/api#/Core_Resources/Global_Accounts/_api_v1_global_accounts_create/post](https://www.airwallex.com/docs/api#/Core_Resources/Global_Accounts/_api_v1_global_accounts_create/post)\n\nGlobal Accounts can accept"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Settle",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/deposits/:deposit_id/settle",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Reverse",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/deposits/:deposit_id/reverse",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Reject",
+        "api_call": "https://api-demo.airwallex.com/api/v1/simulation/deposits/:deposit_id/reject",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get Linked Bank Accounts",
+        "api_call": "https://api-demo.airwallex.com/api/v1/linked_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Create Linked Bank Account",
+        "api_call": "https://api-demo.airwallex.com/api/v1/linked_accounts/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\":\"US_BANK\",\n    \"us_bank\": {\n    \"account_name\": \"Connected Account Demo\",\n    \"account_number\": \"000000000000\",//replace this with a sample bank account number\n    \"ach\": \"000000000\",//sample routing number\n    \"currency\": \"USD\",\n    \"entity_type\": \"BUSINESS\"\n  },\n  \"preferred_verification_type\":\"MICRO_DEPOSIT\"\n}  ",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Verify Linked Account with micro-deposits",
+        "api_call": "https://api-demo.airwallex.com/api/v1/linked_accounts/:lba_id/verify_microdeposits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"amounts\": [\n    0.01,\n    0.02\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Get mandate",
+        "api_call": "https://api-demo.airwallex.com/api/v1/linked_accounts/:lba_id/mandate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Update Mandate for LBA",
+        "api_call": "https://api-demo.airwallex.com/api/v1/linked_accounts/:lba_id/mandate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"{{$randomEmail}}\",\n  \"signatory\": \"Tester Smith\",\n  \"type\": \"US_ACH_DEBIT\",\n  \"version\": \"1.0\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Airwallex Public API - General Availability Suites: Funding limits",
+        "api_call": "https://api-demo.airwallex.com/api/v1/account_capabilities/funding_limits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
