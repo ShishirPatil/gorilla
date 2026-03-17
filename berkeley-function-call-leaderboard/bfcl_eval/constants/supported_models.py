@@ -103,6 +103,8 @@ SUPPORTED_MODELS = [
     "glm-4.5-air-FC",
     "kimi-k2-0905-preview-FC",
     "kimi-k2-0905-preview",
+    "MiniMax-M2.5-FC",
+    "MiniMax-M2.5",
     "Nanbeige3.5-Pro-Thinking-FC",
     "deepseek-ai/DeepSeek-R1",
     "google/gemma-3-1b-it",

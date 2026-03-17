@@ -14,6 +14,7 @@ from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
 from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
+from bfcl_eval.model_handler.api_inference.minimax import MiniMaxHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
 from bfcl_eval.model_handler.api_inference.mistral import MistralHandler
 from bfcl_eval.model_handler.api_inference.nemotron import NemotronHandler
@@ -1194,6 +1195,30 @@ api_inference_model_map = {
         model_handler=KimiHandler,
         input_price=None,
         output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "MiniMax-M2.5-FC": ModelConfig(
+        model_name="MiniMax-M2.5",
+        display_name="MiniMax-M2.5 (FC)",
+        url="https://www.minimax.io",
+        org="MiniMax",
+        license="Proprietary",
+        model_handler=MiniMaxHandler,
+        input_price=1.0,
+        output_price=5.5,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "MiniMax-M2.5": ModelConfig(
+        model_name="MiniMax-M2.5",
+        display_name="MiniMax-M2.5 (Prompt)",
+        url="https://www.minimax.io",
+        org="MiniMax",
+        license="Proprietary",
+        model_handler=MiniMaxHandler,
+        input_price=1.0,
+        output_price=5.5,
         is_fc_model=False,
         underscore_to_dot=False,
     ),
