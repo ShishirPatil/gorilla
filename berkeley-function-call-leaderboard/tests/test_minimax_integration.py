@@ -35,7 +35,7 @@ def minimax_client():
 def test_minimax_chat_completion(minimax_client):
     """MiniMax API should return a valid chat completion."""
     response = minimax_client.chat.completions.create(
-        model="MiniMax-M2.5",
+        model="MiniMax-M2.7",
         messages=[{"role": "user", "content": "Say hello in one word."}],
         temperature=0.01,
         max_tokens=10,
@@ -70,7 +70,7 @@ def test_minimax_function_calling(minimax_client):
     ]
 
     response = minimax_client.chat.completions.create(
-        model="MiniMax-M2.5",
+        model="MiniMax-M2.7",
         messages=[
             {"role": "user", "content": "What is the weather in San Francisco?"}
         ],
@@ -92,7 +92,7 @@ def test_minimax_function_calling(minimax_client):
 def test_minimax_temperature_zero(minimax_client):
     """MiniMax API should accept temperature=0."""
     response = minimax_client.chat.completions.create(
-        model="MiniMax-M2.5",
+        model="MiniMax-M2.7",
         messages=[{"role": "user", "content": "Reply with exactly: OK"}],
         temperature=0,
         max_tokens=5,

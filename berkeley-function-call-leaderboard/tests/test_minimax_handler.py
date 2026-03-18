@@ -99,7 +99,7 @@ def test_minimax_handler_reads_api_key_env():
 
 # ── Test 5: Model config registers FC and Prompt entries ─────────────────────
 def test_model_config_has_minimax_entries():
-    """model_config.py must contain MiniMax-M2.5-FC and MiniMax-M2.5 entries."""
+    """model_config.py must contain MiniMax-M2.7-FC and MiniMax-M2.7 entries."""
     config_path = os.path.join(
         os.path.dirname(__file__),
         "..",
@@ -109,6 +109,9 @@ def test_model_config_has_minimax_entries():
     )
     with open(config_path) as f:
         source = f.read()
+    assert '"MiniMax-M2.7-FC"' in source
+    assert '"MiniMax-M2.7"' in source
+    # Legacy models still present
     assert '"MiniMax-M2.5-FC"' in source
     assert '"MiniMax-M2.5"' in source
 
@@ -142,9 +145,8 @@ def test_model_config_fc_entry_is_fc():
     )
     with open(config_path) as f:
         source = f.read()
-    # Check that the FC entry has is_fc_model=True
-    # Find the FC entry block
-    fc_start = source.find('"MiniMax-M2.5-FC"')
+    # Check that the M2.7 FC entry has is_fc_model=True
+    fc_start = source.find('"MiniMax-M2.7-FC"')
     fc_end = source.find("),", fc_start)
     fc_block = source[fc_start:fc_end]
     assert "is_fc_model=True" in fc_block
@@ -162,12 +164,10 @@ def test_model_config_prompt_entry_is_not_fc():
     )
     with open(config_path) as f:
         source = f.read()
-    # Find the Prompt entry (not the FC one)
-    # The prompt entry key is just "MiniMax-M2.5" (without -FC)
-    prompt_start = source.find('"MiniMax-M2.5":')
-    # Make sure we didn't find the FC entry
+    # Find the M2.7 Prompt entry (not the FC one)
+    prompt_start = source.find('"MiniMax-M2.7":')
     if prompt_start == -1:
-        pytest.fail("MiniMax-M2.5 prompt entry not found")
+        pytest.fail("MiniMax-M2.7 prompt entry not found")
     prompt_end = source.find("),", prompt_start)
     prompt_block = source[prompt_start:prompt_end]
     assert "is_fc_model=False" in prompt_block
@@ -185,6 +185,11 @@ def test_supported_models_includes_minimax():
     )
     with open(models_path) as f:
         source = f.read()
+    assert '"MiniMax-M2.7-FC"' in source
+    assert '"MiniMax-M2.7"' in source
+    assert '"MiniMax-M2.7-highspeed-FC"' in source
+    assert '"MiniMax-M2.7-highspeed"' in source
+    # Legacy models still present
     assert '"MiniMax-M2.5-FC"' in source
     assert '"MiniMax-M2.5"' in source
 
@@ -199,8 +204,10 @@ def test_supported_models_md_documents_minimax():
     )
     with open(md_path) as f:
         content = f.read()
-    assert "MiniMax-M2.5" in content
-    assert "MiniMax-M2.5-FC" in content
+    assert "MiniMax-M2.7" in content
+    assert "MiniMax-M2.7-FC" in content
+    assert "MiniMax-M2.7-highspeed" in content
+    assert "MiniMax-M2.7-highspeed-FC" in content
     assert "| MiniMax" in content
 
 
@@ -216,7 +223,7 @@ def test_model_config_org_is_minimax():
     )
     with open(config_path) as f:
         source = f.read()
-    fc_start = source.find('"MiniMax-M2.5-FC"')
+    fc_start = source.find('"MiniMax-M2.7-FC"')
     fc_end = source.find("),", fc_start)
     fc_block = source[fc_start:fc_end]
     assert 'org="MiniMax"' in fc_block
@@ -234,7 +241,7 @@ def test_model_config_uses_minimax_handler():
     )
     with open(config_path) as f:
         source = f.read()
-    fc_start = source.find('"MiniMax-M2.5-FC"')
+    fc_start = source.find('"MiniMax-M2.7-FC"')
     fc_end = source.find("),", fc_start)
     fc_block = source[fc_start:fc_end]
     assert "model_handler=MiniMaxHandler" in fc_block
@@ -281,8 +288,58 @@ def test_model_config_has_pricing():
     )
     with open(config_path) as f:
         source = f.read()
-    fc_start = source.find('"MiniMax-M2.5-FC"')
+    fc_start = source.find('"MiniMax-M2.7-FC"')
     fc_end = source.find("),", fc_start)
     fc_block = source[fc_start:fc_end]
     assert "input_price=" in fc_block
     assert "output_price=" in fc_block
+
+
+# ── Test 15: M2.7 entries appear before M2.5 in model config ────────────────
+def test_m27_before_m25_in_model_config():
+    """M2.7 entries must appear before M2.5 entries in model_config.py."""
+    config_path = os.path.join(
+        os.path.dirname(__file__),
+        "..",
+        "bfcl_eval",
+        "constants",
+        "model_config.py",
+    )
+    with open(config_path) as f:
+        source = f.read()
+    m27_pos = source.find('"MiniMax-M2.7-FC"')
+    m25_pos = source.find('"MiniMax-M2.5-FC"')
+    assert m27_pos < m25_pos, "M2.7 should appear before M2.5"
+
+
+# ── Test 16: M2.7 entries appear before M2.5 in supported models ────────────
+def test_m27_before_m25_in_supported_models():
+    """M2.7 entries must appear before M2.5 entries in supported_models.py."""
+    models_path = os.path.join(
+        os.path.dirname(__file__),
+        "..",
+        "bfcl_eval",
+        "constants",
+        "supported_models.py",
+    )
+    with open(models_path) as f:
+        source = f.read()
+    m27_pos = source.find('"MiniMax-M2.7-FC"')
+    m25_pos = source.find('"MiniMax-M2.5-FC"')
+    assert m27_pos < m25_pos, "M2.7 should appear before M2.5"
+
+
+# ── Test 17: M2.7-highspeed entries exist in model config ────────────────────
+def test_m27_highspeed_in_model_config():
+    """model_config.py must contain M2.7-highspeed entries."""
+    config_path = os.path.join(
+        os.path.dirname(__file__),
+        "..",
+        "bfcl_eval",
+        "constants",
+        "model_config.py",
+    )
+    with open(config_path) as f:
+        source = f.read()
+    assert '"MiniMax-M2.7-highspeed-FC"' in source
+    assert '"MiniMax-M2.7-highspeed"' in source

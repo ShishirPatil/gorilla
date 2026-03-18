@@ -106,6 +106,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Mistral-Medium-2505                    | Prompt           | Mistral AI     | mistral-medium-2505                                         |
 | Mistral-small-2506                     | Function Calling | Mistral AI     | mistral-small-2506-FC                                       |
 | Mistral-Small-2506                     | Prompt           | Mistral AI     | mistral-small-2506                                          |
+| MiniMax-M2.7                           | Function Calling | MiniMax        | MiniMax-M2.7-FC                                             |
+| MiniMax-M2.7                           | Prompt           | MiniMax        | MiniMax-M2.7                                                |
+| MiniMax-M2.7-highspeed                 | Function Calling | MiniMax        | MiniMax-M2.7-highspeed-FC                                   |
+| MiniMax-M2.7-highspeed                 | Prompt           | MiniMax        | MiniMax-M2.7-highspeed                                      |
 | MiniMax-M2.5                           | Function Calling | MiniMax        | MiniMax-M2.5-FC                                             |
 | MiniMax-M2.5                           | Prompt           | MiniMax        | MiniMax-M2.5                                                |
 | Moonshotai-Kimi-K2-Instruct            | Function Calling | MoonshotAI     | kimi-k2-0905-preview-FC                                     |
