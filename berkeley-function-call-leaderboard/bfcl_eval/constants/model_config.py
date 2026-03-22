@@ -1861,6 +1861,18 @@ local_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
+    "openbmb/MiniCPM-SALA-FC": ModelConfig(
+        model_name="openbmb/MiniCPM-SALA-FC",
+        display_name="MiniCPM-SALA (FC)",
+        url="https://huggingface.co/openbmb/MiniCPM-SALA",
+        org="openbmb",
+        license="Apache-2.0",
+        model_handler=OpenAICompletionsHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
     "watt-ai/watt-tool-8B": ModelConfig(
         model_name="watt-ai/watt-tool-8B",
         display_name="watt-tool-8B (FC)",

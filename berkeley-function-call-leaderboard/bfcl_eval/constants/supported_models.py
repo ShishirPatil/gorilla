@@ -156,6 +156,7 @@ SUPPORTED_MODELS = [
     "Team-ACE/ToolACE-2-8B",
     "openbmb/MiniCPM3-4B",
     "openbmb/MiniCPM3-4B-FC",
+    "openbmb/MiniCPM-SALA-FC",
     "watt-ai/watt-tool-8B",
     "watt-ai/watt-tool-70B",
     "ZJared/Haha-7B",

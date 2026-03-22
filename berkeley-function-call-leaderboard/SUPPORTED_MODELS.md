@@ -99,6 +99,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Llama-4-Scout-17B-16E-Instruct         | Function Calling | Self-hosted 💻 | meta-llama/Llama-4-Scout-17B-16E-Instruct-FC                |
 | MiniCPM3-4B                            | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                         | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
+| MiniCPM-SALA                           | Function Calling | Self-hosted 💻 | openbmb/MiniCPM-SALA-FC                                     |
 | Ministral-8B-Instruct-2410             | Prompt           | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
 | mistral-large-2411                     | Function Calling | Mistral AI     | mistral-large-2411-FC                                       |
 | mistral-large-2411                     | Prompt           | Mistral AI     | mistral-large-2411                                          |
