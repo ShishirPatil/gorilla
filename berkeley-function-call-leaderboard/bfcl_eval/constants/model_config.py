@@ -114,6 +114,8 @@ class ModelConfig:
     # True if this model does not allow '.' in function names
     underscore_to_dot: bool = False
 
+    reasoning_mode: bool = False
+
 
 # Inference through API calls
 api_inference_model_map = {
@@ -140,6 +142,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "DeepSeek-V3.2-Exp-FC": ModelConfig(
         model_name="deepseek-chat",
@@ -152,10 +155,11 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "DeepSeek-V3.2-Exp-thinking": ModelConfig(
         model_name="deepseek-reasoner",
-        display_name="DeepSeek-V3.2-Exp (Prompt + Thinking)",
+        display_name="DeepSeek-V3.2-Exp (Prompt)",
         url="https://api-docs.deepseek.com/news/news250528",
         org="DeepSeek",
         license="MIT",
@@ -164,6 +168,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gpt-5.2-2025-12-11-FC": ModelConfig(
         model_name="gpt-5.2-2025-12-11",
@@ -176,6 +181,7 @@ api_inference_model_map = {
         output_price=14,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gpt-5.2-2025-12-11": ModelConfig(
         model_name="gpt-5.2-2025-12-11",
@@ -188,6 +194,7 @@ api_inference_model_map = {
         output_price=14,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gpt-5-mini-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-mini-2025-08-07",
@@ -200,6 +207,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gpt-5-mini-2025-08-07": ModelConfig(
         model_name="gpt-5-mini-2025-08-07",
@@ -212,6 +220,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gpt-5-nano-2025-08-07-FC": ModelConfig(
         model_name="gpt-5-nano-2025-08-07",
@@ -224,6 +233,7 @@ api_inference_model_map = {
         output_price=0.4,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gpt-5-nano-2025-08-07": ModelConfig(
         model_name="gpt-5-nano-2025-08-07",
@@ -236,6 +246,7 @@ api_inference_model_map = {
         output_price=0.4,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gpt-4.1-2025-04-14-FC": ModelConfig(
         model_name="gpt-4.1-2025-04-14",
@@ -368,6 +379,7 @@ api_inference_model_map = {
         output_price=8,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "o3-2025-04-16-FC": ModelConfig(
         model_name="o3-2025-04-16",
@@ -380,6 +392,7 @@ api_inference_model_map = {
         output_price=8,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "o4-mini-2025-04-16": ModelConfig(
         model_name="o4-mini-2025-04-16",
@@ -392,6 +405,7 @@ api_inference_model_map = {
         output_price=4.40,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "o4-mini-2025-04-16-FC": ModelConfig(
         model_name="o4-mini-2025-04-16",
@@ -404,6 +418,7 @@ api_inference_model_map = {
         output_price=4.40,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "claude-opus-4-5-20251101": ModelConfig(
         model_name="claude-opus-4-5-20251101",
@@ -416,6 +431,7 @@ api_inference_model_map = {
         output_price=25,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "claude-opus-4-5-20251101-FC": ModelConfig(
         model_name="claude-opus-4-5-20251101",
@@ -428,6 +444,7 @@ api_inference_model_map = {
         output_price=25,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "claude-sonnet-4-5-20250929": ModelConfig(
         model_name="claude-sonnet-4-5-20250929",
@@ -440,6 +457,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "claude-sonnet-4-5-20250929-FC": ModelConfig(
         model_name="claude-sonnet-4-5-20250929",
@@ -452,6 +470,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "claude-haiku-4-5-20251001": ModelConfig(
         model_name="claude-haiku-4-5-20251001",
@@ -464,6 +483,7 @@ api_inference_model_map = {
         output_price=4,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "claude-haiku-4-5-20251001-FC": ModelConfig(
         model_name="claude-haiku-4-5-20251001",
@@ -476,6 +496,7 @@ api_inference_model_map = {
         output_price=4,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "nova-pro-v1.0": ModelConfig(
         model_name="us.amazon.nova-pro-v1:0",
@@ -548,6 +569,7 @@ api_inference_model_map = {
         output_price=6,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "mistral-large-2411-FC": ModelConfig(
         model_name="mistral-large-2411",
@@ -560,6 +582,7 @@ api_inference_model_map = {
         output_price=6,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "mistral-small-2506": ModelConfig(
         model_name="mistral-small-2506",
@@ -572,6 +595,7 @@ api_inference_model_map = {
         output_price=0.3,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "mistral-small-2506-FC": ModelConfig(
         model_name="mistral-small-2506",
@@ -584,6 +608,7 @@ api_inference_model_map = {
         output_price=0.3,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "mistral-medium-2505": ModelConfig(
         model_name="mistral-medium-2505",
@@ -596,6 +621,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "mistral-medium-2505-FC": ModelConfig(
         model_name="mistral-medium-2505",
@@ -608,6 +634,7 @@ api_inference_model_map = {
         output_price=2,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "firefunction-v2-FC": ModelConfig(
         model_name="accounts/fireworks/models/firefunction-v2",
@@ -620,6 +647,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "gemini-2.5-flash-lite-FC": ModelConfig(
         model_name="gemini-2.5-flash-lite",
@@ -632,6 +660,7 @@ api_inference_model_map = {
         output_price=0.4,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gemini-2.5-flash-lite": ModelConfig(
         model_name="gemini-2.5-flash-lite",
@@ -644,6 +673,7 @@ api_inference_model_map = {
         output_price=0.4,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gemini-2.5-flash-FC": ModelConfig(
         model_name="gemini-2.5-flash",
@@ -656,6 +686,7 @@ api_inference_model_map = {
         output_price=2.5,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gemini-2.5-flash": ModelConfig(
         model_name="gemini-2.5-flash",
@@ -668,6 +699,7 @@ api_inference_model_map = {
         output_price=2.5,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "gemini-3-pro-preview-FC": ModelConfig(
         model_name="gemini-3-pro-preview",
@@ -680,6 +712,7 @@ api_inference_model_map = {
         output_price=12,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "gemini-3-pro-preview": ModelConfig(
         model_name="gemini-3-pro-preview",
@@ -716,6 +749,7 @@ api_inference_model_map = {
         output_price=1.5,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "meetkai/functionary-small-v3.1-FC": ModelConfig(
         model_name="meetkai/functionary-small-v3.1",
@@ -728,6 +762,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "meetkai/functionary-medium-v3.1-FC": ModelConfig(
         model_name="meetkai/functionary-medium-v3.1",
@@ -740,6 +775,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "command-r7b-12-2024-FC": ModelConfig(
         model_name="command-r7b-12-2024",
@@ -752,6 +788,7 @@ api_inference_model_map = {
         output_price=0.15,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "command-a-03-2025-FC": ModelConfig(
         model_name="command-a-03-2025",
@@ -764,6 +801,7 @@ api_inference_model_map = {
         output_price=10,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "command-a-reasoning-08-2025-FC": ModelConfig(
         model_name="command-a-reasoning-08-2025-FC",
@@ -776,6 +814,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "nvidia/llama-3.1-nemotron-ultra-253b-v1": ModelConfig(
         model_name="nvidia/llama-3.1-nemotron-ultra-253b-v1",
@@ -788,6 +827,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "nvidia/nemotron-4-340b-instruct": ModelConfig(
         model_name="nvidia/nemotron-4-340b-instruct",
@@ -800,6 +840,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "BitAgent/GoGoAgent": ModelConfig(
         model_name="BitAgent/GoGoAgent",
@@ -812,6 +853,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "palmyra-x-004": ModelConfig(
         model_name="palmyra-x-004",
@@ -824,6 +866,7 @@ api_inference_model_map = {
         output_price=12,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "grok-4-0709-FC": ModelConfig(
         model_name="grok-4-0709",
@@ -836,6 +879,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "grok-4-0709": ModelConfig(
         model_name="grok-4-0709",
@@ -848,6 +892,7 @@ api_inference_model_map = {
         output_price=15,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "grok-4-1-fast-reasoning-FC": ModelConfig(
         model_name="grok-4-1-fast-reasoning",
@@ -884,6 +929,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-0.6b": ModelConfig(
         model_name="qwen3-0.6b",
@@ -896,6 +942,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-1.7b-FC": ModelConfig(
         model_name="qwen3-1.7b",
@@ -908,6 +955,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-1.7b": ModelConfig(
         model_name="qwen3-1.7b",
@@ -920,6 +968,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-4b-FC": ModelConfig(
         model_name="qwen3-4b",
@@ -932,6 +981,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-4b": ModelConfig(
         model_name="qwen3-4b",
@@ -944,6 +994,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-8b-FC": ModelConfig(
         model_name="qwen3-8b",
@@ -956,6 +1007,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-8b": ModelConfig(
         model_name="qwen3-8b",
@@ -968,6 +1020,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-14b-FC": ModelConfig(
         model_name="qwen3-14b",
@@ -980,6 +1033,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-14b": ModelConfig(
         model_name="qwen3-14b",
@@ -992,6 +1046,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-32b-FC": ModelConfig(
         model_name="qwen3-32b",
@@ -1004,6 +1059,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-32b": ModelConfig(
         model_name="qwen3-32b",
@@ -1016,6 +1072,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "qwen3-30b-a3b-instruct-2507-FC": ModelConfig(
         model_name="qwen3-30b-a3b-instruct-2507",
@@ -1028,6 +1085,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "qwen3-30b-a3b-instruct-2507": ModelConfig(
         model_name="qwen3-30b-a3b-instruct-2507",
@@ -1040,6 +1098,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "qwen3-235b-a22b-instruct-2507-FC": ModelConfig(
         model_name="qwen3-235b-a22b-instruct-2507",
@@ -1052,6 +1111,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "qwen3-235b-a22b-instruct-2507": ModelConfig(
         model_name="qwen3-235b-a22b-instruct-2507",
@@ -1064,6 +1124,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "qwq-32b-FC": ModelConfig(
         model_name="qwq-32b",
@@ -1076,6 +1137,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwq-32b": ModelConfig(
         model_name="qwq-32b",
@@ -1088,6 +1150,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "xiaoming-14B": ModelConfig(
         model_name="xiaoming-14B",
@@ -1100,6 +1163,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "DM-Cito-8B-v3": ModelConfig(
         model_name="DM-Cito-8B-v3",
@@ -1124,6 +1188,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Ling/ling-lite-v1.5": ModelConfig(
         model_name="Ling/ling-lite-v1.5",
@@ -1136,6 +1201,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "glm-4.6-FC": ModelConfig(
         model_name="glm-4.6",
@@ -1160,6 +1226,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "glm-4.5-air-FC": ModelConfig(
         model_name="glm-4.5-air",
@@ -1172,6 +1239,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "kimi-k2-0905-preview-FC": ModelConfig(
         model_name="kimi-k2-0905-preview",
@@ -1184,6 +1252,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=False,
     ),
     "kimi-k2-0905-preview": ModelConfig(
         model_name="kimi-k2-0905-preview",
@@ -1196,6 +1265,7 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Nanbeige3.5-Pro-Thinking-FC": ModelConfig(
         model_name="Nanbeige3.5-Pro-Thinking",
@@ -1224,6 +1294,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "google/gemma-3-1b-it": ModelConfig(
         model_name="google/gemma-3-1b-it",
@@ -1296,6 +1367,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "meta-llama/Llama-3.1-8B-Instruct": ModelConfig(
         model_name="meta-llama/Llama-3.1-8B-Instruct",
@@ -1308,6 +1380,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "meta-llama/Llama-3.1-70B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.1-70B-Instruct",
@@ -1320,6 +1393,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "meta-llama/Llama-3.1-70B-Instruct": ModelConfig(
         model_name="meta-llama/Llama-3.1-70B-Instruct",
@@ -1332,6 +1406,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "meta-llama/Llama-3.2-1B-Instruct-FC": ModelConfig(
         model_name="meta-llama/Llama-3.2-1B-Instruct",
@@ -1404,6 +1479,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Salesforce/Llama-xLAM-2-8b-fc-r": ModelConfig(
         model_name="Salesforce/Llama-xLAM-2-8b-fc-r",
@@ -1416,6 +1492,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-32b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-32b-fc-r",
@@ -1428,6 +1505,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-3b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-3b-fc-r",
@@ -1440,6 +1518,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "Salesforce/xLAM-2-1b-fc-r": ModelConfig(
         model_name="Salesforce/xLAM-2-1b-fc-r",
@@ -1452,6 +1531,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "mistralai/Ministral-8B-Instruct-2410": ModelConfig(
         model_name="mistralai/Ministral-8B-Instruct-2410",
@@ -1464,6 +1544,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "microsoft/phi-4": ModelConfig(
         model_name="microsoft/phi-4",
@@ -1476,6 +1557,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "microsoft/Phi-4-mini-instruct": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct",
@@ -1488,6 +1570,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "microsoft/Phi-4-mini-instruct-FC": ModelConfig(
         model_name="microsoft/Phi-4-mini-instruct",
@@ -1500,6 +1583,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-3.2-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.2-8b-instruct",
@@ -1512,6 +1596,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-3.1-8b-instruct": ModelConfig(
         model_name="ibm-granite/granite-3.1-8b-instruct",
@@ -1524,6 +1609,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=False,
     ),
     "ibm-granite/granite-4.0-350m": ModelConfig(
         model_name="ibm-granite/granite-4.0-350m",
@@ -1620,6 +1706,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-0.6B": ModelConfig(
         model_name="Qwen/Qwen3-0.6B",
@@ -1632,6 +1719,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-1.7B-FC": ModelConfig(
         model_name="Qwen/Qwen3-1.7B",
@@ -1644,6 +1732,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-1.7B": ModelConfig(
         model_name="Qwen/Qwen3-1.7B",
@@ -1656,6 +1745,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-4B-Instruct-2507-FC": ModelConfig(
         model_name="Qwen/Qwen3-4B-Instruct-2507",
@@ -1692,6 +1782,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-8B": ModelConfig(
         model_name="Qwen/Qwen3-8B",
@@ -1704,6 +1795,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-14B-FC": ModelConfig(
         model_name="Qwen/Qwen3-14B",
@@ -1716,6 +1808,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-14B": ModelConfig(
         model_name="Qwen/Qwen3-14B",
@@ -1728,6 +1821,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-32B-FC": ModelConfig(
         model_name="Qwen/Qwen3-32B",
@@ -1740,6 +1834,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-32B": ModelConfig(
         model_name="Qwen/Qwen3-32B",
@@ -1752,6 +1847,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Qwen/Qwen3-30B-A3B-Instruct-2507-FC": ModelConfig(
         model_name="Qwen/Qwen3-30B-A3B-Instruct-2507",
@@ -1860,6 +1956,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "openbmb/MiniCPM-SALA-FC": ModelConfig(
         model_name="openbmb/MiniCPM-SALA-FC",
@@ -1932,6 +2029,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "tiiuae/Falcon3-10B-Instruct-FC": ModelConfig(
         model_name="tiiuae/Falcon3-10B-Instruct",
@@ -2100,6 +2198,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "phronetic-ai/RZN-T": ModelConfig(
         model_name="phronetic-ai/RZN-T",
@@ -2112,6 +2211,7 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     "Nanbeige/Nanbeige4-3B-Thinking-2511": ModelConfig(
         model_name="Nanbeige/Nanbeige4-3B-Thinking-2511",
@@ -2189,6 +2289,7 @@ third_party_inference_model_map = {
         output_price=0.2,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen/qwq-32b-novita": ModelConfig(
         model_name="qwen/qwq-32b",
@@ -2201,6 +2302,7 @@ third_party_inference_model_map = {
         output_price=0.2,
         is_fc_model=False,
         underscore_to_dot=False,
+        reasoning_mode=True,
     ),
     # Via Qwen Agent Framework
     "qwen3-4b-think-FC": ModelConfig(
@@ -2214,6 +2316,7 @@ third_party_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+        reasoning_mode=True,
     ),
     "qwen3-4b-nothink-FC": ModelConfig(
         model_name="qwen3-4b-nothink-FC",
@@ -2238,3 +2341,10 @@ MODEL_CONFIG_MAPPING = {
 
 # Uncomment to get the supported_models.py file contents
 # print(repr(list(MODEL_CONFIG_MAPPING.keys())))
+
+for model_config in MODEL_CONFIG_MAPPING.values():
+    if model_config.reasoning_mode and "(Reasoning)" not in model_config.display_name:
+        if model_config.display_name.endswith(")"):
+            model_config.display_name = model_config.display_name[:-1] + " Reasoning)"
+        else:
+            model_config.display_name += " (Reasoning)"
