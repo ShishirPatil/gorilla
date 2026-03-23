@@ -90,6 +90,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         from transformers import AutoConfig, AutoTokenizer
 
         # Determine the model source
+        self.model_path_or_id = self.model_name_huggingface
         if local_model_path is not None:
             # Validate the local_model_path
             if not os.path.isdir(local_model_path):
@@ -104,14 +105,12 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                         f"Required file '{file_name}' not found in local_model_path '{local_model_path}'."
                     )
 
-            self.model_path_or_id = local_model_path
             load_kwargs = {
-                "pretrained_model_name_or_path": self.model_path_or_id,
+                "pretrained_model_name_or_path": local_model_path,
                 "local_files_only": True,
                 "trust_remote_code": True,
             }
         else:
-            self.model_path_or_id = self.model_name_huggingface
             load_kwargs = {
                 "pretrained_model_name_or_path": self.model_path_or_id,
                 "trust_remote_code": True,
