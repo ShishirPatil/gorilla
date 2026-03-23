@@ -41,6 +41,7 @@ berkeley-function-call-leaderboard/**/*.lock
 
 .direnv/
 .venv
+outputs/
 
 # Ignore the wandb cache:
 **/wandb/
