@@ -23,6 +23,8 @@ from bfcl_eval.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl_eval.model_handler.api_inference.openai_completion import (
     OpenAICompletionsHandler,
 )
+from bfcl_eval.model_handler.api_inference.operon_chaperone import OpeornChaperoneHandler
+from bfcl_eval.model_handler.api_inference.operon_chaperone_gemini import OpeornChaperoneGeminiHandler
 from bfcl_eval.model_handler.api_inference.openai_response import OpenAIResponsesHandler
 from bfcl_eval.model_handler.api_inference.qwen import (
     QwenAgentNoThinkHandler,
@@ -1208,6 +1210,30 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "operon-chaperone-gpt-4o-mini": ModelConfig(
+        model_name="gpt-4o-mini",
+        display_name="GPT-4o-mini + Operon Chaperone (Prompt)",
+        url="https://github.com/coredipper/operon",
+        org="Operon",
+        license="MIT",
+        model_handler=OpeornChaperoneHandler,
+        input_price=0.15,
+        output_price=0.6,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "operon-chaperone-gemini-2.5-flash": ModelConfig(
+        model_name="gemini-2.5-flash",
+        display_name="Gemini-2.5-Flash + Operon Chaperone (Prompt)",
+        url="https://github.com/coredipper/operon",
+        org="Operon",
+        license="MIT",
+        model_handler=OpeornChaperoneGeminiHandler,
+        input_price=0.15,
+        output_price=0.6,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
 }
 
