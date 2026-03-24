@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from bfcl_eval.constants.category_mapping import VERSION_PREFIX
 
+FORCE_NATIVE_BROWSER_FOR_GPT_OSS = 0
+
 LOCAL_SERVER_PORT = 1053
 LOCAL_SERVER_MAX_CONCURRENT_REQUEST = 100
 
