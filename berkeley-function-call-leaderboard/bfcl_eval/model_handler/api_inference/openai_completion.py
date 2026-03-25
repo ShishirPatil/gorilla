@@ -107,15 +107,14 @@ class OpenAICompletionsHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
-        try:
+        tool_calls = api_response.choices[0].message.tool_calls
+        if tool_calls:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
-                for func_call in api_response.choices[0].message.tool_calls
+                for func_call in tool_calls
             ]
-            tool_call_ids = [
-                func_call.id for func_call in api_response.choices[0].message.tool_calls
-            ]
-        except:
+            tool_call_ids = [func_call.id for func_call in tool_calls]
+        else:
             model_responses = api_response.choices[0].message.content
             tool_call_ids = []
 
