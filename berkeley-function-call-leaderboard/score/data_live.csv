@@ -1,0 +1,2 @@
+Rank,Model,Live Overall Acc,AST Summary,Python Simple AST,Python Multiple AST,Python Parallel AST,Python Parallel Multiple AST,Irrelevance Detection,Relevance Detection
+1,Glyphh Ada 1.1 (HDC+FC),74.32%,74.32%,84.11%,71.89%,75.00%,75.00%,89.71%,N/A
