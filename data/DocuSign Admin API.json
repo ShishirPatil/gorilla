@@ -1,0 +1,1341 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: 01 Authorize Code Grant Access Token",
+        "api_call": "https://{{hostenv}}/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{encodedKeys}}"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "code",
+                        "value": "{{codeFromUrl}}"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: 02 JWT Access Token",
+        "api_call": "https://{{hostenv}}/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{encodedKeys}}"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "assertion",
+                        "value": "{{assertionHere}}"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: 03 Refresh Access Token",
+        "api_call": "https://{{hostenv}}/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{encodedKeys}}"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "refresh_token",
+                        "value": "{{refreshToken}}"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: 04 Get User Info",
+        "api_call": "https://{{hostenv}}/oauth/userinfo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns a list of existing User List Exports (requests and completed exports) and their details/metadata",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Creates a new User List Export request.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for Account Setting Export requests",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Creates a  new Account Setting Export request.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for a single User List Export request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list/{{exportId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Deletes a single User List Export request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list/{{exportId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for a single Account Setting Export request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings/{{exportId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Deletes a single Account Settings Export request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings/{{exportId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for Bulk Account Settings Import requests in the organization",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Creates a new account settings import request.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: account_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for a Bulk Account Settings Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings/{{importId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: account_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Deletes a Bulk Account Settings Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings/{{importId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: account_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Import request for adding users to accounts within the organization.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Import request for adding user to a single account within the organization. Allows upload of user information without requiring an AccountId column",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/imports/bulk_users/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Import request for updating users to accounts within the organization.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Import request for updating users for a single account within the organization. Allows upload of user information without requiring an AccountId column",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/imports/bulk_users/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Closes the Bulk User Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/close",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Closes memberships which are not in an account which is part of the organization, but which do have email addresses which are @ a verified reserved web domain which belongs to the organization",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/close_external",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for Bulk User Import requests in the organization",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the details/metadata for a User Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Deletes a User Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns a text/csv file with user details for a User Import request",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}/results_csv",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "text/csv"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the list of identity providers for the organization.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/identity_providers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: identity_provider_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the list of organizations of which the authenticated user is a member.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations?mode={{mode}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: organization_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the list of permission profiles in an account.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/permissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: permission_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the list of groups in an account.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/groups?start={{start}}&take={{take}}&end={{end}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: group_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns the list of reserved domains for the organization.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/reserved_domains",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: domain_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Closes a user's memberships.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns information about the users in the organization",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users?start={{start}}&take={{take}}&end={{end}}&email={{email}}&email_user_name_like={{email_user_name_like}}&status={{status}}&membership_status={{membership_status}}&account_id={{account_id}}&organization_reserved_domain_id={{organization_reserved_domain_id}}&last_modified_since={{last_modified_since}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Creates a new user",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Activates user memberships",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/memberships/{{membershipId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Returns user information.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/profile?email={{email}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Deletes user identities.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/identities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Adds users to an account.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Get list of DSGroups",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups?page={{page}}&page_size={{page_size}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Add a new DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Get list of DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Delete a DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Get list of users in a DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users?page={{page}}&page_size={{page_size}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Add list of users to a DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Remove users from a DSGroup",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Get products associated with the account and the available permission profiles",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/permission_profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Retrieve list of user's permission profiles for each account's product",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/users/{{userId}}/permission_profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ]
+        },
+        "functionality": "Required scopes: user_read"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Assign user to permission profiles for one or more products",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/users/{{userId}}/permission_profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Creates and updates a multi-product user",
+        "api_call": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Updates a user.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DocuSign Admin API: Updates a user's email address.",
+        "api_call": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/email_addresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "Required scopes: user_write"
+    }
+]

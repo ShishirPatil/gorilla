@@ -1,0 +1,1242 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Account",
+        "api_call": "//api/v2/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows all the information about your account.\n\n#### Allowed for\n\n* Admin\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Account",
+        "api_call": "//api/v2/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"billing\": {\n    \"anim_1\": 96672637.17274243\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the details of your account.\n\n#### Allowed for\n\n* Owner\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Shortcuts By Agent ID",
+        "api_call": "//api/v2/agents/:agent_id/shortcuts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an agent's shortcuts by their ID.\n\n**Warning**: Deleted shortcuts are not recoverable.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Agent by ID",
+        "api_call": "//api/v2/agents/:agent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches an agent by his or her ID.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Agent",
+        "api_call": "//api/v2/agents/:agent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates details of an agent.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Agent",
+        "api_call": "//api/v2/agents/:agent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes an agent from an account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Agent by Email",
+        "api_call": "//api/v2/agents/email/:email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches an agent using the agent's email address.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Requesting Agent",
+        "api_call": "//api/v2/agents/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches your data.\n\n#### Allowed for\n\n* Agent\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Requesting Agent",
+        "api_call": "//api/v2/agents/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates your data.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Agents",
+        "api_call": "//api/v2/agents?since_id=<integer>&max_id=<integer>&limit=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the agents for your account.\n\n#### Pagination\n\nThis endpoint uses cursor-based pagination. The records are ordered sequentially by record id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Agent",
+        "api_call": "//api/v2/agents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates an agent in an account.\n**Note:** An additional field, `password`, needs to be provided during creation.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Ban",
+        "api_call": "//api/v2/bans/:ban_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches a ban by its ID.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Ban",
+        "api_call": "//api/v2/bans/:ban_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a ban.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Banned IP Addresses",
+        "api_call": "//api/v2/bans/ip",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of banned visitor IP addresses for your account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Bans",
+        "api_call": "//api/v2/bans?since_id=<integer>&max_id=<integer>&limit=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the bans for the account. Returns up to 1000 results per page. This endpoint uses cursor-based pagination. See [Pagination](/api-reference/live-chat/chat-api/agents/#pagination)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Ban",
+        "api_call": "//api/v2/bans",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a ban either by visitor ID or by IP address.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Chat",
+        "api_call": "//api/v2/chats/:chat_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches information about a chat by ID.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Chat",
+        "api_call": "//api/v2/chats/:chat_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lets an agent update the data of a specific chat.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Chat",
+        "api_call": "//api/v2/chats/:chat_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Search Chats",
+        "api_call": "//api/v2/chats/search?q=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Chats",
+        "api_call": "//api/v2/chats?ids=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the chats for the account.\n\nWhen a request is made with the `ids` filter, the response will include a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Chat",
+        "api_call": "//api/v2/chats",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lets an agent create an offline message.\n\nIn addition to a `visitor`, `message`, and `type` value, you must specify a `session`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Bulk Delete Chats",
+        "api_call": "//api/v2/chats?ids=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Bulk delete chats with given list of chat IDs.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Department",
+        "api_call": "//api/v2/departments/:department_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Department",
+        "api_call": "//api/v2/departments/:department_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Department",
+        "api_call": "//api/v2/departments/:department_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Department by Name",
+        "api_call": "//api/v2/departments/name/:department_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Department by Name",
+        "api_call": "//api/v2/departments/name/:department_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Department by Name",
+        "api_call": "//api/v2/departments/name/:department_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Departments",
+        "api_call": "//api/v2/departments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches all the departments for your account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Department",
+        "api_call": "//api/v2/departments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Goal",
+        "api_call": "//api/v2/goals/:goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Goal",
+        "api_call": "//api/v2/goals/:goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Goal",
+        "api_call": "//api/v2/goals/:goal_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Goals",
+        "api_call": "//api/v2/goals",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This lists all the goals for your account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Goal",
+        "api_call": "//api/v2/goals",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Incremental Agent Events Export",
+        "api_call": "//api/v2/incremental/agent_events?start_time=<integer>&start_id=&limit=1000&fields=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns an\u00a0`agent_events`\u00a0object that consists of a chronologically ordered list of any agent-related update generated since the given start time. An"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Incremental Agent Timeline Export",
+        "api_call": "//api/v2/incremental/agent_timeline?start_time=<integer>&start_id=&limit=1000&fields=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Incremental Chat Export",
+        "api_call": "//api/v2/incremental/chats?start_time=<integer>&start_id=&limit=1000&fields=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Incremental Conversions Export",
+        "api_call": "//api/v2/incremental/conversions?start_time=<integer>&start_id=&limit=1000&fields=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Incremental Department Events Export",
+        "api_call": "//api/v2/incremental/department_events?start_time=<integer>&start_id=&limit=1000&fields=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show OAuth Client",
+        "api_call": "//api/v2/oauth/clients/:oauth_client_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows detail of the specified client.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Generate OAuth Client Secret",
+        "api_call": "//api/v2/oauth/clients/:oauth_client_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Generates a new secret for the specified client.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update OAuth Client",
+        "api_call": "//api/v2/oauth/clients/:oauth_client_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates details of the specified client.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete OAuth Client",
+        "api_call": "//api/v2/oauth/clients/:oauth_client_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the specified client.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List OAuth Clients",
+        "api_call": "//api/v2/oauth/clients",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all clients under an agent.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create OAuth Client",
+        "api_call": "//api/v2/oauth/clients",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a new OAuth2 client.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete OAuth Token",
+        "api_call": "//api/v2/oauth/tokens/:oauth_token_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Revokes the specified token.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List OAuth Tokens",
+        "api_call": "//api/v2/oauth/tokens",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all tokens under an agent.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Role",
+        "api_call": "//api/v2/roles/:role_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Role",
+        "api_call": "//api/v2/roles/:role_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Role",
+        "api_call": "//api/v2/roles/:role_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Roles",
+        "api_call": "//api/v2/roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the roles for your account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Role",
+        "api_call": "//api/v2/roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Account Routing Settings",
+        "api_call": "//api/v2/routing_settings/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets the routing settings of the account.\n\n#### Allowed for\n\n* Agent\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Account Routing Settings",
+        "api_call": "//api/v2/routing_settings/account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates the routing settings of the account. You may include only the\nfields you want to modify. Absent fields will not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Agent Routing Settings",
+        "api_call": "//api/v2/routing_settings/agents/:agent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets the routing settings of an agent. An authenticated agent can get their own\nsettings by replacing `{agent_id}` with `me`.\n\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Agent Routing Settings",
+        "api_call": "//api/v2/routing_settings/agents/:agent_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates the routing settings of an agent. An authenticated agent can update\ntheir own settings by replacing `{agent_id}` with `me`.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Agents' Routing Settings",
+        "api_call": "//api/v2/routing_settings/agents?since_id=<integer>&max_id=<integer>&limit=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets the routing settings of all agents.\n\n#### Pagination\nThis endpoint uses cursor-based pagination. See [Pagination](/api-reference/live-chat/chat-api/agents/#pagination) in List Agents.\n\n#### Allowed for\n\n* Agent\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Batch Update Routing Settings for Multiple Agents",
+        "api_call": "//api/v2/routing_settings/agents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Batch updates the routing settings for multiple agents.\n\nThe payload must be an object with agent IDs as keys and the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Shortcut",
+        "api_call": "//api/v2/shortcuts/:shortcut_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns shortcut information by specifying the shortcut name.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Shortcut",
+        "api_call": "//api/v2/shortcuts/:shortcut_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates a specified shortcut.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Shortcut",
+        "api_call": "//api/v2/shortcuts/:shortcut_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a specified shortcut.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Shortcuts",
+        "api_call": "//api/v2/shortcuts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all shortcuts for the account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Shortcut",
+        "api_call": "//api/v2/shortcuts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Adds a shortcut to the account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Skill",
+        "api_call": "//api/v2/skills/:skill_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Skill",
+        "api_call": "//api/v2/skills/:skill_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Skill",
+        "api_call": "//api/v2/skills/:skill_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Skill by Name",
+        "api_call": "//api/v2/skills/name/:skill_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Skill by Name",
+        "api_call": "//api/v2/skills/name/:skill_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Skill by Name",
+        "api_call": "//api/v2/skills/name/:skill_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Skills",
+        "api_call": "//api/v2/skills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the skills for your account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Skill",
+        "api_call": "//api/v2/skills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Trigger",
+        "api_call": "//api/v2/triggers/:trigger_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns trigger information by specifying its name.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Trigger",
+        "api_call": "//api/v2/triggers/:trigger_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates the data of a trigger.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Delete Trigger",
+        "api_call": "//api/v2/triggers/:trigger_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a trigger.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: List Triggers",
+        "api_call": "//api/v2/triggers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists triggers for an account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Trigger",
+        "api_call": "//api/v2/triggers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Adds a trigger to an account.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Show Visitor",
+        "api_call": "//api/v2/visitors/:visitor_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetches a visitor by his or her Visitor ID\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Update Visitor",
+        "api_call": "//api/v2/visitors/:visitor_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Allows an account owner/admin to update details of visitor.\n\n#### Allowed for\n\n* Administrator\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Chat Public API: Create Visitor",
+        "api_call": "//api/v2/visitors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Allows the account owner/administrator to add more visitors\n\n#### Allowed for\n\n* Administrator\n"
+    }
+]
