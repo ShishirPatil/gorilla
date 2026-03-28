@@ -193,7 +193,7 @@ def remove_creds_callback(services):
         remove_creds(services)
     except Exception as e:
         print(e)
-        print("An unexpected error occured while removing credentials")
+        print("An unexpected error occurred while removing credentials")
 
 def db_callback(prompt, generate_mode):
     config = {
