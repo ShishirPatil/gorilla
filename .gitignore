@@ -10,12 +10,14 @@ dist
 .editorconfig
 .DS_Store
 **/*.pyc
+goex/goex-env/
 goex/exec_engine/checkpoints/
 goex/exec_engine/credentials/*
 !goex/exec_engine/credentials/credentials_utils.py
 !goex/exec_engine/credentials/supported.txt
 goex/docker/*/requirements.txt
 goex/docker/misc/images.json
+goex-env/*
 
 ################## Berkley Function Call Leaderboard ##########################
 
