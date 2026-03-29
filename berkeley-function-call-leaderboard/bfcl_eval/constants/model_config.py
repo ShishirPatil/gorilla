@@ -68,6 +68,7 @@ from bfcl_eval.model_handler.local_inference.salesforce_qwen import (
     SalesforceQwenHandler,
 )
 from bfcl_eval.model_handler.local_inference.think_agent import ThinkAgentHandler
+from bfcl_eval.model_handler.local_inference.airev_agent import AIREVAgentHandler
 
 # -----------------------------------------------------------------------------
 # A mapping of model identifiers to their respective model configurations.
@@ -1213,6 +1214,18 @@ api_inference_model_map = {
 
 # Inference through local hosting
 local_inference_model_map = {
+    "airev-ai/AIREV-Agent-0.8B": ModelConfig(
+        model_name="airev-ai/AIREV-Agent-0.8B",
+        display_name="AIREV-Agent-0.8B (Prompt)",
+        url="https://huggingface.co/airev-ai/AIREV-Agent-0.8B",
+        org="AIREV",
+        license="apache-2.0",
+        model_handler=AIREVAgentHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
     "deepseek-ai/DeepSeek-R1": ModelConfig(
         model_name="deepseek-ai/DeepSeek-R1",
         display_name="DeepSeek-R1 (Prompt) (Local)",
