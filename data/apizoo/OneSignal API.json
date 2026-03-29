@@ -1,0 +1,460 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Create Notification",
+        "api_call": "{{BASE_URL}}/notifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"app_id\": \"{{APP_ID}}\",\n  \"included_segments\": [\"Subscribed Users\"],\n  \"data\": {\"foo\": \"bar\"},\n  \"contents\": {\"en\": \"Sampple Push Message\"}\n}"
+            }
+        },
+        "functionality": "Sends notifications to your users.  \n  \nThe Create Notification method is used when you want your server to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Notification",
+        "api_call": "{{BASE_URL}}/notifications/{{NOTIFICATION_ID}}?app_id={{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of a single notification and outcomes associated with it.\n\n### \n\nRequires Authentication Key\n\nRequires your OneSignal App's\u00a0**REST API Key**,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Notifications",
+        "api_call": "{{BASE_URL}}/notifications?app_id={{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of multiple notifications.\n\n### \n\nRequires Authentication Key\n\nRequires your OneSignal App's\u00a0**REST API Key**, available in\u00a0[Keys & IDs](https://documentation.onesignal.com/docs/accounts-and-keys).\n\nDocumentation: [https://documentation.onesignal.com/reference/view-notifications](https://documentation.onesignal.com/reference/view-notifications)\n\nEndpoint: [https://onesignal.com/api/v1/notifications?app_id=YOUR_APP_ID&limit=:limit&offset=:offset&kind=:kind](https://onesignal.com/api/v1/notifications?app_id=YOUR_APP_ID&limit=:limit&offset=:offset&kind=:kind)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Cancel Notification",
+        "api_call": "{{BASE_URL}}/notifications/{{NOTIFICATION_ID}}?app_id={{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Stop a scheduled or currently outgoing notification.\n\nUsed to stop a scheduled or currently outgoing notification.\n\n### \n\nRequires Authentication Key\n\nRequires your OneSignal"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Notification History",
+        "api_call": "{{BASE_URL}}/notifications/{{NOTIFICATION_ID}}/history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"events\": \"clicked\",\n    \"app_id\": \"YOUR-APP-ID\",\n    \"email\": \"x@example.com\"\n}"
+            }
+        },
+        "functionality": "View the devices sent a message - OneSignal Paid Plan Required.\n\n**notification_id***string\n\n`The \"id\" of the message found in the`\u00a0[`creation notification POST"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Create App",
+        "api_call": "{{BASE_URL}}/apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{USER_AUTH_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\"name\" : \"Sample body\",\n\"apns_env\": \"production\",\n\"apns_p12\": \"asdsadcvawe223cwef...\",\n\"apns_p12_password\": \"test123\",\n\"gcm_key\": \"A Google Cloud Messaging Key\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new OneSignal app.\n\nRequires User Authentication Key\n\nRequires your OneSignal\u00a0**User Auth Key**, available in\u00a0[Account & API Keys](https://documentation.onesignal.com/docs/accounts-and-keys#user-auth-key).\n\nDocumentation: [https://documentation.onesignal.com/reference/create-an-app](https://documentation.onesignal.com/reference/create-an-app)\n\nEndpoint: [https://onesignal.com/api/v1/apps](https://onesignal.com/api/v1/apps)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Apps",
+        "api_call": "{{BASE_URL}}/apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{USER_AUTH_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of all of your current OneSignal apps.\n\n### \n\nRequires User Authentication Key\n\nRequires your OneSignal\u00a0**User Auth Key**, available in\u00a0[Account"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View An App",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{USER_AUTH_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of a single OneSignal app.\n\nRequires Authentication Key\n\nRequires your OneSignal App's\u00a0**REST API Key**, available in\u00a0[Keys & IDs](https://documentation.onesignal.com/docs/accounts-and-keys).\n\nDocumentation: [https://documentation.onesignal.com/reference/view-an-app](https://documentation.onesignal.com/reference/view-an-app)\n\nEndpoint:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Update An App",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{USER_AUTH_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\" : \"onesignal-test yay\"\n}"
+            }
+        },
+        "functionality": "Updates the name or configuration settings of an existing OneSignal app.\n\nDocumentation: https://documentation.onesignal.com/reference/update-an-app\n\nEndpoint: https://onesignal.com/api/v1/apps/:id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Device",
+        "api_call": "{{BASE_URL}}/players/{{PLAYER_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "View the details of an existing device in one of your OneSignal apps.\n\nDocumentation: https://documentation.onesignal.com/reference/view-device\n\nEndpoint: https://onesignal.com/api/v1/players/:id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Devices",
+        "api_call": "{{BASE_URL}}/players?app_id={{APP_ID}}&limit=300&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of multiple devices in one of your OneSignal apps.\n\n### \n\nRequires Authentication Key\n\nRequires your OneSignal App's\u00a0**REST API Key**,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Edit Device",
+        "api_call": "{{BASE_URL}}/players/{{PLAYER_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\"app_id\" : \"YOUR_APP_ID\",\n\"language\":\"es\",\n\"timezone\":-28800,\n\"game_version\":\"1.0\",\n\"device_os\":\"7.0.4\",\n\"device_type\":0,\n\"device_model\":\"iPhone\",\n\"tags\":{\"EXAMPLE\":\"TAG 1\",\"EXAMPLE2\":\"TAG 2\"}\n}"
+            }
+        },
+        "functionality": "Update an existing device in one of your OneSignal apps.\n\nDocumentation: https://documentation.onesignal.com/reference/edit-device\n\nEndpoint: https://onesignal.com/api/v1/players/:id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Add a Device",
+        "api_call": "{{BASE_URL}}/players",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"app_id\" : \"YOUR_APP_ID\",\n    \"identifier\":\"identifier_auth_hash\",\n    \"language\":\"en\",\n    \"timezone\":-28800,\n    \"game_version\":\"X.X\",\n    \"device_os\":\"X.X.X\",\n    \"device_type\":0,\n    \"device_model\":\"X\",\n    \"tags\":{\"a\":\"X\",\"foo\":\"X\"}\n}"
+            }
+        },
+        "functionality": "Register a new device to one of your OneSignal apps.\n\nThis method is used to register a new device with OneSignal.\n\nIf"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Create Segments",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}/segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"EXAMPLE SEGMENT\", \n  \"filters\": [\n    {\"field\": \"device_type\", \"relation\": \"=\", \"value\": \"iOS\"},\n    {\"operator\": \"OR\"},\n    {\"field\": \"device_type\", \"relation\": \"=\", \"value\": \"Android\"},\n    {\"operator\": \"OR\"},\n    {\"field\": \"device_type\", \"relation\": \"=\", \"value\": \"Web Push (Browser)\"}\n  ]\n}"
+            }
+        },
+        "functionality": "Create segments visible and usable in the dashboard and API.\n\n**app_id***string\n\n`The OneSignal App ID for your app. Available in`\u00a0[`Keys & IDs`](https://documentation.onesignal.com/docs/accounts-and-keys)`.`\n\nDocumentation:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Delete Segments",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}/segments/{{SEGMENT_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Delete segments (not user devices) - Required: OneSignal Paid Plan.\n\n**  \napp_id***string\n\n`The OneSignal App ID for your app. Available in`\u00a0[`Keys"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: View Outcomes",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}/outcomes?outcome_names=os__click.count&outcome_platforms=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "View the details of all the outcomes associated with your app.\n\n### \n\nRequires Authentication Key\n\nRequires your OneSignal App's\u00a0**REST API Key**, available"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: CSV Export",
+        "api_call": "{{BASE_URL}}/players/csv_export?app_id={{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Basic {{REST_API_KEY}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"extra_fields\": [\"country\",\"notification_types\",\"external_user_id\", \"location\", \"rooted\", \"ip\", \"country\", \"web_auth\", \"web_p256\"],\n    \"last_active_since\": \"1469392779\", \"segment_name\": \"Active Users\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generate a compressed CSV export of all of your current user data.\n\nDocumentation: https://documentation.onesignal.com/reference/csv-export\n\nEndpoint: https://onesignal.com/api/v1/players/csv_export?app_id=:app_id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Edit Tag With External User Id",
+        "api_call": "{{BASE_URL}}/apps/{{APP_ID}}/users/{{EXTERNAL_USER_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tags\":{\"a\":\"1\",\"foo\":\"\"}\n}"
+            }
+        },
+        "functionality": "Update an existing device's tags in one of your OneSignal apps using the External User ID.\n\nDocumentation: https://documentation.onesignal.com/reference/edit-tags-with-external-user-id\n\nEndpoint: https://onesignal.com/api/v1/apps/:app_id/users/:external_user_id"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OneSignal API: Delete User Record",
+        "api_call": "{{BASE_URL}}/players/{{ONESIGNAL_PLAYER_ID}}?app_id={{APP_ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a user record.\n\nDocumentation: https://documentation.onesignal.com/reference/delete-user-record\n\nEndpoint: https://onesignal.com/api/v1/players/:ONESIGNAL_PLAYER_ID?app_id=:ONESIGNAL_APP_ID"
+    }
+]
