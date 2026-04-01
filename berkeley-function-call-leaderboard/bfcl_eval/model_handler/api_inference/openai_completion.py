@@ -29,6 +29,7 @@ class OpenAICompletionsHandler(BaseHandler):
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, **kwargs)
         self.model_style = ModelStyle.OPENAI_COMPLETIONS
+        self.underscore_to_dot = True
         self.client = OpenAI(**self._build_client_kwargs())
 
     def _build_client_kwargs(self):
@@ -100,7 +101,7 @@ class OpenAICompletionsHandler(BaseHandler):
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
 
-        tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style)
+        tools = convert_to_tool(functions, GORILLA_TO_OPENAPI, self.model_style, underscore_to_dot=getattr(self, "underscore_to_dot", False))
 
         inference_data["tools"] = tools
 
