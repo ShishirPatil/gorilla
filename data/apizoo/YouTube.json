@@ -1,0 +1,508 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Jobs Job Reports",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/jobs/:jobId/reports?createdAfter=<>&onBehalfOfContentOwner=<>&pageSize=<>&pageToken=<>&startTimeAtOrAfter=<>&startTimeBefore=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists reports created by a specific job.nReturns NOT_FOUND if the job does not exist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Jobs Job Reports Report",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/jobs/:jobId/reports/:reportId?onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the metadata of a specific report."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Jobs Job",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/jobs/:jobId?onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete v1 jobs job"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Jobs",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/jobs?includeSystemManaged=<>&onBehalfOfContentOwner=<>&pageSize=<>&pageToken=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists jobs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Media Resource Name",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/media/:resourceName",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Method for media download. Download is supportednon the URI `/v1/media/{+name}?alt=media`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Reporttypes",
+        "api_call": "httpswww.googleapis.com/youtube/v1/v1/reportTypes?includeSystemManaged=<>&onBehalfOfContentOwner=<>&pageSize=<>&pageToken=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists report types."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Captions",
+        "api_call": "httpswww.googleapis.com/youtube/v1/captions?id=<parameters>&onBehalfOf=<>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a specified caption track."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Captions",
+        "api_call": "httpswww.googleapis.com/youtube/v1/captions/:id?onBehalfOf=<>&onBehalfOfContentOwner=<>&tfmt=<>&tlang=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Downloads a caption track. The caption track is returned in its original format unless the request specifies a value for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Comments",
+        "api_call": "httpswww.googleapis.com/youtube/v1/comments?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a comment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Comments Mark as SPAM",
+        "api_call": "httpswww.googleapis.com/youtube/v1/comments/markAsSpam?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Expresses the caller's opinion that one or more comments should be flagged as spam."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Comments Set Moderation Status",
+        "api_call": "httpswww.googleapis.com/youtube/v1/comments/setModerationStatus?banAuthor=<>&id=<parameters>&moderationStatus=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Sets the moderation status of one or more comments. The API request must be authorized by the owner of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Live Broadcasts",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveBroadcasts?id=<parameters>&onBehalfOfContentOwner=<>&onBehalfOfContentOwnerChannel=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete livebroadcasts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Live Broadcasts Bind",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveBroadcasts/bind?id=<parameters>&onBehalfOfContentOwner=<>&onBehalfOfContentOwnerChannel=<>&part=<>&streamId=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Live Broadcasts Control",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveBroadcasts/control?displaySlate=<>&id=<parameters>&offsetTimeMs=<>&onBehalfOfContentOwner=<>&onBehalfOfContentOwnerChannel=<>&part=<>&walltime=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Controls the settings for a slate that can be displayed in the broadcast stream."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Live Broadcasts Transition",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveBroadcasts/transition?broadcastStatus=<>&id=<parameters>&onBehalfOfContentOwner=<>&onBehalfOfContentOwnerChannel=<>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Changes the status of a YouTube live broadcast and initiates any processes associated with the new status. For example, when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Live Chat Bans",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveChat/bans?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete livechat bans"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Live Chat Messages",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveChat/messages?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete livechat messages"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Live Chat Moderators",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveChat/moderators?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete livechat moderators"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Videos",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videos?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a YouTube video."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Videos Get Rating",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videos/getRating?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the ratings that the authorized user gave to a list of specified videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Videos Rate",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videos/rate?id=<parameters>&rating=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Add a like or dislike rating to a video or remove a rating from a video."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Videos Report Abuse",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videos/reportAbuse?onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Report abuse for a video."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Watermarks Set",
+        "api_call": "httpswww.googleapis.com/youtube/v1/watermarks/set?channelId=<post>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Uploads a watermark image to YouTube and sets it for a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Watermarks Unset",
+        "api_call": "httpswww.googleapis.com/youtube/v1/watermarks/unset?channelId=<post>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Deletes a channel's watermark image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Activities",
+        "api_call": "httpswww.googleapis.com/youtube/v1/activities?channelId=<post>&home=<>&maxResults=<>&mine=<>&pageToken=<>&part=<>&publishedAfter=<>&publishedBefore=<>&regionCode=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of channel activity events that match the request criteria. For example, you can retrieve events associated with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Channel Banners Insert",
+        "api_call": "httpswww.googleapis.com/youtube/v1/channelBanners/insert?channelId=<post>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Uploads a channel banner image to YouTube. This method represents the first two steps in a three-step process to update"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Channel Sections",
+        "api_call": "httpswww.googleapis.com/youtube/v1/channelSections?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a channelSection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Channels",
+        "api_call": "httpswww.googleapis.com/youtube/v1/channels?categoryId=<post>&forUsername=<>&hl=<post>&id=<parameters>&managedByMe=<>&maxResults=<>&mine=<>&mySubscribers=<>&onBehalfOfContentOwner=<>&pageToken=<>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a collection of zero or more channel resources that match the request criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Comment Threads",
+        "api_call": "httpswww.googleapis.com/youtube/v1/commentThreads?allThreadsRelatedToChannelId=<>&channelId=<post>&id=<parameters>&maxResults=<>&moderationStatus=<post>&order=<>&pageToken=<>&part=<>&searchTerms=<>&textFormat=<>&videoId=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of comment threads that match the API request parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Fanfundingevents",
+        "api_call": "httpswww.googleapis.com/youtube/v1/fanFundingEvents?hl=<post>&maxResults=<>&pageToken=<>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists fan funding events for a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Guecategories",
+        "api_call": "httpswww.googleapis.com/youtube/v1/guideCategories?hl=<post>&id=<parameters>&part=<>&regionCode=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of categories that can be associated with YouTube channels."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Languages",
+        "api_call": "httpswww.googleapis.com/youtube/v1/i18nLanguages?hl=<post>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of application languages that the YouTube website supports."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Regions",
+        "api_call": "httpswww.googleapis.com/youtube/v1/i18nRegions?hl=<post>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of content regions that the YouTube website supports."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Livestreams",
+        "api_call": "httpswww.googleapis.com/youtube/v1/liveStreams?id=<parameters>&onBehalfOfContentOwner=<>&onBehalfOfContentOwnerChannel=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a video stream."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Play List Items",
+        "api_call": "httpswww.googleapis.com/youtube/v1/playlistItems?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a playlist item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Playlists",
+        "api_call": "httpswww.googleapis.com/youtube/v1/playlists?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a playlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Search",
+        "api_call": "httpswww.googleapis.com/youtube/v1/search?channelId=<post>&channelType=<>&eventType=<>&forContentOwner=<>&forDeveloper=<>&forMine=<>&location=<>&locationRadius=<>&maxResults=<>&onBehalfOfContentOwner=<>&order=<>&pageToken=<>&part=<>&publishedAfter=<>&publishedBefore=<>&q=<>&regionCode=<post>&relatedToVideoId=<>&relevanceLanguage=<>&safeSearch=<>&topicId=<>&type=<post>&videoCaption=<>&videoCategoryId=<>&videoDefinition=<>&videoDimension=<>&videoDuration=<>&videoEmbeddable=<>&videoLicense=<>&videoSyndicated=<>&videoType=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a collection of search results that match the query parameters specified in the API request. By default, a search"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Sponsors",
+        "api_call": "httpswww.googleapis.com/youtube/v1/sponsors?filter=<>&maxResults=<>&pageToken=<>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists sponsors for a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Subscriptions",
+        "api_call": "httpswww.googleapis.com/youtube/v1/subscriptions?id=<parameters>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a subscription."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Superchatevents",
+        "api_call": "httpswww.googleapis.com/youtube/v1/superChatEvents?hl=<post>&maxResults=<>&pageToken=<>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists Super Chat events for a channel."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Add Thumbnails Set",
+        "api_call": "httpswww.googleapis.com/youtube/v1/thumbnails/set?onBehalfOfContentOwner=<>&videoId=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Uploads a custom video thumbnail to YouTube and sets it for a video."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Video Abuse Report Reasons",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videoAbuseReportReasons?hl=<post>&part=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of abuse reasons that can be used for reporting abusive videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Veocategories",
+        "api_call": "httpswww.googleapis.com/youtube/v1/videoCategories?hl=<post>&id=<parameters>&part=<>&regionCode=<post>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of categories that can be associated with YouTube videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Groupitems",
+        "api_call": "httpswww.googleapis.com/youtube/v1/groupItems?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes an item from a group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Delete Groups",
+        "api_call": "httpswww.googleapis.com/youtube/v1/groups?id=<parameters>&onBehalfOfContentOwner=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "YouTube: Get Reports",
+        "api_call": "httpswww.googleapis.com/youtube/v1/reports?currency=<post>&dimensions=<>&end=<>&filters=<>&ids=<>&include=<>&max=<>&metrics=<>&sort=<>&start=<>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve your YouTube Analytics reports."
+    }
+]
