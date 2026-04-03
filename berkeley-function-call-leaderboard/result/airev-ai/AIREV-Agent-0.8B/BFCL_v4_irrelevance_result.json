@@ -1,0 +1,240 @@
+{"id": "irrelevance_0", "result": "No function matches the user's request."}
+{"id": "irrelevance_1", "result": "No function matches the requested request"}
+{"id": "irrelevance_2", "result": "No function matches the user's request."}
+{"id": "irrelevance_3", "result": "[find_critical_points(function=\"y = 3x + 2\", variable=\"x\", range=[0.0, 3.4])]"}
+{"id": "irrelevance_4", "result": "[find_roots(a=0.0, b=b, c=c)]"}
+{"id": "irrelevance_5", "result": "No function matches the user's request.\n\n[solve_quadratic_equation(a=5.0, b=4.0, c=5.0)]"}
+{"id": "irrelevance_6", "result": "No function matches the user's request."}
+{"id": "irrelevance_7", "result": "No function matches the user's request."}
+{"id": "irrelevance_8", "result": "[integral(value=\"x^3\", from=1, to=5)]"}
+{"id": "irrelevance_9", "result": "No function matches the requested query."}
+{"id": "irrelevance_10", "result": "[calculus.compute_definite_integral(function=\"2x\", interval=[1, 1], num_of_partitions=1)]"}
+{"id": "irrelevance_11", "result": "[get_closest_prime(number=30, skip=0)]"}
+{"id": "irrelevance_12", "result": "No function matches the user's request."}
+{"id": "irrelevance_13", "result": "No function matches the user's request."}
+{"id": "irrelevance_14", "result": "[calculate_maximum_height(initial_velocity=5.0, gravity=9.8)]"}
+{"id": "irrelevance_15", "result": "No function matches the user's request."}
+{"id": "irrelevance_16", "result": "[calculate_projectile_range(initial_velocity=\"v\", angle=\"theta\", time=\"t\")]"}
+{"id": "irrelevance_17", "result": "[calculate_time(distance=0.0, speed=10000.0, round_to_nearest_second=false)]"}
+{"id": "irrelevance_18", "result": "[calculate_vector_angle(X_component=5.0, Y_component=5.0, use_degrees=true)]"}
+{"id": "irrelevance_19", "result": "No function matches the user's request."}
+{"id": "irrelevance_20", "result": "No function matches the requested query."}
+{"id": "irrelevance_21", "result": "No function matches the user's request."}
+{"id": "irrelevance_22", "result": "[magnetic_field_intensity(current=\"I\", distance=\"r\", permeability=None)]"}
+{"id": "irrelevance_23", "result": "No function matches the user's request."}
+{"id": "irrelevance_24", "result": "No function matches the user's request."}
+{"id": "irrelevance_25", "result": "[thermodynamics.calculate_boiling_point(substance=\"water\", pressure=10.0, unit=\"kPa\")]"}
+{"id": "irrelevance_26", "result": "[thermodynamics.calc_gas_pressure(volume=2.0, initial_temperature=25.0, final_temperature=100.0, initial_pressure=25.0)]"}
+{"id": "irrelevance_27", "result": "[calculate_heat(mass=3.0, specific_heat=4.184, change_in_temp=4.0)]"}
+{"id": "irrelevance_28", "result": "No function matches the user's request."}
+{"id": "irrelevance_29", "result": "[get_cell_function(cell_part=\"mitochondria\", detail_level=\"basic\")]"}
+{"id": "irrelevance_30", "result": "[bloodcell_classification(cell_shape=\"oval\", cell_size=\"medium\", cell_function=\"fighting infection\")]"}
+{"id": "irrelevance_31", "result": "No function matches the user's request."}
+{"id": "irrelevance_32", "result": "[cellBiology.getCellType(nucleus_count=4, organism_type=\"red blood\", membrane_type=\"Red blood\")]"}
+{"id": "irrelevance_33", "result": "[identify_species(sequence=\"ATCG\", database=\"GenBank\")]"}
+{"id": "irrelevance_34", "result": "No function matches the user's request."}
+{"id": "irrelevance_35", "result": "No function matches the user's request."}
+{"id": "irrelevance_36", "result": "No function matches the user's request."}
+{"id": "irrelevance_37", "result": "[local_fauna(location=\"Miami\", species_type=\"recreation\", migration_season=\"none\")]"}
+{"id": "irrelevance_38", "result": "[retrieve_scientific_paper(topic=\"global warming\", year=\"2024\")]"}
+{"id": "irrelevance_39", "result": "[calculate_population_growth(current_population=500, birth_rate=0.05, death_rate=0.03)]"}
+{"id": "irrelevance_40", "result": "No function matches the user's request."}
+{"id": "irrelevance_41", "result": "No function matches the user's request."}
+{"id": "irrelevance_42", "result": "No function matches the user's request."}
+{"id": "irrelevance_43", "result": "[evolve_creatures(population_size=50, mutation_rate=0.1, generations=10, fitness_goal=10)]"}
+{"id": "irrelevance_44", "result": "[gene_sequencer(species=\"whales\", mutation_rate=0.25, evolution_duration=10000, mutation_factors=[\"genetic_drift\", \"natural_selection\"])]"}
+{"id": "irrelevance_45", "result": "No function matches the user's request.\n\n[create_polygon(vertices=[-1.0, -1.0], is_closed=true, stroke_width=5)]"}
+{"id": "irrelevance_46", "result": "[get_exchange_rate(base_currency=\"USD\", target_currency=\"INR\")]"}
+{"id": "irrelevance_47", "result": "No function matches the user's request."}
+{"id": "irrelevance_48", "result": "[finance.fetchGDP(country=\"USA\", year=2024, format=\"USD\")]"}
+{"id": "irrelevance_49", "result": "[get_co_ordinate(location=\"Los Angeles\"), get_co_ordinate(location=\"Berlin\")]"}
+{"id": "irrelevance_50", "result": "No function matches the user's request."}
+{"id": "irrelevance_51", "result": "No function matches the user's request."}
+{"id": "irrelevance_52", "result": "No function matches the user's request."}
+{"id": "irrelevance_53", "result": "No function matches the user's request."}
+{"id": "irrelevance_54", "result": "[movies.search(title=\"highest grossing movie\", year=2023, genre=\"science fiction\")]"}
+{"id": "irrelevance_55", "result": "No function matches the user's request."}
+{"id": "irrelevance_56", "result": "No function matches the user's request."}
+{"id": "irrelevance_57", "result": "No function matches the user's request."}
+{"id": "irrelevance_58", "result": "[solar_panel.calculate_need(square_footage=2000.0, average_sunlight_hours=5.0, usage_efficiency=0.8)]"}
+{"id": "irrelevance_59", "result": "[linear_equation_solver(equation=\"2^5\", variable=\"2\")]"}
+{"id": "irrelevance_60", "result": "[calculateFinalPrice(price=100.0, discount_rate=0.25, sales_tax=0.10)]"}
+{"id": "irrelevance_61", "result": "No function matches the user's request."}
+{"id": "irrelevance_62", "result": "No function matches the user's request."}
+{"id": "irrelevance_63", "result": "[probability_calculator(total_outcomes=3, event_outcomes=3, return_decimal=False)]"}
+{"id": "irrelevance_64", "result": "[probability.coin_toss_heads(coin_tosses=52, heads_needed=12, coin_type=\"standard\")]"}
+{"id": "irrelevance_65", "result": "[probability.determine_population(probability=0.3, sample_size=20, round=true)]"}
+{"id": "irrelevance_66", "result": "No function matches the user's request."}
+{"id": "irrelevance_67", "result": "[hypothesis_testing.get_p_value(successes=50, n=500, prob_null=0.1, alternative=\"less\")]"}
+{"id": "irrelevance_68", "result": "[statistics.calculate_p_value(sample_mean=98.2, population_mean=98.6, sample_std_dev=1.4, sample_size=40, two_tailed=false)]"}
+{"id": "irrelevance_69", "result": "[regression_model.predict(features=[\"average_house_price_california\"], model=regression_model, scaler=1.2)]"}
+{"id": "irrelevance_70", "result": "[calculate_mortgage_payment(loan_amount=10000.0, loan_term=3.0, annual_interest_rate=5.0)]"}
+{"id": "irrelevance_71", "result": "[calculate_ROI(investment_amount=200000.0, net_profit=50000.0, duration_years=3)]"}
+{"id": "irrelevance_72", "result": "[calculate_internal_rate_of_return(cash_flows=[-100.0, 40.0, 60.0, 80.0, 120.0], guess=0.1)]"}
+{"id": "irrelevance_73", "result": "[finance.predict_revenue(company_name=\"XYZ\", period=\"next year\", industry_trends=false)]"}
+{"id": "irrelevance_74", "result": "[investment_analysis.calculate_profit(total_revenue=15000.0, total_cost=22000.0, tax_rate=0.2)]"}
+{"id": "irrelevance_75", "result": "No function matches the requested query."}
+{"id": "irrelevance_76", "result": "No function matches the user's request."}
+{"id": "irrelevance_77", "result": "No function matches the user's request."}
+{"id": "irrelevance_78", "result": "No function matches the user's request."}
+{"id": "irrelevance_79", "result": "No function matches the requested query."}
+{"id": "irrelevance_80", "result": "No function matches the user's request."}
+{"id": "irrelevance_81", "result": "No function matches the requested query."}
+{"id": "irrelevance_82", "result": "No function matches the user's request."}
+{"id": "irrelevance_83", "result": "[calculate_mortgage_payment(loan_amount=400000.0, annual_rate=7.0, years=30)]"}
+{"id": "irrelevance_84", "result": "No function matches the requested query."}
+{"id": "irrelevance_85", "result": "No function matches the user's request."}
+{"id": "irrelevance_86", "result": "[law_info.get_penalty(crime=\"burglary\", state=\"California\")]"}
+{"id": "irrelevance_87", "result": "No function matches the user's request."}
+{"id": "irrelevance_88", "result": "No function matches the user's request."}
+{"id": "irrelevance_89", "result": "No function matches the user's request."}
+{"id": "irrelevance_90", "result": "No function matches the user's request."}
+{"id": "irrelevance_91", "result": "[get_law_categories(law_type=\"civil\", country=\"Atlanta\", specific_category=\"noise_complaint\")]"}
+{"id": "irrelevance_92", "result": "[search_lawyer(area=\"New York\", specialization=\"security\", min_experience=0)]"}
+{"id": "irrelevance_93", "result": "[law_firm.get_impactful_cases(firm_name=\"Patterson & Associates\", year=2024, top_n=1, case_id=\"XYZ\")]"}
+{"id": "irrelevance_94", "result": "[case_info.get(case_id=\"case_abc_2020\", case_year=\"2020\", judge_name=\"Andrew\")]"}
+{"id": "irrelevance_95", "result": "[case_review.retrieve_case_outcome(case_name=\"Doe vs. Smith\", case_year=2024, location=\"CA\")]"}
+{"id": "irrelevance_96", "result": "No function matches the user's request."}
+{"id": "irrelevance_97", "result": "No function matches the user's request."}
+{"id": "irrelevance_98", "result": "No function matches the user's request."}
+{"id": "irrelevance_99", "result": "[lawsuit_search(location=\"Texas\", subject=\"traffic laws\")]"}
+{"id": "irrelevance_100", "result": "No function matches the user's request."}
+{"id": "irrelevance_101", "result": "No function matches the user's request."}
+{"id": "irrelevance_102", "result": "No function matches the user's request."}
+{"id": "irrelevance_103", "result": "[weather_forecast.get(location=\"New York City\")]"}
+{"id": "irrelevance_104", "result": "No function matches the user's request.\n[calculate_park_area(radius=3.0, units=\"units\", shape=\"sphere\")]"}
+{"id": "irrelevance_105", "result": "No function matches the user's request."}
+{"id": "irrelevance_106", "result": "No function matches the user's request."}
+{"id": "irrelevance_107", "result": "No function matches the requested request"}
+{"id": "irrelevance_108", "result": "[emission_estimator(current_emissions=250.0, action=\"plant trees\", scale=\"individual\", duration=5)]"}
+{"id": "irrelevance_109", "result": "[calculate_water_needs(plant_type=\"cactus\", location=\"Arizona\", season=\"summer\")]"}
+{"id": "irrelevance_110", "result": "No function matches the user's request.\n\n[calculate_bmi(weight=77.0, height=1.75, unit=\"imperial\")]"}
+{"id": "irrelevance_111", "result": "[geo_location_based_products.fetch_eco_friendly_products(location=\"in-store\", product_category=\"Yoga Mats\", availability=\"Instore\")]"}
+{"id": "irrelevance_112", "result": "No function matches the user's request."}
+{"id": "irrelevance_113", "result": "[find_pois(location=\"London\", category=[\"Restaurants\"], rating=0.3)]"}
+{"id": "irrelevance_114", "result": "No function matches the requested request."}
+{"id": "irrelevance_115", "result": "[calculate_distance(origin={\"latitude\": -74.006, \"longitude\": 24.780, \"description\": \"Boston\"}, destination={\"latitude\": 40.783, \"longitude\": 74.006, \"description\": \"New York\"}, speed=50.0)]"}
+{"id": "irrelevance_116", "result": "No function matches the requested request."}
+{"id": "irrelevance_117", "result": "No function matches the user's request."}
+{"id": "irrelevance_118", "result": "No function matches the requested query."}
+{"id": "irrelevance_119", "result": "[sentiment_analysis(text=\"A famous quote about life: 'Life is what happens when you live life full life.'\")]"}
+{"id": "irrelevance_120", "result": "No function matches the user's request."}
+{"id": "irrelevance_121", "result": "[medical_records.get_disease_info(disease_name=\"motor neuron disease\", include_statistics=true)]"}
+{"id": "irrelevance_122", "result": "No function matches the user's request."}
+{"id": "irrelevance_123", "result": "No function matches the user's request."}
+{"id": "irrelevance_124", "result": "[get_social_trends(category=\"technology\", region=\"world\")]"}
+{"id": "irrelevance_125", "result": "No function matches the user's request."}
+{"id": "irrelevance_126", "result": "[get_happiness_index(country=\"world\", year=2024, demographic_group=\"total\")]"}
+{"id": "irrelevance_127", "result": "[sentiment_analysis.twitter(topic=\"new iPhone release\", language=\"en\", num_tweets=100)]"}
+{"id": "irrelevance_128", "result": "No function matches the user's request."}
+{"id": "irrelevance_129", "result": "[personality_assessment.evaluate(traits=[{\"trait\": \"extraversion\", \"percentage\": 70}, {\"trait\": \"agreeableness\", \"percentage\": 30}, {\"trait\": \"neuroticism\", \"percentage\": 10}], detailed_output=True)]"}
+{"id": "irrelevance_130", "result": "[calculate_big_five_traits(answers=[3, 4, 2, 5, 4], calculate_percentile=true, average_answers=true)]"}
+{"id": "irrelevance_131", "result": "[psychology.color_representation(color=\"purple\", context=\"computer vision\", individual_traits=\"traits\")]"}
+{"id": "irrelevance_132", "result": "[historical_event.get_date(event_name=\"Battle of Waterloo\", format=\"YYYY-MM-DD\")]"}
+{"id": "irrelevance_133", "result": "[get_battle_details(battle_name=\"NBA\", year=2023)]"}
+{"id": "irrelevance_134", "result": "No function matches the user's request."}
+{"id": "irrelevance_135", "result": "No function matches the user's request."}
+{"id": "irrelevance_136", "result": "[us_president_in_year(year=2025, state=\"US\")]"}
+{"id": "irrelevance_137", "result": "[historical_event.get_date(event_name=\"Declaration of Independence\", event_location=\"Virginia, USA\", event_time_period=\"American Revolution\")]"}
+{"id": "irrelevance_138", "result": "No function matches the user's request."}
+{"id": "irrelevance_139", "result": "No function matches the user's request."}
+{"id": "irrelevance_140", "result": "No function matches the user's request."}
+{"id": "irrelevance_141", "result": "No function matches the user's request."}
+{"id": "irrelevance_142", "result": "No function matches the user's request."}
+{"id": "irrelevance_143", "result": "No function matches the user's request."}
+{"id": "irrelevance_144", "result": "[search_holy_books(book=\"Holy Book\")]"}
+{"id": "irrelevance_145", "result": "[religion_history.get_event_year(event_name=\"Protestant Reformation\", period=\"Reformation\", location=\"Europe\")]"}
+{"id": "irrelevance_146", "result": "[get_color_mix(color_1=\"#FAEBD7\", color_2=\"#00FFFF\")]"}
+{"id": "irrelevance_147", "result": "No function matches the user's request."}
+{"id": "irrelevance_148", "result": "[color_complimentary(color=\"blue\", color_format=\"RGB\")]"}
+{"id": "irrelevance_149", "result": "[calculate_paint_mix(target_color=\"sky blue\", available_colors=[\"sky blue\", \"blue\", \"light blue\"], shade_level=5)]"}
+{"id": "irrelevance_150", "result": "[color_converter.RGB_to_Pantone(red=255, green=0, blue=0)]"}
+{"id": "irrelevance_151", "result": "No function matches the user's request."}
+{"id": "irrelevance_152", "result": "No function matches the user's request."}
+{"id": "irrelevance_153", "result": "No function matches the user's request."}
+{"id": "irrelevance_154", "result": "No function matches the user's request."}
+{"id": "irrelevance_155", "result": "No function matches the user's request."}
+{"id": "irrelevance_156", "result": "No function matches the user's request."}
+{"id": "irrelevance_157", "result": "[building_information.get_data(building_name=\"cathedral\", info_requested=\"design of cathedral style ceiling\")]"}
+{"id": "irrelevance_158", "result": "No function matches the user's request."}
+{"id": "irrelevance_159", "result": "[artwork_search(artwork_name=\"The Scream\", museum_location=\"Museum of Modern Art, New York\", specific_details=\"artist\")]"}
+{"id": "irrelevance_160", "result": "[most_frequent_visitor(museum_name=\"Museum of Modern Art\", start_date=\"2023-01-01\", end_date=\"2023-12-31\", minimum_visits=1)]"}
+{"id": "irrelevance_161", "result": "No function matches the user's request."}
+{"id": "irrelevance_162", "result": "[get_museum_artists(museum_name=\"The Metropolitan Museum of Art\", period=\"19th Century\", country=\"USA\")]"}
+{"id": "irrelevance_163", "result": "No function matches the user's request."}
+{"id": "irrelevance_164", "result": "[search_music_instrument_players(instrument=\"singer\", genre=\"Jazz\", top=5)]"}
+{"id": "irrelevance_165", "result": "[get_instrument_info(instrument_name=\"cello\", detail=\"type\")]"}
+{"id": "irrelevance_166", "result": "No function matches the user's request."}
+{"id": "irrelevance_167", "result": "[get_concert_info(concert_id=50234, include_artist_info=true, include_venue_info=true)]"}
+{"id": "irrelevance_168", "result": "[concert_availability(artist=\"University\", location=\"Sydney\", date=\"2025-05\")]"}
+{"id": "irrelevance_169", "result": "[concert_search.find_concerts(venue=\"Madison Square Garden\", date=\"2025-04-04\", artist=\"basketball\")]"}
+{"id": "irrelevance_170", "result": "No function matches the user's request."}
+{"id": "irrelevance_171", "result": "No function matches the user's request."}
+{"id": "irrelevance_172", "result": "No function matches the user's request."}
+{"id": "irrelevance_173", "result": "[music_analysis.find_common_chords(genre=\"C major\", num_chords=3)]"}
+{"id": "irrelevance_174", "result": "[music_theory.primary_triads(key_signature=\"C\", include_inversions=true)]"}
+{"id": "irrelevance_175", "result": "No function matches the user's request."}
+{"id": "irrelevance_176", "result": "No function matches the user's request."}
+{"id": "irrelevance_177", "result": "No function matches the user's request."}
+{"id": "irrelevance_178", "result": "[sports_analysis.get_top_scorer(league=\"Premier League\", season=\"2020/2021\", team=\"Liverpool\")]"}
+{"id": "irrelevance_179", "result": "[get_game_results(team_1=\"Los Angeles Clippers\", team_2=\"Los Angeles Lakers\", date=\"2024-04-02\", venue=\"basketball\")]"}
+{"id": "irrelevance_180", "result": "[sports_analyzer.get_schedule(date=\"2025-01-20\", sport=\"cricket\", country=\"USA\")]"}
+{"id": "irrelevance_181", "result": "[soccer_stats.get_last_match_result(team1=\"Real Madrid\", team2=\"Barcelona\", season=\"la liga\")]"}
+{"id": "irrelevance_182", "result": "[get_nba_player_stats(player_name=\"Michael Jordan\", stat_type=\"championships\")]"}
+{"id": "irrelevance_183", "result": "No function matches the user's request."}
+{"id": "irrelevance_184", "result": "[sports_stats.get_player_stats(player_name=\"NBA\", season=\"2020-2021\", league=\"NBA\")]"}
+{"id": "irrelevance_185", "result": "[player_stats.average_scoring(player_name=\"LeBron James\", season=\"2023-2024\", league=\"NBA\")]"}
+{"id": "irrelevance_186", "result": "[sports_ranking.get_MVP(season=\"2024\", sport_type=\"football\", team=\"NFC\")]"}
+{"id": "irrelevance_187", "result": "No function matches the user's request."}
+{"id": "irrelevance_188", "result": "[sports.ranking.get_champion(event=\"World Series\", year=2020)]"}
+{"id": "irrelevance_189", "result": "[sports_ranking.get_top_ranked(sport=\"basketball\", gender=\"male\", year=2024)]"}
+{"id": "irrelevance_190", "result": "[sports_team.standing(team_name=\"Tennis\", league=\"ATP\", season_year=2025)]"}
+{"id": "irrelevance_191", "result": "[get_match_stats(team_name=\"football\", tournament=\"FIFA World Cup\", year=2023)]"}
+{"id": "irrelevance_192", "result": "No function matches the requested request."}
+{"id": "irrelevance_193", "result": "[get_sport_team_details(team_name=\"Los Angeles Lakers\", details=\"roster\")]"}
+{"id": "irrelevance_194", "result": "No function matches the user's request."}
+{"id": "irrelevance_195", "result": "No function matches the user's request."}
+{"id": "irrelevance_196", "result": "No function matches the user's request."}
+{"id": "irrelevance_197", "result": "No function matches the user's request."}
+{"id": "irrelevance_198", "result": "No function matches the requested query."}
+{"id": "irrelevance_199", "result": "[play_poker(number_of_players=4, cards_per_player=5, game_type=\"Texas Holdem\"), play_poker(number_of_players=4, cards_per_player=5, game_type=\"Texas Holdem\")]\n[Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a Texas Holdem game with 4 players and 5 cards each to simulate the situation.][Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a Texas Holdem game with 4 players and 5 cards each to simulate the situation.][Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a Texas Holdem game with 4 players and 5 cards each to simulate the situation.][Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a Texas Holdem game with 4 players and 5 cards each to simulate the situation.][Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a Texas Holdem game with 4 players and 5 cards each to simulate the situation.][Who has the highest number of hearts in a game of poker? The answer depends on the deck composition and hand. In a standard 52-card deck, the maximum heart count is 52, but this is a theoretical question. I'll play a"}
+{"id": "irrelevance_200", "result": "No function matches the requested query."}
+{"id": "irrelevance_201", "result": "No function matches the requested request."}
+{"id": "irrelevance_202", "result": "No function matches the user's request."}
+{"id": "irrelevance_203", "result": "[get_player_score(player=\"A\", game=\"Halo\")]"}
+{"id": "irrelevance_204", "result": "[game_functions.solve_jigsaw(puzzle_image=\"image_puzzle_12345.png\", pieces_count=12, solve_method=\"genetic_algorithm\")]"}
+{"id": "irrelevance_205", "result": "No function matches the user's request."}
+{"id": "irrelevance_206", "result": "[game.find_best_weapon(player_level=5, enemy_type=\"dragon\", inventory=[\"sword\"])]"}
+{"id": "irrelevance_207", "result": "[game_tracker.high_score(game_name=\"Flappy Bird\", platform=\"Mobile\")]"}
+{"id": "irrelevance_208", "result": "No function matches the user's request."}
+{"id": "irrelevance_209", "result": "No function matches the user's request."}
+{"id": "irrelevance_210", "result": "[recipe_based_restaurants(recipe_name=\"best restaurant Paris\", location=\"Paris\", price_range=[\"$$$$\"], preferred_rating=4)]"}
+{"id": "irrelevance_211", "result": "[recipe_calculator.calculate_time(weight=5.0, per_unit_time=15, unit_of_time=\"minutes\")]"}
+{"id": "irrelevance_212", "result": "[get_cooking_time(ingredient_type=\"egg\", ingredient_size=\"large\", cooking_method=\"boiling\")]"}
+{"id": "irrelevance_213", "result": "[restaurant_finder(cuisine=\"pizza\", location=\"Boston\", rating=3)]"}
+{"id": "irrelevance_214", "result": "No function matches the user's request."}
+{"id": "irrelevance_215", "result": "No function matches the user's request."}
+{"id": "irrelevance_216", "result": "No function matches the user's request."}
+{"id": "irrelevance_217", "result": "No function matches the user's request."}
+{"id": "irrelevance_218", "result": "[prepare_food.get_recipe(ingredients=[\"chocolate\"], food_type=\"cake\", serving_size=1)]"}
+{"id": "irrelevance_219", "result": "[get_calories_in_recipe(ingredients=[{\"name\": \"milk\", \"quantity\": 2, \"unit\": \"cup\"}, {\"name\": \"cheese\", \"quantity\": 2, \"unit\": \"cup\"}, {\"name\": \"butter\", \"quantity\": 2, \"unit\": \"cup\"}, {\"name\": \"tomatoes\", \"quantity\": 2, \"unit\": \"cup\"}, {\"name\": \"garlic\", \"quantity\": 2, \"unit\": \"garlic\"}, {\"name\": \"parsley\", \"quantity\": 2, \"unit\": \"parsley\"}, \"servings\": 4}],)]"}
+{"id": "irrelevance_220", "result": "No function matches the user's request."}
+{"id": "irrelevance_221", "result": "No function matches the user's request."}
+{"id": "irrelevance_222", "result": "[grocery_store.item_details(item_name=\"tomato\", store_location=\"New York\", details_level=\"simple\")]"}
+{"id": "irrelevance_223", "result": "[grocery_shop.find_specific_product(city=\"Chicago\", product=\"sourdough bread\", show_closed=False)]"}
+{"id": "irrelevance_224", "result": "[grocery_store.locate_nearby(location=\"Los Angeles, CA\", store_type=[\"Pet Store\"], is_24_hours=false)]"}
+{"id": "irrelevance_225", "result": "No function matches the user's request."}
+{"id": "irrelevance_226", "result": "[get_local_time(timezone=\"Europe/London\", date_format=\"YYYY-MM-DD HH:mm:ss\")]"}
+{"id": "irrelevance_227", "result": "[calculate_sunrise(location=\"Beijing\", date=\"2025-04-05\", format=\"HH:MM\")]"}
+{"id": "irrelevance_228", "result": "[get_local_time(location=\"Sydney\", format=\"24\", timezone=\"Australia/Sydney\")]"}
+{"id": "irrelevance_229", "result": "No function matches the user's request."}
+{"id": "irrelevance_230", "result": "[find_hotel(location=\"Miami\", max_price_per_night=0.0, pet_friendly=true)]"}
+{"id": "irrelevance_231", "result": "No function matches the user's request."}
+{"id": "irrelevance_232", "result": "[hotel_search.find_hotels(location=\"New York\", amenities=[\"Yoga Retreat\", \"Vegetarian Meals\", \"Spa Services\"])]"}
+{"id": "irrelevance_233", "result": "No function matches the user's request."}
+{"id": "irrelevance_234", "result": "[convert_currency(amount=10.0, from_currency=\"inch\", to_currency=\"meter\")]"}
+{"id": "irrelevance_235", "result": "No function matches the requested query."}
+{"id": "irrelevance_236", "result": "[get_flight_duration(start_city=\"London\", destination_city=\"Tokyo\", flight_type=\"direct\")]"}
+{"id": "irrelevance_237", "result": "[get_route_to_location(start_point=\"Los Angeles\", end_point=\"Pharmacy\", transport_method=\"Walking\")]"}
+{"id": "irrelevance_238", "result": "[map_coordinates.distance_calculate(pointA={\"latitude\": 0.0, \"longitude\": -120.0}, pointB={\"latitude\": 0.0, \"longitude\": 120.0})]"}
+{"id": "irrelevance_239", "result": "[get_date(location_1=\"San Francisco\", location_2=\"Los Angeles\", unit=\"kilometers\")]"}

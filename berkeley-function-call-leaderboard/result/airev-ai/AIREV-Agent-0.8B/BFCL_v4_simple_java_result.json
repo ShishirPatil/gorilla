@@ -1,0 +1,100 @@
+{"id": "simple_java_0", "result": "[GeometryPresentation.createPresentation(controller=\"mapController\", parent=\"mapArea\")]"}
+{"id": "simple_java_1", "result": "[SQLCompletionAnalyzer.makeProposalsFromObject(object=\"Customers\", useShortName=true, params={\"limit\": \"50\", \"schema_filter\": \"public\"})]"}
+{"id": "simple_java_2", "result": "[FireBirdUtils.getViewSourceWithHeader(monitor=\"dbMonitor\", view=\"EmployeeView\", source=\"SELECT * FROM Employee WHERE status = 'active'\")]"}
+{"id": "simple_java_3", "result": "[DB2Tablespace.resolveTablespaceReference(monitor=\"dbMonitor\", dataSource=\"db2DataSource\", reference=\"USERSPACE1\")]"}
+{"id": "simple_java_4", "result": "[DB2ViewBaseDepCache.prepareObjectsStatement(session=jdbcSession, db2ViewBase=\"EmployeeView\" , schema=\"HR\")]"}
+{"id": "simple_java_5", "result": "[PlainTextPresentation.createPresentation(controller=\"dataController\", parent=\"compositeParent\", textAreaReadOnly=true, textAreaMultiLine=true)]"}
+{"id": "simple_java_6", "result": "[SpreadsheetPresentation.refreshData(refreshMetadata=true, append=true, keepState=true)]"}
+{"id": "simple_java_7", "result": "[EFSNIOResource.copy(destination=\"/backup/data.txt\", force=true, monitor=\"progressTracker\")]"}
+{"id": "simple_java_8", "result": "[EFSNIOFile.setContents(source=\"fileStream\", force=true, keepHistory=false, monitor=\"progressMonitor\")]"}
+{"id": "simple_java_9", "result": "[writeMultiPoint(multiPoint=[Point(x=1, y=2), Point(x=3, y=4), Point(x=5, y=6), Point(x=7, y=8), Point(x=9, y=10)], xyzmMode=\"XyzmMode.XYZ\", buffer=ByteBuffer.allocate(1024))]"}
+{"id": "simple_java_10", "result": "[JNIBridge.setLauncherInfo(launcher=\"/usr/local/bin/dbeaver\", name=\"DBeaverLauncher\")]"}
+{"id": "simple_java_11", "result": "[BasePolicyDataProvider.getRegistryPolicyValue(root=\"HKEY_LOCAL_MACHINE\", property=\"EnableExtensions\", application=\"DBeaver\")]"}
+{"id": "simple_java_12", "result": "[ExasolExecutionContext.setCurrentSchema monitor=\"progressMonitor\", schemaName=\"AnalyticsDB\")]"}
+{"id": "simple_java_13", "result": "[AltibaseGrantee.prepareObjectsStatement(session=\"JDBC_session\", owner=\"JohnDoe\")]"}
+{"id": "simple_java_14", "result": "[FunGameBase.onFinish(layout=\"gameLayout\", success=true)]"}
+{"id": "simple_java_15", "result": "[Res9patchStreamDecoder.decode(input=\"imageInputStream\", out=\"imageOutputStream\")]"}
+{"id": "simple_java_16", "result": "[InsnDecoder.invokePolymorphic(insn=\"instructionData\", isRange=true)]"}
+{"id": "simple_java_17", "result": "[GenericTypesVisitor.attachGenericTypesInfo(mth=method_node, insn=constructor_instruction)]"}
+{"id": "simple_java_18", "result": "[SysRoleController.queryPageRoleCount(pageNo=3, pageSize=20)]"}
+{"id": "simple_java_19", "result": "[PersonController.personal(model=\"webModel\", request=\"userRequest\" with username=\"john_doe\")]"}
+{"id": "simple_java_20", "result": "[HbaseAdapter.updateConfig(fileName=\"user-mapping.yml\", config=newMappingConfig)]"}
+{"id": "simple_java_21", "result": "[SessionHandler.exceptionCaught(ctx=nettyChannelContext, e=ioExceptionEvent)]"}
+{"id": "simple_java_22", "result": "[PmsProductServiceImpl.updateNewStatus(ids=[101, 202, 303], newStatus=2)]"}
+{"id": "simple_java_23", "result": "[SmsHomeNewProductServiceImpl.list(productName=\"LED TV\", recommendStatus=1, pageSize=20, pageNum=3)]"}
+{"id": "simple_java_24", "result": "[PmsProductCategoryController.updateShowStatus(ids=[101, 102, 103], showStatus=0)]"}
+{"id": "simple_java_25", "result": "[SmsHomeRecommendSubjectController.updateSort(id=42, sort=5)]"}
+{"id": "simple_java_26", "result": "[ProxyConnection.prepareCall(sql=\"CALL totalSales()\", resultSetType=1, concurrency=1, holdability=3)]"}
+{"id": "simple_java_27", "result": "[TwoSum.twoSum(nums=[2, 7, 11, 15], target=9)]"}
+{"id": "simple_java_28", "result": "[configStorage.dynamicCredentialsScheduledExecutorService(credentialsFile=\"es_credentials.properties\", credentialsRefreshInterval=30, basicCredentials=\"basicAuthCredentials\")]"}
+{"id": "simple_java_29", "result": "[propertyTransferredToCollectorBuilder(property=\"zipkin.collector.activemq.concurrency\", value=\"10\", builderExtractor=\"getConcurrencyValue\")]"}
+{"id": "simple_java_30", "result": "[RedissonAsyncCache.putIfAbsent(key=\"answer\", value=\"42\", futureCompletableFuture=CompletableFuture.completedWith(Optional.of(\"42\")))]"}
+{"id": "simple_java_31", "result": "[RedissonRx.getQueue(name=\"taskQueue\", codec=\"jsonCodec\")]"}
+{"id": "simple_java_32", "result": "[RedissonPermitExpirableSemaphore.tryAcquireAsync(waitTime=5000, leaseTime=1200, unit=\"SECONDS\")]"}
+{"id": "simple_java_33", "result": "[RedissonMapCache.putOperationAsync(key=\"employee:1234\", value=\"John Doe\")]"}
+{"id": "simple_java_34", "result": "[ServiceManager.newTimeout(task=\"cleanupTask\", delay=300, unit=\"TimeUnit.SECONDS\")]"}
+{"id": "simple_java_35", "result": "[RedissonConnection.bitOp(op=RedissonConnection.bitOp.OR, destination=[\"user:online:both\"], keys=[\"user:online:today\", \"user:online:yesterday\"])]"}
+{"id": "simple_java_36", "result": "[ObjectMapEntryReplayDecoder.decode(parts=[\"userID\", 42, \"username\", \"johndoe\", \"isActive\", true], state=\"processingState\")]"}
+{"id": "simple_java_37", "result": "[ConsoleAnnotator.annotate(context=\"jenkinsBuild\", text=\"buildOutput\")]"}
+{"id": "simple_java_38", "result": "[NestedValueFetcher.createSourceMapStub(filteredSource={{\"name\": {\"value\": \"John Doe\", \"address\": {\"value\": \"123 Main St, New York\"}}})]"}
+{"id": "simple_java_39", "result": "[NodeIdConverter.format(event=\"logEvent\", toAppendTo=\"logBuilder\")]"}
+{"id": "simple_java_40", "result": "[RoutingNodesChangedObserver.shardInitialized(unassignedShard=\"shardA\", initializedShard=\"shardB\")]"}
+{"id": "simple_java_41", "result": "[SearchHit.declareInnerHitsParseFields(parser=\"searchHitParser\")]"}
+{"id": "simple_java_42", "result": "[TermQueryBuilderTests.termQuery(mapper=\"usernameField\", value=\"JohnDoe\", caseInsensitive=true)]"}
+{"id": "simple_java_43", "result": "[SecureMockMaker.createSpy(settings=\"mockSettings\", handler=\"mockHandler\", object=\"testObject\")]"}
+{"id": "simple_java_44", "result": "[DesAPITest.init(crypt=\"DESede\", mode=\"CBC\", padding=\"PKCS5Padding\")]"}
+{"id": "simple_java_45", "result": "[Basic.checkSizes(environ=\"envVariables\", size=5)]"}
+{"id": "simple_java_46", "result": "[MethodInvokeTest.checkInjectedInvoker(csm=\"csmInstance\", expected=\"MyExpectedClass.class\")]"}
+{"id": "simple_java_47", "result": "[LargeHandshakeTest.format(name=\"CERTIFICATE\", value=\"MIIFdTCCBF2gAwIBAgISESG\")]"}
+{"id": "simple_java_48", "result": "[CookieHeaderTest.create(sa=\"192.168.1.108080\", sslContext=\"testSSLContext\")]"}
+{"id": "simple_java_49", "result": "[Http2TestExchangeImpl.sendResponseHeaders(rCode=404, responseLength=1500, nonHead=true)]"}
+{"id": "simple_java_50", "result": "[TransformIndexerStateTests.doDeleteByQuery(deleteByQueryRequest={\"name\": \"deleteQueryRequest\", \"index\": \"documents\", \"field\": \"name\", \"match\": true}, responseListener={ \"type\": \"any\", \"description\": \"The listener that handles the response of the delete by query operation.\", \"action\": \"bulkByScroll\", \"response\": \"BulkByScrollResponse{\\\"bulkByScrollResponse\\\": true, \\\"documentsDeleted\\\": 100, \\\"documentsRemaining\\\": 100, \\\"index\\\": \\\"documents\\\"}})]"}
+{"id": "simple_java_51", "result": "[CCRUsageTransportAction.masterOperation(task=\"gatherCCR_usage_statistics\", request={\"usageRequest\": {\"clusterName\": \"production-cluster\", \"clusterType\": \"production\", \"indexName\": \"orders\", \"indexType\": \"indexed\", \"indexStatus\": \"active\", \"indexSize\": 10000, \"indexUsage\": 5000, \"indexSizeUsage\": 3000, \"indexSizePercentOfTotalSize\": 30.0, \"indexSizePercentOfAvailableSize\": 30.0, \"indexUsagePercentOfTotalSize\": 50.0, \"indexUsagePercentOfAvailableSize\": 50.0, \"indexSizeChangePercentOfTotalSize\": 0.0, \"indexSizeChangePercentOfAvailableSize\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastAvailableUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastAvailableUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0.0, \"indexSizeChangePercentOfLastUpdateTime\": 0."}
+{"id": "simple_java_52", "result": "[SamlObjectSignerTests.getChildren(node=node, node_type=Element.class)]"}
+{"id": "simple_java_53", "result": "[VotingOnlyNodePlugin.fullMasterWithOlderState(localAcceptedTerm=42, localAcceptedVersion=7)]"}
+{"id": "simple_java_54", "result": "[AbstractTransportSearchableSnapshotsAction.shardOperation(request=\"snapshotRequest\", shardRouting=\"shardRouteInfo\", task=\"snapshotTask\", listener=\"operationListener\")]"}
+{"id": "simple_java_55", "result": "[SearchableSnapshotDirectory.create(repositories=\"repositoriesService\", cache=\"cacheService\", indexSettings={\"type\": \"directory\", \"path\": \"/data/nodes/0/indices/logs\", \"indexName\": \"logs\", \"numThreads\": 5}, shardPath=\"/data/nodes/0/indices/logs/5\", currentTimeNanosSupplier=\"currentTimeNanos\", threadPool=\"threadPool\", blobStoreCacheService=\"blobStoreCacheService\", sharedBlobCacheService=\"sharedBlobCacheService\")]"}
+{"id": "simple_java_56", "result": "[CCSDuelIT.parseEntity(entity=\"httpResponseEntity\", entityParser=\"responseParser\", parserConfig=\"defaultParserConfig\")]"}
+{"id": "simple_java_57", "result": "[Booleans.parseBooleanLenient(value=\"yes\", defaultValue=\"false\")]"}
+{"id": "simple_java_58", "result": "[XContentBuilder.map(values<HashMap{\"name\": \"string\", \"age\": \"integer\", \"email\": \"string\"}, ensureNoSelfReferences=true, writeStartAndEndHeaders=true)]"}
+{"id": "simple_java_59", "result": "[TruncateTranslogAction.execute(terminal=\"Terminal\", shardPath=Paths.get(\"/var/data/elasticsearch/nodes/0/indices/1shard\"), indexDirectory=Paths.get(\"/var/data/elasticsearch/nodes/0/indices/1shard/index\"))]"}
+{"id": "simple_java_60", "result": "[NestedQueryBuilder.doBuild(parentSearchContext=\"mainSearchContext\", innerHitsContext=\"hitsContext\", ignoreUnmapped=false)]"}
+{"id": "simple_java_61", "result": "[ScoreFunctionBuilders.exponentialDecayFunction(fieldName=\"timestamp\", origin=\"now\", scale=\"10d\", offset=\"2d\", decay=0.5)]"}
+{"id": "simple_java_62", "result": "[dvRangeQuery(field=\"temperature\", queryType=\"FLOAT\", from=20.5, to=30.0, includeFrom=true, includeTo=false)]"}
+{"id": "simple_java_63", "result": "[withinQuery(field=\"age\", from=30, to=40, includeFrom=true, includeTo=false)]"}
+{"id": "simple_java_64", "result": "[DateScriptFieldType.createFieldType(name=\"timestamp\", factory=\"dateFactory\", script=\"dateScript\", meta={\"format\": \"epoch_millis\"}, onScriptError=\"FAIL\")]"}
+{"id": "simple_java_65", "result": "[RootObjectMapper.doXContent(builder=xContentBuilderInstance, params=[{\"includeDefaults\": true, \"skipRuntimeFields\": false}, {\"includeDefaults\": true, \"skipRuntimeFields\": false}, {\"includeDefaults\": true, \"skipRuntimeFields\": false}, {\"includeDefaults\": true, \"skipRuntimeFields\": false}])]"}
+{"id": "simple_java_66", "result": "[CompositeRuntimeField.createChildRuntimeField(parserContext=\"mappingParserContext\", parent=\"compositeField1\", parentScriptFactory=\"compositeScriptFactory\", onScriptError=\"onScriptError.IGNORE\")]"}
+{"id": "simple_java_67", "result": "[MacDmgBundler.prepareDMGSetupScript(appLocation=\"/Applications/PhotoEditor.app\", params={\"appName\": \"PhotoEditor\", \"imagesRoot\": \"/images\", \"backgroundImageFolder\": \"/images/background\", \"volumeUrl\": \"file://volume.com/1234\", \"installationDirectory\": \"/Applications/PhotoEditor.app/Contents/\"]))]"}
+{"id": "simple_java_68", "result": "[MacBaseInstallerBundler.validateAppImageAndBundeler(params={\"params\": {\"applicationImagePath\": \"/Applications/MyApp.app\", \"applicationName\": \"MyApp\", \"required\": true, \"signable\": true}})]"}
+{"id": "simple_java_69", "result": "[DurationImpl.alignSigns(buf=[\"durations\"], start=2, end=5)]"}
+{"id": "simple_java_70", "result": "[XMLNamespaceBinder.endElement(element=\"{\"namespaceURI\": \"http://www.example.com\", \"localPart\": \"item\", \"prefix\": \"ex\"}, \"augmentations\": {\"namespace\": \"true\", \"prefix\": \"ex\", \"localPart\": \"item\"}})]"}
+{"id": "simple_java_71", "result": "[CoroutineManager.co_exit_to(arg_object=\"resultData\", thisCoroutine=5, toCoroutine=10)]"}
+{"id": "simple_java_72", "result": "[ToTextStream.characters(ch=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], start=5, length=10, tracer=true)]"}
+{"id": "simple_java_73", "result": "[Encodings.getEncodingInfo(encoding=\"UTF-8\", allowJavaNames=true)]"}
+{"id": "simple_java_74", "result": "[BaseMarkupSerializer.surrogates(high=55357, low=56832, inContent=False)]"}
+{"id": "simple_java_75", "result": "[JdkXmlFeatures.getSystemProperty(feature=\"XML_SECURITY\", sysPropertyName=\"enableXmlSecurityFeature\")]"}
+{"id": "simple_java_76", "result": "[Intro.step(w=800, h=600)]"}
+{"id": "simple_java_77", "result": "[JndiLoginModule.verifyPassword(encryptedPassword=\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", password=\"P@ssw0rd!\")]"}
+{"id": "simple_java_78", "result": "[OptionSpecBuilder.requiredUnless(dependent=\"output-format\", otherDependents=[\"quiet\", \"verbose\"])]"}
+{"id": "simple_java_79", "result": "[SAXFilterFactoryImpl.resolveEntity(publicid=\"1234\", sysId=\"http://astro.com/stylesheets/toptemplate\")]"}
+{"id": "simple_java_80", "result": "[RegexConstraint.initIRPattern(category=\"failOn\", ruleIdx=42)]"}
+{"id": "simple_java_81", "result": "[TestObjectGraphAfterGC.doTesting(testcaseData=\"humongous-test-case.json\", doGC=Runnable{} , checker=ReferenceChecker, gcLogName=\"gc-analysis.log\", shouldContain=[String \"GC pause\"], shouldNotContain=[String \"OutOfMemoryError\"])]"}
+{"id": "simple_java_82", "result": "[clear001a.runIt(args=[\"testArgs\"], out=\"System.out\")]"}
+{"id": "simple_java_83", "result": "[thrcputtime002.runIt(argv=[\"-waitTime\", \"1200\", \"-iterations\", \"500\"], out=\"System.out\")]"}
+{"id": "simple_java_84", "result": "[checkInnerFields(redefCls=myRedefClass, expValue=100), checkInnerFields(redefCls=myRedefClass, field=\"private\", expValue=100), checkInnerFields(redefCls=myRedefClass, field=\"package-private\", expValue=100), checkInnerFields(redefCls=myRedefClass, field=\"public\", expValue=100)]"}
+{"id": "simple_java_85", "result": "[classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\"/path/to/classes\", \"60\"], out=logStream), classfloadhk005.runIt(argv=[\""}
+{"id": "simple_java_86", "result": "[argumenttypes001.runThis(argv=[\"-v\", \"--no-strict\"], out=\"debugOutput\")]"}
+{"id": "simple_java_87", "result": "[suspendpolicy017.settingVMDeathRequest(suspendPolicy=17, property=\"testProperty\")]"}
+{"id": "simple_java_88", "result": "[filter_s002.setting22MethodEntryRequest(thread=\"mainThread\", testedClass=\"com.example.MainClass\", suspendPolicy=\"EventRequest.SUSPEND_ALL\", property=\"testProperty\")]"}
+{"id": "simple_java_89", "result": "[runThis(argv=[\"-waitTime\", \"120\", \"-debuggeeName\", \"TestDebuggee\"], out=\"testLogStream\")]"}
+{"id": "simple_java_90", "result": "[sourcepaths002.runIt(args=[\"-v\", \"-p\"], out=\"System.out\")]"}
+{"id": "simple_java_91", "result": "[invokemethod007.runIt(args=[\"suspend\", \"log\"], out=\"debugLog\")]"}
+{"id": "simple_java_92", "result": "[ClassFileFinder.findClassFile(name=\"com.example.MyClass\", classPath=\"/usr/local/classes/home/user/java/libs\")]"}
+{"id": "simple_java_93", "result": "[AbstractJarAgent.runJarAgent(options=\"trace log\", inst=\"appInstrumentation\")]"}
+{"id": "simple_java_94", "result": "[NFILibrary.isMemberReadable(symbol=\"getVersion\", recursive=null)]"}
+{"id": "simple_java_95", "result": "[ExportNodeTest.doGeneric(receiver=\"ExportInlinedObject1Instance\", argument=\"HelloWorld\", node=\"InlinableNodeInstance\", library=\"NodeLibraryInstance\")]"}
+{"id": "simple_java_96", "result": "[InstrumentableProcessor.createCallConverter(converterMethod=\"convertValue\", frameParameterName=\"frameVar\", returnName=\"returnValueCode\")]"}
+{"id": "simple_java_97", "result": "[FlatNodeGenFactory.generateIntrospectionInfo(clazz=\"NodeClass\", inlined=false)]"}
+{"id": "simple_java_98", "result": "[LoopConditionProfile.calculateProbability(trueCountLocal=150, falseCountLocal=50)]"}
+{"id": "simple_java_99", "result": "[LibraryExport.createDelegate(factory=myFactory, delegate=existingDelegate)]"}
