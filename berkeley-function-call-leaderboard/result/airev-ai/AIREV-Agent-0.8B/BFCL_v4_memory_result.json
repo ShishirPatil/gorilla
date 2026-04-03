@@ -1,0 +1,155 @@
+{"id": "memory_0-customer-0", "result": ["[core_memory_retrieve(key=\"user_name\")]"]}
+{"id": "memory_1-customer-1", "result": ["[core_memory_retrieve(key=\"user_age\")]"]}
+{"id": "memory_2-customer-2", "result": ["[core_memory_key_search(query=\"user_location\", k=5)]"]}
+{"id": "memory_3-customer-3", "result": ["[core_memory_key_search(query=\"user favorite latte type\")]"]}
+{"id": "memory_4-customer-4", "result": ["[archival_memory_retrieve(key=\"user_kitchen_counter_size\")]"]}
+{"id": "memory_5-customer-5", "result": ["[archival_memory_search(query=\"discount new customers percent off\", k=3)]"]}
+{"id": "memory_6-customer-6", "result": ["[archival_memory_key_search(query=\"accessories added to espresso machine order for free shipping\", k=3)]"]}
+{"id": "memory_7-customer-7", "result": ["[archival_memory_key_search(query=\"order delivery duration original estimated business days\")]"]}
+{"id": "memory_8-customer-8", "result": ["[archival_memory_key_search(query=\"espresso machine ready for event\", k=5)]"]}
+{"id": "memory_9-customer-9", "result": ["[archival_memory_key_search(query=\"espresso machine arrived bent part damaged\", k=5)]"]}
+{"id": "memory_10-customer-10", "result": ["[archival_memory_key_search(query=\"crushed corners outer box delivery\", k=3)]"]}
+{"id": "memory_11-customer-11", "result": ["[archival_memory_key_search(query=\"accessory with scratch\", k=5)]"]}
+{"id": "memory_12-customer-12", "result": ["[archival_memory_key_search(query=\"appliance banished to pantry coffee setup\", k=5)]"]}
+{"id": "memory_13-customer-13", "result": ["No function matches the user's request."]}
+{"id": "memory_14-customer-14", "result": ["[core_memory_add(key=\"user_request_lattes\", value=\"What could make my lattes even better?\")]\n[archival_memory_add(key=\"user_suggestion_lattes\", value=\"Suggest ingredients or brewing techniques to improve lattes\")]"]}
+{"id": "memory_15-customer-15", "result": ["[archival_memory_key_search(query=\"digital scale purchase company second order\", k=3)]"]}
+{"id": "memory_16-customer-16", "result": ["[archival_memory_key_search(query=\"freelance gig travel next weekend\", k=5)]"]}
+{"id": "memory_17-customer-17", "result": ["[archival_memory_key_search(query=\"warehouse ship grinder bundle\", k=5)]"]}
+{"id": "memory_18-customer-18", "result": ["[archival_memory_key_search(query=\"user creative hobby\", k=3)]"]}
+{"id": "memory_19-customer-19", "result": ["[archival_memory_key_search(query=\"extended warranty plan members duration months\", k=3)]"]}
+{"id": "memory_20-customer-20", "result": ["[archival_memory_add(key=\"user_subscription_meat_volume\", value=\"User wants the nuanced, small-batch roasts in their subscription to be 400 mL.\")]"]}
+{"id": "memory_21-customer-21", "result": ["[archival_memory_search(query=\"unexpected charge on statement date\", k=5)]"]}
+{"id": "memory_22-customer-22", "result": ["[archival_memory_retrieve(key=\"estimated_mystery_charge\")]"]}
+{"id": "memory_23-customer-23", "result": ["[archival_memory_retrieve(key=\"order_confirmations\")]"]}
+{"id": "memory_24-customer-24", "result": ["[archival_memory_retrieve(key=\"user_kitchen_magazine\")]"]}
+{"id": "memory_25-customer-25", "result": ["[archival_memory_search(query=\"average rainfall inches shipping unpredictable\", k=5)]"]}
+{"id": "memory_26-customer-26", "result": ["[core_memory_retrieve(key=\"coffee_instagram_page\")]"]}
+{"id": "memory_27-customer-27", "result": ["[archival_memory_key_search(query=\"impromptu event hosted by user\", k=5)]"]}
+{"id": "memory_28-customer-28", "result": ["No function matches the user's request."]}
+{"id": "memory_29-customer-29", "result": ["[archival_memory_key_search(query=\"user brand trust\", k=5)]"]}
+{"id": "memory_30-healthcare-0", "result": ["[archival_memory_key_search(query=\"patient health issue\", k=5)]"]}
+{"id": "memory_31-healthcare-1", "result": ["[archival_memory_retrieve(key=\"patient_diabetes_type2\")]"]}
+{"id": "memory_32-healthcare-2", "result": ["[archival_memory_key_search(query=\"patient lifestyle change glucose levels management\", k=5)]"]}
+{"id": "memory_33-healthcare-3", "result": ["[archival_memory_key_search(query=\"emergency room visit health condition patient\", k=5)]"]}
+{"id": "memory_34-healthcare-4", "result": ["[archival_memory_search(query=\"surgery patient past\", k=5)]"]}
+{"id": "memory_35-healthcare-5", "result": ["[core_memory_key_search(query=\"patient doctor appointments medications tracking\")]"]}
+{"id": "memory_36-healthcare-6", "result": ["[archival_memory_retrieve(key=\"patient_condition\")]"]}
+{"id": "memory_37-healthcare-7", "result": ["[core_memory_key_search(query=\"patient preventive measures flu shot other\", k=5)]"]}
+{"id": "memory_38-healthcare-8", "result": ["[archival_memory_retrieve(key=\"patient_health_focus\")]"]}
+{"id": "memory_39-healthcare-9", "result": ["No function matches the user's request."]}
+{"id": "memory_40-healthcare-10", "result": ["[archival_memory_key_search(query=\"patient caffeine consumption schedule after bedtime\", k=3)]"]}
+{"id": "memory_41-healthcare-11", "result": ["[archival_memory_add(key=\"patient_favorite_meal\", value=\"One of the patient's favorite go-to meals is pasta with tomato sauce.\")]"]}
+{"id": "memory_42-healthcare-12", "result": ["[core_memory_add(key=\"patient_fitness_realization\", value=\"Patient learned that something is more important than intensity as they have aged. They have shifted their focus from high-intensity workouts to other important health and fitness goals.\")]"]}
+{"id": "memory_43-healthcare-13", "result": ["[archival_memory_search(query=\"patient maintained social connections age\", k=5)]"]}
+{"id": "memory_44-healthcare-14", "result": ["No function matches the user's request."]}
+{"id": "memory_45-healthcare-15", "result": ["[archival_memory_retrieve(key=\"patient_blood_gucose\")]"]}
+{"id": "memory_46-healthcare-16", "result": ["[archival_memory_key_search(query=\"patient A1C value\", k=3)]"]}
+{"id": "memory_47-healthcare-17", "result": ["[core_memory_add(key=\"ideal_fasting_blood_glucose\", value=\"Ideal fasting blood glucose level is 70 mg/dL or lower.\")]"]}
+{"id": "memory_48-healthcare-18", "result": ["[archival_memory_search(query=\"patient LDL cholesterol level mg/dL\", k=3)]"]}
+{"id": "memory_49-healthcare-19", "result": ["[archival_memory_retrieve(key=\"patient_blood_pressure\")]"]}
+{"id": "memory_50-healthcare-20", "result": ["[archival_memory_retrieve(key=\"patient_vitamin_d_level\")]"]}
+{"id": "memory_51-healthcare-21", "result": ["[archival_memory_retrieve(key=\"patient_medical_data\")]"]}
+{"id": "memory_52-healthcare-22", "result": ["[archival_memory_search(query=\"patient ESR results value in mm/hr\", k=3)]"]}
+{"id": "memory_53-healthcare-23", "result": ["[archival_memory_retrieve(key=\"patient_diabetes medication dosage\")]"]}
+{"id": "memory_54-healthcare-24", "result": ["[archival_memory_add(key=\"patient_medication_high_blood_pressure\", value=\"Patient takes Caffeine 200 mg for high blood pressure.\")]"]}
+{"id": "memory_55-finance-0", "result": ["[core_memory_retrieve(key=\"user_investment_firm\")]"]}
+{"id": "memory_56-finance-1", "result": ["[core_memory_retrieve(key=\"microsoft_intel_acquisition_possessor\")]"]}
+{"id": "memory_57-finance-2", "result": ["[archival_memory_search(query=\"healthcare merger BioCrest Labs other company $14.2B\", k=5)]"]}
+{"id": "memory_58-finance-3", "result": ["[archival_memory_key_search(query=\"virtual deal diary\", k=3)]"]}
+{"id": "memory_59-finance-4", "result": ["[archival_memory_key_search(query=\"AI-driven market analysis platform Legend Investments\", k=3)]"]}
+{"id": "memory_60-finance-5", "result": ["[core_memory_key_search(query=\"user_occupation\", k=3)]"]}
+{"id": "memory_61-finance-6", "result": ["[archival_memory_key_search(query=\"user MBA degree\", k=3)]"]}
+{"id": "memory_62-finance-7", "result": ["[core_memory_add(key=\"user_investment_question\", value=\"How do I approach my personal investments differently from managing the firm\u2019s assets?\")]"]}
+{"id": "memory_63-finance-8", "result": ["[archival_memory_retrieve(key=\"user_golf_handicap\")]"]}
+{"id": "memory_64-finance-9", "result": ["[core_memory_retrieve(key=\"user_morning_start_time\")]"]}
+{"id": "memory_65-finance-10", "result": ["[core_memory_add(key=\"user_language_goal\", value=\"Aim to become fluent in English as part of personal development goals\")]"]}
+{"id": "memory_66-finance-11", "result": ["[core_memory_add(key=\"user_career_goals\", value=\"Aim to transition into a chairman role at their firm at age 40.\")]"]}
+{"id": "memory_67-finance-12", "result": ["No function matches the user's request."]}
+{"id": "memory_68-finance-13", "result": ["[archival_memory_key_search(query=\"dinner series host every quarter\", k=5)]"]}
+{"id": "memory_69-finance-14", "result": ["[archival_memory_add(key=\"family_financial_success\", value=\"The user is asking about the implications of financial success prioritized over family relationships. They believe sacrificing the most important relationships to achieve financial goals. This is a thoughtful and potentially impactful topic for family discussions.\")]"]}
+{"id": "memory_70-finance-15", "result": ["[core_memory_key_search(query=\"user's 14 year old son interests hobbies\", k=5)]"]}
+{"id": "memory_71-finance-16", "result": ["[core_memory_list_keys()], [archival_memory_add(key=\"family_travel_integration\", value=\"How to incorporate your family into business travel: prioritize family activities, book family-friendly accommodations, and ensure travel dates accommodate family travel plans.\")]"]}
+{"id": "memory_72-finance-17", "result": ["[core_memory_add(key=\"financial_command_center\", value=\"User's financial command center platform.\")]"]}
+{"id": "memory_73-finance-18", "result": ["[archival_memory_key_search(query=\"machine learning platform championed at firm\", k=5)]"]}
+{"id": "memory_74-finance-19", "result": ["No function matches the user's request."]}
+{"id": "memory_75-finance-20", "result": ["[archival_memory_add(key=\"user_programming_language_pandemic\", value=\"Java\")]"]}
+{"id": "memory_76-finance-21", "result": ["[archival_memory_add(key=\"user_success_factors\", value=\"The three key factors I believe contribute to success are: 1) determination, 2) resilience, and 3) adaptability.\")]"]}
+{"id": "memory_77-finance-22", "result": ["[archival_memory_key_search(query=\"deal lost massive deal early career\")]\n[archival_memory_add(key=\"user_career\", value=\"User lost a massive deal on early career. Details may have been archived or transferred.\")]"]}
+{"id": "memory_78-finance-23", "result": ["[archival_memory_search(query=\"positions where opportunity can find those who put themselves in\", k=5)]"]}
+{"id": "memory_79-finance-24", "result": ["[archival_memory_add(key=\"career_advice\", value=\"Advice to young professionals about career growth: 1) Identify your strongest skills and what's most important to you. 2) Seek out opportunities to apply those skills in new contexts. 3) Build a portfolio that showcases your ability to deliver results. 4) Consider taking on smaller projects to gain experience. 5) Be willing to learn and adapt to new technologies.\")]"]}
+{"id": "memory_80-student-0", "result": ["[core_memory_retrieve(key=\"user_favorite_course\")]"]}
+{"id": "memory_81-student-1", "result": ["[archival_memory_key_search(query=\"Capstone project duration in semesters\", k=3)]"]}
+{"id": "memory_82-student-2", "result": ["[core_memory_retrieve(key=\"decentralized_file_storage_class\")]"]}
+{"id": "memory_83-student-3", "result": ["[archival_memory_list_keys()]"]}
+{"id": "memory_84-student-4", "result": ["[archival_memory_key_search(query=\"Capstone project weekly hours requirements\", k=5)]"]}
+{"id": "memory_85-student-5", "result": ["[core_memory_add(key=\"favorite_activity\", value=\"Activity that the user does about four times weekly.\")]"]}
+{"id": "memory_86-student-6", "result": ["[core_memory_retrieve(key=\"user_games\")]"]}
+{"id": "memory_87-student-7", "result": ["[core_memory_add(key=\"favorite_book\", value=\"AI-themed sci-fi book\")]"]}
+{"id": "memory_88-student-8", "result": ["[archival_memory_add(key=\"suggested_study_schedule\", value=\"Add a 30-minute study session to your existing schedule, similar to the 45-minute reading session you mentioned earlier.\")]"]}
+{"id": "memory_89-student-9", "result": ["[core_memory_key_search(query=\"incremental improvements hobby\", k=5)]"]}
+{"id": "memory_90-student-10", "result": ["[archival_memory_key_search(query=\"papers co-authored high school\", k=5)]"]}
+{"id": "memory_91-student-11", "result": ["[archival_memory_add(key=\"user_research_project\", value=\"First research project about quantum computing and its applications to artificial intelligence.\")]"]}
+{"id": "memory_92-student-12", "result": ["[archival_memory_retrieve(key=\"user_research_exploring_technologies\")]"]}
+{"id": "memory_93-student-13", "result": ["[archival_memory_key_search(query=\"conference the user is aiming to submit to\")]"]}
+{"id": "memory_94-student-14", "result": ["[archival_memory_search(query=\"server crash importance lessons\", k=5)]"]}
+{"id": "memory_95-student-15", "result": ["[core_memory_key_search(query=\"user VR/AR Club membership date\", k=3)]"]}
+{"id": "memory_96-student-16", "result": ["[archival_memory_add(key=\"annual_tech_fest_location\", value=\"The annual Tech Fest is held in San Francisco.\")]"]}
+{"id": "memory_97-student-17", "result": ["[archival_memory_key_search(query=\"user dorm name\", k=5)]"]}
+{"id": "memory_98-student-18", "result": ["[archival_memory_key_search(query=\"one-day event volunteer\", k=5)]"]}
+{"id": "memory_99-student-19", "result": ["[archival_memory_key_search(query=\"campus team recognized recently\", k=5)]"]}
+{"id": "memory_100-student-20", "result": ["[core_memory_key_search(query=\"user planned years work industry first\", k=3)]"]}
+{"id": "memory_101-student-21", "result": ["[core_memory_key_search(query=\"grad school research interests\", k=5)]"]}
+{"id": "memory_102-student-22", "result": ["[archival_memory_key_search(query=\"people work at data analytics startup interned last summer\", k=5)]"]}
+{"id": "memory_103-student-23", "result": ["[core_memory_retrieve_all()]"]}
+{"id": "memory_104-student-24", "result": ["[core_memory_key_search(query=\"type of collaboration that future company should encourage\", k=5)]"]}
+{"id": "memory_105-student-25", "result": ["[archival_memory_search(query=\"sailing trip off the coast of state\", k=3)]"]}
+{"id": "memory_106-student-26", "result": ["[archival_memory_key_search(query=\"country visited junior-year winter break\", k=5)]"]}
+{"id": "memory_107-student-27", "result": ["[archival_memory_search(query=\"non-capital Asian city visited junior-year winter break\", k=5)]"]}
+{"id": "memory_108-student-28", "result": ["[archival_memory_key_search(query=\"family trip to Europe first city visited\", k=5)]"]}
+{"id": "memory_109-student-29", "result": ["[archival_memory_key_search(query=\"small getaway destination vacation places\", k=5)]"]}
+{"id": "memory_110-student-30", "result": ["[core_memory_key_search(query=\"user's crush\", k=5)]"]}
+{"id": "memory_111-student-31", "result": ["[archival_memory_key_search(query=\"user first connected with crush setting\")]"]}
+{"id": "memory_112-student-32", "result": ["[archival_memory_key_search(query=\"crush gift plan after class\")]"]}
+{"id": "memory_113-student-33", "result": ["[core_memory_retrieve(key=\"user_emotions\"), core_memory_add(key=\"user_crush_feelings\", value=\"User is experiencing feelings of a crush and is worried about losing something important.\")]"]}
+{"id": "memory_114-student-34", "result": ["[core_memory_retrieve(key=\"user_preferences\")]"]}
+{"id": "memory_115-student-35", "result": ["[core_memory_retrieve(key=\"user_pet\")]"]}
+{"id": "memory_116-student-36", "result": ["[core_memory_add(key=\"user_sister_age\", value=\"User's sister is 5 years younger than the user.\")]"]}
+{"id": "memory_117-student-37", "result": ["[core_memory_retrieve(key=\"family_hike_day\")]"]}
+{"id": "memory_118-student-38", "result": ["[core_memory_retrieve(key=\"user_dad_profession\")]"]}
+{"id": "memory_119-student-39", "result": ["[archival_memory_key_search(query=\"relative teases me about breaking an antique vase\", k=3)]"]}
+{"id": "memory_120-student-40", "result": ["[archival_memory_key_search(query=\"user freshman-year roommate\")]"]}
+{"id": "memory_121-student-41", "result": ["[archival_memory_search(query=\"user bonded with person during 3 a.m. coding session\", k=5)]"]}
+{"id": "memory_122-student-42", "result": ["[archival_memory_key_search(query=\"club introduced user water sport interest\", k=5)]"]}
+{"id": "memory_123-student-43", "result": ["[core_memory_add(key=\"weekend_mental_break\", value=\"Take a mental break with a favorite movie, exercise, or just relaxing on the weekends.\")]"]}
+{"id": "memory_124-student-44", "result": ["[core_memory_key_search(query=\"Jackson law student\", k=5)]"]}
+{"id": "memory_125-student-45", "result": ["[core_memory_retrieve(key=\"user_wakeup_time\")]"]}
+{"id": "memory_126-student-46", "result": ["[core_memory_key_search(query=\"syncs across devices\", k=5)]"]}
+{"id": "memory_127-student-47", "result": ["[core_memory_retrieve_all()]"]}
+{"id": "memory_128-student-48", "result": ["[core_memory_add(key=\"academic_work_cut_time\", value=\"Most evenings, I try to cut off academic work by 01:30 AM/PM.\")]"]}
+{"id": "memory_129-student-49", "result": ["[archival_memory_retrieve(key=\"group_study_session_sundays\")]"]}
+{"id": "memory_130-notetaker-0", "result": ["[archival_memory_add(key=\"child_name\", value=\"Sarah\")]\n[archival_memory_add(key=\"daycare\", value=\"Bright Sunshine Daycare\")]\n[archival_memory_add(key=\"dropoff_time\", value=\"01:30 PM\")]"]}
+{"id": "memory_131-notetaker-1", "result": ["[archival_memory_key_search(query=\"monthly daycare payment due date\")]"]}
+{"id": "memory_132-notetaker-2", "result": ["[archival_memory_key_search(query=\"Q1 budget report deadline\", k=5)]"]}
+{"id": "memory_133-notetaker-3", "result": ["[archival_memory_add(key=\"next_security_protocol_update\", value=\"IT updates the security protocols as of today. Please review and implement any changes.\")]"]}
+{"id": "memory_134-notetaker-4", "result": ["[archival_memory_retrieve(key=\"client_call_jacob_reschedule\")]"]}
+{"id": "memory_135-notetaker-5", "result": ["[core_memory_key_search(query=\"workflow slow down Tuesday\")]"]}
+{"id": "memory_136-notetaker-6", "result": ["[core_memory_key_search(query=\"HR deadline review next month\", k=5)]"]}
+{"id": "memory_137-notetaker-7", "result": ["[archival_memory_retrieve(key=\"daycare_pickup_time\")]"]}
+{"id": "memory_138-notetaker-8", "result": ["[archival_memory_retrieve(key=\"client_proposal_draft\")]"]}
+{"id": "memory_139-notetaker-9", "result": ["[archival_memory_search(query=\"team meeting Monday minutes run over\", k=3)]"]}
+{"id": "memory_140-notetaker-10", "result": ["[archival_memory_key_search(query=\"cost-cutting recommendations by Thursday\", k=5)]"]}
+{"id": "memory_141-notetaker-11", "result": ["[archival_memory_retrieve(key=\"vendor_followup_friday_responses\")]"]}
+{"id": "memory_142-notetaker-12", "result": ["[core_memory_retrieve_all()]"]}
+{"id": "memory_143-notetaker-13", "result": ["No function matches the user's request."]}
+{"id": "memory_144-notetaker-14", "result": ["[core_memory_key_search(query=\"training module required to finish\")]"]}
+{"id": "memory_145-notetaker-15", "result": ["[archival_memory_retrieve(key=\"phone_software_reminder\")]"]}
+{"id": "memory_146-notetaker-16", "result": ["[archival_memory_key_search(query=\"wash car Sunday\")]"]}
+{"id": "memory_147-notetaker-17", "result": ["[archival_memory_retrieve(key=\"pantry_restocking_plan\")]\n[archival_memory_search(query=\"restocking plan pantry rice other items\", k=5)]"]}
+{"id": "memory_148-notetaker-18", "result": ["[archival_memory_add(key=\"system_downtime_tuesday\", value=\"01 AM - 02 AM\")]"]}
+{"id": "memory_149-notetaker-19", "result": ["[core_memory_retrieve(key=\"new_hires\")]"]}
+{"id": "memory_150-notetaker-20", "result": ["[core_memory_retrieve_all()], [core_memory_add(key=\"morning_health_supplements\", value=\"Consider taking vitamin C, vitamin D, and possibly magnesium or zinc supplements in the morning for general health and wellness. Consult a healthcare provider for personalized recommendations.\")]"]}
+{"id": "memory_151-notetaker-21", "result": ["[core_memory_key_search(query=\"Sunday meal prep plan main protein\", k=5)]"]}
+{"id": "memory_152-notetaker-22", "result": ["[core_memory_key_search(query=\"DIY fixes for stuff at home plans\", k=5)]"]}
+{"id": "memory_153-notetaker-23", "result": ["[core_memory_retrieve_all()]"]}
+{"id": "memory_154-notetaker-24", "result": ["[archival_memory_search(query=\"teacher numbers focus on counting practice range\", k=5)]"]}

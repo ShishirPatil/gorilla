@@ -1,0 +1,400 @@
+{"id": "simple_python_0", "result": "[calculate_triangle_area(base=10, height=5, unit=\"units\")]"}
+{"id": "simple_python_1", "result": "[math.factorial(number=5)]"}
+{"id": "simple_python_2", "result": "[math.hypot(x=4, y=5, z=0)]"}
+{"id": "simple_python_3", "result": "[algebra.quadratic_roots(a=1, b=-3, c=2)]"}
+{"id": "simple_python_4", "result": "[solve_quadratic_equation(a=2, b=6, c=5)]"}
+{"id": "simple_python_5", "result": "[solve_quadratic(a=3, b=-11, c=-4, root_type=\"all\")]"}
+{"id": "simple_python_6", "result": "[solve_quadratic(a=2, b=5, c=3)]"}
+{"id": "simple_python_7", "result": "[calculate_circumference(radius=4, unit=\"inches\")]"}
+{"id": "simple_python_8", "result": "[geometry.area_circle(radius=10, units=\"units\")]"}
+{"id": "simple_python_9", "result": "[geometry.calculate_area_circle(radius=5, unit=\"units\")]"}
+{"id": "simple_python_10", "result": "[calculate_area(base=6, height=10, unit=\"cm\")]"}
+{"id": "simple_python_11", "result": "[calculate_triangle_area(base=10, height=5)]"}
+{"id": "simple_python_12", "result": "[geometry.circumference(radius=3, units=\"cm\")]"}
+{"id": "simple_python_13", "result": "[calculate_area_under_curve(function=\"y=x^2\", interval=[1.0, 3.0], method=\"trapezoidal\")]"}
+{"id": "simple_python_14", "result": "[calculate_derivative(function=\"3x^2 + 2x - 1\")]"}
+{"id": "simple_python_15", "result": "[integrate(function=\"x^3\", start_x=-2, end_x=3, method=\"simpson\")]"}
+{"id": "simple_python_16", "result": "[calculus.derivative(function=\"2x^2\", value=1, function_variable=\"x\")]"}
+{"id": "simple_python_17", "result": "[get_prime_factors(number=450, formatted=true)]"}
+{"id": "simple_python_18", "result": "[number_analysis.prime_factors(number=123456)]"}
+{"id": "simple_python_19", "result": "[math.gcd(num1=40, num2=50)]"}
+{"id": "simple_python_20", "result": "[math.hcf(number1=36, number2=24)]"}
+{"id": "simple_python_21", "result": "[number_theory.gcd(number1=36, number2=48)]"}
+{"id": "simple_python_22", "result": "[math.gcd(num1=12, num2=15)]"}
+{"id": "simple_python_23", "result": "[prime_factorize(number=60, return_type=\"dictionary\")]"}
+{"id": "simple_python_24", "result": "[math.gcd(num1=12, num2=18)]"}
+{"id": "simple_python_25", "result": "[calculate_final_velocity(height=150, initial_velocity=0, gravity=9.81)]"}
+{"id": "simple_python_26", "result": "[calculate_velocity(distance=50, duration=2, unit=\"km/h\")]"}
+{"id": "simple_python_27", "result": "[final_velocity(initial_velocity=10, acceleration=2, time=5)]"}
+{"id": "simple_python_28", "result": "[calculate_displacement(initial_velocity=10, time=5, acceleration=9.8)]"}
+{"id": "simple_python_29", "result": "[calculate_final_speed(initial_speed=0, time=5, gravity=-9.81)]"}
+{"id": "simple_python_30", "result": "[kinematics.final_velocity_from_distance(acceleration=4, distance=300, initial_velocity=0.0)]"}
+{"id": "simple_python_31", "result": "[calculate_final_velocity(initial_velocity=0, acceleration=9.8, time=5)]"}
+{"id": "simple_python_32", "result": "[calculate_final_speed(initial_velocity=100, height=100, gravity=9.8)]"}
+{"id": "simple_python_33", "result": "[get_directions(start_location=\"Sydney\", end_location=\"Melbourne\", route_type=\"fastest\")]"}
+{"id": "simple_python_34", "result": "[travel_itinerary_generator(destination=\"Tokyo\", days=7, daily_budget=100, exploration_type=\"nature\")]"}
+{"id": "simple_python_35", "result": "[vegan_restaurant.find_nearby(location=\"New York, NY\", operating_hours=11)]"}
+{"id": "simple_python_36", "result": "[get_shortest_driving_distance(origin=\"New York City\", destination=\"Washington D.C.\", unit=\"km\")]"}
+{"id": "simple_python_37", "result": "[route.estimate_time(start_location=\"San Francisco\", end_location=\"Los Angeles\", stops=[\"Santa Barbara\", \"Monterey\"])]"}
+{"id": "simple_python_38", "result": "[calculate_electrostatic_potential(charge1=1e-9, charge2=2e-9, distance=0.05, constant=8.99e9)]"}
+{"id": "simple_python_39", "result": "[calculate_electric_field(charge=2, distance=3, permitivity=8.854e-12)]"}
+{"id": "simple_python_40", "result": "[calculate_magnetic_field(current=5, radius=4, permeability=12.57e10)]"}
+{"id": "simple_python_41", "result": "[electromagnetic_force(charge1=5, charge2=7, distance=3, medium_permittivity=1.0)]"}
+{"id": "simple_python_42", "result": "[calculate_resonant_frequency(inductance=50.0, capacitance=100.0, round_off=2)]"}
+{"id": "simple_python_43", "result": "[calculate_magnetic_field_strength(current=20, distance=10, permeability=12.57e-7)]"}
+{"id": "simple_python_44", "result": "[calculate_electric_field_strength(charge=0.01, distance=4, medium=\"air\")]"}
+{"id": "simple_python_45", "result": "[thermo.calculate_energy(mass=100, phase_transition=\"vaporization\", substance=\"water\")]"}
+{"id": "simple_python_46", "result": "[calculate_final_temperature(mass1=20, temperature1=30, mass2=15, temperature2=60, specific_heat_capacity=4.2)]"}
+{"id": "simple_python_47", "result": "[get_boiling_melting_points(substance=\"water\", sea_level=5000)]"}
+{"id": "simple_python_48", "result": "[calculate_density(mass=45, volume=15, unit=\"kg/m\u00b3\")]"}
+{"id": "simple_python_49", "result": "[calc_absolute_pressure(atm_pressure=1, gauge_pressure=2)]"}
+{"id": "simple_python_50", "result": "[entropy_change.calculate(substance=\"ice\", mass=1, initial_temperature=0, final_temperature=100, pressure=1)]"}
+{"id": "simple_python_51", "result": "[calculate_entropy_change(initial_temp=300, final_temp=400, heat_capacity=5, isothermal=False)]"}
+{"id": "simple_python_52", "result": "[calc_heat_capacity(temp=298, volume=10, gas=\"air\")]"}
+{"id": "simple_python_53", "result": "[fetch_DNA_sequence(DNA_id=\"DNA123\", format=\"fasta\")]"}
+{"id": "simple_python_54", "result": "[get_protein_sequence(gene=\"BRCA1\", species=\"Homo sapiens\")]"}
+{"id": "simple_python_55", "result": "[biology.get_cell_info(cell_type=\"human\", detailed=true)]"}
+{"id": "simple_python_56", "result": "[cellbio.get_proteins(cell_compartment=\"plasma membrane\", include_description=true)]"}
+{"id": "simple_python_57", "result": "[calculate_cell_density(optical_density=0.6, dilution=5, calibration_factor=1e9)]"}
+{"id": "simple_python_58", "result": "[cell_biology.function_lookup(molecule=\"ATP synthase\", organelle=\"mitochondria\", specific_function=False)]"}
+{"id": "simple_python_59", "result": "[calculate_molecular_weight(compound=\"Glucose\", to_unit=\"grams/mole\")]"}
+{"id": "simple_python_60", "result": "[mutation_type.find(snp_id=\"rs6034464\", species=\"Homo sapiens\")]"}
+{"id": "simple_python_61", "result": "[diabetes_prediction(weight=150, height=70, activity_level=\"lightly active\")]"}
+{"id": "simple_python_62", "result": "[analyze_dna_sequence(sequence=\"AGTCGATCGAACGTACGTACG\", reference_sequence=\"AGTCCATCGAACGTACGTACG\", mutation_type=\"substitution\")]"}
+{"id": "simple_python_63", "result": "[genetics.calculate_similarity(species1=\"human\", species2=\"chimp\", format=\"percentage\")]"}
+{"id": "simple_python_64", "result": "[calculate_genotype_frequency(allele_frequency=0.3, genotype=\"AA\")]"}
+{"id": "simple_python_65", "result": "[calculate_density(country=\"Brazil\", year=\"2022\", population=213, land_area=8.5)]"}
+{"id": "simple_python_66", "result": "[ecology_data.precipitation_stats(location=\"Amazon rainforest\", time_frame=\"six_months\")]"}
+{"id": "simple_python_67", "result": "[identify_bird(color=\"green\", habitat=\"forest\", size=\"small\")]"}
+{"id": "simple_python_68", "result": "[forest_growth_forecast(location=\"Yellowstone National Park\", years=5, include_human_impact=true)]"}
+{"id": "simple_python_69", "result": "[ecology.get_turtle_population(location=\"Mississippi river\", year=2020, species=true)]"}
+{"id": "simple_python_70", "result": "[calculate_vehicle_emission(vehicle_type=\"gas\", miles_driven=1500, emission_factor=355.48)]"}
+{"id": "simple_python_71", "result": "[generate_DNA_sequence(length=100, preferences=[\"G\", \"C\"])]"}
+{"id": "simple_python_72", "result": "[calculate_fitness(trait_values=[0.8, 0.7], trait_contributions=[40.0, 60.0])]"}
+{"id": "simple_python_73", "result": "[population_projections(country=\"United States\", years=20)]"}
+{"id": "simple_python_74", "result": "[calculate_bacteria_evolution_rate(start_population=5000, duplication_frequency=1, duration=6, generation_time=20)]"}
+{"id": "simple_python_75", "result": "[elephant_population_estimate(current_population=35000, growth_rate=0.015, years=5)]"}
+{"id": "simple_python_76", "result": "[prediction.evolution(species=\"Homo Sapiens\", years=50, model=\"Darwin\")]"}
+{"id": "simple_python_77", "result": "[restaurant.find_nearby(location=\"Los Angeles\", dietary_preference=[\"Vegan\"])]"}
+{"id": "simple_python_78", "result": "[average_temperature(location=\"Austin\", days=3, temp_unit=\"Celsius\")]"}
+{"id": "simple_python_79", "result": "[create_histogram(data=[85, 90, 88, 92, 86, 89, 91], bins=5)]"}
+{"id": "simple_python_80", "result": "[find_restaurants(location=\"Manhattan\", food_type=\"Thai\", number=5, dietary_requirements=[\"vegan\"])]"}
+{"id": "simple_python_81", "result": "[map_routing.fastest_route(start_location=\"San Francisco\", end_location=\"Los Angeles\", avoid_tolls=true)]"}
+{"id": "simple_python_82", "result": "[calculate_average(numbers=[12.0, 15.0, 18.0, 20.0, 21.0, 26.0, 30.0])]"}
+{"id": "simple_python_83", "result": "[calculate_distance(coord1=(33.4484, -112.0740), coord2=(34.0522, -118.2437), unit=\"miles\")]"}
+{"id": "simple_python_84", "result": "[calculate_bmi(weight=85, height=180, unit=\"metric\")]"}
+{"id": "simple_python_85", "result": "[geo_distance.calculate(start_location=\"Boston, MA\", end_location=\"Washington, D.C.\", units=\"miles\")]"}
+{"id": "simple_python_86", "result": "[city_distance.find_shortest(start_city=\"New York\", end_city=\"Los Angeles\", transportation=\"train\", allow_transfer=true)]"}
+{"id": "simple_python_87", "result": "[array_sort(list=[5.0, 3.0, 4.0, 1.0, 2.0], order=\"ascending\")]"}
+{"id": "simple_python_88", "result": "[calculate_BMI(weight_kg=70, height_m=1.75)]"}
+{"id": "simple_python_89", "result": "[db_fetch_records(database_name=\"StudentDB\", table_name=\"Students\", conditions={\"department\": \"Science\", \"school\": \"Bluebird High School\"}, fetch_limit=0)]"}
+{"id": "simple_python_90", "result": "[employee.fetch_data(company_name=\"ABC Ltd.\", employee_id=345, data_field=[\"Personal Info\", \"Job History\"])]"}
+{"id": "simple_python_91", "result": "[get_restaurant(cuisine=\"sushi\", location=\"Boston\", condition=\"opens on Sundays\")]"}
+{"id": "simple_python_92", "result": "[imdb.find_movies_by_actor(actor_name=\"Leonardo DiCaprio\", year=2010, category=\"all\")]"}
+{"id": "simple_python_93", "result": "[get_theater_movie_releases(location=\"LA\", timeframe=7, format=\"IMAX\")]"}
+{"id": "simple_python_94", "result": "[update_user_info(user_id=43523, update_info={\"name\": \"John Doe\", \"email\": \"johndoe@email.com\"}, database=\"CustomerInfo\")]"}
+{"id": "simple_python_95", "result": "[calc_area_triangle(base=5, height=3)]"}
+{"id": "simple_python_96", "result": "[database.query(table=\"user\", conditions=[{\"field\": \"age\", \"operation\": \">\", \"value\": \"25\"}, {\"field\": \"job\", \"operation\": \"=\", \"value\": \"engineer\"}])]"}
+{"id": "simple_python_97", "result": "[math.factorial(number=5)]"}
+{"id": "simple_python_98", "result": "[calculate_clock_angle(hours=6, minutes=30, round_to=2)]"}
+{"id": "simple_python_99", "result": "[plot_sine_wave(start_range=0.0, end_range=2.0, frequency=5, amplitude=1, phase_shift=0)]"}
+{"id": "simple_python_100", "result": "[light_travel_time(distance_in_light_years=4)]"}
+{"id": "simple_python_101", "result": "[calculate_speed(distance=450, time=20, to_unit=\"km/h\")]"}
+{"id": "simple_python_102", "result": "[calculate_distance(body1=\"Earth\", body2=\"Moon\", unit=\"miles\")]"}
+{"id": "simple_python_103", "result": "[mathematics.calculate_area_under_curve(polynomial=[3.0, 2.0, -4.0], limits=[-1.0, 2.0])]"}
+{"id": "simple_python_104", "result": "[geometry.area_triangle(base=6, height=10, unit=\"square meters\")]"}
+{"id": "simple_python_105", "result": "[math.power(base=3, exponent=4)]"}
+{"id": "simple_python_106", "result": "[train_random_forest_classifier(dataset=\"your_dataset_name\", max_depth=5, n_estimators=100)]"}
+{"id": "simple_python_107", "result": "[calculate_bmi(weight=70, height=175, system=\"metric\")]"}
+{"id": "simple_python_108", "result": "[run_linear_regression(predictors=[\"Age\", \"Income\", \"Education\"], target=\"Purchase_Amount\", standardize=true)]"}
+{"id": "simple_python_109", "result": "[random_forest.train(n_estimators=100, max_depth=5, data=my_data)]"}
+{"id": "simple_python_110", "result": "[predict_house_price(bedrooms=3, bathrooms=2, area=1800, location=\"San Francisco\")]"}
+{"id": "simple_python_111", "result": "[random.normalvariate(mu=0, sigma=1)]"}
+{"id": "simple_python_112", "result": "[calculate_probability(total_outcomes=52, favorable_outcomes=4, round_to=2)]"}
+{"id": "simple_python_113", "result": "[probability.dice_roll(desired_number=6, number_of_rolls=2, die_sides=6)]"}
+{"id": "simple_python_114", "result": "[prob_dist.binomial(trials=10, successes=5, p=0.5)]"}
+{"id": "simple_python_115", "result": "[calculate_binomial_probability(number_of_trials=8, number_of_successes=5, probability_of_success=0.5)]"}
+{"id": "simple_python_116", "result": "[probabilities.calculate_single(total_outcomes=52, event_outcomes=1, round=2)]"}
+{"id": "simple_python_117", "result": "[probability_of_event(success_outcomes=1, total_outcomes=52, format_as_ratio=true)]"}
+{"id": "simple_python_118", "result": "[stats.t_test(array_1=[10, 15, 12, 14, 11], array_2=[18, 16, 17, 20, 22], alpha=0.05)]"}
+{"id": "simple_python_119", "result": "[hypothesis_testing.ttest_ind(sample1=[22, 33, 42, 12, 34], sample2=[23, 45, 44, 14, 38], significance_level=0.05)]"}
+{"id": "simple_python_120", "result": "[run_two_sample_ttest(group1=[3, 4, 5, 6, 4], group2=[7, 8, 9, 8, 7], equal_variance=true)]"}
+{"id": "simple_python_121", "result": "[calc_binomial_prob(num_trials=100, num_success=60, prob_success=0.5)]"}
+{"id": "simple_python_122", "result": "[chi_squared_test(table=[[10, 20], [30, 40]], alpha=0.05)]"}
+{"id": "simple_python_123", "result": "[hypothesis_testing.two_sample_t_test(group1=[12.4, 15.6, 11.2, 18.9], group2=[10.5, 9.8, 15.2, 13.8], alpha=0.05)]"}
+{"id": "simple_python_124", "result": "[t_test(dataset_A=[12, 24, 36], dataset_B=[15, 30, 45], alpha=0.05)]"}
+{"id": "simple_python_125", "result": "[predict_house_price(area=2500, rooms=5, year=1990, location=\"San Francisco\")]"}
+{"id": "simple_python_126", "result": "[linear_regression.get_r_squared(dataset_path=\"C:/data/cars.csv\", independent_variables=[\"engine_size\", \"fuel_economy\"], dependent_variable=\"car_price\")]"}
+{"id": "simple_python_127", "result": "[calculate_NPV(cash_flows=[200, 300, 400, 500], discount_rate=10.0, initial_investment=2000)]"}
+{"id": "simple_python_128", "result": "[finance.calculate_quarterly_dividend_per_share(total_payout=50000, outstanding_shares=100000)]"}
+{"id": "simple_python_129", "result": "[calculate_discounted_cash_flow(coupon_payment=100, period=5, discount_rate=0.04, face_value=1000)]"}
+{"id": "simple_python_130", "result": "[finance_calculator.npv(cash_flows=-50000, 10000, 15000, 20000, 25000, 30000, discount_rate=0.08, years=[])]"}
+{"id": "simple_python_131", "result": "[calculate_compound_interest(principal=10000, rate=0.05, time=10, n=4)]"}
+{"id": "simple_python_132", "result": "[calculate_return_on_equity(net_income=2000000, shareholder_equity=10000000, dividends_paid=200000)]"}
+{"id": "simple_python_133", "result": "[finance.predict_future_value(present_value=5000, annual_interest_rate=0.05, compounding_periods_per_year=12, time_years=3)]"}
+{"id": "simple_python_134", "result": "[investment.predictProfit(investment_amount=5000, annual_return=0.07, years=5)]"}
+{"id": "simple_python_135", "result": "[calculate_return_on_investment(purchase_price=20, sale_price=25, dividend=2)]"}
+{"id": "simple_python_136", "result": "[compound_interest(principal=10000, annual_rate=5.0, compounding_freq=\"monthly\", time_in_years=5)]"}
+{"id": "simple_python_137", "result": "[calculate_stock_return(investment_amount=5000, annual_growth_rate=0.06, holding_period=5, dividends=false)]"}
+{"id": "simple_python_138", "result": "[portfolio_future_value(stock=\"X\", invested_amount=5000, expected_annual_return=0.05, years=7)]"}
+{"id": "simple_python_139", "result": "[estimate_mutual_fund_return(yearly_yield=5.0, investment_amount=2000, years=3)]"}
+{"id": "simple_python_140", "result": "[calculate_cagr(initial_value=2000, final_value=3000, period_in_years=4)]"}
+{"id": "simple_python_141", "result": "[get_metal_price(metal=\"Gold\", measure=\"ounce\")]"}
+{"id": "simple_python_142", "result": "[get_stock_price(company_name=\"Amazon\", date=\"2022-03-11\", exchange=\"NASDAQ\")]"}
+{"id": "simple_python_143", "result": "[get_stock_price(company=\"AAPL\", days=5, exchange=\"NASDAQ\")]"}
+{"id": "simple_python_144", "result": "[market_performance.get_data(indexes=[\"S&P 500\", \"Dow Jones\"], days=5, detailed=false)]"}
+{"id": "simple_python_145", "result": "[calculate_compounded_interest(principal=5000, interest_rate=5.0, period=10, compounding_frequency=\"Annually\")]"}
+{"id": "simple_python_146", "result": "[stock_price(company=\"Amazon\", days=3, data_type=\"Close\")]"}
+{"id": "simple_python_147", "result": "[get_stock_prices(companies=[\"Microsoft\", \"Google\"], duration=\"2 weeks\")]"}
+{"id": "simple_python_148", "result": "[finance.calculate_future_value(initial_investment=20000, rate_of_return=0.08, years=5, contribution=0)]"}
+{"id": "simple_python_149", "result": "[get_stock_price(company_names=[\"Apple\", \"Microsoft\"])]"}
+{"id": "simple_python_150", "result": "[calculate_roi(deposit=1000, annual_interest_rate=0.03, years=1)]"}
+{"id": "simple_python_151", "result": "[highest_grossing_banks(country=\"U.S.\", year=2020, top_n=1)]"}
+{"id": "simple_python_152", "result": "[calculate_mutual_fund_balance(investment_amount=50000, annual_yield=5.0, years=3)]"}
+{"id": "simple_python_153", "result": "The user wants to calculate compounded interest. The query specifies principal as '5000', rate as '3% which is 0.03', time as '5 years which is 5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"}
+{"id": "simple_python_154", "result": "[calculate_future_value(present_value=5000, annual_interest_rate=0.05, years=10, compounds_per_year=1)]"}
+{"id": "simple_python_155", "result": "[calculate_future_value(initial_investment=1000, interest_rate=0.05, duration=2, compounded=1)]"}
+{"id": "simple_python_156", "result": "[crime_record.get_record(case_number=\"CA123456\", county=\"San Diego County\", details=true)]"}
+{"id": "simple_python_157", "result": "[criminal_history.check_felonies(full_name=\"John Doe\", birth_date=\"01-01-1980\", state=\"California\")]"}
+{"id": "simple_python_158", "result": "[get_criminal_records(name=\"Mr. X\", location=\"New York\", from_year=2012, to_year=2015)]"}
+{"id": "simple_python_159", "result": "[get_act_details(act_name=\"Criminal Law Amendment Act\", amendment_year=2013)]"}
+{"id": "simple_python_160", "result": "[get_case_info(docket=\"2022/AL2562\", court=\"California\", info_type=\"victim\")]"}
+{"id": "simple_python_161", "result": "[crime_statute_lookup(jurisdiction=\"California\", crime=\"theft\", detail_level=\"detailed\")]"}
+{"id": "simple_python_162", "result": "[generate_law_contract(parties=[\"John\", \"Alice\"], contract_type=\"rental agreement\", location=\"California\")]"}
+{"id": "simple_python_163", "result": "[property_records.get(address=\"123 main street\", parcel_number=\"1234567890\", county=\"Santa Clara\", include_owner=true)]"}
+{"id": "simple_python_164", "result": "[get_crime_rate(city=\"San Francisco\", state=\"California\", type=\"violent\", year=2020)]"}
+{"id": "simple_python_165", "result": "[civil_cases.retrieve(year=2020, crime_type=\"theft\", location=\"Los Angeles, California\")]"}
+{"id": "simple_python_166", "result": "[llawyer.find_nearby(city=\"Chicago\", specialty=[\"Divorce\"], fee=400)]"}
+{"id": "simple_python_167", "result": "[law.civil.get_case_details(case_title=\"Roe v. Wade\", include_dissent=true)]"}
+{"id": "simple_python_168", "result": "[lawsuit_search(company=\"Google\", start_date=\"01-01-2021\", location=\"California\", status=\"ongoing\")]"}
+{"id": "simple_python_169", "result": "[court_case.search(docket_number=\"123456\", location=\"Texas\", full_text=false)]"}
+{"id": "simple_python_170", "result": "[law_case_search.find_historical(subject=\"fraud\", from_year=2010, to_year=2015)]"}
+{"id": "simple_python_171", "result": "[fetch_law_case_details(case_number=43403, court=\"New York\", year=2018)]"}
+{"id": "simple_python_172", "result": "[legal_case.fetch(case_id=\"R vs Adams\", details=True)]"}
+{"id": "simple_python_173", "result": "[law_case_search(topic=\"land disputes\", year_range=[2015, 2021], location=\"New York\", judicial_system=\"state\")]"}
+{"id": "simple_python_174", "result": "[get_top_cases(field_of_law=\"constitutional law\", top_number=10, country=\"China\")]"}
+{"id": "simple_python_175", "result": "[lawyer.get_experience(name=\"John Doe\", law_type=\"Bankruptcy\")]"}
+{"id": "simple_python_176", "result": "[lawsuit_details.find(company_name=\"Apple Inc.\", year=2010, case_type=\"Patent\")]"}
+{"id": "simple_python_177", "result": "[get_lawsuit_cases(company_name=\"Facebook\", year=2018, status=\"all\")]"}
+{"id": "simple_python_178", "result": "[get_lawsuit_details(case_number=\"LAX2019080202\", court_location=\"Los Angeles\", additional_details=[\"case_number\", \"court_updates\"])]"}
+{"id": "simple_python_179", "result": "[find_latest_court_case(company1=\"Apple\", company2=\"Samsung\", country=\"USA\")]"}
+{"id": "simple_python_180", "result": "[lawsuits_search(company_name=\"Google\", location=\"California\", year=2020, case_type=\"civil\")]"}
+{"id": "simple_python_181", "result": "[get_lawsuit_details(case_number=\"123456-ABC\", court_location=\"Los Angeles\", with_verdict=True)]"}
+{"id": "simple_python_182", "result": "[lawsuit_info(case_number=\"XYZ123\", year=2023, location=\"all\")]"}
+{"id": "simple_python_183", "result": "[lawsuit_search(entity=\"Apple\", county=\"Santa Clara\", state=\"California\")]"}
+{"id": "simple_python_184", "result": "[lawsuit.check_case(case_id=1234, closed_status=true)]"}
+{"id": "simple_python_185", "result": "[detailed_weather_forecast(location=\"New York\", duration=72, include_precipitation=true)]"}
+{"id": "simple_python_186", "result": "[current_weather_condition(city=\"Tokyo\", country=\"Japan\", measurement=\"c\")]"}
+{"id": "simple_python_187", "result": "[get_current_weather(location=\"Seattle, Washington\", include_temperature=true, include_humidity=true)]"}
+{"id": "simple_python_188", "result": "[weather.humidity_forecast(location=\"Miami, Florida\", days=7, min_humidity=0)]"}
+{"id": "simple_python_189", "result": "[weather_forecast_detailed(location=\"New York, USA\", days=3, details=true)]"}
+{"id": "simple_python_190", "result": "[park_information(park_name=\"Yellowstone\", information=[\"Elevation\", \"Area\"])]"}
+{"id": "simple_python_191", "result": "[locate_tallest_mountains(location=\"Denver, Colorado\", radius=50, amount=5)]"}
+{"id": "simple_python_192", "result": "[calculate_slope_gradient(point1=[40.7128, -74.0060], point2=[34.0522, -118.2437], unit=\"degree\")]"}
+{"id": "simple_python_193", "result": "[local_nursery.find(location=\"Toronto\", plant_types=[\"Annual\"])]"}
+{"id": "simple_python_194", "result": "[get_plants_for_slope(slope_type=\"hill slope\", num_results=3)]"}
+{"id": "simple_python_195", "result": "[calculate_carbon_footprint(daily_miles=20, meat_meals_per_week=3, annual_trash_weight=500, flights_per_year=0)]"}
+{"id": "simple_python_196", "result": "[air_quality(location=\"London\", date=\"2022/08/16\")]"}
+{"id": "simple_python_197", "result": "[get_air_quality_index(location=\"San Diego\", time=\"12pm\")]"}
+{"id": "simple_python_198", "result": "[calculate_daily_water_intake(weight=70, activity_level=\"moderate\", climate=\"temperate\")]"}
+{"id": "simple_python_199", "result": "[environmental_data.air_quality_index(location=\"San Jose\", days=3)]"}
+{"id": "simple_python_200", "result": "[calculate_emissions(distance=12000, fuel_type=\"gas\", fuel_efficiency=25.0, efficiency_reduction=0)]"}
+{"id": "simple_python_201", "result": "[estimate_population(species=\"pandas\", country=\"China\", year=2024)]"}
+{"id": "simple_python_202", "result": "[calculate_emission_savings(energy_type=\"renewable energy sources\", usage_duration=3, region=\"California\")]"}
+{"id": "simple_python_203", "result": "[get_air_quality(location=\"Chicago\", detail=true)]"}
+{"id": "simple_python_204", "result": "[restaurant.find_nearby(location=\"Seattle\", cuisine=\"Chinese\", max_distance=10)]"}
+{"id": "simple_python_205", "result": "[get_traffic_info(start_location=\"Boston\", end_location=\"New York\", mode=\"driving\")]"}
+{"id": "simple_python_206", "result": "[parks.find_nearby(location=\"London, UK\", amenities=[\"Tennis Court\"])]"}
+{"id": "simple_python_207", "result": "[calculate_shortest_distance(start_location=\"New York, USA\", end_location=\"Miami, USA\", route_preference=\"Shortest\")]"}
+{"id": "simple_python_208", "result": "[map_service.get_directions(start=\"New York\", end=\"Los Angeles\", avoid=[\"highways\", \"tolls\"])]"}
+{"id": "simple_python_209", "result": "[public_library.find_nearby(location=\"Boston, MA\", facilities=[\"English fiction\", \"Wi-Fi\", \"Reading Room\", \"Fiction\", \"Children Section\", \"Cafe\"])]"}
+{"id": "simple_python_210", "result": "[get_news(topic=\"Bitcoin\", quantity=5, region=\"US\")]"}
+{"id": "simple_python_211", "result": "[send_email(to=\"john.doe@example.com\", subject=\"Meeting\", body=\"Let's meet at 10 AM tomorrow\")]"}
+{"id": "simple_python_212", "result": "[get_stock_info(company_name=\"Apple Inc.\", detail_level=\"detailed\", market=\"NASDAQ\")]"}
+{"id": "simple_python_213", "result": "[flight.book(departure_location=\"San Francisco\", destination_location=\"London\", date=\"2022-04-27\", time=\"afternoon\", direct_flight=true)]"}
+{"id": "simple_python_214", "result": "[event_finder.find_upcoming(location=\"New York\", genre=\"rock\", days_ahead=30)]"}
+{"id": "simple_python_215", "result": "[movie_details.brief(title=\"Interstellar\", extra_info=false)]"}
+{"id": "simple_python_216", "result": "[sentiment_analysis(text=\"I love the food here! It's always fresh and delicious.\", language=\"en\")]"}
+{"id": "simple_python_217", "result": "[fMRI.analyze(data_source=\"/home/data/myfMRI.nii\", sequence_type=\"multi-band\", smooth=6, voxel_size=2)]"}
+{"id": "simple_python_218", "result": "[patient.get_mri_report(patient_id=\"546382\", mri_type=\"brain\", status=\"concluded\")]"}
+{"id": "simple_python_219", "result": "[get_neuron_coordinates(neuron_type=\"GABA\", brain_region=\"All\")]"}
+{"id": "simple_python_220", "result": "[calculate_neuronal_activity(input_synaptic_rate=200, weight=0.5, decay_rate=0.1)]"}
+{"id": "simple_python_221", "result": "[population_growth_estimate(location=\"London\", years=5, rate=1.0)]"}
+{"id": "simple_python_222", "result": "[calculate_bmi(weight=70, height=180, unit=\"imperial\")]"}
+{"id": "simple_python_223", "result": "[group_dynamics.pattern(total=50, extroverts=15, introverts=35)]"}
+{"id": "simple_python_224", "result": "[social_media_analytics.most_followed(topic=\"psychology\", sub_topics=[\"behaviour\", \"group dynamics\"], region=\"us\")]"}
+{"id": "simple_python_225", "result": "[psych_research.get_preference(category=\"reading\", option_one=\"digital reading\", option_two=\"physical books\", demographic=\"all\")]"}
+{"id": "simple_python_226", "result": "[get_zodiac_compatibility(sign1=\"Aries\", sign2=\"Gemini\", scale=\"percentage\")]"}
+{"id": "simple_python_227", "result": "[get_personality_traits(type=\"ENFJ\", traits=[\"strengths\", \"weaknesses\"])]"}
+{"id": "simple_python_228", "result": "[get_personality_traits(hobby=\"jogging\", trait_count=3)]"}
+{"id": "simple_python_229", "result": "[get_bigfive_scores(characteristics=[\"efficient\", \"organized\", \"easy going\", \"compassionate\"], scale=\"medium\")]"}
+{"id": "simple_python_230", "result": "[historic_leader_search(location=\"France\", date=1510, title=\"King\")]"}
+{"id": "simple_python_231", "result": "[history.get_key_events(country=\"Germany\", start_year=1871, end_year=1945, event_type=[\"War\"])]"}
+{"id": "simple_python_232", "result": "[monarch.getMonarchOfYear(location=\"England\", year=1800, fullName=true)]"}
+{"id": "simple_python_233", "result": "[european_history.get_event_date(event_name=\"Treaty of Tordesillas\", format=\"YYYY\")]"}
+{"id": "simple_python_234", "result": "[history_eu.fetch_events(century=19, region=\"Western\", category=\"Wars\")]"}
+{"id": "simple_python_235", "result": "[get_event_date(event=\"Treaty of Lisbon\", location=\"Portugal\")]"}
+{"id": "simple_python_236", "result": "[us_history.get_event_info(event_name=\"American Civil War\", specific_info=\"Start Date\")]"}
+{"id": "simple_python_237", "result": "[get_historical_GDP(country=\"United States\", start_year=1960, end_year=2000)]"}
+{"id": "simple_python_238", "result": "[us_history.get_president(event=\"American Civil War\", year=1861)]"}
+{"id": "simple_python_239", "result": "[US_president.in_year(year=1861, full_name=true)]"}
+{"id": "simple_python_240", "result": "[history_api.get_president_by_year(year=1940)]"}
+{"id": "simple_python_241", "result": "[US_President_During_Event(event=\"Civil War\", country=\"USA\")]"}
+{"id": "simple_python_242", "result": "[get_scientist_for_discovery(discovery=\"theory of evolution\")]"}
+{"id": "simple_python_243", "result": "[get_discoverer(discovery=\"neutron\", detail=true)]"}
+{"id": "simple_python_244", "result": "[publication_year.find(author=\"Isaac Newton\", work_title=\"law of universal gravitation\", location=\"all\")]"}
+{"id": "simple_python_245", "result": "[discoverer.get(element_name=\"radium\", year=0, first=true)]"}
+{"id": "simple_python_246", "result": "[science_history.get_discovery_details(discovery=\"Gravity\", method_used=\"default\")]"}
+{"id": "simple_python_247", "result": "[historical_contrib.get_contrib(scientist=\"Albert Einstein\", date=\"1915-03-17\", category=\"Physics\")]"}
+{"id": "simple_python_248", "result": "[science_history.get_invention(invention_name=\"theory of relativity\", want_year=true)]"}
+{"id": "simple_python_249", "result": "[religion.history_info(religion=\"Christianity\", till_century=1400, include_people=True)]"}
+{"id": "simple_python_250", "result": "[get_time_difference(place1=\"San Francisco\", place2=\"Sydney\")]"}
+{"id": "simple_python_251", "result": "[get_earliest_reference(name=\"Jesus Christ\", source=\"historical records\")]"}
+{"id": "simple_python_252", "result": "[get_religion_history(religion=\"Christianity\", century=16, sort_by=\"importance\", count=10)]"}
+{"id": "simple_python_253", "result": "[retrieve_religion_info(religion_name=\"Buddhism\", detail_level=\"full\")]"}
+{"id": "simple_python_254", "result": "[get_religion_history(religion=\"Christianity\", start_year=300, end_year=400, event_type=\"all\")]"}
+{"id": "simple_python_255", "result": "[religious_history.get_papal_biography(papal_name=\"Innocent III\", include_contributions=true)]"}
+{"id": "simple_python_256", "result": "[generate_circle_image(radius=50, color=\"Red\")]"}
+{"id": "simple_python_257", "result": "[identify_color_rgb(color_name=\"Sea Green\", standard=\"basic\")]"}
+{"id": "simple_python_258", "result": "[mix_paint_color(color1=\"yellow\", color2=\"blue\", lightness=60)]"}
+{"id": "simple_python_259", "result": "[calculate_paint_needed(coverage_rate=400, length=30, height=12)]"}
+{"id": "simple_python_260", "result": "[paint_requirement.calculate(area={\"width\": 20, \"height\": 12}, paint_coverage=350, exclusion={\"type\": \"window\", \"area\": 15})]"}
+{"id": "simple_python_261", "result": "[draw_rectangle(width=20, height=10, color=\"red\")]"}
+{"id": "simple_python_262", "result": "[modify_painting(size=\"12x18\", medium=\"oil\", dominant_color=\"red\")]"}
+{"id": "simple_python_263", "result": "[get_sculpture_info(artist_name=\"James Plensa\", detail=True)]"}
+{"id": "simple_python_264", "result": "[sculpture.get_details(artist=\"Michelangelo\", title=\"David\", detail=\"size\")]"}
+{"id": "simple_python_265", "result": "[sculpture_search(location=\"Chicago\", time_frame=\"19th century\")]"}
+{"id": "simple_python_266", "result": "[get_sculpture_value(sculpture=\"The Thinker\", artist=\"Rodin\")]"}
+{"id": "simple_python_267", "result": "[find_exhibition(location=\"New York City, NY\", art_form=\"sculpture\", month=\"2025\", user_ratings=\"high\")]"}
+{"id": "simple_python_268", "result": "[sculpture_locator.find_by_artist(artist=\"Michelangelo\", material=\"Marble\", location=\"Rome, Italy\")]"}
+{"id": "simple_python_269", "result": "[calculate_compound_interest(principle=10000, interest_rate=0.05, time=10, compounds_per_year=1)]"}
+{"id": "simple_python_270", "result": "[building.get_dimensions(building_name=\"Empire State\", unit=\"feet\")]"}
+{"id": "simple_python_271", "result": "[analyze_structure(building_id=\"B1004\", floors=[2, 3, 4], mode=\"dynamic\")]"}
+{"id": "simple_python_272", "result": "[calculate_circle_dimensions(radius=5)]"}
+{"id": "simple_python_273", "result": "[museum.get_hours(name=\"Louvre\", location=\"Paris\", day=\"Monday\")]"}
+{"id": "simple_python_274", "result": "[museum_info(museum_name=\"Metropolitan Museum of Art\", info_type=\"opening_hours\")]"}
+{"id": "simple_python_275", "result": "[metropolitan_museum.get_top_artworks(number=5, sort_by=\"popularity\")]"}
+{"id": "simple_python_276", "result": "[museum_working_hours.get(museum=\"Louvre\", location=\"Paris\", day=\"Monday\")]"}
+{"id": "simple_python_277", "result": "[museum_info(museum=\"The British Museum\", date=\"2023-06-20\", information=[\"working_hours\", \"ticket_price\"])]"}
+{"id": "simple_python_278", "result": "[get_instrument_details(instrument=\"piano\", manufacturer=\"Yamaha\", features=[\"price\", \"rating\"])]"}
+{"id": "simple_python_279", "result": "[instrument_price.get(brand=\"Fender\", model=\"American Professional II Stratocaster\", finish=\"Rosewood\")]"}
+{"id": "simple_python_280", "result": "[find_instrument(budget=1000, type=\"acoustic\")]"}
+{"id": "simple_python_281", "result": "[get_instrument_info(name=\"Violin\", maker=\"Stradivarius\", year=1721)]"}
+{"id": "simple_python_282", "result": "[find_flute(brand=\"Yamaha\", specs=[\"open hole\", \"C foot\", \"silver headjoint\"])]"}
+{"id": "simple_python_283", "result": "[guitar_price.find(model=\"Gibson Les Paul\", condition=\"Excellent\", location=\"Chicago\")]"}
+{"id": "simple_python_284", "result": "[concert_info.get(location=\"New York\", date=\"2025-01-20\", genre=\"Pop\")]"}
+{"id": "simple_python_285", "result": "[find_concert(location=\"Chicago, State\", price=100, genre=\"Rock\")]"}
+{"id": "simple_python_286", "result": "[concert.get_details(artist=\"Beyonce\", location=\"San Diego\", date=\"2022-04-15\")]"}
+{"id": "simple_python_287", "result": "[concert.search(genre=\"classical\", location=\"Los Angeles\", date=\"this weekend\", price_range=\"cheap\")]"}
+{"id": "simple_python_288", "result": "[concert_booking.book_ticket(artist=\"Eminem\", city=\"New York City\", num_tickets=2)]"}
+{"id": "simple_python_289", "result": "[concert.find_nearby(location=\"Seattle\", genre=\"jazz\")]"}
+{"id": "simple_python_290", "result": "[concert.find_details(artist=\"The Weeknd\", month=\"December\", year=2024)]"}
+{"id": "simple_python_291", "result": "[music_generator.generate_melody(key=\"C\", start_note=\"C4\", length=16, tempo=120)]"}
+{"id": "simple_python_292", "result": "[compose_melody(progression=[\"C\", \"F\", \"G\"], measures=4, instrument=\"Piano\")]"}
+{"id": "simple_python_293", "result": "[music_composer.create_mix(scale=\"C Major\", note_duration=\"quarter\", track_length=180)]"}
+{"id": "simple_python_294", "result": "[music_generation.create_chord_progression(key=\"C\", chords=4, progression_type=\"major\")]"}
+{"id": "simple_python_295", "result": "[get_song_lyrics(song_title=\"Bohemian Rhapsody\", artist_name=\"Queen\", lang=\"English\")]"}
+{"id": "simple_python_296", "result": "[music_generator.generate_scale_progression(key=\"C\", tempo=80, duration=4, scale_type=\"major\")]"}
+{"id": "simple_python_297", "result": "[music.theory.chordProgression(progression=[\"I\", \"V\", \"vi\", \"IV\"], returnAllPossibleKeys=false, assumeMajor=false)]"}
+{"id": "simple_python_298", "result": "[music_theory.key_signature(key=\"C#\", scale_type=\"major\")]"}
+{"id": "simple_python_299", "result": "[musical_scale(key=\"C#\", scale_type=\"major\")]"}
+{"id": "simple_python_300", "result": "[music.calculate_note_duration(first_note_frequency=440, second_note_frequency=880, tempo=120)]"}
+{"id": "simple_python_301", "result": "[get_third_chord(key=\"C\", type=\"major\")]"}
+{"id": "simple_python_302", "result": "[calculate_batting_average(hits=180, at_bats=600, decimal_places=3)]"}
+{"id": "simple_python_303", "result": "[soccer_stat.get_player_stats(player_name=\"Cristiano Ronaldo\", season=\"2019-2020\", league=\"Serie A\")]"}
+{"id": "simple_python_304", "result": "[player_stats.getLastGame(player_name=\"LeBron James\", team=\"Lakers\", metrics=[\"Points\", \"Rebounds\"])]"}
+{"id": "simple_python_305", "result": "[sports_stats.get_performance(player_name=\"Messi\", tournament=\"La Liga\", season=\"2020-2021\", performance_indicator=[\"Goals Scored\", \"Assists Made\"])]"}
+{"id": "simple_python_306", "result": "[average_batting_score(player_name=\"Virat Kohli\", matches=10, match_format=\"ODI\")]"}
+{"id": "simple_python_307", "result": "[game_result.get_winner(teams=[\"Lakers\", \"Clippers\"], date=\"2021-01-28\")]"}
+{"id": "simple_python_308", "result": "[sports.match_schedule(team_name=\"Manchester United\", num_matches=5, league=\"English Premier League\")]"}
+{"id": "simple_python_309", "result": "[nfl_data.player_record(player_name=\"Tom Brady\", season_year=2020, team=\"NFL\")]"}
+{"id": "simple_python_310", "result": "[get_career_stats(player_name=\"LeBron James\", team=\"Lakers\")]"}
+{"id": "simple_python_311", "result": "[sports_db.find_athlete(name=\"Lebron James\", sport=\"Basketball\")]"}
+{"id": "simple_python_312", "result": "[player_statistic(player_name=\"Ronaldo\", year=2021)]"}
+{"id": "simple_python_313", "result": "[celebrity_net_worth.get(name=\"Messi\", currency=\"EUR\")]"}
+{"id": "simple_python_314", "result": "[sports_celebrity.get_major_achievements(celebrity_name=\"Lionel Messi\", sports=\"Football\", team=\"all\")]"}
+{"id": "simple_python_315", "result": "[get_defense_ranking(season=2021, top=1)]"}
+{"id": "simple_python_316", "result": "[get_sport_ranking(sport=\"Tennis\", player_name=\"Serena Williams\", gender=\"all\")]"}
+{"id": "simple_python_317", "result": "[get_team_rank(team_name=\"LA Lakers\", league=\"NBA\", season=\"2021\", type=\"regular\")]"}
+{"id": "simple_python_318", "result": "[get_team_ranking(team_name=\"Germany\", year=2021, gender=\"men\")]"}
+{"id": "simple_python_319", "result": "[sports_ranking(team=\"Manchester United\", league=\"Premier League\", season=2023)]"}
+{"id": "simple_python_320", "result": "[sports_ranking.get_team_position(team=\"Golden State Warriors\", season=\"2022-2023\", detailed=true)]"}
+{"id": "simple_python_321", "result": "[sports_ranking(team=\"Barcelona\", league=\"La Liga\", season=\"2021\")]"}
+{"id": "simple_python_322", "result": "[sports_ranking.get_current(team=\"Liverpool Football Club\", league=\"Premier League\", season=\"2023-2024\")]"}
+{"id": "simple_python_323", "result": "[sports_ranking.get_top_player(sport=\"tennis\", gender=\"women\")]"}
+{"id": "simple_python_324", "result": "[team_score.get_latest(team=\"Los Angeles Lakers\", include_opponent=true)]"}
+{"id": "simple_python_325", "result": "[sports.match_results(team1=\"Chicago Bulls\", team2=\"Los Angeles Lakers\", season=\"2024\")]"}
+{"id": "simple_python_326", "result": "[get_team_score(team_name=\"Los Angeles Lakers\", league=\"NBA\", include_player_stats=true)]"}
+{"id": "simple_python_327", "result": "[sports_team.get_schedule(team_name=\"Manchester United\", num_of_games=6, league=\"Premier League\")]"}
+{"id": "simple_python_328", "result": "[boardgame.get_info(name=\"Ticket to Ride\", parameters=[\"rating\", \"player count\"], language=\"English\")]"}
+{"id": "simple_python_329", "result": "[monopoly_odds_calculator(number=7, dice_number=2, dice_faces=6)]"}
+{"id": "simple_python_330", "result": "[board_game_info(game_name=\"Catan\", info_required=[\"average_review_rating\", \"age_range\"])]"}
+{"id": "simple_python_331", "result": "[board_game.chess.get_top_players(location=\"New York\", minimum_rating=2300, number_of_players=10)]"}
+{"id": "simple_python_332", "result": "[chess.rating(player_name=\"Magnus Carlsen\", variant=\"classical\")]"}
+{"id": "simple_python_333", "result": "[detailed_weather_forecast(location=\"London, United Kingdom\", days=3, details=[\"high_low_temperature\", \"humidity\", \"precipitation\"])]"}
+{"id": "simple_python_334", "result": "[blackjack.check_winner(player_cards=[\"A\", \"10\"], dealer_cards=[\"10\", \"9\"], ace_value=1)]"}
+{"id": "simple_python_335", "result": "[find_card_in_deck(rank=\"Queen\", suit=\"Hearts\", deck=[\"rank\": \"Queen\", \"suit\": \"Hearts\"])]"}
+{"id": "simple_python_336", "result": "[cards.shuffle_and_draw(num_cards=3)]"}
+{"id": "simple_python_337", "result": "[poker_game_winner(players=[\"Alex\", \"Sam\", \"Robert\", \"Steve\"], cards={\"Alex\": {\"name\": \"Alex\", \"cards\": [\"A of spades\", \"K of spades\"]}, \"Sam\": {\"name\": \"Sam\", \"cards\": [\"2 of diamonds\", \"3 of clubs\"]}, \"Robert\": {\"name\": \"Robert\", \"cards\": [\"Q of hearts\", \"10 of hearts\"]}, \"Steve\": {\"name\": \"Steve\", \"cards\": [\"4 of spades\", \"5 of spades\"]}}, type=\"Texas Holdem\")]"}
+{"id": "simple_python_338", "result": "[card_game_probability.calculate(total_cards=52, desired_cards=1, cards_drawn=1)]"}
+{"id": "simple_python_339", "result": "[poker_probability.full_house(deck_size=52, hand_size=5)]"}
+{"id": "simple_python_340", "result": "[card_games.poker_determine_winner(player1=\"John\", hand1=[\"8\u2665\", \"10\u2665\", \"J\u2665\", \"Q\u2665\", \"K\u2665\"], player2=\"Mike\", hand2=[\"9\u2660\", \"J\u2660\", \"10\u2660\", \"Q\u2660\", \"K\u2660\"])]"}
+{"id": "simple_python_341", "result": "[deck_of_cards.odds(suit=\"heart\", deck_type=\"without_joker\")]"}
+{"id": "simple_python_342", "result": "[game_list.get_games(release_year=2019, multiplayer=True, ESRB_rating=\"Everyone\")]"}
+{"id": "simple_python_343", "result": "[game_stats.fetch_player_statistics(game=\"Zelda\", username=\"Sam\", platform=\"Switch\")]"}
+{"id": "simple_python_344", "result": "[get_game_item_stats(game=\"Legend of Zelda: Breath of the Wild\", item=\"Guardian Sword+\", stat=\"power_rating\")]"}
+{"id": "simple_python_345", "result": "[game_valuation(game_name=\"Super Mario Bros\", release_year=1985, condition=\"Like New\")]"}
+{"id": "simple_python_346", "result": "[get_collectables_in_season(game_name=\"Animal Crossing: New Horizons\", season=\"Spring\", item_type=\"all\")]"}
+{"id": "simple_python_347", "result": "[soccer.get_last_match(team_name=\"Liverpool F.C.\", include_stats=true)]"}
+{"id": "simple_python_348", "result": "[create_player_profile(player_name=\"StarPlayer\", _class=\"Mage\", starting_level=5)]"}
+{"id": "simple_python_349", "result": "[game_score.highest(game=\"Overwatch\", platform=\"PC\", region=\"Global\")]"}
+{"id": "simple_python_350", "result": "[get_highest_scoring_player(game=\"Valorant\", season=\"2022\")]"}
+{"id": "simple_python_351", "result": "[multiplayer_game_finder(platform=\"Windows 10\", rating=4.5)]"}
+{"id": "simple_python_352", "result": "[gamespot.getAverageUserScore(game_name=\"The Legend of Zelda: Breath of the Wild\", platform=\"Nintendo Switch\")]"}
+{"id": "simple_python_353", "result": "[find_recipes(diet=\"gluten-free\", meal_type=\"dinner\")]"}
+{"id": "simple_python_354", "result": "[get_vegan_recipe(dish_type=\"soup\", cooking_time=30, ingredient_preference=[\"turmeric\", \"peas\", \"spinach\"])]"}
+{"id": "simple_python_355", "result": "[recipe_info.get_calories(website=\"Foodnetwork.com\", recipe=\"Beef Lasagna Recipe\")]"}
+{"id": "simple_python_356", "result": "[recipe_finder.find(servings=2, diet=\"vegan\", prep_time=30)]"}
+{"id": "simple_python_357", "result": "[get_recipe(dish_name=\"chocolate cake\", diet_preference=\" vegan\")]"}
+{"id": "simple_python_358", "result": "[recipe_search(diet=[\"Gluten Free\"], time_limit=30, dish=\"cookie\")]"}
+{"id": "simple_python_359", "result": "[recipe_search(dietary_restriction=\"Vegetarian\", ingredients=[\"pasta\", \"cheese\"], servings=2)]"}
+{"id": "simple_python_360", "result": "[find_recipe(recipeName=\"pasta carbonara\", maxCalories=500)]"}
+{"id": "simple_python_361", "result": "[restaurant_finder(city=\"New York\", cuisine=\"Italian\", diet=\"gluten-free\")]"}
+{"id": "simple_python_362", "result": "[get_best_sushi_places(city=\"Tokyo\", top=5, review_rate=4.0)]"}
+{"id": "simple_python_363", "result": "[restaurant_search.find_closest(location=\"Boston, MA\", cuisine=\"Sushi\", amenities=[\"Patio\"])]"}
+{"id": "simple_python_364", "result": "[find_restaurant(location=\"Brooklyn\", type=\"Italian\", diet_option=\"Gluten-free\")]"}
+{"id": "simple_python_365", "result": "[cooking_conversion.convert(quantity=2, from_unit=\"pounds\", to_unit=\"ounces\", item=\"butter\")]"}
+{"id": "simple_python_366", "result": "[recipe.unit_conversion(value=2, from_unit=\"tablespoon\", to_unit=\"teaspoon\")]"}
+{"id": "simple_python_367", "result": "[find_recipe(dietary_restrictions=\" vegan\", recipe_type=\"brownies\", time=30)]"}
+{"id": "simple_python_368", "result": "[calculate_cooking_time(weight_kg=1.5, cooking_method=\"roast\", temp_celsius=180)]"}
+{"id": "simple_python_369", "result": "[grocery_store.find_nearby(location=\"Houston, TX\", categories=[\"Organic\", \"Vegetables\"])]"}
+{"id": "simple_python_370", "result": "[safeway.order(location=\"Palo Alto, CA\", items=[\"olive oil\", \"rice\"], quantity=[3, 5])]"}
+{"id": "simple_python_371", "result": "[whole_foods.check_price(location=\"Whole Foods in Los Angeles\", items=[\"tomatoes\", \"lettuce\"])]"}
+{"id": "simple_python_372", "result": "[whole_foods.find_top_brands(product=\"bananas\", number=5, organic=true)]"}
+{"id": "simple_python_373", "result": "[walmart.purchase(loc=\"San Jose\", product_list=[\"apples\", \"rice\", \"bottled water (12 pack)\", \"pack_size=[12]\"), pack_size=[12]]"}
+{"id": "simple_python_374", "result": "[grocery_info.nutritional_info(store=\"Walmart\", food=\"avocado\", information=[\"Protein\", \"Calories\", \"Carbohydrates\"])]"}
+{"id": "simple_python_375", "result": "[walmart.check_price(items=[\"pumpkin\", \"pumpkin\", \"pumpkin\"], quantities=[3, 12, 12], store_location=\"Walmart\")]"}
+{"id": "simple_python_376", "result": "[time_zone_converter(city=\"London\", country=\"UK\", display_format=\"24h\")]"}
+{"id": "simple_python_377", "result": "[get_current_time(city=\"Sydney\", country=\"Australia\", format=\"HH:MM:SS\")]"}
+{"id": "simple_python_378", "result": "[timezone.convert(time=\"3pm\", from_timezone=\"New York\", to_timezone=\"London\")]"}
+{"id": "simple_python_379", "result": "[get_current_time(location=\"Sydney\", country=\"Australia\")]"}
+{"id": "simple_python_380", "result": "[hotel_booking(location=\"Manhattan, New York\", room_type=\"single\", duration=3, start_date=\"2023-03-10\", preferences=[\"pet_friendly\"])]"}
+{"id": "simple_python_381", "result": "[hilton_hotel.check_availability(location=\"Paris\", check_in_date=\"2023-04-04\", check_out_date=\"2023-04-08\", no_of_adults=2, hotel_chain=\"Hilton\")]"}
+{"id": "simple_python_382", "result": "[book_hotel(hotel_name=\"Hilton Hotel\", location=\"Chicago\", room_type=\"single room\", start_date=\"2022-12-10\", nights=2)]"}
+{"id": "simple_python_383", "result": "[book_room(hotel_name=\"The Plaza\", room_type=\"single\", num_nights=2)]"}
+{"id": "simple_python_384", "result": "[hotel_booking.book(city=\"Paris\", from_date=\"2022-07-10\", to_date=\"2022-07-20\", adults=2, children=1, room_type=\"Standard\")]"}
+{"id": "simple_python_385", "result": "[hotel_bookings.book_room(location=\"Los Angeles\", room_type=\"king size\", check_in_date=\"15-10-2023\", no_of_nights=2, no_of_rooms=1)]"}
+{"id": "simple_python_386", "result": "[book_hotel(hotel_name=\"Hotel Paradise\", location=\"Las Vegas\", room_type=\"luxury\", start_date=\"2022-05-12\", stay_duration=3, view=\"city view\")]"}
+{"id": "simple_python_387", "result": "[hotel_booking(hotel_name=\"Plaza Hotel\", location=\"New York\", start_date=\"2022-06-01\", end_date=\"2022-06-03\", rooms=3)]"}
+{"id": "simple_python_388", "result": "[currency_exchange.convert(base_currency=\"USD\", target_currency=\"CAD\", amount=500)]"}
+{"id": "simple_python_389", "result": "[currency_converter(base_currency=\"USD\", target_currency=\"GBP\", amount=200.0)]"}
+{"id": "simple_python_390", "result": "[currency_conversion.convert(amount=150, from_currency=\"EUR\", to_currency=\"CAD\")]"}
+{"id": "simple_python_391", "result": "[get_exchange_rate_with_fee(base_currency=\"GBP\", target_currency=\"JPY\", fee=0.02)]"}
+{"id": "simple_python_392", "result": "[latest_exchange_rate(source_currency=\"British Pounds\", target_currency=\"Japanese Yen\", amount=1.0)]"}
+{"id": "simple_python_393", "result": "[convert_currency(base_currency=\"Japanese Yen\", target_currency=\"United States Dollar\", amount=20000)]"}
+{"id": "simple_python_394", "result": "[maps.get_distance_duration(start_location=\"Eiffel Tower\", end_location=\"Louvre Museum\", traffic=false)]"}
+{"id": "simple_python_395", "result": "[parking_lot.find_nearest(location=\"Central Park, NY\", radius=2, type=\"public\")]"}
+{"id": "simple_python_396", "result": "[hospital.locate(location=\"Denver, CO\", radius=5, department=\"Pediatrics\")]"}
+{"id": "simple_python_397", "result": "[distance_calculator.calculate(origin=\"New York\", destination=\"Boston\", consider_terrain=true)]"}
+{"id": "simple_python_398", "result": "[get_museum_hours(museum_name=\"The Metropolitan Museum of Art\", day=\"Saturday\")]"}
+{"id": "simple_python_399", "result": "[restaurant_search(location=\"New York City, NY\", cuisine=\"Italian\", rating=4, accepts_credit_cards=true)]"}
