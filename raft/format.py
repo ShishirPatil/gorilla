@@ -78,10 +78,10 @@ class DatasetConverter():
 
     def convert(self, ds: Dataset, format: DatasetFormat, output_path: str, output_type: OutputDatasetType, params: Dict[str, str]):
         if not format in self.formats:
-            raise Exception(f"Output Format {format} is not supported, pleased select one of {self.formats.keys()}")
+            raise Exception(f"Output Format {format} is not supported, please select one of {self.formats.keys()}")
         
         if not output_type in self.exporters:
-            raise Exception(f"Output Type {output_type} is not supported, pleased select one of {self.exporters.keys()}")
+            raise Exception(f"Output Type {output_type} is not supported, please select one of {self.exporters.keys()}")
 
         formatter = self.formats[format]
         newds = formatter.format(ds, **params)

@@ -42,7 +42,7 @@ cli = typer.Typer(
 
 def handle_multiple_input(input_str):
     """
-    Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
+    Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main function
     """
     if input_str is None:
         """
