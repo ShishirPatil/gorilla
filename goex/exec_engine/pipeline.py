@@ -168,7 +168,7 @@ def generate_command(content, credentials = None, api_type=RESTful_Type, generat
         )
 
         if response.choices[0].message.tool_calls == None:
-            raise Exception("Unable able to retreive the relevant command to perform the action from Function Calling.\n" +
+            raise Exception("Unable to retrieve the relevant command to perform the action from Function Calling.\n" +
                             "Try again with a different prompt or generate_mode setting")
             
         output = [
