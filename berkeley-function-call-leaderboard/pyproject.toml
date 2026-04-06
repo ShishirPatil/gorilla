@@ -16,6 +16,7 @@ requires-python = ">=3.10"
 license = { "text" = "Apache 2.0" }
 dependencies = [
     "requests",
+    "brotli",  # Brotli decompression support for the requests package
     "tqdm",
     "numpy==1.26.4",
     "pandas",
