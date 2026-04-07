@@ -2206,7 +2206,7 @@ third_party_inference_model_map = {
     "gpt-oss-20b-chat": ModelConfig(
         model_name="openai/gpt-oss-20b",
         display_name="gpt-oss:20b (Chat Completions API - Prompt)",
-        url="https://openai.com/index/introducing-gpt-oss/",
+        url="https://huggingface.co/openai/gpt-oss-20b",
         org="OpenAI",
         license="Apache 2.0",
         model_handler=OpenAICompletionsHandler,
