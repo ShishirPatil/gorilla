@@ -862,13 +862,19 @@ def populate_initial_settings_for_web_search_test_cases(
     """
     Special handling for the web search category, as it controls the show_snippet parameter
     """
+    force_native_browser_for_gpt_oss = int(
+        os.getenv("FORCE_NATIVE_BROWSER_FOR_GPT_OSS", FORCE_NATIVE_BROWSER_FOR_GPT_OSS)
+    )
     for entry in test_cases:
         if is_web_search(entry["id"]):
             involved_classes = entry["involved_classes"]
 
             init_config = {
                 involved_classes[0]: {
-                    "show_snippet": False if "no_snippet" in entry["id"] else True
+                    "show_snippet": False if "no_snippet" in entry["id"] else True,
+                    "force_native_browser_for_gpt_oss": bool(
+                        force_native_browser_for_gpt_oss
+                    ),
                 }
             }
             entry["initial_config"] = init_config
