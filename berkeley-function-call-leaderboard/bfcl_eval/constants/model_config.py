@@ -2278,7 +2278,7 @@ third_party_inference_model_map = {
     "gpt-oss-120b-responses": ModelConfig(
         model_name="openai/gpt-oss-120b",
         display_name="gpt-oss:120b (Responses API - Prompt)",
-        url="https://openai.com/index/introducing-gpt-oss/",
+        url="https://huggingface.co/openai/gpt-oss-120b",
         org="OpenAI",
         license="Apache 2.0",
         model_handler=OpenAIResponsesHandler,
