@@ -92,7 +92,7 @@ class MemoryAPI_kv(MemoryAPI):
         """
         Check if the key is in snake_case format and does not contain spaces.
         """
-        pattern = r"^[a-z]+(_[a-z0-9]+)*$"
+        pattern = r"^[a-z][a-z0-9]*(_[a-z0-9]+)*$"
         return bool(re.match(pattern, s))
 
     def core_memory_add(self, key: str, value: str) -> Dict[str, str]:
