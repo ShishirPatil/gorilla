@@ -2227,6 +2227,30 @@ third_party_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=True,
     ),
+    "DM-Cito-9B-FC": ModelConfig(
+        model_name="DM-Cito-9B",
+        display_name="DM-Cito-9B (FC)",
+        url="https://www.mininglamp.com/",
+        org="Mininglamp",
+        license="Proprietary",
+        model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "DM-Cito-27B-FC": ModelConfig(
+        model_name="DM-Cito-27B",
+        display_name="DM-Cito-27B (FC)",
+        url="https://www.mininglamp.com/",
+        org="Mininglamp",
+        license="Proprietary",
+        model_handler=DMCitoHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
 }
 
 

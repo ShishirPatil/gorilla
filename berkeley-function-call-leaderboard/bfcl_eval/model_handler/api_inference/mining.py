@@ -7,6 +7,7 @@ from bfcl_eval.model_handler.api_inference.openai_completion import (
     OpenAICompletionsHandler,
 )
 from bfcl_eval.constants.enums import ModelStyle
+from bfcl_eval.model_handler.utils import convert_to_function_call
 from openai import OpenAI
 
 
@@ -27,24 +28,64 @@ class MiningHandler(OpenAICompletionsHandler):
         )
 
     def decode_ast(self, result, language, has_tool_call_tag):
-        decoded_output = []
-        for invoked_function in result:
-            name = invoked_function["name"]
-            params = invoked_function["arguments"]
-            decoded_output.append({name: params})
-        return decoded_output
+        if self.is_fc_model:
+            decoded_output = []
+            for invoked_function in result:
+                name = list(invoked_function.keys())[0]
+                params = json.loads(invoked_function[name])
+                decoded_output.append({name: params})
+            return decoded_output
+        else:
+            decoded_output = []
+            for invoked_function in result:
+                name = invoked_function["name"]
+                params = invoked_function["arguments"]
+                decoded_output.append({name: params})
+            return decoded_output
 
     def decode_execute(self, result, has_tool_call_tag):
-        too_call_format = []
-        for tool_call in result:
-            if isinstance(tool_call, dict):
-                name = tool_call.get("name", "")
-                arguments = tool_call.get("arguments", {})
-                args_str = ", ".join(
-                    [f"{key}={repr(value)}" for key, value in arguments.items()]
-                )
-                too_call_format.append(f"{name}({args_str})")
-        return too_call_format
+        if self.is_fc_model:
+            return convert_to_function_call(result)
+        else:
+            too_call_format = []
+            for tool_call in result:
+                if isinstance(tool_call, dict):
+                    name = tool_call.get("name", "")
+                    arguments = tool_call.get("arguments", {})
+                    args_str = ", ".join(
+                        [f"{key}={repr(value)}" for key, value in arguments.items()]
+                    )
+                    too_call_format.append(f"{name}({args_str})")
+            return too_call_format
+    
+    #### FC methods ####
+    
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
+        try:
+            model_responses = [
+                {func_call.function.name: func_call.function.arguments}
+                for func_call in api_response.choices[0].message.tool_calls
+            ]
+            tool_call_ids = [
+                func_call.id for func_call in api_response.choices[0].message.tool_calls
+            ]
+            
+            if not model_responses:
+                model_responses = api_response.choices[0].message.content
+                tool_call_ids = []
+        except:
+            model_responses = api_response.choices[0].message.content
+            tool_call_ids = []
+
+        model_responses_message_for_chat_history = api_response.choices[0].message
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "tool_call_ids": tool_call_ids,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+
 
     #### Prompting methods ####
 

@@ -187,4 +187,6 @@ SUPPORTED_MODELS = [
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
     "DM-Cito-32B-v1",
+    "DM-Cito-9B-FC",
+    "DM-Cito-27B-FC",
 ]
