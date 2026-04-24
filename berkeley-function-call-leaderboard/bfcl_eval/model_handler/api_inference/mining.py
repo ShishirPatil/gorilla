@@ -57,6 +57,35 @@ class MiningHandler(OpenAICompletionsHandler):
                     )
                     too_call_format.append(f"{name}({args_str})")
             return too_call_format
+    
+    #### FC methods ####
+    
+    def _parse_query_response_FC(self, api_response: Any) -> dict:
+        try:
+            model_responses = [
+                {func_call.function.name: func_call.function.arguments}
+                for func_call in api_response.choices[0].message.tool_calls
+            ]
+            tool_call_ids = [
+                func_call.id for func_call in api_response.choices[0].message.tool_calls
+            ]
+            
+            if not model_responses:
+                model_responses = api_response.choices[0].message.content
+                tool_call_ids = []
+        except:
+            model_responses = api_response.choices[0].message.content
+            tool_call_ids = []
+
+        model_responses_message_for_chat_history = api_response.choices[0].message
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "tool_call_ids": tool_call_ids,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+
 
     #### Prompting methods ####
 
