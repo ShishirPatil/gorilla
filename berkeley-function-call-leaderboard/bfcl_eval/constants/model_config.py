@@ -59,6 +59,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.prism_coder import PrismCoderHandler
 from bfcl_eval.model_handler.local_inference.pelican_vl_fc import PelicanVLFCHandler
 from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
@@ -2226,6 +2227,42 @@ third_party_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "prism-coder-7b-FC": ModelConfig(
+        model_name="dcostenco/prism-coder-7b",
+        display_name="prism-coder-7b (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "prism-coder-32b-FC": ModelConfig(
+        model_name="Qwen/Qwen2.5-Coder-32B-Instruct",
+        display_name="prism-coder-32b (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "prism-coder-72b-FC": ModelConfig(
+        model_name="Qwen/Qwen2.5-72B-Instruct",
+        display_name="prism-coder-72b (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
     ),
 }
 

@@ -100,6 +100,9 @@ For model names containing `{...}`, multiple versions are available. For example
 | MiniCPM3-4B                            | Prompt           | Self-hosted 💻 | openbmb/MiniCPM3-4B                                         |
 | MiniCPM3-4B-FC                         | Function Calling | Self-hosted 💻 | openbmb/MiniCPM3-4B-FC                                      |
 | MiniCPM-SALA                           | Function Calling | Self-hosted 💻 | openbmb/MiniCPM-SALA-FC                                     |
+| Prism-Coder-7B                         | Function Calling | Self-hosted 💻 | prism-coder-7b-FC                                           |
+| Prism-Coder-32B                        | Function Calling | Self-hosted 💻 | prism-coder-32b-FC                                          |
+| Prism-Coder-72B                        | Function Calling | Self-hosted 💻 | prism-coder-72b-FC                                          |
 | Ministral-8B-Instruct-2410             | Prompt           | Self-hosted 💻 | mistralai/Ministral-8B-Instruct-2410                        |
 | mistral-large-2411                     | Function Calling | Mistral AI     | mistral-large-2411-FC                                       |
 | mistral-large-2411                     | Prompt           | Mistral AI     | mistral-large-2411                                          |
