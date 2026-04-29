@@ -2264,6 +2264,18 @@ third_party_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    "prism-coder-7b-FC": ModelConfig(
+        model_name="dcostenco/prism-coder-7b",
+        display_name="Prism-Coder-7B (FC)",
+        url="https://huggingface.co/dcostenco/prism-coder-7b",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
 }
 
 
