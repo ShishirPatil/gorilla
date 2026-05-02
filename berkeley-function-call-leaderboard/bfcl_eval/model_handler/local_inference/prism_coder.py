@@ -105,6 +105,9 @@ class PrismCoderHandler(QwenFCHandler):
             reasoning_content = ""
             if message.get("reasoning_content"):
                 reasoning_content = message["reasoning_content"]
+            elif message["role"] == "assistant" and "</|synalux_think|>" in content:
+                reasoning_content = content.split("</|synalux_think|>")[0].rstrip("\n").split("<|synalux_think|>")[-1].lstrip("\n")
+                content = content.split("</|synalux_think|>")[-1].lstrip("\n")
             elif message["role"] == "assistant" and "</think>" in content:
                 reasoning_content = content.split("</think>")[0].rstrip("\n").split("<think>")[-1].lstrip("\n")
                 content = content.split("</think>")[-1].lstrip("\n")
@@ -120,9 +123,9 @@ class PrismCoderHandler(QwenFCHandler):
                 # For history messages, include reasoning if present
                 if idx > last_query_index:
                     if reasoning_content:
-                        formatted_prompt += f"<|im_start|>assistant\n<think>\n{reasoning_content}\n</think>\n\n{content}"
+                        formatted_prompt += f"<|im_start|>assistant\n<|synalux_think|>\n{reasoning_content}\n</|synalux_think|>\n\n{content}"
                     else:
-                        formatted_prompt += f"<|im_start|>assistant\n<think>\n\n</think>\n\n{content}"
+                        formatted_prompt += f"<|im_start|>assistant\n<|synalux_think|>\n\n</|synalux_think|>\n\n{content}"
                 else:
                     formatted_prompt += f"<|im_start|>assistant\n{content}"
 
@@ -145,7 +148,7 @@ class PrismCoderHandler(QwenFCHandler):
         # Set PRISM_ENABLE_THINKING=1 if using a fine-tuned model with thinking support.
         enable_thinking = os.getenv("PRISM_ENABLE_THINKING", "0") == "1"
         if enable_thinking:
-            formatted_prompt += "<|im_start|>assistant\n<think>\n\n</think>\n\n"
+            formatted_prompt += "<|im_start|>assistant\n<|synalux_think|>\n\n</|synalux_think|>\n\n"
         else:
             formatted_prompt += "<|im_start|>assistant\n"
         return formatted_prompt
@@ -295,10 +298,14 @@ class PrismCoderHandler(QwenFCHandler):
         model_response = api_response.choices[0].text
         extracted_tool_calls = self._extract_tool_calls(model_response)
 
-        # Extract reasoning content
+        # Extract reasoning_content
         reasoning_content = ""
         cleaned_response = model_response
-        if "</think>" in model_response:
+        if "</|synalux_think|>" in model_response:
+            parts = model_response.split("</|synalux_think|>")
+            reasoning_content = parts[0].rstrip("\n").split("<|synalux_think|>")[-1].lstrip("\n")
+            cleaned_response = parts[-1].lstrip("\n")
+        elif "</think>" in model_response:
             parts = model_response.split("</think>")
             reasoning_content = parts[0].rstrip("\n").split("<think>")[-1].lstrip("\n")
             cleaned_response = parts[-1].lstrip("\n")
@@ -461,6 +468,7 @@ class PrismCoderHandler(QwenFCHandler):
         """
         # Strip <think>...</think> blocks first
         cleaned = re.sub(r"<think>.*?</think>", "", input_string, flags=re.DOTALL).strip()
+        cleaned = re.sub(r"<\|synalux_think\|>.*?</\|synalux_think\|>", "", cleaned, flags=re.DOTALL).strip()
         
         # If the output doesn't contain any JSON-like content, it's an abstention
         if not re.search(r'[{]', cleaned):
