@@ -1,0 +1,466 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Sales Orders: List Sales Orders",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/salesOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports OrderNumber, Status, CustomerId, OrderedDate, SourceOrderSystem. Example: q=Status='BOOKED' and CustomerId=300000001234567",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, charges, paymentTerms, addresses",
+            "offset": "integer: Starting position in the result set. Default is 0.",
+            "limit": "integer: Maximum number of records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count in the response.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=OrderedDate:desc"
+        },
+        "functionality": "Retrieves a list of sales orders. Supports filtering by status, customer, and order date.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-salesorders-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Sales Orders: Get a Sales Order",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/salesOrders/{HeaderId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "HeaderId": "[REQUIRED] integer: The unique identifier of the sales order header.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, charges, paymentTerms, addresses, attachments",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific sales order including lines, pricing, and fulfillment status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-salesorders-headerid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Sales Orders: Create a Sales Order",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/salesOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SourceTransactionNumber": "[REQUIRED] string: Unique order number from the source system.",
+            "SourceTransactionSystem": "[REQUIRED] string: Identifier of the source system submitting the order. Example: 'OPS', 'CRM'.",
+            "SourceTransactionId": "[REQUIRED] string: Unique identifier for the transaction in the source system.",
+            "BuyingPartyId": "[REQUIRED] integer: Customer account identifier.",
+            "BuyingPartyContactId": "integer: Customer contact identifier.",
+            "TransactionTypeCode": "[REQUIRED] string: Order type code. Example: 'STD' for standard order.",
+            "RequestedShipDate": "string: Requested shipment date. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "PaymentTermsCode": "string: Payment terms code. Example: 'NET30'.",
+            "ShippingMethod": "string: Shipping carrier and method code.",
+            "lines": "[REQUIRED] array: Array of order line objects. Each line must include SourceTransactionLineId, SourceTransactionLineNumber, ProductNumber, OrderedQuantity, and UOMCode."
+        },
+        "functionality": "Creates a new sales order with header and line details. Supports import from external source systems.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-salesorders-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Sales Orders: Cancel a Sales Order",
+        "api_call": "PATCH /fscmRestApi/resources/11.13.18.05/salesOrders/{HeaderId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "HeaderId": "[REQUIRED] integer: The unique identifier of the sales order to cancel.",
+            "Status": "[REQUIRED] string: Set to 'CANCELLED' to cancel the order.",
+            "CancelReasonCode": "string: Reason code for cancellation. Example: 'CUSTOMER_REQUEST'.",
+            "CancelledQuantity": "number: Quantity to cancel. Omit to cancel the full order."
+        },
+        "functionality": "Cancels an existing sales order or reduces the ordered quantity on a line.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-salesorders-headerid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Inventory Items: List Inventory Items",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/inventoryItems",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ItemNumber, ItemDescription, OrganizationCode, LifecyclePhase, ItemType. Example: q=OrganizationCode='M1' and LifecyclePhase='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: itemCategories, itemRelationships, substitutes, units",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort field and direction. Example: orderBy=ItemNumber:asc"
+        },
+        "functionality": "Retrieves inventory items defined across organizations. Supports filtering by item number, organization, and lifecycle status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-inventoryitems-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Inventory Items: Get an Inventory Item",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/inventoryItems/{ItemId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ItemId": "[REQUIRED] integer: The unique identifier of the inventory item.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: itemCategories, itemRelationships, itemRevisions, units, substitutes",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific inventory item, including unit of measure, category assignments, and stocking attributes.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-inventoryitems-itemid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Inventory Items: Create an Inventory Item",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/inventoryItems",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ItemNumber": "[REQUIRED] string: Unique item number.",
+            "ItemDescription": "[REQUIRED] string: Description of the inventory item.",
+            "OrganizationCode": "[REQUIRED] string: Organization code where the item is defined. Example: 'M1'.",
+            "ItemType": "string: Item type. Valid values: Standard, Kit, Model, Option Class, Planning.",
+            "UOMCode": "[REQUIRED] string: Primary unit of measure. Example: 'Ea' for Each.",
+            "LifecyclePhase": "string: Item lifecycle status. Valid values: Concept, Preproduction, Production, Discontinuation, Obsolete.",
+            "TrackingAttribute": "string: Inventory tracking method. Valid values: None, Lot, Serial.",
+            "StockedItem": "boolean: If true, the item is stocked in inventory.",
+            "PurchasedItem": "boolean: If true, the item can be purchased.",
+            "SoldItem": "boolean: If true, the item can be sold."
+        },
+        "functionality": "Creates a new inventory item in the specified organization.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-inventoryitems-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - On-Hand Quantities: Get On-Hand Quantity for an Item",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/onhandQuantities",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ItemNumber, OrganizationCode, SubinventoryCode, LotNumber. Example: q=ItemNumber='AS18947' and OrganizationCode='M1'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves current on-hand inventory quantities for items across organizations, subinventories, and locators.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-onhandquantities-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Inventory Transactions: Create a Miscellaneous Transaction",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/inventoryMiscTransactions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OrganizationCode": "[REQUIRED] string: Organization code where the transaction is performed.",
+            "ItemNumber": "[REQUIRED] string: Item number for the transaction.",
+            "TransactionTypeId": "[REQUIRED] integer: Identifier of the transaction type (e.g., Miscellaneous Issue, Miscellaneous Receipt).",
+            "TransactionQuantity": "[REQUIRED] number: Quantity for the transaction. Negative value for an issue.",
+            "TransactionUOMCode": "[REQUIRED] string: Unit of measure for the transaction quantity.",
+            "TransactionDate": "[REQUIRED] string: Date of the transaction. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "SubinventoryCode": "string: Subinventory for the transaction.",
+            "LotNumber": "string: Lot number if the item is lot-controlled.",
+            "SerialNumber": "string: Serial number if the item is serial-controlled.",
+            "AccountNumber": "string: General ledger account number to charge."
+        },
+        "functionality": "Records a miscellaneous inventory transaction such as an inventory issue or receipt not tied to a purchase order or sales order.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-inventorymisctransactions-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Shipments: List Shipments",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/shipments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ShipmentNumber, Status, ShipFromOrganizationCode, ShipToPartyId, ShipDate. Example: q=Status='OPEN'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, containers, freightCosts, trackingNumbers",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves outbound shipments from Oracle Shipping. Use filters to scope by status, ship date, or customer.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-shipments-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Shipments: Confirm a Shipment",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/shipments/{ShipmentHeaderId}/action/confirm",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ShipmentHeaderId": "[REQUIRED] integer: The unique identifier of the shipment to confirm.",
+            "ShipDate": "[REQUIRED] string: Actual ship date. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "TrackingNumber": "string: Carrier tracking number for the shipment.",
+            "CarrierCode": "string: Carrier code used for shipping.",
+            "ServiceLevel": "string: Shipping service level. Example: 'GROUND', 'OVERNIGHT'.",
+            "FreightTermsCode": "string: Freight terms. Example: 'PREPAID', 'COLLECT'."
+        },
+        "functionality": "Confirms a shipment to record the actual ship date and carrier details, triggering inventory deduction and billing.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-shipments-shipmentheaderid-action-confirm-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Receipts: List Receipts",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/receipts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ReceiptNumber, VendorId, OrganizationCode, ReceiptDate, PONumber. Example: q=OrganizationCode='M1' and ReceiptDate >= '2024-01-01'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, transactions",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves receiving transactions for purchased goods and services.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-receipts-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Receipts: Create a Receipt",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/receipts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ReceiptSourceCode": "[REQUIRED] string: Source of the receipt. Valid values: 'VENDOR' for supplier receipts, 'CUSTOMER' for customer returns.",
+            "OrganizationCode": "[REQUIRED] string: Receiving organization code.",
+            "ReceiptDate": "[REQUIRED] string: Date of the receipt. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "VendorId": "integer: Supplier identifier. Required when ReceiptSourceCode is 'VENDOR'.",
+            "VendorSiteId": "integer: Supplier site identifier.",
+            "PackingSlip": "string: Supplier packing slip number.",
+            "BillOfLading": "string: Bill of lading reference number.",
+            "WaybillAirbillNumber": "string: Waybill or air bill number.",
+            "lines": "[REQUIRED] array: Array of receipt line objects. Each line must include POHeaderId, POLineId, POLineLocationId, QuantityReceived, and UOMCode."
+        },
+        "functionality": "Creates a receiving transaction against a purchase order, recording quantity received and delivery details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-receipts-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Work Orders: List Work Orders",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/workOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports WorkOrderNumber, Status, OrganizationCode, ItemNumber, ScheduledStartDate. Example: q=Status='Released' and OrganizationCode='M1'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: operations, materials, outputItems",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves manufacturing work orders. Filter by status, organization, or item to scope results.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-workorders-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Work Orders: Create a Work Order",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/workOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OrganizationCode": "[REQUIRED] string: Manufacturing organization code.",
+            "ItemNumber": "[REQUIRED] string: Item number of the assembly to produce.",
+            "StartQuantity": "[REQUIRED] number: Quantity to manufacture.",
+            "UOMCode": "[REQUIRED] string: Unit of measure for the quantity.",
+            "WorkOrderType": "[REQUIRED] string: Type of work order. Valid values: Standard, Nonstandard, Rework, Transform.",
+            "ScheduledStartDate": "[REQUIRED] string: Planned start date. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "ScheduledCompletionDate": "[REQUIRED] string: Planned completion date. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "BOMRevision": "string: Bill of materials revision to use. Defaults to current revision.",
+            "RoutingRevision": "string: Routing revision to use. Defaults to current revision.",
+            "DemandSourceHeaderId": "integer: Sales order header identifier if this work order is demand-driven.",
+            "ProjectId": "integer: Project identifier if this work order is project-costed."
+        },
+        "functionality": "Creates a new manufacturing work order for producing an assembled item.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-workorders-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Item Structures (BOM): Get Bill of Materials",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/itemStructures",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ItemNumber, OrganizationCode, StructureName, EffectiveDate. Example: q=ItemNumber='CM77862' and OrganizationCode='M1'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: components, substitutes",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "effectiveDate": "string: Date for which the BOM structure is effective. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves bill of materials (BOM) structures for manufacturing items, including component items and quantities.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-itemstructures-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Transfer Orders: List Transfer Orders",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/transferOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports TransferOrderNumber, Status, SourceOrganizationCode, DestinationOrganizationCode, RequestedShipDate. Example: q=Status='OPEN'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, shipments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves inter-organization transfer orders used to move inventory between warehouses or plants.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-transferorders-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Transfer Orders: Create a Transfer Order",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/transferOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SourceOrganizationCode": "[REQUIRED] string: Organization code of the source (shipping) organization.",
+            "DestinationOrganizationCode": "[REQUIRED] string: Organization code of the destination (receiving) organization.",
+            "RequestedShipDate": "[REQUIRED] string: Requested date to ship the transfer. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "TransferOrderTypeId": "integer: Transfer order type identifier.",
+            "ShipmentPriority": "string: Priority of the shipment. Example: 'High', 'Medium', 'Low'.",
+            "lines": "[REQUIRED] array: Array of transfer order lines. Each line requires ItemNumber, RequestedQuantity, and UOMCode."
+        },
+        "functionality": "Creates a new inter-organization transfer order to move inventory between two Oracle SCM organizations.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-transferorders-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Supply Requests: Create a Supply Request",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/supplyRequests",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SourceSystemCode": "[REQUIRED] string: Code of the source system submitting the request.",
+            "SourceRequestNumber": "[REQUIRED] string: Unique request number from the source system.",
+            "OrganizationCode": "[REQUIRED] string: Requesting organization code.",
+            "ItemNumber": "[REQUIRED] string: Item number for which supply is requested.",
+            "RequestedQuantity": "[REQUIRED] number: Quantity of supply requested.",
+            "UOMCode": "[REQUIRED] string: Unit of measure for the quantity.",
+            "RequestedDate": "[REQUIRED] string: Date by which supply is needed. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "ProjectId": "integer: Project identifier for project-driven supply.",
+            "TaskId": "integer: Task identifier within the project.",
+            "SubinventoryCode": "string: Target subinventory for the supply."
+        },
+        "functionality": "Creates an external supply request that can trigger planning recommendations for purchase orders, work orders, or transfers.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-supplyrequests-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Cycle Counts: List Cycle Count Sequences",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/cycleCountSequences",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports CycleCountName, OrganizationCode, Status, SubinventoryCode. Example: q=OrganizationCode='M1' and Status='UNCOUNTED'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves cycle count sequences for physical inventory counting tasks in a warehouse.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-cyclecountsequences-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Cycle Counts: Submit a Cycle Count",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/cycleCountSequences/{CycleCountSequenceId}/action/submitCount",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "CycleCountSequenceId": "[REQUIRED] integer: Unique identifier of the cycle count sequence.",
+            "CountQuantity": "[REQUIRED] number: Actual counted quantity.",
+            "CountUOMCode": "[REQUIRED] string: Unit of measure of the counted quantity.",
+            "CountDate": "[REQUIRED] string: Date and time the count was performed. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "LotNumber": "string: Lot number if the item is lot-controlled.",
+            "SerialNumber": "string: Serial number if the item is serial-controlled."
+        },
+        "functionality": "Submits a physical count against an existing cycle count sequence, recording the actual quantity found.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-cyclecountsequences-cyclecountsequenceid-action-submitcount-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Lot Numbers: List Lot Numbers",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/lotNumbers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LotNumber, ItemNumber, OrganizationCode, ExpirationDate, Status. Example: q=ItemNumber='AS18947' and OrganizationCode='M1'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid value: serialNumbers",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves lot numbers for lot-controlled inventory items including expiration dates and current status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-lotnumbers-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Picking Waves: Create a Picking Wave",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/pickingWaves",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OrganizationCode": "[REQUIRED] string: Warehouse organization code.",
+            "ShipMethodCode": "string: Filter pick release to a specific shipping method.",
+            "ShipToPartyId": "integer: Filter pick release to a specific customer.",
+            "RequestedShipDateFrom": "string: Filter orders with requested ship date from. Format: YYYY-MM-DD.",
+            "RequestedShipDateTo": "string: Filter orders with requested ship date to. Format: YYYY-MM-DD.",
+            "AutoPickConfirm": "boolean: If true, automatically confirms picks after allocation. Default is false.",
+            "AutoAllocate": "boolean: If true, automatically allocates inventory during wave creation. Default is true.",
+            "BatchSize": "integer: Maximum number of shipment lines per picking batch."
+        },
+        "functionality": "Creates a wave of pick releases to group and allocate outbound shipment lines for warehouse picking.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-pickingwaves-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle SCM Cloud - Customer Returns: Create a Return Material Authorization",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/customerReturns",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SourceTransactionNumber": "[REQUIRED] string: Unique RMA number from the source system.",
+            "SourceTransactionSystem": "[REQUIRED] string: Source system code.",
+            "SourceTransactionId": "[REQUIRED] string: Source system transaction ID.",
+            "ReturnReasonCode": "[REQUIRED] string: Reason code for the return. Example: 'DEFECTIVE', 'WRONG_ITEM', 'DAMAGED'.",
+            "BuyingPartyId": "[REQUIRED] integer: Customer account identifier.",
+            "OriginalOrderId": "integer: Header ID of the original sales order being returned.",
+            "lines": "[REQUIRED] array: Return lines. Each line requires SourceTransactionLineId, ProductNumber, ReturnQuantity, and UOMCode."
+        },
+        "functionality": "Creates a Return Material Authorization (RMA) to process a customer's return of goods.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/supply-chain-management/24d/fasrp/op-customerreturns-post.html"
+        }
+    }
+]

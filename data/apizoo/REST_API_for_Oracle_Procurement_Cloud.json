@@ -1,0 +1,462 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Orders: List Purchase Orders",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/purchaseOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PONumber, SupplierId, Status, BuyerEmailAddress, CreationDate. Example: q=Status='OPEN' and BuyerEmailAddress='buyer@example.com'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, schedules, distributions, attachments",
+            "offset": "integer: Starting position in the result set. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=CreationDate:desc"
+        },
+        "functionality": "Retrieves a list of purchase orders. Filter by supplier, buyer, or status to scope results.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaseorders-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Orders: Get a Purchase Order",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/purchaseOrders/{POHeaderId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "POHeaderId": "[REQUIRED] integer: The unique identifier of the purchase order header.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, schedules, distributions, attachments, changes",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific purchase order, including line items, delivery schedules, and account distributions.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaseorders-poheaderid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Orders: Create a Purchase Order",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/purchaseOrders",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "BuyingPartyName": "[REQUIRED] string: Name of the procurement business unit.",
+            "SupplierId": "[REQUIRED] integer: Identifier of the supplier.",
+            "SupplierSiteId": "[REQUIRED] integer: Identifier of the supplier site.",
+            "BuyerEmailAddress": "[REQUIRED] string: Email of the buyer responsible for this PO.",
+            "CurrencyCode": "[REQUIRED] string: Currency code for the purchase order. Example: 'USD'.",
+            "PaymentTerms": "string: Payment terms code. Example: 'NET30'.",
+            "ShipToLocationId": "integer: Default ship-to location identifier for all lines.",
+            "BillToLocationId": "integer: Bill-to location identifier.",
+            "FreightTermsCode": "string: Freight terms. Example: 'PREPAID'.",
+            "NoteToSupplier": "string: Notes or instructions sent to the supplier on the PO.",
+            "lines": "[REQUIRED] array: Array of PO line objects. Each line requires ItemDescription, Quantity, UOMCode, and UnitPrice. ItemNumber is optional for description-based lines."
+        },
+        "functionality": "Creates a new purchase order with header and line details. Supports both item-based and description-based lines.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaseorders-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Orders: Update a Purchase Order",
+        "api_call": "PATCH /fscmRestApi/resources/11.13.18.05/purchaseOrders/{POHeaderId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "POHeaderId": "[REQUIRED] integer: The unique identifier of the purchase order to update.",
+            "NoteToSupplier": "string: Updated note to the supplier.",
+            "PaymentTerms": "string: Updated payment terms code.",
+            "ShipToLocationId": "integer: Updated default ship-to location.",
+            "FreightTermsCode": "string: Updated freight terms.",
+            "Description": "string: Updated description for the PO header."
+        },
+        "functionality": "Updates header-level attributes of an existing purchase order. Line-level changes require updating via the lines child resource.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaseorders-poheaderid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Orders: Submit a Purchase Order for Approval",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/purchaseOrders/{POHeaderId}/action/submit",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "POHeaderId": "[REQUIRED] integer: The unique identifier of the purchase order to submit.",
+            "Comments": "string: Comments to include with the approval submission."
+        },
+        "functionality": "Submits a draft purchase order into the approval workflow.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaseorders-poheaderid-action-submit-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Requisitions: List Purchase Requisitions",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/purchaseRequisitions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports RequisitionNumber, Status, RequesterEmailAddress, CreationDate, OrganizationCode. Example: q=Status='APPROVED'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, attachments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=CreationDate:desc"
+        },
+        "functionality": "Retrieves a list of purchase requisitions. Filter by status, requester, or organization to scope results.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaserequisitions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Purchase Requisitions: Create a Purchase Requisition",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/purchaseRequisitions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "RequisitioningBUId": "[REQUIRED] integer: Identifier of the requisitioning business unit.",
+            "RequesterEmailAddress": "[REQUIRED] string: Email address of the person requesting the items.",
+            "Description": "string: Description or title of the requisition.",
+            "NoteToApprover": "string: Notes included with the approval request.",
+            "lines": "[REQUIRED] array: Array of requisition line objects. Each line requires LineTypeCode, ItemDescription, Quantity, UOMCode, UnitPrice, and CurrencyCode. ItemNumber is optional."
+        },
+        "functionality": "Creates a new purchase requisition for goods or services. Can trigger automatic sourcing into a purchase order upon approval.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-purchaserequisitions-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Suppliers: List Suppliers",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/suppliers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports SupplierName, SupplierNumber, Status, TaxOrganizationType, SetId. Example: q=Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: sites, contacts, bankAccounts, addresses, qualifications",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort field and direction. Example: orderBy=SupplierName:asc"
+        },
+        "functionality": "Retrieves a list of suppliers registered in Oracle Procurement. Supports expanding related resources like sites and contacts.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-suppliers-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Suppliers: Get a Supplier",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/suppliers/{SupplierId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SupplierId": "[REQUIRED] integer: The unique identifier of the supplier.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: sites, contacts, bankAccounts, addresses, qualifications, products",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific supplier including profile, classification, and associated sites.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-suppliers-supplierid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Suppliers: Create a Supplier",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/suppliers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SupplierName": "[REQUIRED] string: Legal name of the supplier.",
+            "SupplierNumber": "string: Unique supplier number. Auto-generated if not provided.",
+            "TaxOrganizationType": "[REQUIRED] string: Tax classification of the supplier. Valid values: INDIVIDUAL, CORPORATION, PARTNERSHIP, GOVERNMENT.",
+            "TaxpayerIdentificationNumber": "string: Tax identification number (TIN or EIN).",
+            "BusinessRelationship": "[REQUIRED] string: Type of relationship. Valid values: Spend Authorized, Prospective.",
+            "SupplierType": "string: Category of supplier. Example: 'Goods', 'Services', 'Both'.",
+            "ParentSupplierId": "integer: Parent supplier identifier for subsidiary relationships.",
+            "OneTimeFlag": "boolean: If true, marks this as a one-time supplier. Default is false.",
+            "HoldFlag": "boolean: If true, places the supplier on procurement hold. Default is false."
+        },
+        "functionality": "Creates a new supplier record in Oracle Procurement. Supplier sites and contacts must be created separately.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-suppliers-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Supplier Sites: List Supplier Sites",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/suppliers/{SupplierId}/child/sites",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SupplierId": "[REQUIRED] integer: The unique identifier of the supplier.",
+            "q": "string: Filter condition. Supports SiteName, Status, PurchasingSiteFlag, PaySiteFlag, PrimarySiteFlag. Example: q=PurchasingSiteFlag='Y'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, bankAccounts",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves all sites associated with a supplier, including purchasing, pay, and RFQ sites.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-suppliers-supplierid-child-sites-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Supplier Sites: Create a Supplier Site",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/suppliers/{SupplierId}/child/sites",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "SupplierId": "[REQUIRED] integer: The unique identifier of the parent supplier.",
+            "SiteName": "[REQUIRED] string: Name of the supplier site.",
+            "ProcurementBUId": "[REQUIRED] integer: Procurement business unit associated with this site.",
+            "AddressLine1": "[REQUIRED] string: First line of the site address.",
+            "AddressLine2": "string: Second line of the site address.",
+            "City": "[REQUIRED] string: City of the site address.",
+            "State": "string: State or province of the site address.",
+            "PostalCode": "[REQUIRED] string: Postal or ZIP code of the site address.",
+            "Country": "[REQUIRED] string: Country code of the site address. Example: 'US'.",
+            "PurchasingSiteFlag": "string: Whether this is a purchasing site. Valid values: Y, N. Default: Y.",
+            "PaySiteFlag": "string: Whether payments are made to this site. Valid values: Y, N. Default: N.",
+            "PrimaryPaySiteFlag": "string: Whether this is the primary payment site. Valid values: Y, N. Default: N.",
+            "PaymentTerms": "string: Payment terms code for this site. Example: 'NET30'.",
+            "CurrencyCode": "string: Currency for transactions with this site. Example: 'USD'."
+        },
+        "functionality": "Creates a new site for an existing supplier, defining the address, payment, and purchasing attributes.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-suppliers-supplierid-child-sites-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Blanket Purchase Agreements: List Agreements",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/blanketPurchaseAgreements",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports DocumentNumber, SupplierId, Status, StartDate, EndDate. Example: q=Status='ACTIVE' and SupplierId=300000001234567",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, controls, attachments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves blanket purchase agreements (BPAs) that establish pricing and terms with suppliers for a period without committing to quantities.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-blanketpurchaseagreements-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Blanket Purchase Agreements: Create a Blanket Purchase Agreement",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/blanketPurchaseAgreements",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProcurementBUId": "[REQUIRED] integer: Procurement business unit identifier.",
+            "SupplierId": "[REQUIRED] integer: Supplier identifier.",
+            "SupplierSiteId": "[REQUIRED] integer: Supplier site identifier.",
+            "BuyerEmailAddress": "[REQUIRED] string: Email of the responsible buyer.",
+            "CurrencyCode": "[REQUIRED] string: Currency code. Example: 'USD'.",
+            "StartDate": "[REQUIRED] string: Effective start date of the agreement. Format: YYYY-MM-DD.",
+            "EndDate": "[REQUIRED] string: Expiration date of the agreement. Format: YYYY-MM-DD.",
+            "AgreementAmount": "number: Total agreed-upon amount ceiling for the BPA.",
+            "PaymentTerms": "string: Payment terms code. Example: 'NET30'.",
+            "NoteToSupplier": "string: Notes sent to the supplier with the agreement.",
+            "lines": "array: Agreement line objects. Each line includes ItemNumber or ItemDescription, UnitPrice, UOMCode, and optionally Quantity."
+        },
+        "functionality": "Creates a new blanket purchase agreement to pre-negotiate pricing and terms with a supplier for future purchase orders.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-blanketpurchaseagreements-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Negotiations: List Negotiations",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/negotiations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports DocumentNumber, Status, NegotiationType, BuyerEmailAddress, CloseDate. Example: q=Status='ACTIVE'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, suppliers, requirements",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves sourcing negotiations (RFQs, auctions, RFIs) created in Oracle Sourcing.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-negotiations-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Invoices: List Payables Invoices",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/invoices",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports InvoiceNumber, SupplierId, Status, InvoiceDate, PONumber, BusinessUnitId. Example: q=Status='Unpaid' and SupplierId=300000001234567",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, payments, holds, attachments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=InvoiceDate:desc"
+        },
+        "functionality": "Retrieves supplier invoices from Oracle Payables. Filter by supplier, status, or purchase order number.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-invoices-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Invoices: Create a Supplier Invoice",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/invoices",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "BusinessUnitName": "[REQUIRED] string: Name of the payables business unit.",
+            "SupplierId": "[REQUIRED] integer: Supplier identifier.",
+            "SupplierSiteId": "[REQUIRED] integer: Supplier site identifier.",
+            "InvoiceNumber": "[REQUIRED] string: Supplier's invoice number.",
+            "InvoiceDate": "[REQUIRED] string: Date of the invoice. Format: YYYY-MM-DD.",
+            "InvoiceCurrencyCode": "[REQUIRED] string: Currency code of the invoice. Example: 'USD'.",
+            "InvoiceAmount": "[REQUIRED] number: Total invoice amount.",
+            "InvoiceType": "[REQUIRED] string: Type of invoice. Valid values: Standard, Credit, Debit, Prepayment.",
+            "PaymentTerms": "string: Payment terms code. Example: 'NET30'.",
+            "Description": "string: Description of the invoice.",
+            "lines": "[REQUIRED] array: Invoice lines. Each line requires LineNumber, LineType, Amount, and either POHeaderId+POLineId for PO-matched lines or AccountingDate and ChargeAccountId for non-PO lines."
+        },
+        "functionality": "Creates a supplier invoice in Oracle Payables. Supports PO-matched and non-PO invoice lines.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-invoices-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Invoices: Validate and Submit an Invoice for Payment",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/invoices/{InvoiceId}/action/validate",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "InvoiceId": "[REQUIRED] integer: The unique identifier of the invoice to validate.",
+            "AccountingDate": "string: Accounting date to use during validation. Format: YYYY-MM-DD. Defaults to system date.",
+            "CreateAccounting": "boolean: If true, creates accounting entries during validation. Default is false."
+        },
+        "functionality": "Validates an invoice to check for holds and errors, making it eligible for payment processing.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-invoices-invoiceid-action-validate-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Invoice Holds: List Invoice Holds",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/invoices/{InvoiceId}/child/holds",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "InvoiceId": "[REQUIRED] integer: The unique identifier of the invoice.",
+            "q": "string: Filter condition. Supports HoldName, HeldBy, HoldDate, ReleaseName. Example: q=ReleaseName is null to retrieve unreleased holds.",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves holds placed on a supplier invoice that are preventing payment processing.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-invoices-invoiceid-child-holds-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Payments: List Payments",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/payments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PaymentNumber, SupplierId, Status, PaymentDate, PaymentMethodCode, BusinessUnitId. Example: q=Status='Negotiable' and PaymentDate >= '2024-01-01'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: invoices, attachments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves supplier payment records from Oracle Payables. Supports filtering by supplier, payment date, and status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-payments-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Spending Categories: List Spending Categories",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/spendingCategories",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports CategoryName, CategoryCode, Status, SetId. Example: q=Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves procurement spending categories used to classify purchased goods and services for spend analysis.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-spendingcategories-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Procurement Agents: List Procurement Agents",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/procurementAgents",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports AgentName, EmailAddress, ProcurementBUId, ActiveStatus. Example: q=ActiveStatus='Y'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: businessUnits, categories",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves procurement agents (buyers) and their associated business units and category assignments.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-procurementagents-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Approved Supplier Lists: List Approved Suppliers",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/approvedSupplierLists",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ItemId, ItemNumber, SupplierId, SupplierSiteId, Status, OrganizationCode. Example: q=ItemNumber='AS18947' and Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: qualifications",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "effectiveDate": "string: Date for which ASL records are effective. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves the Approved Supplier List (ASL) entries defining which suppliers are authorized to supply specific items.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-approvedsupplierlists-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Procurement Cloud - Supplier Qualifications: Get Supplier Qualification",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/supplierQualifications/{QualificationId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "QualificationId": "[REQUIRED] integer: The unique identifier of the supplier qualification record.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: responses, assessments",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves details of a specific supplier qualification, including questionnaire responses and assessor evaluations.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/procurement/24d/fapra/op-supplierqualifications-qualificationid-get.html"
+        }
+    }
+]
