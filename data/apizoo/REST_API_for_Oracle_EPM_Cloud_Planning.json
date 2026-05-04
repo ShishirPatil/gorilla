@@ -1,0 +1,310 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Applications: List Planning Applications",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "offset": "integer: Starting position in the result set. Default is 0.",
+            "limit": "integer: Maximum number of applications to return. Default is 25.",
+            "fields": "string: Comma-separated list of fields to return."
+        },
+        "functionality": "Retrieves a list of Planning applications available in the Oracle EPM Cloud environment.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Dimensions: List Dimensions",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/dimensions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "planType": "string: Plan type to filter dimensions. Example: 'Plan1', 'Plan2', 'Workforce'.",
+            "fields": "string: Comma-separated list of fields to return."
+        },
+        "functionality": "Retrieves all dimensions defined in a Planning application, such as Account, Entity, Period, Scenario, and Version.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-dimensions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Members: List Dimension Members",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/dimensions/{dimension}/members",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "dimension": "[REQUIRED] string: Name of the dimension. Example: 'Account', 'Entity', 'Period'.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum members to return. Default is 50.",
+            "fields": "string: Comma-separated fields to return. Example: 'memberName,alias,parentName,level'.",
+            "q": "string: Filter expression. Example: q=memberName:contains:Total to filter members containing 'Total'."
+        },
+        "functionality": "Retrieves members of a specific dimension in a Planning application. Useful for listing accounts, entities, or periods.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-dimensions-dimension-members-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Members: Get a Member",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/dimensions/{dimension}/members/{memberName}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "dimension": "[REQUIRED] string: Name of the dimension.",
+            "memberName": "[REQUIRED] string: Name of the member to retrieve.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves properties of a specific dimension member including alias, parent, level, UDA, and custom attributes.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-dimensions-dimension-members-membername-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Members: Add a Member",
+        "api_call": "POST /HyperionPlanning/rest/v3/applications/{application}/dimensions/{dimension}/members",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "dimension": "[REQUIRED] string: Name of the dimension.",
+            "memberName": "[REQUIRED] string: Name of the new member to add.",
+            "parentName": "[REQUIRED] string: Name of the parent member under which this member is added.",
+            "alias": "string: Alias label for the member.",
+            "dataStorage": "string: Data storage type. Valid values: Store, NeverShare, SharedMember, DynamicCalc, DynamicCalcAndStore, LabelOnly.",
+            "aggregation": "string: Aggregation operator. Valid values: +, -, *, /, %, ~, None.",
+            "twoPassCalc": "boolean: If true, enables two-pass calculation for the member.",
+            "smartList": "string: Name of the smart list to associate with the member.",
+            "dataType": "string: Data type. Valid values: Currency, NonCurrency, Percentage, SmartList, Date, Text."
+        },
+        "functionality": "Adds a new member to a dimension in a Planning application.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-dimensions-dimension-members-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Data: Export Data to File",
+        "api_call": "POST /HyperionPlanning/rest/v3/applications/{application}/exportdatafromplan",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "planType": "[REQUIRED] string: Plan type from which to export data. Example: 'Plan1'.",
+            "scenario": "[REQUIRED] string: Scenario member name. Example: 'Actual', 'Budget'.",
+            "version": "[REQUIRED] string: Version member name. Example: 'Working', 'Final'.",
+            "entity": "string: Entity member or range. Example: 'Total Entity' or 'E001'.",
+            "account": "string: Account member or range.",
+            "period": "string: Period range. Example: 'Jan-Jun'.",
+            "fileName": "[REQUIRED] string: Name of the output file to store exported data in the Planning inbox.",
+            "columnMembers": "string: Comma-separated list of dimension members to use as columns.",
+            "rowMembers": "string: Comma-separated list of dimension members to use as rows."
+        },
+        "functionality": "Exports Planning data for a specified slice (scenario, version, entity, period) to a file in the EPM Cloud inbox.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-exportdatafromplan-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Data: Import Data from File",
+        "api_call": "POST /HyperionPlanning/rest/v3/applications/{application}/importdatafromfile",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "fileName": "[REQUIRED] string: Name of the file in the Planning inbox to import.",
+            "planType": "[REQUIRED] string: Target plan type for the import.",
+            "clearData": "boolean: If true, clears existing data in the target slice before importing. Default is false.",
+            "abortOnError": "boolean: If true, aborts the import if any data errors are encountered. Default is true."
+        },
+        "functionality": "Imports data from a file in the EPM Cloud inbox into a Planning application. The file must follow the Planning data load format.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-importdatafromfile-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Business Rules: List Business Rules",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/rules",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "planType": "string: Filter rules by plan type.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum rules to return. Default is 50.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves all business rules (calculation scripts) defined in a Planning application.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-rules-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Business Rules: Launch a Business Rule",
+        "api_call": "POST /HyperionPlanning/rest/v3/applications/{application}/rules/{ruleName}/launch",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "ruleName": "[REQUIRED] string: Name of the business rule to launch.",
+            "planType": "[REQUIRED] string: Plan type context for the rule execution.",
+            "runtimePrompts": "array: Array of runtime prompt objects required by the rule. Each object contains promptName and promptValue. Example: [{\"promptName\": \"Scenario\", \"promptValue\": \"Budget\"}, {\"promptName\": \"Version\", \"promptValue\": \"Working\"}]"
+        },
+        "functionality": "Launches a Planning business rule (Essbase calculation script) with optional runtime prompt values.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-rules-rulename-launch-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Task Lists: List Task Lists",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/tasklists",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum task lists to return.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves task lists used to guide users through the Planning process, such as budget submission workflows.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-tasklists-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Approval Units: List Approval Units",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/approvalunits",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "scenario": "[REQUIRED] string: Scenario name. Example: 'Budget'.",
+            "version": "[REQUIRED] string: Version name. Example: 'Working'.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum approval units to return.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves approval units (entity-scenario-version combinations) and their current approval status in the Planning workflow.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-approvalunits-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Approval Units: Change Approval Status",
+        "api_call": "POST /HyperionPlanning/rest/v3/applications/{application}/approvalunits/action/changeStatus",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "scenario": "[REQUIRED] string: Scenario name.",
+            "version": "[REQUIRED] string: Version name.",
+            "entity": "[REQUIRED] string: Entity member name.",
+            "action": "[REQUIRED] string: Approval action to perform. Valid values: Promote, Approve, Reject, SignOff, Exclude.",
+            "comments": "string: Comments accompanying the approval action.",
+            "notifyUsers": "boolean: If true, sends notifications to affected users. Default is true."
+        },
+        "functionality": "Promotes, approves, or rejects a Planning approval unit in the budget approval workflow.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-approvalunits-action-changestatus-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Jobs: List EPM Jobs",
+        "api_call": "GET /HyperionPlanning/rest/v3/jobs",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "jobType": "string: Filter by job type. Valid values: Rules, Ruleset, Plan, ImportData, ExportData, ClearData, ImportMetadata, ExportMetadata, Refresh.",
+            "status": "string: Filter by job status. Valid values: Processing, Completed, Failed, Cancelled.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum jobs to return. Default is 25.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves the job history and status of EPM Cloud Planning jobs such as rule launches and data imports.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-jobs-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Scenarios: List Scenarios",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/dimensions/Scenario/members",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "fields": "string: Comma-separated fields to return. Example: 'memberName,alias,startYear,startPeriod,endYear,endPeriod'.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum scenarios to return."
+        },
+        "functionality": "Retrieves all scenario members (e.g., Actual, Budget, Forecast) defined in the Planning application along with their time range properties.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-dimensions-dimension-members-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Substitution Variables: List Substitution Variables",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/substitutionvariables",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "planType": "string: Filter variables by plan type.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves substitution variables and their current values. Variables like CurMonth and CurYear are used in forms and rules to represent dynamic time periods.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-substitutionvariables-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Substitution Variables: Update a Substitution Variable",
+        "api_call": "PUT /HyperionPlanning/rest/v3/applications/{application}/substitutionvariables/{variableName}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "variableName": "[REQUIRED] string: Name of the substitution variable to update. Example: 'CurMonth'.",
+            "planType": "string: Plan type scope for the variable. Omit for global scope.",
+            "value": "[REQUIRED] string: New value for the variable. Example: 'Jun'."
+        },
+        "functionality": "Updates the value of a substitution variable, typically used to advance the current planning period at month-end.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-substitutionvariables-variablename-put.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Data Forms: List Forms",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/forms",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "planType": "string: Filter forms by plan type.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum forms to return.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves data entry forms defined in a Planning application, used by budget holders to enter or review data.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-forms-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle EPM Cloud Planning - Users: List Application Users",
+        "api_call": "GET /HyperionPlanning/rest/v3/applications/{application}/users",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "application": "[REQUIRED] string: Name of the Planning application.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum users to return.",
+            "fields": "string: Comma-separated fields to return."
+        },
+        "functionality": "Retrieves users who have access to a specific Planning application along with their assigned roles.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/op-HyperionPlanning-rest-v3-applications-application-users-get.html"
+        }
+    }
+]

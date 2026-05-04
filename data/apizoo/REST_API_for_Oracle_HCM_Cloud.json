@@ -1,0 +1,495 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Workers: List Workers",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Query condition to filter workers. Supports standard Oracle REST query syntax. Example: q=PersonNumber='12345' or q=BusinessTitle like 'Manager%'",
+            "fields": "string: Comma-separated list of fields to return. Example: fields=PersonId,PersonNumber,DisplayName,PrimaryEmailAddress",
+            "expand": "string: Comma-separated list of child resources to include in the response. Valid values: assignments, emails, phones, addresses, names, visas, citizenships, legislativeInfo",
+            "onlyData": "boolean: If true, suppresses links in the response payload.",
+            "offset": "integer: Starting position in the result set. Default is 0.",
+            "limit": "integer: Maximum number of records to return. Default is 25, maximum is 500.",
+            "totalResults": "boolean: If true, includes a count of total matching records in the response.",
+            "orderBy": "string: Field to sort results by. Example: orderBy=PersonNumber:asc"
+        },
+        "functionality": "Retrieves a list of workers. Supports filtering by query parameters and expanding related resources like assignments and contact details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Workers: Get a Worker",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers/{PersonId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the person (worker).",
+            "fields": "string: Comma-separated list of fields to include in the response.",
+            "expand": "string: Comma-separated child resources to include. Valid values: assignments, emails, phones, addresses, names, visas, citizenships, legislativeInfo, workRelationships",
+            "onlyData": "boolean: If true, suppresses links in the response payload."
+        },
+        "functionality": "Retrieves details of a specific worker by PersonId, including personal information and optionally expanded related resources.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Workers: Get Worker Assignments",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers/{PersonId}/child/workRelationships/{WorkerNumber}/child/assignments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the person.",
+            "WorkerNumber": "[REQUIRED] string: The worker number identifying the work relationship.",
+            "effectiveDate": "string: Date for which assignment details are retrieved. Format: YYYY-MM-DD. Defaults to current date.",
+            "fields": "string: Comma-separated list of fields to include in the response.",
+            "expand": "string: Child resources to expand. Valid values: gradeLadders, workMeasures, managers",
+            "onlyData": "boolean: If true, suppresses links in the response payload."
+        },
+        "functionality": "Retrieves all assignments for a worker under a specific work relationship, including job, grade, position, department, and location details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-child-workrelationships-workernumber-child-assignments-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Workers: Create a Worker",
+        "api_call": "POST /hcmRestApi/resources/11.13.18.05/workers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LastName": "[REQUIRED] string: Last name of the worker.",
+            "FirstName": "string: First name of the worker.",
+            "DateOfBirth": "string: Date of birth of the worker. Format: YYYY-MM-DD.",
+            "LegislationCode": "[REQUIRED] string: Legislation code of the country. Example: US",
+            "PersonNumber": "string: Unique person number. If not provided, system generates one.",
+            "StartDate": "[REQUIRED] string: Employment start date. Format: YYYY-MM-DD.",
+            "WorkerType": "[REQUIRED] string: Type of worker. Valid values: E (Employee), C (Contingent Worker).",
+            "BusinessUnitId": "[REQUIRED] integer: Identifier of the business unit the worker belongs to.",
+            "LegalEntityId": "[REQUIRED] integer: Identifier of the legal entity.",
+            "JobId": "integer: Identifier of the job associated with the assignment.",
+            "DepartmentId": "integer: Identifier of the department.",
+            "LocationId": "integer: Identifier of the work location.",
+            "GradeId": "integer: Identifier of the grade.",
+            "ReportsTo": "integer: PersonId of the manager this worker reports to."
+        },
+        "functionality": "Creates a new worker record including personal information and initial employment details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Workers: Update a Worker",
+        "api_call": "PATCH /hcmRestApi/resources/11.13.18.05/workers/{PersonId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the person to update.",
+            "DateOfBirth": "string: Updated date of birth. Format: YYYY-MM-DD.",
+            "BloodType": "string: Blood type of the worker.",
+            "MaritalStatus": "string: Marital status. Valid values: M (Married), S (Single), D (Divorced), W (Widowed).",
+            "MaritalStatusDate": "string: Date of marital status change. Format: YYYY-MM-DD."
+        },
+        "functionality": "Updates personal information of an existing worker. Assignment and employment data require updating through work relationship and assignment child resources.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Absences: List Absence Records",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/absences",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Example: q=PersonNumber='100020' to retrieve absences for a specific employee.",
+            "fields": "string: Comma-separated fields to include in the response.",
+            "expand": "string: Child resources to expand. Valid value: absenceDates",
+            "offset": "integer: Starting record position. Default is 0.",
+            "limit": "integer: Number of records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns the total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links from the response."
+        },
+        "functionality": "Retrieves a list of absence records across all employees. Filter using the q parameter to scope to a specific employee or date range.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-absences-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Absences: Create an Absence",
+        "api_call": "POST /hcmRestApi/resources/11.13.18.05/absences",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonNumber": "[REQUIRED] string: Employee person number for whom the absence is being created.",
+            "AbsenceTypeId": "[REQUIRED] integer: Identifier of the absence type (e.g., Annual Leave, Sick Leave).",
+            "StartDate": "[REQUIRED] string: Start date of the absence. Format: YYYY-MM-DD.",
+            "EndDate": "string: End date of the absence. Format: YYYY-MM-DD. Required if absence type does not support open-ended absences.",
+            "StartDateDuration": "number: Duration of the first day. Use when partial days are applicable (e.g., 0.5 for half day).",
+            "EndDateDuration": "number: Duration of the last day. Use when partial days are applicable.",
+            "Approved": "boolean: If true, marks the absence as approved directly. Requires appropriate privileges.",
+            "Comments": "string: Optional comments or reason for the absence."
+        },
+        "functionality": "Creates a new absence record for an employee. Supports full-day and partial-day absences.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-absences-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Absences: Delete an Absence",
+        "api_call": "DELETE /hcmRestApi/resources/11.13.18.05/absences/{AbsenceEntryId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AbsenceEntryId": "[REQUIRED] integer: The unique identifier of the absence record to delete."
+        },
+        "functionality": "Deletes an existing absence record. The absence must be in a status that allows deletion (e.g., not already approved or processed in payroll).",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-absences-absenceentryid-delete.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Jobs: List Jobs",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/jobs",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition for jobs. Supports filtering by JobCode, Name, JobFamilyId, ActiveStatus. Example: q=ActiveStatus='A'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: grades, evaluationCriteria",
+            "offset": "integer: Starting record position. Default is 0.",
+            "limit": "integer: Number of records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: Suppresses HATEOAS links if true.",
+            "effectiveDate": "string: Effective date for date-effective records. Format: YYYY-MM-DD."
+        },
+        "functionality": "Retrieves a list of job definitions. Jobs define the role and responsibilities associated with a position or assignment.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-jobs-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Positions: List Positions",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/positions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PositionCode, Name, DepartmentId, LocationId, JobId, ActiveStatus. Example: q=ActiveStatus='A' and DepartmentId=300000001234567",
+            "fields": "string: Comma-separated fields to include in the response.",
+            "expand": "string: Child resources to expand. Valid values: incumbents, evaluationCriteria",
+            "offset": "integer: Starting position in result set. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count in response.",
+            "effectiveDate": "string: Date for which position data is retrieved. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves a list of positions. Positions are specific instances of a job within an organization structure, optionally tied to a department and location.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-positions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Departments: List Departments",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/departments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition for departments. Supports Name, DepartmentId, OrganizationId, EffectiveStartDate, Status. Example: q=Status='A'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand.",
+            "offset": "integer: Starting record offset. Default is 0.",
+            "limit": "integer: Number of records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count of matching records.",
+            "effectiveDate": "string: Effective date for date-tracked department data. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links from the response."
+        },
+        "functionality": "Retrieves a list of departments in the organization hierarchy.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-departments-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Grades: List Grades",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/grades",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports GradeCode, Name, SetId, ActiveStatus. Example: q=ActiveStatus='A'",
+            "fields": "string: Comma-separated fields to return in the response.",
+            "expand": "string: Child resources to expand. Valid value: gradeSteps",
+            "offset": "integer: Starting position in result set. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count of records.",
+            "effectiveDate": "string: Effective date for date-effective grade data. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: Suppresses HATEOAS links if true."
+        },
+        "functionality": "Retrieves a list of grades used in compensation and assignment structures.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-grades-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Locations: List Locations",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/locations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LocationCode, LocationName, ActiveStatus, Country. Example: q=Country='US' and ActiveStatus='A'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "effectiveDate": "string: Effective date for location data. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves a list of work locations, including address and geographic details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-locations-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Person Email Addresses: Get Worker Emails",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers/{PersonId}/child/emails",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the worker.",
+            "q": "string: Filter condition. Example: q=EmailType='W1' to retrieve work emails only.",
+            "fields": "string: Comma-separated list of fields to return.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "offset": "integer: Starting offset. Default is 0.",
+            "limit": "integer: Maximum records to return."
+        },
+        "functionality": "Retrieves all email addresses associated with a worker. Supports filtering by email type (e.g., work, personal).",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-child-emails-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Person Phone Numbers: Get Worker Phones",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers/{PersonId}/child/phones",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the worker.",
+            "q": "string: Filter condition. Example: q=PhoneType='W1' to retrieve work phones only.",
+            "fields": "string: Comma-separated list of fields to return.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "offset": "integer: Starting offset. Default is 0.",
+            "limit": "integer: Maximum records to return."
+        },
+        "functionality": "Retrieves all phone numbers associated with a worker, including work, mobile, and home numbers.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-child-phones-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Payroll Elements: List Payroll Elements",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/payrollElements",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ElementName, ElementClassification, LegislativeDataGroupId, ProcessingType. Example: q=ElementClassification='Earnings'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: inputValues, eligibilityRules",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "effectiveDate": "string: Effective date for element data. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves payroll elements such as earnings, deductions, and benefits used in payroll processing.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-payrollelements-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Element Entries: List Element Entries for a Worker",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/elementEntries",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PersonId, AssignmentId, ElementName, EntryType, EffectiveStartDate. Example: q=PersonId=300000001234567",
+            "fields": "string: Comma-separated fields to include in the response.",
+            "expand": "string: Child resources to expand. Valid value: entryValues",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "effectiveDate": "string: Effective date for date-effective element entries. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves element entries (earnings, deductions, benefits) assigned to a worker's payroll. Filter by PersonId or AssignmentId to scope results.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-elemententries-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Element Entries: Create an Element Entry",
+        "api_call": "POST /hcmRestApi/resources/11.13.18.05/elementEntries",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssignmentId": "[REQUIRED] integer: The assignment identifier for the worker.",
+            "ElementId": "[REQUIRED] integer: Identifier of the payroll element to attach.",
+            "EntryType": "[REQUIRED] string: Type of element entry. Valid values: E (Recurring), A (Additional), S (Override), D (Additive).",
+            "EffectiveStartDate": "[REQUIRED] string: Start date of the element entry. Format: YYYY-MM-DD.",
+            "EffectiveEndDate": "string: End date of the element entry. Format: YYYY-MM-DD. Defaults to end of time if not provided.",
+            "entryValues": "array: Input values for the element entry. Each object contains InputValueId and ScreenEntryValue. Example: [{\"InputValueId\": 300000001, \"ScreenEntryValue\": \"5000\"}]"
+        },
+        "functionality": "Creates a new element entry to assign a payroll element (such as a bonus, deduction, or benefit) to a worker's assignment.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-elemententries-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Person Legislative Data: Get Legislative Information",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/workers/{PersonId}/child/legislativeInfo",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the worker.",
+            "fields": "string: Comma-separated list of fields to include in the response.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "effectiveDate": "string: Effective date for legislative data. Format: YYYY-MM-DD."
+        },
+        "functionality": "Retrieves country-specific legislative information for a worker, such as tax identification, social security number, and statutory details based on the worker's legislation code.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-child-legislativeinfo-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Work Relationships: Terminate a Work Relationship",
+        "api_call": "PATCH /hcmRestApi/resources/11.13.18.05/workers/{PersonId}/child/workRelationships/{WorkerNumber}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PersonId": "[REQUIRED] integer: The unique identifier of the person.",
+            "WorkerNumber": "[REQUIRED] string: The worker number identifying the specific work relationship.",
+            "TerminationType": "[REQUIRED] string: Reason for termination. Lookup type: TERMINATION_REASON. Example: 'RESIGNATION', 'INVOLUNTARY'.",
+            "ActualTerminationDate": "[REQUIRED] string: Date on which the employment terminates. Format: YYYY-MM-DD.",
+            "LastWorkingDate": "string: Last date the worker is physically at work. Format: YYYY-MM-DD. Defaults to ActualTerminationDate if not provided.",
+            "NotifiedTerminationDate": "string: Date the termination was communicated. Format: YYYY-MM-DD.",
+            "Comments": "string: Additional comments or notes about the termination.",
+            "RehireRecommendation": "string: Rehire eligibility. Valid values: Y (Yes), N (No)."
+        },
+        "functionality": "Terminates an employee's work relationship by recording the termination reason, date, and related details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-workers-personid-child-workrelationships-workernumber-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Performance Documents: List Performance Documents",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/performanceDocuments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PersonId, PerformancePeriodId, Status, TemplateId. Example: q=PersonId=300000001234567 and Status='IN_PROGRESS'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: goals, feedbackRequests, ratings",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves performance documents for employees. Filter by person and performance period to retrieve specific review cycles.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-performancedocuments-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Goals: List Worker Goals",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/goals",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PersonId, GoalPlanId, Status, GoalType. Example: q=PersonId=300000001234567 and Status='ACTIVE'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: keyResults, targetOutcomes",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves performance goals assigned to workers. Filter by person, goal plan, or status to narrow results.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-goals-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Learning Records: List Worker Learning Records",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/learningRecords",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LearnerPersonId, CourseId, OfferingId, Status, CompletionDate. Example: q=LearnerPersonId=300000001234567",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves learning enrollment and completion records for workers. Used to track training compliance and course completions.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-learningrecords-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Requisitions: List Job Requisitions",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/requisitions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports RequisitionId, Title, Status, RecruitingTypeCode, BusinessUnitId. Example: q=Status='OPEN'",
+            "fields": "string: Comma-separated fields to include in the response.",
+            "expand": "string: Child resources to expand. Valid values: hiringTeam, jobApplications",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves job requisitions created in Oracle Recruiting Cloud. Use Status filter to list open, closed, or draft requisitions.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-requisitions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Job Applications: List Applications for a Requisition",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/requisitions/{RequisitionId}/child/jobApplications",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "RequisitionId": "[REQUIRED] integer: The unique identifier of the job requisition.",
+            "q": "string: Filter condition. Supports Status, CandidateId, Phase. Example: q=Phase='OFFER'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: candidate, offers, interviews",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves all job applications submitted for a specific requisition, including candidate details and current phase.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-requisitions-requisitionid-child-jobapplications-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle HCM Cloud - Compensation Plans: List Compensation Plans",
+        "api_call": "GET /hcmRestApi/resources/11.13.18.05/compensationPlans",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports PlanName, Status, PlanType. Example: q=Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: components, eligibilityRules",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "effectiveDate": "string: Effective date for date-effective plan data. Format: YYYY-MM-DD.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves compensation plans defined in Oracle Compensation Cloud, including salary, bonus, and stock plans.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-compensationplans-get.html"
+        }
+    }
+]

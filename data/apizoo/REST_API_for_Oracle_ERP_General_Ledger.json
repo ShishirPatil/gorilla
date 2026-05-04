@@ -1,0 +1,269 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Journal Entries: List Journal Entries",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/journalEntries",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports JournalName, Status, LedgerId, PeriodName, Source, Category, CreatedBy, BatchName. Example: q=PeriodName='Apr-24' and Status='Posted'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, attachments, approvals",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=CreationDate:desc"
+        },
+        "functionality": "Retrieves journal entries across accounting periods. Filter by ledger, period, source, or posting status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-journalentries-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Journal Entries: Get a Journal Entry",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/journalEntries/{JournalHeaderId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "JournalHeaderId": "[REQUIRED] integer: The unique identifier of the journal entry header.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, attachments, approvals",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a journal entry including all debit and credit lines with account segment values.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-journalentries-journalheaderid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Journal Entries: Create a Journal Entry",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/journalEntries",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LedgerId": "[REQUIRED] integer: Ledger identifier.",
+            "JournalName": "[REQUIRED] string: Name of the journal entry.",
+            "PeriodName": "[REQUIRED] string: Accounting period. Example: 'Apr-24'.",
+            "JournalSource": "[REQUIRED] string: Journal source name. Example: 'Manual'.",
+            "JournalCategory": "[REQUIRED] string: Journal category. Example: 'Accrual', 'Reclass'.",
+            "AccountingDate": "[REQUIRED] string: Accounting date for the journal. Format: YYYY-MM-DD.",
+            "CurrencyCode": "[REQUIRED] string: Currency of the journal. Example: 'USD'.",
+            "Description": "string: Description of the journal entry.",
+            "ReferenceDate": "string: Optional reference date. Format: YYYY-MM-DD.",
+            "lines": "[REQUIRED] array: Journal lines array. Each line requires AccountCombination (segment string like '01.000.1200.000'), EnteredDebit or EnteredCredit amount, and optionally Description and TaxCode."
+        },
+        "functionality": "Creates a journal entry with debit and credit lines for a specified ledger and accounting period.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-journalentries-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Journal Entries: Post a Journal Entry",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/journalEntries/{JournalHeaderId}/action/post",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "JournalHeaderId": "[REQUIRED] integer: The unique identifier of the journal entry to post."
+        },
+        "functionality": "Posts an approved journal entry to the general ledger, updating account balances.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-journalentries-journalheaderid-action-post-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Journal Entries: Reverse a Journal Entry",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/journalEntries/{JournalHeaderId}/action/reverse",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "JournalHeaderId": "[REQUIRED] integer: The unique identifier of the journal entry to reverse.",
+            "ReversalPeriodName": "[REQUIRED] string: Accounting period in which to post the reversal. Example: 'May-24'.",
+            "ReversalDate": "string: Accounting date for the reversal. Format: YYYY-MM-DD. Defaults to first day of the reversal period.",
+            "ReversalMethod": "string: Reversal method. Valid values: SWITCH_DR_CR (switch debits and credits), CHANGE_SIGN (change sign of amounts). Default: SWITCH_DR_CR."
+        },
+        "functionality": "Creates and posts a reversal of a previously posted journal entry in a specified period.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-journalentries-journalheaderid-action-reverse-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Account Balances: Get Account Balances",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/ledgerBalances",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LedgerId, PeriodName, AccountCombination, CurrencyCode, BalanceType. Example: q=LedgerId=300000001234567 and PeriodName='Apr-24' and BalanceType='PTD'",
+            "fields": "string: Comma-separated fields to return. Example: 'AccountCombination,PeriodName,PeriodToDateDebit,PeriodToDateCredit,PeriodToDateBalance'",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves general ledger account balances for a specific period and ledger. Supports period-to-date, quarter-to-date, and year-to-date balance types.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-ledgerbalances-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Ledgers: List Ledgers",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/ledgers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LedgerName, LedgerShortName, CurrencyCode, PeriodSetName, Status. Example: q=Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves ledgers defined in Oracle Financials, including primary and secondary ledgers with their chart of accounts and calendar.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-ledgers-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Accounting Periods: List Accounting Periods",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/accountingPeriods",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LedgerId, PeriodName, PeriodStatus, StartDate, EndDate. Example: q=LedgerId=300000001234567 and PeriodStatus='Open'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves accounting periods and their current status (Open, Closed, Future Enterable) for a ledger.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-accountingperiods-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Accounting Periods: Open or Close a Period",
+        "api_call": "PATCH /fscmRestApi/resources/11.13.18.05/accountingPeriods/{PeriodId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PeriodId": "[REQUIRED] integer: The unique identifier of the accounting period.",
+            "PeriodStatus": "[REQUIRED] string: Target status for the period. Valid values: Open, Closed, Permanently Closed."
+        },
+        "functionality": "Opens or closes an accounting period for a ledger. Closing a period prevents further journal entry posting.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-accountingperiods-periodid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Chart of Accounts: List Account Combinations",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/accountCombinations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LedgerId, Company, CostCenter, Account, SubAccount, Product, Enabled. Example: q=Company='01' and Account='1200' and Enabled='Y'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves valid account combinations from the chart of accounts. Use this to look up active GL code combinations before creating journal lines.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-accountcombinations-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Account Combinations: Create an Account Combination",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/accountCombinations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LedgerId": "[REQUIRED] integer: Ledger identifier.",
+            "Company": "[REQUIRED] string: Company segment value.",
+            "CostCenter": "[REQUIRED] string: Cost center segment value.",
+            "Account": "[REQUIRED] string: Natural account segment value.",
+            "SubAccount": "string: Sub-account segment value.",
+            "Product": "string: Product segment value.",
+            "IntercompanySegment": "string: Intercompany segment value.",
+            "FutureSegment": "string: Future use segment value.",
+            "StartDateActive": "string: Date from which the combination is active. Format: YYYY-MM-DD.",
+            "EndDateActive": "string: Date after which the combination is inactive. Format: YYYY-MM-DD.",
+            "Enabled": "string: Whether the combination is enabled. Valid values: Y, N. Default: Y."
+        },
+        "functionality": "Creates a new account combination in the chart of accounts for use in journal entries and distributions.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-accountcombinations-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Budget Journals: Create a Budget Journal",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/budgetJournals",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LedgerId": "[REQUIRED] integer: Ledger identifier.",
+            "BudgetVersionId": "[REQUIRED] integer: Budget version identifier.",
+            "PeriodName": "[REQUIRED] string: Accounting period for the budget amount. Example: 'Apr-24'.",
+            "AccountCombination": "[REQUIRED] string: Full account segment string. Example: '01.000.5100.000'.",
+            "BudgetAmount": "[REQUIRED] number: Budget amount to load. Use positive for increase, negative for decrease.",
+            "CurrencyCode": "[REQUIRED] string: Currency code for the budget amount. Example: 'USD'.",
+            "BudgetEntryType": "string: How to apply the budget. Valid values: ENTERED (add to existing), BALANCE (replace existing). Default: ENTERED."
+        },
+        "functionality": "Creates a budget journal to load or adjust budget amounts for a specific account and period.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-budgetjournals-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Financial Reports: Run a Financial Report",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/financialReports/{ReportId}/action/run",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ReportId": "[REQUIRED] integer: Identifier of the Financial Reporting (FR) report to run.",
+            "LedgerId": "[REQUIRED] integer: Ledger for which to run the report.",
+            "PeriodName": "[REQUIRED] string: Accounting period. Example: 'Apr-24'.",
+            "OutputFormat": "string: Output format. Valid values: PDF, EXCEL, HTML. Default: PDF.",
+            "PointOfView": "array: Array of POV dimension-member pairs to override default POV values. Example: [{\"dimension\": \"Scenario\", \"member\": \"Budget\"}]"
+        },
+        "functionality": "Runs a Financial Reporting report and returns the output in the specified format.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-financialreports-reportid-action-run-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Intercompany Transactions: List Intercompany Transactions",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/intercompanyTransactions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports TransactionNumber, Status, InitiatingLedgerId, RecipientLedgerId, TransactionDate, BatchId. Example: q=Status='APPROVED'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, approvals",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves intercompany transactions between legal entities, used to eliminate intercompany balances in consolidation.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-intercompanytransactions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP General Ledger - Allocations: Run Allocation Rule",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/allocationRules/{AllocationRuleId}/action/run",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AllocationRuleId": "[REQUIRED] integer: Identifier of the allocation rule to run.",
+            "PeriodName": "[REQUIRED] string: Period for which to run the allocation. Example: 'Apr-24'.",
+            "LedgerId": "[REQUIRED] integer: Ledger for which to run the allocation.",
+            "RunMode": "string: Run mode. Valid values: DRAFT (preview without posting), FINAL (post allocation entries). Default: DRAFT."
+        },
+        "functionality": "Runs an allocation rule to distribute costs or revenue from a source account to target accounts based on predefined allocation methods.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-allocationrules-allocationruleid-action-run-post.html"
+        }
+    }
+]

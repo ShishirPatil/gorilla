@@ -1,0 +1,260 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Assets: List Fixed Assets",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/assets",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports AssetNumber, AssetDescription, BookTypeCode, AssetCategoryId, AssetType, LifecycleState, MajorCategory. Example: q=BookTypeCode='OPS CORP' and LifecycleState='ACTIVE'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: books, assignments, depreciation, invoices",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=AssetNumber:asc"
+        },
+        "functionality": "Retrieves a list of fixed assets across all asset books. Filter by book, category, or lifecycle state.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assets-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Assets: Get a Fixed Asset",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/assets/{AssetId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetId": "[REQUIRED] integer: The unique identifier of the fixed asset.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: books, assignments, invoices, retirements, revaluations",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific fixed asset including financial book information, location assignments, and depreciation details.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assets-assetid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Assets: Add a Fixed Asset",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/assets",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetDescription": "[REQUIRED] string: Description of the asset.",
+            "AssetNumber": "string: Asset number. Auto-generated if not provided.",
+            "AssetType": "[REQUIRED] string: Type of asset. Valid values: CAPITALIZED, EXPENSED, CIP (Construction in Progress).",
+            "AssetCategoryId": "[REQUIRED] integer: Asset category identifier.",
+            "DatePlacedInService": "[REQUIRED] string: Date the asset was placed into service. Format: YYYY-MM-DD.",
+            "BookTypeCode": "[REQUIRED] string: Name of the asset book. Example: 'OPS CORP'.",
+            "Cost": "[REQUIRED] number: Original cost of the asset.",
+            "CurrencyCode": "[REQUIRED] string: Currency of the asset cost. Example: 'USD'.",
+            "DepreciationMethod": "string: Depreciation method code. Example: 'STL' for Straight Line.",
+            "Life": "integer: Asset useful life in months.",
+            "SalvageValue": "number: Residual/salvage value at the end of useful life.",
+            "SerialNumber": "string: Manufacturer serial number of the asset.",
+            "TagNumber": "string: Internal tracking tag number.",
+            "Manufacturer": "string: Name of the manufacturer.",
+            "ModelNumber": "string: Model number of the asset.",
+            "AssignedTo": "integer: PersonId of the employee the asset is assigned to.",
+            "LocationId": "integer: Location identifier where the asset is physically located."
+        },
+        "functionality": "Creates a new fixed asset record and adds it to the specified asset book.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assets-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Asset Books: Get Asset Book Details",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/assets/{AssetId}/child/books",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetId": "[REQUIRED] integer: The unique identifier of the fixed asset.",
+            "q": "string: Filter condition. Supports BookTypeCode, LifecycleState. Example: q=BookTypeCode='OPS CORP'",
+            "fields": "string: Comma-separated fields to return.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves financial book details for a fixed asset, including cost, accumulated depreciation, net book value, and depreciation method.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assets-assetid-child-books-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Asset Retirements: Retire an Asset",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/assetRetirements",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetId": "[REQUIRED] integer: Identifier of the asset to retire.",
+            "BookTypeCode": "[REQUIRED] string: Asset book from which the asset is being retired.",
+            "RetirementDate": "[REQUIRED] string: Date of the retirement. Format: YYYY-MM-DD.",
+            "RetirementConventionCode": "string: Retirement convention. Example: 'HY' for half-year.",
+            "RetirementTypeCode": "string: Reason for retirement. Example: 'SALE', 'SCRAP', 'THEFT'.",
+            "UnitsRetired": "number: Number of units being retired. Defaults to all units.",
+            "CostRetired": "number: Cost amount being retired. Defaults to full asset cost.",
+            "ProceedsOfSale": "number: Proceeds received from sale of the asset.",
+            "RemovalCost": "number: Cost incurred to remove or dispose of the asset.",
+            "GainLossAccount": "string: Account segment string to post the gain or loss on disposal."
+        },
+        "functionality": "Records the retirement (disposal) of a fixed asset from an asset book, calculating gain or loss on disposal.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assetretirements-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Asset Transfers: Transfer an Asset",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/assetTransfers",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetId": "[REQUIRED] integer: Identifier of the asset to transfer.",
+            "BookTypeCode": "[REQUIRED] string: Asset book for the transfer.",
+            "TransferDate": "[REQUIRED] string: Effective date of the transfer. Format: YYYY-MM-DD.",
+            "FromDepartmentId": "integer: Source cost center or department identifier.",
+            "ToDepartmentId": "[REQUIRED] integer: Destination cost center or department identifier.",
+            "FromLocationId": "integer: Source location identifier.",
+            "ToLocationId": "[REQUIRED] integer: Destination location identifier.",
+            "FromAssignedTo": "integer: PersonId of the current asset custodian.",
+            "ToAssignedTo": "integer: PersonId of the new asset custodian.",
+            "UnitsTransferred": "number: Number of units to transfer. Defaults to all units."
+        },
+        "functionality": "Transfers a fixed asset between departments, locations, or employees, updating the asset assignment and depreciation charge accounts.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assettransfers-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Asset Adjustments: Adjust Asset Cost",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/assetAdjustments",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "AssetId": "[REQUIRED] integer: Identifier of the asset to adjust.",
+            "BookTypeCode": "[REQUIRED] string: Asset book for the adjustment.",
+            "TransactionDate": "[REQUIRED] string: Effective date of the adjustment. Format: YYYY-MM-DD.",
+            "AdjustmentType": "[REQUIRED] string: Type of adjustment. Valid values: COST, LIFE, SALVAGE_VALUE, DEPRECIATION_METHOD.",
+            "NewCost": "number: Updated cost of the asset. Required when AdjustmentType is COST.",
+            "NewLife": "integer: Updated useful life in months. Required when AdjustmentType is LIFE.",
+            "NewSalvageValue": "number: Updated salvage value. Required when AdjustmentType is SALVAGE_VALUE.",
+            "NewDepreciationMethod": "string: Updated depreciation method code. Required when AdjustmentType is DEPRECIATION_METHOD.",
+            "Reason": "string: Description or reason for the cost adjustment."
+        },
+        "functionality": "Records an adjustment to a fixed asset's cost, life, salvage value, or depreciation method.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assetadjustments-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Depreciation: Run Depreciation",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/depreciation",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "BookTypeCode": "[REQUIRED] string: Asset book for which to run depreciation.",
+            "Period": "[REQUIRED] string: Accounting period name. Example: 'MAY-24'.",
+            "RunMode": "string: Depreciation run mode. Valid values: PREVIEW, FINAL. Use PREVIEW to validate before committing. Default: PREVIEW.",
+            "RerunFlag": "string: Whether to rerun depreciation if already run for the period. Valid values: Y, N. Default: N."
+        },
+        "functionality": "Runs the depreciation process for all assets in a specified book and accounting period.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-depreciation-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Asset Categories: List Asset Categories",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/assetCategories",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports MajorCategory, MinorCategory, BookTypeCode, AssetType, Status. Example: q=AssetType='CAPITALIZED' and Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: books, defaultRules",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves asset categories that define default depreciation rules, accounts, and useful lives for grouped assets.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assetcategories-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Mass Additions: List Mass Additions",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/massAdditions",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports BookTypeCode, QueueName, AssetCategoryId, BatchName, InvoiceId. Example: q=BookTypeCode='OPS CORP' and QueueName='NEW'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves mass addition records — payables invoice lines that have been transferred to Fixed Assets for capitalization.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-massadditions-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Mass Additions: Post a Mass Addition",
+        "api_call": "PATCH /fscmRestApi/resources/11.13.18.05/massAdditions/{MassAdditionId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "MassAdditionId": "[REQUIRED] integer: The unique identifier of the mass addition record.",
+            "QueueName": "[REQUIRED] string: Set to 'POST' to approve the mass addition for capitalization as a fixed asset.",
+            "AssetCategoryId": "integer: Asset category to assign if not already set.",
+            "AssetDescription": "string: Override description for the resulting asset.",
+            "DatePlacedInService": "string: Override date placed in service. Format: YYYY-MM-DD.",
+            "DepreciationMethod": "string: Override depreciation method code.",
+            "Life": "integer: Override useful life in months.",
+            "LocationId": "integer: Location of the resulting asset.",
+            "AssignedTo": "integer: PersonId of the employee assigned to the asset."
+        },
+        "functionality": "Updates and approves a mass addition record to capitalize it as a fixed asset.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-massadditions-massadditionid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Revaluations: Revalue an Asset",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/assetRevaluations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "BookTypeCode": "[REQUIRED] string: Asset book for the revaluation.",
+            "CategoryId": "integer: Limit revaluation to a specific asset category.",
+            "AssetId": "integer: Limit revaluation to a specific asset.",
+            "RevaluationDate": "[REQUIRED] string: Date of the revaluation. Format: YYYY-MM-DD.",
+            "RevaluationRule": "[REQUIRED] string: Revaluation method. Valid values: PERCENT_ADJUST (adjust by percentage) or REPLACEMENT_VALUE (set to a new replacement value).",
+            "RevaluationPercent": "number: Percentage adjustment. Required when RevaluationRule is PERCENT_ADJUST.",
+            "ReplacementValue": "number: New gross replacement value. Required when RevaluationRule is REPLACEMENT_VALUE.",
+            "RevalReserveAccount": "string: Account segment string for the revaluation reserve."
+        },
+        "functionality": "Revalues one or more fixed assets to reflect fair market value, posting the adjustment to the revaluation reserve.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-assetrevaluations-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle ERP Fixed Assets - Physical Inventory: List Physical Inventory Lines",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/physicalInventory",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports BookTypeCode, LocationId, AssetCategoryId, ReconciliationStatus. Example: q=BookTypeCode='OPS CORP' and ReconciliationStatus='UNRECONCILED'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves physical inventory lines used to reconcile actual asset locations and quantities against the asset register.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/financials/24d/farfa/op-physicalinventory-get.html"
+        }
+    }
+]

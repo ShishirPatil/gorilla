@@ -1,0 +1,243 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Projects: List Projects",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projects",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ProjectNumber, ProjectName, ProjectStatus, BusinessUnit, ProjectManagerId, StartDate. Example: q=ProjectStatus='ACTIVE'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: tasks, team, deliverables, budgets, costs",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=StartDate:desc"
+        },
+        "functionality": "Retrieves a list of projects. Supports filtering by status, business unit, and project manager.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Projects: Get a Project",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projects/{ProjectId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: The unique identifier of the project.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: tasks, team, deliverables, budgets, classifications, customers",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific project including schedule, team, and financial summary.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-projectid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Projects: Create a Project",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/projects",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectName": "[REQUIRED] string: Name of the project.",
+            "ProjectNumber": "string: Unique project number. Auto-generated if not provided.",
+            "ProjectTemplateId": "integer: Template identifier to inherit structure and settings from.",
+            "BusinessUnitId": "[REQUIRED] integer: Business unit that owns this project.",
+            "LegalEntityId": "integer: Legal entity for financial reporting.",
+            "ProjectManagerId": "[REQUIRED] integer: PersonId of the project manager.",
+            "ProjectStatus": "string: Status of the project. Valid values: ACTIVE, PENDING, CLOSED. Default: PENDING.",
+            "StartDate": "[REQUIRED] string: Project start date. Format: YYYY-MM-DD.",
+            "FinishDate": "string: Project planned finish date. Format: YYYY-MM-DD.",
+            "Description": "string: Description of the project.",
+            "ProjectCurrency": "string: Currency code for project financials. Example: 'USD'.",
+            "BillingMethod": "string: Billing method for customer-facing projects. Valid values: Fixed Price, Time and Materials, Cost Plus.",
+            "CustomerId": "integer: Customer account identifier for billable projects."
+        },
+        "functionality": "Creates a new project in Oracle Project Management Cloud.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Tasks: List Project Tasks",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projects/{ProjectId}/child/tasks",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: The unique identifier of the project.",
+            "q": "string: Filter condition. Supports TaskName, TaskNumber, Status, MilestoneFlag, ParentTaskId. Example: q=MilestoneFlag='Y'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: resources, costs, dependencies",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 50.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves tasks belonging to a specific project, including milestones and subtasks.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-projectid-child-tasks-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Tasks: Create a Task",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/projects/{ProjectId}/child/tasks",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: The unique identifier of the project.",
+            "TaskName": "[REQUIRED] string: Name of the task.",
+            "TaskNumber": "string: Unique task number within the project. Auto-generated if not provided.",
+            "ParentTaskId": "integer: Identifier of the parent task for hierarchical WBS structures.",
+            "StartDate": "[REQUIRED] string: Planned start date. Format: YYYY-MM-DD.",
+            "FinishDate": "[REQUIRED] string: Planned finish date. Format: YYYY-MM-DD.",
+            "PercentComplete": "number: Completion percentage (0-100).",
+            "MilestoneFlag": "string: Whether this task is a milestone. Valid values: Y, N. Default: N.",
+            "BillableFlag": "string: Whether work on this task is billable to the customer. Valid values: Y, N.",
+            "ChargeableFlag": "string: Whether costs are charged to this task. Valid values: Y, N.",
+            "TaskManagerId": "integer: PersonId of the task manager.",
+            "Description": "string: Description or scope of the task."
+        },
+        "functionality": "Creates a new task in a project's work breakdown structure (WBS).",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-projectid-child-tasks-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Resources: List Project Team Members",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projects/{ProjectId}/child/resources",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: The unique identifier of the project.",
+            "q": "string: Filter condition. Supports PersonId, JobId, StartDate, FinishDate, ResourceType. Example: q=ResourceType='Named'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves team members assigned to a project, including their roles, planned hours, and assignment dates.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-projectid-child-resources-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Budgets: Get Project Budget",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projectBudgets",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ProjectId, BudgetTypeCode, VersionStatus. Example: q=ProjectId=300000001234567 and VersionStatus='APPROVED'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, resources",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves cost or revenue budget versions for a project. Filter by budget type (cost or revenue) and status.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projectbudgets-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Expenditures: Create an Expenditure Item",
+        "api_call": "POST /fscmRestApi/resources/11.13.18.05/expenditureItems",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: Project identifier to charge.",
+            "TaskId": "[REQUIRED] integer: Task identifier to charge.",
+            "ExpenditureTypeId": "[REQUIRED] integer: Expenditure type identifier (e.g., Labor, Materials, Travel).",
+            "ExpenditureItemDate": "[REQUIRED] string: Date of the expenditure. Format: YYYY-MM-DD.",
+            "Quantity": "[REQUIRED] number: Quantity of the expenditure (e.g., hours, units).",
+            "UOMCode": "[REQUIRED] string: Unit of measure. Example: 'Hours', 'Each'.",
+            "RawCost": "number: Raw cost amount in project currency.",
+            "RawCostRate": "number: Cost rate per unit.",
+            "PersonId": "integer: PersonId of the employee incurring the cost.",
+            "OverrideToOrganizationId": "integer: Organization to override the default expenditure organization.",
+            "Comments": "string: Description or notes about the expenditure."
+        },
+        "functionality": "Creates an expenditure item to record costs against a project task. Used for labor, expense, and miscellaneous cost entry.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-expenditureitems-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Contracts: List Project Contracts",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projectContracts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ContractNumber, Status, CustomerId, ProjectId, ContractType. Example: q=Status='ACTIVE' and CustomerId=300000001234567",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, billingControls, fundingSources",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves project contracts used in Oracle Project Billing for customer invoicing and revenue recognition.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projectcontracts-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Invoices: List Project Invoices",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projectInvoices",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ProjectId, ContractId, Status, InvoiceDate, CustomerId. Example: q=ProjectId=300000001234567 and Status='RELEASED'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, credits",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves customer invoices generated from Oracle Project Billing for billable project work.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projectinvoices-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Issues: List Project Issues",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projectIssues",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ProjectId, Status, Priority, AssignedTo, DueDate. Example: q=ProjectId=300000001234567 and Priority='High'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves issues and risks tracked against a project.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projectissues-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle Project Management Cloud - Project Deliverables: List Deliverables",
+        "api_call": "GET /fscmRestApi/resources/11.13.18.05/projects/{ProjectId}/child/deliverables",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ProjectId": "[REQUIRED] integer: The unique identifier of the project.",
+            "q": "string: Filter condition. Supports DeliverableName, Status, DueDate, OwnerId. Example: q=Status='In Progress'",
+            "fields": "string: Comma-separated fields to return.",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves deliverables tracked against a project, including their due dates and owners.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/project-management/24d/fapjm/op-projects-projectid-child-deliverables-get.html"
+        }
+    }
+]
