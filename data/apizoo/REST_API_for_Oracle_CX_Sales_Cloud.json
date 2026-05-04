@@ -1,0 +1,394 @@
+[
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Accounts: List Accounts",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/accounts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports OrganizationName, PartyNumber, Type, Status, PrimaryEmailAddress, SalesAccountStatus. Example: q=Type='CUSTOMER' and SalesAccountStatus='Active'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, opportunities, addresses, phones, salesTeam, customFields",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort field and direction. Example: orderBy=OrganizationName:asc"
+        },
+        "functionality": "Retrieves a list of customer accounts from Oracle CX Sales. Supports filtering by type, status, and name.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-accounts-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Accounts: Get an Account",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/accounts/{PartyId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PartyId": "[REQUIRED] integer: The unique identifier of the account.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, opportunities, addresses, phones, salesTeam, revenue",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific customer account including address, contacts, and sales team assignments.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-accounts-partyid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Accounts: Create an Account",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/accounts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OrganizationName": "[REQUIRED] string: Name of the account.",
+            "Type": "string: Account type. Valid values: CUSTOMER, PARTNER, COMPETITOR, PROSPECT. Default: CUSTOMER.",
+            "IndustryCode": "string: Industry classification code. Example: 'TECHNOLOGY', 'MANUFACTURING'.",
+            "AnnualRevenue": "number: Estimated annual revenue of the account.",
+            "EmployeesTotal": "integer: Total number of employees.",
+            "PrimaryEmailAddress": "string: Primary email address for the account.",
+            "PrimaryPhoneNumber": "string: Primary phone number.",
+            "WebsiteURL": "string: Company website URL.",
+            "CurrencyCode": "string: Account currency. Example: 'USD'.",
+            "OwnerId": "integer: PersonId of the sales representative who owns this account.",
+            "ParentAccountPartyId": "integer: PartyId of the parent account for hierarchical account structures."
+        },
+        "functionality": "Creates a new customer account in Oracle CX Sales.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-accounts-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Contacts: List Contacts",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/contacts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LastName, FirstName, EmailAddress, AccountPartyId, JobTitle, Status. Example: q=AccountPartyId=300000001234567",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: phones, emails, addresses, relationships",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=LastName:asc"
+        },
+        "functionality": "Retrieves a list of contacts. Filter by account to get all contacts associated with a specific customer.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-contacts-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Contacts: Create a Contact",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/contacts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LastName": "[REQUIRED] string: Last name of the contact.",
+            "FirstName": "string: First name of the contact.",
+            "JobTitle": "string: Contact's job title.",
+            "AccountPartyId": "integer: PartyId of the account this contact belongs to.",
+            "EmailAddress": "string: Primary email address.",
+            "PhoneNumber": "string: Primary phone number.",
+            "PhoneCountryCode": "string: Country code for the phone number. Example: '1' for US.",
+            "PreferredContactMethod": "string: Preferred method of contact. Valid values: EMAIL, PHONE, MAIL.",
+            "DoNotContact": "boolean: If true, marks the contact as do-not-contact. Default is false.",
+            "OwnerId": "integer: PersonId of the sales rep who owns this contact."
+        },
+        "functionality": "Creates a new contact and optionally associates it with an existing account.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-contacts-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Opportunities: List Opportunities",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/opportunities",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports Name, Status, SalesStage, AccountPartyId, OwnerId, CloseDate, Amount. Example: q=SalesStage='Proposal' and CloseDate <= '2024-12-31'",
+            "fields": "string: Comma-separated list of fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, revenue, salesTeam, competitors, leads, activities",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links.",
+            "orderBy": "string: Sort order. Example: orderBy=CloseDate:asc"
+        },
+        "functionality": "Retrieves a list of sales opportunities. Filter by stage, owner, or close date to build pipeline views.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-opportunities-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Opportunities: Get an Opportunity",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/opportunities/{OptyId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OptyId": "[REQUIRED] integer: The unique identifier of the opportunity.",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, revenue, salesTeam, competitors, activities, assessments",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves full details of a specific sales opportunity including revenue lines, sales team, and linked contacts.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-opportunities-optyid-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Opportunities: Create an Opportunity",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/opportunities",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "Name": "[REQUIRED] string: Name of the opportunity.",
+            "AccountPartyId": "[REQUIRED] integer: PartyId of the account associated with this opportunity.",
+            "SalesStage": "[REQUIRED] string: Current stage. Valid values: Qualification, Proposal, Negotiation, Closing.",
+            "WinProb": "integer: Probability of winning expressed as a percentage (0-100).",
+            "CloseDate": "[REQUIRED] string: Expected close date. Format: YYYY-MM-DD.",
+            "CurrencyCode": "[REQUIRED] string: Currency code. Example: 'USD'.",
+            "Revenue": "number: Expected revenue value for this opportunity.",
+            "OwnerId": "integer: PersonId of the sales rep who owns this opportunity.",
+            "Description": "string: Description or notes about the opportunity.",
+            "LeadSource": "string: Source of the opportunity. Example: 'WEB', 'REFERRAL', 'TRADE_SHOW'."
+        },
+        "functionality": "Creates a new sales opportunity linked to a customer account.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-opportunities-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Opportunities: Update an Opportunity",
+        "api_call": "PATCH /crmRestApi/resources/11.13.18.05/opportunities/{OptyId}",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "OptyId": "[REQUIRED] integer: The unique identifier of the opportunity to update.",
+            "SalesStage": "string: Updated sales stage.",
+            "WinProb": "integer: Updated win probability percentage.",
+            "CloseDate": "string: Updated expected close date. Format: YYYY-MM-DD.",
+            "Revenue": "number: Updated revenue value.",
+            "Status": "string: Opportunity status. Valid values: Open, Won, Lost.",
+            "StatusComment": "string: Reason for status change, especially for Won or Lost."
+        },
+        "functionality": "Updates an existing opportunity. Used to advance the sales stage, update forecast, or mark as won or lost.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-opportunities-optyid-patch.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Leads: List Leads",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/leads",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports LastName, CompanyName, Status, Rating, OwnerId, CreationDate. Example: q=Status='New' and Rating='Hot'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: phones, emails, addresses, activities",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves a list of sales leads. Filter by status or rating to prioritize follow-up actions.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-leads-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Leads: Create a Lead",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/leads",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LastName": "[REQUIRED] string: Last name of the lead.",
+            "FirstName": "string: First name of the lead.",
+            "CompanyName": "string: Company the lead is associated with.",
+            "JobTitle": "string: Lead's job title.",
+            "EmailAddress": "string: Email address of the lead.",
+            "PhoneNumber": "string: Phone number of the lead.",
+            "LeadSource": "string: Source of the lead. Example: 'INBOUND_CALL', 'WEB_FORM', 'TRADE_SHOW'.",
+            "Rating": "string: Lead quality rating. Valid values: Hot, Warm, Cold.",
+            "Status": "string: Lead status. Valid values: New, In Progress, Converted, Dead.",
+            "Description": "string: Notes or description about the lead.",
+            "OwnerId": "integer: PersonId of the sales rep assigned to this lead.",
+            "CurrencyCode": "string: Currency for lead revenue estimates. Example: 'USD'.",
+            "Budget": "number: Estimated budget of the prospect."
+        },
+        "functionality": "Creates a new sales lead. Leads can later be converted into accounts, contacts, and opportunities.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-leads-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Leads: Convert a Lead",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/leads/{LeadId}/action/convert",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "LeadId": "[REQUIRED] integer: The unique identifier of the lead to convert.",
+            "CreateAccount": "boolean: If true, creates a new account from the lead company details. Default is true.",
+            "CreateContact": "boolean: If true, creates a new contact from the lead person details. Default is true.",
+            "CreateOpportunity": "boolean: If true, creates a new opportunity linked to the converted account. Default is false.",
+            "ExistingAccountPartyId": "integer: If provided, links the converted contact and opportunity to this existing account instead of creating a new one."
+        },
+        "functionality": "Converts a qualified lead into account, contact, and optionally opportunity records.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-leads-leadid-action-convert-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Activities: List Activities",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/activities",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ActivityType, Status, OwnerId, AssignedToPartyId, PlannedStartDate. Example: q=ActivityType='CALL' and Status='Open'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, accounts, opportunities, resources",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves sales activities such as calls, tasks, and appointments linked to accounts and opportunities.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-activities-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Activities: Create an Activity",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/activities",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "ActivityType": "[REQUIRED] string: Type of activity. Valid values: CALL, TASK, APPOINTMENT.",
+            "Subject": "[REQUIRED] string: Subject or title of the activity.",
+            "Status": "string: Status of the activity. Valid values: Not Started, In Progress, Completed, Cancelled. Default: Not Started.",
+            "PlannedStartDate": "string: Planned start date and time. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "PlannedEndDate": "string: Planned end date and time. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "Priority": "string: Priority of the activity. Valid values: High, Normal, Low.",
+            "Description": "string: Notes or description of the activity.",
+            "OwnerId": "integer: PersonId of the activity owner.",
+            "AccountPartyId": "integer: PartyId of the linked account.",
+            "OptyId": "integer: Identifier of the linked opportunity."
+        },
+        "functionality": "Creates a new sales activity — a call log, task, or appointment — and optionally links it to an account or opportunity.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-activities-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Sales Forecasts: Get Sales Forecast Summary",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/forecasts",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports ForecastPeriodId, OwnerId, ForecastCategory, Status. Example: q=ForecastCategory='Pipeline'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: items, adjustments",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, includes total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves sales forecast summaries by period and owner. Used to review pipeline, best case, and commit amounts.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-forecasts-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Sales Territories: List Sales Territories",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/territories",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports Name, Status, OwnerId, ParentTerritoryId. Example: q=Status='Active'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: members, dimensions, quotas",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves the sales territory hierarchy used to assign accounts, contacts, and opportunities to sales teams.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-territories-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Quotes: List Quotes",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/quotes",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports QuoteNumber, Status, AccountPartyId, OptyId, ExpirationDate. Example: q=Status='Draft' and OptyId=300000001234567",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: lines, contacts, charges",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves sales quotes linked to opportunities. Quotes become orders when accepted.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-quotes-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Sales Orders from Quote: Submit Quote as Order",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/quotes/{QuoteId}/action/submitOrder",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "QuoteId": "[REQUIRED] integer: The unique identifier of the quote to submit as an order.",
+            "RequestedShipDate": "string: Requested shipping date. Format: YYYY-MM-DDThh:mm:ssZ.",
+            "Comments": "string: Additional comments or instructions for the order."
+        },
+        "functionality": "Submits an accepted quote to Oracle Order Management as a sales order.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-quotes-quoteid-action-submitorder-post.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Sales Partners: List Partners",
+        "api_call": "GET /crmRestApi/resources/11.13.18.05/partners",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "q": "string: Filter condition. Supports OrganizationName, PartnerType, Status, Tier. Example: q=Status='Active' and Tier='Gold'",
+            "fields": "string: Comma-separated fields to return.",
+            "expand": "string: Child resources to expand. Valid values: contacts, deals, certifications",
+            "offset": "integer: Starting position. Default is 0.",
+            "limit": "integer: Maximum records to return. Default is 25.",
+            "totalResults": "boolean: If true, returns total record count.",
+            "onlyData": "boolean: If true, suppresses HATEOAS links."
+        },
+        "functionality": "Retrieves channel partners registered in Oracle Partner Relationship Management.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-partners-get.html"
+        }
+    },
+    {
+        "user_name": "karthikchundi-commits",
+        "api_name": "REST API for Oracle CX Sales Cloud - Deal Registrations: Create a Deal Registration",
+        "api_call": "POST /crmRestApi/resources/11.13.18.05/dealRegistrations",
+        "api_version": "2024.11.05",
+        "api_arguments": {
+            "PartnerPartyId": "[REQUIRED] integer: PartyId of the partner registering the deal.",
+            "CustomerName": "[REQUIRED] string: Name of the end customer.",
+            "CustomerEmailAddress": "string: Primary email of the customer contact.",
+            "ProductLine": "string: Oracle product line the deal is related to.",
+            "EstimatedRevenue": "number: Estimated deal revenue.",
+            "CurrencyCode": "string: Currency code. Example: 'USD'.",
+            "ExpectedCloseDate": "[REQUIRED] string: Estimated deal close date. Format: YYYY-MM-DD.",
+            "Description": "string: Description of the deal and opportunity.",
+            "CompetitorName": "string: Name of the primary competitor for this deal."
+        },
+        "functionality": "Creates a deal registration for a channel partner to claim a new opportunity and protect their margin.",
+        "metadata": {
+            "documentation_link": "https://docs.oracle.com/en/cloud/saas/sales/24d/farcx/op-dealregistrations-post.html"
+        }
+    }
+]
