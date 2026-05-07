@@ -27,3 +27,18 @@ cd eval-scripts
 python ast_eval_th.py --api_dataset ../../../data/api/torchhub_api.jsonl --apibench ../../../data/apibench/torchhub_eval.json --llm_responses ../eval-data/responses/torchhub/response_torchhub_Gorilla_FT_0_shot.jsonl
 ```
 
+### Checking APIBench Eval Data Drift
+
+APIBench eval questions are represented in both `data/apibench/*_eval.json` and `gorilla/eval/eval-data/questions`.
+To compare the duplicated question text and make drift visible before running benchmarks:
+
+```bash
+python gorilla/eval/check_apibench_eval_data.py
+```
+
+Use `--strict` when wiring the check into CI so any missing, extra, or mismatched question text exits non-zero:
+
+```bash
+python gorilla/eval/check_apibench_eval_data.py --strict
+```
+
