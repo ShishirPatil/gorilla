@@ -480,7 +480,25 @@ class PrismCoderHandler(QwenFCHandler):
         # Strip <think>...</think> blocks first
         cleaned = re.sub(r"<think>.*?</think>", "", input_string, flags=re.DOTALL).strip()
         cleaned = re.sub(r"<\|synalux_think\|>.*?</\|synalux_think\|>", "", cleaned, flags=re.DOTALL).strip()
-        
+
+        # MULTI-TURN POLLUTION FIX (2026-05-07): when the model emits
+        # multiple tool calls within one assistant turn, it sometimes
+        # injects chat-template control tokens between the calls
+        # (`<|im_start|>...<|im_end|>`, hallucinated `<|im_start|>tool\nNone`,
+        # bare `<|im_end|>`, etc.). This destroyed multi_turn_base from
+        # 13.79% → 0.56%. Strip these so the bracket-matching JSON
+        # extractor can still find legitimate {"name":..., "arguments":...}
+        # objects on either side of the noise.
+        cleaned = re.sub(r"<\|im_start\|>(?:assistant|user|system|tool)?\b[^\n]*", "", cleaned)
+        cleaned = re.sub(r"<\|im_end\|>", "", cleaned)
+        cleaned = re.sub(r"<\|endoftext\|>", "", cleaned)
+        cleaned = re.sub(r"<\|/synalux_think\|>", "", cleaned)
+        cleaned = re.sub(r"<\|synalux_think\|>", "", cleaned)
+        # Also strip leftover empty <tool_response>...</tool_response> blocks
+        # the model sometimes hallucinates as part of a fake tool reply.
+        cleaned = re.sub(r"<tool_response>\s*None\s*</tool_response>", "", cleaned, flags=re.DOTALL)
+        cleaned = cleaned.strip()
+
         # If the output doesn't contain any JSON-like content, it's an abstention
         if not re.search(r'[{]', cleaned):
             return []
