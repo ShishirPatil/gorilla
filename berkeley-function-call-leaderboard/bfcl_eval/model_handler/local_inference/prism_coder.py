@@ -284,12 +284,19 @@ class PrismCoderHandler(QwenFCHandler):
                 self.max_context_length - input_token_count - 2,
             )
 
+        # MULTI-TURN POLLUTION FIX (2026-05-07): explicitly stop generation
+        # when the model emits any of the chat-template start tokens. The
+        # Modelfile only stops on <|im_end|>, <|endoftext|>, </tool_call>,
+        # which let the model continue emitting <|im_start|>... mid-turn
+        # and pollute multi-call output. Adding stops via the API
+        # parameter prevents that without changing the published Modelfile.
         start_time = time.time()
         api_response = self.client.completions.create(
             model=self.model_path_or_id,
             temperature=self.temperature,
             prompt=formatted_prompt,
             max_tokens=leftover_tokens_count,
+            stop=["<|im_start|>", "<|im_end|>", "<|endoftext|>"],
             timeout=72000,
         )
         end_time = time.time()
