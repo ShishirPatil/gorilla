@@ -44,37 +44,48 @@ class PrismCoderHandler(QwenFCHandler):
             if messages[0]["role"] == "system":
                 formatted_prompt += messages[0]["content"] + "\n\n"
 
-            formatted_prompt += "# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>"
-            # StructXML: Convert JSON tool schemas to XML for better attention head mapping
-            for tool in function:
-                formatted_prompt += f"\n<function>\n  <name>{tool.get('name', '')}</name>\n  <description>{tool.get('description', '')}</description>\n"
-                params = tool.get('parameters', {})
-                props = params.get('properties', {})
-                required = params.get('required', [])
-                if props:
-                    formatted_prompt += "  <parameters>\n"
-                    for prop_name, prop_data in props.items():
-                        req = "required" if prop_name in required else "optional"
-                        ptype = prop_data.get('type', 'string')
-                        pdesc = prop_data.get('description', '')
-                        formatted_prompt += f'    <parameter name="{prop_name}" type="{ptype}" presence="{req}">\n'
-                        if 'enum' in prop_data:
-                            formatted_prompt += f"      <enum>{', '.join(str(e) for e in prop_data['enum'])}</enum>\n"
-                        formatted_prompt += f"      <description>{pdesc}</description>\n"
-                        formatted_prompt += "    </parameter>\n"
-                    formatted_prompt += "  </parameters>\n"
-                formatted_prompt += "</function>"
-            formatted_prompt += '\n</tools>\n\n'
+            formatted_prompt += "# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>\n"
+            # Standard Hermes/Qwen JSON tool format. The prism-coder family was
+            # SFT'd on glaive + ToolACE + xLAM — all of which serialize tools as
+            # inline JSON inside <tools>. The earlier StructXML variant (with
+            # <function><name>...<parameter>) was off-distribution for the 14B,
+            # which produced random text instead of tool calls (BFCL V4 simple
+            # AST 26% vs 14B's direct-curl 100% on the same task).
+            tools_format = os.getenv("PRISM_TOOLS_FORMAT", "json").lower()
+            if tools_format == "structxml":
+                for tool in function:
+                    formatted_prompt += f"<function>\n  <name>{tool.get('name', '')}</name>\n  <description>{tool.get('description', '')}</description>\n"
+                    params = tool.get('parameters', {})
+                    props = params.get('properties', {})
+                    required = params.get('required', [])
+                    if props:
+                        formatted_prompt += "  <parameters>\n"
+                        for prop_name, prop_data in props.items():
+                            req = "required" if prop_name in required else "optional"
+                            ptype = prop_data.get('type', 'string')
+                            pdesc = prop_data.get('description', '')
+                            formatted_prompt += f'    <parameter name="{prop_name}" type="{ptype}" presence="{req}">\n'
+                            if 'enum' in prop_data:
+                                formatted_prompt += f"      <enum>{', '.join(str(e) for e in prop_data['enum'])}</enum>\n"
+                            formatted_prompt += f"      <description>{pdesc}</description>\n"
+                            formatted_prompt += "    </parameter>\n"
+                        formatted_prompt += "  </parameters>\n"
+                    formatted_prompt += "</function>\n"
+            else:
+                for tool in function:
+                    formatted_prompt += json.dumps(tool, ensure_ascii=False) + "\n"
+            formatted_prompt += '</tools>\n\n'
             formatted_prompt += 'For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{"name": <function-name>, "arguments": <args-json-object>}\n</tool_call>\n\n'
-            # xLAM-proven strict execution + abstention + agentic answer instructions
+            # Minimal rules — only the two that empirically move BFCL scores:
+            # (1) tool-name verbatim constraint (kills Live Irrelevance hallucination,
+            #     diagnosis: 53.6% of failures were invented names like `requests.get`)
+            # (2) optional-param hygiene (avoids spurious arguments).
+            # Earlier rules 3-6 + 8 trained the model to respond in plain text
+            # ("The result is X") instead of emitting <tool_call> for simple AST
+            # tasks — destroying Live Simple AST (15.89% on 14B vs 63.95% on 7B).
             formatted_prompt += 'IMPORTANT RULES:\n'
-            formatted_prompt += '1. If NONE of the provided functions are relevant to the user\'s query, respond with a plain text message. Do NOT call any function when the query is unrelated to ALL available tools.\n'
-            formatted_prompt += '2. Do not interpret or guess information. Wait for tool results to be returned before responding.\n'
-            formatted_prompt += '3. If a tool result provides the answer, output it directly and concisely. Do not add conversational filler.\n'
-            formatted_prompt += '4. If the user\'s input lacks required parameters, ask for clarification.\n'
-            formatted_prompt += '5. When you have the final answer, state it clearly. Example: "The result is X."\n'
-            formatted_prompt += '6. Do not hallucinate optional parameters. If the user does not explicitly provide a value for an optional parameter, do not include that parameter in your JSON arguments.\n'
-            formatted_prompt += '7. When saving data to memory or a database, use the EXACT variable names and values provided by the user or the tool. Do not summarize or alter keys.<|im_end|>\n'
+            formatted_prompt += '1. ABSOLUTE TOOL CONSTRAINT: You MAY ONLY call functions whose name appears verbatim inside <tools></tools> above. You MUST NOT invent new function names (e.g. `get_weather`, `get_current_weather`, `get_stock_data`, `get_forecast`, `translate`, `fetch`, `api_call`, `get_data`). When the listed tools cannot satisfy the request — even if the user\'s intent matches a familiar category like weather, stock, translation, or IoT control — respond with one plain-text sentence and DO NOT emit any <tool_call>. Also abstain when listed tools require URLs, IDs, or values the user has not provided — do not fabricate them.\n'
+            formatted_prompt += '2. Do not include optional parameters unless the user explicitly provides a value for them.<|im_end|>\n'
         else:
             if messages[0]["role"] == "system":
                 formatted_prompt += (
