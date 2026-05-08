@@ -187,4 +187,8 @@ SUPPORTED_MODELS = [
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
     "DM-Cito-32B-v1",
+    "prism-coder-7b-FC",
+    "prism-coder-14b-FC",
+    "prism-coder-32b-FC",
+    "prism-coder-72b-FC",
 ]
