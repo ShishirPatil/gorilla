@@ -2264,6 +2264,47 @@ third_party_inference_model_map = {
         is_fc_model=True,
         underscore_to_dot=False,
     ),
+    # Candidate handlers — point at the topfive-cand Ollama tags so
+    # auto_promote_pipeline.sh can score the candidate, NOT the
+    # production tag. Without these, bfcl generate scores prod and
+    # the gate has no signal about whether the new training round
+    # actually improved anything.
+    "prism-coder-7b-cand-FC": ModelConfig(
+        model_name="prism-coder:7b-topfive-cand",
+        display_name="prism-coder-7b-cand (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "prism-coder-14b-cand-FC": ModelConfig(
+        model_name="prism-coder:14b-topfive-cand",
+        display_name="prism-coder-14b-cand (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "prism-coder-32b-cand-FC": ModelConfig(
+        model_name="prism-coder:32b-topfive-cand",
+        display_name="prism-coder-32b-cand (FC)",
+        url="https://github.com/dcostenco/prism",
+        org="Synalux",
+        license="Apache-2.0",
+        model_handler=PrismCoderHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
     "prism-coder-72b-FC": ModelConfig(
         model_name="prism-coder:72b",
         display_name="prism-coder-72b (FC)",
