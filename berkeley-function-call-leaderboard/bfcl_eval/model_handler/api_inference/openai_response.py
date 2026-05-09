@@ -2,9 +2,12 @@ import json
 import os
 import time
 
+from openai import OpenAI, RateLimitError
+from openai.types.responses import Response
+
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
@@ -14,8 +17,6 @@ from bfcl_eval.model_handler.utils import (
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from openai import OpenAI, RateLimitError
-from openai.types.responses import Response
 
 
 class OpenAIResponsesHandler(BaseHandler):
@@ -103,6 +104,9 @@ class OpenAIResponsesHandler(BaseHandler):
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
             "temperature": self.temperature,
+            "extra_body": {
+                "seed": getattr(self, "seed", None),
+            },
         }
 
         # OpenAI reasoning models don't support temperature parameter
@@ -213,7 +217,9 @@ class OpenAIResponsesHandler(BaseHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
+        inference_data["inference_input_log"] = {
+            "message": repr(inference_data["message"])
+        }
 
         kwargs = {
             "input": inference_data["message"],
@@ -222,6 +228,9 @@ class OpenAIResponsesHandler(BaseHandler):
             "include": ["reasoning.encrypted_content"],
             "reasoning": {"summary": "auto"},
             "temperature": self.temperature,
+            "extra_body": {
+                "seed": getattr(self, "seed", None),
+            },
         }
 
         # OpenAI reasoning models don't support temperature parameter

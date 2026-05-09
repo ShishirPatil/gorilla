@@ -46,7 +46,8 @@ dependencies = [
     "sentence-transformers>=2.7.0",
     "faiss-cpu==1.11.0",
     "networkx==3.3",
-    "filelock==3.20.0"
+    "filelock==3.20.0",
+    "soundfile>=0.13.1",
 ]
 
 [project.scripts]

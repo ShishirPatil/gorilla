@@ -3,9 +3,11 @@ import os
 import time
 from typing import Any
 
+from openai import OpenAI, RateLimitError
+
+from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.constants.type_mappings import GORILLA_TO_OPENAPI
 from bfcl_eval.model_handler.base_handler import BaseHandler
-from bfcl_eval.constants.enums import ModelStyle
 from bfcl_eval.model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
@@ -15,7 +17,6 @@ from bfcl_eval.model_handler.utils import (
     retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
-from openai import OpenAI, RateLimitError
 
 
 class OpenAICompletionsHandler(BaseHandler):
@@ -79,12 +80,16 @@ class OpenAICompletionsHandler(BaseHandler):
     def _query_FC(self, inference_data: dict):
         message: list[dict] = inference_data["message"]
         tools = inference_data["tools"]
-        inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
+        inference_data["inference_input_log"] = {
+            "message": repr(message),
+            "tools": tools,
+        }
 
         kwargs = {
             "messages": message,
             "model": self.model_name,
             "temperature": self.temperature,
+            "seed": getattr(self, "seed", None),
             "store": False,
         }
 
@@ -200,7 +205,9 @@ class OpenAICompletionsHandler(BaseHandler):
                     for tool_call in message.tool_calls
                 ],
             }
-            response_data["model_responses_message_for_chat_history"] = assistant_message
+            response_data["model_responses_message_for_chat_history"] = (
+                assistant_message
+            )
 
         # If no tool_calls, we still need to strip reasoning_content.
         elif hasattr(message, "reasoning_content"):
@@ -216,12 +223,15 @@ class OpenAICompletionsHandler(BaseHandler):
     #### Prompting methods ####
 
     def _query_prompting(self, inference_data: dict):
-        inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
+        inference_data["inference_input_log"] = {
+            "message": repr(inference_data["message"])
+        }
 
         return self.generate_with_backoff(
             messages=inference_data["message"],
             model=self.model_name,
             temperature=self.temperature,
+            seed=getattr(self, "seed", None),
             store=False,
         )
 
@@ -264,7 +274,10 @@ class OpenAICompletionsHandler(BaseHandler):
         return inference_data
 
     def _add_execution_results_prompting(
-        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+        self,
+        inference_data: dict,
+        execution_results: list[str],
+        model_response_data: dict,
     ) -> dict:
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data

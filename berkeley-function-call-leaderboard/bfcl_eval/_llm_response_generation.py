@@ -11,6 +11,8 @@ from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from copy import deepcopy
 from typing import Optional
 
+from tqdm import tqdm
+
 from bfcl_eval.constants.eval_config import (
     PROJECT_ROOT,
     RESULT_FILE_PATTERN,
@@ -22,15 +24,14 @@ from bfcl_eval.eval_checker.eval_runner_helper import load_file
 from bfcl_eval.model_handler.base_handler import BaseHandler
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl_eval.utils import *
-from tqdm import tqdm
 
 
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
+    parser.add_argument("--model", type=str, default="gpt-oss-20b-responses", nargs="+")
     # Refer to test_categories for supported categories.
-    parser.add_argument("--test-category", type=str, default="all", nargs="+")
+    parser.add_argument("--test-category", type=str, default="simple_python", nargs="+")
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
@@ -38,7 +39,9 @@ def get_args():
     parser.add_argument("--exclude-state-log", action="store_true", default=False)
     parser.add_argument("--num-threads", required=False, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
-    parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
+    parser.add_argument(
+        "--backend", default="vllm", type=str, choices=["vllm", "sglang"]
+    )
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--result-dir", default=None, type=str)
     parser.add_argument("--run-ids", action="store_true", default=False)
@@ -61,7 +64,7 @@ def get_args():
         type=str,
         default=None,
         nargs="*",
-        help="Specify the path to the LoRA modules for vLLM backend in name=\"path\" format. Can be specified multiple times.",
+        help='Specify the path to the LoRA modules for vLLM backend in name="path" format. Can be specified multiple times.',
     )
     parser.add_argument(
         "--enable-lora",
@@ -75,19 +78,29 @@ def get_args():
         default=None,
         help="Specify the maximum LoRA rank for vLLM backend.",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=69421337,
+        help="Specify a seed to pass to backend to control deterministic outputs.",
+    )
     args = parser.parse_args()
     print(f"Parsed arguments: {args}")
 
     return args
 
 
-def build_handler(model_name, temperature):
+def build_handler(model_name, temperature, args):
+    _args = args._get_args()
+    _kwargs = {i[0]: i[1] for i in args._get_kwargs()}
+    _kwargs.pop("temperature", None)
     config = MODEL_CONFIG_MAPPING[model_name]
     handler = config.model_handler(
         model_name=config.model_name,
         temperature=temperature,
         registry_name=model_name,
         is_fc_model=config.is_fc_model,
+        **_kwargs,
     )
     return handler
 
@@ -110,7 +123,9 @@ def get_involved_test_entries(test_category_args, run_ids):
     )
 
 
-def collect_test_cases(args, model_name, all_test_categories, all_test_entries_involved):
+def collect_test_cases(
+    args, model_name, all_test_categories, all_test_entries_involved
+):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = args.result_dir / model_name_dir
 
@@ -127,7 +142,9 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
             result_file_paths.append(
                 model_result_dir
                 / get_directory_structure_by_category(test_category)
-                / get_file_name_by_category(f"{test_category}_prereq", is_result_file=True)
+                / get_file_name_by_category(
+                    f"{test_category}_prereq", is_result_file=True
+                )
             )
 
         for file_path in result_file_paths:
@@ -165,7 +182,10 @@ def collect_test_cases(args, model_name, all_test_categories, all_test_entries_i
 
     # Skip format sensitivity test cases for FC models
     if (
-        any(is_format_sensitivity(test_category) for test_category in all_test_categories)
+        any(
+            is_format_sensitivity(test_category)
+            for test_category in all_test_categories
+        )
         and MODEL_CONFIG_MAPPING[model_name].is_fc_model
     ):
         test_cases_to_generate = [
@@ -221,7 +241,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, exclude_stat
 
 
 def generate_results(args, model_name, test_cases_total):
-    handler = build_handler(model_name, args.temperature)
+    handler = build_handler(model_name, args.temperature, args)
 
     if isinstance(handler, OSSHandler):
         handler: OSSHandler
@@ -287,17 +307,19 @@ def generate_results(args, model_name, test_cases_total):
         in_flight: dict[Future, str] = {}  # future -> test_case_id
         completed = set()
 
-        with ThreadPoolExecutor(max_workers=num_threads) as pool, tqdm(
-            total=len(test_cases_total),
-            desc=f"Generating results for {model_name}",
-            position=0,
-            leave=True,
-            dynamic_ncols=True,
-            mininterval=0.2,
-            smoothing=0.1,
-            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]",
-        ) as pbar:
-
+        with (
+            ThreadPoolExecutor(max_workers=num_threads) as pool,
+            tqdm(
+                total=len(test_cases_total),
+                desc=f"Generating results for {model_name}",
+                position=0,
+                leave=True,
+                dynamic_ncols=True,
+                mininterval=0.2,
+                smoothing=0.1,
+                bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]",
+            ) as pbar,
+        ):
             # seed initial ready tasks
             while ready_queue and len(in_flight) < num_threads:
                 _, test_case_id = heapq.heappop(ready_queue)
@@ -391,7 +413,9 @@ def main(args):
     else:
         tqdm.write(f"Running full test cases for categories: {all_test_categories}.")
 
-    if any(is_format_sensitivity(test_category) for test_category in all_test_categories):
+    if any(
+        is_format_sensitivity(test_category) for test_category in all_test_categories
+    ):
         for model_name in args.model:
             if MODEL_CONFIG_MAPPING[model_name].is_fc_model:
                 tqdm.write(
