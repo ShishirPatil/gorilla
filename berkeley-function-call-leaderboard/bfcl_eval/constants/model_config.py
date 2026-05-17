@@ -11,6 +11,7 @@ from bfcl_eval.model_handler.api_inference.gemini import GeminiHandler
 from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
+from bfcl_eval.model_handler.api_inference.litellm_handler import LiteLLMHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
 from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
@@ -2230,11 +2231,58 @@ third_party_inference_model_map = {
 }
 
 
-MODEL_CONFIG_MAPPING = {
-    **api_inference_model_map,
-    **local_inference_model_map,
-    **third_party_inference_model_map,
-}
+def _resolve_litellm_model(registry_name: str) -> ModelConfig:
+    """Dynamically create a ModelConfig for any litellm/<provider>/<model> key.
+
+    Append ``-FC`` to the registry name to run in function-calling mode::
+
+        bfcl generate --model "litellm/groq/llama-3.3-70b-versatile-FC"
+        bfcl generate --model "litellm/together_ai/meta-llama/Llama-3.3-70B-Instruct-Turbo"
+
+    Provider API keys are read from the environment automatically by LiteLLM
+    (e.g. GROQ_API_KEY, TOGETHERAI_API_KEY).
+    See https://docs.litellm.ai/docs/providers for the full provider list.
+    """
+    is_fc = registry_name.endswith("-FC")
+    litellm_model = registry_name[len("litellm/"):]
+    if is_fc:
+        litellm_model = litellm_model[: -len("-FC")]
+
+    mode = "FC" if is_fc else "Prompt"
+    return ModelConfig(
+        model_name=litellm_model,
+        display_name=f"{litellm_model} ({mode}) (via LiteLLM)",
+        url="https://docs.litellm.ai/docs/providers",
+        org="LiteLLM",
+        license="MIT",
+        model_handler=LiteLLMHandler,
+        is_fc_model=is_fc,
+    )
+
+
+class _LiteLLMAwareConfigMap(dict):
+    """A dict that dynamically resolves ``litellm/`` prefixed model keys."""
+
+    def __missing__(self, key):
+        if isinstance(key, str) and key.startswith("litellm/"):
+            config = _resolve_litellm_model(key)
+            self[key] = config
+            return config
+        raise KeyError(key)
+
+    def __contains__(self, key):
+        if super().__contains__(key):
+            return True
+        return isinstance(key, str) and key.startswith("litellm/")
+
+
+MODEL_CONFIG_MAPPING = _LiteLLMAwareConfigMap(
+    {
+        **api_inference_model_map,
+        **local_inference_model_map,
+        **third_party_inference_model_map,
+    }
+)
 
 # Uncomment to get the supported_models.py file contents
 # print(repr(list(MODEL_CONFIG_MAPPING.keys())))
