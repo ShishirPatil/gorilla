@@ -85,6 +85,10 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-4-1-fast-reasoning                | Function Calling | xAI            | grok-4-1-fast-reasoning-FC                                  |
 | Haha-7B                                | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
 | Hammer2.1-{0.5b,1.5b,3b,7b}            | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{0.5b,1.5b,3b,7b}                      |
+| LFM2.5-350M                            | Function Calling | Self-hosted 💻 | LiquidAI/LFM2.5-350M                                        |
+| LFM2.5-1.2B-Instruct                   | Function Calling | Self-hosted 💻 | LiquidAI/LFM2.5-1.2B-Instruct                               |
+| LFM2.5-1.2B-Thinking                   | Function Calling | Self-hosted 💻 | LiquidAI/LFM2.5-1.2B-Thinking                               |
+| LFM2.5-8B-A1B                          | Function Calling | Self-hosted 💻 | LiquidAI/LFM2.5-8B-A1B                                      |
 | ling-lite-v1.5                         | Prompt           | Ling           | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct            | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
 | Llama-3.1-{8B,70B}-Instruct            | Prompt           | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct                      |

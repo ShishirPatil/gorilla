@@ -187,4 +187,8 @@ SUPPORTED_MODELS = [
     "qwen3-4b-think-FC",
     "qwen3-4b-nothink-FC",
     "DM-Cito-32B-v1",
+    "LiquidAI/LFM2.5-350M",
+    "LiquidAI/LFM2.5-1.2B-Instruct",
+    "LiquidAI/LFM2.5-1.2B-Thinking",
+    "LiquidAI/LFM2.5-8B-A1B",
 ]
