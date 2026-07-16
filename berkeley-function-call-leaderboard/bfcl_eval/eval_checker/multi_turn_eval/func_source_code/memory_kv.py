@@ -83,9 +83,9 @@ class MemoryAPI_kv(MemoryAPI):
         # BM25Plus divides by the corpus size when computing the average document
         # length, so an empty corpus raises ZeroDivisionError. Searching an empty
         # memory is a valid operation that should simply return no matches.
-                if not corpus:
-                                return {"ranked_results": []}
-                    tokenized_corpus = [text.replace("_", " ").lower().split() for text in corpus]
+        if not corpus:
+            return {"ranked_results": []}
+        tokenized_corpus = [text.replace("_", " ").lower().split() for text in corpus]
         bm25 = BM25Plus(tokenized_corpus)
         tokenized_query = query.replace("_", " ").lower().split()
         scores = bm25.get_scores(tokenized_query)
