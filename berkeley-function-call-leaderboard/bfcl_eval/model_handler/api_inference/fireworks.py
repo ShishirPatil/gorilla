@@ -58,17 +58,22 @@ class FireworksHandler(OpenAICompletionsHandler):
         return super()._compile_tools(inference_data, test_entry)
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
-        try:
+        raw_tool_calls = api_response.choices[0].message.tool_calls
+        if raw_tool_calls:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
-                for func_call in api_response.choices[0].message.tool_calls
+                for func_call in raw_tool_calls
             ]
-            tool_calls = [
-                tool_call.model_dump()
-                for tool_call in api_response.choices[0].message.tool_calls
-            ]
-        except:
-            model_responses = api_response.choices[0].message.content
+            tool_calls = [tool_call.model_dump() for tool_call in raw_tool_calls]
+        else:
+            # The model legitimately made no further tool calls (e.g. it already
+            # finished the task and is replying in plain text). `model_responses`
+            # must stay an empty list, not the raw text `content` -- passing text
+            # through here makes downstream `convert_to_function_call` iterate over
+            # the string's characters and crash with `'str' object has no
+            # attribute 'items'`, which gets misreported as a model/decoding
+            # failure even though the model behaved correctly.
+            model_responses = []
             tool_calls = []
 
         return {

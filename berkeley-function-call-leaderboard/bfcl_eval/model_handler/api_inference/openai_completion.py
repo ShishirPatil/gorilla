@@ -107,16 +107,24 @@ class OpenAICompletionsHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
-        try:
+        tool_calls = api_response.choices[0].message.tool_calls
+        if tool_calls:
             model_responses = [
                 {func_call.function.name: func_call.function.arguments}
-                for func_call in api_response.choices[0].message.tool_calls
+                for func_call in tool_calls
             ]
-            tool_call_ids = [
-                func_call.id for func_call in api_response.choices[0].message.tool_calls
-            ]
-        except:
-            model_responses = api_response.choices[0].message.content
+            tool_call_ids = [func_call.id for func_call in tool_calls]
+        else:
+            # The model legitimately made no further tool calls (e.g. it already
+            # finished the task and is replying in plain text). This is not an
+            # error, so `model_responses` must stay an empty list rather than the
+            # raw text `content`, which downstream `decode_execute` /
+            # `convert_to_function_call` expect to be a list of function-call
+            # dicts. Passing the text through used to make `convert_to_function_call`
+            # iterate over the string's characters and crash with
+            # `'str' object has no attribute 'items'`, which got misreported as a
+            # model/decoding failure even though the model behaved correctly.
+            model_responses = []
             tool_call_ids = []
 
         model_responses_message_for_chat_history = api_response.choices[0].message
