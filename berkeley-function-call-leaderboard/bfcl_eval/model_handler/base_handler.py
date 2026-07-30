@@ -257,6 +257,15 @@ class BaseHandler:
 
                 current_step_inference_log.append(log_entry)
 
+                if isinstance(model_responses, str) and model_responses.strip():
+                    current_step_inference_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": "Final textual response received.",
+                            "model_response_final": model_responses,
+                        }
+                    )
+                    break
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(
@@ -304,12 +313,10 @@ class BaseHandler:
                     ),
                     is_evaL_run=False,
                 )
-
                 # Add the execution results to the chat history for the next turn
                 inference_data = self._add_execution_results_FC(
                     inference_data, execution_results, model_response_data
                 )
-
                 for execution_result in execution_results:
                     current_step_inference_log.append(
                         {
