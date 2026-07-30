@@ -327,6 +327,20 @@ python -m bfcl_eval.eval_checker.eval_runner --model MODEL_NAME --test-category 
 
 When specifying multiple models or test categories, separate them with **spaces**, not commas. All other flags mentioned earlier are compatible with the script execution method as well.
 
+
+#### (Alternate) Evalscope implementation
+
+Evalscope also supports bfcl v4 evaluation. The reference is: https://evalscope.readthedocs.io/en/v1.6.0/third_party/bfcl_v4.html.
+
+```
+evalscope eval \
+  --model YOUR_MODEL \
+  --api-url OPENAI_API_COMPAT_URL \
+  --api-key EMPTY_TOKEN \
+  --datasets bfcl_v4 bfcl_v3 \
+  --limit 10
+```
+
 ## Contributing & How to Add New Models
 
 We welcome contributions! To add a new model:
