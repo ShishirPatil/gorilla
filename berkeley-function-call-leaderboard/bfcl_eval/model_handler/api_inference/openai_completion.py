@@ -73,7 +73,7 @@ class OpenAICompletionsHandler(BaseHandler):
         end_time = time.time()
 
         return api_response, end_time - start_time
-
+        
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -107,26 +107,37 @@ class OpenAICompletionsHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: Any) -> dict:
-        try:
+        message = api_response.choices[0].message
+        tool_calls = message.tool_calls or []
+
+        if tool_calls:
             model_responses = [
-                {func_call.function.name: func_call.function.arguments}
-                for func_call in api_response.choices[0].message.tool_calls
+                {
+                    func_call.function.name: func_call.function.arguments,
+                }
+                for func_call in tool_calls
             ]
-            tool_call_ids = [
-                func_call.id for func_call in api_response.choices[0].message.tool_calls
-            ]
-        except:
-            model_responses = api_response.choices[0].message.content
+            tool_call_ids = [func_call.id for func_call in tool_calls]
+        else:
+            model_responses = message.content or ""
             tool_call_ids = []
 
-        model_responses_message_for_chat_history = api_response.choices[0].message
+        usage = getattr(api_response, "usage", None)
 
         return {
             "model_responses": model_responses,
-            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "model_responses_message_for_chat_history": message,
             "tool_call_ids": tool_call_ids,
-            "input_token": api_response.usage.prompt_tokens,
-            "output_token": api_response.usage.completion_tokens,
+            "input_token": (
+                getattr(usage, "prompt_tokens", 0)
+                if usage is not None
+                else 0
+            ),
+            "output_token": (
+                getattr(usage, "completion_tokens", 0)
+                if usage is not None
+                else 0
+            ),
         }
 
     def add_first_turn_message_FC(
