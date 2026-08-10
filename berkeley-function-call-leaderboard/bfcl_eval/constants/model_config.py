@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
-
+from bfcl_eval.model_handler.api_inference.vllm import VLLMAPIHandler
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
@@ -117,6 +117,18 @@ class ModelConfig:
 
 # Inference through API calls
 api_inference_model_map = {
+    "BlueLM-3.6-35B-A3B-0806": ModelConfig(
+    model_name="BlueLM-3.6-35B-A3B-0806",
+    display_name="BlueLM-3.6-35B-A3B-0806",
+    url="https://api-ai.vivo.com.cn/v1/completions",
+    org="vivo",
+    license="Proprietary",
+    model_handler=VLLMAPIHandler,
+    input_price=None,
+    output_price=None,
+    is_fc_model=True,
+    underscore_to_dot=True,
+    ),
     "gorilla-openfunctions-v2": ModelConfig(
         model_name="gorilla-openfunctions-v2",
         display_name="Gorilla-OpenFunctions-v2 (FC)",
