@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
-from bfcl_eval.model_handler.api_inference.vllm import VLLMAPIHandler
+from bfcl_eval.model_handler.api_inference.vivo import VivoAPIHandler
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
@@ -123,7 +123,7 @@ api_inference_model_map = {
     url="https://api-ai.vivo.com.cn/v1/completions",
     org="vivo",
     license="Proprietary",
-    model_handler=VLLMAPIHandler,
+    model_handler=VivoAPIHandler,
     input_price=None,
     output_price=None,
     is_fc_model=True,
