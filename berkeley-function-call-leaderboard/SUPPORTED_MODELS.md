@@ -84,6 +84,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Grok-4-1-fast-non-reasoning            | Function Calling | xAI            | grok-4-1-fast-non-reasoning-FC                              |
 | Grok-4-1-fast-reasoning                | Function Calling | xAI            | grok-4-1-fast-reasoning-FC                                  |
 | Haha-7B                                | Prompt           | Self-hosted 💻 | ZJared/Haha-7B                                              |
+| AgentWeave + Hammer2.1-1.5B            | Function Calling | Self-hosted 💻 | AgentWeave-Hammer2.1-1.5B                                  |
 | Hammer2.1-{0.5b,1.5b,3b,7b}            | Function Calling | Self-hosted 💻 | MadeAgents/Hammer2.1-{0.5b,1.5b,3b,7b}                      |
 | ling-lite-v1.5                         | Prompt           | Ling           | Ling/ling-lite-v1.5                                         |
 | Llama-3.1-{8B,70B}-Instruct            | Function Calling | Self-hosted 💻 | meta-llama/Llama-3.1-{8B,70B}-Instruct-FC                   |
