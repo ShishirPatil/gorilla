@@ -167,3 +167,6 @@ For model names containing `{...}`, multiple versions are available. For example
 ---
 
 For more details and a summary of feature support across different models, see the [Berkeley Function Calling Leaderboard blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
+| gemma-4-E4B-it (Prompt) | Prompting | Self-hosted 💻 | google/gemma-4-E4B-it |
+| gemma-4-E4B-it-no-think (Prompt) | Prompting | Self-hosted 💻 | google/gemma-4-E4B-it-no-think |
+| CloudSurf-4B-FC (Prompt) | Prompting | Self-hosted 💻 | cloudsurf-software/CloudSurf-4B-FC |

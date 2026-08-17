@@ -39,6 +39,10 @@ from bfcl_eval.model_handler.local_inference.deepseek_reasoning import (
 )
 from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
+from bfcl_eval.model_handler.local_inference.gemma_4 import (
+    Gemma4Handler,
+    Gemma4NoThinkHandler,
+)
 from bfcl_eval.model_handler.local_inference.functiongemma import FunctionGemmaHandler
 from bfcl_eval.model_handler.local_inference.glm import GLMHandler
 from bfcl_eval.model_handler.local_inference.granite import (
@@ -2123,6 +2127,44 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "google/gemma-4-E4B-it": ModelConfig(
+        model_name="google/gemma-4-E4B-it",
+        display_name="Gemma-4-E4B-it (Prompt)",
+        url="https://huggingface.co/google/gemma-4-E4B-it",
+        org="Google",
+        # HF model card license tag verified apache-2.0 (2026-08-16, HF API)
+        license="apache-2.0",
+        model_handler=Gemma4Handler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "google/gemma-4-E4B-it-no-think": ModelConfig(
+        model_name="google/gemma-4-E4B-it",
+        display_name="Gemma-4-E4B-it (Prompt NoThink)",
+        url="https://huggingface.co/google/gemma-4-E4B-it",
+        org="Google",
+        # HF model card license tag verified apache-2.0 (2026-08-16, HF API)
+        license="apache-2.0",
+        model_handler=Gemma4NoThinkHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "cloudsurf-software/CloudSurf-4B-FC": ModelConfig(
+        model_name="cloudsurf-software/CloudSurf-4B-FC",
+        display_name="CloudSurf-4B-FC (Prompt)",
+        url="https://huggingface.co/cloudsurf-software/CloudSurf-4B-FC",
+        org="CloudSurf Software",
+        license="apache-2.0",
+        model_handler=Gemma4Handler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
         underscore_to_dot=False,
     ),
 }
