@@ -135,6 +135,7 @@ SUPPORTED_MODELS = [
     "MadeAgents/Hammer2.1-7b",
     "MadeAgents/Hammer2.1-3b",
     "MadeAgents/Hammer2.1-1.5b",
+    "AgentWeave-Hammer2.1-1.5B",
     "MadeAgents/Hammer2.1-0.5b",
     "THUDM/glm-4-9b-chat",
     "Qwen/Qwen3-0.6B-FC",

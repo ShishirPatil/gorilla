@@ -46,6 +46,7 @@ from bfcl_eval.model_handler.local_inference.granite import (
 )
 from bfcl_eval.model_handler.local_inference.granite_3 import Granite3FCHandler
 from bfcl_eval.model_handler.local_inference.granite_4 import Granite4FCHandler
+from bfcl_eval.model_handler.local_inference.agentweave_hammer import AgentWeaveHammerHandler
 from bfcl_eval.model_handler.local_inference.hammer import HammerHandler
 from bfcl_eval.model_handler.local_inference.llama import LlamaHandler
 from bfcl_eval.model_handler.local_inference.llama_3_1 import LlamaHandler_3_1
@@ -1580,6 +1581,18 @@ local_inference_model_map = {
         org="MadeAgents",
         license="cc-by-nc-4.0",
         model_handler=HammerHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "AgentWeave-Hammer2.1-1.5B": ModelConfig(
+        model_name="MadeAgents/Hammer2.1-1.5b",
+        display_name="AgentWeave + Hammer2.1-1.5B (FC)",
+        url="https://github.com/sauravsingla/agentweave",
+        org="AgentWeave / MadeAgents",
+        license="cc-by-nc-4.0",
+        model_handler=AgentWeaveHammerHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
