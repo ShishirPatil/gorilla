@@ -21,9 +21,23 @@ def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missi
         count = accuracy_dict["total_count"]
         if accuracy_dict["display_accuracy"] == "N/A":
             has_na = True
+        # Categories that were never evaluated carry a placeholder accuracy of 0.
+        # Excluding them here keeps the aggregate arithmetic from treating a
+        # skipped category as a genuine zero score.
+        if accuracy_dict.get("not_evaluated"):
+            continue
 
         total_count += count
         total_accuracy += accuracy * count
+
+    if total_count == 0:
+        # Every input category was skipped; there is nothing to aggregate.
+        return {
+            "accuracy": 0,
+            "total_count": 0,
+            "display_accuracy": "N/A",
+            "not_evaluated": True,
+        }
 
     result = {"accuracy": total_accuracy / total_count, "total_count": total_count}
 
@@ -39,18 +53,32 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
     has_na = False
     total_count = 0
     total_accuracy = 0
+    evaluated_categories = 0
     for accuracy_dict in accuracy_dict_list:
         accuracy = accuracy_dict["accuracy"]
         count = accuracy_dict["total_count"]
         if accuracy_dict["display_accuracy"] == "N/A":
             # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
             has_na = True
+        # Skip never-evaluated categories so they neither enter the mean nor the count.
+        if accuracy_dict.get("not_evaluated"):
+            continue
 
+        evaluated_categories += 1
         total_count += count
         total_accuracy += accuracy
 
+    if evaluated_categories == 0:
+        # Every input category was skipped; there is nothing to aggregate.
+        return {
+            "accuracy": 0,
+            "total_count": 0,
+            "display_accuracy": "N/A",
+            "not_evaluated": True,
+        }
+
     result = {
-        "accuracy": total_accuracy / len(accuracy_dict_list),
+        "accuracy": total_accuracy / evaluated_categories,
         "total_count": total_count,
     }
 
@@ -89,23 +117,33 @@ def calculate_percentage_weighted_accuracy(
     has_na = False
     total_count = 0
     total_accuracy = 0.0
-    weight_sum = sum(weights)
-    if weight_sum == 0:
-        raise ValueError("Sum of weights must be greater than 0")
+    weight_sum = 0.0
 
-    # Normalise weights so that they sum to 1.0
-    weights_norm = [w / weight_sum for w in weights]
-
-    for accuracy_dict, weight in zip(accuracy_dict_list, weights_norm):
+    for accuracy_dict, weight in zip(accuracy_dict_list, weights):
         accuracy = accuracy_dict["accuracy"]
         count = accuracy_dict["total_count"]
         if accuracy_dict["display_accuracy"] == "N/A":
             has_na = True
+        # Skip never-evaluated categories so their weight vanishes from the normalization.
+        if accuracy_dict.get("not_evaluated"):
+            continue
 
+        weight_sum += weight
         total_count += count
         total_accuracy += accuracy * weight
 
-    result = {"accuracy": total_accuracy, "total_count": total_count}
+    if weight_sum == 0:
+        if has_na:
+            # Every input category was skipped; there is nothing to aggregate.
+            return {
+                "accuracy": 0,
+                "total_count": 0,
+                "display_accuracy": "N/A",
+                "not_evaluated": True,
+            }
+        raise ValueError("Sum of weights must be greater than 0")
+
+    result = {"accuracy": total_accuracy / weight_sum, "total_count": total_count}
 
     if has_na and display_na_if_category_missing:
         result["display_accuracy"] = "N/A"
@@ -242,9 +280,15 @@ def get_category_score(score_dict: dict, test_category: str) -> dict:
             )
         )
         # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
-        # It will still be considered 0 in the overall score calculation though
-        # We use `display_accuracy` to special handle
-        return {"accuracy": 0, "total_count": num_entry, "display_accuracy": "N/A"}
+        # The `not_evaluated` flag lets the aggregation helpers exclude it from their
+        # arithmetic instead of treating it as a genuine zero score, and `display_accuracy`
+        # renders it as "N/A" in the CSVs
+        return {
+            "accuracy": 0,
+            "total_count": num_entry,
+            "display_accuracy": "N/A",
+            "not_evaluated": True,
+        }
 
 
 def write_score_csv_file(
