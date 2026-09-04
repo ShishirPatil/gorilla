@@ -1,12 +1,22 @@
 import os
+import time
 from typing import Any
 
-from bfcl_eval.model_handler.api_inference.openai_completion import OpenAICompletionsHandler
-from bfcl_eval.constants.enums import ModelStyle
 from openai import OpenAI
 from overrides import override
-from qwen_agent.llm import get_chat_model
-import time
+
+from bfcl_eval.constants.enums import ModelStyle
+from bfcl_eval.model_handler.api_inference.openai_completion import (
+    OpenAICompletionsHandler,
+)
+
+
+def _build_qwen_agent_chat_model(config: dict[str, Any]) -> Any:
+    # Keep BFCL CLI startup independent of Qwen Agent's audio dependencies.
+    from qwen_agent.llm import get_chat_model
+
+    return get_chat_model(config)
+
 
 class QwenAPIHandler(OpenAICompletionsHandler):
     """
@@ -231,7 +241,7 @@ class QwenAgentThinkHandler(OpenAICompletionsHandler):
             --max-model-len 65536
         """
         
-        self.llm = get_chat_model({
+        self.llm = _build_qwen_agent_chat_model({
         'model': model_name,  # name of the model served by vllm server
         'model_type': 'oai',
         'model_server':'http://localhost:8000/v1', # can be replaced with server host
@@ -330,7 +340,7 @@ class QwenAgentNoThinkHandler(QwenAgentThinkHandler):
             --max-model-len 65536
         """
         
-        self.llm = get_chat_model({
+        self.llm = _build_qwen_agent_chat_model({
         'model': model_name, # name of the model served by vllm server
         'model_type': 'oai',
         'model_server':'http://localhost:8000/v1', # can be replaced with server host
