@@ -56,7 +56,7 @@ _PARAM_RE = re.compile(
 _INT_TYPES = {"integer", "int", "long", "short", "byte"}
 _FLOAT_TYPES = {"float", "number", "double"}
 _BOOL_TYPES = {"boolean", "bool"}
-_LIST_TYPES = {"array", "tuple", "list", "arraylist", "array"}
+_LIST_TYPES = {"array", "tuple", "list", "arraylist"}
 _DICT_TYPES = {"dict", "object", "hashmap", "map"}
 
 
@@ -84,7 +84,7 @@ def _coerce(value: str, type_name: str | None):
             return float(raw)
         if t in _LIST_TYPES or t in _DICT_TYPES:
             return _json()
-        if t in ("string", "str", "any", "") or t == "any":
+        if t in ("string", "str", "any", ""):
             return raw
         # Unknown language-specific type (e.g. Java "String[]", JS "Object"):
         # take a JSON literal if it parses, else the raw text.
@@ -107,6 +107,10 @@ class Qwen35FCHandler(QwenFCHandler):
         **kwargs,
     ) -> None:
         super().__init__(model_name, temperature, registry_name, is_fc_model, dtype, **kwargs)
+        # QwenFCHandler accepts `dtype` but does not pass it to OSSHandler, where
+        # `self.dtype` is what the local server is launched with, so a non-default
+        # dtype would be silently dropped. Apply it here.
+        self.dtype = dtype
         self.model_name_huggingface = model_name
         # Per-thread stash of the current test entry's function specs, used to
         # type-coerce XML parameter values. The handler instance is shared by
