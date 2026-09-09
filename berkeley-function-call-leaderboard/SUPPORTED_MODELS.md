@@ -126,6 +126,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Qwen/QwQ-32B                           | Prompt           | Novita AI      | qwen/qwq-32b-novita                                         |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Function Calling | Qwen           | qwen3-{0.6b,1.7b,4b,8b,14b,32b}-FC                          |
 | Qwen3-{0.6B,1.7B,4B,8B,14B,32B}        | Prompt           | Qwen           | qwen3-{0.6b,1.7b,4b,8b,14b,32b}                             |
+| Qwen3.5-{2B,4B}                        | Function Calling | Self-hosted 💻 | Qwen/Qwen3.5-{2B,4B}-FC                                     |
 | Qwen3-{0.6B,1.7B,8B,14B,32B}           | Function Calling | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,8B,14B,32B}-FC                        |
 | Qwen3-{0.6B,1.7B,8B,14B,32B}           | Prompt           | Self-hosted 💻 | Qwen/Qwen3-{0.6B,1.7B,8B,14B,32B}                           |
 | Qwen3-235B-A22B-Instruct-2507          | Function Calling | Qwen           | qwen3-235b-a22b-instruct-2507-FC                            |

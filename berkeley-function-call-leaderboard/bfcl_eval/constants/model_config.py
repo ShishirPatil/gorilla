@@ -59,6 +59,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.qwen3_5_fc import Qwen35FCHandler
 from bfcl_eval.model_handler.local_inference.pelican_vl_fc import PelicanVLFCHandler
 from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
@@ -1680,6 +1681,30 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=False,
         underscore_to_dot=False,
+    ),
+    "Qwen/Qwen3.5-2B-FC": ModelConfig(
+        model_name="Qwen/Qwen3.5-2B",
+        display_name="Qwen3.5-2B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3.5-2B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=Qwen35FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "Qwen/Qwen3.5-4B-FC": ModelConfig(
+        model_name="Qwen/Qwen3.5-4B",
+        display_name="Qwen3.5-4B (FC)",
+        url="https://huggingface.co/Qwen/Qwen3.5-4B",
+        org="Qwen",
+        license="apache-2.0",
+        model_handler=Qwen35FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
     "Qwen/Qwen3-8B-FC": ModelConfig(
         model_name="Qwen/Qwen3-8B",

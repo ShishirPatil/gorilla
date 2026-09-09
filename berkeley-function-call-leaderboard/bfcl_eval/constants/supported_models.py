@@ -145,6 +145,8 @@ SUPPORTED_MODELS = [
     "Qwen/Qwen3-4B-Instruct-2507",
     "Qwen/Qwen3-8B-FC",
     "Qwen/Qwen3-8B",
+    "Qwen/Qwen3.5-2B-FC",
+    "Qwen/Qwen3.5-4B-FC",
     "Qwen/Qwen3-14B-FC",
     "Qwen/Qwen3-14B",
     "Qwen/Qwen3-32B-FC",
