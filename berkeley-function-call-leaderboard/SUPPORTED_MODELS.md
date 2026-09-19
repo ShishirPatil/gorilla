@@ -23,6 +23,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | Bielik-11B-v2.3-Instruct               | Prompt           | Self-hosted 💻 | speakleash/Bielik-11B-v2.3-Instruct                         |
 | BitAgent-8B                            | Prompt           | Self-hosted 💻 | BitAgent/BitAgent-8B                                        |
 | BitAgent-Bounty-8B                     | Function Calling | Self-hosted 💻 | BitAgent/BitAgent-Bounty-8B                                 |
+| BitAgent-Bounty-8B-dpo-prune           | Function Calling | Self-hosted 💻 | lwa201/BitAgent-Bounty-8B-dpo-prune                         |
 | claude-3.5-haiku-20241022              | Function Calling | Anthropic      | claude-haiku-4-5-20251001-FC                                |
 | claude-3.5-haiku-20241022              | Prompt           | Anthropic      | claude-haiku-4-5-20251001                                   |
 | Claude-Opus-4.5-20251101               | Function Calling | Anthropic      | claude-opus-4-5-20251101-FC                                 |
@@ -153,6 +154,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
+| xLAM-2-8b-fc-r-dpo-prune               | Function Calling | Self-hosted 💻 | lwa201/Llama-xLAM-2-8b-fc-r-dpo-prune                       |
 
 ---
 
