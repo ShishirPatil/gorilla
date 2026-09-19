@@ -12,6 +12,7 @@ from bfcl_eval.model_handler.api_inference.glm import GLMAPIHandler
 from bfcl_eval.model_handler.api_inference.gogoagent import GoGoAgentHandler
 from bfcl_eval.model_handler.api_inference.gorilla import GorillaHandler
 from bfcl_eval.model_handler.api_inference.grok import GrokHandler
+from bfcl_eval.model_handler.api_inference.jesse import JesseHandler
 from bfcl_eval.model_handler.api_inference.kimi import KimiHandler
 from bfcl_eval.model_handler.api_inference.ling import LingAPIHandler
 from bfcl_eval.model_handler.api_inference.mining import MiningHandler
@@ -1208,6 +1209,30 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "jesse-autonomous-v2-FC": ModelConfig(
+        model_name="jesse-autonomous-v2",
+        display_name="Jesse-Autonomous-v2 (FC)",
+        url="https://jesse.solidsf.com",
+        org="solidSF",
+        license="Proprietary",
+        model_handler=JesseHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "jesse-autonomous-v2": ModelConfig(
+        model_name="jesse-autonomous-v2",
+        display_name="Jesse-Autonomous-v2 (Prompt)",
+        url="https://jesse.solidsf.com",
+        org="solidSF",
+        license="Proprietary",
+        model_handler=JesseHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=False,
+        underscore_to_dot=False,
     ),
 }
 
