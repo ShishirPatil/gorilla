@@ -429,6 +429,13 @@ def simple_function_checker(
             if expected_type_description in PYTHON_NESTED_TYPE_CHECK_LIST:
                 nested_type = param_details[param]["items"]["type"]
                 nested_type_converted = PYTHON_TYPE_MAPPING[nested_type]
+                # Scalar float already accepts int (below). Nested arrays did not,
+                # so [133, 34] failed a float-array check against [133.0, 34.0].
+                # Only exact ints are coerced; bool is a subclass of int and null stays null.
+                if nested_type == "float" and type(value) is list:
+                    value = [
+                        float(item) if type(item) is int else item for item in value
+                    ]
 
         else:
             raise ValueError(f"Unsupported language: {language}")
