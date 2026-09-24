@@ -324,6 +324,29 @@ def resolve_ast_call(elem):
     return {func_name: args_dict}
 
 
+_UNARY_OPERATORS = {
+    ast.UAdd: operator.pos,
+    ast.USub: operator.neg,
+    ast.Invert: operator.invert,
+    ast.Not: operator.not_,
+}
+
+_BINARY_OPERATORS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.FloorDiv: operator.floordiv,
+    ast.Mod: operator.mod,
+    ast.Pow: operator.pow,
+    ast.LShift: operator.lshift,
+    ast.RShift: operator.rshift,
+    ast.BitOr: operator.or_,
+    ast.BitAnd: operator.and_,
+    ast.BitXor: operator.xor,
+}
+
+
 def resolve_ast_by_type(value):
     if isinstance(value, ast.Constant):
         if value.value is Ellipsis:
@@ -331,7 +354,7 @@ def resolve_ast_by_type(value):
         else:
             output = value.value
     elif isinstance(value, ast.UnaryOp):
-        output = -value.operand.value
+        output = _UNARY_OPERATORS[type(value.op)](resolve_ast_by_type(value.operand))
     elif isinstance(value, ast.List):
         output = [resolve_ast_by_type(v) for v in value.elts]
     elif isinstance(value, ast.Dict):
@@ -346,7 +369,9 @@ def resolve_ast_by_type(value):
     elif isinstance(
         value, ast.BinOp
     ):  # Added this condition to handle function calls as arguments
-        output = eval(ast.unparse(value))
+        output = _BINARY_OPERATORS[type(value.op)](
+            resolve_ast_by_type(value.left), resolve_ast_by_type(value.right)
+        )
     elif isinstance(value, ast.Name):
         output = value.id
     elif isinstance(value, ast.Call):
