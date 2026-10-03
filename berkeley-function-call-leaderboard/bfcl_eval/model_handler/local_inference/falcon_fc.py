@@ -1,5 +1,6 @@
 import json
 
+from bfcl_eval.model_handler.exceptions import MalformedToolCallError
 from bfcl_eval.model_handler.local_inference.base_oss_handler import OSSHandler
 from overrides import override
 
@@ -32,10 +33,14 @@ class Falcon3FCHandler(OSSHandler):
     @override
     def decode_ast(self, result, language, has_tool_call_tag):
         """Decode the model's response into AST format."""
-        try:
-            if "<tool_call>" not in result:
-                raise ValueError(f"No <tool_call> found in the model's response: {result}")
+        if "<tool_call>" not in result:
+            if "<tool_call" in result:
+                raise MalformedToolCallError(
+                    f"Malformed tool call in the model's response: {result}"
+                )
+            raise ValueError(f"No <tool_call> found in the model's response: {result}")
 
+        try:
             tool_calls_str = result.split("<tool_call>")[1].split("</tool_call>")[0].strip()
 
             if tool_calls_str.startswith("```") and tool_calls_str.endswith("```"):
@@ -52,11 +57,17 @@ class Falcon3FCHandler(OSSHandler):
             for tool_call in tool_calls:
                 name = tool_call["name"]
                 params = tool_call["arguments"]
+                if not isinstance(name, str) or not isinstance(params, dict):
+                    raise MalformedToolCallError(
+                        f"Malformed tool call in the model's response: {result}"
+                    )
                 decoded_output.append({name: params})
 
             return decoded_output
-        except (json.JSONDecodeError, KeyError, IndexError):
-            raise ValueError(f"Failed to decode the model's response: {result}")
+        except (json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
+            raise MalformedToolCallError(
+                f"Failed to decode the model's tool call: {result}"
+            ) from e
 
     @override
     def decode_execute(self, result, has_tool_call_tag):
