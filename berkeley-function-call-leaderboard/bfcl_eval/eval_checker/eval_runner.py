@@ -16,6 +16,7 @@ from bfcl_eval.eval_checker.multi_turn_eval.multi_turn_utils import (
     is_empty_execute_response,
 )
 from bfcl_eval.model_handler.base_handler import BaseHandler
+from bfcl_eval.model_handler.exceptions import MalformedToolCallError
 from bfcl_eval.model_handler.utils import parse_prompt_variation_params
 from bfcl_eval.utils import *
 from dotenv import load_dotenv
@@ -270,6 +271,7 @@ def _evaluate_single_relevance_entry(
 ):
     """Helper method to process a single relevance/irrelevance entry."""
     contain_func_call = False
+    malformed_func_call = False
     decoded_result = None
     decode_error = None
 
@@ -282,6 +284,10 @@ def _evaluate_single_relevance_entry(
         if is_empty_output(decoded_result):
             # Empty output is not considered as a valid function call
             contain_func_call = False
+    except MalformedToolCallError as e:
+        # A failed parse can still be an attempted function call.
+        malformed_func_call = True
+        decode_error = str(e)
     except Exception as e:
         # Decode failed, which means the model output is not in valid function call format
         contain_func_call = False
@@ -289,7 +295,7 @@ def _evaluate_single_relevance_entry(
 
     # irrelevance test means no function call outputted
     if "irrelevance" in test_category:
-        success = not contain_func_call
+        success = not (contain_func_call or malformed_func_call)
     else:
         success = contain_func_call
 
@@ -304,8 +310,12 @@ def _evaluate_single_relevance_entry(
             "decoded_result": decoded_result,
         }
         if "irrelevance" in test_category:
-            temp["error"] = ["Valid syntax. Successfully decode AST when it should not."]
-            temp["error_type"] = "irrelevance_error:decoder_success"
+            if malformed_func_call:
+                temp["error"] = [f"Malformed function call: {decode_error}"]
+                temp["error_type"] = "irrelevance_error:malformed_function_call"
+            else:
+                temp["error"] = ["Valid syntax. Successfully decode AST when it should not."]
+                temp["error_type"] = "irrelevance_error:decoder_success"
         else:
             temp["error"] = [
                 f"Invalid syntax. Failed to decode AST when it should have. {decode_error}"
