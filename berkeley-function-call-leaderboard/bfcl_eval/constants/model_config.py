@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from bfcl_eval.model_handler.api_inference.atlascloud import AtlasCloudHandler
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
@@ -2129,6 +2130,79 @@ local_inference_model_map = {
 
 # Inference through third-party inference platforms for open-source models
 third_party_inference_model_map = {
+    # Via Atlas Cloud Endpoint
+    "deepseek-ai/deepseek-v4-flash-atlascloud": ModelConfig(
+        model_name="deepseek-ai/deepseek-v4-flash",
+        display_name="DeepSeek-V4-Flash (Prompt) (Atlas Cloud)",
+        url="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
+        org="DeepSeek",
+        license="MIT",
+        model_handler=AtlasCloudHandler,
+        input_price=0.14,
+        output_price=0.28,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "deepseek-ai/deepseek-v4-flash-FC-atlascloud": ModelConfig(
+        model_name="deepseek-ai/deepseek-v4-flash",
+        display_name="DeepSeek-V4-Flash (FC) (Atlas Cloud)",
+        url="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
+        org="DeepSeek",
+        license="MIT",
+        model_handler=AtlasCloudHandler,
+        input_price=0.14,
+        output_price=0.28,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "deepseek-ai/deepseek-v4-pro-atlascloud": ModelConfig(
+        model_name="deepseek-ai/deepseek-v4-pro",
+        display_name="DeepSeek-V4-Pro (Prompt) (Atlas Cloud)",
+        url="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        org="DeepSeek",
+        license="MIT",
+        model_handler=AtlasCloudHandler,
+        input_price=1.68,
+        output_price=3.38,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "deepseek-ai/deepseek-v4-pro-FC-atlascloud": ModelConfig(
+        model_name="deepseek-ai/deepseek-v4-pro",
+        display_name="DeepSeek-V4-Pro (FC) (Atlas Cloud)",
+        url="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+        org="DeepSeek",
+        license="MIT",
+        model_handler=AtlasCloudHandler,
+        input_price=1.68,
+        output_price=3.38,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
+    "zai-org/glm-5.3-atlascloud": ModelConfig(
+        model_name="zai-org/glm-5.3",
+        display_name="GLM-5.3 (Prompt) (Atlas Cloud)",
+        url="https://huggingface.co/zai-org/GLM-5.3",
+        org="Zhipu AI",
+        license="glm-5.3",
+        model_handler=AtlasCloudHandler,
+        input_price=1.4,
+        output_price=4.4,
+        is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "zai-org/glm-5.3-FC-atlascloud": ModelConfig(
+        model_name="zai-org/glm-5.3",
+        display_name="GLM-5.3 (FC) (Atlas Cloud)",
+        url="https://huggingface.co/zai-org/GLM-5.3",
+        org="Zhipu AI",
+        license="glm-5.3",
+        model_handler=AtlasCloudHandler,
+        input_price=1.4,
+        output_price=4.4,
+        is_fc_model=True,
+        underscore_to_dot=True,
+    ),
     # Via Novita AI Endpoint
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita": ModelConfig(
         model_name="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
