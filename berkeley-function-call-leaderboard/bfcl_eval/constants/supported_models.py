@@ -160,6 +160,7 @@ SUPPORTED_MODELS = [
     "watt-ai/watt-tool-8B",
     "watt-ai/watt-tool-70B",
     "ZJared/Haha-7B",
+    "TimJ3ly/Sylumen-5B-FC",
     "speakleash/Bielik-11B-v2.3-Instruct",
     "NovaSky-AI/Sky-T1-32B-Preview",
     "tiiuae/Falcon3-10B-Instruct-FC",

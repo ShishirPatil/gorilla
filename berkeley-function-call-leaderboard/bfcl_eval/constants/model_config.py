@@ -59,6 +59,7 @@ from bfcl_eval.model_handler.local_inference.quick_testing_oss import (
 )
 from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
+from bfcl_eval.model_handler.local_inference.sylumen_5b_fc import Sylumen5BFCHandler
 from bfcl_eval.model_handler.local_inference.pelican_vl_fc import PelicanVLFCHandler
 from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
@@ -1931,6 +1932,18 @@ local_inference_model_map = {
         input_price=None,
         output_price=None,
         is_fc_model=False,
+        underscore_to_dot=False,
+    ),
+    "TimJ3ly/Sylumen-5B-FC": ModelConfig(
+        model_name="TimJ3ly/Sylumen-5B",
+        display_name="Sylumen-5B (FC)",
+        url="https://huggingface.co/TimJ3ly/Sylumen-5B",
+        org="Ghostcloud",
+        license="apache-2.0",
+        model_handler=Sylumen5BFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
         underscore_to_dot=False,
     ),
     "tiiuae/Falcon3-10B-Instruct-FC": ModelConfig(
