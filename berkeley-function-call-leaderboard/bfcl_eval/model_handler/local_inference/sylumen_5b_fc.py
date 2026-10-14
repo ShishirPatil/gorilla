@@ -27,7 +27,9 @@ that is model-specific lives here:
 * ``_format_prompt`` uses ``apply_chat_template(messages, tools=function, tool_call_format="xml",
   reasoning_effort="high", add_generation_prompt=True)``;
 * ``_query_prompting`` calls the official ``client.completions.create`` endpoint and applies the
-  16 384-token checkpoint context guard;
+  65 536-token context guard (the checkpoint advertises 524 288 positions, but the BFCL default
+  server command does not pass ``--max-model-len``, so a single GPU cannot hold that KV cache;
+  the guard and the served ``--max-model-len`` must agree);
 * ``_parse_query_response_prompting`` splits the reasoning trace from the tool-call block and
   turns the block into BFCL's structured assistant history (``tool_calls`` with dict arguments)
   plus the raw decoded tool calls used by ``decode_ast`` / ``decode_execute``;
@@ -51,6 +53,7 @@ from overrides import override
 __all__ = [
     "Sylumen5BFCHandler",
     "MARKERS",
+    "resolve_max_context",
     "coerce_arg_value",
     "strip_trailing_specials",
     "parse_output",
@@ -81,13 +84,26 @@ MARKERS = {
     "arg_value_close": "</ifm|arg_value>",
 }
 
-DEFAULT_MAX_CONTEXT = 16384
+DEFAULT_MAX_CONTEXT = 65536
 DEFAULT_MAX_NEW_TOKENS = 4096
 _THINK_VARIANTS = (
     (MARKERS["think"], MARKERS["think_close"]),
     (MARKERS["think_fast"], MARKERS["think_fast_close"]),
     (MARKERS["think_faster"], MARKERS["think_faster_close"]),
 )
+
+
+def resolve_max_context(env=None) -> int:
+    """Resolve the context guard; ``K2_MAX_CONTEXT`` overrides the 65 536-token default.
+
+    The checkpoint's ``max_position_embeddings`` is 524 288, but BFCL's default local-server
+    command does not pass ``--max-model-len``, so vLLM would try to reserve ~72 GiB of KV cache
+    for that window on a single card.  The served context and this guard are therefore pinned
+    to 65 536, which covers the multi-turn ``long_context`` category, and both can be raised
+    together for deployments with more memory.
+    """
+    source = os.environ if env is None else env
+    return int(source.get("K2_MAX_CONTEXT", DEFAULT_MAX_CONTEXT))
 
 
 def coerce_arg_value(raw: str):
@@ -220,7 +236,7 @@ class Sylumen5BFCHandler(OSSHandler):
         self.served_model_name = os.environ.get("K2_SERVED_MODEL") or model_name
         self.reasoning_effort = os.environ.get("K2_REASONING_EFFORT", "high")
         self.tool_call_format = os.environ.get("K2_TOOL_CALL_FORMAT", "xml")
-        self.max_context = int(os.environ.get("K2_MAX_CONTEXT", DEFAULT_MAX_CONTEXT))
+        self.max_context = resolve_max_context()
         self.max_new_tokens = int(
             os.environ.get("K2_MAX_NEW_TOKENS", DEFAULT_MAX_NEW_TOKENS)
         )
