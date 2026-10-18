@@ -11,7 +11,7 @@
     - [Extra Dependencies for Self-Hosted Models](#extra-dependencies-for-self-hosted-models)
     - [Configuring Project Root Directory](#configuring-project-root-directory)
     - [Setting up Environment Variables](#setting-up-environment-variables)
-      - [Configuring SerpAPI for Web Search Category](#configuring-serpapi-for-web-search-category)
+      - [Configuring Web Search](#configuring-web-search)
   - [Running Evaluations](#running-evaluations)
     - [Generating LLM Responses](#generating-llm-responses)
       - [Selecting Models and Test Categories](#selecting-models-and-test-categories)
@@ -139,9 +139,27 @@ If you are running any proprietary models, make sure the model API keys are incl
 
 The library looks for the `.env` file in the project root, i.e. `$BFCL_PROJECT_ROOT/.env`.
 
-#### Configuring SerpAPI for Web Search Category
+#### Configuring Web Search
 
-For the `web_search` test category, we use the [SerpAPI](https://serpapi.com/) service to perform web search. You need to sign up for an API key and add it to your `.env` file. You can also switch to other web search APIs by changing the `search_engine_query` function in `bfcl_eval/eval_checker/multi_turn_eval/func_source_code/web_search.py`.
+The `web_search` categories use [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) when no search provider or SerpAPI key is configured. Search uses Fast mode and needs no account or API key. Anonymous access has usage limits; service errors are returned to the model without switching providers. Each Parallel exchange has a 30-second timeout.
+
+An existing `SERPAPI_API_KEY` keeps [SerpAPI](https://serpapi.com/) selected. To explicitly choose a provider, set these values in your `.env` file:
+
+```bash
+# Free anonymous search, even if a SerpAPI key is present
+BFCL_SEARCH_PROVIDER=parallel
+
+# Or use DuckDuckGo through SerpAPI
+# BFCL_SEARCH_PROVIDER=serpapi
+# SERPAPI_API_KEY=your_key
+
+# Or disable search requests
+# BFCL_SEARCH_PROVIDER=none
+```
+
+Parallel supports the default `region="wt-wt"` (or `None`); select SerpAPI for a specific region. Both providers retain the `title`/`href` result format and omit `body` in no-snippet scenarios. `fetch_url_content` continues to fetch pages directly, preserving its raw HTML, Markdown and truncated-text modes.
+
+Published BFCL web-search results use DuckDuckGo through SerpAPI. Select `BFCL_SEARCH_PROVIDER=serpapi` and supply its key when comparing with those results. Record the provider with your own runs: changing search backends can change evaluation scores.
 
 ---
 

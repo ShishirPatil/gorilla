@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import uuid
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -31,6 +32,8 @@ class WebSearchAPI:
     def __init__(self):
         self._api_description = "This tool belongs to the Web Search API category. It provides functions to search the web and browse search results."
         self.show_snippet = True
+        # Keep the same anonymous search identity across steps in this task.
+        self._parallel_session_id = uuid.uuid4().hex
         # Note: The following two random generators are used to simulate random errors, but that feature is not currently used
         # This one used to determine if we should simulate a random error
         # Outcome (True means simulate error): [True, False, True, True, False, True, True, True, False, False, True, True, False, True, False, False, False, False, False, True]
@@ -131,6 +134,32 @@ class WebSearchAPI:
             - 'href' (str): The URL of the search result.
             - 'body' (str): A brief description or snippet from the search result.
         """
+        provider = os.getenv("BFCL_SEARCH_PROVIDER", "").strip().lower()
+        if not provider:
+            provider = (
+                "serpapi" if os.getenv("SERPAPI_API_KEY", "").strip() else "parallel"
+            )
+        if provider == "none":
+            return {"error": "Web search is disabled by BFCL_SEARCH_PROVIDER=none."}
+        if provider == "parallel":
+            if region not in (None, "wt-wt"):
+                return {
+                    "error": "Parallel search does not support region selection. "
+                    "Set BFCL_SEARCH_PROVIDER=serpapi and configure SERPAPI_API_KEY "
+                    "to use a specific region."
+                }
+            from bfcl_eval.eval_checker.multi_turn_eval.func_source_code.parallel_search import (
+                search,
+            )
+
+            return search(
+                keywords, max_results, self.show_snippet, self._parallel_session_id
+            )
+        if provider != "serpapi":
+            return {"error": "BFCL_SEARCH_PROVIDER must be parallel, serpapi, or none."}
+        if not os.getenv("SERPAPI_API_KEY", "").strip():
+            return {"error": "SERPAPI_API_KEY is required for BFCL_SEARCH_PROVIDER=serpapi."}
+
         backoff = 2  # initial back-off in seconds
         params = {
             "engine": "duckduckgo",
