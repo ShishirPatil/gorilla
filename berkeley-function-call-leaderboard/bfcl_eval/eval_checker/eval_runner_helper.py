@@ -221,10 +221,10 @@ def get_cost_latency_info(model_name, cost_data, latency_data):
     # Calculate latency statistics for ALL models (both API and local)
     if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
-        std_latency = statistics.stdev(latency_data["data"])
+        if len(latency_data["data"]) > 1:
+            std_latency = round(statistics.stdev(latency_data["data"]), 2)
         percentile_95_latency = np.percentile(latency_data["data"], 95)
         mean_latency = round(mean_latency, 2)
-        std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
 
     return cost, mean_latency, std_latency, percentile_95_latency
