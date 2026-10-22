@@ -1,3 +1,4 @@
+import json
 import re
 from bfcl_eval.constants.type_mappings import JS_TYPE_CONVERSION
 
@@ -7,6 +8,11 @@ def js_type_converter(value, expected_type, nested_type=None):
         raise ValueError(f"Unsupported type: {expected_type}")
 
     if expected_type == "String":
+        if value.startswith('"') and value.endswith('"'):
+            try:
+                return json.loads(value)
+            except json.JSONDecodeError:
+                pass  # Preserve the existing fallback for non-JSON JS syntax.
         if not (value.startswith('"') and value.endswith('"')) and not (
             value.startswith("'") and value.endswith("'")
         ):
