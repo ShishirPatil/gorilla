@@ -123,11 +123,20 @@ def parse_array(input_str: str, nested_type=None) -> List:
     if match:
         elements_str = match.group(1)
         if nested_type:
-            elements = [
-                java_type_converter(x.strip(), nested_type)
-                for x in elements_str.split(",")
-                if x.strip()
-            ]
+            elements = []
+            for x in elements_str.split(","):
+                x = x.strip()
+                if not x:
+                    continue
+                # Strip the surrounding quotes of String/char literals so that
+                # quoted elements normalize to the bare values stored in the
+                # answer key. This mirrors parse_arraylist, which already strips
+                # them; otherwise a valid `new String[]{"a", "b"}` would keep
+                # the quotes and never match the expected `["a", "b"]`.
+                if nested_type in ("String", "char"):
+                    elements.append(x[1:-1])
+                else:
+                    elements.append(java_type_converter(x, nested_type))
         else:
             elements = [
                 parse_java_value(x.strip())
