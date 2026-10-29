@@ -41,6 +41,7 @@ from bfcl_eval.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 from bfcl_eval.model_handler.local_inference.gemma import GemmaHandler
 from bfcl_eval.model_handler.local_inference.functiongemma import FunctionGemmaHandler
 from bfcl_eval.model_handler.local_inference.glm import GLMHandler
+from bfcl_eval.model_handler.local_inference.glm_5_fc import GLM5FCHandler
 from bfcl_eval.model_handler.local_inference.granite import (
     GraniteFunctionCallingHandler,
 )
@@ -2124,6 +2125,18 @@ local_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=False,
+    ),
+    "praex/Lucia-III-FC": ModelConfig(
+        model_name="praex/Lucia-III",
+        display_name="Lucia-III (FC)",
+        url="https://huggingface.co/praex/Lucia-III",
+        org="Praex",
+        license="GLM-5.3 License (MIT-style)",
+        model_handler=GLM5FCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=True,
     ),
 }
 

@@ -178,6 +178,7 @@ SUPPORTED_MODELS = [
     "ThinkAgents/ThinkAgent-1B",
     "phronetic-ai/RZN-T",
     "Nanbeige/Nanbeige4-3B-Thinking-2511",
+    "praex/Lucia-III-FC",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-novita",
     "meta-llama/llama-4-maverick-17b-128e-instruct-fp8-FC-novita",
     "meta-llama/llama-4-scout-17b-16e-instruct-novita",
