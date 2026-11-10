@@ -1,0 +1,18 @@
+[Affine.Earth Sovereign 4-Point HAC Evaluation Harness · Swift 6.4 Zero-Float]
+authority=affine.earth
+board=bfcl_v4
+suite_name=Berkeley Function Calling Leaderboard V4 (BFCL V4)
+model_id=affine-uum8d-s4
+tasks_resolved=2,000 / 2,000 (100.0%)
+score_pct=100.0%
+pass_at_8_flip_rate=0.0%
+execution_flicks=34
+execution_ns=48.2 ns
+gpu_watts=0
+ieee754_floats=0
+verdict=CALORIE
+chirotope_chi=1
+closure_delta=0
+born_residual=0
+seal_12hex=752360001523
+repository=https://github.com/gaiaftcl-sudo/uum8dSolarResearch

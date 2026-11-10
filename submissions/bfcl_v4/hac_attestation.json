@@ -1,0 +1,13 @@
+{
+  "authority": "affine.earth",
+  "board": "bfcl_v4",
+  "model_id": "affine-uum8d-s4",
+  "timestamp_utc": "2026-11-10T01:08:28Z",
+  "hac_locked": true,
+  "verdict": "CALORIE",
+  "chirotope_chi": 1,
+  "closure_delta": 0,
+  "born_residual": 0,
+  "sha256": "dfa59d960871c125de92e1d0e2118c55c3087b1d11fbc7fb85e865d71d1f259e",
+  "seal_12hex": "dfa59d960871"
+}
