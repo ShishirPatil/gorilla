@@ -1,0 +1,26 @@
+name: Affine.Earth
+org: Affine.Earth (UUM-8D Quantum Affine Infrastructure Consortium)
+site: https://affine.earth/language-game/leaderboard.html
+repository: https://github.com/gaiaftcl-sudo/uum8dSolarResearch
+submission_pr: https://github.com/ShishirPatil/gorilla/pull/1392
+submission_branch: https://github.com/gaiaftcl-sudo/gorilla/tree/affine-uum8d-s4-20261109/submissions/bfcl_v4
+official_board_url: https://gorilla.cs.berkeley.edu/leaderboard.html
+runner_up_comparison: "Claude-Opus-4-5-20251101 (FC) (77.47% · Pulled 2026-11-09)"
+runner_up_pulled_date: "2026-11-09"
+huggingface_model: https://huggingface.co/rpg67/Affine.Earth
+huggingface_dataset: https://huggingface.co/datasets/rpg67/Affine.Earth-Benchmarks
+huggingface_space: https://huggingface.co/spaces/rpg67/Affine-Earth-Sovereign-Court
+oss: true
+verified: true
+date: 2026-11-10
+logs: logs
+trajs: trajs
+model:
+  name: Affine.Earth (vQbit M8 = S4 x C4 Zero-Float State Machine)
+  id: affine-uum8d-s4
+  parameters: 0 Neural Weights (Swift 6.4 Integer Lattice · 705,600,000 Flicks/s)
+harness:
+  name: Affine.Earth Public Thin-Client & 3-Gate Chirotope Airlock
+  repository: https://github.com/gaiaftcl-sudo/uum8dSolarResearch
+  mcp_endpoint: https://affine.earth/v1/mcp
+  completions_endpoint: https://affine.earth/v1/chat/completions

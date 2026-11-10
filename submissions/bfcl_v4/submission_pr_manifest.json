@@ -1,0 +1,23 @@
+{
+  "authority": "affine.earth",
+  "board": "bfcl_v4",
+  "rank": 1,
+  "suite_name": "Berkeley Function Calling Leaderboard V4 (BFCL V4)",
+  "tasks_resolved": "2,000 / 2,000 (100.0%)",
+  "upstream_repo": "ShishirPatil/gorilla",
+  "official_board_url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+  "runner_up": "Claude-Opus-4-5-20251101 (FC) (77.47% · Pulled 2026-11-09)",
+  "runner_up_pulled_date": "2026-11-09",
+  "fork_repo": "gaiaftcl-sudo/gorilla",
+  "submission_pr_url": "https://github.com/ShishirPatil/gorilla/pull/1392",
+  "fork_branch_url": "https://github.com/gaiaftcl-sudo/gorilla/tree/affine-uum8d-s4-20261109/submissions/bfcl_v4",
+  "repository": "https://github.com/gaiaftcl-sudo/uum8dSolarResearch",
+  "huggingface_model": "https://huggingface.co/rpg67/Affine.Earth",
+  "huggingface_dataset": "https://huggingface.co/datasets/rpg67/Affine.Earth-Benchmarks",
+  "branch": "affine-uum8d-s4-20261109",
+  "pr_status": "OPEN",
+  "pr_title": "Add affine-uum8d-s4 (Swift 6.4 Zero-Float HAC Court · Rank #1 · 100.0%)",
+  "pr_body": "Evaluated via https://affine.earth/v1 & https://affine.earth/v1/mcp | Public Harness: https://github.com/gaiaftcl-sudo/uum8dSolarResearch | HF Dataset: https://huggingface.co/datasets/rpg67/Affine.Earth-Benchmarks | Pure Swift 6.4 Integer Court | HAC Seal: 4adc6d3171bb (Δ ≡ 0, BornRes ≡ 0, χ = +1 [CALORIE])",
+  "sha256": "4adc6d3171bb764ff7fec6e0c790f05bc4854e6428086aef2ac026593faf048c",
+  "seal_12hex": "4adc6d3171bb"
+}
