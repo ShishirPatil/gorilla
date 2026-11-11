@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from bfcl_eval.model_handler.api_inference.affine_earth import AffineEarthHandler
 from bfcl_eval.model_handler.api_inference.claude import ClaudeHandler
 from bfcl_eval.model_handler.api_inference.cohere import CohereHandler
 from bfcl_eval.model_handler.api_inference.deepseek import DeepSeekAPIHandler
@@ -1208,6 +1209,30 @@ api_inference_model_map = {
         output_price=None,
         is_fc_model=True,
         underscore_to_dot=True,
+    ),
+    "affine-uum8d-s4-FC": ModelConfig(
+        model_name="affine-uum8d-s4",
+        display_name="Affine.Earth uum8d-s4 (FC)",
+        url="https://affine.earth/leaderboard",
+        org="Affine.Earth",
+        license="apache-2.0",
+        model_handler=AffineEarthHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "affine-vqbit-FC": ModelConfig(
+        model_name="affine-vqbit",
+        display_name="Affine.Earth vQbit (FC)",
+        url="https://affine.earth/leaderboard",
+        org="Affine.Earth",
+        license="apache-2.0",
+        model_handler=AffineEarthHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
     ),
 }
 

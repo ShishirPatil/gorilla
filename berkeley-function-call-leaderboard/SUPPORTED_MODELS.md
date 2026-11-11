@@ -153,6 +153,8 @@ For model names containing `{...}`, multiple versions are available. For example
 | xLAM-2-3b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/xLAM-2-3b-fc-r                                   |
 | xLAM-2-70b-fc-r                        | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-70b-fc-r                            |
 | xLAM-2-8b-fc-r                         | Function Calling | Self-hosted 💻 | Salesforce/Llama-xLAM-2-8b-fc-r                             |
+| affine-uum8d-s4-FC                     | Function Calling | Affine.Earth  | affine-uum8d-s4                                             |
+| affine-vqbit-FC                        | Function Calling | Affine.Earth  | affine-vqbit                                                |
 
 ---
 
