@@ -1,4 +1,7 @@
+import ast
+import keyword
 import re
+import warnings
 
 from bfcl_eval.constants.enums import Language
 from bfcl_eval.constants.model_config import MODEL_CONFIG_MAPPING
@@ -182,18 +185,314 @@ def standardize_string(input_string: str):
     return re.sub(regex_string, "", input_string).lower().replace("'", '"')
 
 
-def string_checker(param: str, model_output: str, possible_answer: list):
-    standardize_possible_answer = []
-    standardize_model_output = standardize_string(model_output)
-    for i in range(len(possible_answer)):
-        if type(possible_answer[i]) == str:
-            standardize_possible_answer.append(standardize_string(possible_answer[i]))
+# standardize_string deletes spaces and ",./-_*^" and lowercases. This tolerance accommodates formatting variants in
+# descriptive values such as names, places and titles ("Washington, D.C." and "Washington DC"). In some values those
+# characters carry the meaning, and deleting them makes different values compare equal: "19.216.81.10" and
+# "192.168.1.10", "2x-2" and "2x**2", or the separator "-" and the separator " ". The values below are compared
+# without deleting them.
+_IPV4 = r"(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}"
+_BARE_IPV4 = re.compile(_IPV4)  # with fullmatch: the whole value is an address
+_IPV4_IN_TEXT = re.compile(r"(?<![\d.])" + _IPV4 + r"(?![\d.])")  # an address inside a longer value
+# With fullmatch, the whole value is a URL: scheme, authority, path, then query and fragment. No whitespace.
+_BARE_URL = re.compile(r"([A-Za-z][A-Za-z0-9+.\-]*)://([^/?#\s]*)([^?#\s]*)([?#]\S*)?")
+# A URL inside a quoted string: scheme, authority, path. It ends at whitespace or a quote.
+_URL_IN_TEXT = re.compile(r"([A-Za-z][A-Za-z0-9+.\-]*)://([^/?#\s'\"]*)([^?#\s'\"]*)")
+_IDENTIFIER = re.compile(r"[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*")  # with fullmatch
+_EXPRESSION_PARAMS = {"function", "func", "function1", "function2", "equation", "expression", "formula", "polynomial"}
+_COMMAND_PARAMS = {"command"}
+# A shell command starts with an ASCII program name or path. That tells the cmd.exe commands of cmd_controller.execute
+# apart from descriptive values of other parameters named "command", such as "거실, 에어컨, 실행".
+_SHELL_PROGRAM = re.compile(r"\s*[\x21-\x7e]*[A-Za-z0-9][\x21-\x7e]*(?:\s|$)")
+_KEYWORDS_LOWER = {word.lower() for word in keyword.kwlist}
+_STRING = r"""'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*\""""  # a backslash escapes the next character
+_NUMBER = r"(?:\d+\.\d*|\.\d+|\d+)(?:[eE][+-]?\d+)?"
+_EXPRESSION_TOKEN = re.compile(
+    rf"""(?P<space>\s+)
+      | (?P<string>{_STRING})
+      | (?P<number>{_NUMBER})
+      | (?P<name>[^\W\d]\w*)
+      | (?P<op>\*\*|//|==|!=|<=|>=|<<|>>|->|\S)""",
+    re.VERBOSE,
+)
+# Java and JavaScript operators, matched longest first, so that "a++ + b" and "a + ++b" give different tokens
+_CODE_OPERATORS = sorted(
+    [">>>=", "<<=", ">>=", ">>>", "===", "!==", "**=", "...", "->", "::", "=>", "++", "--", "+=", "-=", "*=", "/=",
+     "%=", "&=", "|=", "^=", "==", "!=", "<=", ">=", "&&", "||", "<<", ">>", "**", "?.", "??"],
+    key=len, reverse=True,
+)
+_CODE_TOKEN = re.compile(
+    rf"""(?P<space>\s+)
+      | (?P<url>[A-Za-z][A-Za-z0-9+.\-]*://[^\s'"]*)
+      | (?P<string>{_STRING}|`(?:[^`\\]|\\.)*`)
+      | (?P<ip>(?<![\d.]){_IPV4}(?![\d.]))
+      | (?P<number>{_NUMBER})
+      | (?P<name>(?:[^\W\d]|\$)[\w$]*)
+      | (?P<op>{"|".join(re.escape(op) for op in _CODE_OPERATORS)}|\S)""",
+    re.VERBOSE,
+)
+# Java or JavaScript code, not a literal or an identifier: a call, constructor, array, lambda or method reference
+_JAVA_CODE = re.compile(r"[(\[{]|::|->|=>|^\s*new\s")
+# A cmd.exe argument that names a Windows file or path, whose case Windows ignores: it has a backslash, a drive
+# letter or a file extension, as in C:\\Users, d:/scripts/test.py or Code.exe
+_WINDOWS_PATH = re.compile(r'\\|(?:^|")[A-Za-z]:|\w\.[A-Za-z][A-Za-z0-9]*"?$')
+# A Windows-style switch, / followed by letters, as in /IM or /f: Windows commands ignore its case
+_WINDOWS_SWITCH = re.compile(r"/[A-Za-z]+")
+# A URL inside a cmd.exe word: scheme, authority, path, then query and fragment. It ends at whitespace or a double quote.
+_URL_IN_WORD = re.compile(r"([A-Za-z][A-Za-z0-9+.\-]*)://([^/?#\s\"]*)([^?#\s\"]*)([?#][^\s\"]*)?")
+# How each kind of accepted value is compared, for the error message. None is the tolerant comparison.
+_COMPARISONS = {
+    None: "case-insensitively, ignoring spaces and ,./-_*^",
+    "exact": "exactly",
+    "url": "as a URL, ignoring the case of its scheme and host",
+    "code": "token by token, with operators matched longest first and a quoted string read the same whatever its "
+            "quotes (but a Java char literal is not a string), ignoring whitespace between tokens and the case of a "
+            "URL's scheme and host",
+    "command": "word by word, split at whitespace outside double quotes, with quotes and ^ escapes counting; case is "
+               "ignored only in the program name, in /-switches, in arguments that name a Windows file or path, and "
+               "in a URL's scheme and host",
+    "expression": "token by token, ignoring whitespace and case, with ^ read as ** and implicit multiplication made "
+                  "explicit",
+    "callable": "as a Python syntax tree, so formatting is ignored and case counts; a value that isn't valid Python "
+                "is first rewritten with ^ read as ** and implicit multiplication made explicit",
+}
 
-    if standardize_model_output not in standardize_possible_answer:
+
+def _url_parts_form(scheme: str, authority: str, path: str) -> str:
+    """A URL with its scheme and host lowercased."""
+    userinfo, at, host = authority.rpartition("@")
+    return scheme.lower() + "://" + userinfo + at + host.lower() + path
+
+
+def _url_form(text: str) -> str:
+    """A value that is a URL as a whole, with its scheme and host lowercased, so that "HTTPS://Example.com/a" equals
+    "https://example.com/a". The path, query and fragment keep their case, and a trailing slash counts. Any other
+    value, such as a URL with whitespace in it, is returned unchanged."""
+    match = _BARE_URL.fullmatch(text)
+    if not match:
+        return text
+    scheme, authority, path, rest = match.groups()
+    return _url_parts_form(scheme, authority, path) + (rest or "")
+
+
+def _literal_form(token: str, language=None) -> str:
+    """A quoted literal, read the same whatever its quotes: 'a' and "a" are both the string a, as in Python and
+    JavaScript and as the answer keys write Java strings ('item' isn't a Java literal). In Java, a single-quoted single
+    character or escape is a char literal, which is not a string. A template literal (backquotes) keeps its quotes."""
+    quote, body = token[0], token[1:-1]
+    if quote == "`":
+        return token
+    unescaped = body.replace("\\'", "'").replace('\\"', '"')
+    if quote == "'" and language == Language.JAVA and re.fullmatch(r"\\u[0-9a-fA-F]{4}|\\?.", body, re.S):
+        return "char:" + unescaped
+    return "string:" + _URL_IN_TEXT.sub(lambda m: _url_parts_form(*m.groups()), unescaped)
+
+
+def _code_tokens(text: str, language=None) -> list:
+    """A value such as Java code as a list of tokens: URLs (as in _url_form), quoted literals (as in _literal_form,
+    with a URL inside one as in _url_parts_form), IPv4 addresses, numbers, names, and operators matched longest first,
+    with whitespace dropped. Spacing between tokens is ignored, so '("a", 1)' equals '( "a" , 1 )', but "new Foo" and
+    "newFoo", "80 80" and "8080", and "a++ + b" and "a + ++b" differ."""
+    tokens = []
+    for match in _CODE_TOKEN.finditer(text):
+        kind, token = match.lastgroup, match.group()
+        if kind == "space":
+            continue
+        if kind == "url":
+            token = _url_form(token)
+        elif kind == "string":
+            token = _literal_form(token, language)
+        tokens.append(token)
+    return tokens
+
+
+def _command_words(text: str) -> list:
+    """A cmd.exe command line split into words at whitespace outside double quotes. A double-quoted part runs to the
+    next double quote (or the end) and keeps its quotes. ^ outside double quotes escapes the next character and is
+    kept. Single quotes and backslashes are ordinary characters, so "C:\\Users" keeps its backslash. A word keeps its
+    quotes and escapes, so 'a b' and "a b", a^&b and a&b, a-b and a - b, and echo.>x and echo. > x differ."""
+    words, word, i, in_quote = [], "", 0, False
+    while i < len(text):
+        ch = text[i]
+        if in_quote:
+            word += ch
+            in_quote = ch != '"'
+        elif ch == '"':
+            word += ch
+            in_quote = True
+        elif ch == "^" and i + 1 < len(text):
+            word += text[i : i + 2]
+            i += 2
+            continue
+        elif ch.isspace():
+            if word:
+                words.append(word)
+            word = ""
+        else:
+            word += ch
+        i += 1
+    if word:
+        words.append(word)
+    return words
+
+
+def _command_word_form(word: str) -> str:
+    """A cmd.exe argument. Each URL in it (inside or outside quotes) has its scheme and host lowercased and keeps the
+    case of its path, query and fragment. A Windows-style switch (_WINDOWS_SWITCH, such as /F) and an argument without
+    a URL that names a Windows file or path (_WINDOWS_PATH) are lowercased; any other argument, such as --version, is
+    case-sensitive."""
+    if _WINDOWS_SWITCH.fullmatch(word):
+        return word.lower()
+    if not _URL_IN_WORD.search(word):
+        return word.lower() if _WINDOWS_PATH.search(word) else word
+    out, position = [], 0
+    for match in _URL_IN_WORD.finditer(word):
+        scheme, authority, path, rest = match.groups()
+        out.append(word[position : match.start()])
+        out.append(_url_parts_form(scheme, authority, path) + (rest or ""))
+        position = match.end()
+    out.append(word[position:])
+    return "".join(out)
+
+
+def _command_form(text: str) -> list:
+    """A command's words: the program name (the first word) ignoring case, the arguments as in _command_word_form."""
+    words = [_command_word_form(word) for word in _command_words(text)]
+    return [words[0].lower()] + words[1:] if words else words
+
+
+def _expression_tokens(text: str, case_sensitive: bool = False) -> list:
+    """A math expression as a list of tokens: whitespace dropped, numbers (and, unless case_sensitive, names)
+    lowercased, ^ read as **, and implicit multiplication made explicit (a number followed by a name or "(", or ")"
+    followed by a name, a number or "("), except before a Python keyword. "2*x**2" and "2 * x ** 2" give the same
+    tokens, as do "3x + 2" and "3*x+2", and "x^3" and "x**3". "log10(x)" and "log10*(x)", "1e3*x" and "1*e3*x",
+    "2*x**2" and "2*x* *2", "lambda x:" and "lambdax:", "2 3" and "2*3", and "2 if x else 3" and "2*if x else 3" do
+    not."""
+    tokens = []
+    for match in _EXPRESSION_TOKEN.finditer(text):
+        kind, token = match.lastgroup, match.group()
+        if kind == "space":
+            continue
+        if kind == "number" or (kind == "name" and not case_sensitive):
+            token = token.lower()
+        elif token == "^":
+            token = "**"
+        is_keyword = kind == "name" and (keyword.iskeyword(token) if case_sensitive else token in _KEYWORDS_LOWER)
+        if tokens and not is_keyword:
+            previous_kind, previous = tokens[-1]
+            if (previous_kind == "number" and (kind == "name" or token == "(")) or (
+                previous == ")" and (kind in ("name", "number") or token == "(")
+            ):
+                tokens.append(("op", "*"))
+        tokens.append((kind, token))
+    return [token for _, token in tokens]
+
+
+def _has_lambda(text: str) -> bool:
+    """Whether the text holds a Python lambda outside string literals, anywhere in it: the name lambda followed later
+    by ":", as in "lambda x: x**2", "(lambda x: x**2)" or "f(lambda x: g(lambda y: y))"."""
+    tokens = [(m.lastgroup, m.group()) for m in _EXPRESSION_TOKEN.finditer(text) if m.lastgroup not in ("space", "string")]
+    return any(
+        kind == "name" and token == "lambda" and ("op", ":") in tokens[i + 1 :] for i, (kind, token) in enumerate(tokens)
+    )
+
+
+def _python_syntax(text: str):
+    """The text's syntax tree as a string (ast.dump), parsed as an expression, or None if it isn't a valid Python
+    expression. Nothing is run."""
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return ast.dump(ast.parse(text.strip(), mode="eval"))
+    except Exception:  # not Python, such as "lambda x: 2x**2", or too large or deep to parse
+        return None
+
+
+def _callable_form(text: str):
+    """A value holding a lambda, as its syntax tree if it is a valid Python expression, unchanged: "(lambda x: x**2)"
+    and "lambda x : x ** 2" are the same, but not "lambda x: x^2" (^ is XOR) or "lambda x: X**2". Only a value that
+    isn't Python, such as the key "lambda x: 2x**2", is rewritten with the tokens of _expression_tokens (^ read as **,
+    implicit multiplication made explicit, case counting) and then parsed; if it still doesn't parse, its tokens."""
+    syntax = _python_syntax(text)
+    if syntax is not None:
+        return ("syntax", syntax)
+    tokens = _expression_tokens(text, case_sensitive=True)
+    syntax = _python_syntax(" ".join(tokens))
+    return ("syntax", syntax) if syntax is not None else ("tokens", tokens)
+
+
+def _same_callable(model_output: str, accepted: str) -> bool:
+    return _callable_form(model_output) == _callable_form(accepted)
+
+
+def _structured_kind(param: str, accepted: str, language=None, declared_type=None):
+    """How an accepted string value is compared (a key of _COMPARISONS); None is the tolerant comparison."""
+    if _has_lambda(accepted):
+        return "callable"  # a value holding a lambda, under any parameter: see _same_callable
+    if param in _EXPRESSION_PARAMS:
+        return "expression"  # every other value of an expression parameter: see _expression_tokens
+    if param in _COMMAND_PARAMS and _SHELL_PROGRAM.match(accepted):
+        return "command"  # a cmd.exe command: see _command_words
+    if accepted and not standardize_string(accepted):
+        return "exact"  # made only of characters standardize_string deletes, e.g. the separator " "
+    if _BARE_URL.fullmatch(accepted):
+        return "url"  # the whole value is a URL: see _url_form
+    if _BARE_IPV4.fullmatch(accepted):
+        return "exact"  # the whole value is an IPv4 address
+    if _URL_IN_TEXT.search(accepted) or _IPV4_IN_TEXT.search(accepted):
+        return "code"  # a URL or an IP address inside a longer value, such as Java code: see _code_tokens
+    java = language in (Language.JAVA, Language.JAVASCRIPT) and (declared_type or "").lower() != "string"
+    if java and _JAVA_CODE.search(accepted):
+        return "code"  # Java or JavaScript code, such as a constructor call: see _code_tokens
+    if java and _IDENTIFIER.fullmatch(accepted):
+        return "exact"  # a Java or JavaScript identifier is case- and underscore-sensitive
+    return None
+
+
+def _same_string(param: str, model_output: str, accepted: str, language=None, declared_type=None) -> bool:
+    kind = _structured_kind(param, accepted, language, declared_type)
+    if kind == "exact":
+        return model_output == accepted
+    if kind == "url":
+        return _url_form(model_output) == _url_form(accepted)
+    if kind == "code":
+        return _code_tokens(model_output, language) == _code_tokens(accepted, language)
+    if kind == "command":
+        return _command_form(model_output) == _command_form(accepted)
+    if kind == "callable" or (kind == "expression" and _has_lambda(model_output)):
+        return _same_callable(model_output, accepted)
+    if kind == "expression":
+        return _expression_tokens(model_output) == _expression_tokens(accepted)
+    return standardize_string(model_output) == standardize_string(accepted)
+
+
+def _same_item(param: str, model_item, accepted_item, language=None, declared_type=None) -> bool:
+    """A list item or a dict value: strings with _same_string, anything else for equality."""
+    if type(model_item) == str and type(accepted_item) == str:
+        return _same_string(param, model_item, accepted_item, language, declared_type)
+    return model_item == accepted_item
+
+
+def _comparison_note(param: str, possible_answer: list, language=None, declared_type=None) -> str:
+    """How the accepted strings were compared, for the error message. The optional marker "" is left out."""
+    notes = []
+    for accepted in possible_answer:
+        if type(accepted) == str and accepted != "":
+            note = _COMPARISONS[_structured_kind(param, accepted, language, declared_type)]
+            if note not in notes:
+                notes.append(note)
+    return (" Compared " + "; or ".join(notes) + ".") if notes else ""
+
+
+def string_checker(param: str, model_output: str, possible_answer: list, language=None, declared_type=None):
+    if not any(
+        type(accepted) == str and _same_string(param, model_output, accepted, language, declared_type)
+        for accepted in possible_answer
+    ):
         return {
             "valid": False,
             "error": [
-                f"Invalid value for parameter {repr(param)}: {repr(model_output)}. Expected one of {possible_answer}. Case insensitive."
+                f"Invalid value for parameter {repr(param)}: {repr(model_output)}. Expected one of {possible_answer}."
+                + _comparison_note(param, possible_answer, language, declared_type)
             ],
             "error_type": "value_error:string",
         }
@@ -201,29 +500,23 @@ def string_checker(param: str, model_output: str, possible_answer: list):
     return {"valid": True, "error": []}
 
 
-def list_checker(param: str, model_output: list, possible_answer: list):
+def list_checker(param: str, model_output: list, possible_answer: list, language=None, item_type=None):
     # Convert the tuple to a list
 
-    standardize_model_output = list(model_output)
+    model_list = list(model_output)
 
-    # If the element in the list is a string, we need to standardize it
-    for i in range(len(standardize_model_output)):
-        if type(standardize_model_output[i]) == str:
-            standardize_model_output[i] = standardize_string(model_output[i])
-
-    standardize_possible_answer = []
-    # We also need to standardize the possible answers
+    # Read each possible answer item by item, as before, so that a possible answer "" (the optional marker) reads as
+    # the empty list
+    possible_lists = []
     for i in range(len(possible_answer)):
-        standardize_possible_answer.append([])
-        for j in range(len(possible_answer[i])):
-            if type(possible_answer[i][j]) == str:
-                standardize_possible_answer[i].append(
-                    standardize_string(possible_answer[i][j])
-                )
-            else:
-                standardize_possible_answer[i].append(possible_answer[i][j])
+        possible_lists.append([possible_answer[i][j] for j in range(len(possible_answer[i]))])
 
-    if standardize_model_output not in standardize_possible_answer:
+    # Compare item by item: string items with _same_string, other items for equality
+    if not any(
+        len(accepted) == len(model_list)
+        and all(_same_item(param, m, a, language, item_type) for m, a in zip(model_list, accepted))
+        for accepted in possible_lists
+    ):
         return {
             "valid": False,
             "error": [
@@ -260,25 +553,12 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
                 flag = False
                 break
 
-            standardize_value = value
-            # If the value is a string, we need to standardize it
-            if type(value) == str:
-                standardize_value = standardize_string(value)
-
-            # We also need to standardize the possible answers if they are string
-            standardize_possible_answer = []
-            for i in range(len(possible_answer[key])):
-                if type(possible_answer[key][i]) == str:
-                    standardize_possible_answer.append(
-                        standardize_string(possible_answer[key][i])
-                    )
-                else:
-                    standardize_possible_answer.append(possible_answer[key][i])
-
-            if standardize_value not in standardize_possible_answer:
+            # String values are compared with _same_string, under the dict key's name; other values for equality
+            if not any(_same_item(key, value, accepted) for accepted in possible_answer[key]):
                 result["valid"] = False
                 result["error"].append(
-                    f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {standardize_possible_answer}."
+                    f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {possible_answer[key]}."
+                    + _comparison_note(key, possible_answer[key])
                 )
                 result["error_type"] = "value_error:dict_value"
                 flag = False
@@ -481,14 +761,18 @@ def simple_function_checker(
 
             # Special handle for strings
             elif expected_type_converted == str:
-                # We don't check for case sensitivity for string, as long as it's not a variable
-                result = string_checker(param, value, possible_answer[param])
+                # Descriptive strings ignore case and formatting; structured ones don't (see _structured_kind)
+                result = string_checker(
+                    param, value, possible_answer[param], language, expected_type_description
+                )
                 if not result["valid"]:
                     return result
                 continue
 
             elif expected_type_converted == list:
-                result = list_checker(param, value, possible_answer[param])
+                result = list_checker(
+                    param, value, possible_answer[param], language, full_param_details.get("items", {}).get("type")
+                )
                 if not result["valid"]:
                     return result
                 continue
