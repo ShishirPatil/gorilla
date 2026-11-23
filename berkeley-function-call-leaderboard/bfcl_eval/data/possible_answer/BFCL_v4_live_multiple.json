@@ -299,14 +299,14 @@
 {"id": "live_multiple_298-130-7", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Chicago, IL"], "has_laundry_service": ["True"], "number_of_adults": ["", 0], "rating": [3.9]}}]}
 {"id": "live_multiple_299-130-8", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Sydney, Australia"], "has_laundry_service": ["True"], "number_of_adults": [3], "rating": ["", 0.0]}}]}
 {"id": "live_multiple_300-130-9", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Rio de Janeiro, Brazil"], "has_laundry_service": ["", "dontcare"], "number_of_adults": [2], "rating": [4.2]}}]}
-{"id": "live_multiple_301-131-0", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
-{"id": "live_multiple_302-131-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
-{"id": "live_multiple_303-131-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Vancouver"], "star_rating": ["3"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
-{"id": "live_multiple_304-131-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Los Angeles, CA"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_301-131-0", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_302-131-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_303-131-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Vancouver"], "star_rating": ["3"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_304-131-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Los Angeles, CA"], "star_rating": ["4"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_305-131-4", "ground_truth": [{"Hotels_4_ReserveHotel": {"place_name": ["dontcare"], "check_in_date": ["2023-07-15"], "stay_length": [5], "location": ["dontcare"], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_306-131-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur, Malaysia"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_307-131-6", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Philadelphia, PA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": [3]}}]}
-{"id": "live_multiple_308-131-7", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Phoenix, AZ"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_306-131-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur, Malaysia"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", "dontcare"]}}]}
+{"id": "live_multiple_307-131-6", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Philadelphia, PA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", "False"], "number_of_rooms": [3]}}]}
+{"id": "live_multiple_308-131-7", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Phoenix, AZ"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", "False"], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_309-131-8", "ground_truth": [{"Hotels_4_ReserveHotel": {"place_name": ["dontcare"], "check_in_date": ["2023-08-15"], "stay_length": [2], "location": ["Berkeley, CA"], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_310-132-0", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Herbert Ross"], "genre": ["Family"], "cast": ["Betsy Widhalm"]}}]}
 {"id": "live_multiple_311-132-1", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Wes Anderson"], "genre": ["Comedy"], "cast": ["Bill Murray"]}}]}
@@ -550,8 +550,8 @@
 {"id": "live_multiple_549-152-11", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Jose, CA"], "intent": ["buy"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": [true], "in_unit_laundry": ["", false]}}]}
 {"id": "live_multiple_550-152-12", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Denver, CO"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [2], "has_garage": ["", false], "in_unit_laundry": [true]}}]}
 {"id": "live_multiple_551-153-0", "ground_truth": [{"Services_1_FindProvider": {"city": ["Berkeley, CA"], "is_unisex": ["", "dontcare"]}}]}
-{"id": "live_multiple_552-153-1", "ground_truth": [{"Services_1_FindProvider": {"city": ["Walnut Creek"], "is_unisex": [true]}}]}
-{"id": "live_multiple_553-153-2", "ground_truth": [{"Services_1_FindProvider": {"city": ["San Francisco, CA"], "is_unisex": ["", false]}}]}
+{"id": "live_multiple_552-153-1", "ground_truth": [{"Services_1_FindProvider": {"city": ["Walnut Creek"], "is_unisex": ["True"]}}]}
+{"id": "live_multiple_553-153-2", "ground_truth": [{"Services_1_FindProvider": {"city": ["San Francisco, CA"], "is_unisex": ["", "False"]}}]}
 {"id": "live_multiple_554-154-0", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["London, UK"], "start_date": ["2023-03-10"], "pickup_time": ["10:00"], "end_date": ["2023-03-17"], "car_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_555-154-1", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["Los Angeles, CA"], "start_date": ["2023-04-14"], "pickup_time": ["10:00"], "end_date": ["2023-04-18"], "car_type": ["Sedan"]}}]}
 {"id": "live_multiple_556-154-2", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["Long Beach, CA"], "start_date": ["2023-04-12"], "pickup_time": ["14:00"], "end_date": ["2023-04-12"], "car_type": ["Sedan"]}}]}
@@ -593,8 +593,8 @@
 {"id": "live_multiple_592-157-13", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Offbeat"], "starring": ["Inbal Amirav"]}}]}
 {"id": "live_multiple_593-157-14", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Comedy"], "starring": ["Ellise Chappell"]}}]}
 {"id": "live_multiple_594-158-0", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": [false], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_595-158-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["3"], "smoking_allowed": [true], "number_of_rooms": [2]}}]}
-{"id": "live_multiple_596-158-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["San Francisco, CA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": [1]}}]}
+{"id": "live_multiple_595-158-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["3"], "smoking_allowed": [true], "number_of_rooms": ["2"]}}]}
+{"id": "live_multiple_596-158-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["San Francisco, CA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["1"]}}]}
 {"id": "live_multiple_597-158-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Toronto, Canada"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_598-158-4", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Washington D.C."], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_599-158-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Delhi, India"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
@@ -729,13 +729,13 @@
 {"id": "live_multiple_728-166-3", "ground_truth": [{"Services_1_FindProvider": {"city": ["Walnut Creek, CA"], "is_unisex": ["", false]}}]}
 {"id": "live_multiple_729-167-0", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Denver, Colorado", "Denver, CO"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": ["", false], "in_unit_laundry": ["", "dontcare"]}}]}
 {"id": "live_multiple_730-167-1", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Leandro, California", "San Leandro, CA"], "intent": ["buy"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": ["", false], "in_unit_laundry": ["True"]}}]}
-{"id": "live_multiple_731-167-2", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["rent"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": [true], "in_unit_laundry": [true]}}]}
-{"id": "live_multiple_732-167-3", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Seattle, WA"], "intent": ["buy"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": ["", false], "in_unit_laundry": ["", false]}}]}
-{"id": "live_multiple_733-167-4", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": [false], "in_unit_laundry": [true]}}]}
-{"id": "live_multiple_734-167-5", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Los Angeles, CA"], "intent": ["buy"], "number_of_beds": [2], "number_of_baths": [2], "has_garage": [true], "in_unit_laundry": ["", false]}}]}
-{"id": "live_multiple_735-167-6", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Castro Valley, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": ["", false], "in_unit_laundry": [true]}}]}
-{"id": "live_multiple_736-167-7", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Benicia, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": [true], "in_unit_laundry": ["", false]}}]}
-{"id": "live_multiple_737-167-8", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["buy"], "number_of_beds": [2], "number_of_baths": [3], "has_garage": [true], "in_unit_laundry": ["", false]}}]}
+{"id": "live_multiple_731-167-2", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["rent"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": [true], "in_unit_laundry": ["True"]}}]}
+{"id": "live_multiple_732-167-3", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Seattle, WA"], "intent": ["buy"], "number_of_beds": [3], "number_of_baths": [2], "has_garage": ["", false], "in_unit_laundry": ["", "False"]}}]}
+{"id": "live_multiple_733-167-4", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": [false], "in_unit_laundry": ["True"]}}]}
+{"id": "live_multiple_734-167-5", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Los Angeles, CA"], "intent": ["buy"], "number_of_beds": [2], "number_of_baths": [2], "has_garage": [true], "in_unit_laundry": ["", "False"]}}]}
+{"id": "live_multiple_735-167-6", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Castro Valley, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": ["", false], "in_unit_laundry": ["True"]}}]}
+{"id": "live_multiple_736-167-7", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Benicia, CA"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [1], "has_garage": [true], "in_unit_laundry": ["", "False"]}}]}
+{"id": "live_multiple_737-167-8", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["San Francisco, CA"], "intent": ["buy"], "number_of_beds": [2], "number_of_baths": [3], "has_garage": [true], "in_unit_laundry": ["", "False"]}}]}
 {"id": "live_multiple_738-168-0", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [75.5], "receiver": ["Peter"], "private_visibility": ["", false]}}]}
 {"id": "live_multiple_739-168-1", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [50.0], "receiver": ["Alex"], "private_visibility": [true]}}]}
 {"id": "live_multiple_740-168-2", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [250.0], "receiver": ["Margaret"], "private_visibility": [true]}}]}
