@@ -61,6 +61,7 @@ from bfcl_eval.model_handler.local_inference.qwen import QwenHandler
 from bfcl_eval.model_handler.local_inference.qwen_fc import QwenFCHandler
 from bfcl_eval.model_handler.local_inference.pelican_vl_fc import PelicanVLFCHandler
 from bfcl_eval.model_handler.local_inference.nanbeige_fc import NanbeigeFCHandler
+from bfcl_eval.model_handler.local_inference.lfm3_fc import Lfm3FCHandler
 from bfcl_eval.model_handler.local_inference.salesforce_llama import (
     SalesforceLlamaHandler,
 )
@@ -2120,6 +2121,18 @@ local_inference_model_map = {
         org="Nanbeige",
         license="apache-2.0",
         model_handler=NanbeigeFCHandler,
+        input_price=None,
+        output_price=None,
+        is_fc_model=True,
+        underscore_to_dot=False,
+    ),
+    "Sayansantra/LFM3-2.0B-WSP-V5": ModelConfig(
+        model_name="Sayansantra/LFM3-2.0B-WSP-V5",
+        display_name="LFM3-2.0B-WSP-V5 (FC)",
+        url="https://huggingface.co/Sayansantra/LFM3-2.0B-WSP-V5",
+        org="Sayan Santra",
+        license="lfm1.0",
+        model_handler=Lfm3FCHandler,
         input_price=None,
         output_price=None,
         is_fc_model=True,
