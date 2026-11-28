@@ -128,6 +128,7 @@ SUPPORTED_MODELS = [
     "microsoft/phi-4",
     "microsoft/Phi-4-mini-instruct",
     "microsoft/Phi-4-mini-instruct-FC",
+    "Sentovara/Sentinel-3B-FC",
     "ibm-granite/granite-3.2-8b-instruct",
     "ibm-granite/granite-3.1-8b-instruct",
     "ibm-granite/granite-4.0-350m",

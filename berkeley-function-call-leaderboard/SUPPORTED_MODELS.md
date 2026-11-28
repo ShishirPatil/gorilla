@@ -143,6 +143,7 @@ For model names containing `{...}`, multiple versions are available. For example
 | QwQ-32B                                | Function Calling | Qwen           | qwq-32b-FC                                                  |
 | QwQ-32B                                | Prompt           | Qwen           | qwq-32b                                                     |
 | RZN-T                                  | Prompt           | Self-hosted 💻 | phronetic-ai/RZN-T                                          |
+| Sentinel-3B                            | Function Calling | Self-hosted 💻 | Sentovara/Sentinel-3B-FC                                    |
 | Sky-T1-32B-Preview                     | Prompt           | Self-hosted 💻 | NovaSky-AI/Sky-T1-32B-Preview                               |
 | ThinkAgent-1B                          | Function Calling | Self-hosted 💻 | ThinkAgents/ThinkAgent-1B                                   |
 | ToolACE-2-8B                           | Prompt           | Self-hosted 💻 | Team-ACE/ToolACE-2-8B                                       |
